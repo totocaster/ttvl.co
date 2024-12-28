@@ -1,0 +1,32 @@
+baseURL = 'https://ttvl.co/'
+title = 'Toto Tvalavadze'
+
+languageCode = "us-en"
+DefaultContentLanguage = "en"
+
+enableEmoji = true
+enableGitInfo = false
+enableRobotsTXT = true
+canonifyURLs = false # breaks css since all links are no longer relative
+
+disableKinds = ["taxonomy", "term"]
+
+[params]
+  author = "Toto Tvalavadze"
+  github = "https://github.com/totocaster"
+  facebook = "https://facebook.com/totocaster"
+  og_image = "/ui/og.png" # TODO: replace with actual website image
+  sitename = "Toto Tvalavadze"
+  twitter = "@totocaster"
+  instagram = "https://instagram.com/totocaster"
+  membershipURL = "https://members.ttvl.co"
+
+[languages]
+  [languages.en]
+    languageName = "English"
+    languageCode = "en-us"
+    weight = 1
+
+[permalinks]
+ log = "/log/:year/:month/"
+ objects = "/objects/:year/:slug/"

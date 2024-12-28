@@ -1,0 +1,248 @@
+// Breakpoints
+$breakpoint-narrow: 768px;
+
+// Colors
+$color-light-bg: #fff;
+$color-light-text: #000;
+$color-dark-bg: #111;
+$color-dark-text: #fff;
+$color-selection: #eee;
+
+// Typography
+$font-family-base: -apple-system, BlinkMacSystemFont, 'HelveticaNeue', 'Helvetica Neue', 'Helvetica-Neue', Helvetica, Arial, sans-serif;
+$font-size-base: 16px;
+$font-size-h1: 20px;
+$line-height-base: 25px;
+$line-height-nav: 25px;
+
+// Layout
+$max-width-container: 1008px;
+$grid-gap: 72px;
+$padding-left: 128px;
+$padding-small: 20px;
+$header-height: 180px;
+
+// Mixins
+@mixin narrow {
+  @media screen and (max-width: $breakpoint-narrow) {
+    @content;
+  }
+}
+
+@mixin dark {
+  @media screen and (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+@mixin dark-invert {
+  @media screen and (prefers-color-scheme: dark) {
+    filter: invert(1);
+  }
+}
+
+@mixin readable-width {
+  max-width: 588px;
+}
+
+// Base styles
+::selection { 
+  background: $color-selection;
+  opacity: 1.0;
+  color: $color-light-text;
+  padding: $padding-small / 2;
+}
+
+body { 
+  background: $color-light-bg;
+  color: $color-light-text;
+  font-family: $font-family-base;
+  margin: 0;
+  padding: 0;
+  line-height: $line-height-base;
+  font-size: $font-size-base;
+
+  @include dark {
+    background: $color-dark-bg;
+    color: $color-dark-text;
+  }
+}
+
+// Layout components
+%grid-layout {
+  display: grid;
+  grid-template-columns: 1fr 240px;
+  gap: $grid-gap;
+  max-width: $max-width-container;
+  margin: 0;
+  padding-left: $padding-left;
+
+  @include narrow {
+    padding-left: $padding-small;
+    padding-right: $padding-small;
+    grid-template-columns: 1fr;
+  }
+}
+
+.layout,
+header,
+footer {
+  @extend %grid-layout;
+}
+
+footer {
+  margin-top: 140px;
+}
+
+header {
+  min-height: $header-height;
+  display: flex;
+  align-items: center;
+}
+
+// Typography
+h1 {
+  font-size: $font-size-h1;
+}
+
+h2,
+h3,
+h4,
+h5 {
+  font-size: $font-size-base;
+}
+
+a {
+  color: $color-light-text;
+  
+  &:not(:has(img)) {
+    @include dark-invert;
+  }
+}
+
+
+// Navigation
+nav {
+  line-height: $line-height-nav;
+  
+  a { text-decoration: none; }
+
+  h2 {
+    padding: 0;
+    margin: 20px 0 8px 0;
+  }
+  
+  ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+// Main content
+main {
+  article {
+    margin: 0 0 40px 0;
+
+    h1 > a, h2 > a {
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    a {
+      font-weight: 550;
+    }
+    
+    blockquote>p, p {
+      margin-top: 0;
+
+      img {
+        max-width: 118%;
+        height: auto;
+        @media (max-width: 1080px) {
+          max-width: 100% !important;
+        }
+      }
+    }
+
+    p, ul, h1, h2, h3, h4, h5 {
+      @include readable-width;
+    }
+
+    // Code and plain text
+    code {
+      font-family: 'SF Mono', SFMono-Regular, ui-monospace, 'DejaVu Sans Mono', Menlo, Consolas, monospace;
+    }
+
+    pre {
+      code {
+        @include readable-width;
+        display: block;
+        font-size: 14px;
+        line-height: 1.4;
+        white-space: pre;
+      }
+    }
+
+    // YouTube videos
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
+      overflow: hidden;
+      margin: 1.5rem 0;
+    }
+    
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  
+  }
+}
+
+@import 'page_style';
+
+div.home {
+  p:first-of-type {
+    margin-top: 0;
+  }
+  p {
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+// Loose Leafs
+
+.leafs-grid {
+  margin: 2rem 0;
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    
+    .leaf {
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 0.5rem;
+        border: 1px $color-light-text solid;
+      }
+      
+      time {
+        display: block;
+        color:$color-light-text;
+      }
+    }
+  }
+ }
+
+@import 'print';

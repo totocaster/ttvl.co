@@ -1,0 +1,10 @@
+<section class="log">
+  {{ range first 12 (where .Site.RegularPages "Section" "log").ByDate.Reverse }}
+  <article>
+    <h1 class="log">
+      <a href="{{ .RelPermalink }}">{{ .Date.Format "2006.01" }}</a>
+    </h1>
+    {{ .Content }}
+  </article>
+  {{ end }}
+</section>

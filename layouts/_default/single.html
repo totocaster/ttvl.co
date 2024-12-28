@@ -1,0 +1,3 @@
+{{ define "main" }}
+<article class="{{ with .Params.content_css }}{{ . }}{{ end }}">{{ .Content }}</article>
+{{ end }}

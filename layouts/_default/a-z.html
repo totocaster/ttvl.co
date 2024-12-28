@@ -1,0 +1,12 @@
+{{ define "main" }}
+<h1>Index</h1>
+<ul>
+  {{ range where .Site.RegularPages "Kind" "page" }}
+  <li>
+    <a href="{{ .RelPermalink }}">
+      {{- if .Title -}} {{ .Title }} {{- else -}} {{ .File.Path }} {{- end -}}
+    </a>
+  </li>
+  {{ end }}
+</ul>
+{{ end }}

@@ -1,0 +1,20 @@
+{{ define "main" }} {{ partial "lightbox.html" . }}
+<article>
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+</article>
+<div class="leafs-grid">
+  {{ $path := "/leafs/" }} {{ $leafs := readDir (printf "static%s" $path) }}
+  <div class="grid grid-cols-3 gap-4">
+    {{ range sort $leafs "Name" "desc" }} {{ if findRE "\\.jpg$" .Name }} {{
+    $date := index (findRE "\\d{4}-\\d{2}-\\d{2}" .Name) 0 }}
+    <div class="leaf">
+      <a href="{{ $path }}{{ .Name }}">
+        <img src="{{ $path }}{{ .Name }}" alt="Leaf note from {{ $date }}" />
+      </a>
+      <time datetime="{{ $date }}">{{ dateFormat "2006.01.02" $date }}</time>
+    </div>
+    {{ end }} {{ end }}
+  </div>
+</div>
+{{ end }}

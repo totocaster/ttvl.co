@@ -1,0 +1,130 @@
+<!-- Title tags -->
+<title itemprop="name">
+  {{ with .Title }}{{ . }} — {{ end }}{{ .Site.Title }}
+</title>
+<meta property="og:title" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta name="twitter:title" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta itemprop="name" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta name="application-name" content="{{ .Title }} | {{ .Site.Title }}" />
+<meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
+
+<!-- Description tags -->
+<meta name="description" content="{{ .Params.description }}" />
+<meta itemprop="description" content="{{ .Params.description }}" />
+<meta property="og:description" content="{{ .Params.description }}" />
+<meta name="twitter:description" content="{{ .Params.description }}" />
+
+<!-- Link tags -->
+<base href="{{ .Permalink }}" />
+<link rel="canonical" href="{{ .Permalink }}" itemprop="url" />
+<meta name="url" content="{{ .Permalink }}" />
+<meta name="twitter:url" content="{{ .Permalink }}" />
+<meta property="og:url" content="{{ .Permalink }}" />
+
+<!-- Language tags -->
+<meta property="og:locale" content="{{ .Language.Lang }}" />
+<meta name="language" content="{{ .Language.LanguageName }}" />
+{{ range .AllTranslations }}
+<link
+  rel="alternate"
+  hreflang="{{ .Language.Lang }}"
+  href="{{ .Permalink }}"
+  title="{{ .Language.LanguageName }}"
+/>
+{{ end }}
+
+<!-- Image tags -->
+{{ with .Params.image }}
+<meta itemprop="image" content="{{ . | absURL }}" />
+<meta property="og:image" content="{{ . | absURL }}" />
+<meta name="twitter:image" content="{{ . | absURL }}" />
+<meta name="twitter:image:src" content="{{ . | absURL }}" />
+{{ else }}
+<meta itemprop="image" content="{{ .Site.Params.ogimage | absURL }}" />
+<meta property="og:image" content="{{ .Site.Params.ogimage | absURL }}" />
+<meta name="twitter:image" content="{{ .Site.Params.ogimage | absURL }}" />
+<meta name="twitter:image:src" content="{{ .Site.Params.ogimage | absURL }}" />
+{{ end }}
+
+<!-- Date tags -->
+<meta
+  property="og:updated_time"
+  content='{{ .Lastmod.Format "2006-01-02T15:04:05Z0700" | safeHTML }}'
+/>
+
+<!-- Sitemap and RSS -->
+<link
+  rel="sitemap"
+  type="application/xml"
+  title="Sitemap"
+  href='{{ "sitemap.xml" | absURL }}'
+/>
+
+{{ with .OutputFormats.Get "RSS" }}
+<link
+  href="{{ .Permalink }}"
+  rel="alternate"
+  type="application/rss+xml"
+  title="{{ $.Site.Title }}"
+/>
+<link
+  href="{{ .Permalink }}"
+  rel="feed"
+  type="application/rss+xml"
+  title="{{ $.Site.Title }}"
+/>
+{{ end }}
+
+<!-- Website page tags -->
+<meta property="og:type" content="website" />
+<meta name="author" content="{{ .Site.Params.author }}" />
+<script defer type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "WebSite",
+    "url": "{{ .Permalink }}",
+    "sameAs": ["{{ .Site.Params.facebook }}", "{{ .Site.Params.github }}"],
+    "name": "{{ .Title }}",
+    "logo": "https://www.example.com/images/brand/favicon.png"
+  }
+</script>
+
+<!-- Search engine crawler tags -->
+<meta name="robots" content="index,follow" />
+<meta name="googlebot" content="index,follow" />
+
+<!-- Social Media -->
+<meta name="twitter:site" content="{{ .Site.Params.twitter }}" />
+<meta name="twitter:creator" content="{{ .Site.Params.twitter }}" />
+<!-- <meta property="fb:app_id" content="538089519640705" /> -->
+<!-- <meta property="fb:admins" content="100000686899395" /> -->
+
+<!-- Favicon tags -->
+<link
+  rel="apple-touch-icon"
+  sizes="180x180"
+  href="/favicon/apple-touch-icon.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="32x32"
+  href="/favicon/favicon-32x32.png"
+/>
+<link
+  rel="icon"
+  type="image/png"
+  sizes="16x16"
+  href="/favicon/favicon-16x16.png"
+/>
+<link rel="manifest" href="/favicon/site.webmanifest" />
+<link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#333333" />
+<meta name="msapplication-TileColor" content="#ffffff" />
+<meta name="theme-color" content="#ffffff" />
+
+<!-- CSS and Styles -->
+{{ $style := resources.Get "scss/style.scss" | toCSS | minify }}
+<link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+
+<!-- Generator w/ version number. -->
+{{ hugo.Generator }}
