@@ -2,7 +2,9 @@
 title: Darkroom
 ---
 
-Darkroom stuff.
+Technical and process-oriented resources focusing on the subjects of photography, darkroom techniques, and the craft of image-making.
+
+## The Process
 
 - [Film Identification Format](/darkroom/roll-id/)
 - [Bulk Film Canister Stickers](/darkroom/canister-stickers)
