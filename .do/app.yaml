@@ -1,0 +1,9 @@
+name: ttvlco
+static_sites:
+  - build_command: rm -r ./public; HUGO_VERSION=0.125.2 /usr/local/bin/hugo_extended --destination ./public
+    environment_slug: hugo
+    github:
+      branch: main
+      deploy_on_push: true
+      repo: totocaster/ttvl.co
+    name: ttvlco
