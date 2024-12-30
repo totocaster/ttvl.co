@@ -16,5 +16,40 @@ main {
     span {
       margin-right: 0.5rem;
     }
+    
+    // Draft styling - only visible in development
+    .draft {
+      opacity: 0.2;
+    }
+  }
+
+  // Essays list - used in /essays/
+  .essays-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    
+    li {
+      margin-bottom: 2rem;
+      
+      h2 {
+        margin: 0;
+        font-size: 1.2rem;
+        
+        a {
+          text-decoration: none;
+        }
+      }
+      
+      time {
+        display: block;
+        font-size: 0.9rem;
+        margin: 0.3rem 0;
+      }
+      
+      p {
+        margin: 0.5rem 0 0 0;
+      }
+    }
   }
 }

@@ -2,6 +2,7 @@
 title: 'Contax G2'
 date: 2024-12-22
 rating: 5
+draft: true
 ---
 
 I approached the Contax G2 with caution. Its electronic nature felt daunting, especially for a camera of its age, but I was drawn to the modern features after years of shooting with purely mechanical Leicas. Experimenting with the Fuji Klasse had already shown me how capable electronic cameras could be, yet I still wanted something more versatile.
