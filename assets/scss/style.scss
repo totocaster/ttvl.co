@@ -17,6 +17,7 @@ $line-height-nav: 25px;
 
 // Layout
 $max-width-container: 1008px;
+$max-width-readable: 588px;
 $grid-gap: 72px;
 $padding-left: 128px;
 $padding-small: 20px;
@@ -42,7 +43,7 @@ $header-height: 180px;
 }
 
 @mixin readable-width {
-  max-width: 588px;
+  max-width: $max-width-readable;
 }
 
 // Base styles
@@ -153,7 +154,7 @@ main {
       font-weight: 550;
     }
     
-    blockquote>p, p {
+    blockquote > p, p {
       margin-top: 0;
 
       img {
@@ -163,6 +164,11 @@ main {
           max-width: 100% !important;
         }
       }
+    }
+
+
+    blockquote {
+      max-width: 548px;
     }
 
     p, ul, h1, h2, h3, h4, h5 {
