@@ -10,9 +10,9 @@ Appearances in various media.
 
 ![Photo by Brian Scott Peterson](/visuals/pecha_kucha_BrianScottPeterson.jpg)
 
-Lorenzo (right) and I on [Jinny Street Gallery](/jinny). (ph. Brian Scott Peterson)
+Lorenzo (right) and I (left) at PeckaKucha Tokyo. (ph. Brian Scott Peterson)
 
-- PechaKucha Night Tokyo, **[Light Posts of Jinny Street Gallery](https://www.pechakucha.com/presentations/light-posts-of-jinny-street-gallery)**,, Vol. 186 - Toranomon Light Art Holiday Special
+- PechaKucha Night Tokyo, **[Light Posts of Jinny Street Gallery](https://www.pechakucha.com/presentations/light-posts-of-jinny-street-gallery)**, Vol. 186 - Toranomon Light Art Holiday Special
 
 ## Video
 
@@ -22,8 +22,8 @@ Lorenzo (right) and I on [Jinny Street Gallery](/jinny). (ph. Brian Scott Peters
 
 {{< youtube FtVC0lzo6Ww >}}
 
-- Tokyo Weekender, **Voice of Tokyo, Episode 5: Jinny Street Gallery**
+- Tokyo Weekender, **Voice of Tokyo, Episode 5: Jinny Street Gallery**, published March, 2023.
 
 ## Print
 
-- **ARTcollectors’ アートコレクターズ Magazine**, _Lone Man, 2019_, [Issue 156, March 2022](https://www.amazon.co.jp/-/en/生活の友社/dp/B09PMKBZY9).
+- **ARTcollectors’ アートコレクターズ Magazine**, _Lone Man, 2019_, [Issue 156](https://www.amazon.co.jp/-/en/生活の友社/dp/B09PMKBZY9), March 2022.
