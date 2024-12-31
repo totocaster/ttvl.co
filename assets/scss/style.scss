@@ -166,13 +166,12 @@ main {
       }
     }
 
-
-    blockquote {
-      max-width: 548px;
+    p, h1, h2, h3, h4, h5 {
+      @include readable-width;
     }
 
-    p, ul, h1, h2, h3, h4, h5 {
-      @include readable-width;
+    blockquote, li {
+      max-width: 548px;
     }
 
     // Code and plain text
