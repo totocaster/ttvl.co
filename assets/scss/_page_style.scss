@@ -28,27 +28,69 @@ main {
     list-style: none;
     padding: 0;
     margin: 0;
+    @include readable-width;
     
     li {
       margin-bottom: 2rem;
       
       h2 {
-        margin: 0;
-        font-size: 1.2rem;
-        
-        a {
-          text-decoration: none;
-        }
+        display: inline;
       }
-      
+
       time {
-        display: block;
-        font-size: 0.9rem;
-        margin: 0.3rem 0;
+        font-style: italic;
       }
       
       p {
+        display: inline;
         margin: 0.5rem 0 0 0;
+      }
+    }
+  }
+
+  // Email subscribe form - used in /essays/
+  div.email-subscribe {
+    padding: 2rem 0;
+
+    div.promise > p {
+      padding-top: 1rem;
+      display: block;
+      margin: 0;
+    }
+
+    .js-cm-form {
+      display: flex;
+
+      input[type="email"] {
+        border: 1px solid $color-dark-bg;
+        padding: 8px;
+        margin-right: 8px;
+        font-size: 12pt;
+        height: 40px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        width: 40%;
+      }
+    
+      button {
+        background: $color-dark-bg;
+        @include dark {
+          background: #FFD300;
+          color: $color-light-text;
+        }
+        color: $color-dark-text;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+        font-size: 12pt;
+        height: 40px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        
+    
+        &:hover {
+          opacity: 0.9;
+        }
       }
     }
   }

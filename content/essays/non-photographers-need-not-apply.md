@@ -1,7 +1,7 @@
 ---
 title: Non-photographers Need Not Apply
 date: 2024-01-10
-description: Exploring the Contrast Between Written and Photographic Books
+description: Exploring the contrast between written and photographic books.
 ---
 
 # Non-photographers Need Not Apply

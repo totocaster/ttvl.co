@@ -1,14 +1,11 @@
-{{ define "main" }}
-{{/*  <h1>{{ .Title }}</h1>  */}}
-{{ .Content }}
+{{ define "main" }} {{/*
+<h1>{{ .Title }}</h1>
+*/}} {{ .Content }}
 <ul class="essays-list">
   {{ range .Pages.ByDate.Reverse }}
   <li>
-    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
-    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01" }}</time>
-    {{ with .Params.description }}
-    <p>{{ . }}</p>
-    {{ end }}
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2> &mdash; <p>{{ with .Params.description }} {{ . }} {{ end }}</p>
+    <time datetime="{{ .Date.Format "2006-01-02" }}">({{ .Date.Format "January 2006" }})</time>
   </li>
   {{ end }}
 </ul>
