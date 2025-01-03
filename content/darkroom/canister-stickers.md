@@ -2,6 +2,10 @@
 title: 'Bulk Film Canister Stickers'
 ---
 
+**The Problem:** When bulk-rolling film, it’s challenging to quickly and accurately note metadata—such as which canister the film was loaded into, when it was exposed, and when it was shot—without risking loss or confusion of this information.
+
+**The Solution:** Design a film canister sticker with dedicated spaces for writing essential notes for easy identification of the film type, loading date, and exposure details.
+
 One of the things I love about shooting with my [Contax G2][g2], especially with the GD2 databack, is how it logs every single frame on a roll of film using its magical light printer. Keeping track of all that data, however, requires an external organizational system.
 
 One part of this system is managing the canisters I load: knowing what film is inside, whether it’s been exposed to X-rays at the airport, whether the roll itself is exposed (I leave the leader out for easy extraction), some additional notes, and a unique [roll ID][rid] that I assign to every roll.
