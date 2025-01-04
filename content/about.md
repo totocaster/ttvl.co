@@ -5,7 +5,7 @@ content_css: about
 
 ![](/visuals/about_toto.jpg)
 
-I'm **Toto**, and this is ttvl.co. My public notebook of making -- or hazy mirror of my brain -- on the web.
+I'm **Toto**, and this is ttvl.co; My public notebook of making and wandering curiosities.
 
 I'm a photographer, bookbinder, walker, and human-computer interface researcher, small gallery curator, among other smaller things.
 
