@@ -16,9 +16,9 @@ I founded this project with my friend [Lorenzo Menghi][lorenzo] in January 2023.
 
 ![People gathered around street lamp listening to artist](/visuals/jinny_artist_walk.jpg)
 
-As my dear friend [Rafael Balboa][rafa] eloquently described it, Jinny Street Gallery is “an inverted conventional gallery where the indoor space has transformed into the outdoors, right on the street.”
+As my dear friend [Rafael Balboa][rafa] once described it, Jinny Street Gallery is an inverted conventional gallery where the indoor space has transformed into the outdoors, right on the street.
 
-Jinny Street Gallery consists of 42 streetlamps with integrated display cases ([see map][jsgmap]), scattered throughout the Jingumae 2-chome neighborhood. To experience the gallery, you’ll need to walk through it.
+Jinny Street Gallery consists of 42 streetlamps with integrated display cases, scattered throughout the Jingumae 2-chome neighborhood ([see map][jsgmap]). To experience the gallery, you’ll need to walk it.
 
 ![Lorenzo and I setting up the gallery](/visuals/jinny_setup.jpg)
 
@@ -27,7 +27,7 @@ Jinny Street Gallery consists of 42 streetlamps with integrated display cases ([
 - Website: [jinnystreetgallery.com/lemon-sour](//www.jinnystreetgallery.com/lemon-sour)
 - Instagram: [@jinny.sour](//www.instagram.com/jinny.sour)
 
-Jinny Lemon Sour is a collaboration between Jinny Street Gallery and [Open Book][ob], a renowned bar and beverage maker in Shinjuku’s legendary Golden Gai district. Open Book produces craft lemon sours, while Jinny Street Gallery licenses its logo and artworks from our featured artists for the drink’s labels.
+Jinny Lemon Sour is a collaboration between Jinny Street Gallery and [Open Book][ob], a renowned bar and beverage-maker in Shinjuku’s legendary Golden Gai district. Open Book produces craft lemon sours, while Jinny Street Gallery curates artworks from our featured artists for the drink’s labels.
 
 Jinny Lemon Sour is exclusively available in the gallery’s neighborhood. A complete list of locations can be found on the [map][jlsmap].
 
