@@ -23,9 +23,3 @@ Design tools and systems with the human body in mind—tools that respond to the
 Every project has a landscape, and that landscape is local. It could be the neighborhood around Jinny Street Gallery, where the pace of life is marked by the pulse of a community, or a zine produced in a print shop that smells of ink and paper, just a short walk from home.
 
 Build _here_, now, with the people you can see eyes of. The result is work that carries the texture of a place, the unmistakable scent of belonging.
-
-## Technology and Liberal Arts
-
-The boundaries between disciplines—math, art, music, literature—are imaginary and unnecessary. I advocate for a mindset where these tools are used fluidly, as needed, to achieve meaningful goals.
-
-A person moves freely across this map, pulling the tools they need as they go. Creativity thrives in the interplay, in the refusal to be categorized.
