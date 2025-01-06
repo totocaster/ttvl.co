@@ -24,7 +24,7 @@ The notebook system, rather unfashionably, is based on loose leafs rather than b
 
 ## Pagination
 
-Since PHNS notebooks are unbound, traditional page numbers do not make much sense. However, having a way to identify a page and its place in a sequence is quite valuable. Because of this, I use dates as a replacement for page numbers. No matter how leaves migrate between notebooks or archives, they remain easily searchable using dates, as dates are naturally ordered by timeline.
+Since PHNS notebooks are unbound, traditional page numbers do not make much sense. However, having a way to identify a page and its place in a sequence is quite valuable for referencing as well as lookup purposes. Because of this, I use dates as a replacement for page numbers. No matter how leaves migrate between notebooks or archives, they remain easily searchable using dates, as dates are naturally ordered by timeline.
 
 I find adding additional page numbers per day unnecessary since I rarely write more than a dozen pages daily—an amount that is easily scannable. If you write more than a dozen pages per day, consider adding `/` and a page number so that the 24th page written on January 6, 2025, would be labeled `2025.01.06/24`.
 
@@ -74,6 +74,14 @@ Since loose leaves are essentially pieces of paper with a bunch of holes, they c
 
 Abstract and "airy" photos also make a nice writing surface for thoughts or poetry.
 
+## Linking
+
+It is possible to link notes using their dates. While it’s not quite a Zettelkasten system, it can certainly function like one if you diligently add page numbers after dates to make them centrally unique.
+
+However, I don’t find linking notes particularly useful. I prefer to **browse** my notes when thinking, allowing connections to emerge organically, or **search** when I need to quickly retrieve specific information.
+
+You can also group notes into their own notebook or bunch for an intense focus session.
+
 ## Archiving
 
 Archiving pages in PHNS is very easy and painless since pages never get retired—they simply migrate from one place to another. Archiving is as simple as moving a page into a long-term binder. I use thick cardboard binders labeled `2023`, `2024`, `2025` for loose leafs from those years. All leaves are ordered chronologically, so even if a binder has 200 pages, they are extremely easy to find.
@@ -88,7 +96,7 @@ I have two active notebooks: one with a 1mm yellow-tanned leather cover and anot
 
 Since covers are essentially the first and last "pages," you can change them as frequently as you want without starting a new notebook. Or, you could keep the same one and have the "same" notebook for decades.
 
-## Sizes
+## Notebook Sizes
 
 The size of the notebook is a very personal choice, and as long as you can get pages in the size you like, you're set. I like small notebooks, but pocket notebooks like Field Notes are too small for my taste, whereas A5 is a bit too big to carry everywhere. I was lucky to live in Japan and discover _System Techō_ (システム手帳) and its _bible_ size paper (also known as _Personal_ or _Compact_ in the Filofax universe; Plotter USA uses the same terminology as Japan).
 
@@ -122,9 +130,9 @@ Below are a few tools and toys I use with my PHNS notebook to make it more usefu
 ## Tips and Miscellanea
 
 - I write only on one side of the paper. This makes leaves easy to scan and digitize.
-- If you are an architech, consider having a bunch of tracing paper in notebook to migrate in _front_ of base sketch so you can iterate easily and fast. Rings will act as, somewhat loose, but reliable registration pins.
-- I do not mix notebook sizes, this gives me ultimate flexibility of migrating notes.
-- I tape in all business cards I collect onto a page with name of the person and _where and how I met them_. For a goldfish like me, this has been invaluable.
+- If you are an architect, consider keeping a bunch of tracing paper in your notebook. You can layer it _in front_ of a base sketch to iterate easily and quickly. The rings will act as somewhat loose but reliable registration pins.
+- I do not mix notebook sizes; this gives me ultimate flexibility in migrating notes.
+- I tape all business cards I collect onto a page, adding the person's name and _where and how I met them_. For someone with a goldfish-like memory, this has been invaluable.
 
 [pv]: https://notes.andymatuschak.org/Peripheral_vision
 [kc]: https://www.kokuyostore.com/en/stationery/stationery-binder/stationery-binder-loose_leaf_paper
