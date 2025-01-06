@@ -244,8 +244,23 @@ main {
           }
         }
       }
+    }    
+  }
+
+  // Index page
+  nav#Index {
+    columns: 2;
+    column-gap: 3rem;
+    padding-left: 2em;
+
+    a {
+      text-decoration: underline;
+      font-weight: 400;
     }
-  
+
+    ul {
+      list-style:disc;
+    }
   }
 }
 
