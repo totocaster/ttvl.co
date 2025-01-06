@@ -10,6 +10,8 @@ PHNS is a work in progress—a research project. It’s an adaptable, non-rigid 
 
 This page is a space to share what I’ve learned so far and invite you to explore PHNS alongside me.
 
+{{< toc >}}
+
 ## Philosophy
 
 Analog and digital tools alone are enough to support the way our brains think and work fully. Analog systems are less rigid and mirror the brain’s elasticity, supporting freeform thinking and idea development. Digital systems, while excellent for organization and scalability, can feel too structured for creative exploration. Further, I will argue the value of organization altogether too.
