@@ -6,7 +6,6 @@ $color-light-bg: #fff;
 $color-light-text: #000;
 $color-dark-bg: #111;
 $color-dark-text: #fff;
-$color-selection: rgba(253, 250, 114, 0.2);
 
 // Typography
 $font-family-base: -apple-system, BlinkMacSystemFont, 'HelveticaNeue', 'Helvetica Neue', 'Helvetica-Neue', Helvetica, Arial, sans-serif;
@@ -44,14 +43,6 @@ $header-height: 180px;
 
 @mixin readable-width {
   max-width: $max-width-readable;
-}
-
-// Base styles
-::selection { 
-  background: $color-selection;
-  opacity: 1.0;
-  color: $color-light-text;
-  padding: $padding-small / 2;
 }
 
 body { 
