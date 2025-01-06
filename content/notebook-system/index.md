@@ -122,7 +122,8 @@ Below are a few tools and toys I use with my PHNS notebook to make it more usefu
 ## Tips and Miscellanea
 
 - I write only on one side of the paper. This makes leaves easy to scan and digitize.
-- If you are an architech, consider having a bunch of tracing paper in notebook to migrate in _front_ of base sketch.,
+- If you are an architech, consider having a bunch of tracing paper in notebook to migrate in _front_ of base sketch so you can iterate easily and fast. Rings will act as, somewhat loose, but reliable registration pins.
+- I do not mix notebook sizes, this gives me ultimate flexibility of migrating notes.
 
 [pv]: https://notes.andymatuschak.org/Peripheral_vision
 [kc]: https://www.kokuyostore.com/en/stationery/stationery-binder/stationery-binder-loose_leaf_paper
