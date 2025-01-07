@@ -8,8 +8,6 @@ The **Project Humane Notebook System (PHNS)** is an evolving framework for integ
 
 PHNS is a work in progress—a research project. It’s an adaptable, non-rigid approach to thinking, exploring, retrieving, and evolving ideas and thoughts, leveraging various mediums.
 
-This page is a space to share what I’ve learned so far and invite you to explore PHNS alongside me.
-
 {{< toc >}}
 
 ## Philosophy
@@ -26,21 +24,21 @@ The notebook system, rather unfashionably, is based on loose leafs rather than b
 
 Since PHNS notebooks are unbound, traditional page numbers do not make much sense. However, having a way to identify a page and its place in a sequence is quite valuable for referencing as well as lookup purposes. Because of this, I use dates as a replacement for page numbers. No matter how leaves migrate between notebooks or archives, they remain easily searchable using dates, as dates are naturally ordered by timeline.
 
-I find adding additional page numbers per day unnecessary since I rarely write more than a dozen pages daily—an amount that is easily scannable. If you write more than a dozen pages per day, consider adding `/` and a page number so that the 24th page written on January 6, 2025, would be labeled `2025.01.06/24`.
+I find adding additional page numbers per day unnecessary since I rarely write more than half a dozen pages daily—an amount that is easily scannable. If you write more than a dozen pages per day, consider adding `/` and a page number so that the 24th page written on January 6, 2025, would be labeled `2025.01.06/24`.
 
 I use a rubber stamp with changing dates to page my notes, but the simple act of writing the date on the trailing edge of the page would suffice.
 
 ## Grouping
 
-I avoid grouping pages by project, theme, or area (per GTD). The loose leaf system is incredibly flexible when you want to migrate a page from one part of the notebook to another—or even to a dedicated notebook for logging or project ideas, for example. However, I find excessive grouping creates silos of neglect, where notes that might be useful during casual browsing are overlooked.
+I avoid grouping pages by project, topic, or "area" (per GTD). The loose leaf system is incredibly flexible when you want to migrate a page from one part of the notebook to another—or even to a dedicated notebook for logging or project ideas. However, I find excessive grouping creates silos of neglect, where notes that might be useful during casual browsing are overlooked.
 
 ## Peripheral Vision
 
-Andy Matuschak coined [_Peripheral Vision_][pv]:
+Andy Matuschak coining [_Peripheral Vision_][pv]:
 
 > My physical workspace is full of subtle cues. The books I read or bought most recently are lying out. Papers I’ve accumulated are lying in stacks on my desk, very roughly arranged by their relationship to each other. I notice a broken door every time I walk by it. These cues together give me a kind of “peripheral vision”: when I’m doing one thing, it’s easy for me to fluidly notice other nearby things. [...] Software systems, by contrast, often lack this kind of peripheral vision. [...] Digital task lists live in a dedicated app. I have no natural reason to look at the contents of that app.
 
-PHNS is designed to keep notes you want to be reminded of in the notebook, no matter how old, small, or plain they are. Simply having the ability to keep pages you want to be reminded of visible during browsing keeps them in your peripheral vision.
+PHNS is designed to keep notes you want to be reminded of in the notebook, no matter how old, small, or plain they are. Simply having the ability to indefinitely keep pages you want to be reminded during _browsing_ keeps them in your peripheral vision.
 
 ## Searching vs. Browsing
 
@@ -109,14 +107,14 @@ I strongly encourage starting simple with plain, dotted, or ruled paper for ever
 - [Templates for General Use](/notebook-system/templates)
 - [Templates for Analog Photography](/notebook-system/analog-photography-templates)
 
-## DIY Guides
+## Make Your Own
 
 Below are a few quick notes on how to start and make your own PHNS notebook:
 
 - [Getting Started: Building PHNS from Scratch](/notebook-system/build-phns)
 - [Personalized Covers](/notebook-system/custom-covers/)
 
-## Tools & Toys
+## Accessories
 
 Below are a few tools and toys I use with my PHNS notebook to make it more useful for my work and to add a touch of character:
 
