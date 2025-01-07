@@ -2,21 +2,21 @@
 title: 'Colophon'
 ---
 
-The design and structure of this website was heavily inspired [100r.co](https://100r.co) (before redesign). It is simple, fast, reliable, and easy to modify and manage. There are no custom fonts or heavy graphics. If you don't know about 100r.co, drop everything and explore wonderful word of Rek & Neauoire.
+The design and structure of this website were heavily inspired by [100r.co](https://100r.co) (before their redesign). It is simple, fast, and easy to modify and manage. There are no custom fonts or heavy graphics. If you don’t know about 100r.co, drop everything and explore the wonderful world of Rek & Neauoire.
 
-The website generated using [Hugo](//gohugo.io). The content and deployment is managed by a private git repository and bunch of GitHub workflows.
+The website is generated using [Hugo](//gohugo.io). The content and deployment are managed through a private Git repository and a set of GitHub workflows.
 
-All served from DigitalOcean App Platform.
+All content is served from the DigitalOcean App Platform.
 
-This iteration of the website is designed and launched in [2024.12](/log/2024/12).
+This iteration of the website was designed and launched in [2024.12](/log/2024/12).
 
 ## E-Mails & Newsletter
 
-The Flâneur and membership insider newsletters are distributed using [Campaign Monitor](//campaignmonitor.com). It costs me money, but they do not sell your email to anyone and don't hold you hostage in any of the systems or walled gardens. You can unsubscribe in one click too.
+The **Flâneur** and **membership insider** newsletters are distributed using [Campaign Monitor](//campaignmonitor.com). It costs me money, but they do not sell your email to anyone and won’t lock you into any systems or walled gardens. You can unsubscribe with a single click.
 
 ## Tracking & Analytics
 
-Web analytics are done using [Plausible](//plausible.io), a lightweight and open-source web analytics platform. No cookies and fully compliant with GDPR, CCPA, and PECR. Made and hosted in the EU, powered by European-owned cloud infrastructure.
+Web analytics are handled using [Plausible](//plausible.io), a lightweight and open-source web analytics platform. It uses no cookies and is fully compliant with GDPR, CCPA, and PECR. Plausible is made and hosted in the EU, powered by European-owned cloud infrastructure.
 
 There are no other trackers on this website.
 
