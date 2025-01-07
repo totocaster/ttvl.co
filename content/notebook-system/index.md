@@ -64,9 +64,7 @@ Since pages are unbound, you can use any flatbed or document scanner for digitiz
 
 ## Soma.app
 
-Some of you can already see dozens of automation and app opportunities. I’m one of those too. I'm working on a simple PHNS phone scanner app with a macOS counterpart—**Soma**—that provides a clean and simple way to take pictures of loose leaf sheets with corrected colors and skew adjustment, transcribe them into a digital version, identify the dates they were made (since all pages have dates), and then export the resulting text and image into a note-taking app of choice.
-
-![Soma for macOS. Note view with automatic transcription. As of Jan 2025.](/visuals/phns/2025.01.soma_prototype_mac.png)
+Some of you can already see dozens of automation and app opportunities. I’m one of those too. I'm working on a simple PHNS phone scanner app with a macOS counterpart—[**Soma**](/project-humane/soma/)—that provides a clean and simple way to take pictures of loose leaf sheets with corrected colors and skew adjustment, transcribe them into a digital version, identify the dates they were made (since all pages have dates), and then export the resulting text and image into a note-taking app of choice.
 
 Perhaps one day Soma will become the ultimate knowledge base app. One can dream.
 
