@@ -66,6 +66,8 @@ Since pages are unbound, you can use any flatbed or document scanner for digitiz
 
 Some of you can already see dozens of automation and app opportunities. I’m one of those too. I'm working on a simple PHNS phone scanner app with a macOS counterpart—**Soma**—that provides a clean and simple way to take pictures of loose leaf sheets with corrected colors and skew adjustment, transcribe them into a digital version, identify the dates they were made (since all pages have dates), and then export the resulting text and image into a note-taking app of choice.
 
+![Soma for macOS. Note view with automatic transcription. As of Jan 2025.](/visuals/phns/2025.01.soma_prototype_mac.png)
+
 Perhaps one day Soma will become the ultimate knowledge base app. One can dream.
 
 ## Bridging back to Analog
@@ -90,7 +92,7 @@ I never move pages to the archive without first scanning them. But you could do 
 
 ## Personalization
 
-The canonical PHNS version is designed so that covers are also loose and **DO NOT** wrap the notebook, akin to Filofax or similar ring-bound planners. Any thick paper, cloth, leather, or fabric that protects the pages beneath and gives the notebook a pleasing tactile quality can serve as a cover.
+The canonical PHNS version is designed so that covers are also loose and **DO NOT** wrap the binder part of the notebook as Filofax, Davinci and Plotter planners. Any thick paper, cloth, leather, or fabric that protects the pages beneath and gives the notebook a pleasing tactile quality can serve as a cover.
 
 I have two active notebooks: one with a 1mm yellow-tanned leather cover and another cut from a Freitag F08 DAN pouch I got for $5 because it had a broken zipper. All it takes to make new covers are scissors and a hole punch.
 
@@ -113,9 +115,8 @@ I strongly encourage starting simple with plain, dotted, or ruled paper for ever
 
 Below are a few quick notes on how to start and make your own PHNS notebook:
 
-- Getting Started
-- Personalized Covers
-- Archival Boxes
+- [Getting Started: Building PHNS from Scratch](/notebook-system/build-phns)
+- [Personalized Covers](/notebook-system/custom-covers/)
 
 ## Tools & Toys
 
@@ -129,10 +130,14 @@ Below are a few tools and toys I use with my PHNS notebook to make it more usefu
 
 ## Tips and Miscellanea
 
+I have been using PHNS for more than two years at the time of publishing this, and I’ve accumulated some experience with it. Below are a few tips and tricks that I find useful when using the system:
+
 - I write only on one side of the paper. This makes leaves easy to scan and digitize.
-- If you are an architect, consider keeping a bunch of tracing paper in your notebook. You can layer it _in front_ of a base sketch to iterate easily and quickly. The rings will act as somewhat loose but reliable registration pins.
+- If you are an architect or designer, consider keeping a bunch of tracing paper in your notebook. You can layer it _in front_ of a base sketch to iterate easily and quickly. The rings will act as somewhat loose but reliable registration pins.
 - I do not mix notebook sizes; this gives me ultimate flexibility in migrating notes.
 - I tape all business cards I collect onto a page, adding the person's name and _where and how I met them_. For someone with a goldfish-like memory, this has been invaluable.
+- I glue a Traveler's Notebook **Pocket Sticker 006** onto the backside of the back cover. It needs a bit of trimming since the pocket is an inch or so taller than Bible-size paper.
+- I keep a flat **TOHKIN PC-8S-3 Clip** on the back cover. It can act as a paper holder, transforming the back cover into a writing pad for loose leaf pages.
 
 [pv]: https://notes.andymatuschak.org/Peripheral_vision
 [kc]: https://www.kokuyostore.com/en/stationery/stationery-binder/stationery-binder-loose_leaf_paper
