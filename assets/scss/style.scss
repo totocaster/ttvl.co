@@ -227,8 +227,9 @@ main {
               content: counter(toc, decimal-leading-zero) ".";
               display: inline-block;
               width: 1.25em;
-              margin-right: 0.5rem;
+              margin-right: 0.7rem;
               color: $color-light-text;
+              font-variant-numeric: tabular-nums;
               
               @include dark {
                 color: $color-dark-text;
