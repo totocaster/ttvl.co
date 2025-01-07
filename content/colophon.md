@@ -2,11 +2,11 @@
 title: 'Colophon'
 ---
 
-The design and structure of this website was heavily inspired [100r.co](https://100r.co) (before redesign). It is simple, fast, reliable, and easy to modify and manage. There are no custom fonts or heavy graphics.
+The design and structure of this website was heavily inspired [100r.co](https://100r.co) (before redesign). It is simple, fast, reliable, and easy to modify and manage. There are no custom fonts or heavy graphics. If you don't know about 100r.co, drop everything and explore wonderful word of Rek & Neauoire.
 
-The website generated using [Hugo](//gohugo.io) and uses no 3rd-party theme. The content and deployment is managed by a private git repository and bunch of GitHub workflows.
+The website generated using [Hugo](//gohugo.io). The content and deployment is managed by a private git repository and bunch of GitHub workflows.
 
-All served from Linode/DigitalOcean.
+All served from DigitalOcean App Platform.
 
 This iteration of the website is designed and launched in [2024.12](/log/2024/12).
 
