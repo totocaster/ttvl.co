@@ -12,11 +12,11 @@ One part of this system is managing the canisters I load: knowing what film is i
 
 Kodak film canisters are great because they come with a yellow space on the canister where I can jot down the date and roll ID. But when you load bulk film into reusable canisters—like the plastic ones with a snap-top lid—that’s no longer possible. Sure, I could use a white-out marker, but rubbing it off with alcohol is too much of a chore when it’s time to reload.
 
-To solve this, I designed film stickers that are easy to print at home on A4 sticky sheets using any printer. These stickers have all the space I need to note relevant details. In Japan, I use A-ONE [28409][28409] (20 sheets) or [28422][28422] (100 sheets), but any matte sticky A4 paper will work as long as it doesn’t leave a residue on the canister.
+To solve this, I designed film stickers that are easy to print at home on A4 sticky sheets using any printer. These stickers have all the space I need to note relevant details. In Japan, I use A-ONE [28409][28409] (20 sheets) or [28422][28422] (100 sheets), but any matte sticky A4 paper will work as long as it doesn’t leave residue on the canister.
 
 ![Design process and details of the stickers](/visuals/darkroom/canister-stickers-1.jpeg)
 
-I recommend using matte paper (not glossy or coated) just to be safe and avoid light piping that can occur from the film preview window of the camera through the gloss layer. This way, I can easily replace the sticker when loading a new batch of film.
+I recommend using **matte paper** to avoid light piping that can occur from the film preview window of the camera reflecting through a glossy layer. Matte paper is also easier to write on and remove cleanly when reloading.
 
 While I designed these stickers to suit my own workflow, I realized others might find them useful too. So, I created a more generic version of the stickers, making them versatile for anyone who wants to better organize their bulk film workflow.
 
@@ -34,7 +34,7 @@ The fields on the canister are as follows:
 - **Notes:** Anything you'd like to jot down.
 - **Canister ID:** Keep the canister ID consistent for each physical cartridge. If you track which film is in which canister and detect light leaks, you’ll know exactly which one to blame.
 
-These stickers are specifically designed to fit AP 35mm film reloadable cartridges (product code APP351120), but I suspect they’ll work on any cartridge, even metal ones that are reused.
+These stickers are specifically designed to fit **AP 35mm film reloadable cartridges** (product code **APP351120**), but I suspect they’ll work on any cartridge, even metal ones that are reused.
 
 ![Template for canister stickers; made for A4 paper.](/visuals/darkroom/canister-stickers-preview.png)
 
