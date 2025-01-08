@@ -10,7 +10,7 @@ I predominantly shoot film when working on photo projects. To keep track of my w
 
 I use _Bible_-size pages, so the templates are formatted accordingly. You’re welcome to make your own versions in any size or with any modifications. If they don’t fit your needs, simply use them as inspiration. At the heart of PHNS is extreme flexibility.
 
-## 35mm
+## 35mm Film
 
 Logging 35mm film is a royal pain in the rear, so I try not to track every single frame. Instead, I group them, which is why the universal template has no frame numbers. This way, I can write whatever I deem necessary to track. _(Side note: I’ve entirely solved this issue using the excellent GD-2 databack on my Contax G2 cameras.)_
 

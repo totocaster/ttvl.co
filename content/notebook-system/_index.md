@@ -102,7 +102,7 @@ In practice, anything that can be kept as a loose leaf notebook can work—even 
 
 I strongly encourage starting simple with plain, dotted, or ruled paper for everyday notebook use without overcomplicating the setup. For some niche types of logging and thinking, I’ve created several templates that can be printed on any standard printer. Most of these are tailored to my line of work.
 
-- [Templates for General Use](/notebook-system/templates)
+- [Templates for General Use](/notebook-system/general-templates)
 - [Templates for Analog Photography](/notebook-system/analog-photography-templates)
 
 ## Make Your Own
