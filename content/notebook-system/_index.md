@@ -72,7 +72,7 @@ Abstract and "airy" photos also make a nice writing surface for thoughts or poet
 
 ## Linking
 
-It is possible to link notes using their dates. While it’s not quite a Zettelkasten system, it can certainly function like one if you diligently add page numbers after dates to make them centrally unique.
+It is possible to link notes using their dates. While it’s not quite a Zettelkasten system by design, it can certainly function like one if you diligently add page numbers after dates to make them centrally unique.
 
 However, I don’t find linking notes particularly useful. I prefer to **browse** my notes when thinking, allowing connections to emerge organically, or **search** when I need to quickly retrieve specific information.
 
