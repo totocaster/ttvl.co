@@ -24,7 +24,7 @@ The notebook system, rather unfashionably, is based on loose leafs rather than b
 
 Since PHNS notebooks are unbound, traditional page numbers do not make much sense. However, having a way to identify a page and its place in a sequence is quite valuable for referencing as well as lookup purposes. Because of this, I use dates as a replacement for page numbers. No matter how leaves migrate between notebooks or archives, they remain easily searchable using dates, as dates are naturally ordered by timeline.
 
-I find adding additional page numbers per day unnecessary since I rarely write more than half a dozen pages daily—an amount that is easily scannable. If you write more than a dozen pages per day, consider adding `/` and a page number so that the 24th page written on January 6, 2025, would be labeled `2025.01.06/24`.
+I find adding additional page numbers per day unnecessary since I rarely write more than half a dozen pages in one day—an amount that trivial to flip though. If you write more than a dozen pages per day, consider adding `/` and a page number so that the 24th page written on January 6, 2025, would be labeled `2025.01.06/24`.
 
 I use a rubber stamp with changing dates to page my notes, but the simple act of writing the date on the trailing edge of the page would suffice.
 
@@ -40,7 +40,7 @@ Andy Matuschak coining [_Peripheral Vision_][pv]:
 
 PHNS is designed to keep notes you want to be reminded of in the notebook, no matter how old, small, or plain they are. Simply having the ability to indefinitely keep pages you want to be reminded during _browsing_ keeps them in your peripheral vision.
 
-## Searching vs. Browsing
+## Searching and Browsing
 
 **Browsing** is an _open-ended activity_, more akin to walking in the city—exploring like a flâneur—whereas **searching** is _information retrieval_, a brisk walk to a set destination. We may browse with or without a goal, and plans may change as the process unfolds. However, when searching, we need information quickly and reliably.
 
@@ -82,7 +82,7 @@ You can also group notes into their own notebook or bunch for an intense focus s
 
 ## Archiving
 
-Archiving pages in PHNS is very easy and painless since pages never get retired—they simply migrate from one place to another. Archiving is as simple as moving a page into a long-term binder. I use thick cardboard binders labeled `2023`, `2024`, `2025` for loose leafs from those years. All leaves are ordered chronologically, so even if a binder has 200 pages, they are extremely easy to find.
+Archiving pages in PHNS is very easy and painless since pages never get retired—they simply migrate from one place to another. Archiving is as simple as moving a page into a long-term binder. I use thick cardboard binders labeled `2023`, `2024`, `2025` for loose leafs from those years. All leaves are ordered chronologically, so even if a binder has hundreds of pages, they are extremely easy to find.
 
 I never move pages to the archive without first scanning them. But you could do whatever you like, especially since moving pages back to an active notebook is so easy.
 
@@ -102,7 +102,7 @@ In practice, anything that can be kept as a loose leaf notebook can work—even 
 
 ## Templates
 
-I strongly encourage starting simple with plain, dotted, or ruled paper for everyday notebook use without overcomplicating the setup. For some niche types of logging and thinking, I’ve created several templates that can be printed on any standard printer. Most of these are tailored to my line of work, but you're free to make your own templates and send me an email so I can share them here.
+I strongly encourage starting simple with plain, dotted, or ruled paper for everyday notebook use without overcomplicating the setup. For some niche types of logging and thinking, I’ve created several templates that can be printed on any standard printer. Most of these are tailored to my line of work.
 
 - [Templates for General Use](/notebook-system/templates)
 - [Templates for Analog Photography](/notebook-system/analog-photography-templates)
@@ -116,24 +116,29 @@ Below are a few quick notes on how to start and make your own PHNS notebook:
 
 ## Accessories
 
+I have been using PHNS for more than two years at the time of publishing this, and I’ve accumulated some experience with it. Below are a few tips and tricks that I find useful when using the system:
+
+- I glue a Traveler's Notebook **Pocket Sticker 006** onto the backside of the back cover. It needs a bit of trimming since the pocket is an inch or so taller than Bible-size paper.
+- I keep a flat **TOHKIN PC-8S-3 Clip** on the back cover. It can act as a paper holder, transforming the back cover into a writing pad for loose leaf pages.
+- I have a single **Coco Fusen Sticky Notes** (small size) glued on the inside of the front cover. They are useful for marking pages of importance in the notebook or book I'm reading.
+- If you are an architect or designer, consider keeping a bunch of tracing paper in your notebook. You can layer it _in front_ of a base sketch to iterate easily and quickly. The rings will act as somewhat loose but reliable registration pins.
+
+## Tips & Tricks
+
+- I write only on one side of the paper. This makes leaves easy to scan and digitize.
+- I do not mix notebook sizes; this gives me ultimate flexibility in migrating notes. Although some sizes like Japanese _Narrow_, _Bible_, and _HB-WA5_ are compatible with each-other.
+- I tape all business cards I collect onto a page, adding the person's name and _where and how I met them_. For a goldfish like me, this has been invaluable.
+
+## Companion Tools
+
 Below are a few tools and toys I use with my PHNS notebook to make it more useful for my work and to add a touch of character:
 
 - **Multi-pen** — I use a clear version of the Hi-Tech-C Coleto pen with black, red, highlighter, and mechanical pencil inserts.
 - **Date Stamper** — Absolutely unnecessary, as writing a date on a page is trivial, but I like the uniform look of stamped dates.
-- **Hole Punch** — For making inserts from collected matter. It always stays in the studio and never travels with me.
+- **Hole Punch** — For making inserts from collected matter. I have both heavy duty and travel versions.
 - **Clear Pocket Insert** — For collecting memorabilia, event tickets, or tree leaves from the ground.
 - **Canon ZINK Mini Printer** — For printing photos. ZINK (Zero Ink) paper requires no ink and has a sticker backing, making it easy to create photo sequences in the notebook or just print a nice moment to accompany a journal entry.
-
-## Tips and Miscellanea
-
-I have been using PHNS for more than two years at the time of publishing this, and I’ve accumulated some experience with it. Below are a few tips and tricks that I find useful when using the system:
-
-- I write only on one side of the paper. This makes leaves easy to scan and digitize.
-- If you are an architect or designer, consider keeping a bunch of tracing paper in your notebook. You can layer it _in front_ of a base sketch to iterate easily and quickly. The rings will act as somewhat loose but reliable registration pins.
-- I do not mix notebook sizes; this gives me ultimate flexibility in migrating notes.
-- I tape all business cards I collect onto a page, adding the person's name and _where and how I met them_. For someone with a goldfish-like memory, this has been invaluable.
-- I glue a Traveler's Notebook **Pocket Sticker 006** onto the backside of the back cover. It needs a bit of trimming since the pocket is an inch or so taller than Bible-size paper.
-- I keep a flat **TOHKIN PC-8S-3 Clip** on the back cover. It can act as a paper holder, transforming the back cover into a writing pad for loose leaf pages.
+- **Glue Stick** - For things that do not have adhesive backing.
 
 [pv]: https://notes.andymatuschak.org/Peripheral_vision
 [kc]: https://www.kokuyostore.com/en/stationery/stationery-binder/stationery-binder-loose_leaf_paper
