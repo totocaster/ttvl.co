@@ -2,8 +2,6 @@
 title: Project Humane Notebook System
 ---
 
-# Project Humane Notebook System
-
 The **Project Humane Notebook System (PHNS)** is an evolving framework for integrating digital and analog note-taking. It’s an exploration of how we can make the processes of capturing, searching, and exploring knowledge more flexible and enjoyable.
 
 PHNS is a work in progress—a research project. It’s an adaptable, non-rigid approach to thinking, exploring, retrieving, and evolving ideas and thoughts, leveraging various mediums.
