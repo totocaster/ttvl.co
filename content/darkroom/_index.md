@@ -10,6 +10,7 @@ Technical and process-oriented resources focusing on the subjects of photography
 - [Bulk Film Canister Stickers](/darkroom/canister-stickers)
 - [Foldable Film Reminder](/darkroom/foldable-film-reminder)
 - [Rapid Travel Film Development Kit](/darkroom/travel-dev-kit)
+- [PHNS Templates for Analog Photography](/notebook-system/analog-photography-templates/)
 
 ## Miscellaneous
 

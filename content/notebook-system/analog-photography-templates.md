@@ -4,7 +4,7 @@ title: 'PHNS Templates for Analog Photography'
 
 # PHNS Templates for Analog Photography
 
-I predominantly shoot film when working on photo projects. To keep track of my work, I’ve designed several templates that I print and keep in my [notebook system](/notebook-system/).
+I predominantly shoot film when working on photo projects. To keep track of my work, I’ve designed several templates that I print and keep in my [notebook system (PHNS)](/notebook-system/).
 
 {{< toc >}}
 
