@@ -4,7 +4,7 @@ title: 'Colophon'
 
 The design and structure of this website were heavily inspired by [100r.co](https://100r.co) (before their redesign). It is simple, fast, and easy to modify and manage. There are no custom fonts or heavy graphics. If you don’t know about 100r.co, drop everything and explore the wonderful world of Rek & Neauoire.
 
-The website is generated using [Hugo](//gohugo.io). The content and deployment are managed through a private Git repository and a set of GitHub workflows.
+This website is generated using [Hugo](//gohugo.io). The content and deployment are managed through a private Git repository and a set of GitHub workflows.
 
 All content is served from the DigitalOcean App Platform. If you sing up with DigitalOcean through [this link][doref], we'll both get generous credits.
 
