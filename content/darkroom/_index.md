@@ -15,6 +15,7 @@ Technical and process-oriented resources focusing on the subjects of photography
 ## DIY
 
 - [Mamiya RZ67 PRO II Fine Focus Gear](/darkroom/rz67-focus-gear-stl)
+- [Horseman 80sqmm Lensboards](/darkroom/horseman-lensboards)
 
 ## Miscellaneous
 
