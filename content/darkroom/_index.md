@@ -6,20 +6,18 @@ Technical and process-oriented resources focused on photography, darkroom techni
 
 ## Process and Techniques
 
-Resources to streamline and enhance your film photography workflow:
-
 - [Film Identification Format](/darkroom/roll-id/)
 - [Rapid Travel Film Development Kit](/darkroom/travel-dev-kit)
 - [PHNS Templates for Analog Photography](/notebook-system/analog-photography-templates/)
 
 ## DIY Projects
 
-Enhance your shooting process and overall experience:
+For Enhancing shooting process and overall experience:
 
 - [Bulk Film Canister Stickers](/darkroom/canister-stickers)
 - [Foldable Film Reminder](/darkroom/foldable-film-reminder)
 
-Improve, fix, and modify your camera equipment:
+Improve, fix, and modify camera equipment:
 
 - [Mamiya RZ67 PRO II Fine Focus Gear](/darkroom/rz67-focus-gear-stl)
 - [Horseman 80sqmm Lensboards](/darkroom/horseman-lensboards)
