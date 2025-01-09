@@ -12,6 +12,10 @@ Technical and process-oriented resources focusing on the subjects of photography
 - [Rapid Travel Film Development Kit](/darkroom/travel-dev-kit)
 - [PHNS Templates for Analog Photography](/notebook-system/analog-photography-templates/)
 
+## DIY
+
+- [Mamiya RZ67 PRO II Fine Focus Gear](/darkroom/rz67-focus-gear-stl)
+
 ## Miscellaneous
 
 - [Tracking Highway Sequence from Solaris](/darkroom/solaris-highway)
