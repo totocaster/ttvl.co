@@ -1,0 +1,12 @@
+---
+title: Lucky CP32 Color Print Paper Processing Machine Manual in English
+---
+
+# Lucky/Fujimoto CP32 Color Print Paper Processing Machine Manual in English
+
+I have a **Lucky CP32** color film processor. As far as I know, the CP32—unlike its international sibling, the **Fujimoto CP-31**—was only produced in Japan (to the best of my knowledge).
+
+Below are the original and translated versions of the manual, which I created with the help of AI tools:
+
+- [Lucky CP32 English Manual](/downloads/lucky_cp32_manual_en_translated.pdf) - partially AI-translated
+- [Lucky CP32 Original Japanese Manual](/downloads/lucky_cp32_manual_jp_original.pdf) - contains scanned pages, sourced from the web and compiled into a PDF.

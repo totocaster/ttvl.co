@@ -14,4 +14,5 @@ Technical and process-oriented resources focusing on the subjects of photography
 
 ## Miscellaneous
 
-- [Tracking Highway Sequence from Solaris](/darkroom/solaris-highway.md)
+- [Tracking Highway Sequence from Solaris](/darkroom/solaris-highway)
+- [Lucky CP32 Color Print Processor Manual](/darkroom/lucky-cp32-manual)
