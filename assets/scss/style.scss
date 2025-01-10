@@ -216,6 +216,12 @@ main {
         column-gap: 1rem;
         @include readable-width();
         padding-left: 2em;
+
+        @include narrow {
+          column-gap: 0.5rem;
+          padding-left: 0;
+        }
+
         
         a {
           text-decoration: underline;
