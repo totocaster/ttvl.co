@@ -72,11 +72,11 @@ Abstract and "airy" photos also make a nice writing surface for thoughts or poet
 
 ## Linking
 
-It is possible to link notes using their dates. While it’s not quite a Zettelkasten system by design, it can certainly function like one if you diligently add page numbers after dates to make them centrally unique.
+At a minimum, it’s possible to link notes using their dates. The system is designed to be compatible with **Zettelkasten**, where individual notes (or "leaves") can act as index cards. By adding page numbers after dates, you can ensure uniqueness.
 
-However, I don’t find linking notes particularly useful. I prefer to **browse** my notes when thinking, allowing connections to emerge organically, or **search** when I need to quickly retrieve specific information.
+However, I don’t find linking notes particularly useful. Instead, I prefer to **browse** my notes while thinking, allowing connections to emerge organically. When I need to retrieve specific information, I rely on **search**. (see "Searching and Browsing")
 
-You can also group notes into their own notebook or bunch for an intense focus session.
+For focused work, you can also group notes into their own notebook or a “bunch” for an intense focus session. I do not keep bunched notes together for long time.
 
 ## Archiving
 
@@ -107,10 +107,9 @@ I strongly encourage starting simple with plain, dotted, or ruled paper for ever
 
 ## Make Your Own
 
-Below are a few quick notes on how to start and make your own PHNS notebook:
+I have a separate guide on how to start and create your own PHNS notebook from scratch:
 
-- [Getting Started: Building PHNS from Scratch](/notebook-system/build-phns)
-- [Personalized Covers](/notebook-system/custom-covers/)
+- [Make Your Own PHNS: A DIY Guide](/notebook-system/make-your-own-phns)
 
 ## Accessories
 
