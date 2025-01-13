@@ -143,5 +143,14 @@ Below are a few tools and toys I use with my PHNS notebook to make it more usefu
 - **Canon ZINK Mini Printer** — For printing photos. ZINK (Zero Ink) paper requires no ink and has a sticker backing, making it easy to create photo sequences in the notebook or just print a nice moment to accompany a journal entry.
 - **Glue Stick** - For things that do not have adhesive backing.
 
+## Resources
+
+Collection of links from and around the notebook system.
+
+- [Make Your Own PHNS: A DIY Guide](/notebook-system/make-your-own-phns)
+- [Templates for General Use](/notebook-system/general-templates)
+- [Templates for Analog Photography](/notebook-system/analog-photography-templates)
+- [Selection of some of my loose leafs](/leafs)
+
 [pv]: https://notes.andymatuschak.org/Peripheral_vision
 [kc]: https://www.kokuyostore.com/en/stationery/stationery-binder/stationery-binder-loose_leaf_paper
