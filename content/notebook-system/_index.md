@@ -16,7 +16,7 @@ The system is software- and brand-agnostic, although it does have some preferenc
 
 ## Loose Leafs
 
-The notebook system, rather unfashionably, is based on loose leafs rather than bound notebooks. This is a pragmatic choice rather than some kind of bias towards one type of stationery. The following section will dive into the reasons behind this choice. I'll be keeping tally for loose leafs versus bound pages.
+The notebook system, rather unfashionably, is based on loose leafs rather than bound notebooks. It’s a pragmatic decision central to the system’s flexibility and functionality rather than some kind of bias towards one type of stationery. The following sections will dive into the reasons behind this choice.
 
 ## Pagination
 
@@ -78,9 +78,15 @@ However, I don’t find linking notes particularly useful. Instead, I prefer to 
 
 For focused work, you can also group notes into their own notebook or a “bunch” for an intense focus session. I do not keep bunched notes together for long time.
 
+## Index
+
+There’s no necessity to use a paper index in PHNS. Since all your notes will eventually be digitized and transcribed, they’ll become easily **searchable**, eliminating the need for a traditional paper index.
+
+However, if you’re an analog purist, you can still maintain a traditional index on paper. Instead of listing page numbers alongside subjects, you could write the _dates_ you worked on them. This approach not only functions as an index but also transforms it into a concise **interstitial work log**.
+
 ## Archiving
 
-Archiving pages in PHNS is very easy and painless since pages never get retired—they simply migrate from one place to another. Archiving is as simple as moving a page into a long-term binder. I use thick cardboard binders labeled `2023`, `2024`, `2025` for loose leafs from those years. All leaves are ordered chronologically, so even if a binder has hundreds of pages, they are extremely easy to find.
+Archiving pages in PHNS is very easy and painless since pages never get retired—they simply migrate from one place to another. Archiving is as simple as moving a leaf into a long-term binder. I use thick cardboard binders labeled `2023`, `2024`, `2025` for loose leafs from those years. All leaves are ordered chronologically, so even if a binder has hundreds of pages, they are extremely easy to find.
 
 I never move pages to the archive without first scanning them. But you could do whatever you like, especially since moving pages back to an active notebook is so easy.
 
