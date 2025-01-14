@@ -86,9 +86,11 @@ However, if you’re an analog purist, you can still maintain a traditional inde
 
 ## Archiving
 
-Archiving pages in PHNS is very easy and painless since pages never get retired—they simply migrate from one place to another. Archiving is as simple as moving a leaf into a long-term binder. I use thick cardboard binders labeled `2023`, `2024`, `2025` for loose leafs from those years. All leaves are ordered chronologically, so even if a binder has hundreds of pages, they are extremely easy to find.
+Archiving pages in PHNS is simple and painless since pages never truly get retired—they merely migrate from one place to another. Archiving is as straightforward as moving a leaf into a long-term binder. I use thick cardboard binders labeled `2023`, `2024`, `2025`, and so on, for loose leaves from those years. All pages are ordered chronologically, so even if a binder contains hundreds of pages, they are extremely easy to locate.
 
-I never move pages to the archive without first scanning them. But you could do whatever you like, especially since moving pages back to an active notebook is so easy.
+If you prefer a Zettelkasten-style archive, you can organize leaves into thematic drawers. Again, the system is designed to adapt to _you_ rather than impose a rigid structure.
+
+I personally never move pages to the archive without scanning them first. However, you can handle it however you prefer—especially since moving pages back into an active notebook is effortless.
 
 ## Personalization
 
