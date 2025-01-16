@@ -1,6 +1,6 @@
 {{ define "main" }}
 <section class="flaneur-header">
-  <p><a href="/newsletter/">The Flâneur</a> &sdot; Dispatch {{ printf "%03d" .Params.issue }} &sdot; {{ .Params.date | time.Format "January 2, 2006" }}</p>
+  <p><a href="/newsletter/">The Flâneur</a> &sdot; Dispatch {{ .File.BaseFileName }} &sdot; {{ .Params.date | time.Format "January 2, 2006" }}</p>
   <img class="flaneur-logo" src="/ui/flaneur_logo.png" srcset="/ui/flaneur_logo@2x.png 2x, /ui/flaneur_logo@3x.png 3x" alt="The Flâneur" />
 </section>
 <article class="flaneur">

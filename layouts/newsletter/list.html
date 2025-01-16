@@ -27,7 +27,7 @@
 <h2>Archive</h2>
 <ul class="newsletter-issues">
   {{ range (where (where .Site.Pages "Section" "flaneur") "Kind" "page").ByDate.Reverse }}
-    <li><span class="issue-number">{{ printf "%03d" .Params.issue }} /
+    <li><span class="issue-number">{{ .File.BaseFileName }} /
       <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time></span>
       <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
     </li>
