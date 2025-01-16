@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ .Title }} — The Flâneur</title>
+    <style>
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'HelveticaNeue', 'Helvetica Neue', 'Helvetica-Neue', Helvetica, Arial, sans-serif;
+        line-height: 25px;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        font-size: 16px;
+      }
+      img {
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 20px;
+        margin-top: 20px;
+      }
+      a {
+        color: #000;
+        font-weight: 600;
+      }
+      hr {
+        width: 20%;
+        margin: 2rem 0;
+        border: 0;
+        border-top: 1px solid #efefef;
+      }
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-size: 16px;
+      }
+      .header {
+        margin-bottom: 40px;
+      }
+      .header img {
+        width: 120px;
+        height: auto;
+      }
+      .title {
+        margin-bottom: 0.5rem;
+        font-size: 20px;
+        line-height: 25px;
+      }
+      .subtitle {
+        color: #666;
+        margin-top: 0;
+        margin-bottom: 2rem;
+      }
+      .footer {
+        margin: 5rem 0;
+        font-size: 14px;
+        color: #666;
+      }
+      .footer p {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <p><a href="https://ttvl.co/newsletter/">The Flâneur</a> &sdot; Dispatch {{ .File.BaseFileName }} &sdot; {{ .Date.Format "January 2, 2006" }}</p>
+      <img src="https://ttvl.co/ui/flaneur_logo.png" srcset="https://ttvl.co/ui/flaneur_logo@2x.png 2x, https://ttvl.co/ui/flaneur_logo@3x.png 3x" alt="The Flâneur" />
+    </div>
+
+    <h1 class="title">{{ .Title }}</h1>
+    {{ with .Params.description }}
+    <p class="subtitle">{{ . }}</p>
+    {{ end }} {{ .Content }}
+
+    <div class="footer">
+      <p>You're getting this email because you signed up for <a href="https://ttvl.co/newsletter/">The Flâneur</a> by <a href="https://ttvl.co/">Toto Tvalavadze</a>.</p>
+      <p>A newsletter about my work, photography, books, making, and walking.</p>
+      <p>You can always: <unsubscribe>Unsubscribe instantly.</unsubscribe></p>
+    </div>
+  </body>
+</html>

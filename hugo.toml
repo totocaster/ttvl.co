@@ -30,3 +30,18 @@ disableKinds = ["taxonomy", "term"]
 [permalinks]
  log = "/log/:year/:month/"
  objects = "/objects/:year/:slug/"
+
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML"]
+  page = ["HTML"]
+  "flaneur" = ["HTML", "email"]
+
+[outputFormats]
+  [outputFormats.email]
+    mediaType = "text/html"
+    baseName = "email"
+    isHTML = true
+    noUgly = true
+    permalinkable = true
+    rel = "alternate"
