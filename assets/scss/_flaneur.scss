@@ -25,15 +25,6 @@ main {
 
   // Single issue page
   article.flaneur { 
-    section.flaneur-header {
-      margin: 2rem 0 4rem 0;
-  
-      .flaneur-logo {
-        width: 120px;
-        height: auto;
-      }
-    }
-  
     h1 {
       margin-bottom: 0.5rem;
     }
@@ -41,6 +32,20 @@ main {
     p.subtitle {
       margin-bottom: 2rem;
       color: #666;
+    }
+  }
+
+  section.flaneur-header {
+    margin: 2rem 0 4rem 0;
+
+    a {
+      font-weight: 600;
+    }
+
+    .flaneur-logo {
+      margin-top: 1rem;
+      width: 120px;
+      height: auto;
     }
   }
 }
