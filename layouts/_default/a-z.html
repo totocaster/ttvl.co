@@ -2,7 +2,7 @@
 <h1>Index</h1>
 <nav id="Index">
   <ul>
-    {{ range where .Site.RegularPages "Kind" "page" }}
+    {{ range where (where .Site.RegularPages "Kind" "page") "Section" "ne" "flaneur" }}
     <li>
       <a href="{{ .RelPermalink }}"> {{- if .Title -}} {{ .Title }} {{- else -}} {{ .File.Path }} {{- end -}} </a>
     </li>
