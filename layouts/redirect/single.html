@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="refresh" content="0; url={{ .Params.url }}" />
+    <link rel="canonical" href="{{ .Params.url }}" />
+    <title>Redirecting to {{ .Params.url }}</title>
+  </head>
+  <body>
+    <p>Redirecting to <a href="{{ .Params.url }}">{{ .Params.url }}</a>...</p>
+  </body>
+</html>
