@@ -3,7 +3,10 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ .Title }} — The Flâneur</title>
+    <title>The Flâneur {{ .File.BaseFileName }}: {{ .Title }}</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="https://ttvl.co/favicon/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="https://ttvl.co/favicon/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="https://ttvl.co/favicon/favicon-16x16.png" />
     <style>
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'HelveticaNeue', 'Helvetica Neue', 'Helvetica-Neue', Helvetica, Arial, sans-serif;
@@ -60,6 +63,7 @@
       }
       .footer p {
         margin: 0;
+        line-height: 21px;
       }
     </style>
   </head>
