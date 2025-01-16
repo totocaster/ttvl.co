@@ -3,7 +3,13 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    {{ partial "head.html" . }}
+    <!-- Title tags -->
+    <title itemprop="name">{{ with .Title }}{{ . }} — {{ end }}{{ .Site.Title }}</title>
+    <!-- CSS and Styles -->
+    {{ $style := resources.Get "scss/style.scss" | toCSS | minify }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+    <!-- Generator w/ version number. -->
+    {{ hugo.Generator }}
   </head>
   <body>
     <div class="layout">
