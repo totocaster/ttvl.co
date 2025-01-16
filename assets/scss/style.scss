@@ -170,6 +170,9 @@ main {
       margin: 2rem 0;
       border: 0;
       border-top: 1px solid #efefef;
+      @include dark {
+        border-top: 1px solid #444;
+      }
     }
 
     // Code and plain text
