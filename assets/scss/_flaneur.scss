@@ -1,0 +1,57 @@
+main {
+
+  .newsletter-issues {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    @include readable-width;
+  
+    li {
+      margin-bottom: 0.2rem;
+      display: flex;
+      align-items: baseline;
+    }
+  
+    .issue-number {
+      font-variant-numeric: tabular-nums;
+      min-width: 140px;
+      display: inline-block;
+    }
+  
+    a {
+      flex: 1;
+    }
+  }
+
+  // Single issue page
+  article.flaneur { 
+    section.flaneur-header {
+      margin: 2rem 0 4rem 0;
+  
+      .flaneur-logo {
+        width: 120px;
+        height: auto;
+      }
+    }
+  
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+  
+    p.subtitle {
+      margin-bottom: 2rem;
+      color: #666;
+    }
+  }
+}
+
+section.flaneur-box {
+  margin: 6rem 0;
+  @include readable-width();
+  border-top: 1px solid #ddd;
+  padding: 1rem 2rem;
+  background: linear-gradient(to bottom, #fafafa, rgba(255, 255, 255, 0));
+  a {
+    font-weight: 600;
+  }
+}

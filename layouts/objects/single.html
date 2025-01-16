@@ -3,10 +3,7 @@
   <h1>{{ .Title }}</h1>
   <p>
     <time>{{ .Date.Format "2006.01.02" }}</time>
-    <span class="rating">
-      {{- range seq 5 -}} {{- if le . $.Params.rating -}}★{{- else -}}☆{{- end
-      -}} {{- end -}}
-    </span>
+    <span class="rating"> {{- range seq 5 -}} {{- if le . $.Params.rating -}}★{{- else -}}☆{{- end -}} {{- end -}} </span>
   </p>
   {{ .Content }}
 </article>

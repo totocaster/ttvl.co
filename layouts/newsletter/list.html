@@ -1,0 +1,37 @@
+{{ define "main" }} 
+<h1>{{ .Title }}</h1>
+
+<p><em>A newsletter about my work, photography, books, making, and walking.</em></p>
+
+<p>The Flâneur is a little more private, a bit more experimental that what I publish on the website — and, if I may lean into the obvious metaphor, a little more wander-y. Not everything shared there will appear here, and you'll find more work-in-progress updates too.</p>
+
+<div class="email-subscribe">
+  <form
+    class="js-cm-form"
+    id="subForm"
+    action="https://www.createsend.com/t/subscribeerror?description="
+    method="post"
+    data-id="191722FC90141D02184CB1B62AB3DC26F7C416DE30A85B0B53BD94B6BBB579944F5715088DFCFDDBAF132E94DB6E2DA0EC5A3D9818CF7742D73716649E3ABF04"
+  >
+    <input autocomplete="Email" class="js-cm-email-input qa-input-email" id="fieldEmail" maxlength="200" name="cm-tyithrl-tyithrl" required="" type="email" />
+    <button type="submit">Subscribe</button>
+  </form>
+  <div class="promise">
+    <p>Once a month. One click to unsubscribe.</p>
+  </div>
+</div>
+<script type="text/javascript" src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
+
+{{ .Content }}
+
+<h2>Archive</h2>
+<ul class="newsletter-issues">
+  {{ range (where (where .Site.Pages "Section" "flaneur") "Kind" "page").ByDate.Reverse }}
+    <li><span class="issue-number">{{ printf "%03d" .Params.issue }} /
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time></span>
+      <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
+    </li>
+  {{ end }}
+</ul>
+
+{{ end }}
