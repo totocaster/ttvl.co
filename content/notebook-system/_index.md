@@ -14,9 +14,9 @@ Analog and digital tools alone are not enough to fully support the way our brain
 
 The system is software- and brand-agnostic, although it does have some preferences for certain types of analog tools over others.
 
-## Loose Leafs
+## Loose Leaves
 
-The notebook system, rather unfashionably, is based on loose leafs rather than bound notebooks. It’s a pragmatic decision central to the system’s flexibility and functionality rather than some kind of bias towards one type of stationery. The following sections will dive into the reasons behind this choice.
+The notebook system, rather unfashionably, is based on loose leaves rather than bound notebooks. It’s a pragmatic decision central to the system’s flexibility and functionality rather than some kind of bias towards one type of stationery. The following sections will dive into the reasons behind this choice.
 
 ## Pagination
 
@@ -152,7 +152,7 @@ Collection of links from and around the notebook system.
 - [Make Your Own PHNS: A DIY Guide](/notebook-system/make-your-own-phns)
 - [Templates for General Use](/notebook-system/general-templates)
 - [Templates for Analog Photography](/notebook-system/analog-photography-templates)
-- [Selection of some of my loose leafs](/leafs)
+- [Selection of some of my loose leaves](/leaves)
 
 [pv]: https://notes.andymatuschak.org/Peripheral_vision
 [kc]: https://www.kokuyostore.com/en/stationery/stationery-binder/stationery-binder-loose_leaf_paper
