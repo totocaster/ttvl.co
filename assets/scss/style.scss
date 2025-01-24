@@ -58,6 +58,10 @@ body {
     background: $color-dark-bg;
     color: $color-dark-text;
   }
+
+  &.menu-open {
+    overflow: hidden;
+  }
 }
 
 // Layout components
@@ -90,6 +94,34 @@ header {
   min-height: $header-height;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+// Menu Toggle Button
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: $color-light-text;
+  font-family: $font-family-base;
+  font-size: $font-size-base;
+  cursor: pointer;
+  padding: 10px;
+  
+  @include dark {
+    color: $color-dark-text;
+  }
+  
+  @include narrow {
+    display: block;
+    position: relative;
+    z-index: 1001; // Higher than the nav overlay
+    
+    &.is-active {
+      position: fixed;
+      right: $padding-small;
+    }
+  }
 }
 
 // Typography
@@ -116,6 +148,28 @@ a {
 // Navigation
 nav {
   line-height: $line-height-nav;
+  
+  @include narrow {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: $color-light-bg;
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 1000;
+    -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
+    
+    @include dark {
+      background: $color-dark-bg;
+    }
+    
+    &.is-active {
+      display: block;
+    }
+  }
   
   a { text-decoration: none; }
 

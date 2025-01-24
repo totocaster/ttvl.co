@@ -99,3 +99,7 @@
       (window.plausible.q = window.plausible.q || []).push(arguments);
     };
 </script>
+
+<!-- Menu Script -->
+{{ $menu := resources.Get "js/menu.js" | js.Build (dict "minify" true) }}
+<script src="{{ $menu.RelPermalink }}"></script>
