@@ -4,7 +4,7 @@ title: 'General Templates'
 
 # General Templates
 
-I don’t use many general-purpose templates; I find plain paper to be the best tool for most daily tasks. I designed the [Unbound Notebook System][phns] to be as elastic as the brain itself, so rigid templates for daily use would go against the core design principles of the system.
+I don’t use many general-purpose templates; I find plain paper to be the best tool for most daily tasks. I designed the [Unbound Notebook System][uns] to be as elastic as the brain itself, so rigid templates for daily use would go against the core design principles of the system.
 
 I find niche- and domain-specific templates, like the ones I created to [track my film photography][film], far more useful.
 
@@ -18,7 +18,7 @@ I use _Bible_-size pages, so the templates are formatted accordingly. You’re w
 
 I've always struggled with food and maintaining my body weight. To stay in shape, I have to be extremely strict about what I eat. In 2012, I learned how to count calories effectively. This template helps me track all the basics I need for a day.
 
-- [Daily Log](/downloads/phns/phns_general_daily_latest.pdf)
+- [Daily Log](/downloads/uns/uns_general_daily_latest.pdf)
 
 ## Book List
 
@@ -26,7 +26,7 @@ I love books—real, paper books, especially the beautiful artifacts that are ph
 
 However, this creates a challenge: I often forget about digital books because they tend to fall out of my [peripheral vision][pv]. To address this, I maintain a Book List as an Unbound page. You'll notice the **Medium** column comes even before the book title column. I write entries like _Kindle_ or _Paper_ there.
 
-- [Book List](/downloads/phns/phns_general_books_latest.pdf)
+- [Book List](/downloads/uns/uns_general_books_latest.pdf)
 
 ## License
 
@@ -34,5 +34,5 @@ These templates are licensed under [CC BY 4.0][cc], which means you can share, a
 
 [cc]: https://creativecommons.org/licenses/by/4.0/
 [pv]: /notebook-system/#peripheral-vision
-[phns]: /notebook-system/
+[uns]: /notebook-system/
 [film]: /notebook-system/analog-photography-templates/

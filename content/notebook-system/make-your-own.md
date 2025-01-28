@@ -4,7 +4,7 @@ title: 'Make Your Own Unbound Notebook'
 
 # Make Your Own Unbound Notebook
 
-This is a guide to making the canonical (version I use) [Unbound][phns] notebook. The entire system is designed to be loose and flexible, tailored to fit only me. I encourage you to use the following information as inspiration and modify the steps to make a notebook that matches _you_.
+This is a guide to making the canonical (version I use) [Unbound][uns] notebook. The entire system is designed to be loose and flexible, tailored to fit only me. I encourage you to use the following information as inspiration and modify the steps to make a notebook that matches _you_.
 
 {{< toc >}}
 
@@ -20,7 +20,7 @@ This is a guide to making the canonical (version I use) [Unbound][phns] notebook
 
 Assemble your binder with some loose-leaf pages and covers. Avoid overloading the binder, as too many pages may make flipping difficult. That's it—you're done!
 
-This base notebook is fully functional and supports everything described in the [system overview][phns]. However, I add accessories and components to make it truly _mine_.
+This base notebook is fully functional and supports everything described in the [system overview][uns]. However, I add accessories and components to make it truly _mine_.
 
 ## Toto's Unbound Notebook
 
@@ -70,6 +70,6 @@ I hope this guide inspires you to create your own Unbound notebook.
 
 On a final note, I'd like to reiterate and strongly advise keeping it as simple as possible, especially when starting out. Avoid diving into the rabbit hole of accessorizing and specializing with templates right away. A binder, a set of covers, and plain or ruled paper are the best starting point in 99% of cases. As you use the system, you'll naturally _feel_ what's missing and adapt it to suit your needs.
 
-[phns]: /notebook-system/
+[uns]: /notebook-system/
 [dvdr]: https://www.raymay.co.jp/davinci/contents/refill/bible/note.html
 [templ]: /notebook-system/#templates
