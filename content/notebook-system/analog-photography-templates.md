@@ -1,14 +1,14 @@
 ---
-title: 'PHNS Templates for Analog Photography'
+title: 'Analog Photography Templates'
 ---
 
-# PHNS Templates for Analog Photography
+# Analog Photography Templates
 
-I predominantly shoot film when working on photo projects. To keep track of my work, I’ve designed several templates that I print and keep in my [notebook system (PHNS)](/notebook-system/).
+I predominantly shoot film when working on photo projects. To keep track of my work, I’ve designed several templates that I print and keep in my [Unbound Notebook System](/notebook-system/).
 
 {{< toc >}}
 
-I use _Bible_-size pages, so the templates are formatted accordingly. You’re welcome to make your own versions in any size or with any modifications. If they don’t fit your needs, simply use them as inspiration. At the heart of PHNS is extreme flexibility.
+I use _Bible_-size pages, so the templates are formatted accordingly. You’re welcome to make your own versions in any size or with any modifications. If they don’t fit your needs, simply use them as inspiration. At the heart of Unbound System is extreme flexibility.
 
 ## 35mm Film
 
