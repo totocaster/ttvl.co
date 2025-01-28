@@ -90,16 +90,6 @@
 <!-- Generator w/ version number. -->
 {{ hugo.Generator }}
 
-<!-- Plausible -->
-<script defer data-domain="ttvl.co" src="https://plausible.io/js/script.file-downloads.outbound-links.pageview-props.js"></script>
-<script>
-  window.plausible =
-    window.plausible ||
-    function () {
-      (window.plausible.q = window.plausible.q || []).push(arguments);
-    };
-</script>
-
 <!-- Menu Script -->
 {{ $menu := resources.Get "js/menu.js" | js.Build (dict "minify" true) }}
 <script src="{{ $menu.RelPermalink }}"></script>
