@@ -10,9 +10,9 @@ The Unbound System is a work in progress—a research project. It's an adaptable
 
 ## Philosophy
 
-Analog and digital tools alone are not enough to fully support the way our brains think and work. Analog systems are less rigid and mirror the brain's elasticity, supporting freeform thinking and idea development. Digital systems, while excellent for organization and scalability, can feel too structured for creative exploration. Further, I will argue the value of organization altogether too.
+Analog and digital tools alone are not enough to fully support the way our brains think and work. Analog systems are less rigid and mirror the brain's elasticity, supporting freeform thinking and idea development. Digital systems, while superior for organization and information retrieval, can feel too structured for creative exploration. Furthermore, I will argue the value of organization altogether too.
 
-The system is software- and brand-agnostic, although it does have some preferences for certain types of analog tools over others.
+The system is software- and brand-agnostic. Although it has some preferences for certain types of tools, fundamentally it is _unbound_ from any type of ecosystem.
 
 ## Loose Leaves
 
@@ -20,7 +20,7 @@ As the name suggests, the notebook system is based on loose leaves rather than b
 
 ## Pagination
 
-Since Unbound notebooks are, well... unbound, traditional page numbers do not make much sense. However, having a way to identify a page and its place in a sequence is quite valuable for referencing as well as lookup purposes. Because of this, I use dates as a replacement for page numbers. No matter how leaves migrate between notebooks or archives, they remain easily searchable using dates, as dates are naturally ordered by timeline.
+Since Unbound notebooks use loose leaves, traditional page numbers do not make much sense. However, having a way to identify a page and its place in a sequence is quite valuable for referencing as well as lookup purposes. Because of this, I use dates as a replacement for page numbers. No matter how leaves migrate between notebooks or archives, they remain easily searchable using dates, as dates are naturally ordered by timeline.
 
 I find adding additional page numbers per day unnecessary since I rarely write more than half a dozen pages in one day—an amount that trivial to flip though. If you write more than a dozen pages per day, consider adding `/` and a page number so that the 24th page written on January 6, 2025, would be labeled `2025.01.06/24`.
 
@@ -28,7 +28,7 @@ I use a rubber stamp with changing dates to page my notes, but the simple act of
 
 ## Grouping
 
-I avoid grouping pages by project, topic, or "area" (per GTD). The loose leaf system is incredibly flexible when you want to migrate a page from one part of the notebook to another—or even to a dedicated notebook for logging or project ideas. However, I find excessive grouping creates silos of neglect, where notes that might be useful during casual browsing are overlooked.
+I avoid grouping pages by project, topic, or _area_ (per GTD). The loose leaf system is incredibly flexible when you want to migrate a page from one part of the notebook to another—or even to a dedicated notebook for logging or project ideas. However, I find excessive grouping creates silos of neglect, where notes that might be useful during casual browsing are overlooked.
 
 ## Peripheral Vision
 
@@ -42,11 +42,11 @@ Unbound System is designed to keep notes you want to be reminded of in the noteb
 
 **Browsing** is an _open-ended activity_, more akin to walking in the city—exploring like a flâneur—whereas **searching** is _information retrieval_, a brisk walk to a set destination. We may browse with or without a goal, and plans may change as the process unfolds. However, when searching, we need information quickly and reliably.
 
-Unbound System is designed to excel at both. Browsing can be easily accomplished by flipping through the pages of a Unbound notebook in either direction, or even accidentally opening it to a random page every so often. Searching, on the other hand, is where its digital counterpart comes into play.
+Unbound System is designed to excel at both. Browsing can be easily accomplished by flipping through the pages of a notebook in either direction, or even accidentally opening it to a random page every so often. Searching, on the other hand, is where its digital counterpart of Unbound System comes into play.
 
 ## Bridging to Digital
 
-Whereas the Unbound System is primarily analog, its digital tools serve as an extension, enhancing searchability, archival integrity, and overall workflow.
+While the thinking part of the Unbound System is primarily analog, its digital tools enhance the system and improve the overall workflow for information retrieval, recall, and archiving.
 
 I find ChatGPT-4 with vision to be an incredibly reliable transcription tool for the Unbound System. I have an open chat with the following prompt, and I simply upload photos from my notes for transcription:
 
@@ -66,13 +66,13 @@ Some of you can already see dozens of automation and app opportunities. I'm one 
 
 Since loose leaves are essentially pieces of paper with a bunch of holes, they can work in printers as well as normal paper, which means you can print any content and put it in your notebook for further thinking or even as part of your peripheral vision. I usually print my highlights from books and essays I read online and then annotate them further with pencil in the notebook.
 
-Abstract and "airy" photos also make a nice writing surface for thoughts or poetry.
+Abstract and minimalist photos also make a nice writing surface for thoughts or poetry.
 
 ## Linking
 
-At a minimum, it's possible to link notes using their dates. The system is designed to be compatible with **Zettelkasten**, where individual notes (or "leaves") can act as index cards. By adding page numbers after dates, you can ensure uniqueness.
+At a minimum, it's possible to link notes using their dates. The system is designed to be compatible with **Zettelkasten**, where individual leaves can act as index cards. By adding page numbers after dates, you can ensure uniqueness. or, you could add additional Zettelkasten-style identifier to only relevant leaves.
 
-However, I don't find linking notes particularly useful. Instead, I prefer to **browse** my notes while thinking, allowing connections to emerge organically. When I need to retrieve specific information, I rely on **search**. (see "Searching and Browsing")
+However, I don't find linking notes particularly useful. Instead, I prefer to **browse** my notes while thinking, allowing connections to emerge organically. When I need to retrieve specific information, I rely on **search**. (see [Searching and Browsing](#searching-and-browsing))
 
 For focused work, you can also group notes into their own notebook or a "bunch" for an intense focus session. I do not keep bunched notes together for long time.
 
@@ -84,15 +84,17 @@ However, if you're an analog purist, you can still maintain a traditional index 
 
 ## Archiving
 
-Archiving pages in Unbound System is simple and painless since pages never truly get retired—they merely migrate from one place to another. Archiving is as straightforward as moving a leaf into a long-term binder. I use thick cardboard binders labeled `2023`, `2024`, `2025`, and so on, for loose leaves from those years. All pages are ordered chronologically, so even if a binder contains hundreds of pages, they are extremely easy to locate.
+In Unbound System notes never get truly retired—they merely migrate from one place to another. Archiving is as straightforward as moving a leaf into a long-term binder. I use thick cardboard binders labeled `2023`, `2024`, `2025`, and so on, for loose leaves from those years. All pages are ordered chronologically, so even if a binder contains hundreds of pages, they are extremely easy to locate.
 
 If you prefer a Zettelkasten-style archive, you can organize leaves into thematic drawers. Again, the system is designed to adapt to _you_ rather than impose a rigid structure.
 
-I personally never move pages to the archive without scanning them first. However, you can handle it however you prefer—especially since moving pages back into an active notebook is effortless.
+I personally never move pages to the archive without scanning them first. However, this is also not strictly necessary since "unarchiving" a note is as easy as moving pages back into an active notebook.
 
 ## Personalization
 
 The canonical Unbound version is designed so that covers are also loose and **DO NOT** wrap the binder part of the notebook as Filofax, Davinci and Plotter planners. Any thick paper, cloth, leather, or fabric that protects the pages beneath and gives the notebook a pleasing tactile quality can serve as a cover.
+
+You could even use additional "cover" in between leaves as a writing pad or a separator.
 
 I have two active notebooks: one with a 1mm yellow-tanned leather cover and another cut from a Freitag F08 DAN pouch I got for $5 because it had a broken zipper. All it takes to make new covers are scissors and a hole punch.
 
