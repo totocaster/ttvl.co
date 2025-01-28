@@ -10,6 +10,8 @@ I briefly owned a Horseman 45FA and had trouble finding good lens boeards for th
 
 _I no longer use Horseman view cameras and most probably will not be updating this page, feel free to remix those designs for your needs._
 
+{{< youtube "A1eJgaQ3eeE" >}}
+
 ## Printing Notes
 
 - I print and test using **Bambu X1-C** with generic black **CF-PLA**.
