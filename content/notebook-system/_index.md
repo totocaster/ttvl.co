@@ -1,26 +1,26 @@
 ---
-title: Project Humane Notebook System
+title: Unbound Notebook System
 ---
 
-The **Project Humane Notebook System (PHNS)** is an evolving framework for integrating digital and analog note-taking. It’s an exploration of how we can make the processes of capturing, searching, and exploring knowledge more flexible and enjoyable.
+**Unbound** is an evolving framework for integrating digital and analog note-taking. It's an exploration of how we can make the processes of capturing, searching, and exploring knowledge more flexible and enjoyable.
 
-PHNS is a work in progress—a research project. It’s an adaptable, non-rigid approach to thinking, exploring, retrieving, and evolving ideas and thoughts, leveraging various mediums.
+The Unbound System is a work in progress—a research project. It's an adaptable, non-rigid approach to thinking, exploring, retrieving, and evolving ideas and thoughts, leveraging various mediums.
 
 {{< toc >}}
 
 ## Philosophy
 
-Analog and digital tools alone are not enough to fully support the way our brains think and work. Analog systems are less rigid and mirror the brain’s elasticity, supporting freeform thinking and idea development. Digital systems, while excellent for organization and scalability, can feel too structured for creative exploration. Further, I will argue the value of organization altogether too.
+Analog and digital tools alone are not enough to fully support the way our brains think and work. Analog systems are less rigid and mirror the brain's elasticity, supporting freeform thinking and idea development. Digital systems, while excellent for organization and scalability, can feel too structured for creative exploration. Further, I will argue the value of organization altogether too.
 
 The system is software- and brand-agnostic, although it does have some preferences for certain types of analog tools over others.
 
 ## Loose Leaves
 
-The notebook system, rather unfashionably, is based on loose leaves rather than bound notebooks. It’s a pragmatic decision central to the system’s flexibility and functionality rather than some kind of bias towards one type of stationery. The following sections will dive into the reasons behind this choice.
+As the name suggests, the notebook system is based on loose leaves rather than bound notebooks. This choice is not due to a preference for one type of stationery over another, but rather a pragmatic decision that enhances the system's flexibility and functionality. The following sections will explore the reasons behind this choice in more detail.
 
 ## Pagination
 
-Since PHNS notebooks are unbound, traditional page numbers do not make much sense. However, having a way to identify a page and its place in a sequence is quite valuable for referencing as well as lookup purposes. Because of this, I use dates as a replacement for page numbers. No matter how leaves migrate between notebooks or archives, they remain easily searchable using dates, as dates are naturally ordered by timeline.
+Since Unbound notebooks are, well... unbound, traditional page numbers do not make much sense. However, having a way to identify a page and its place in a sequence is quite valuable for referencing as well as lookup purposes. Because of this, I use dates as a replacement for page numbers. No matter how leaves migrate between notebooks or archives, they remain easily searchable using dates, as dates are naturally ordered by timeline.
 
 I find adding additional page numbers per day unnecessary since I rarely write more than half a dozen pages in one day—an amount that trivial to flip though. If you write more than a dozen pages per day, consider adding `/` and a page number so that the 24th page written on January 6, 2025, would be labeled `2025.01.06/24`.
 
@@ -34,21 +34,21 @@ I avoid grouping pages by project, topic, or "area" (per GTD). The loose leaf sy
 
 Andy Matuschak coining [_Peripheral Vision_][pv]:
 
-> My physical workspace is full of subtle cues. The books I read or bought most recently are lying out. Papers I’ve accumulated are lying in stacks on my desk, very roughly arranged by their relationship to each other. I notice a broken door every time I walk by it. These cues together give me a kind of “peripheral vision”: when I’m doing one thing, it’s easy for me to fluidly notice other nearby things. [...] Software systems, by contrast, often lack this kind of peripheral vision. [...] Digital task lists live in a dedicated app. I have no natural reason to look at the contents of that app.
+> My physical workspace is full of subtle cues. The books I read or bought most recently are lying out. Papers I've accumulated are lying in stacks on my desk, very roughly arranged by their relationship to each other. I notice a broken door every time I walk by it. These cues together give me a kind of "peripheral vision": when I'm doing one thing, it's easy for me to fluidly notice other nearby things. [...] Software systems, by contrast, often lack this kind of peripheral vision. [...] Digital task lists live in a dedicated app. I have no natural reason to look at the contents of that app.
 
-PHNS is designed to keep notes you want to be reminded of in the notebook, no matter how old, small, or plain they are. Simply having the ability to indefinitely keep pages you want to be reminded during _browsing_ keeps them in your peripheral vision.
+Unbound System is designed to keep notes you want to be reminded of in the notebook, no matter how old, small, or plain they are. Simply having the ability to indefinitely keep pages you want to be reminded during _browsing_ keeps them in your peripheral vision.
 
 ## Searching and Browsing
 
 **Browsing** is an _open-ended activity_, more akin to walking in the city—exploring like a flâneur—whereas **searching** is _information retrieval_, a brisk walk to a set destination. We may browse with or without a goal, and plans may change as the process unfolds. However, when searching, we need information quickly and reliably.
 
-PHNS is designed to excel at both. Browsing can be easily accomplished by flipping through the pages of a PHNS notebook in either direction, or even accidentally opening it to a random page every so often. Searching, on the other hand, is where its digital counterpart comes into play.
+Unbound System is designed to excel at both. Browsing can be easily accomplished by flipping through the pages of a Unbound notebook in either direction, or even accidentally opening it to a random page every so often. Searching, on the other hand, is where its digital counterpart comes into play.
 
 ## Bridging to Digital
 
-Whereas PHNS is primarily analog, its digital tools serve as an extension, enhancing searchability, archival integrity, and overall workflow.
+Whereas the Unbound System is primarily analog, its digital tools serve as an extension, enhancing searchability, archival integrity, and overall workflow.
 
-I find ChatGPT-4 with vision to be an incredibly reliable transcription tool for PHNS. I have an open chat with the following prompt, and I simply upload photos from my notes for transcription:
+I find ChatGPT-4 with vision to be an incredibly reliable transcription tool for the Unbound System. I have an open chat with the following prompt, and I simply upload photos from my notes for transcription:
 
 > "You are an assistant who helps me manage my paper notes. You help me transcribe, describe and categorize my notes. Transcribe text from this loose leaf note. Include only text from the paper. Do not add your comments. If you find a typo in the transcribed word, please fix it, but do not change the sentence. When you see a list of items, please describe them. If the image has a sketch, describe what it is. Format everything in Markdown format, including tables."
 
@@ -60,9 +60,7 @@ Since pages are unbound, you can use any flatbed or document scanner for digitiz
 
 ## Soma.app
 
-Some of you can already see dozens of automation and app opportunities. I’m one of those too. I'm working on a simple PHNS phone scanner app with a macOS counterpart—[**Soma**](/project-humane/soma/)—that provides a clean and simple way to take pictures of loose leaf sheets with corrected colors and skew adjustment, transcribe them into a digital version, identify the dates they were made (since all pages have dates), and then export the resulting text and image into a note-taking app of choice.
-
-Perhaps one day Soma will become the ultimate knowledge base app. One can dream.
+Some of you can already see dozens of automation and app opportunities. I'm one of those too. I'm working on a note scanner app with a macOS counterpart—[**Soma**](/project-humane/soma/)—that provides a clean and simple way to take pictures of loose leaf sheets with corrected colors and skew adjustment, transcribe them into a digital version, identify the dates they were made (since all pages have dates), and then export the resulting text and image into a note-taking app of choice.
 
 ## Bridging back to Analog
 
@@ -72,21 +70,21 @@ Abstract and "airy" photos also make a nice writing surface for thoughts or poet
 
 ## Linking
 
-At a minimum, it’s possible to link notes using their dates. The system is designed to be compatible with **Zettelkasten**, where individual notes (or "leaves") can act as index cards. By adding page numbers after dates, you can ensure uniqueness.
+At a minimum, it's possible to link notes using their dates. The system is designed to be compatible with **Zettelkasten**, where individual notes (or "leaves") can act as index cards. By adding page numbers after dates, you can ensure uniqueness.
 
-However, I don’t find linking notes particularly useful. Instead, I prefer to **browse** my notes while thinking, allowing connections to emerge organically. When I need to retrieve specific information, I rely on **search**. (see "Searching and Browsing")
+However, I don't find linking notes particularly useful. Instead, I prefer to **browse** my notes while thinking, allowing connections to emerge organically. When I need to retrieve specific information, I rely on **search**. (see "Searching and Browsing")
 
-For focused work, you can also group notes into their own notebook or a “bunch” for an intense focus session. I do not keep bunched notes together for long time.
+For focused work, you can also group notes into their own notebook or a "bunch" for an intense focus session. I do not keep bunched notes together for long time.
 
 ## Index
 
-There’s no necessity to use a paper index in PHNS. Since all your notes will eventually be digitized and transcribed, they’ll become easily **searchable**, eliminating the need for a traditional paper index.
+There's no necessity to use a paper index in Unbound System. Since all your notes will eventually be digitized and transcribed, they'll become easily **searchable**, eliminating the need for a traditional paper index.
 
-However, if you’re an analog purist, you can still maintain a traditional index on paper. Instead of listing page numbers alongside subjects, you could write the _dates_ you worked on them. This approach not only functions as an index but also transforms it into a concise **interstitial work log**.
+However, if you're an analog purist, you can still maintain a traditional index on paper. Instead of listing page numbers alongside subjects, you could write the _dates_ you worked on them. This approach not only functions as an index but also transforms it into a concise **interstitial work log**.
 
 ## Archiving
 
-Archiving pages in PHNS is simple and painless since pages never truly get retired—they merely migrate from one place to another. Archiving is as straightforward as moving a leaf into a long-term binder. I use thick cardboard binders labeled `2023`, `2024`, `2025`, and so on, for loose leaves from those years. All pages are ordered chronologically, so even if a binder contains hundreds of pages, they are extremely easy to locate.
+Archiving pages in Unbound System is simple and painless since pages never truly get retired—they merely migrate from one place to another. Archiving is as straightforward as moving a leaf into a long-term binder. I use thick cardboard binders labeled `2023`, `2024`, `2025`, and so on, for loose leaves from those years. All pages are ordered chronologically, so even if a binder contains hundreds of pages, they are extremely easy to locate.
 
 If you prefer a Zettelkasten-style archive, you can organize leaves into thematic drawers. Again, the system is designed to adapt to _you_ rather than impose a rigid structure.
 
@@ -94,7 +92,7 @@ I personally never move pages to the archive without scanning them first. Howeve
 
 ## Personalization
 
-The canonical PHNS version is designed so that covers are also loose and **DO NOT** wrap the binder part of the notebook as Filofax, Davinci and Plotter planners. Any thick paper, cloth, leather, or fabric that protects the pages beneath and gives the notebook a pleasing tactile quality can serve as a cover.
+The canonical Unbound version is designed so that covers are also loose and **DO NOT** wrap the binder part of the notebook as Filofax, Davinci and Plotter planners. Any thick paper, cloth, leather, or fabric that protects the pages beneath and gives the notebook a pleasing tactile quality can serve as a cover.
 
 I have two active notebooks: one with a 1mm yellow-tanned leather cover and another cut from a Freitag F08 DAN pouch I got for $5 because it had a broken zipper. All it takes to make new covers are scissors and a hole punch.
 
@@ -108,20 +106,20 @@ In practice, anything that can be kept as a loose leaf notebook can work—even 
 
 ## Templates
 
-I strongly encourage starting simple with plain, dotted, or ruled paper for everyday notebook use without overcomplicating the setup. For some niche types of logging and thinking, I’ve created several templates that can be printed on any standard printer. Most of these are tailored to my line of work.
+I strongly encourage starting simple with plain, dotted, or ruled paper for everyday notebook use without overcomplicating the setup. For some niche types of logging and thinking, I've created several templates that can be printed on any standard printer. Most of these are tailored to my line of work.
 
 - [Templates for General Use](/notebook-system/general-templates)
 - [Templates for Analog Photography](/notebook-system/analog-photography-templates)
 
 ## Make Your Own
 
-I have a separate guide on how to start and create your own PHNS notebook from scratch:
+I have a separate guide on how to start and create your own Unbound notebook from scratch:
 
-- [Make Your Own PHNS: A DIY Guide](/notebook-system/make-your-own-phns)
+- [Make Your Own Unbound Notebook](/notebook-system/make-your-own)
 
 ## Accessories
 
-I have been using PHNS for more than two years at the time of publishing this, and I’ve accumulated some experience with it. Below are a few tips and tricks that I find useful when using the system:
+I have been using Unbound System for more than two years at the time of publishing this, and I've accumulated some experience with it. Below are a few tips and tricks that I find useful when using the system:
 
 - I glue a Traveler's Notebook **Pocket Sticker 006** onto the backside of the back cover. It needs a bit of trimming since the pocket is an inch or so taller than Bible-size paper.
 - I keep a flat **TOHKIN PC-8S-3 Clip** on the back cover. It can act as a paper holder, transforming the back cover into a writing pad for loose leaf pages.
@@ -136,7 +134,7 @@ I have been using PHNS for more than two years at the time of publishing this, a
 
 ## Companion Tools
 
-Below are a few tools and toys I use with my PHNS notebook to make it more useful for my work and to add a touch of character:
+Below are a few tools and toys I use with my Unbound notebook to make it more useful for my work and to add a touch of character:
 
 - **Multi-pen** — I use a clear version of the Hi-Tech-C Coleto pen with black, red, highlighter, and mechanical pencil inserts.
 - **Date Stamper** — Absolutely unnecessary, as writing a date on a page is trivial, but I like the uniform look of stamped dates.
@@ -149,7 +147,7 @@ Below are a few tools and toys I use with my PHNS notebook to make it more usefu
 
 Collection of links from and around the notebook system.
 
-- [Make Your Own PHNS: A DIY Guide](/notebook-system/make-your-own-phns)
+- [Make Your Own Unbound Notebook](/notebook-system/make-your-own)
 - [Templates for General Use](/notebook-system/general-templates)
 - [Templates for Analog Photography](/notebook-system/analog-photography-templates)
 - [Selection of some of my loose leaves](/leaves)
