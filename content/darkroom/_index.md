@@ -8,7 +8,7 @@ Technical and process-oriented resources focused on photography, darkroom techni
 
 - [Film Identification Format](/darkroom/roll-id/)
 - [Rapid Travel Film Development Kit](/darkroom/travel-dev-kit)
-- [PHNS Templates for Analog Photography](/notebook-system/analog-photography-templates/)
+- [Unbound Templates for Analog Photography](/notebook-system/analog-photography-templates/)
 
 ## DIY Projects
 

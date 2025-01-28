@@ -147,7 +147,7 @@ Below are a few tools and toys I use with my Unbound notebook to make it more us
 
 Collection of links from and around the notebook system.
 
-- [Make Your Own Unbound Notebook](/notebook-system/make-your-own-phns)
+- [Make Your Own Unbound Notebook](/notebook-system/make-your-own)
 - [Templates for General Use](/notebook-system/general-templates)
 - [Templates for Analog Photography](/notebook-system/analog-photography-templates)
 - [Selection of some of my loose leaves](/leaves)
