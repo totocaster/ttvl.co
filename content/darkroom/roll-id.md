@@ -9,7 +9,7 @@ To keep track of frames when shooting on film, I needed a reliable tracking syst
 ```
  R = roll film
  S = sheet/cut film
- # = ordinal number on
+ # = ordinal number on that day
            │
            │
            ▼
