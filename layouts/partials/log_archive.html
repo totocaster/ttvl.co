@@ -1,9 +1,8 @@
 <section class="log-archive">
-  {{ $logs := where .Site.RegularPages "Section" "log" }} {{ $years :=
-  $logs.GroupByDate "2006" }}
+  {{ $logs := where .Site.RegularPages "Section" "log" }} {{ $years := $logs.GroupByDate "2006" }}
   <h1>Archive</h1>
   <ul>
-    {{ range $years.Reverse }}
+    {{ range $years }}
     <li>
       <b>{{ .Key }}</b>: {{ range .Pages.ByDate.Reverse }}
       <a href="{{ .RelPermalink }}">{{ .Date.Format "1" }}</a>
