@@ -45,6 +45,14 @@ $header-height: 180px;
   max-width: $max-width-readable;
 }
 
+html {
+  scroll-behavior: smooth;
+  background: $color-light-bg;
+  @include dark {
+    background: $color-dark-bg;
+  }
+}
+
 body { 
   background: $color-light-bg;
   color: $color-light-text;
