@@ -330,7 +330,7 @@ main {
   nav#Index {
     columns: 2;
     column-gap: 3rem;
-    padding-left: 2em;
+    // padding-left: 2em;
 
     a {
       text-decoration: underline;
@@ -338,7 +338,7 @@ main {
     }
 
     ul {
-      list-style:disc;
+      list-style: none;
     }
   }
 }
