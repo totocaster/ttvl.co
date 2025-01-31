@@ -1,5 +1,5 @@
 ---
-title: Lucky CP32 Color Print Paper Processing Machine Manual in English
+title: Lucky/Fujimoto CP32 Manual in English
 ---
 
 # Lucky/Fujimoto CP32 Color Print Paper Processing Machine Manual in English
