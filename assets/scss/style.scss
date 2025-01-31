@@ -45,6 +45,10 @@ $header-height: 180px;
   max-width: $max-width-readable;
 }
 
+@mixin monospace {
+  font-family: 'SF Mono', SFMono-Regular, ui-monospace, 'DejaVu Sans Mono', Menlo, Consolas, monospace;
+}
+
 html {
   scroll-behavior: smooth;
   background: $color-light-bg;
@@ -239,7 +243,7 @@ main {
 
     // Code and plain text
     code {
-      font-family: 'SF Mono', SFMono-Regular, ui-monospace, 'DejaVu Sans Mono', Menlo, Consolas, monospace;
+      @include monospace;
     }
 
     pre {
