@@ -5,7 +5,7 @@ const menu = {
 
   init() {
     this.toggle = document.getElementById('menu-toggle');
-    this.nav = document.querySelector('aside>nav');
+    this.nav = document.querySelector('nav#Menu');
     this.body = document.body;
 
     if (this.toggle && this.nav) {

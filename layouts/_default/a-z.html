@@ -8,6 +8,7 @@
   <h2>{{ $letter }}</h2>
   <ul>
     {{ range $letterPages }}
+    <nobr>
     <li>
       <a href="{{ .RelPermalink }}"> {{- if .Title -}} {{ .Title }} {{- else -}} {{ .File.Path }} {{- end -}} </a>
     </li>

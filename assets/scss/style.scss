@@ -154,7 +154,7 @@ a {
 
 
 // Navigation
-nav {
+nav#Menu {
   line-height: $line-height-nav;
   
   @include narrow {
@@ -330,15 +330,10 @@ main {
   nav#Index {
     columns: 2;
     column-gap: 3rem;
-    // padding-left: 2em;
-
-    a {
-      text-decoration: underline;
-      font-weight: 400;
-    }
 
     ul {
       list-style: none;
+      padding-left: 0;
     }
   }
 }
