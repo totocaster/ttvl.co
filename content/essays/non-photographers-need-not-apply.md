@@ -6,7 +6,7 @@ description: Exploring the contrast between written and photographic books.
 
 # Non-photographers Need Not Apply
 
-In my world, photo books hold a special kind of reverence. They are cherished not just as vessels of visual narratives but as objects in their own right. A finely crafted photo book often surpasses the allure of a museum or gallery visit, though, admittedly, the prospect of a meandering walk through a quirky district with exhibition cases carries its charm ([wink-wink, hint-hint](//jinnystreetgallery.com)).
+In my world, photo books hold a special kind of reverence. They are cherished not just as vessels of visual narratives but as objects in their own right. A finely crafted photo book often surpasses the allure of a museum or gallery visit, though, admittedly, the prospect of a meandering walk through a quirky district with exhibition cases carries its charm ([wink-wink, hint-hint](https://jinnystreetgallery.com)).
 
 On occasions when I find myself in a bookstore, it's an interesting observation that I'm often not alone in the photography aisles. Cameras, like silent companions, dangle from the shoulders of many who wander there. Photo books, it appears, are a niche savored largely by those who speak the language of aperture and shutter speed.
 

@@ -6,9 +6,9 @@ title: 'Jinny Street Gallery'
 
 # Jinny Street Gallery
 
-- Website: [jinnystreetgallery.com](//jinnystreetgallery.com)
-- Store/Merch: [store.jinnystreetgallery.com](//store.jinnystreetgallery.com)
-- Instagram: [@jinny.gallery](//instagram.com/jinny.gallery)
+- Website: [jinnystreetgallery.com](https://jinnystreetgallery.com)
+- Store/Merch: [store.jinnystreetgallery.com](https://store.jinnystreetgallery.com)
+- Instagram: [@jinny.gallery](https://instagram.com/jinny.gallery)
 
 Jinny Street Gallery is a contemporary art space uniquely created from streetlamps in the walkable and charming neighborhood of Jingumae 2-chome, Shibuya, Tokyo. Just north of Harajuku.
 
@@ -24,8 +24,8 @@ Jinny Street Gallery consists of 42 streetlamps with integrated display cases, s
 
 ## Jinny Lemon Sour
 
-- Website: [jinnystreetgallery.com/lemon-sour](//www.jinnystreetgallery.com/lemon-sour)
-- Instagram: [@jinny.sour](//www.instagram.com/jinny.sour)
+- Website: [jinnystreetgallery.com/lemon-sour](https://www.jinnystreetgallery.com/lemon-sour)
+- Instagram: [@jinny.sour](https://www.instagram.com/jinny.sour)
 
 Jinny Lemon Sour is a collaboration between Jinny Street Gallery and [Open Book][ob], a renowned bar and beverage-maker in Shinjuku’s legendary Golden Gai district. Open Book produces craft lemon sours, while Jinny Street Gallery curates artworks from our featured artists for the drink’s labels.
 

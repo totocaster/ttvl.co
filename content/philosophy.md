@@ -10,7 +10,7 @@ There are a few guiding principles I aim to live by and reflect in everything I 
 
 > We are mystics, not rationalists. Art, like marathon running, is an irrational, useless endeavor. But we expend the enormous energy art demands anyway. Because through our efforts, we expand our threshold for the human spirit. This is what distinguishes us from the cows in the field.
 
-The passage above is drawn from the short film [_Paradox Bullets_](//youtu.be/-Evrm03Y5hI) by Tom Sachs, which reflects on Sol LeWitt's renowned quote, narrated by Werner Herzog. It is said that the whimsical reference to cows in a field was an impromptu addition by Herzog himself.
+The passage above is drawn from the short film [_Paradox Bullets_](https://youtu.be/-Evrm03Y5hI) by Tom Sachs, which reflects on Sol LeWitt's renowned quote, narrated by Werner Herzog. It is said that the whimsical reference to cows in a field was an impromptu addition by Herzog himself.
 
 ## Made for Humans
 
