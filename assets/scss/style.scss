@@ -373,11 +373,17 @@ div.home {
         display: block;
         margin-bottom: 0.5rem;
         border: 1px $color-light-text solid;
+        @include dark {
+          border: none;
+        }
       }
       
       time {
         display: block;
-        color:$color-light-text;
+        color: $color-light-text;
+        @include dark {
+          color: $color-dark-text;
+        }
       }
     }
   }
