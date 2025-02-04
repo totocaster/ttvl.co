@@ -1,5 +1,6 @@
 ---
 title: Unbound Notebook System
+date: 2025-01-06
 ---
 
 **Unbound** is an evolving framework for integrating digital and analog note-taking. It's an exploration of how we can make the processes of capturing, searching, and exploring knowledge more flexible and enjoyable.

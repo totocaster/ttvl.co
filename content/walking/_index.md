@@ -1,5 +1,6 @@
 ---
 title: 'Walking'
+date: 2025-01-07
 ---
 
 Walking is a cure. I discovered this in my late teens. Whenever I felt sad, I'd go out and start walking without a destination or sense of time. I walked until it felt right. This became my secret weapon for my mental health. Within a couple of years, this prescription became a habit. I walked even when I felt good. It helped with my depression and enabled me to explore many of my favorite places.

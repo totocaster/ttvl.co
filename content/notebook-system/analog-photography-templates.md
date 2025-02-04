@@ -1,5 +1,6 @@
 ---
 title: 'Analog Photography Templates'
+date: 2025-01-08
 ---
 
 # Analog Photography Templates

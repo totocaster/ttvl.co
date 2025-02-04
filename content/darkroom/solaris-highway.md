@@ -1,5 +1,6 @@
 ---
 title: 'Tracking Highway Sequence from Solaris'
+date: 2024-12-24
 ---
 
 # Tracking Highway Sequence from Solaris

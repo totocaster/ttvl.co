@@ -1,6 +1,7 @@
 ---
 title: 'About'
 content_css: about
+date: 2025-01-07
 ---
 
 ![](/visuals/about_toto.jpg)

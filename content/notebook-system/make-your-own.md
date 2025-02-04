@@ -1,5 +1,6 @@
 ---
 title: 'Make Your Own Unbound Notebook'
+date: 2025-01-10
 ---
 
 # Make Your Own Unbound Notebook

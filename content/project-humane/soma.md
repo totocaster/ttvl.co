@@ -1,5 +1,6 @@
 ---
 title: Soma
+date: 2025-01-07
 ---
 
 # Soma.app

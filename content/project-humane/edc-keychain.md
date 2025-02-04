@@ -1,5 +1,6 @@
 ---
 title: EDC Modular Keychain
+date: 2024-12-20
 ---
 
 # EDC Modular Keychain

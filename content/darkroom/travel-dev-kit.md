@@ -1,5 +1,6 @@
 ---
 title: 'Rapid Travel Film Development Kit'
+date: 2024-12-20
 ---
 
 **The Problem:** Shooting film in fast-paced, time-sensitive environments outside of Japan.

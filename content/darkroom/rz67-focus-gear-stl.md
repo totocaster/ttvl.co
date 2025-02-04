@@ -1,5 +1,6 @@
 ---
 title: Mamiya RZ67 PRO II Fine Focus Gear
+date: 2025-01-09
 ---
 
 # Mamiya RZ67 PRO II Fine Focus Gear

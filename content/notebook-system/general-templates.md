@@ -1,5 +1,6 @@
 ---
 title: 'General Templates'
+date: 2025-01-08
 ---
 
 # General Templates

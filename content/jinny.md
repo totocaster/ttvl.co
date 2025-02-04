@@ -1,5 +1,6 @@
 ---
 title: 'Jinny Street Gallery'
+date: 2024-12-12
 ---
 
 ![Jinny flag on top of street lamp #1](/visuals/jinny_flag.jpg)

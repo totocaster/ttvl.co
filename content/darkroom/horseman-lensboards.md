@@ -1,5 +1,6 @@
 ---
 title: Horseman 80mm² Lensboards
+date: 2025-01-09
 ---
 
 # Horseman 80mm² Lensboards

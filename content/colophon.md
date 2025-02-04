@@ -1,5 +1,6 @@
 ---
 title: 'Colophon'
+date: 2025-01-28
 ---
 
 The design and structure of this website were heavily inspired by [100r.co](https://100r.co) (before their redesign). It is simple, fast, easy to maintain, and perfect for elevating content above design trends. This allows me to focus on what's most important — producing useful material without any friction.
