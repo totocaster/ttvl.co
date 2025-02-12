@@ -29,7 +29,7 @@ I use a rubber stamp with changing dates to page my notes, but the simple act of
 
 ## Grouping
 
-I avoid grouping pages by project, topic, or _area_ (per GTD). The loose leaf system is incredibly flexible when you want to migrate a page from one part of the notebook to another—or even to a dedicated notebook for logging or project ideas. However, I find excessive grouping creates silos of neglect, where notes that might be useful during casual browsing are overlooked.
+I avoid grouping pages by project, topic, or area. The loose leaf system is incredibly flexible when you want to migrate a page from one part of the notebook to another—or even to a dedicated notebook for logging or project ideas. However, I find excessive grouping creates silos of neglect, where notes that might be useful during casual browsing are overlooked.
 
 ## Peripheral Vision
 
