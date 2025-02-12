@@ -14,6 +14,7 @@ Technical and process-oriented resources focused on photography, darkroom techni
 
 For Enhancing shooting process and overall experience:
 
+- [Zone Placement Sticker for Pentax Digital Spotmeter](/darkroom/pentax-digital-spotmeter-sticker)
 - [Bulk Film Canister Stickers](/darkroom/canister-stickers)
 - [Foldable Film Reminder](/darkroom/foldable-film-reminder)
 
