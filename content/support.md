@@ -4,8 +4,6 @@ date: 2025-01-09
 draft: true
 ---
 
-# Support
-
 If you like what I’m doing and would like to support my work, there are a few ways you can help:
 
 [One-Time Donation: Any Amount][dntany], [$50][dnt50], [$100][dnt100], [$200][dnt200]

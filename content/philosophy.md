@@ -1,6 +1,7 @@
 ---
 title: 'Philosophy'
 date: 2025-01-04
+hide_title: true
 ---
 
 ![Sol LeWitt](/visuals/2024.12_irrational_thoughts.png)

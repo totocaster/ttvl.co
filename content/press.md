@@ -1,9 +1,7 @@
 ---
-title: 'Press'
+title: 'Press & Appearances'
 date: 2024-12-31
 ---
-
-# Press
 
 Appearances in various media.
 

@@ -3,8 +3,6 @@ title: Horseman 80mm² Lensboards
 date: 2025-01-09
 ---
 
-# Horseman 80mm² Lensboards
-
 I briefly owned a Horseman 45FA and had trouble finding good lens boeards for the lenses I own. So I designed 80mm² lens boards. Few shutters and lenses are supported.
 
 - [Download Lensboards SLTs for printing](https://thangs.com/designer/totocaster/3d-model/Horseman%2045FA%2080sqmm%20Lensboards-1024876)

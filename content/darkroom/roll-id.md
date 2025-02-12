@@ -3,8 +3,6 @@ title: Film Identification Format
 date: 2024-12-02
 ---
 
-# Film Identification Format
-
 To keep track of frames when shooting on film, I needed a reliable tracking system for each roll of film (or sheet). For this purpose, I invented a roll identification system that I use for every single roll of film loaded into any of my cameras.
 
 ```

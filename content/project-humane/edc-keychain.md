@@ -3,8 +3,6 @@ title: EDC Modular Keychain
 date: 2024-12-20
 ---
 
-# EDC Modular Keychain
-
 **The Problem:** Carrying photographic accessories—like filters, batteries, and film canisters—along with everyday items such as keys, an AirTag, band-aids, lipstick, and painkillers—without hassle.
 
 **The Solution:** A lightweight, modular system that attaches to my pants near my left pocket.

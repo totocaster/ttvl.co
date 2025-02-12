@@ -2,6 +2,7 @@
 title: 'About'
 content_css: about
 date: 2025-01-07
+hide_title: true
 ---
 
 ![](/visuals/about_toto.jpg)

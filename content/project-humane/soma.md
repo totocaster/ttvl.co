@@ -1,9 +1,7 @@
 ---
-title: Soma
+title: "Soma.app"
 date: 2025-01-07
 ---
-
-# Soma.app
 
 _Soma is an iOS and macOS app that scans, transcribes, and digitizes analog notes._
 

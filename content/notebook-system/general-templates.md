@@ -3,8 +3,6 @@ title: 'General Templates'
 date: 2025-01-08
 ---
 
-# General Templates
-
 I don’t use many general-purpose templates; I find plain paper to be the best tool for most daily tasks. I designed the [Unbound Notebook System][uns] to be as elastic as the brain itself, so rigid templates for daily use would go against the core design principles of the system.
 
 I find niche- and domain-specific templates, like the ones I created to [track my film photography][film], far more useful.

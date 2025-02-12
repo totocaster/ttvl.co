@@ -4,8 +4,6 @@ date: 2018-11-26
 description: An exploration of the common mix-up between Soviet Union, Russia, and related terms and a Georgian perspective on their historical impact.
 ---
 
-# Soviet ≠ Russian
-
 I have seen many of my foreign friends use words _Soviet Union_, _Russia_, _Soviet_, and _Russian_ interchangeably. Moreover, I’ve seen huge publications like [Vox][vox] mix those two terms, which eventually triggered me to write this. Consider this article as a kind explainer of what the Soviet Union means. It is about words and their meanings.
 
 I understand that confusion comes from gaps in cross-culture knowledge rather than an attempt to diminish someone. However, it is still a false generalization that might easily offend people. If UK culture is somewhat closer to you, imagine how upsetting it would be for Scottish or Irish to repeatedly called English, only because [they all are from the UK][cgpgrey].
