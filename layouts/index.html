@@ -1,3 +1,7 @@
 {{ define "main" }}
-<div class="home">{{ .Content }} {{ partial "log.html" . }}</div>
+<div class="home">
+  {{ .Content }}
+  {{ partial "flaneur-in-page.html" . }}
+  {{ partial "log.html" . }}
+</div>
 {{ end }}
