@@ -39,7 +39,7 @@ When scouting locations and photos, I usually don't carry camera gear, so most o
 
 Having exact volumes for a 1+4 dilution for my 600ml Jobo Tank already written down is incredibly helpful. With this template, I can pre-calculate and record developer volumes, dilutions, and exact development times for various types of developers and kits.
 
-![Film processing template in action](/visuals/uns/2025.01.phns_film_process_sample.jpg)
+![Film processing template in action](/visuals/uns/2025.01.uns_film_process_sample.jpg)
 
 - [Film Processing](/downloads/uns/uns_2025_02_film_bible_process.pdf)
 
