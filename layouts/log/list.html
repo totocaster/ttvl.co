@@ -1,8 +1,17 @@
-{{ define "main" }} {{ range .Pages.ByDate.Reverse }}
-<article>
+{{ define "main" }}
+<article class="log-content {{ with .Params.content_css }}{{ . }}{{ end }}">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+</article>
+
+{{ range .Pages.ByDate.Reverse }}
+<article class="log-list {{ with .Params.content_css }}{{ . }}{{ end }}">
   <h1 class="log">
     <a href="{{ .RelPermalink }}">{{ .Date.Format "2006.01" }}</a>
   </h1>
   {{ .Content }}
 </article>
-{{ end }} {{ partial "log_archive.html" . }} {{ end }}
+{{ end }}
+
+{{ partial "log_archive.html" . }}
+{{ end }}
