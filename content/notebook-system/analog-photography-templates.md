@@ -15,9 +15,11 @@ Logging 35mm film is a royal pain in the rear, so I try not to track every singl
 
 I have switched to using the universal film log for 120 film too. It also makes it easy for me to iterate on the design as I do not need to replicate changes on all 120 film size variants.
 
+{{< download-section >}}
 - [Universal Roll](/downloads/uns/uns_2025_02_film_bible_universal_roll.pdf)
 - [120 Roll: 6x17 Panoramic](/downloads/uns/uns_2025_02_film_bible_6x17.pdf)
 - [35mm Roll: Horizontal](/downloads/uns/uns_2024_07_film_bible_35mm.pdf)
+{{< /download-section >}}
 
 The 35mm Horizontal template is designed to work with my bulk film [canister stickers](/darkroom/canister-stickers/). The dark area is prefilled while the roll is in the camera, and once I'm done processing it, I put the sticker from the canister and place it on top of the shaded area.
 
@@ -25,7 +27,9 @@ The 35mm Horizontal template is designed to work with my bulk film [canister sti
 
 For sheet film, I also record where I metered and where I placed values on the EV scale for color, or which zone they fell into for black and white.
 
+{{< download-section >}}
 - [Sheet Film with delta-EV and Zones](/downloads/uns/uns_2025_02_film_bible_sheet.pdf)
+{{< /download-section >}}
 
 The darker square is designed so I can make a rough sketch of the scene with metering values mapped onto the scale. Lately, I've been photographing the scene with my phone and printing it using my ZINK mini-printer.
 
@@ -33,7 +37,9 @@ The darker square is designed so I can make a rough sketch of the scene with met
 
 When scouting locations and photos, I usually don't carry camera gear, so most of my scouting photos are taken with my iPhone. To track scouted locations, I print these photos using the ZINK mini-printer and glue them onto this template.
 
+{{< download-section >}}
 - [Location and Photo Scouting Template](/downloads/uns/uns_2025_02_bible_scouted_location.pdf)
+{{< /download-section >}}
 
 ## Processing
 
@@ -41,7 +47,9 @@ Having exact volumes for a 1+4 dilution for my 600ml Jobo Tank already written d
 
 ![Film processing template in action](/visuals/uns/2025.01.uns_film_process_sample.jpg)
 
+{{< download-section >}}
 - [Film Processing](/downloads/uns/uns_2025_02_film_bible_process.pdf)
+{{< /download-section >}}
 
 ## Long-Term Projects
 
@@ -49,17 +57,21 @@ I call a group of film rolls or sheets a **session**. Sessions can be associated
 
 This template helps me keep track of session-associated rolls as well as wild rolls if they don't have an associated session.
 
+{{< download-section >}}
 - [Film Roll Log](/downloads/uns/uns_2025_02_film_bible_universal_roll_log.pdf)
+{{< /download-section >}}
 
 ## Changelog
 
 v2025.02 (latest):
 
+{{< download-section >}}
 - [Universal Roll](/downloads/uns/uns_2025_02_film_bible_universal_roll.pdf)
 - [120 Roll: 6x17 Panoramic](/downloads/uns/uns_2025_02_film_bible_6x17.pdf)
 - [Sheet Film with delta-EV and Zones](/downloads/uns/uns_2025_02_film_bible_sheet.pdf)
 - [Film Processing](/downloads/uns/uns_2025_02_film_bible_process.pdf)
 - [Location and Photo Scouting Template](/downloads/uns/uns_2025_02_bible_scouted_location.pdf)
+{{< /download-section >}}
 
 Changes:
 
@@ -82,11 +94,14 @@ I keep older versions for posterity. Some might prefer those versions to the cur
 
 v2024.12:
 
+{{< download-section >}}
 - [Film Processing](/downloads/uns/uns_2024_12_film_bible_process.pdf)
 - [Session Template (Double-Sided)](/downloads/uns/uns_2024_12_film_bible_session.pdf)
+{{< /download-section >}}
 
 v2024.07:
 
+{{< download-section >}}
 - [Universal 35mm Roll](/downloads/uns/uns_2024_07_film_bible_35mm.pdf)
 - [X-Pan/Double-width 35mm Roll](/downloads/uns/uns_2024_07_film_bible_x.pdf)
 - [120 Roll: 645](/downloads/uns/uns_2024_07_film_bible_645.pdf)
@@ -99,6 +114,7 @@ v2024.07:
 - [Sheet Film with EV Offsets for Metering Info](/downloads/uns/uns_2024_07_film_bible_sheet_ev.pdf)
 - [Sheet Film with Zone System Markings for Metering Info](/downloads/uns/uns_2024_07_film_bible_sheet_zones.pdf)
 - [Location and Photo Scouting Template](/downloads/uns/uns_2024_07_scouted_location.pdf)
+{{< /download-section >}}
 
 ## License
 

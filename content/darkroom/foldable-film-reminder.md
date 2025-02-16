@@ -21,4 +21,6 @@ I’ve also found it extremely helpful to have **“EMPTY”** printed on one si
 
 I also designed a blank A4 template with only an empty label for you to make your own. All you need is a printer, pencil, and cutting tools. Cut straight lines along the cut lines on the edges of the paper and open a slit on the dotted line.
 
+{{< download-section >}}
 - [A4 Template for Blank Inserts with EMPTY Label](/downloads/ttvlco-foldable-film-reminder-inserts.pdf)
+{{< /download-section >}}

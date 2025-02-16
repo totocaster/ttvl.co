@@ -11,7 +11,9 @@ date: 2025-02-12
 
 I printed the template on sticky A4 paper and used an X-Acto knife to cut out the preferred version for the spot meter. There are two versions available: light and dark. Choose the one you prefer.
 
+{{< download-section >}}
 - [Template for Zone Placement Sticker](/downloads/ttvlco-pentax-digital-spotmeter-stickers.pdf) (light and dark versions, cut lines included)
+{{< /download-section >}}
 
 The word _designed_ above is doing a lot of heavy lifting since I only did the graphical design. The idea was borrowed from the aforementioned Ansel Adams himself. He also used the same spotmeter and created a crude zone scale that he placed under the meter's own EV scale.
 

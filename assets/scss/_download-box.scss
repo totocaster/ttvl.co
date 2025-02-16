@@ -1,0 +1,57 @@
+
+// Download section styling
+.download-section {
+  // @include readable-width;
+  max-width: 420px;
+  font-size: 0.9em;
+  margin: 2rem 0;
+  padding: 0.3rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fafafa;
+  
+  @include dark {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba($color: white, $alpha: 0.2);
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: .5rem 0;
+
+    li {
+      padding-left: 1.5rem;
+      position: relative;
+
+      &::before {
+        content: "↓";
+        position: absolute;
+        left: 0;
+        color: $color-dark-bg;
+        
+        @include dark {
+          color: rgba(255, 255, 255, 0.8);
+        }
+      }
+
+      a[href^="/downloads/"] {
+        text-decoration: none;
+        font-weight: 500;
+        
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  p {
+    margin: 0.5rem 0;
+    color: rgba(0, 0, 0, 0.7);
+    
+    @include dark {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
