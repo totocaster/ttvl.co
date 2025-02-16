@@ -9,6 +9,11 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   background-color: #fafafa;
+
+  @include high-contrast {
+    border: 1px solid $color-light-text;
+    background-color: $color-light-bg;
+  }
   
   @include dark {
     background-color: rgba(255, 255, 255, 0.05);
@@ -32,6 +37,10 @@
         
         @include dark {
           color: rgba(255, 255, 255, 0.8);
+        }
+
+        @include high-contrast {
+          color: $color-light-text;
         }
       }
 

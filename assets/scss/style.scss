@@ -41,6 +41,12 @@ $header-height: 180px;
   }
 }
 
+@mixin high-contrast {
+  @media screen and (prefers-contrast: more) {
+    @content;
+  }
+}
+
 @mixin readable-width {
   max-width: $max-width-readable;
 }
