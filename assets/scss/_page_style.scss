@@ -70,6 +70,11 @@ main {
         box-sizing: border-box;
         border-radius: 8px;
         width: 40%;
+        @include dark {
+          background: rgb(48, 48, 48);
+          color: $color-dark-text;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+        }
         @include narrow {
           width: 66%;
         }
@@ -78,9 +83,9 @@ main {
       button {
         background: $color-dark-bg;
         @include dark {
-          background: #111;
-          color: $color-dark-text;
-          border: 1px solid #000;
+          background: #e3e3e3;
+          color: $color-light-text;
+          border: 1px solid rgba(255, 255, 255, 0.1);
         }
         color: $color-dark-text;
         border: none;
