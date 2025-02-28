@@ -78,8 +78,9 @@ main {
       button {
         background: $color-dark-bg;
         @include dark {
-          background: #FFD300;
-          color: $color-light-text;
+          background: #111;
+          color: $color-dark-text;
+          border: 1px solid #000;
         }
         color: $color-dark-text;
         border: none;
