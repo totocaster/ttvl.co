@@ -5,7 +5,7 @@ date: 2025-01-09
 
 I briefly owned a Horseman 45FA and had trouble finding good lens boeards for the lenses I own. So I designed 80mm² lens boards. Few shutters and lenses are supported.
 
-- [Download Lensboards SLTs for printing](https://thangs.com/designer/totocaster/3d-model/Horseman%2045FA%2080sqmm%20Lensboards-1024876)
+- [Download Lensboards SLTs for printing](https://www.printables.com/model/1215922-horseman-80sqmm-lensboards/files)
 
 _I no longer use Horseman view cameras and most probably will not be updating this page, feel free to remix those designs for your needs._
 
