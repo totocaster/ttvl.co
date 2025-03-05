@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+      <!-- Title tags -->
+      <title itemprop="name">{{ with .Title }}{{ . }} — {{ end }}{{ .Site.Title }}</title>
+      <!-- CSS and Styles -->
+      {{ $style := resources.Get "scss/membership.scss" | toCSS | minify }}
+      <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+      <!-- Generator w/ version number. -->
+      {{ hugo.Generator }}
+  </head>
+  <body>
+    <p>Hello Membership!</p>
+  </body>
+</html>
