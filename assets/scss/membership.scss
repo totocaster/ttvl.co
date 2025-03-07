@@ -248,7 +248,7 @@ body {
     text-decoration: underline;
   }
 
-  .empahsis {
+  .emphasis {
     font-weight: 700;
   }
 
@@ -400,3 +400,47 @@ $display-types: (
     }
   }
 }
+
+// Mein Section
+// -----------------------------
+main {
+  h2 {
+    @include font-variation(700, 132, 24);
+    margin-bottom: 30px;
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-weight: 700;
+    margin-bottom: 1rem;
+    margin-top: calc(30px + 1rem);
+    line-height: 1.4;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 20px;
+  }
+
+  a {
+    font-weight: 00;
+    color: map-get(map-get($colors, light), text);
+    text-decoration: underline;
+  }
+
+  a.emphasis {
+    font-weight: 700;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+  
+  section {
+    margin-top: 30px;
+    margin-bottom: 60px;
+  }  
+}
+
+

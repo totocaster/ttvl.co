@@ -1,48 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-      <!-- Title tags -->
-      <title itemprop="name">{{ with .Title }}{{ . }} — {{ end }}{{ .Site.Title }}</title>
-      <!-- CSS and Styles -->
-      {{ $style := resources.Get "scss/membership.scss" | toCSS | minify }}
-      <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
-      <!-- Generator w/ version number. -->
-      {{ hugo.Generator }}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title itemprop="name">{{ with .Title }}{{ . }} — {{ end }}{{ .Site.Title }}</title>
+    
+    <!-- Styles -->
+    {{ $style := resources.Get "scss/membership.scss" | toCSS | minify }}
+    <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+    
+    <!-- Generator -->
+    {{ hugo.Generator }}
   </head>
   <body>
     <div class="container">
+      <!-- Header -->
       <div class="row">
         <div class="col-1"></div>
         <div class="col-16">
           <header class="site-header">
-            <span class="roam">ROAM</span><span class="narrow-text hide-small"><img class="membership-logo-line" src="/ui/membership/membership_logo_line.png"/>Toto Tvalavadze's Membership Program & Bookmaking Lab</span><span class="narrow-text hide-large muted"><img class="membership-logo-line" src="/ui/membership/membership_logo_line.png"/>Research of Artbook Membership</span>
+            <span class="roam">ROAM</span>
+            <span class="narrow-text hide-small">
+              <img class="membership-logo-line" src="/ui/membership/membership_logo_line.png" alt="Membership Logo Line">
+              Toto Tvalavadze's Membership Program & Bookmaking Lab
+            </span>
+            <span class="narrow-text hide-large muted">
+              <img class="membership-logo-line" src="/ui/membership/membership_logo_line.png" alt="Membership Logo Line">
+              Research of Artbook Membership
+            </span>
           </header>
         </div>
       </div>
 
+      <!-- Hero Section -->
       <div class="row">
         <div class="col-18 hero-container">
           <section class="full-width-section hero-section">
             <div class="row">
               <div class="col-1"></div>
               <div class="col-16 text-right">
-                <p>Already a member? <a href="#" class="empahsis">Log in</a>.</p>
+                <p>Already a member? <a href="#" class="emphasis">Log in</a>.</p>
               </div>
             </div>
+
             <div class="row">
               <div class="col-1"></div>
               <div class="col-12 i-am-toto">
-                <h2>Hi, I'm <a href="https://ttvl.co/about" class="empahsis">Toto Tvalavadze</a>, and this is <span class="roam">ROAM</span>, where we come together to produce narrative photography, books, walks, and tools for creative people.</h2>
+                <h2>Hi, I'm <a href="https://ttvl.co/about" class="emphasis">Toto Tvalavadze</a>, and this is <span class="roam">ROAM</span>, where we come together to produce narrative photography, books, walks, and tools for creative people.</h2>
               </div>
             </div>
+
             <div class="row">
               <div class="col-6"></div>
               <div class="col-11 membership-support text-right">
-                <h2>Memberships support my photographic journey on <a href="https://toto.photo" class="empahsis">toto.photo</a>, as well as my public-facing, freely accessible work on <a href="https://ttvl.co" class="empahsis">ttvl.co</a>.</h2>
+                <h2>Memberships support my photographic journey on <a href="https://toto.photo" class="emphasis">toto.photo</a>, as well as my public-facing, freely accessible work on <a href="https://ttvl.co" class="emphasis">ttvl.co</a>.</h2>
               </div>
             </div>
+
             <div class="row">
               <div class="col-3"></div>
               <div class="col-11 membership-perks">
@@ -50,44 +64,110 @@
                 <p>Yearly subscribers receive physical books delivered worldwide, while monthly subscribers get digital versions.</p>
               </div>
             </div>
+
             <div class="row">
-              <div class="col-6 "></div>
+              <div class="col-6"></div>
               <div class="col-8 text-right">
-                <h2>You can support as <a href="#" class="subscription">Monthly</a> <span class="price-tag">($10 USD)</span> or <a href="#" class="subscription">Yearly</a> <span class="price-tag">($100 USD)</span> member. </h2>
-                <p>Keep scrolling to see the perks.<br/>All prices are in USD.</p>
+                <h2>You can support as <a href="#monthly" class="subscription">Monthly</a> <span class="price-tag">($10 USD)</span> or <a href="#yearly" class="subscription">Yearly</a> <span class="price-tag">($100 USD)</span> member.</h2>
+                <p>Keep scrolling to see the perks.<br>All prices are in USD.</p>
               </div>
             </div>
+
             <div class="row">
               <div class="col-1"></div>
               <div class="col-7">
-                <img src="/ui/ttvl_logo.png" srcset="/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x" alt="Toto Tvalavadze" />
-                <p>Already a member? <a href="#" class="empahsis">Log in</a>.</p>
+                <img src="/ui/ttvl_logo.png" 
+                     srcset="/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x" 
+                     alt="Toto Tvalavadze">
+                <p>Already a member? <a href="/login" class="emphasis">Log in</a>.</p>
               </div>
             </div>
           </section>
         </div>
       </div>
 
+      <!-- Main Content -->
       <div class="row">
-        <div class="col-1"></div>
-        <div class="col-11">
+        <div class="col-3"></div>
+        <div class="col-12">
           <main>
-            <!-- Main content will go here -->
+            <!-- About Section -->
+            <section class="about">
+              <h2>Why Join / What You Get</h2>
+              <p>By becoming a ROAM member, you're saying <strong>you want to see more of my work in the world</strong>—and I'm grateful for that. However, I also understand that people want something in return. To address this and to motivate myself to be more productive, I created <a href="https://toto.photo/folio-editions" class="emphasis">Folio Editions</a>, which are mini photo books featuring the projects I'm working on. I'll mail physical copies to yearly members and send digital versions to monthly members once they're ready. My goal is to produce a few each year.</p>
+              <p>However, the program's core mission is to give me the freedom and permission to be in the field, <strong>creating the photographic work that ultimately takes the form of book</strong>-shaped objects—my idea of a complete photographic project. I'm truly grateful to everyone who has supported me in doing this.</p>
+            </section>
+
+            <!-- Folio Editions Section -->
+            <section class="folio-editions">
+              <h2>Folio Editions</h2>
+              <img src="/ui/membership/folio_editions.png" alt="Folio Editions">
+              <p>All yearly members receive a physical mini-book, which I call Folio Editions, featuring projects I'm currently working on. These may be complete long-form projects or works in progress each edition marking a milestone. Sometimes, they're smaller projects I'm curious about in the moment, and a mini-book format is the perfect way to share them.</p>
+              <p>Folio Editions are printed here, in Japan, and shipped from my Tokyo studio worldwide—wherever airmail delivery of printed matter is available—at no extra cost to yearly members. Yearly members also receive a 50% discount on any Folio Editions produced before they joined.</p>
+              <p>Monthly members receive a digital version of Folio Editions week after they are dispatched to yearly members.</p>
+            </section>
+
+            <!-- FAQ Section -->
+            <section class="faq">
+              <h2>Frequently Asked Questions</h2>
+              
+              <article>
+                <h3>I've never heard of you. Where should I start?</h3>
+                <p>Check out <a href="https://ttvl.co" class="emphasis">ttvl.co</a> for essays and resources on creativity and craft. If photography is more your thing, head to <a href="https://toto.photo" class="emphasis">toto.photo</a>.</p>
+                <p>If you're curious about my technical workflow, visit the <a href="https://ttvl.co/darkroom" class="emphasis">Darkroom section</a> of my website; I share quite a bit about general photography there.</p>
+                {{/*  <p>I also post a lot of information about the bookbinding skills I'm learning here in Tokyo from the master bookbinder, Nao Inoue.</p>  */}}
+                <p>If you're into productivity, take a look at my hybrid notebook system, <a href="https://ttvl.co/notebook-system" class="emphasis">Unbound</a>, which combines analog and digital tools, creating what I believe is the most open and flexible thinking tool out there.</p>
+                <p>For a broader view of my projects, <a href="https://ttvl.co/newsletter" class="emphasis">The Flâneur Newsletter  </a> is free and an excellent way to get a sample of my work.</p>
+              </article>
+
+              <article>
+                <h3>Does ROAM stand for something? Why all-caps?</h3>
+                <p>Yes, it's an acronym—or rather, a "backronym." It stands for <em>Research of Artbook Membership</em>, which reflects the experimental nature of this membership program. I also just like the word "Roam."</p>
+                <p><em>Roam Press</em> is an indie book design and fine art bookbinding venture I started alongside the membership program. All <a href="https://toto.photo/folio-editions">Folio Editions</a> and books I create—whether for myself or for others—are marked with the Roam Press <em>wordmark</em> starting 2025.</p>
+              </article>
+
+              <article>
+                <h3>Who handles payments?</h3>
+                <p>Memberships are managed through <a href="https://memberful.com">Memberful</a> and <a href="https://stripe.com">Stripe</a> (including Apple Pay)—both secure and widely trusted services. I never see your payment details. You can cancel anytime with just a couple of clicks.</p>
+              </article>
+
+              <article>
+                <h3>I'm a student and short on funds. Any options?</h3>
+                <p>There's no dedicated "student tier," but if you email me at <a href="mailto:toto@roampress.co">toto@roampress.co</a> with a few words about yourself, I'll grant you a free yearly membership (minus the physical Folio Editions). I don't want cost to prevent anyone genuinely interested in my work from participating.</p>
+              </article>
+
+              <article>
+                <h3>Will your content go behind a paywall?</h3>
+                <p>No. <a href="https://ttvl.co" class="emphasis">ttvl.co</a> will remain my public-facing notebook, where I share my curiosities and ongoing projects.</p>
+              </article>
+
+              <article>
+                <h3>I'm signing up for a yearly membership and being asked for my mailing address and phone number. Why?</h3>
+                <p>Yearly members receive a physical copy of the <a href="https://toto.photo/folio-editions" class="emphasis">Folio Edition</a>. I need your address and phone number to ensure it gets delivered to the right place and to note the recipient details on the parcel.</p>
+                <p>If you don't want a printed copy of the Folio Edition, consider downgrading to a monthly subscription; that tier doesn't require any additional information.</p>
+                <p>I will never sell your address or phone number to any data broker.</p>
+              </article>
+
+              <article>
+                <h3>I'm planning to get a yearly membership and live in [X country]. Will I receive the Folio Edition?</h3>
+                <p>Folio Editions are printed and mailed from my studio in Japan, using Japan Post's "printed matter" Airmail service, which delivers to most countries worldwide. However, there are some restrictions due to various global conflicts. Please consult the <a href="https://www.post.japanpost.jp/int/information/overview_en.html">Japan Post website</a> to confirm whether your country can receive mail from Japan.</p>
+              </article>
+
+              <article>
+                <h3>What's the Jinny Street Gallery mentioned in the yearly membership perks?</h3>
+                <p><a href="https://jinnystreetgallery.com">Jinny Street Gallery</a> is a small outdoor street gallery I operate in the Jingumae 2-chome district in Harajuku, focusing on emerging artists. All yearly members get a 10% discount at the <a href="https://store.jinnystreetgallery.com/" class="emphasis">Gallery Store</a>—whether you're buying merchandise or artwork by our artists.</p>
+              </article>
+            </section>
           </main>
         </div>
-        <div class="col-5">
-          <aside>
-            <!-- Sidebar content will go here -->
-          </aside>
-        </div>
-        <div class="col-1"></div>
       </div>
 
+      <!-- Footer -->
       <div class="row">
         <div class="col-1"></div>
         <div class="col-16">
-          <footer>
-            <!-- Footer content will go here -->
+          <footer class="site-footer">
+            <p>&copy; {{ now.Format "2006" }} ROAM & Toto Tvalavadze. All rights reserved.</p>
           </footer>
         </div>
         <div class="col-1"></div>
