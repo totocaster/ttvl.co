@@ -21,6 +21,10 @@ disableKinds = ["taxonomy", "term"]
   instagram = "https://instagram.com/totocaster"
   membershipURL = "/membership"
 
+[params.subscription]
+  monthly = "https://ttvl.memberful.com/checkout?plan=121779"
+  yearly = "https://ttvl.memberful.com/checkout?plan=121780"
+
 [languages]
   [languages.en]
     languageName = "English"
