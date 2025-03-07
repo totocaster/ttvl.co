@@ -1,46 +1,42 @@
-// Grid System Variables
-$column-count: 18;
-$column-width: 48px;
-$gutter-width: 12px;
-$grid-width: ($column-width * $column-count) + ($gutter-width * ($column-count - 1));
+// Variables
+// -----------------------------
+// Grid System
+$grid: (
+  columns: 18,
+  column-width: 48px,
+  gutter-width: 12px
+);
+// Calculate total width: (18 columns × 48px) + (17 gutters × 12px)
+$grid-width: (map-get($grid, column-width) * map-get($grid, columns)) + 
+            (map-get($grid, gutter-width) * (map-get($grid, columns) - 1));
 
 // Typography
-$font-family-base: -apple-system, BlinkMacSystemFont, 'HelveticaNeue', 'Helvetica Neue', 'Helvetica-Neue', Helvetica, Arial, sans-serif;
-$font-size-base: 18px;
+$typography: (
+  font-family: (-apple-system, BlinkMacSystemFont, 'HelveticaNeue', 'Helvetica Neue', 'Helvetica-Neue', Helvetica, Arial, sans-serif),
+  base-size: 18px
+);
 
-// Debug Mode
-$debug-grid: true; // Toggle this to true to show column visualization
+// Debug Settings
+$debug-grid: true;
 
-// Debug Styles
-@if $debug-grid {
-  .container {
-    position: relative;
-    
-    &::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: repeating-linear-gradient(
-        to right,
-        rgba(255, 0, 0, 0.1),
-        rgba(255, 0, 0, 0.1) $column-width,
-        rgba(255, 255, 255, 0.1) $column-width,
-        rgba(255, 255, 255, 0.1) ($column-width + $gutter-width)
-      );
-      pointer-events: none;
-      z-index: 9999;
-    }
-  }
-}
-
+// Mixins
+// -----------------------------
 @mixin font-variation($weight: 400, $width: 700, $optical-size: 14) {
   font-variation-settings: "wght" #{$weight}, "wdth" #{$width}, "opsz" #{$optical-size};
 }
 
-// Reset and Base Styles
+@mixin overlay($z-index: 1) {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $z-index;
+}
+
+// Base Styles
+// -----------------------------
 * {
   margin: 0;
   padding: 0;
@@ -49,10 +45,68 @@ $debug-grid: true; // Toggle this to true to show column visualization
 
 body {
   min-height: 100vh;
-  font-family: $font-family-base;
-  font-size: $font-size-base;
+  font-family: map-get($typography, font-family);
+  font-size: map-get($typography, base-size);
 }
 
+// Grid System
+// -----------------------------
+.container {
+  max-width: $grid-width;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0;
+  position: relative;
+  
+  @media (max-width: #{$grid-width}) {
+    padding: 0 20px;
+  }
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 (-map-get($grid, gutter-width)/2);
+}
+
+[class^="col-"] {
+  padding: 0 (map-get($grid, gutter-width)/2);
+}
+
+@for $i from 1 through map-get($grid, columns) {
+  .col-#{$i} {
+    width: calc((100% / #{map-get($grid, columns)}) * #{$i});
+    padding: 0;
+  }
+}
+
+// Debug Grid
+// -----------------------------
+@if $debug-grid {
+  .container {
+    &::before {
+      @include overlay(9999);
+      $total-width: map-get($grid, column-width) + map-get($grid, gutter-width);
+      $container-width: $grid-width;
+      background-image: repeating-linear-gradient(
+        to right,
+        rgba(255, 0, 0, 0.1) 0,
+        rgba(255, 0, 0, 0.1) map-get($grid, column-width),
+        transparent map-get($grid, column-width),
+        transparent $total-width
+      );
+      background-size: $total-width 100%;
+      background-position: 0 0;
+      width: 100%;
+      max-width: $container-width;
+      margin: 0 auto;
+      pointer-events: none;
+    }
+  }
+}
+
+// Typography Utilities
+// -----------------------------
 .roam {
   @include font-variation(1000, 150, 24);
 }
@@ -61,15 +115,6 @@ body {
   @include font-variation(276, 60, 21);
 }
 
-// Header Styles
-.site-header {
-  height: 80px;
-  width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-// Text Alignment Utilities
 .text-right {
   text-align: right;
 }
@@ -78,7 +123,15 @@ body {
   text-align: left;
 }
 
-// Full Width Section
+// Layout Components
+// -----------------------------
+.site-header {
+  height: 80px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
 .full-width-section {
   width: 100%;
   position: relative;
@@ -86,22 +139,23 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   min-height: 600px;
-  padding: $column-width 0;
+  padding: map-get($grid, column-width) 0;
   
-  // Ensure the container inside maintains the grid width
   .container {
     position: relative;
     z-index: 2;
   }
 }
 
-// Hero Section Specific Styles
+// Hero Section
+// -----------------------------
 .hero-section {
   color: white;
   display: flex;
   flex-direction: column;
   position: relative;
 
+  // Typography
   a {
     color: white;
     text-decoration: underline;
@@ -111,7 +165,8 @@ body {
     font-weight: 700;
   }
 
-  .folio, .subscription {
+  .folio,
+  .subscription {
     @include font-variation(700, 132, 24);
   }
 
@@ -119,6 +174,7 @@ body {
     @include font-variation(400, 132, 24);
   }
 
+  // Spacing
   .i-am-toto {
     margin-bottom: 80px;
   }
@@ -126,6 +182,7 @@ body {
   .membership-support {
     margin-bottom: 180px;
   }
+
   .membership-perks {
     margin-bottom: 125px;
   }
@@ -133,13 +190,14 @@ body {
   .row {
     margin-bottom: 2rem;
     position: relative;
-    z-index: 3; // Ensure text is above both background and gradient
+    z-index: 3;
     
     &:last-child {
       margin-bottom: 0;
     }
   }
   
+  // Content
   h2 {
     font-size: 2.5rem;
     line-height: 3rem;
@@ -151,67 +209,21 @@ body {
     line-height: 1.5;
   }
   
+  // Background Layers
   &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(to bottom, 
+    @include overlay(1);
+    background: linear-gradient(
+      to bottom, 
       rgba(0, 0, 0, 0.4) 0%,
       rgba(0, 0, 0, 0) 100%
     );
-    z-index: 1; // Gradient stays above background but below text
-    display: block;
   }
 
   &::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    @include overlay(0);
     background-image: url('../ui/membership/2022.06_membership_background_enoshima.jpeg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: 0; // Background image at the bottom
-  }
-}
-
-// Grid Container
-.container {
-  width: $grid-width;
-  margin: 0 auto;
-  padding: 0;
-  position: relative;
-}
-
-// Grid Row
-.row {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0 (-$gutter-width/2);
-}
-
-// Column Base Styles
-[class^="col-"] {
-  padding: 0 ($gutter-width/2);
-}
-
-// Generate Column Classes
-@for $i from 1 through $column-count {
-  .col-#{$i} {
-    width: calc((100% / #{$column-count}) * #{$i});
-  }
-}
-
-// Responsive Container
-@media (max-width: #{$grid-width}) {
-  .container {
-    width: 100%;
-    padding: 0 20px;
   }
 }
