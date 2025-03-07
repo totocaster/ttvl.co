@@ -1,5 +1,21 @@
 // Variables
 // -----------------------------
+// Color System
+$colors: (
+  light: (
+    background: #ffffff,
+    text: #000000,
+    muted: #999999,
+    border: #e0e0e0,
+  ),
+  dark: (
+    background: #121212,
+    text: #ffffff,
+    muted: #a0a0a0,
+    border: #2a2a2a,
+  )
+);
+
 // Breakpoints
 $breakpoints: (
   small: 576px,
@@ -29,6 +45,20 @@ $debug-grid: false;
 
 // Mixins
 // -----------------------------
+@mixin dark-mode {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+@mixin get-color($color-name, $theme: 'light') {
+  @if $theme == 'light' {
+    color: map-get(map-get($colors, 'light'), $color-name);
+  } @else {
+    color: map-get(map-get($colors, 'dark'), $color-name);
+  }
+}
+
 @mixin breakpoint-down($size) {
   @media (max-width: map-get($breakpoints, $size)) {
     @content;
@@ -67,6 +97,13 @@ body {
   min-height: 100vh;
   font-family: map-get($typography, font-family);
   font-size: map-get($typography, base-size);
+  background-color: map-get(map-get($colors, light), background);
+  color: map-get(map-get($colors, light), text);
+  
+  @include dark-mode {
+    background-color: map-get(map-get($colors, dark), background);
+    color: map-get(map-get($colors, dark), text);
+  }
 }
 
 // Grid System
@@ -153,6 +190,10 @@ body {
   text-align: left;
 }
 
+.muted {
+  color: map-get(map-get($colors, light), muted);
+}
+
 // Layout Components
 // -----------------------------
 .site-header {
@@ -161,17 +202,21 @@ body {
   display: flex;
   align-items: center;
   
+  .membership-logo-line {
+    width: 20px;
+    height: 13px;
+    margin: 0 10px;
+  }
+
   @include breakpoint-down(medium) {
-    height: auto;
-    padding: 20px 0;
-    flex-direction: column;
-    align-items: flex-start;
+    height: 44px;
+    font-size: 80%;
     
-    .narrow-text {
-      display: block;
-      margin-top: 0.5rem;
+    .membership-logo-line {
+      height: 10px;
     }
   }
+
 }
 
 .full-width-section {
@@ -289,6 +334,69 @@ body {
 
     p {
       margin: 1rem 0 0 0;
+    }
+  }
+}
+
+// Visibility Utilities
+// -----------------------------
+$display-types: (
+  block: block,
+  flex: flex,
+  inline: inline,
+  inline-block: inline-block,
+  none: none
+);
+
+// Generate hide classes for each breakpoint
+@each $breakpoint, $value in $breakpoints {
+  // Hide below breakpoint
+  .hide-#{$breakpoint} {
+    @include breakpoint-down($breakpoint) {
+      display: none !important;
+    }
+  }
+  
+  // Hide above breakpoint
+  .hide-#{$breakpoint}-up {
+    @include breakpoint-up($breakpoint) {
+      display: none !important;
+    }
+  }
+  
+  // Show only at breakpoint
+  .show-#{$breakpoint}-only {
+    display: none !important;
+    
+    @media (min-width: map-get($breakpoints, $breakpoint)) and 
+           (max-width: map-get($breakpoints, if(index(map-keys($breakpoints), $breakpoint) < length($breakpoints),
+             nth(map-keys($breakpoints), index(map-keys($breakpoints), $breakpoint) + 1),
+             $breakpoint))) {
+      display: block !important;
+    }
+  }
+  
+  // Show above breakpoint
+  .show-#{$breakpoint}-up {
+    display: none !important;
+    
+    @include breakpoint-up($breakpoint) {
+      display: block !important;
+    }
+  }
+  
+  // Generate display variations for each breakpoint
+  @each $display-name, $display-value in $display-types {
+    .#{$display-name}-#{$breakpoint} {
+      @include breakpoint-down($breakpoint) {
+        display: $display-value !important;
+      }
+    }
+    
+    .#{$display-name}-#{$breakpoint}-up {
+      @include breakpoint-up($breakpoint) {
+        display: $display-value !important;
+      }
     }
   }
 }
