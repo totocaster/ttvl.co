@@ -7,12 +7,14 @@ $colors: (
     text: #000000,
     muted: #999999,
     border: #e0e0e0,
+    divider: #F5F5F5
   ),
   dark: (
     background: rgb(33, 33, 33),
     text: #ffffff,
     muted: #a0a0a0,
     border: #2a2a2a,
+    divider: #333
   )
 );
 
@@ -30,6 +32,7 @@ $grid: (
   column-width: 48px,
   gutter-width: 12px
 );
+
 // Calculate total width: (18 columns × 48px) + (17 gutters × 12px)
 $grid-width: (map-get($grid, column-width) * map-get($grid, columns)) + 
             (map-get($grid, gutter-width) * (map-get($grid, columns) - 1));
@@ -134,7 +137,7 @@ body {
   padding: 0 (map-get($grid, gutter-width)/2);
   
   @include breakpoint-down(medium) {
-    width: 100% !important; // Override all column widths on mobile
+    width: 100% !important;
     padding: 0;
     margin-bottom: 0.3rem;
   }
@@ -216,7 +219,6 @@ body {
       height: 10px;
     }
   }
-
 }
 
 .full-width-section {
@@ -237,16 +239,9 @@ body {
 // Hero Section
 // -----------------------------
 .hero-container {
-  .row:first-child {
-    margin-top: 0;
-    
-    p {
-      margin: 0;
-    }
-  }
-
+  .row:first-child,
   .row:last-child {
-    margin-bottom: 0;
+    margin: 0;
     
     p {
       margin: 0;
@@ -336,7 +331,9 @@ body {
     min-height: auto;
     padding: 1rem 2rem;
     
-    .i-am-toto, .membership-support, .membership-perks {
+    .i-am-toto, 
+    .membership-support, 
+    .membership-perks {
       margin-bottom: 0;
     }
     
@@ -419,7 +416,7 @@ $display-types: (
   }
 }
 
-// Mein Section
+// Main Content
 // -----------------------------
 main, .site-footer {
   h2 {
@@ -442,7 +439,7 @@ main, .site-footer {
   }
 
   a {
-    font-weight: 00;
+    font-weight: 400;
     color: map-get(map-get($colors, light), text);
     text-decoration: underline;
 
@@ -465,8 +462,7 @@ main, .site-footer {
   }  
 
   section.subscribe {
-    margin-bottom: 30px;
-    margin-top: 30px;
+    margin: 30px 0;
 
     .tier {
       background-color: #F5F5F5;
@@ -564,14 +560,16 @@ main, .site-footer {
   }
 }
 
+// Footer
+// -----------------------------
 .site-footer {
   hr {
     border: 0;
-    border-top: 1px solid map-get(map-get($colors, light), muted);
+    border-top: 1px solid map-get(map-get($colors, light), divider);
     margin-bottom: 30px;
     
     @include dark-mode {
-      border-color: map-get(map-get($colors, dark), muted);
+      border-color: map-get(map-get($colors, dark), divider);
     }
   }
 
