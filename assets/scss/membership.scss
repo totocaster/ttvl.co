@@ -236,6 +236,24 @@ body {
 
 // Hero Section
 // -----------------------------
+.hero-container {
+  .row:first-child {
+    margin-top: 0;
+    
+    p {
+      margin: 0;
+    }
+  }
+
+  .row:last-child {
+    margin-bottom: 0;
+    
+    p {
+      margin: 0;
+    }
+  }
+}
+
 .hero-section {
   color: white;
   display: flex;
