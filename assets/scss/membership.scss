@@ -9,7 +9,7 @@ $colors: (
     border: #e0e0e0,
   ),
   dark: (
-    background: #121212,
+    background: rgb(33, 33, 33),
     text: #ffffff,
     muted: #a0a0a0,
     border: #2a2a2a,
@@ -427,6 +427,10 @@ main {
     font-weight: 00;
     color: map-get(map-get($colors, light), text);
     text-decoration: underline;
+
+    @include dark-mode {
+      color: map-get(map-get($colors, dark), text);
+    }
   }
 
   a.emphasis {
@@ -453,6 +457,14 @@ main {
       gap: 25px;
       align-items: flex-start;
       margin-bottom: 30px;
+
+      @include dark-mode {
+        background-color: white;
+        color: map-get(map-get($colors, light), text);
+        a {
+          color: map-get(map-get($colors, light), text);
+        }
+      } 
 
       @include breakpoint-down(medium) {
         flex-direction: column;
