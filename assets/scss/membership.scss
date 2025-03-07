@@ -441,6 +441,78 @@ main {
     margin-top: 30px;
     margin-bottom: 60px;
   }  
+
+  section.subscribe {
+    margin-bottom: 30px;
+    margin-top: 30px;
+
+    .tier {
+      background-color: #F5F5F5;
+      padding: 25px;
+      display: flex;
+      gap: 25px;
+      align-items: flex-start;
+      margin-bottom: 30px;
+
+      @include breakpoint-down(medium) {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .tier-name {
+        flex-shrink: 0;
+        width: 180px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+
+        @include breakpoint-down(medium) {
+          width: 100%;
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: center;
+          gap: 10px;
+        }
+      }
+
+      .tier-benefits {
+        flex-grow: 1;
+
+        ul {
+          list-style: none;
+          padding-left: 10px;
+          
+          li {
+            position: relative;
+            padding-left: 15px;
+            line-height: 1.4;
+            
+            &::before {
+              content: "•";
+              position: absolute;
+              left: 0;
+              font-size: 0.8em;
+              top: 0.1em;
+            }
+          }
+        }
+      }
+
+      h2, div.price {
+        padding: 0;
+        margin: 0;
+        font-size: 2.2rem;
+        @include breakpoint-down(medium) {
+          font-size: 2rem;
+        }
+      }
+      
+      div.price {
+        font-weight: 400;
+        @include font-variation(400, 132, 24);
+      }
+    }
+  }
 }
 
 
