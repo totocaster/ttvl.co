@@ -459,6 +459,20 @@ main {
         gap: 15px;
       }
 
+      &.monthly-tier {
+        @include breakpoint-up(large) {
+          margin-left: calc(-100% / 9);
+          margin-right: calc(100% / 9);
+        }
+      }
+
+      &.yearly-tier {
+        @include breakpoint-up(large) {
+          margin-right: calc(-100% / 9);
+          margin-left: calc(100% / 9);
+        }
+      }
+
       .tier-name {
         flex-shrink: 0;
         width: 180px;
@@ -511,6 +525,11 @@ main {
         font-weight: 400;
         @include font-variation(400, 132, 24);
       }
+    }
+
+    @include breakpoint-down(medium) {
+      max-width: 480px;
+      margin: 30px auto;
     }
   }
 }
