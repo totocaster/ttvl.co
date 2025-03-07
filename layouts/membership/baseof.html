@@ -179,11 +179,22 @@
         <div class="col-1"></div>
         <div class="col-16">
           <footer class="site-footer">
-            <p>&copy; {{ now.Format "2006" }} ROAM & Toto Tvalavadze. All rights reserved.</p>
+            <hr>
+            <p>&copy; {{ now.Format "2006" }} <span class="roam">ROAM</span> & <a href="https://ttvl.co">Toto Tvalavadze</a>. All rights reserved.</p>
           </footer>
         </div>
-        <div class="col-1"></div>
       </div>
     </div>
   </body>
+  <script type="text/javascript">
+    (function(c) {
+      var script = document.createElement("script");
+      script.src = "https://js.memberful.com/embed.js";
+      script.onload = function() { Memberful.setup(c) };
+      document.head.appendChild(script);
+    })({
+      site: ["https://ttvl.memberful.com"]
+    });
+  </script>
+  
 </html>

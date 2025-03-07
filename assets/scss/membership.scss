@@ -249,7 +249,7 @@ body {
   }
 
   .emphasis {
-    font-weight: 700;
+    font-weight: 600;
   }
 
   .folio,
@@ -403,7 +403,7 @@ $display-types: (
 
 // Mein Section
 // -----------------------------
-main {
+main, .site-footer {
   h2 {
     @include font-variation(700, 132, 24);
     margin-bottom: 30px;
@@ -546,4 +546,18 @@ main {
   }
 }
 
+.site-footer {
+  hr {
+    border: 0;
+    border-top: 1px solid map-get(map-get($colors, light), muted);
+    margin-bottom: 30px;
+    
+    @include dark-mode {
+      border-color: map-get(map-get($colors, dark), muted);
+    }
+  }
 
+  margin-top: 90px;
+  margin-bottom: 30px;
+  text-align: center;
+}
