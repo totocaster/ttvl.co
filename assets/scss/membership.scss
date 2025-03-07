@@ -1,5 +1,13 @@
 // Variables
 // -----------------------------
+// Breakpoints
+$breakpoints: (
+  small: 576px,
+  medium: 768px,
+  large: 992px,
+  xlarge: 1200px
+);
+
 // Grid System
 $grid: (
   columns: 18,
@@ -17,10 +25,22 @@ $typography: (
 );
 
 // Debug Settings
-$debug-grid: true;
+$debug-grid: false;
 
 // Mixins
 // -----------------------------
+@mixin breakpoint-down($size) {
+  @media (max-width: map-get($breakpoints, $size)) {
+    @content;
+  }
+}
+
+@mixin breakpoint-up($size) {
+  @media (min-width: map-get($breakpoints, $size)) {
+    @content;
+  }
+}
+
 @mixin font-variation($weight: 400, $width: 700, $optical-size: 14) {
   font-variation-settings: "wght" #{$weight}, "wdth" #{$width}, "opsz" #{$optical-size};
 }
@@ -58,7 +78,7 @@ body {
   padding: 0;
   position: relative;
   
-  @media (max-width: #{$grid-width}) {
+  @include breakpoint-down(large) {
     padding: 0 20px;
   }
 }
@@ -67,10 +87,20 @@ body {
   display: flex;
   flex-wrap: wrap;
   margin: 0 (-map-get($grid, gutter-width)/2);
+  
+  @include breakpoint-down(medium) {
+    margin: 0;
+  }
 }
 
 [class^="col-"] {
   padding: 0 (map-get($grid, gutter-width)/2);
+  
+  @include breakpoint-down(medium) {
+    width: 100% !important; // Override all column widths on mobile
+    padding: 0;
+    margin-bottom: 0.3rem;
+  }
 }
 
 @for $i from 1 through map-get($grid, columns) {
@@ -130,6 +160,18 @@ body {
   width: 100%;
   display: flex;
   align-items: center;
+  
+  @include breakpoint-down(medium) {
+    height: auto;
+    padding: 20px 0;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    .narrow-text {
+      display: block;
+      margin-top: 0.5rem;
+    }
+  }
 }
 
 .full-width-section {
@@ -214,7 +256,7 @@ body {
     @include overlay(1);
     background: linear-gradient(
       to bottom, 
-      rgba(0, 0, 0, 0.4) 0%,
+      rgba(0, 0, 0, 0.5) 0%,
       rgba(0, 0, 0, 0) 100%
     );
   }
@@ -225,5 +267,28 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+  }
+
+  @include breakpoint-down(medium) {
+    min-height: auto;
+    padding: 1rem 2rem;
+    
+    .i-am-toto, .membership-support, .membership-perks {
+      margin-bottom: 0;
+    }
+    
+    h2 {
+      font-size: 1.6rem;
+      line-height: 2.1rem;
+      margin: 0;
+    }
+
+    .text-right {
+      padding-left: 20%;
+    }
+
+    p {
+      margin: 1rem 0 0 0;
+    }
   }
 }
