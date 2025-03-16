@@ -1,0 +1,76 @@
+// Links page specific styles
+.links-page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  
+  .links-container {
+    width: 100%;
+    max-width: 428px;
+    margin: 0 auto;
+    text-align: center;
+    
+    .avatar {
+      margin-bottom: 24px;
+      
+      img {
+        width: 160px;
+        height: 160px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: none;
+      }
+    }
+
+    .site-logo {
+      margin-bottom: 20px;
+      
+      img {
+        width: auto;
+        @include dark-invert;
+      }
+    }
+    
+    .description {
+      margin-bottom: 40px;
+      font-size: $font-size-base;
+      line-height: $line-height-base;
+      
+      p {
+        margin: 0 0 20px;
+      }
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      li {
+        margin: 0 0 8px;
+        
+        a {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 44px;
+          padding: 0 24px;
+          background: $color-light-text;
+          color: $color-light-bg;
+          text-decoration: none;
+          border-radius: 8px;
+          font-weight: 600;
+          font-size: $font-size-base;
+          line-height: $line-height-base;
+          
+          @include dark {
+            background: $color-dark-text;
+            color: $color-dark-bg;
+          }
+        }
+      }
+    }
+  }
+} 

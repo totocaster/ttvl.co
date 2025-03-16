@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ .Title }} - {{ .Site.Title }}</title>
+  <meta name="description" content="{{ .Description }}">
+  {{ $style := resources.Get "scss/style.scss" | resources.ToCSS | resources.Minify }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+</head>
+<body class="links-page">
+  <div class="links-container">
+    <div class="avatar">
+      <img src="/ui/2023_social_avatar.jpeg" alt="{{ .Site.Title }} avatar">
+    </div>
+    <div class="site-logo">
+      <img src="/ui/ttvl_logo.png" 
+           srcset="/ui/ttvl_logo.png 1x, /ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x" 
+           alt="{{ .Site.Title }} logo">
+    </div>
+    <div class="description">
+      {{ .Content }}
+    </div>
+  </div>
+</body>
+</html>
