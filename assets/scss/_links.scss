@@ -29,7 +29,6 @@
       
       img {
         width: auto;
-        @include dark-invert;
       }
     }
     
@@ -66,8 +65,8 @@
           line-height: $line-height-base;
           
           @include dark {
-            background: $color-dark-text;
-            color: $color-dark-bg;
+            background: $color-dark-bg;
+            color: $color-dark-text;
           }
         }
       }
