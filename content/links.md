@@ -1,10 +1,9 @@
 ---
 title: 'Links'
 layout: 'links'
-description: 'Links and resources from @ttvl.co'
 ---
 
-Photographer, writer, and film enthusiast. Here are some things I'd like to share with you.
+I'm a photographer, bookbinder, walker, and human-computer interface researcher, small gallery curator, among other smaller things.
 
 - [Newsletter – The Flâneur](/newsletter)
 - [Photography Website](https://totocaster.com)
