@@ -21,11 +21,17 @@ Both Valoi and Negative Supply products have simple constructions with many 3D p
 
 I designed an adapter that mounts directly onto the Negative Supply light source, uses a few parts from the Valoi carrier system, and enables the Valoi tube system to fit on top. Essentially, I combined the best of both products: a superior light source, a good carrier, and the alignment system.
 
+![The VNS Adapter](/visuals/darkroom/vns_adapter_parts.jpeg)
+
 I call it the **VNS Adapter**. You can grab STL files and print one for yourself too.
 
+{{< download-section >}}
 - [Download STL for printing](https://www.printables.com/model/1215933-vns-adapter-for-valoi-easy120-and-negative-supply)
+{{< /download-section >}}
 
 The VNS adapter can be printed in two parts. You need to disassemble the easy120 and reuse some of its parts, namely the carrier holder and the bearing balls that center the film holder in the carrier. Everything screws together using screws from both products. The only additional material needed is brass threaded inserts, but these are optional if you print the base plate with a smaller hole to screw directly into the plastic. Nothing is glued, so you can disassemble and reassemble both Negative Supply and Valoi again.
+
+![The complete setup](/visuals/darkroom/vns_adapter_with_camera.jpeg)
 
 Using a good light source did eliminate the annoying color casts in the shadows and made the work of Negative Lab Pro much easier (or so I believe).
 
