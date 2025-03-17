@@ -203,6 +203,36 @@ nav#Menu {
   }
 }
 
+// Socials section
+.socials {
+  margin-top: 1.5rem;
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  a {
+    display: block;
+    opacity: 0.3;
+    transition: opacity 0.2s ease;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  path {
+    fill: currentColor;
+  }
+}
+
 // Main content
 main {
   article {
