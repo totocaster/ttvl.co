@@ -1,0 +1,8 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+Whenever I ask you to implement brand new feature or alter large amount of code, please review [README.md](mdc:README.md) first to undertsnad general structure and anatomy of the project.
+
+Always ask clarifing question before editing code IF you need more clarity.
