@@ -28,6 +28,8 @@ This is the source code for [ttvl.co](https://ttvl.co/), a personal website feat
 ├── data/           # Hugo data files
 ├── layouts/        # Hugo templates
 ├── static/         # Static assets
+├── tools/          # Project tools and templates
+│   └── email_templates/  # Email templates for newsletters
 └── public/         # Generated site (not tracked in git)
 ```
 
@@ -54,10 +56,25 @@ Content is organized in several main sections:
 - `/content/notebook-system/` - Notebook templates and guides
 - `/content/project-humane/` - Project documentation
 
+## Tools and Templates
+
+### Email Templates
+
+The project includes email templates for newsletters and member communications:
+
+- `/tools/email_templates/insider_template.html` - Template for ROAM Insider newsletter
+  - Used with Campaign Monitor
+  - Includes responsive design and inline styles
+  - Supports Campaign Monitor's templating system:
+    - `<multiline>` tag for main content
+    - `<unsubscribe>` tag for unsubscribe links
+  - Styled with variable font for ROAM branding
+  - Copy-paste ready for Campaign Monitor's template system
+
 ## License
 
 All rights reserved. The content and code in this repository are not available for reuse without explicit permission.
 
 ---
 
-Last updated: January 30, 2025
+Last updated: March 30, 2025
