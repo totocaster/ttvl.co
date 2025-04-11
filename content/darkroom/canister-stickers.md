@@ -7,13 +7,13 @@ date: 2024-12-18
 
 **The Solution:** Design a film canister sticker with dedicated spaces for writing essential notes for easy identification of the film type, loading date, and exposure details.
 
-One of the things I love about shooting with my [Contax G2][g2], especially with the GD2 databack, is how it logs every single frame on a roll of film using its magical light printer. Keeping track of all that data, however, requires an external organizational system.
+One of the things I love about shooting with my _Contax G2_, especially with the GD2 databack, is how it logs every single frame on a roll of film using its magical light printer. Keeping track of all that data, however, requires an external organizational system.
 
 One part of this system is managing the canisters I load: knowing what film is inside, whether it's been exposed to X-rays at the airport, whether the roll itself is exposed (I leave the leader out for easy extraction), some additional notes, and a unique [roll ID][rid] that I assign to every roll.
 
 Kodak film canisters are great because they come with a yellow space on the canister where I can jot down the date and roll ID. But when you load bulk film into reusable canisters—like the plastic ones with a snap-top lid—that's no longer possible. Sure, I could use a white-out marker, but rubbing it off with alcohol is too much of a chore when it's time to reload.
 
-To solve this, I designed film stickers that are easy to print at home on A4 sticky sheets using any printer. These stickers have all the space I need to note relevant details. In Japan, I use A-ONE [28409][28409] (20 sheets) or [28422][28422] (100 sheets), but any matte sticky A4 paper will work as long as it doesn't leave residue on the canister.
+To solve this, I designed film stickers that are easy to print at home on A4 sticky sheets using any printer. These stickers have all the space I need to note relevant details. In Japan, I use A-ONE [31271][31271] (10 sheets) or [31250][31250] (100 sheets), but any matte sticky A4 paper will work as long as it doesn't leave residue on the canister.
 
 ![Design process and details of the stickers](/visuals/darkroom/canister-stickers-1.jpeg)
 
@@ -44,6 +44,12 @@ These stickers are specifically designed to fit **AP 35mm film reloadable cartri
 {{< /download-section >}}
 
 [g2]: /objects/contax-g2
-[28409]: https://www.a-one.co.jp/product/search/detail.php?id=28409
-[28422]: https://www.a-one.co.jp/product/search/detail.php?id=28422
+[31271]: https://www.a-one.co.jp/product/search/detail.php?id=31271
+[31250]: https://www.a-one.co.jp/product/search/detail.php?id=31250
 [rid]: /darkroom/roll-id
+
+--- 
+
+## Work and Change Log
+
+- 2025.04.16: Changed paper recommendation to less sticky and easier to remove A-ONE 31271 and 31250.
