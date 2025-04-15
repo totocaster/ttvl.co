@@ -6,33 +6,32 @@ This site serves as a digital garden and documentation hub for various personal 
 
 ## Photography & Darkroom
 
-- [Darkroom](/darkroom/): Technical documentation and guides for analog photography
-  - [Film Identification Format](/darkroom/roll-id/): Guide for identifying and tracking film rolls
-  - [Travel Film Development Kit](/darkroom/travel-dev-kit): Portable darkroom setup
-  - [Bulk Film Canister Stickers](/darkroom/canister-stickers): DIY labeling system
-  - [Valoi Easy120 with Negative Supply Light](/darkroom/valoi-easy120-with-negative-supply-99cri-light): Scanning setup documentation
+- [Darkroom](/darkroom/): Technical documentation and guides for analog photography.
+  - [Film Identification Format](/darkroom/roll-id/): Guide for identifying and tracking film rolls.
+  - [Travel Film Development Kit](/darkroom/travel-dev-kit): Portable darkroom setup.
+  - [Bulk Film Canister Stickers](/darkroom/canister-stickers): DIY film canister labeling system.
+  - [Valoi Easy120 with Negative Supply Light](/darkroom/valoi-easy120-with-negative-supply-99cri-light): A 3D-printable adapter that marries two popular systems for film scanning into a single system that produces good colors.
 
 ## Notebook System
 
-- [Unbound Notebook System](/notebook-system/): Framework for digital and analog note-taking
-  - [Analog Photography Templates](/notebook-system/analog-photography-templates/): Templates for film photography workflow
-  - [General Templates](/notebook-system/general-templates/): Basic notebook templates
-  - [Make Your Own](/notebook-system/make-your-own/): Guide to creating custom notebooks
+- [Unbound Notebook System](/notebook-system/), or UNS: Framework for hybrid digital and analog note-taking system that Toto developed and is using.
+  - [Analog Photography Templates](/notebook-system/analog-photography-templates/): Templates for film photography workflow.
+  - [General Templates](/notebook-system/general-templates/): Basic notebook templates.
+  - [Make Your Own](/notebook-system/make-your-own/): Guide to creating custom UNS notebook.
 
 ## Projects
 
-- [Project Humane](/project-humane/): Documentation of personal projects
-  - [EDC Keychain](/project-humane/edc-keychain/): Everyday carry system
-  - [Soma](/project-humane/soma/): Personal project documentation
+- [Project Humane](/project-humane/): Tools and toys Toto makes for productiivty and work.
+  - [EDC Keychain](/project-humane/edc-keychain/): Everyday carry system to carry daily esentantials that do not fit into men's pant pockets.
+  - [Soma](/project-humane/soma/): A macOS app (work inprogress) to scan loose leafs and transcribe them into a text documents. 
 
 ## Technical Information
 
-- [Colophon](/colophon/): Technical details about the website
-- [About](/about/): Information about the author
-- [Philosophy](/philosophy/): Core principles and approach
+- [Colophon](/colophon/): Technical details about the website.
+- [About](/about/): Information about Toto Tvalavadze.
+- [Philosophy](/philosophy/): Core principles and approach of Toto.
 
 ## Optional
 
-- [Bookbinding](/bookbinding/): Resources and guides for bookbinding
-- [Objects](/objects/): Documentation of physical objects and tools
-- [Newsletter](/newsletter/): Archive of newsletter conte
+- [Objects](/objects/): Documentation of physical objects and tools Toto is using or have used.
+- [Newsletter](/newsletter/): Archive of newsletter content.
