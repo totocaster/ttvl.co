@@ -2,6 +2,6 @@
 title: 'Home'
 ---
 
-![The tunnel I pass through to and from the studio. Tokyo, 2024.](/visuals/home_latest.jpg)
+![Stop sign in the highlands of north-east Georgia, 2024.](/flaneur/010_2024.09.18.R1.07.jpeg)
 
-The tunnel I pass through to and from the studio. Tokyo, 2024.
+Stop sign in the highlands of north-east Georgia, 2024.
