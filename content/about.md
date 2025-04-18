@@ -13,4 +13,6 @@ I'm a photographer, bookbinder, walker, and human-computer interface researcher,
 
 The mission of this project is to share knowledge and inspire people to pursue their passions. I document my findings, research, and insights collected on my journey to becoming a fine art photographer and human-computer interaction researcher who values craft and human creation.
 
-If you like what I do, consider supporting my work. For photography, you can join my {{< membership-link >}}membership program{{< /membership-link >}} (launching March 2025), which offers quarterly printed zines, insider newsletter and behind the scenes.
+If you like what I do, consider [subscribing to my newsletter](/newsletter) about my work, photography, books, making, and walking.
+
+<!-- If you like what I do, consider supporting my work. For photography, you can join my {{< membership-link >}}membership program{{< /membership-link >}} (launching second half of 2025), which offers quarterly printed zines, insider newsletter and behind the scenes. -->
