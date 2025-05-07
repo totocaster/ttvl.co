@@ -7,5 +7,5 @@ I'm a photographer, bookbinder, walker, and human-computer interface researcher,
 
 - [Newsletter – The Flâneur](/newsletter)
 - [On the Importance of Gear](https://ttvl.co/flaneur/010/)
-- [Photography Website](https://totocaster.com)
+- [Photography Website](https://toto.photo/)
 - [Unbound Notebook System](/notebook-system/) 
