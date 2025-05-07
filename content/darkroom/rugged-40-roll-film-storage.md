@@ -36,4 +36,4 @@ This work is licensed under a Creative Commons (4.0 International License) Attri
 Feel free to remix and do anything you want for non-commercial use.
 
 [ruggedcase]: https://www.printables.com/model/258431-rugged-box-parametric
-[oom]: https://totocaster.com/out-of-memory
+[oom]: https://toto.photo/out-of-memory
