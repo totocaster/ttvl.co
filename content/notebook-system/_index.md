@@ -5,6 +5,8 @@ date: 2025-01-06
 
 **Unbound** is an evolving framework for integrating digital and analog note-taking. It's an exploration of how we can make the processes of capturing, searching, and exploring knowledge more flexible and enjoyable.
 
+![](/visuals/uns/2025.05_UNS_10.jpg)
+
 The Unbound System is a work in progress—a research project. It's an adaptable, non-rigid approach to thinking, exploring, retrieving, and evolving ideas and thoughts, leveraging various mediums.
 
 {{< toc >}}
@@ -13,15 +15,21 @@ The Unbound System is a work in progress—a research project. It's an adaptable
 
 Analog and digital tools alone are not enough to fully support the way our brains think and work. Analog systems are less rigid and mirror the brain's elasticity, supporting freeform thinking and idea development. Digital systems, while superior for organization and information retrieval, can feel too structured for creative exploration. Furthermore, I will argue the value of organization altogether too.
 
+![](/visuals/uns/2025.05_UNS_17.jpg)
+
 The system is software- and brand-agnostic. Although it has some preferences for certain types of tools, fundamentally it is _unbound_ from any type of ecosystem.
 
 ## Loose Leaves
+
+![](/visuals/uns/2025.05_UNS_08.jpg)
 
 As the name suggests, the notebook system is based on loose leaves rather than bound notebooks. This choice is not due to a preference for one type of stationery over another, but rather a pragmatic decision that enhances the system's flexibility and functionality. The following sections will explore the reasons behind this choice in more detail.
 
 ## Pagination
 
 Since Unbound notebooks use loose leaves, traditional page numbers do not make much sense. However, having a way to identify a page and its place in a sequence is quite valuable for referencing as well as lookup purposes. Because of this, I use dates as a replacement for page numbers. No matter how leaves migrate between notebooks or archives, they remain easily searchable using dates, as dates are naturally ordered by timeline.
+
+![](/visuals/uns/2025.05_UNS_15.jpg)
 
 I find adding additional page numbers per day unnecessary since I rarely write more than half a dozen pages in one day—an amount that trivial to flip though. If you write more than a dozen pages per day, consider adding `/` and a page number so that the 24th page written on January 6, 2025, would be labeled `2025.01.06/24`.
 
@@ -61,6 +69,8 @@ Since pages are unbound, you can use any flatbed or document scanner for digitiz
 
 ## Soma.app
 
+![](/visuals/uns/2025.01.soma_prototype_mac.png)
+
 Some of you can already see dozens of automation and app opportunities. I'm one of those too. I'm working on a note scanner app with a macOS counterpart—[**Soma**](/project-humane/soma/)—that provides a clean and simple way to take pictures of loose leaf sheets with corrected colors and skew adjustment, transcribe them into a digital version, identify the dates they were made (since all pages have dates), and then export the resulting text and image into a note-taking app of choice.
 
 ## Bridging back to Analog
@@ -71,7 +81,7 @@ Abstract and minimalist photos also make a nice writing surface for thoughts or 
 
 ## Linking
 
-At a minimum, it's possible to link notes using their dates. The system is designed to be compatible with **Zettelkasten**, where individual leaves can act as index cards. By adding page numbers after dates, you can ensure uniqueness. or, you could add additional Zettelkasten-style identifier to only relevant leaves.
+At a minimum, it's possible to link notes using their dates. The system is designed to be compatible with **Zettelkasten**, where individual leaves can act as index cards. By adding page numbers after dates, you can ensure uniqueness. Or, you could add additional Zettelkasten-style identifier to only relevant leaves.
 
 However, I don't find linking notes particularly useful. Instead, I prefer to **browse** my notes while thinking, allowing connections to emerge organically. When I need to retrieve specific information, I rely on **search**. (see [Searching and Browsing](#searching-and-browsing))
 
@@ -87,7 +97,11 @@ However, if you're an analog purist, you can still maintain a traditional index 
 
 In Unbound System notes never get truly retired—they merely migrate from one place to another. Archiving is as straightforward as moving a leaf into a long-term binder. I use thick cardboard binders labeled `2023`, `2024`, `2025`, and so on, for loose leaves from those years. All pages are ordered chronologically, so even if a binder contains hundreds of pages, they are extremely easy to locate.
 
+![](/visuals/uns/2025.05_UNS_13.jpg) 
+
 If you prefer a Zettelkasten-style archive, you can organize leaves into thematic drawers. Again, the system is designed to adapt to _you_ rather than impose a rigid structure.
+
+![](/visuals/uns/2025.05_UNS_12.jpg)
 
 I personally never move pages to the archive without scanning them first. However, this is also not strictly necessary since "unarchiving" a note is as easy as moving pages back into an active notebook.
 
@@ -95,9 +109,13 @@ I personally never move pages to the archive without scanning them first. Howeve
 
 The canonical Unbound version is designed so that covers are also loose and **DO NOT** wrap the binder part of the notebook as Filofax, Davinci and Plotter planners. Any thick paper, cloth, leather, or fabric that protects the pages beneath and gives the notebook a pleasing tactile quality can serve as a cover.
 
+![](/visuals/uns/2025.05_UNS_03.jpg)
+
 You could even use additional "cover" in between leaves as a writing pad or a separator.
 
 I have two active notebooks: one with a 1mm yellow-tanned leather cover and another cut from a Freitag F08 DAN pouch I got for $5 because it had a broken zipper. All it takes to make new covers are scissors and a hole punch.
+
+![](/visuals/uns/2025.05_UNS_09.jpg)
 
 Since covers are essentially the first and last "pages," you can change them as frequently as you want without starting a new notebook. Or, you could keep the same one and have the "same" notebook for decades.
 
@@ -121,6 +139,8 @@ I have a separate guide on how to start and create your own Unbound notebook fro
 - [Make Your Own Unbound Notebook](/notebook-system/make-your-own)
 
 ## Accessories
+
+![](/visuals/uns/2025.05_UNS_04.jpg)
 
 I have been using Unbound System for more than two years at the time of publishing this, and I've accumulated some experience with it. Below are a few tips and tricks that I find useful when using the system:
 
