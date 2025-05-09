@@ -5,7 +5,7 @@ date: 2025-01-06
 
 **Unbound** is an evolving framework for integrating digital and analog note-taking. It's an exploration of how we can make the processes of capturing, searching, and exploring knowledge more flexible and enjoyable.
 
-![](/visuals/uns/2025.05_UNS_10.jpg)
+![](/visuals/uns/2025.05_UNS_14.jpg)
 
 The Unbound System is a work in progress—a research project. It's an adaptable, non-rigid approach to thinking, exploring, retrieving, and evolving ideas and thoughts, leveraging various mediums.
 
@@ -38,6 +38,8 @@ I use a rubber stamp with changing dates to page my notes, but the simple act of
 ## Grouping
 
 I avoid grouping pages by project, topic, or area. The loose leaf system is incredibly flexible when you want to migrate a page from one part of the notebook to another—or even to a dedicated notebook for logging or project ideas. However, I find excessive grouping creates silos of neglect, where notes that might be useful during casual browsing are overlooked.
+
+![](/visuals/uns/2025.05_UNS_10.jpg)
 
 ## Peripheral Vision
 
