@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 20px;
+  padding: 1px;
   
   .links-container {
     width: 100%;
@@ -13,11 +13,11 @@
     text-align: center;
     
     .avatar {
-      margin-bottom: 24px;
+      margin-bottom: 16px;
       
       img {
-        width: 160px;
-        height: 160px;
+        width: 90px;
+        height: 90px;
         border-radius: 50%;
         object-fit: cover;
         border: none;
@@ -25,20 +25,98 @@
     }
 
     .site-logo {
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       
       img {
-        width: auto;
+        width: 140px;
+        height: auto;
       }
     }
     
     .description {
-      margin-bottom: 40px;
+      margin-bottom: 24px;
       font-size: $font-size-base;
       line-height: $line-height-base;
       
       p {
-        margin: 0 0 20px;
+        margin: 0 0 16px;
+      }
+    }
+
+    // Flaneur form styles for links page
+    .flaneur-inpage-box {
+      margin: 0 0 24px 0;
+      padding: 0;
+      border: none;
+      background: none;
+
+      h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .email-subscribe {
+        form {
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+          margin-bottom: 0;
+          align-items: stretch;
+
+          input {
+            width: 100%;
+            height: 44px;
+            padding: 0 24px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: $font-size-base;
+            line-height: $line-height-base;
+            box-sizing: border-box;
+            background: transparent;
+            margin: 0;
+
+            @include dark {
+              background: $color-dark-bg;
+              border-color: rgba($color: white, $alpha: 0.2);
+              color: $color-dark-text;
+            }
+          }
+
+          button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 44px;
+            padding: 0 24px;
+            background: $color-light-text;
+            color: $color-light-bg;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: $font-size-base;
+            line-height: $line-height-base;
+            border: 0;
+
+          }
+        }
+
+        .promise {
+          font-size: 14px;
+          color: #666;
+
+          @include dark {
+            color: rgba($color: white, $alpha: 0.6);
+          }
+
+          p {
+            margin: 0 0 8px;
+          }
+
+          a {
+            color: inherit;
+            text-decoration: underline;
+          }
+        }
       }
     }
     
@@ -71,5 +149,13 @@
         }
       }
     }
+  }
+
+  hr {
+    border: none;
+    border-top: 1px solid #888;
+    width: 50%;
+    margin: 32px auto;
+    background: none;
   }
 } 

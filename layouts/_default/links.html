@@ -19,8 +19,25 @@
            alt="{{ .Site.Title }} logo">
     </div>
     <div class="description">
-      {{ .Content }}
+      <p>I'm a photographer, bookbinder, walker, and human-computer interface researcher, small gallery curator, among other smaller things.</p>
     </div>
+    <section class="flaneur-inpage-box">
+      <div class="email-subscribe">
+        <form
+          class="js-cm-form"
+          id="subForm"
+          action="https://www.createsend.com/t/subscribeerror?description="
+          method="post"
+          data-id="191722FC90141D02184CB1B62AB3DC26F7C416DE30A85B0B53BD94B6BBB579944F5715088DFCFDDBAF132E94DB6E2DA0EC5A3D9818CF7742D73716649E3ABF04"
+        >
+          <input autocomplete="Email" class="js-cm-email-input qa-input-email" id="fieldEmail" maxlength="200" name="cm-tyithrl-tyithrl" required="" type="email" placeholder="Subscribe to The Flâneur via email" />
+          <button type="submit">Subscribe</button>
+        </form>
+      </div>
+      <script type="text/javascript" src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
+    </section>
+    <hr>
+    {{ .Content }}
   </div>
 </body>
 </html>
