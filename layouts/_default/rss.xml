@@ -29,7 +29,7 @@
       <link>{{ .Permalink }}</link>
       <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
       <guid>{{ .Permalink }}</guid>
-      <description>{{ .Content | html }}</description>
+      <description>{{ .Content | html }}&lt;hr&gt;Thank you for keeping RSS alive. &lt;a href="https://ttvl.co/newsletter/"&gt;Subscribe to Flâneur.&lt;/a&gt;</description>
     </item>
     {{ end }}
   </channel>
