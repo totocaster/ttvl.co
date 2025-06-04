@@ -25,3 +25,6 @@ node_modules/
 
 # Local Hugo temp dir
 .hugo_build.lock
+
+# Aider
+.aider*
