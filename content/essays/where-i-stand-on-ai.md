@@ -14,7 +14,7 @@ I've developed a nuanced stance on the power and use of AI in various aspects of
 
 A few years ago, if you asked anyone how AI could change industries, almost everybody would have agreed that programmers/software people were pretty much in a safe zone—that their jobs would never be replaced. Ironically enough, I think coders are now facing the biggest change in their industry, and it will happen the fastest—because we are the ones who adopt these tools the fastest.
 
-I think being a straight-up coder will basically not be a thing anymore. Everyone will be pushed to become a software engineer as soon as possible feeing up time for thinking and desing, rather than producing lines of code (which all of us agree, never was a measure of programming).
+I think being a straight-up coder will basically not be a thing anymore. Everyone will be pushed to become a software engineer as soon as possible, freeing up time for thinking and design, rather than producing lines of code (which all of us agree, never was a measure of programming).
 
 My view on AI in programming is quite positive. I think it will accelerate the industry quickly. It will enable more people to create and develop better tools and resources for us to try and use.
 
@@ -24,7 +24,7 @@ _AI in programming is a net positive by a significant margin._
 
 Using chatbots for brainstorming, thinking, and navigating my huge vault of notes has become a daily routine. It has enhanced both [browsing and searching][search-browse] of my and external knowledge bases.
 
-Making decisions, planning events, or organizing projects has become easier and more structured with AI tools. giving me more time to actualy do said projects. As context windows and RAG/MCP systems become more capable, AI-assisted productivity will only improve. Effectivly unlocking automation to everyone, not obly to nerds who like scripting or connecting nodes in visual programming tools. 
+Making decisions, planning events, or organizing projects has become easier and more structured with AI tools, giving me more time to actually do said projects. As context windows and RAG/MCP systems become more capable, AI-assisted productivity will only improve, effectively unlocking automation for everyone, not only for nerds who like scripting or connecting nodes in visual programming tools. 
 
 _I truly believe it will enhance human capability—not replace it._
 
@@ -32,7 +32,7 @@ _I truly believe it will enhance human capability—not replace it._
 
 This one is simple. I think both voice recognition and voice synthesis are massive wins for AI. There are no other algorithms that do both of those jobs better than AI-driven models. I'm not a native English speaker. I have a flat accent, but I'm sure I have one—whatever a Georgian accent in English is. So dictating to Siri or any other traditional voice recognition system was a moot point.
 
-The ability to explore ideas, make notes, or write articles like I'm doing now using AI speech recognition such as Whisper has been a true enabler for me.
+The ability to explore ideas, make notes, or write articles like I'm doing now, using AI speech recognition such as Whisper, has been a true enabler for me.
 
 _This is a clear win—especially for people who speak different languages or have accents. It opens up computing beyond the keyboard, mouse, or touchscreen._
 
@@ -40,7 +40,7 @@ _This is a clear win—especially for people who speak different languages or ha
 
 Languages are complex. Context and nuance matter a lot when working with words. This is another area where AI models are massively improving on what the industry had before.
 
-Pre-AI translation algorithms, even as advanced as Google's, were not capable of doing the job. Just look at all the memes of Japanese storefronts and services having English signs clearly translated using online services—they vary from hilarious to misleading.
+Pre-AI translation algorithms, even those as advanced as Google's, were not capable of doing the job. Just look at all the memes of Japanese storefronts and services with English signs clearly translated using online services—they range from hilarious to misleading.
 
 Like with voice, AI models turned something that was meh at best into something that actually works.
 
@@ -50,13 +50,13 @@ _The translation and multilingual abilities of AI models are a net positive. A b
 
 ## Writing
 
-Now we're getting into more arguable—and in my opinion, quite amoral—territory. While the text capabilities of AI are impressive and clearly useful for productivity (e.g., spelling, grammar, editorial advice—which is how I use it), there's also a dark side.
+Now we're getting into more arguable—and, in my opinion, quite amoral—territory. While the text capabilities of AI are impressive and clearly useful for productivity (e.g., spelling, grammar, editorial advice—which is how I use it), there's also a dark side.
 
 It's generating a massive amount of junk content online—useless garbage designed mostly to steer people toward ads.
 
 Fortunately, as of writing this, I think a discerning eye can still spot AI slop. The _generative writing style_ is immature and bombastic—easy to detect. But that likely won’t last forever.
 
-_As much as I appriciate editorial capabilities of LLMs, it's ability to generate nonsense endlessly is alarming. So my stance is slightly neutral._
+_As much as I appreciate the editorial capabilities of LLMs, its ability to generate nonsense endlessly is alarming. So my stance is slightly neutral._
 
 ## Image Making
 
@@ -68,9 +68,9 @@ _While I clearly see use in some cases, such as Photoshop's content-aware tools,
 
 Now we’re entering a zone I consider on a spectrum of useless to dangerous. Even if AI-generated videos become extremely good, I still find them useless at best—and weaponized at worst.
 
-While watching Google I/O 2025, during Veo demos (Google's AI video generation tool) I cought myself aksing "This is impressive tech, but what is the use of it?"
+While watching Google I/O 2025, during Veo demos (Google's AI video generation tool), I caught myself asking, "This is impressive tech, but what is the use of it?"
 
-It's been alsmot a week and I still ask myself that question. ONly thinkg that comes to my mind is conning other human being.
+It's been almost a week, and I still ask myself that question. The only thing that comes to my mind is conning other human beings.
 
 _I see no meaningful value in AI-generated video—only risk._ Especially for people who already believe everything they see on the internet.
 
@@ -81,6 +81,7 @@ Just a [much] worse version of the above.
 ## Music
 
 No opinion as of June 2025.
+
 
 ---
 
