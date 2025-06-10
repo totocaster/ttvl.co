@@ -1,0 +1,4 @@
+---
+title: 'Writings'
+aliases: ["/essays/"]
+---

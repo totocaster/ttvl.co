@@ -2,13 +2,14 @@
 title: 'Soviet ≠ Russian'
 date: 2018-11-26
 description: An exploration of the common mix-up between Soviet Union, Russia, and related terms and a Georgian perspective on their historical impact.
+aliases: ["/essays/soviet-not-russia/"]
 ---
 
 I have seen many of my foreign friends use words _Soviet Union_, _Russia_, _Soviet_, and _Russian_ interchangeably. Moreover, I’ve seen huge publications like [Vox][vox] mix those two terms, which eventually triggered me to write this. Consider this article as a kind explainer of what the Soviet Union means. It is about words and their meanings.
 
 I understand that confusion comes from gaps in cross-culture knowledge rather than an attempt to diminish someone. However, it is still a false generalization that might easily offend people. If UK culture is somewhat closer to you, imagine how upsetting it would be for Scottish or Irish to repeatedly called English, only because [they all are from the UK][cgpgrey].
 
-![Soviet Map of Soviet Union. Thick red line denotes borders of USSR. Thinner red lines are borders between member states.](/visuals/essays/map-of-soviet-union.jpeg)
+![Soviet Map of Soviet Union. Thick red line denotes borders of USSR. Thinner red lines are borders between member states.](/visuals/writings/map-of-soviet-union.jpeg)
 
 ## What was the Soviet Union?
 
@@ -16,7 +17,7 @@ The Soviet Union, or formally — Union of Soviet Socialist Republics (USSR) —
 
 Republics of the Soviet Union however, were: Armenia, Azerbaijan, Byelorussia, Estonia, Georgia, Kazakhstan, Kirghizia, Latvia, Lithuania, Moldavia, Russia, Tajikistan, Turkmenia, Ukraine, Uzbekistan. All of them were Soviet republics and members of USSR, but not part of Russia.
 
-![Flag of Soviet Republics with the Union flag on the top. Russian flag is bottom left. Georgian—top right.](/visuals/essays/flags-of-soviet-republics.png)
+![Flag of Soviet Republics with the Union flag on the top. Russian flag is bottom left. Georgian—top right.](/visuals/writings/flags-of-soviet-republics.png)
 
 While all countries were equal, some were more equal than others, and only one of them had Moscow in it, so the fact that Russia had the most power of the fifteen is correct.
 
@@ -29,7 +30,7 @@ Thus, words Soviet and Russian mean different things, same rules apply to words 
 
 That’s pretty much it. But, me being Georgian, I’d like you to know a couple of things about USSR and Georgia too.
 
-![Georgian National Council (Parliament) meeting in 1919.](/visuals/essays/georgian-national-council-in-1919.jpeg)
+![Georgian National Council (Parliament) meeting in 1919.](/visuals/writings/georgian-national-council-in-1919.jpeg)
 
 - The formal name of Georgia during the USSR was Georgian SSR, or [Georgian Soviet Socialist Republic][gssr].
 - While some countries joined USSR somewhat willfully, most were forced to join. Georgia was one of the later ones.

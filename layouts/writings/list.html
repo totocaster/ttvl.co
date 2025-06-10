@@ -1,7 +1,7 @@
 {{ define "main" }} {{/*
 <h1>{{ .Title }}</h1>
 */}} {{ .Content }}
-<ul class="essays-list">
+<ul class="writings-list">
   {{ range .Pages.ByDate.Reverse }}
   <li>
     <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2> &mdash; <p>{{ with .Params.description }} {{ . }} {{ end }}</p>

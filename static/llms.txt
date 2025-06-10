@@ -1,6 +1,6 @@
 # ttvl.co
 
-> Personal website of Toto Tvalavadze featuring photography documentation, notebook system templates, personal essays, and various creative projects. 
+> Personal website of Toto Tvalavadze featuring photography documentation, notebook system templates, personal writings, and various creative projects. 
 
 This site serves as a digital garden and documentation hub for various personal and creative projects, with a strong focus on analog photography, notebook systems, and thoughtful writing.
 

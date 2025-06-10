@@ -2,6 +2,7 @@
 title: Non-photographers Need Not Apply
 date: 2024-01-10
 description: Exploring the contrast between written and photographic books.
+aliases: ["/essays/non-photographers-need-not-apply/"]
 ---
 
 In my world, photo books hold a special kind of reverence. They are cherished not just as vessels of visual narratives but as objects in their own right. A finely crafted photo book often surpasses the allure of a museum or gallery visit, though, admittedly, the prospect of a meandering walk through a quirky district with exhibition cases carries its charm ([wink-wink, hint-hint](https://jinnystreetgallery.com)).

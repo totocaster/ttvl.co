@@ -2,6 +2,7 @@
 title: 'John Cage: 10 Rules for Students and Teachers'
 draft: true
 date: 2025-01-13
+aliases: ["/essays/ten-rules-for-students-and-teachers/"]
 ---
 
 1. Find a place you trust, and then try trusting it for awhile.
