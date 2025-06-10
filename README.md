@@ -71,10 +71,50 @@ The project includes email templates for newsletters and member communications:
   - Styled with variable font for ROAM branding
   - Copy-paste ready for Campaign Monitor's template system
 
+## Synapse Pulse Integration
+
+The `/content/synapse-pulse/` section contains automatically generated worklog content from Mastodon posts for the Synapse project.
+
+### Prerequisites
+
+Set your Mastodon access token:
+```bash
+export MASTODON_TOKEN="your_access_token_here"
+```
+
+### Make Commands
+
+- `make build` - Build the website for production
+- `make dev` - Build and serve the website for development  
+- `make sync-build` - Sync Mastodon posts and build the website
+- `make clean` - Clean generated files and Mastodon content
+
+### Manual Sync
+
+```bash
+./tools/mastodon/mastodon-hugo \
+  --instance mastodon.social \
+  --user ttt \
+  --content-dir ./content/synapse-pulse \
+  --media-dir ./static/synapse-pulse \
+  --max-status-id 113884697682062582 \
+  --ignore-replies
+```
+
+### Implementation Notes
+
+- Generated content is automatically excluded from git
+- Posts displayed in reverse chronological order (newest first)
+- Media attachments automatically embedded below post content
+- Section excluded from main RSS feed and site index
+- Uses `original_url` parameter in front matter
+- `--max-status-id` limits fetch to posts up to a specific status ID (incremental sync)
+- `--ignore-replies` skips replies to others but keeps your own threads
+
 ## License
 
 All rights reserved. The content and code in this repository are not available for reuse without explicit permission.
 
 ---
 
-Last updated: March 30, 2025
+Last updated: June 10, 2025

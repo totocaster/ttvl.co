@@ -1,0 +1,42 @@
+{{ define "main" }}
+<article class="synapse-pulse-intro">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  <hr>
+</article>
+
+{{ range .Pages.ByDate.Reverse }}
+<article class="synapse-pulse-post">
+  <div class="synapse-pulse-content">
+    {{ .Content }}
+  </div>
+  
+  {{ if .Params.media }}
+  <div class="synapse-pulse-media">
+    {{ range .Params.media }}
+      {{ $mediaPath := printf "/synapse-pulse/%s" . }}
+      {{ if or (strings.HasSuffix . ".jpg") (strings.HasSuffix . ".jpeg") (strings.HasSuffix . ".png") (strings.HasSuffix . ".gif") (strings.HasSuffix . ".webp") }}
+        <img src="{{ $mediaPath }}" alt="Synapse development image" loading="lazy" />
+      {{ else if or (strings.HasSuffix . ".mp4") (strings.HasSuffix . ".webm") (strings.HasSuffix . ".mov") }}
+        <video controls preload="metadata">
+          <source src="{{ $mediaPath }}" />
+        </video>
+      {{ else }}
+        <a href="{{ $mediaPath }}" target="_blank">{{ . }}</a>
+      {{ end }}
+    {{ end }}
+  </div>
+  {{ end }}
+
+  <div class="synapse-pulse-meta">
+    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+      <a href="{{ .RelPermalink }}">{{ .Date.Format "2006.01.02 15:04" }}</a>
+    </time>
+  </div>
+</article>
+{{ end }}
+
+{{ if not .Pages }}
+<p>No updates yet. Posts will appear here automatically when synced from Mastodon.</p>
+{{ end }}
+{{ end }} 
