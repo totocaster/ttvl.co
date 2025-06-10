@@ -1,0 +1,42 @@
+.synapse-pulse-intro {
+  h1, p {
+    @include readable-width;
+  }
+}
+
+.synapse-pulse-post {
+  margin-bottom: 4rem;
+  time, p:first-child {
+    display: inline;
+  }
+
+  time a {
+    font-weight: 400;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.synapse-pulse-content {
+  p {
+    @include readable-width;
+  }
+}
+
+.synapse-pulse-media {
+  @include readable-width;
+  margin: 1rem 0;
+  
+  img, video {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+.synapse-pulse-mastodon-link {
+  margin-top: 1rem;
+  font-size: 14px;
+} 
