@@ -96,7 +96,9 @@ export MASTODON_TOKEN="your_access_token_here"
   --instance mastodon.social \
   --user ttt \
   --content-dir ./content/synapse-pulse \
-  --media-dir ./static/synapse-pulse
+  --media-dir ./static/synapse-pulse \
+  --max-status-id 113884697682062582 \
+  --ignore-replies
 ```
 
 ### Implementation Notes
@@ -106,6 +108,8 @@ export MASTODON_TOKEN="your_access_token_here"
 - Media attachments automatically embedded below post content
 - Section excluded from main RSS feed and site index
 - Uses `original_url` parameter in front matter
+- `--max-status-id` limits fetch to posts up to a specific status ID (incremental sync)
+- `--ignore-replies` skips replies to others but keeps your own threads
 
 ## License
 
@@ -113,4 +117,4 @@ All rights reserved. The content and code in this repository are not available f
 
 ---
 
-Last updated: March 30, 2025
+Last updated: June 10, 2025

@@ -4,20 +4,17 @@
   }
 }
 
-.synapse-pulse-post {
-  margin-bottom: 4rem;
-  time, p:first-child {
-    display: inline;
-  }
-
+.synapse-pulse-meta {
+  margin-bottom: 1rem;
   time a {
     font-weight: 400;
     text-decoration: none;
-    
-    &:hover {
-      text-decoration: underline;
-    }
+    opacity: 0.4;
   }
+}
+
+.synapse-pulse-post {
+  margin-bottom: 6rem;
 }
 
 .synapse-pulse-content {
@@ -37,6 +34,5 @@
 }
 
 .synapse-pulse-mastodon-link {
-  margin-top: 1rem;
-  font-size: 14px;
+  margin-top: 6rem;
 } 
