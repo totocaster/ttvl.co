@@ -34,7 +34,7 @@ disableKinds = ["taxonomy", "term"]
 [permalinks]
  log = "/log/:year/:month/"
  objects = "/objects/:year/:slug/"
- synapse-pulse = "/synapse-pulse/:year/:month/:slug/"
+ synapse-pulse = "/synapse-pulse/:contentbasename/"
 
 [outputs]
   home = ["HTML", "RSS"]
