@@ -1,12 +1,6 @@
 {{ define "main" }}
 <article class="synapse-pulse-post">
   <h1>Synapse Pulse Update</h1>
-  
-  <div class="synapse-pulse-meta">
-    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-      <a href="{{ .RelPermalink }}">{{ .Date.Format "2006.01.02 15:04" }}</a>
-    </time>
-  </div>
   <div class="synapse-pulse-content">
     {{ .Content }}
   </div>
@@ -28,6 +22,12 @@
   </div>
   {{ end }}
   
+  <div class="synapse-pulse-meta">
+    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+      <a href="{{ .RelPermalink }}">{{ .Date.Format "2006.01.02 15:04" }}</a>
+    </time>
+  </div>
+
   {{ if .Params.original_url }}
   <div class="synapse-pulse-mastodon-link">
     <a href="{{ .Params.original_url }}" target="_blank" rel="noopener">View on Mastodon</a>
