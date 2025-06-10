@@ -11,6 +11,8 @@ A Go CLI tool that fetches Mastodon posts from a specific user and generates Hug
 - Downloads all attached images and videos
 - Generates Hugo-compatible Markdown files with YAML front matter
 - Configurable output directories
+- Fetch all posts up to a specific status ID (useful for incremental updates)
+- Option to ignore replies to other people
 - Simple CLI interface
 
 ## Setup
@@ -55,6 +57,20 @@ make install
 ./mastodon-hugo --user your_username
 ```
 
+### Fetch All Posts
+
+```bash
+# Fetch all public posts from a user (ignoring replies to others, but keeping your threads)
+./mastodon-hugo --user your_username --ignore-replies
+```
+
+### Fetch Posts Up to a Specific Status
+
+```bash
+# Fetch all posts up to a specific status ID (useful for incremental updates)
+./mastodon-hugo --user your_username --max-status-id 123456789
+```
+
 ### Custom Parameters
 
 ```bash
@@ -62,7 +78,9 @@ make install
   --instance mastodon.social \
   --user your_username \
   --content-dir ./content \
-  --media-dir ./content/attachments
+  --media-dir ./content/attachments \
+  --max-status-id 123456789 \
+  --ignore-replies
 ```
 
 ### CLI Options
@@ -71,6 +89,8 @@ make install
 - `--user` - Username to fetch posts from (required)
 - `--content-dir` - Directory for markdown files (default: `./content`)
 - `--media-dir` - Directory for media files (default: `./content/attachments`)
+- `--max-status-id` - Fetch all posts up to this status ID (optional)
+- `--ignore-replies` - Skip replies to other people, but keep your own threads (optional)
 
 ## Output Format
 
@@ -168,4 +188,6 @@ make help
 - Media files are downloaded as-is (no processing/resizing)
 - Existing files are not re-downloaded (basic deduplication)
 - HTML tags are stripped from post content while preserving line breaks
-- Post content is stored in markdown body, not in YAML front matter 
+- Post content is stored in markdown body, not in YAML front matter
+- When using `--max-status-id`, the tool fetches ALL posts chronologically up to that status ID (useful for incremental syncing)
+- The `--ignore-replies` flag skips posts that are replies to other users' posts, but keeps your own threads (replies to your own posts) 

@@ -6,10 +6,13 @@
 
 {{ range .Pages.ByDate.Reverse }}
 <article class="synapse-pulse-post">
-  <div class="synapse-pulse-content">
+  <div class="synapse-pulse-meta">
     <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-      <a href="{{ .RelPermalink }}">{{ .Date.Format "2006.01.02 15:04" }}</a> &mdash;
-    </time> {{ .Content }}
+      <a href="{{ .RelPermalink }}">{{ .Date.Format "2006.01.02 15:04" }}</a>
+    </time>
+  </div>
+  <div class="synapse-pulse-content">
+    {{ .Content }}
   </div>
   
   {{ if .Params.media }}

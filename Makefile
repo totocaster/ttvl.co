@@ -37,13 +37,15 @@ sync-mastodon:
 		--instance mastodon.social \
 		--user ttt \
 		--content-dir ./content/synapse-pulse \
-		--media-dir ./static/synapse-pulse
+		--media-dir ./static/synapse-pulse \
+		--max-status-id 113884697682062582 \
+		--ignore-replies
 
 # Clean generated files
 clean:
 	@echo "Cleaning generated files..."
 	rm -rf public/
 	rm -rf resources/_gen/
-	rm -f content/synapse-pulse/*.md
+	rm -f content/synapse-pulse/20??-??-??-*.md
 	rm -f static/synapse-pulse/*
 	@echo "Clean complete" 
