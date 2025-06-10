@@ -1,0 +1,35 @@
+{{ define "main" }}
+<article class="synapse-pulse-post">
+  <h1>Synapse Pulse Update</h1>
+  
+  <div class="synapse-pulse-content">
+    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+      {{ .Date.Format "January 2, 2006 at 15:04" }} &mdash;
+    </time>
+    {{ .Content }}
+  </div>
+  
+  {{ if .Params.media }}
+  <div class="synapse-pulse-media">
+    {{ range .Params.media }}
+      {{ $mediaPath := printf "/synapse-pulse/%s" . }}
+      {{ if or (strings.HasSuffix . ".jpg") (strings.HasSuffix . ".jpeg") (strings.HasSuffix . ".png") (strings.HasSuffix . ".gif") (strings.HasSuffix . ".webp") }}
+        <img src="{{ $mediaPath }}" alt="Synapse development image" loading="lazy" />
+      {{ else if or (strings.HasSuffix . ".mp4") (strings.HasSuffix . ".webm") (strings.HasSuffix . ".mov") }}
+        <video controls preload="metadata">
+          <source src="{{ $mediaPath }}" />
+        </video>
+      {{ else }}
+        <a href="{{ $mediaPath }}" target="_blank">{{ . }}</a>
+      {{ end }}
+    {{ end }}
+  </div>
+  {{ end }}
+  
+  {{ if .Params.original_url }}
+  <div class="synapse-pulse-mastodon-link">
+    <a href="{{ .Params.original_url }}" target="_blank" rel="noopener">View on Mastodon</a>
+  </div>
+  {{ end }}
+</article>
+{{ end }} 

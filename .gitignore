@@ -28,3 +28,7 @@ node_modules/
 
 # Aider
 .aider*
+
+# Synapse Pulse generated content
+content/synapse-pulse/20??-??-??-*.md
+static/synapse-pulse/*
