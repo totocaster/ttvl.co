@@ -1,7 +1,9 @@
 {{ define "main" }}
 <h1>Index</h1>
 <nav id="Index">
-  {{ $pages := sort (where (where .Site.RegularPages "Kind" "page") "Section" "ne" "flaneur") "Title" }} {{ $letters := split "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z #" " " }} {{ range
+  {{ $regularPages := where (where (where .Site.RegularPages "Kind" "page") "Section" "ne" "flaneur") "Section" "ne" "synapse-pulse" }}
+  {{ $sectionPages := where (where .Site.Pages "Kind" "section") "Section" "ne" "flaneur" }}
+  {{ $pages := sort (union $regularPages $sectionPages) "Title" }} {{ $letters := split "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z #" " " }} {{ range
   $letters }} {{ $letter := . }} {{ $letterPages := slice }} {{ range $pages }} {{ $firstChar := upper (substr (default .File.Path .Title) 0 1) }} {{ if eq $letter "#" }} {{ if not (findRE "[A-Z]"
   $firstChar) }} {{ $letterPages = $letterPages | append . }} {{ end }} {{ else }} {{ if eq $firstChar $letter }} {{ $letterPages = $letterPages | append . }} {{ end }} {{ end }} {{ end }} {{ if
   $letterPages }}
