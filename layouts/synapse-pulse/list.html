@@ -2,15 +2,11 @@
 <article class="synapse-pulse-intro">
   <h1>{{ .Title }}</h1>
   {{ .Content }}
+  <hr>
 </article>
 
 {{ range .Pages.ByDate.Reverse }}
 <article class="synapse-pulse-post">
-  <div class="synapse-pulse-meta">
-    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-      <a href="{{ .RelPermalink }}">{{ .Date.Format "2006.01.02 15:04" }}</a>
-    </time>
-  </div>
   <div class="synapse-pulse-content">
     {{ .Content }}
   </div>
@@ -31,6 +27,12 @@
     {{ end }}
   </div>
   {{ end }}
+
+  <div class="synapse-pulse-meta">
+    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+      <a href="{{ .RelPermalink }}">{{ .Date.Format "2006.01.02 15:04" }}</a>
+    </time>
+  </div>
 </article>
 {{ end }}
 
