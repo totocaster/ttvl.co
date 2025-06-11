@@ -13,6 +13,8 @@ A Go CLI tool that fetches Mastodon posts from a specific user and generates Hug
 - Configurable output directories
 - Fetch all posts up to a specific status ID (useful for incremental updates)
 - Option to ignore replies to other people
+- Skip existing posts for fast incremental updates
+- Filter posts by trailing tags (case insensitive)
 - Simple CLI interface
 
 ## Setup
@@ -71,6 +73,25 @@ make install
 ./mastodon-hugo --user your_username --max-status-id 123456789
 ```
 
+### Incremental Updates (Skip Existing Posts)
+
+```bash
+# Only process new posts, skip ones that already exist as markdown files
+./mastodon-hugo --user your_username --skip-existing
+```
+
+### Filter by Trailing Tags
+
+```bash
+# Only process posts that end with a specific tag (case insensitive)
+./mastodon-hugo --user your_username --trailing-tag "#BLOG"
+
+# Or use caret notation
+./mastodon-hugo --user your_username --trailing-tag "^PUBLISH"
+
+# Tags are stripped from the final markdown output
+```
+
 ### Custom Parameters
 
 ```bash
@@ -80,7 +101,9 @@ make install
   --content-dir ./content \
   --media-dir ./content/attachments \
   --max-status-id 123456789 \
-  --ignore-replies
+  --ignore-replies \
+  --skip-existing \
+  --trailing-tag "#BLOG"
 ```
 
 ### CLI Options
@@ -91,6 +114,8 @@ make install
 - `--media-dir` - Directory for media files (default: `./content/attachments`)
 - `--max-status-id` - Fetch all posts up to this status ID (optional)
 - `--ignore-replies` - Skip replies to other people, but keep your own threads (optional)
+- `--skip-existing` - Skip posts that already exist as markdown files (optional)
+- `--trailing-tag` - Only process posts ending with this specific tag, case insensitive (optional)
 
 ## Output Format
 
@@ -190,4 +215,6 @@ make help
 - HTML tags are stripped from post content while preserving line breaks
 - Post content is stored in markdown body, not in YAML front matter
 - When using `--max-status-id`, the tool fetches ALL posts chronologically up to that status ID (useful for incremental syncing)
-- The `--ignore-replies` flag skips posts that are replies to other users' posts, but keeps your own threads (replies to your own posts) 
+- The `--ignore-replies` flag skips posts that are replies to other users' posts, but keeps your own threads (replies to your own posts)
+- The `--skip-existing` flag checks for existing markdown files and skips processing them, making subsequent runs much faster
+- The `--trailing-tag` flag filters posts by their ending tag (case insensitive) and removes the tag from the final markdown output 
