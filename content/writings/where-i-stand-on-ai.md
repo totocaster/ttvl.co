@@ -15,7 +15,7 @@ I've developed a nuanced stance on the power and use of AI in various aspects of
 
 A few years ago, if you asked anyone how AI could change industries, almost everybody would have agreed that programmers/software people were pretty much in a safe zone—that their jobs would never be replaced. Ironically enough, I think coders are now facing the biggest change in their industry, and it will happen the fastest—because we are the ones who adopt these tools the fastest.
 
-I think being a straight-up coder will basically not be a thing anymore. Everyone will be pushed to become a software engineer as soon as possible, freeing up time for thinking and design, rather than producing lines of code (which all of us agree, never was a measure of programming).
+I think being a straight-up coder will basically not be a thing anymore. Everyone will be pushed to become an engineer, freeing up time for thinking and design, rather than producing lines of code (which all of us agree, never was a measure of programming).
 
 My view on AI in programming is quite positive. I think it will accelerate the industry quickly. It will enable more people to create and develop better tools and resources for us to try and use.
 
@@ -23,9 +23,9 @@ _AI in programming is a net positive by a significant margin._
 
 ## Productivity / Thinking
 
-Using chatbots for brainstorming, thinking, and navigating my huge vault of notes has become a daily routine. It has enhanced both [browsing and searching][search-browse] of my and external knowledge bases.
+Using chatbots for brainstorming, exploring, and navigating my huge vault of notes has become a daily routine. It has enhanced both [browsing and searching][search-browse] of my and external knowledge bases.
 
-Making decisions, planning events, or organizing projects has become easier and more structured with AI tools, giving me more time to actually do said projects. As context windows and RAG/MCP systems become more capable, AI-assisted productivity will only improve, effectively unlocking automation for everyone, not only for nerds who like scripting or connecting nodes in visual programming tools. 
+Assisting with decisions, planning events, or organizing projects has become easier and more structured with AI tools, giving me more time to actually do said projects. As context windows and RAG/MCP systems become more capable, AI-assisted productivity will only improve, effectively unlocking automation for everyone, not only for nerds who like scripting or connecting nodes in visual programming tools. 
 
 _I truly believe it will enhance human capability—not replace it._
 
@@ -45,8 +45,6 @@ Pre-AI translation algorithms, even those as advanced as Google's, were not capa
 
 Like with voice, AI models turned something that was meh at best into something that actually works.
 
-Being able to read a text with an understanding of context—or even its subtext—has made my life in Japan, as someone who doesn’t speak fluent Japanese, considerably easier.
-
 _The translation and multilingual abilities of AI models are a net positive. A big leap forward._
 
 ## Writing
@@ -61,7 +59,7 @@ _As much as I appreciate the editorial capabilities of LLMs, its ability to gene
 
 ## Image Making
 
-As impressive as image generation is, I don’t think it’s adding much real value to humanity at this point. Sure, it can save money by avoiding [very basic] graphic design work. But in terms of generating meaningful value? Not really.
+As impressive as image generation is, I don’t think it’s adding much real value to humanity at this point. Sure, it can save money by avoiding [very basic] graphic design work. But in terms of generating meaningful value? Creative and impactful work? Not really. I think image-generating services are gimmicks at best.
 
 _While I clearly see use in some cases, such as Photoshop's content-aware tools, I’m not a fan of AI image generation tools._
 
