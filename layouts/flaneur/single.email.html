@@ -65,6 +65,27 @@
         margin: 0;
         line-height: 21px;
       }
+      .flaneur-gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        margin: 24px 0;
+      }
+      .flaneur-gallery p {
+        margin: 0;
+      }
+      .flaneur-gallery img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin: 0;
+      }
+      @media screen and (max-width: 600px) {
+        .flaneur-gallery {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+      }
     </style>
   </head>
   <body>

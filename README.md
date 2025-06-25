@@ -58,6 +58,73 @@ Content is organized in several main sections:
 
 ## Tools and Templates
 
+### Hugo Shortcodes
+
+The site includes several custom Hugo shortcodes for enhanced content formatting:
+
+#### `flaneur-gallery`
+Creates a responsive image gallery that displays images side by side (2 columns on desktop, single column on mobile).
+
+**Usage:**
+```markdown
+{{< flaneur-gallery >}}
+![Image 1 alt text](/path/to/image1.jpg)
+![Image 2 alt text](/path/to/image2.jpg)
+![Image 3 alt text](/path/to/image3.jpg)
+{{< /flaneur-gallery >}}
+```
+
+**Features:**
+- Automatic responsive grid layout (2 columns → 1 column on mobile)
+- Maintains readable-width constraints 
+- Works in both web and email templates
+- Supports any number of images (wraps to new rows after 2 images)
+- Email-compatible CSS (no JavaScript required)
+
+**Email Usage:**
+For email templates, manually convert the shortcode to HTML:
+```html
+<div class="flaneur-gallery">
+  <img src="https://ttvl.co/path/to/image1.jpg" alt="Image 1 alt text" />
+  <img src="https://ttvl.co/path/to/image2.jpg" alt="Image 2 alt text" />
+</div>
+```
+
+#### `download-section`
+Creates a styled download box with download icons and formatting.
+
+**Usage:**
+```markdown
+{{< download-section >}}
+- [Download File 1](/downloads/file1.pdf)
+- [Download File 2](/downloads/file2.pdf)
+{{< /download-section >}}
+```
+
+#### `toc`
+Generates a table of contents from page headers.
+
+**Usage:**
+```markdown
+{{< toc >}}
+```
+
+#### `youtube`
+Embeds YouTube videos with responsive container.
+
+**Usage:**
+```markdown
+{{< youtube "VIDEO_ID" >}}
+```
+
+#### `membership-link`
+Creates styled membership links using site configuration.
+
+**Usage:**
+```markdown
+{{< membership-link >}}Join Now{{< /membership-link >}}
+```
+
 ### Email Templates
 
 The project includes email templates for newsletters and member communications:
@@ -77,4 +144,4 @@ All rights reserved. The content and code in this repository are not available f
 
 ---
 
-Last updated: March 30, 2025
+Last updated: June 25, 2025

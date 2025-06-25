@@ -38,6 +38,35 @@ main {
         color: rgba($color: white, $alpha: 0.6);
       }
     }
+
+    // Flaneur gallery for multiple images
+    .flaneur-gallery {
+      @include readable-width; // Constrain to same width as other content
+      margin: 1.5rem 0;
+      
+      // Use CSS Grid for responsive layout
+      display: grid;
+      grid-template-columns: 1fr 1fr; // 2 columns
+      gap: 1rem;
+      
+      @include narrow {
+        grid-template-columns: 1fr; // Single column on mobile
+        gap: 0.5rem;
+      }
+    }
+
+    // Target images directly in flaneur gallery (no p tags generated)
+    .flaneur-gallery img {
+      width: 100% !important; // Override global 118% max-width
+      max-width: 100% !important; // Ensure images don't break out
+      height: auto !important;
+      display: block !important;
+      
+      // Override the media query from global styles too
+      @media (max-width: 1080px) {
+        max-width: 100% !important;
+      }
+    }
   }
 
   section.flaneur-header {
