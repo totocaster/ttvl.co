@@ -33,7 +33,6 @@ disableKinds = ["taxonomy", "term"]
 
 [permalinks]
  log = "/log/:year/:month/"
- objects = "/objects/:year/:slug/"
 
 [outputs]
   home = ["HTML", "RSS"]
