@@ -9,20 +9,6 @@ main {
     }
   }
 
-  // Objects list - used in /objects/
-  .objects-list {
-    list-style: none;
-    padding: 0;
-    span {
-      margin-right: 0.5rem;
-    }
-    
-    // Draft styling - only visible in development
-    .draft {
-      opacity: 0.2;
-    }
-  }
-
   // Writings list - used in /writings/
 .writings-list {
     list-style: none;
