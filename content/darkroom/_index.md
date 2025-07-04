@@ -13,7 +13,7 @@ Technical and process-oriented resources focused on photography, darkroom techni
 ## DIY Projects
 
 For Enhancing shooting process and overall experience:
-- [VSN Adapter: Valoi easy120 tube and carier mount for Negative Supply light source](/darkroom/valoi-easy120-with-negative-supply-99cri-light)
+- [VNS Adapter: Valoi easy120 tube and carrier mount for Negative Supply light source](/darkroom/valoi-easy120-with-negative-supply-99cri-light)
 - [Zone Placement Sticker for Pentax Digital Spotmeter](/darkroom/pentax-digital-spotmeter-sticker)
 - [Rugged 40-Roll Film Storage](/darkroom/rugged-40-roll-film-storage)
 - [Bulk Film Canister Stickers](/darkroom/canister-stickers)

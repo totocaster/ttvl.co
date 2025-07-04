@@ -26,10 +26,12 @@ I designed an adapter that mounts directly onto the Negative Supply light source
 I call it the **VNS Adapter**. You can grab STL files and print one for yourself too.
 
 {{< download-section >}}
-- [Download STL for printing](https://www.printables.com/model/1215933-vns-adapter-for-valoi-easy120-and-negative-supply)
+- [Download STL files for printing](https://www.printables.com/model/1215933-vns-adapter-for-valoi-easy120-and-negative-supply)
 {{< /download-section >}}
 
-The VNS adapter can be printed in two parts. You need to disassemble the easy120 and reuse some of its parts, namely the carrier holder and the bearing balls that center the film holder in the carrier. Everything screws together using screws from both products. The only additional material needed is brass threaded inserts, but these are optional if you print the base plate with a smaller hole to screw directly into the plastic. Nothing is glued, so you can disassemble and reassemble both Negative Supply and Valoi again.
+The VNS adapter can be printed in two parts. There are two versions of the **base plate**: V1, which is taller and easier to print but loses light due to a greater distance from the light source, and V2, which is shallower and brings the negative closer to the light source. You can use the V1 **film holder** on either of these.
+
+You need to disassemble the easy120 and reuse some of its parts, namely the carrier holder and the bearing balls that center the film holder in the carrier. Everything screws together using screws from both products. The only additional material needed is brass threaded inserts, but these are optional if you print the base plate with a smaller hole to screw directly into the plastic. Nothing is glued, so you can disassemble and reassemble both Negative Supply and Valoi again.
 
 ![The complete setup](/visuals/darkroom/vns_adapter_with_camera.jpeg)
 
