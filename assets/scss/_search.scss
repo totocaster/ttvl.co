@@ -1,0 +1,127 @@
+// Search overlay and functionality styles
+.search-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: $color-light-bg;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: $header-height;
+  z-index: 9999;
+  
+  @include dark {
+    background-color: $color-dark-bg;
+  }
+  
+  @include narrow {
+    padding-top: 60px;
+  }
+}
+
+.search-container {
+  width: 100%;
+  max-width: $max-width-readable;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.search-input {
+  width: 100%;
+  padding: $padding-small;
+  font-size: $font-size-h1;
+  font-family: $font-family-base;
+  line-height: $line-height-base;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: $color-light-text;
+  
+  @include dark {
+    color: $color-dark-text;
+  }
+  
+  &::placeholder {
+    opacity: 0.5;
+  }
+}
+
+.search-results {
+  overflow-y: auto;
+  max-height: calc(100vh - #{$header-height} - 100px);
+  margin-top: $padding-small;
+  
+  @include narrow {
+    max-height: calc(100vh - 160px);
+  }
+}
+
+.search-result-link {
+  display: block;
+  text-decoration: none;
+  color: $color-light-text;
+  padding: $padding-small;
+  margin: 0;
+  
+  @include dark {
+    color: $color-dark-text;
+  }
+  
+  &:hover,
+  &.selected {
+    background-color: rgba($color-light-text, 0.05);
+    
+    @include dark {
+      background-color: rgba($color-dark-text, 0.05);
+    }
+  }
+}
+
+.search-result-title {
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  margin-bottom: 4px;
+  
+  mark {
+    background: transparent;
+    text-decoration: underline;
+  }
+}
+
+.search-result-meta {
+  font-size: 14px;
+  opacity: 0.6;
+  margin-bottom: 4px;
+  
+  .search-result-section::after {
+    content: " / ";
+  }
+}
+
+.search-result-content {
+  font-size: 14px;
+  line-height: 20px;
+  opacity: 0.8;
+  
+  mark {
+    background: transparent;
+    text-decoration: underline;
+  }
+}
+
+.search-no-results,
+.search-loading,
+.search-error {
+  padding: $padding-small 0;
+  text-align: center;
+  opacity: 0.6;
+  font-size: $font-size-base;
+}
+
+.search-error {
+  color: inherit;
+  opacity: 1;
+}

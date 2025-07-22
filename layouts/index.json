@@ -1,0 +1,16 @@
+{{- $.Scratch.Add "searchIndex" slice -}}
+{{- $pages := where site.RegularPages "Type" "not in" (slice "page" "json") -}}
+{{- $pages := where $pages "Params.draft" "!=" true -}}
+{{- range $index, $page := $pages -}}
+  {{- $.Scratch.Add "searchIndex" (dict 
+    "id" $index
+    "title" $page.Title
+    "permalink" $page.Permalink
+    "content" (plainify $page.Content | truncate 500)
+    "summary" (plainify $page.Summary | truncate 200)
+    "section" $page.Section
+    "date" ($page.Date.Format "2006-01-02")
+    "tags" (or $page.Params.tags slice)
+  ) -}}
+{{- end -}}
+{{- $.Scratch.Get "searchIndex" | jsonify -}}

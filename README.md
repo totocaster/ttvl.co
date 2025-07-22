@@ -30,9 +30,11 @@ This is the source code for [ttvl.co](https://ttvl.co/), featuring:
 ├── assets/               # Frontend assets processed by Hugo
 │   ├── js/              # JavaScript files
 │   │   ├── lightbox.js  # Simple lightbox for images
-│   │   └── menu.js      # Mobile menu functionality
+│   │   ├── menu.js      # Mobile menu functionality
+│   │   └── search.js    # Site-wide search functionality
 │   └── scss/            # SCSS stylesheets
 │       ├── style.scss   # Main styles
+│       ├── _search.scss # Search UI styles
 │       └── *.scss       # Component styles
 ├── content/             # All site content in Markdown
 │   ├── darkroom/        # Photography documentation (11 articles)
@@ -106,12 +108,30 @@ This is the source code for [ttvl.co](https://ttvl.co/), featuring:
 
 ### Special Features
 
-1. **Flaneur Email Output**: Newsletter posts generate both web and email-friendly HTML versions
-2. **LLM Support**: `/static/llms.txt` provides AI-friendly site description
-3. **Membership Integration**: Paid subscription support via Memberful
-4. **No External Dependencies**: Pure Hugo build with no npm/yarn requirements
+1. **Site-Wide Search**: Press `?` key to activate search overlay with real-time filtering
+2. **Flaneur Email Output**: Newsletter posts generate both web and email-friendly HTML versions
+3. **LLM Support**: `/static/llms.txt` provides AI-friendly site description
+4. **Membership Integration**: Paid subscription support via Memberful
+5. **No External Dependencies**: Pure Hugo build with no npm/yarn requirements
 
 ## Tools and Templates
+
+### Search Functionality
+
+The site includes a client-side search feature that indexes all content:
+
+- **Activation**: Press `?` key anywhere on the site to open search
+- **Features**:
+  - Real-time filtering as you type
+  - Highlights matching terms
+  - Shows content preview with section and date
+  - Keyboard navigation (arrow keys + Enter)
+  - Escape key to close
+- **Index Generation**: Hugo automatically generates `/index.json` with all searchable content
+- **Implementation**:
+  - `/assets/js/search.js` - Search functionality
+  - `/assets/scss/_search.scss` - Search UI styles
+  - `/layouts/index.json` - Template for search index generation
 
 ### Hugo Shortcodes
 
