@@ -25,6 +25,15 @@
     const searchContainer = document.createElement('div');
     searchContainer.className = 'search-container';
 
+    // Create logo element
+    const logoContainer = document.createElement('div');
+    logoContainer.className = 'search-logo';
+    const logoImg = document.createElement('img');
+    logoImg.src = '/ui/ttvl_logo.png';
+    logoImg.srcset = '/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x';
+    logoImg.alt = 'TTVL';
+    logoContainer.appendChild(logoImg);
+
     // Create search input
     searchInput = document.createElement('input');
     searchInput.type = 'text';
@@ -37,6 +46,7 @@
     searchResults.className = 'search-results';
 
     // Assemble elements
+    searchContainer.appendChild(logoContainer);
     searchContainer.appendChild(searchInput);
     searchContainer.appendChild(searchResults);
     searchOverlay.appendChild(searchContainer);
