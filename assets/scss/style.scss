@@ -378,6 +378,14 @@ main {
   }
 }
 
+// Log Archive
+.log-archive {
+  .log-year,
+  .log-month {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
 @import 'page_style';
 
 div.home {
