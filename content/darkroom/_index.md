@@ -12,7 +12,7 @@ Technical and process-oriented resources focused on photography, darkroom techni
 
 ## DIY Projects
 
-For enhancing shooting process and overall experience:
+For enhancing the shooting process and overall experience:
 
 - [VNS Adapter: Valoi easy120 tube and carrier mount for Negative Supply light source](/darkroom/valoi-easy120-with-negative-supply-99cri-light)
 - [Zone Placement Sticker for Pentax Digital Spotmeter](/darkroom/pentax-digital-spotmeter-sticker)
@@ -25,7 +25,7 @@ Improve, fix, and modify camera equipment:
 - [Mamiya RZ67 PRO II Fine Focus Gear](/darkroom/rz67-focus-gear-stl)
 - [Horseman 80sqmm Lensboards](/darkroom/horseman-lensboards)
 
-Accesories and improvements for JOBO system:
+Accessories and improvements for the JOBO system:
 
 - [Thermometer Panel for Jobo Systems](/darkroom/thermometer-panel-for-jobo-systems/)
 
