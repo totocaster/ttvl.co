@@ -1,8 +1,8 @@
 # ttvl.co
 
-> Personal website of Toto Tvalavadze featuring photography documentation, notebook system templates, personal writings, and various creative projects. 
+> Personal website of Toto Tvalavadze featuring photography documentation, notebook system templates, personal writings, and various creative projects.
 
-This site serves as a digital garden and documentation hub for various personal and creative projects, with a strong focus on analog photography, notebook systems, and thoughtful writing.
+This site serves as a digital garden and documentation hub for various personal and creative projects, with a strong focus on analog photography, notebook systems, and thoughtful writing. The site includes a search function accessible via the '?' key.
 
 ## Photography & Darkroom
 
@@ -11,6 +11,7 @@ This site serves as a digital garden and documentation hub for various personal 
   - [Travel Film Development Kit](/darkroom/travel-dev-kit): Portable darkroom setup.
   - [Bulk Film Canister Stickers](/darkroom/canister-stickers): DIY film canister labeling system.
   - [Valoi Easy120 with Negative Supply Light](/darkroom/valoi-easy120-with-negative-supply-99cri-light): A 3D-printable adapter that marries two popular systems for film scanning into a single system that produces good colors.
+  - [Thermometer Panel for JOBO Systems](/darkroom/thermometer-panel-for-jobo-systems): 3D-printed temperature monitoring panel for accurate color development.
 
 ## Notebook System
 
@@ -21,17 +22,37 @@ This site serves as a digital garden and documentation hub for various personal 
 
 ## Projects
 
-- [Project Humane](/project-humane/): Tools and toys Toto makes for productiivty and work.
-  - [EDC Keychain](/project-humane/edc-keychain/): Everyday carry system to carry daily esentantials that do not fit into men's pant pockets.
-  - [Soma](/project-humane/soma/): A macOS app (work inprogress) to scan loose leafs and transcribe them into a text documents. 
+- [Project Humane](/project-humane/): Tools and toys Toto makes for productivity and work.
+  - [EDC Keychain](/project-humane/edc-keychain/): Everyday carry system to carry daily essentials that do not fit into men's pant pockets.
+  - [Soma](/project-humane/soma/): A macOS app (work in progress) to scan loose leafs and transcribe them into text documents.
+
+## Writings
+
+- [Writings](/writings/): Essays and articles on various topics.
+  - [Where I Stand on AI](/writings/where-i-stand-on-ai): Personal perspective on artificial intelligence.
+  - [Soviet, Not Russia](/writings/soviet-not-russia): Cultural and historical observations.
+  - [Non-Photographers Need Not Apply](/writings/non-photographers-need-not-apply): Thoughts on photography culture.
+  - [Ten Rules for Students and Teachers](/writings/ten-rules-for-students-and-teachers): Educational philosophy.
+
+## Flaneur
+
+- [Flaneur](/flaneur/): Photography newsletter featuring curated images and stories.
+  - Episodes 001-012 available, including recent editions featuring urban exploration and architectural photography.
+
+## Log
+
+- [Log](/log/): Monthly journal entries documenting projects and activities.
+  - Backfilled entries from 2020-2022
+  - Current entries through August 2025
 
 ## Technical Information
 
 - [Colophon](/colophon/): Technical details about the website.
 - [About](/about/): Information about Toto Tvalavadze.
 - [Philosophy](/philosophy/): Core principles and approach of Toto.
+- [AI Transparency](/ai/): Disclosure of AI usage on this website.
+- [Press & Appearances](/press/): Media appearances, speaking engagements, and publications.
 
 ## Optional
 
-- [Objects](/objects/): Documentation of physical objects and tools Toto is using or have used.
 - [Newsletter](/newsletter/): Archive of newsletter content.
