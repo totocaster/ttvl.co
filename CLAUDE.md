@@ -76,6 +76,31 @@ Vanilla JS in `/assets/js/`:
 - Custom permalink creates year/month URL structure
 - Include summary in frontmatter for index pages
 
+#### Generating Monthly Log Summaries
+When user provides journal entries for summarization:
+
+1. **Accept the journal text** from the user (they'll paste it or provide a file)
+2. **Generate summary** using this prompt:
+   > Act as somebody who summarizes journal entries into publicly shareable bullet points of things created, made, or done. Generate bullet points of major events and projects from first person perspective. Everything that could be of interest to others about what was produced or made should be mentioned. Omit overly personal details. Reference previous months if relevant but keep self-contained. Output in Markdown with single-level lists only (no sublists).
+
+3. **Create the log file**:
+   - Filename: `/content/log/YYYY-MM.md` (e.g., `2025-01.md`)
+   - Frontmatter:
+     ```yaml
+     ---
+     title: 'YYYY.MM'
+     date: YYYY-MM-DD  # Last day of month
+     ---
+     ```
+   - Add generated bullet points
+   - Leave space for manual prose summary
+
+4. **Format considerations**:
+   - Use `-` for bullets (not `*`)
+   - Link to published work: `[Title](/path/)`
+   - Italicize emphasis: `_term_`
+   - Bold names: `**Person Name**`
+
 ### Image Optimization
 - Photography: Keep high quality for technical documentation
 - General content: Optimize for web (max 2000px wide)
