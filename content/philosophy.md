@@ -4,7 +4,7 @@ date: 2025-01-04
 hide_title: true
 ---
 
-![Sol LeWitt](/visuals/2024.12_irrational_thoughts.png)
+![Desert landscape with scattered rocks and handwritten text reading IRRATIONAL THOUGHTS MUST BE FOLLOWED ABSOLUTELY AND LOGICALLY, quote by Sol LeWitt](/visuals/2024.12_irrational_thoughts.png)
 
 There are a few guiding principles I aim to live by and reflect in everything I create:
 

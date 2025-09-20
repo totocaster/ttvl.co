@@ -5,7 +5,7 @@ date: 2024-12-31
 
 Appearances in various media.
 
-![Lorenzo (right) and I (left) at PeckaKucha Tokyo. (ph. Brian Scott Peterson)](/visuals/pecha_kucha_BrianScottPeterson.jpg)
+![Two speakers (Lorenzo and Toto) presenting at event with colorful mural backdrop, projected slides showing "MICHIBIKI" and building photo, audience silhouettes visible  (photo by Brian Scott Peterson)](/visuals/pecha_kucha_BrianScottPeterson.jpg)
 
 Lorenzo (right) and I (left) at PeckaKucha Tokyo. (ph. Brian Scott Peterson)
 

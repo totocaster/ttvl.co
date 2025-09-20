@@ -5,7 +5,7 @@ date: 2025-01-07
 hide_title: true
 ---
 
-![](/visuals/about_toto.jpg)
+![Website author, Toto, holding Leica M-D camera with flash attachment, black and white auto-portrait in mirror](/visuals/about_toto.jpg)
 
 I'm **Toto**, and this is ttvl.co; My public notebook of making and wandering curiosities.
 
