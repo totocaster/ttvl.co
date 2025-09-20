@@ -1,9 +1,9 @@
 ---
-title: 'AI Usage on ttvl.co'
+title: 'AI on ttvl.co'
 date: 2025-09-20
 ---
 
-This page describes which parts of the website are authored or altered by AI. Below, you'll find details on exactly where I use AI tools and for what purposes.
+This page is transparency report on AI usage on this website. Below, you'll find details on exactly where I use AI tools and for what purposes.
 
 ---
 

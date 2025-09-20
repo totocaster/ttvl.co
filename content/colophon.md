@@ -19,6 +19,10 @@ Memberships are processed and managed securely through [Memberful](https://membe
 
 I don't see or get any of your payment information. -->
 
+## AI Usage
+
+There is no dynamically or auto-generated AI content on this website. Everything you read is either written, edited, or authored by me. I do use AI tools when working on this website, and you can see my transparency report on the dedicated [AI page](/ai). 
+
 ## Tracking & Analytics
 
 [Cloudflare](https://cloudflare.com) serves this website. Through them, I have access to minimal web analytics they provide as part of their primary service.
