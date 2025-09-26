@@ -19,6 +19,12 @@ Memberships are processed and managed securely through [Memberful](https://membe
 
 I don't see or get any of your payment information. -->
 
+## (Not so obvious) Features
+
+Press `?` to activate site-wide search. Navigate results with arrow keys.
+
+Select any text to automatically update the URL with a text fragment. Share the link to highlight that exact passage.
+
 ## AI Usage
 
 There is no dynamically or auto-generated AI content on this website. Everything you read is either written, edited, or authored by me. I do use AI tools when working on this website, and you can see my transparency report on the dedicated [AI page](/ai). 
