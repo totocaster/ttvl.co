@@ -1,0 +1,2 @@
+{{ $textFragmentsJS := resources.Get "js/text-fragments.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $textFragmentsJS.RelPermalink }}" defer></script>

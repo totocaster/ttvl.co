@@ -57,6 +57,7 @@ Vanilla JS in `/assets/js/`:
 - Site search (activated with `?` key)
 - Lightbox for images
 - Mobile menu toggle
+- Text Fragments API (native browser support only)
 - No build step required
 
 ## Development Patterns
@@ -106,6 +107,14 @@ When user provides journal entries for summarization:
 - General content: Optimize for web (max 2000px wide)
 - Store in `/static/images/` with descriptive names
 
+### Text Fragments API
+Native browser feature for deep-linking to specific text:
+- Auto-updates URL when text is selected (5-500 characters)
+- Clears URL when text is deselected
+- Keyboard shortcuts: Cmd/Ctrl+Shift+L to update URL, Escape to clear
+- Native support only (Chrome 89+, Edge 89+, Firefox 131+, Safari 18.2+)
+- No polyfills or fallbacks - silently disabled on unsupported browsers
+
 ## Deployment
 
 Auto-deploys from main branch via DigitalOcean App Platform. Configuration in `.do/app.yaml`.
@@ -119,6 +128,7 @@ GitHub Actions runs Claude Code Review on PRs (`.github/workflows/claude-review.
 3. **SEO**: Use descriptive titles and summaries in frontmatter
 4. **Performance**: Minimize external resources, optimize images
 5. **Accessibility**: Maintain semantic HTML, support high contrast mode
+6. **Native-Only Features**: Browser-native APIs without polyfills (e.g., Text Fragments)
 
 ## Special Files
 
