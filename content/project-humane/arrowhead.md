@@ -3,7 +3,7 @@ title: Arrowhead CLI
 date: 2025-10-31
 ---
 
-**Arrowhead** ([on GitHub](https://github.com/totocaster/arrowhead)) is the plain-text search engine and agent bridge for my [Obsidian](https://obsidian.md/) vault. It keeps everything indexed for humans and AI alike, combining fast full-text search, semantic vectors, and graph analytics under one [CLI](https://en.wikipedia.org/wiki/Command-line_interface). Arrowhead is part of **Plaintext Commons**—my broader effort to build file-native thinking systems—with a public site forthcoming at [plaintextcommons.org](https://plaintextcommons.org).
+**Arrowhead** ([on GitHub](https://github.com/totocaster/arrowhead)) is the plain-text search engine and agent bridge for my [Obsidian](https://obsidian.md/) vault. It keeps everything indexed for humans and AI alike, combining fast full-text search, semantic vectors, and graph analytics under one [CLI](https://en.wikipedia.org/wiki/Command-line_interface). Arrowhead is part of **[Plaintext Commons](/plaintext-commons/)**—my broader effort to build file-native thinking systems—with a public site forthcoming at [plaintextcommons.org](https://plaintextcommons.org).
 
 I built Arrowhead after years of bouncing between note-taking apps that locked away structure, links, and history. Plain text stayed the only constant, so the tool had to respect the folder as the source of truth. Arrowhead rewrites my earlier [Synapse/Soma](/project-humane/soma/) tools in Rust, trading a single-purpose search utility for a platform that feels at home on the command line, runs an always-on daemon, and speaks to AI agents like Claude and other that can help manage the corpus. 
 
@@ -26,7 +26,7 @@ Arrowhead also absorbs the ingest and transcription ambitions that started with 
 
 ## Get Arrowhead
 
-Install it via my Homebrew top:
+Install it via my Homebrew tap:
 
 ```
 brew tap totocaster/tap

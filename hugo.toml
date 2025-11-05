@@ -48,3 +48,8 @@ disableKinds = ["taxonomy", "term"]
     noUgly = true
     permalinkable = true
     rel = "alternate"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
