@@ -7,7 +7,7 @@ Plaintext Commons is the working manifesto for keeping long-form knowledge in du
 
 ## Overview
 
-Plaintext Commons assumes the folder is the platform, the file is the protocol, and tools— including AI agents—should assist without annexing the corpus. Every component I am building, from [Arrowhead CLI](/project-humane/arrowhead) to ongoing capture tooling, lives inside that stance. The manifesto below is the current reference text I share with collaborators and will seed the upcoming repository at [totocaster/plaintext-commons](https://github.com/totocaster/plaintext-commons).
+Plaintext Commons assumes the folder is the platform, the file is the protocol, and tools— including AI agents—should assist without annexing the corpus. Every component I am building, from [Arrowhead CLI](/arrowhead/) to ongoing capture tooling, lives inside that stance. The manifesto below is the current reference text I share with collaborators and will seed the upcoming repository at [totocaster/plaintext-commons](https://github.com/totocaster/plaintext-commons).
 
 ## The draft
 
