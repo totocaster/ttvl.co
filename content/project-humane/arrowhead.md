@@ -38,6 +38,28 @@ brew install totocaster/tap/arrowhead
 
 The source and release notes live on GitHub: [totocaster/arrowhead](https://github.com/totocaster/arrowhead).
 
+---
+
 ## My setup
 
-WIP.
+As of November 2025, below is the setup I use for my digital note-taking.
+
+* **[Claude Code](https://www.claude.com/product/claude-code)** (with Pro Plan) serves as my AI assistant and primary access point to the corpus. It uses the following tools:
+  * [Arrowhead CLI](https://github.com/totocaster/arrowhead) for search and discovery
+  * [Stamp CLI](https://github.com/totocaster/stamp) for standardized file names, following the Obsidian plugin conventions listed below
+  * [MarkEdit](https://github.com/MarkEdit-app/MarkEdit) for editing and viewing text, since copying from Terminal apps can mess with formatting
+  * [Things URL Schema](https://culturedcode.com/things/support/articles/2803573/) for creating (no read available) todos in my todo app
+  * [things-cli](https://github.com/thingsapi/things-cli) for traversing my todos
+  * [iMCP](https://github.com/mattt/iMCP) for access to my location and calendar (I seldom use this)
+* **[Obsidian](https://obsidian.md)** (with Sync) is my main human access point to the corpus. I use the following plugins:
+  - [Backlinks](https://help.obsidian.md/plugins/backlinks)
+  - [Unique note creator](https://help.obsidian.md/plugins/unique-note) for fleeting notes
+  - [File Cleaner](https://github.com/Johnson0907/obsidian-file-cleaner)
+  - [Linter](https://github.com/platers/obsidian-linter)
+  - [Local images](https://github.com/aleksey-rezvov/obsidian-local-images)
+  - [Media Extended](https://github.com/aidenlx/media-extended) for lectures and video transcripts
+  - [Natural Language Dates](https://github.com/argenos/nldates-obsidian)
+  - [Paste URL into selection](https://github.com/denolehov/obsidian-url-into-selection)
+  - [Quick Switcher++](https://github.com/darlal/obsidian-switcher-plus) as my human-accessible FTS
+
+I prefer Claude Code over Codex when working with my notes (although the reverse is true for programming). I sometimes use Claude.app with Arrowhead MCP as well, but I find it a bit slower for tool calls (MCP tool calls vs. direct CLI usage). CLI agents are also better at picking up conventions since they don't need to call the `vault_conventions` MCP tool every time; everything is laid out in `AGENTS.md` or `CLAUDE.md` at startup. You can see my `CLAUDE.md` [here](https://gist.github.com/totocaster/cc197014af915ec06cb746bab34dbe26).
