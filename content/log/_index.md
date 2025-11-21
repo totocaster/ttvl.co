@@ -1,5 +1,6 @@
 ---
 title: "Log"
+hide_title: true
 description: "A chronological record of thoughts, experiences, and projects updates"
 ---
 

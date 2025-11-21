@@ -5,7 +5,7 @@ description: "DYI replica of Ansel Adams' zone scale"
 project:
   year: 2025
   category: /darkroom
-  image: /images/example.jpg
+  image: /visuals/darkroom/pentax-digital-spotmeter-stickers-1.jpeg
 ---
 
 **The Problem:** The Pentax Digital Spot Meter is an amazing tool that is extremely easy to use, but it lacks a clear visualization system for placing tones onto Ansel Adams' Zone System or simply on an EV scale.

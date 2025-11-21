@@ -22,9 +22,9 @@ If you like what I do, consider [subscribing to my newsletter](/newsletter) abou
 
 ---
 
-## Philosophy
-
 ![Desert landscape with scattered rocks and handwritten text reading IRRATIONAL THOUGHTS MUST BE FOLLOWED ABSOLUTELY AND LOGICALLY, quote by Sol LeWitt](/visuals/2024.12_irrational_thoughts.png)
+
+## Philosophy
 
 There are a few guiding principles I aim to live by and reflect in everything I create:
 
@@ -48,11 +48,9 @@ Build _here_, now, with the people you can see eyes of. The result is work that 
 
 ---
 
-## Press & Appearances
-
-Appearances in various media.
-
 ![Two speakers (Lorenzo and Toto) presenting at event with colorful mural backdrop, projected slides showing "MICHIBIKI" and building photo, audience silhouettes visible  (photo by Brian Scott Peterson)](/visuals/pecha_kucha_BrianScottPeterson.jpg)
+
+## Press & Appearances
 
 Lorenzo (right) and I (left) at PeckaKucha Tokyo. (ph. Brian Scott Peterson)
 

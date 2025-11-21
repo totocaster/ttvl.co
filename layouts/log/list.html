@@ -1,7 +1,8 @@
 {{ define "main" }}
 <article class="log-content {{ with .Params.content_css }}{{ . }}{{ end }}">
+  {{ if not .Params.hide_title }}
   <h1>{{ .Title }}</h1>
-  {{ .Content }}
+  {{ end }} {{ .Content }}
 </article>
 
 {{ range .Pages.ByDate.Reverse }}
@@ -11,7 +12,4 @@
   </h1>
   {{ .Content }}
 </article>
-{{ end }}
-
-{{ partial "log_archive.html" . }}
-{{ end }}
+{{ end }} {{ partial "log_archive.html" . }} {{ end }}
