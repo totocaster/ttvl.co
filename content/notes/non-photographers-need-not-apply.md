@@ -1,5 +1,5 @@
 ---
-title: Non-photographers Need Not Apply
+title: The Silo Problem in Photography
 date: 2024-01-10
 description: Exploring the contrast between written and photographic books.
 aliases:
