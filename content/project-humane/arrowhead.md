@@ -8,7 +8,7 @@ description: "a plain-text search engine and agent bridge for Obsidian vaults"
 project:
   year: 2025
   category: /project-humane
-  image: /images/example.jpg
+  image: /visuals/project-thumbs/proj_arrowhead.png
 ---
 
 **Arrowhead** ([on GitHub](https://github.com/totocaster/arrowhead)) is the plain-text search engine and agent bridge for my [Obsidian](https://obsidian.md/) vault. It keeps everything indexed for humans and AI alike, combining fast full-text search, semantic vectors, and graph analytics under one [CLI](https://en.wikipedia.org/wiki/Command-line_interface). Arrowhead is part of **[Plaintext Commons](/plaintext-commons/)**—my broader effort to build file-native thinking systems—with a public site forthcoming at [plaintextcommons.org](https://plaintextcommons.org).

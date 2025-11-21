@@ -5,7 +5,7 @@ description: "English translation of JDM paper processor manual"
 project:
   year: 2024
   category: /darkroom
-  image: /images/example.jpg
+  image: /visuals/project-thumbs/proj_cp32.png
 ---
 
 I have a **Lucky CP32** color paper processor. The CP32—unlike its international sibling, the **Fujimoto CP-31**—was only produced in Japan (to the best of my knowledge).

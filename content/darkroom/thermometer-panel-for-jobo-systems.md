@@ -5,7 +5,7 @@ description: "3d printable panel for precision temperature monitoring and contro
 project:
   year: 2025
   category: /darkroom
-  image: /images/example.jpg
+  image: /visuals/project-thumbs/proj_jobo_thermometer.png
 ---
 
 **Problem:** Jobo CPE and CPP3 processors are great for home darkrooms, but their temperature monitoring isn't as accurate as it should be for color development. For equipment designed specifically for maintaining precise temperatures, the implementation feels outdated—these are essentially the same products manufactured for decades without the temperature control refinements modern tech could provide.

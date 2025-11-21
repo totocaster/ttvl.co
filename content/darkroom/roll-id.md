@@ -5,7 +5,7 @@ description: "film orhganization and archiving aid"
 project:
   year: 2024
   category: /darkroom
-  image: /images/example.jpg
+  image: /visuals/project-thumbs/proj_film_id.png
 ---
 
 To keep track of frames when shooting on film, I needed a reliable tracking system for each roll of film (or sheet). For this purpose, I invented a roll identification system that I use for every single roll of film loaded into any of my cameras.
