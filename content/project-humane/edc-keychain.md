@@ -1,6 +1,11 @@
 ---
 title: EDC Modular Keychain
 date: 2024-12-20
+description: "lightweight, modular EDC system"
+project:
+  year: 2024
+  category: /project-humane
+  image: /visuals/project-humane/2024.12.20-edc-keychain.jpeg
 ---
 
 **The Problem:** Carrying photographic accessories—like filters, batteries, and film canisters—along with everyday items such as keys, an AirTag, band-aids, lipstick, and painkillers—without hassle.

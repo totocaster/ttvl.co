@@ -1,6 +1,11 @@
 ---
 title: 'Rugged 40-Roll Film Storage'
 date: 2025-05-04
+description: "3d printable film holders for any roll film format"
+project:
+  year: 2025
+  category: /darkroom
+  image: /visuals/darkroom/canister-case-1.jpeg
 ---
 
 **The Problem:** I bulk roll 200 feet of film for several of my black and white projects. I need a storage solution to keep both unexposed and exposed film organized and easy to locate. Additionally, I need a way to show undeveloped film at airports to security so they don't dread having to swab each roll individually.

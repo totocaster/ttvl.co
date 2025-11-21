@@ -1,6 +1,11 @@
 ---
 title: Mamiya RZ67 PRO II Fine Focus Gear
 date: 2025-01-09
+description: "3d printable replacement gear for fine focus"
+project:
+  year: 2025
+  category: /darkroom
+  image: /images/example.jpg
 ---
 
 Version PRO II of the RZ67 features a delicate fine-focus knob that operates through a gear reducer. It is quite fragile and prone to breaking easily, resulting in a grinding sensation while adjusting the camera's focus.

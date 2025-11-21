@@ -1,6 +1,11 @@
 ---
 title: "Soma.app"
 date: 2025-01-07
+description: "macOS app that scans, transcribes, and digitizes analog notes"
+project:
+  year: 2025
+  category: /project-humane
+  image: /images/example.jpg
 ---
 
 _Soma is an iOS and macOS app that scans, transcribes, and digitizes analog notes._

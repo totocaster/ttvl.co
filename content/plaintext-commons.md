@@ -1,6 +1,11 @@
 ---
 title: Plaintext Commons
 date: 2025-11-04
+description: "Manifesto for keeping long-form knowledge in durable, human- and agent-friendly files."
+project:
+  year: 2025
+  category: /project-humane
+  image: /images/example.jpg
 ---
 
 Plaintext Commons is the working manifesto for keeping long-form knowledge in durable, human- and agent-friendly files. It doubles as a preview of the future site at [plaintextcommons.org](https://plaintextcommons.org) and a place to gather feedback before launching a dedicated build.

@@ -2,6 +2,10 @@
 title: 'Jinny Street Gallery'
 date: 2024-12-12
 hide_title: true
+description: "Art space uniquely created from streetlamps in the Harajuku, Tokyo."
+project:
+  year: ongoing
+  image: /visuals/jinny_flag.jpg
 ---
 
 ![Jinny flag on top of street lamp #1](/visuals/jinny_flag.jpg)

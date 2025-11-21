@@ -1,6 +1,11 @@
 ---
 title: 'Foldable Film Reminders'
 date: 2025-01-03
+description: "so that you always know what film loaded in the camera"
+project:
+  year: 2025
+  category: /darkroom
+  image: /visuals/darkroom/foldable-film-reminder-hasselblad.jpeg
 ---
 
 **The Problem:** When shooting long-term projects with multiple film types across various cameras and film backs, it’s easy to lose track of which camera or back is loaded with which film and at what N-value or ISO rating.
