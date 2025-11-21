@@ -1,0 +1,32 @@
+{{ define "main" }}
+  {{ .Content }}
+  {{ $notes := .Pages }}
+  {{ $evergreen := where $notes ".Params.category" "==" "evergreen" }}
+  {{ $regular := where $notes ".Params.category" "!=" "evergreen" }}
+  {{ $regularByDate := $regular.ByDate.Reverse }}
+  {{ $regularGroups := sort ($regularByDate.GroupByDate "2006") "Key" "desc" }}
+
+  {{ with $evergreen }}
+    <h2>Evergreen</h2>
+    <ul class="notes-list">
+      {{ range .ByDate.Reverse }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          {{ if eq .Params.category "literature" }}<span class="note-pill note-pill--lit" aria-label="literature note"></span>{{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+
+  {{ range $regularGroups }}
+    <h2>{{ .Key }}</h2>
+    <ul class="notes-list">
+      {{ range .Pages.ByDate.Reverse }}
+        <li>
+          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+          {{ if eq .Params.category "literature" }}<span class="note-pill note-pill--lit" aria-label="literature note"></span>{{ end }}
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
+{{ end }}

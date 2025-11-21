@@ -1,8 +1,10 @@
 ---
-title: 'Soviet ≠ Russian'
+title: 'Stop Saying Russian When You Mean Soviet'
 date: 2018-11-26
 description: An exploration of the common mix-up between Soviet Union, Russia, and related terms and a Georgian perspective on their historical impact.
-aliases: ["/essays/soviet-not-russia/"]
+aliases:
+  - "/essays/soviet-not-russia/"
+  - "/writings/soviet-not-russia/"
 ---
 
 I have seen many of my foreign friends use words _Soviet Union_, _Russia_, _Soviet_, and _Russian_ interchangeably. Moreover, I’ve seen huge publications like [Vox][vox] mix those two terms, which eventually triggered me to write this. Consider this article as a kind explainer of what the Soviet Union means. It is about words and their meanings.

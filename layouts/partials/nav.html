@@ -2,7 +2,7 @@
   <ul class="primary-nav">
     {{ $current := .RelPermalink }}
     <li><a class="{{ if eq $current "/projects/" }}is-active{{ end }}" href="/projects/">Projects</a></li>
-    <li><a class="{{ if eq $current "/knowledge/" }}is-active{{ end }}" href="/knowledge/">Knowledge</a></li>
+    <li><a class="{{ if hasPrefix $current "/notes/" }}is-active{{ end }}" href="/notes/">Notes</a></li>
     <li><a class="{{ if hasPrefix $current "/log/" }}is-active{{ end }}" href="/log/">Log</a></li>
     <li><a class="{{ if hasPrefix $current "/newsletter/" }}is-active{{ end }}" href="/newsletter/">Newsletter</a></li>
     <li><a class="{{ if eq $current "/about/" }}is-active{{ end }}" href="/about/">About</a></li>

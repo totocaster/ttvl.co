@@ -1,6 +1,5 @@
 main {
   article {
-
     // About page - used in /about/
     &.about {
       img {
@@ -9,32 +8,33 @@ main {
     }
   }
 
-  // Writings list - used in /writings/
-.writings-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  // Notes list - used in /notes/
+  .notes-list,
+  .writings-list {
+    list-style: disc;
+    padding-left: 1.25rem;
+    margin: 0 0 1.5rem;
     @include readable-width;
-    
+
     li {
-      margin-bottom: 2rem;
-      
-      h2 {
-        display: inline;
+      margin-bottom: 0;
+
+      .note-pill {
+        font-size: 0.9rem;
+        color: rgba(0, 0, 0, 0.45);
+        margin-left: 0.35rem;
+        @include dark {
+          color: rgba(255, 255, 255, 0.55);
+        }
       }
 
-      time {
-        font-style: italic;
-      }
-      
-      p {
-        display: inline;
-        margin: 0.5rem 0 0 0;
+      .note-pill--lit::after {
+        content: "lit.";
       }
     }
   }
 
-  // Email subscribe form - used in /writings/
+  // Email subscribe form - used in /notes/
   div.email-subscribe {
     padding: 2rem 0;
 
@@ -65,7 +65,7 @@ main {
           width: 66%;
         }
       }
-    
+
       button {
         background: $color-dark-bg;
         @include dark {
@@ -81,8 +81,7 @@ main {
         height: 40px;
         box-sizing: border-box;
         border-radius: 8px;
-        
-    
+
         &:hover {
           opacity: 0.9;
         }
