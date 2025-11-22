@@ -2,6 +2,7 @@
 title: Plaintext Commons
 date: 2025-11-04
 description: "Manifesto for keeping long-form knowledge in durable, human- and agent-friendly files."
+featured: true
 project:
   year: 2025
   category: /project-humane

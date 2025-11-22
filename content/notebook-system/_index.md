@@ -2,6 +2,7 @@
 title: Unbound Notebook System
 date: 2025-01-06
 description: an analog notebook system that is friendly to thinking and exploration
+featured: true
 project:
   year: 2025
   category: /project-humane

@@ -1,6 +1,6 @@
 <section class="flaneur-inpage-box">
   <h1>Follow through Newsletter</h1>
-  <p><em>The Flâneur is a newsletter about my work, photography, books, making, and walking.</em></p>
+  <p><em>The Flâneur</em> is an even more meandering version of this website and perhaps the best way to follow me &mdash; <a href="https://www.instagram.com/totocaster/">Instagram</a> is also a-okay too.</p>
   <div class="email-subscribe">
     <form
       class="js-cm-form"
@@ -13,9 +13,21 @@
       <button type="submit">Subscribe</button>
     </form>
     <div class="promise">
-      <p>Or, browse the <a href="/newsletter/">archive</a> first or follow me on <a href="https://www.instagram.com/totocaster/">Instagram</a>.</p>
-      <p>Dispatched around once a month. One click to unsubscribe.</p>
+      <p>Dispatched around once a month. One click to unsubscribe. Or, browse the <a href="/newsletter/">archive</a> first:</p>
     </div>
   </div>
+  {{ $issues := first 5 (sort (where .Site.RegularPages "Section" "flaneur") "Date" "desc") }}
+  {{ if gt (len $issues) 0 }}
+    <ul class="issue-list">
+      {{ range $issues }}
+        <li>
+          <span class="issue-number">
+            #{{ printf "%03s" .File.BaseFileName }} - <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01-2006" }}</time>
+          </span>
+          <a class="issue-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  {{ end }}
   <script type="text/javascript" src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
 </section>

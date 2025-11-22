@@ -2,6 +2,6 @@
 title: 'Home'
 ---
 
-![Stop sign in the highlands of north-east Georgia, 2024.](/flaneur/010_2024.09.18.R1.07.jpeg)
+Hi, I'm Toto—software engineer, fine-art [photographer](https://toto.photo), [gallery curator](https://jinny.gallery), and independent [interface researcher](/project-humane).
 
-Stop sign in the highlands of north-east Georgia, 2024.
+This is my working notebook exploring photography processes, handbound books, creative systems, and humane interfaces—a place to log experiments, publish essays, and ship tools.

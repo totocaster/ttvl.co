@@ -264,7 +264,7 @@ nav#Menu {
 
 .project-image {
   width: 100%;
-  height: 180px;
+  aspect-ratio: 16 / 9;
   border: 1px solid #e0e0e0;
   background: #fafafa;
   overflow: hidden;
@@ -512,10 +512,18 @@ div.home {
   }
 
   .flaneur-inpage-box {
-    margin-top: 3rem;
     div.email-subscribe {
       padding-top: 0;
+      padding-bottom: 0;
     }
+  }
+
+  > section {
+    margin-top: 3rem;
+  }
+
+  > section.project-year {
+    margin: 3rem 0 0;
   }
 }
 

@@ -21,7 +21,7 @@
   {{ .Content }}
 
   <h2>Archive</h2>
-  <ul class="newsletter-issues">
+  <ul class="issue-list">
     {{ range (where (where .Site.Pages "Section" "flaneur") "Kind" "page").ByDate.Reverse }}
       <li>
         <span class="issue-number">

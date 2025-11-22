@@ -5,6 +5,7 @@ url: /arrowhead/
 aliases:
   - /project-humane/arrowhead/
 description: "a plain-text search engine and agent bridge for Obsidian vaults"
+featured: true
 project:
   year: 2025
   category: /project-humane
