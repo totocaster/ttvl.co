@@ -1,9 +1,14 @@
 ---
 title: Stamp CLI
-date: 2024-06-18
+date: 2025-09-18
 url: /stamp/
 aliases:
   - /project-humane/stamp/
+description: "tool for generating consistent filenames for notes"
+project:
+  year: 2025
+  category: /project-humane
+  image: /visuals/project-thumbs/proj_stamp.png
 ---
 
 [Stamp CLI](https://github.com/totocaster/stamp) is my note-naming assistant for [Plaintext Commons](/plaintext-commons) vaults and folders. It generates consistent IDs and filenames so humans, agents, and automations can keep a shared corpus tidy without manual bookkeeping.

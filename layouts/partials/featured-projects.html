@@ -1,0 +1,38 @@
+{{ $allProjects := where .Site.RegularPages "Params.project" "!=" nil }} {{
+$featuredPages := where .Site.Pages "Params.featured" true }} {{ $projects :=
+first 6 (sort (where $featuredPages "Kind" "in" (slice "page" "section")) "Date"
+"desc") }} {{ if gt (len $projects) 0 }}
+<section class="project-year">
+  <h1>Projects</h1>
+  <p>
+    A few projects I’m proud of and focused on. See all
+    <a href="/projects">{{ len $allProjects }} projects</a>.
+  </p>
+  <div class="projects-grid">
+    {{ range $projects }} {{ $page := . }} {{ $proj := $page.Params.project }}
+    {{ $desc := or (and $proj $proj.description) $page.Params.description }} {{
+    $img := and $proj $proj.image }} {{ $cat := and $proj $proj.category }}
+    <div class="project-card">
+      <div class="project-image">
+        {{ with $img }}
+        <a href="{{ $page.RelPermalink }}">
+          <img src="{{ . }}" alt="{{ $page.Title }}" loading="lazy" />
+        </a>
+        {{ end }}
+      </div>
+      <div class="project-meta">
+        <a class="project-title" href="{{ $page.RelPermalink }}"
+          >{{ $page.Title }}</a
+        >{{ if $desc }} &ndash; {{ $desc }}{{ end }}
+      </div>
+      {{ with $cat }}
+      <div class="project-category">
+        {{ $catText := trim . "/" }}
+        <a href="/{{ $catText }}">{{ $catText }}</a>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}

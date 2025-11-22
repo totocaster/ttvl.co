@@ -1,6 +1,12 @@
 ---
 title: Unbound Notebook System
 date: 2025-01-06
+description: an analog notebook system that is friendly to thinking and exploration
+featured: true
+project:
+  year: 2025
+  category: /project-humane
+  image: /visuals/uns/2025.05_UNS_14.jpg
 ---
 
 **Unbound** is an evolving framework for integrating digital and analog note-taking. It's an exploration of how we can make the processes of capturing, searching, and exploring knowledge more flexible and enjoyable.

@@ -1,6 +1,6 @@
 # ttvl.co
 
-> Personal website of Toto Tvalavadze featuring photography documentation, notebook system templates, personal writings, and various creative projects.
+> Personal website of Toto Tvalavadze featuring photography documentation, notebook system templates, personal notes, and various creative projects.
 
 This site serves as a digital garden and documentation hub for various personal and creative projects, with a strong focus on analog photography, notebook systems, and thoughtful writing. The site includes a search function accessible via the '?' key.
 
@@ -26,13 +26,14 @@ This site serves as a digital garden and documentation hub for various personal 
   - [EDC Keychain](/project-humane/edc-keychain/): Everyday carry system to carry daily essentials that do not fit into men's pant pockets.
   - [Soma](/project-humane/soma/): A macOS app (work in progress) to scan loose leafs and transcribe them into text documents.
 
-## Writings
+## Notes
 
-- [Writings](/writings/): Essays and articles on various topics.
-  - [Where I Stand on AI](/writings/where-i-stand-on-ai): Personal perspective on artificial intelligence.
-  - [Soviet, Not Russia](/writings/soviet-not-russia): Cultural and historical observations.
-  - [Non-Photographers Need Not Apply](/writings/non-photographers-need-not-apply): Thoughts on photography culture.
-  - [Ten Rules for Students and Teachers](/writings/ten-rules-for-students-and-teachers): Educational philosophy.
+- [Notes](/notes/): Essays, resources, and working notes.
+  - [Where I Stand on AI](/notes/where-i-stand-on-ai): Personal perspective on artificial intelligence.
+  - [Soviet, Not Russia](/notes/soviet-not-russia): Cultural and historical observations.
+  - [Non-Photographers Need Not Apply](/notes/non-photographers-need-not-apply): Thoughts on photography culture.
+  - [Ten Rules for Students and Teachers](/notes/ten-rules-for-students-and-teachers): Educational philosophy.
+  - [Walking](/notes/walking): Notes on walking as a practice.
 
 ## Flaneur
 

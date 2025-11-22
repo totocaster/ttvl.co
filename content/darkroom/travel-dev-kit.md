@@ -1,6 +1,11 @@
 ---
 title: 'Rapid Travel Film Development Kit'
 date: 2024-12-20
+description: "for nomad film shooters"
+project:
+  year: 2024
+  category: /darkroom
+  image:  /visuals/project-thumbs/proj_travel_dev_kit.png
 ---
 
 **The Problem:** Shooting film in fast-paced, time-sensitive environments outside of Japan.

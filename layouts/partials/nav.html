@@ -1,59 +1,10 @@
-<nav id="Menu">
-  <section>
-    <ul>
-      <li><a href="/about/">About</a></li>
-      <li><a href="/philosophy/">Philosophy</a></li>
-      {{/*  <li><a href="{{ site.Params.membershipURL }}">Membership</a></li>  */}}
-      <li><a href="/newsletter/">Newsletter</a></li>
-      <li><a href="/press/">Press</a></li>
-      {{/* <li><a href="https://ttvl.store">Store</a></li>  */}}
-    </ul>
-  </section>
-  <section>
-    <h2>Blog</h2>
-    <ul>
-      <li><a href="/log/">Log</a></li>
-      <li><a href="/writings/">Writings</a></li>
-      <li><a href="/leaves/">Loose Leaves</a></li>
-      {{/* <li><a href="/walking/">Walking</a></li> */}}
-    </ul>
-  </section>
-  <section>
-    <h2>Projects</h2>
-    <ul>
-      <li><a href="https://toto.photo/">Photography</a></li>
-      <li><a href="/jinny/">Jinny Street Gallery</a></li>
-      <li><a href="/plaintext-commons/">Plaintext Commons</a></li>
-      <li><a href="/notebook-system/">Notebook System</a></li>
-      {{/*  <li><a href="https://roampress.org">Roam Press</a></li>  */}}
-      <li><a href="/project-humane/">Project Humane</a></li>
-    </ul>
-  </section>
-  <section>
-    <h2>Knowledge</h2>
-    <ul>
-      <li><a href="/darkroom/">Darkroom</a></li>
-      <li><a href="/walking/">Walking</a></li>
-      {{/* <li><a href="/bookbinding/">Bookbinding</a></li> */}}
-      {{/* <li><a href="/sewing/">Soft Goods</a></li> */}}
-    </ul>
-  </section>
-  {{/*
-  <section>
-    <h2><a href="/travel/">Travel</a></h2>
-    <ul>
-      <li><a href="/travel/japan/">Japan</a></li>
-      <li><a href="/travel/georgia/">Georgia</a></li>
-      <li><a href="/travel/italy/">Italy</a></li>
-    </ul>
-  </section>
-  */}}
-  <section>
-    <h2>Meta</h2>
-    <ul>
-      <li><a href="/colophon/">Colophon</a></li>
-      <li><a href="/a-z/">Index</a></li>
-    </ul>
-  </section>
-  {{ partial "socials.html" . }}
+<nav id="Menu" aria-label="Primary">
+  <ul class="primary-nav">
+    {{ $current := .RelPermalink }}
+    <li><a class="{{ if eq $current "/projects/" }}is-active{{ end }}" href="/projects/">Projects</a></li>
+    <li><a class="{{ if hasPrefix $current "/notes/" }}is-active{{ end }}" href="/notes/">Notes</a></li>
+    <li><a class="{{ if hasPrefix $current "/log/" }}is-active{{ end }}" href="/log/">Log</a></li>
+    <li><a class="{{ if hasPrefix $current "/newsletter/" }}is-active{{ end }}" href="/newsletter/">Newsletter</a></li>
+    <li><a class="{{ if eq $current "/about/" }}is-active{{ end }}" href="/about/">About</a></li>
+  </ul>
 </nav>

@@ -1,4 +1,4 @@
-{{ define "main" }} 
+{{ define "main" }}
 <article>
   <h1>{{ .Title }}</h1>
   <p><em>A newsletter about my work, photography, books, making, and walking.</em></p>
@@ -21,11 +21,13 @@
   {{ .Content }}
 
   <h2>Archive</h2>
-  <ul class="newsletter-issues">
+  <ul class="issue-list">
     {{ range (where (where .Site.Pages "Section" "flaneur") "Kind" "page").ByDate.Reverse }}
-      <li><span class="issue-number">{{ .File.BaseFileName }} /
-        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "Jan 2006" }}</time></span>
-        <a href="{{ .RelPermalink }}"><strong>{{ .Title }}</strong></a>
+      <li>
+        <span class="issue-number">
+          #{{ printf "%03s" .File.BaseFileName }} - <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01-2006" }}</time>
+        </span>
+        <a class="issue-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
       </li>
     {{ end }}
   </ul>

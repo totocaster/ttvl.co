@@ -1,6 +1,11 @@
 ---
 title: 'Valoi easy120 with Negative Supply 99 CRI Light Source'
 date: 2025-02-27
+description: "hybrid scanning system for easy setup and correct colors"
+project:
+  year: 2025
+  category: /darkroom
+  image: /visuals/project-thumbs/proj_vns.png
 ---
 
 **Preamble**: Valoi's [easy35][ve35] system has been a godsend for 35mm black-and-white photographers. It's compact enough to [travel][travel] with, has simple controls, an integrated battery, and is incredibly easy to operate since it requires no alignment with a camera.

@@ -1,6 +1,11 @@
 ---
 title: 'Bulk Film Canister Stickers'
 date: 2024-12-18
+description: "film roll identification for better archiving and organization"
+project:
+  year: 2024
+  category: /darkroom
+  image: /visuals/darkroom/canister-stickers-1.jpeg
 ---
 
 **The Problem:** When bulk-rolling film, it's challenging to quickly and accurately note metadata—such as which canister the film was loaded into, when it was exposed, and when it was shot—without risking loss or confusion of this information.

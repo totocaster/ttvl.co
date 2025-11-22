@@ -1,0 +1,26 @@
+{{ $page := .page }}
+{{ if not $page }}
+  {{ $page = . }}
+{{ end }}
+{{ $heading := default "Notes" .heading }}
+{{ $headingTag := default "h2" .headingTag }}
+{{ $notes := first 5 (sort (where $page.Site.RegularPages "Section" "notes") "Date" "desc") }}
+{{ if gt (len $notes) 0 }}
+  <section class="recent-notes">
+    {{ if eq $headingTag "h1" }}
+      <h1>{{ $heading }}</h1>
+    {{ else }}
+      <h2>{{ $heading }}</h2>
+    {{ end }}
+    <ul class="issue-list">
+      {{ range $notes }}
+        <li>
+          <span class="issue-number">
+            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+          </span>
+          <a class="issue-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        </li>
+      {{ end }}
+    </ul>
+  </section>
+{{ end }}

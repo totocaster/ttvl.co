@@ -1,0 +1,79 @@
+{{ define "main" }}
+<article class="{{ with .Params.content_css }}{{ . }}{{ end }}">
+  {{ if not .Params.hide_title }}
+  <h1>{{ .Title }}</h1>
+  {{ end }} {{ .Content }}
+</article>
+
+{{ $projects := sort (where site.Pages "Params.project" "!=" nil) "Date" "desc"
+}} {{ if $projects }} {{ $ongoing := slice }} {{ $dated := slice }} {{ range
+$projects }} {{ $proj := .Params.project }} {{ $year := lower (printf "%v"
+$proj.year) }} {{ if eq $year "ongoing" }} {{ $ongoing = $ongoing | append . }}
+{{ else }} {{ $dated = $dated | append . }} {{ end }} {{ end }} {{ $ongoing =
+sort $ongoing "Date" "desc" }} {{ $dated = sort $dated "Date" "desc" }} {{ if gt
+(len $ongoing) 0 }}
+<section class="project-year">
+  <h2>Ongoing</h2>
+  <div class="projects-grid">
+    {{ range $ongoing }} {{ $page := . }} {{ $proj := $page.Params.project }} {{
+    $desc := or $proj.description .Params.description }} {{ $cat :=
+    $proj.category }} {{ $catText := cond (not $cat) "" (trim $cat "/") }} {{
+    $catLink := printf "/%s" $catText }}
+    <div class="project-card">
+      <div class="project-image">
+        {{ with $proj.image }}
+        <a href="{{ $page.RelPermalink }}">
+          <img src="{{ . }}" alt="{{ $page.Title }}" loading="lazy" />
+        </a>
+        {{ end }}
+      </div>
+      <div class="project-meta">
+        <a class="project-title" href="{{ $page.RelPermalink }}"
+          >{{ $page.Title }}</a
+        >{{ if $desc }} &ndash; {{ $desc }}{{ end }}
+      </div>
+      {{ if $cat }}
+      <div class="project-category">
+        <a href="{{ $catLink }}">{{ $catText }}</a>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }} {{ $years := slice }} {{ range $dated }} {{ $year := printf "%v"
+.Params.project.year }} {{ if not (in $years $year) }} {{ $years = $years |
+append $year }} {{ end }} {{ end }} {{ $years = sort $years "value" "desc" }} {{
+range $years }} {{ $year := . }}
+<section class="project-year">
+  <h2>{{ $year }}</h2>
+  <div class="projects-grid">
+    {{ range $dated }} {{ $page := . }} {{ $proj := $page.Params.project }} {{
+    if eq (printf "%v" $proj.year) $year }} {{ $desc := or $proj.description
+    .Params.description }} {{ $cat := $proj.category }} {{ $catText := cond (not
+    $cat) "" (trim $cat "/") }} {{ $catLink := printf "/%s" $catText }}
+    <div class="project-card">
+      <div class="project-image">
+        {{ with $proj.image }}
+        <a href="{{ $page.RelPermalink }}">
+          <img src="{{ . }}" alt="{{ $page.Title }}" loading="lazy" />
+        </a>
+        {{ end }}
+      </div>
+      <div class="project-meta">
+        <a class="project-title" href="{{ $page.RelPermalink }}"
+          >{{ $page.Title }}</a
+        >{{ if $desc }} &ndash; {{ $desc }}{{ end }}
+      </div>
+      {{ if $cat }}
+      <div class="project-category">
+        <a href="{{ $catLink }}">{{ $catText }}</a>
+      </div>
+      {{ end }}
+    </div>
+    {{ end }} {{ end }}
+  </div>
+</section>
+{{ end }} {{ else }}
+<p>No projects yet.</p>
+{{ end }} {{ end }}

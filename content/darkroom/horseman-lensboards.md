@@ -1,6 +1,11 @@
 ---
 title: Horseman 80mm² Lensboards
 date: 2025-01-09
+description: "3d printable lensboards for any lens"
+project:
+  year: 2025
+  category: /darkroom
+  image: /visuals/project-thumbs/proj_80sq_leansboards.png
 ---
 
 I briefly owned a Horseman 45FA and had trouble finding good lens boeards for the lenses I own. So I designed 80mm² lens boards. Few shutters and lenses are supported.
