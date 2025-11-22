@@ -1,5 +1,5 @@
 <section class="flaneur-inpage-box">
-  <h1>Follow through Newsletter</h1>
+  <h1>Newsletter</h1>
   <p><em>The Flâneur</em> is an even more meandering version of this website and perhaps the best way to follow me &mdash; <a href="https://www.instagram.com/totocaster/">Instagram</a> is also a-okay too.</p>
   <div class="email-subscribe">
     <form
@@ -22,7 +22,7 @@
       {{ range $issues }}
         <li>
           <span class="issue-number">
-            #{{ printf "%03s" .File.BaseFileName }} - <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "01-2006" }}</time>
+            #{{ printf "%03s" .File.BaseFileName }} &sdot; <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01" }}</time>
           </span>
           <a class="issue-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
         </li>

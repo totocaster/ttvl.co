@@ -2,7 +2,7 @@
 {{ if not $page }}
   {{ $page = . }}
 {{ end }}
-{{ $heading := default "Recent notes" .heading }}
+{{ $heading := default "Notes" .heading }}
 {{ $headingTag := default "h2" .headingTag }}
 {{ $notes := first 5 (sort (where $page.Site.RegularPages "Section" "notes") "Date" "desc") }}
 {{ if gt (len $notes) 0 }}
