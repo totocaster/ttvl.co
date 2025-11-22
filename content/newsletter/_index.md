@@ -1,6 +1,6 @@
 ---
 title: 'The Flâneur Newsletter'
-description: "experiemntal newsletter on my progress, walking, and lean"
+description: "experiemental newsletter on my projects, photography and walking"
 project:
   year: ongoing
   image: /visuals/project-thumbs/proj_flaneur.png
