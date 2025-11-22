@@ -3,7 +3,7 @@ title: 'Colophon'
 date: 2025-01-28
 ---
 
-The design and structure of this website were heavily inspired by [100r.co](https://100r.co) (before their redesign). It is simple, fast, easy to maintain, and perfect for elevating content above design trends. This allows me to focus on what's most important — producing useful material without any friction.
+The design and structure of this website were heavily inspired by [100r.co](https://100r.co) (before their redesign) and [Szymon Kaliski](https://szymonkaliski.com/). It is simple, fast, easy to maintain, and perfect for elevating content above design trends. This allows me to focus on what's most important — producing useful material without any friction.
 
 There are no custom fonts or heavy graphics because fast software matters.
 
@@ -11,7 +11,7 @@ This website is generated using [Hugo](//gohugo.io). The content and deployment 
 
 All content lives on the DigitalOcean App Platform. If you sign up with DigitalOcean through [this link][doref], we'll both receive generous credits.
 
-This iteration of the website was designed in [2024.12](/log/2024/12).
+This iteration of the website was designed in [2025.11](/log/2025/11).
 
 <!-- ## Membership Payments
 
@@ -21,9 +21,8 @@ I don't see or get any of your payment information. -->
 
 ## (Not so obvious) Features
 
-Press `?` to activate site-wide search. Navigate results with arrow keys.
-
-Select any text to automatically update the URL with a text fragment. Share the link to highlight that exact passage.
+* Press `?` to activate site-wide search. Navigate results with arrow keys.
+* Select any text to automatically update the URL with a _text fragment_. Share the link to highlight that exact passage.
 
 ## AI Usage
 
