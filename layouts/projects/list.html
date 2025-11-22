@@ -16,9 +16,9 @@ sort $ongoing "Date" "desc" }} {{ $dated = sort $dated "Date" "desc" }} {{ if gt
   <h2>Ongoing</h2>
   <div class="projects-grid">
     {{ range $ongoing }} {{ $page := . }} {{ $proj := $page.Params.project }} {{
-    $desc := or $proj.description $proj.descrioptin .Params.description }} {{
-    $cat := $proj.category }} {{ $catText := cond (not $cat) "" (trim $cat "/")
-    }} {{ $catLink := printf "/%s" $catText }}
+    $desc := or $proj.description .Params.description }} {{ $cat :=
+    $proj.category }} {{ $catText := cond (not $cat) "" (trim $cat "/") }} {{
+    $catLink := printf "/%s" $catText }}
     <div class="project-card">
       <div class="project-image">
         {{ with $proj.image }}
@@ -50,9 +50,8 @@ range $years }} {{ $year := . }}
   <div class="projects-grid">
     {{ range $dated }} {{ $page := . }} {{ $proj := $page.Params.project }} {{
     if eq (printf "%v" $proj.year) $year }} {{ $desc := or $proj.description
-    $proj.descrioptin .Params.description }} {{ $cat := $proj.category }} {{
-    $catText := cond (not $cat) "" (trim $cat "/") }} {{ $catLink := printf
-    "/%s" $catText }}
+    .Params.description }} {{ $cat := $proj.category }} {{ $catText := cond (not
+    $cat) "" (trim $cat "/") }} {{ $catLink := printf "/%s" $catText }}
     <div class="project-card">
       <div class="project-image">
         {{ with $proj.image }}

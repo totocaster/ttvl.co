@@ -10,9 +10,8 @@ first 6 (sort (where $featuredPages "Kind" "in" (slice "page" "section")) "Date"
   </p>
   <div class="projects-grid">
     {{ range $projects }} {{ $page := . }} {{ $proj := $page.Params.project }}
-    {{ $desc := or (and $proj $proj.description) (and $proj $proj.descrioptin)
-    $page.Params.description }} {{ $img := and $proj $proj.image }} {{ $cat :=
-    and $proj $proj.category }}
+    {{ $desc := or (and $proj $proj.description) $page.Params.description }} {{
+    $img := and $proj $proj.image }} {{ $cat := and $proj $proj.category }}
     <div class="project-card">
       <div class="project-image">
         {{ with $img }}
