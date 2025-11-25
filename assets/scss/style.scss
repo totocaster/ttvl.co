@@ -20,7 +20,6 @@ $line-height-nav: 25px;
 $max-width-container: 1008px;
 $max-width-readable: 588px;
 $grid-gap: 72px;
-$padding-left: 128px;
 $padding-small: 20px;
 $header-height: 180px;
 
@@ -92,8 +91,9 @@ body {
   grid-template-columns: 1fr 240px;
   gap: $grid-gap;
   max-width: $max-width-container;
-  margin: 0;
-  padding-left: $padding-left;
+  margin: 0 auto;
+  padding-left: $padding-small;
+  padding-right: $padding-small;
 
   @include narrow {
     padding-left: $padding-small;
