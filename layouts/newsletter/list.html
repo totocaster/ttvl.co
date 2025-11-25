@@ -1,25 +1,34 @@
 {{ define "main" }}
-<article>
-  <h1>{{ .Title }}</h1>
-  <p><em>A newsletter about my work, photography, books, making, and walking.</em></p>
-  <div class="email-subscribe">
-    <form
-      class="js-cm-form"
-      id="subForm"
-      action="https://www.createsend.com/t/subscribeerror?description="
-      method="post"
-      data-id="191722FC90141D02184CB1B62AB3DC26F7C416DE30A85B0B53BD94B6BBB579944F5715088DFCFDDBAF132E94DB6E2DA0EC5A3D9818CF7742D73716649E3ABF04"
-    >
-      <input autocomplete="Email" class="js-cm-email-input qa-input-email" id="fieldEmail" maxlength="200" name="cm-tyithrl-tyithrl" required="" type="email" />
-      <button type="submit">Subscribe</button>
-    </form>
-    <div class="promise">
-      <p>Once a month. One click to unsubscribe.</p>
+{{ $hero := .Params.hero | default "/visuals/newsletter/mirror-self-portrait.jpg" }}
+<section class="newsletter-hero" style="--newsletter-hero: url('{{ $hero }}');">
+  <div class="newsletter-hero__image" aria-hidden="true"></div>
+  <div class="newsletter-hero__content">
+    <h1>{{ .Title }}</h1>
+    <p class="newsletter-tagline"><em>A newsletter about my work, photography, books, making, and walking.</em></p>
+    <div class="newsletter-copy">
+      {{ .Content }}
+    </div>
+    <div class="email-subscribe">
+      <form
+        class="js-cm-form"
+        id="subForm"
+        action="https://www.createsend.com/t/subscribeerror?description="
+        method="post"
+        data-id="191722FC90141D02184CB1B62AB3DC26F7C416DE30A85B0B53BD94B6BBB579944F5715088DFCFDDBAF132E94DB6E2DA0EC5A3D9818CF7742D73716649E3ABF04"
+      >
+        <input autocomplete="Email" class="js-cm-email-input qa-input-email" id="fieldEmail" maxlength="200" name="cm-tyithrl-tyithrl" required="" type="email" />
+        <button type="submit">Subscribe</button>
+      </form>
+      <div class="promise">
+        <p>Once a month. One click to unsubscribe.</p>
+      </div>
     </div>
   </div>
+</section>
 
-  {{ .Content }}
-
+<section class="newsletter-archive">
+  <p>Every month, I’ll share an update on what I’ve been working on, reading, and creating. Most of what ends up on this website—writings, guides, objects, and more—starts in the newsletter, often weeks before it’s published here in its final form.</p>
+  <p>I also see the newsletter as the best way to stay connected with you. As the world drifts away from RSS and social media becomes increasingly noisy, email feels like a more reliable and personal way to keep in touch.</p>
   <h2>Archive</h2>
   <ul class="issue-list">
     {{ range (where (where .Site.Pages "Section" "flaneur") "Kind" "page").ByDate.Reverse }}
@@ -31,6 +40,6 @@
       </li>
     {{ end }}
   </ul>
-</article>
+</section>
 <script type="text/javascript" src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
 {{ end }}

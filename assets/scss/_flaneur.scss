@@ -1,4 +1,178 @@
 main {
+  .newsletter-hero {
+    position: relative;
+    margin: 0 0 2.5rem;
+  }
+
+  .newsletter-hero__image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    background-image: var(--newsletter-hero);
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(0, 0, 0, 0.65) 0%,
+        rgba(0, 0, 0, 0.45) 30%,
+        rgba(0, 0, 0, 0.1) 60%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      pointer-events: none;
+    }
+  }
+
+  .newsletter-hero__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    padding: 3rem 3rem 2.5rem;
+    max-width: 450px;
+    color: white;
+    z-index: 1;
+  }
+
+  .newsletter-tagline {
+    margin-top: 0.35rem;
+    margin-bottom: 1.25rem;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .newsletter-copy {
+    @include readable-width;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.92);
+
+    p {
+      margin-top: 0;
+    }
+  }
+
+  .newsletter-hero .email-subscribe {
+    color: white;
+
+    .js-cm-form {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+
+      input[type="email"] {
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        color: white;
+        width: 50%;
+        min-width: 260px;
+      }
+
+      button {
+        background: rgba(255, 255, 255, 0.94);
+        color: #000;
+        border: 1px solid rgba(255, 255, 255, 0.9);
+
+        &:hover {
+          background: white;
+        }
+      }
+    }
+
+    .promise p {
+      color: rgba(255, 255, 255, 0.85);
+    }
+  }
+
+  @include narrow {
+    .newsletter-hero {
+      margin: 0 0 1.75rem;
+    }
+
+    .newsletter-hero__image::after {
+      background: none;
+    }
+
+    .newsletter-hero__content {
+      position: static;
+      max-width: none;
+      padding: 1.75rem 0 0;
+      display: block;
+      color: $color-light-text;
+      background: $color-light-bg;
+
+      @include dark {
+        color: $color-dark-text;
+        background: $color-dark-bg;
+      }
+    }
+
+    .newsletter-tagline {
+      color: rgba(0, 0, 0, 0.65);
+      @include dark {
+        color: rgba($color: white, $alpha: 0.7);
+      }
+    }
+
+    .newsletter-copy {
+      color: inherit;
+    }
+
+    .newsletter-hero .email-subscribe {
+      color: inherit;
+
+      .js-cm-form {
+        gap: 0.5rem;
+
+        input[type="email"] {
+          background: $color-light-bg;
+          border: 1px solid $color-dark-bg;
+          color: $color-light-text;
+          width: 100%;
+          min-width: 0;
+
+          @include dark {
+            background: rgb(48, 48, 48);
+            color: $color-dark-text;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+          }
+        }
+
+        button {
+          background: $color-dark-bg;
+          color: $color-dark-text;
+          border: none;
+
+          @include dark {
+            background: #e3e3e3;
+            color: $color-light-text;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+          }
+        }
+      }
+
+      .promise p {
+        color: inherit;
+      }
+    }
+  }
+
+  .newsletter-archive {
+    background: $color-light-bg;
+    padding: 0.5rem 0 0;
+    @include dark {
+      background: $color-dark-bg;
+    }
+  }
+
   .issue-list {
     list-style: none;
     padding: 0;
