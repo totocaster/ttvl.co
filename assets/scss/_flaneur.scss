@@ -166,6 +166,7 @@ main {
   }
 
   .newsletter-archive {
+    @include readable-width;
     background: $color-light-bg;
     padding: 0.5rem 0 0;
     @include dark {

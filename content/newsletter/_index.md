@@ -1,5 +1,5 @@
 ---
-title: 'The Flâneur Newsletter'
+title: 'The Flâneur'
 description: "experiemental newsletter on my projects, photography and walking"
 project:
   year: ongoing
