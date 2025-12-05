@@ -1,0 +1,22 @@
+{{ define "main" }}
+<article class="{{ with .Params.content_css }}{{ . }}{{ end }}">
+  {{ if not .Params.hide_title }}
+  <h1>{{ .Title }}</h1>
+  {{ end }} {{ .Content }} {{/* Collect backlinks from other notes that mention
+  this page */}} {{ $current := . }} {{ $rel := $current.RelPermalink }} {{
+  $relNoSlash := strings.TrimSuffix "/" $rel }} {{ $notes := where
+  site.RegularPages "Section" "notes" }} {{ $backlinks := slice }} {{ range
+  $notes }} {{ if and (ne .RelPermalink $current.RelPermalink) (or (in
+  .RawContent $rel) (in .RawContent $relNoSlash)) }} {{ $backlinks = $backlinks
+  | append . }} {{ end }} {{ end }} {{ with $backlinks }}
+  <div class="note-backlinks">
+    <hr />
+    <ul class="note-backlinks__list">
+      {{ range sort . "Title" }}
+      <li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+</article>
+{{ end }}
