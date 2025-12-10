@@ -591,33 +591,6 @@ div.home {
   }
 }
 
-.document-draft {
-  background: #f4f4f6;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
-  padding: 1.5rem;
-  margin: 2.5rem 0;
-  @include monospace;
-
-  p,
-  li,
-  h1,
-  h2 {
-    line-height: 1.6;
-    font-size: 0.8rem;
-    line-height: 1.3rem;
-  }
-
-  h2 {
-    text-transform: uppercase;
-  }
-
-  @include dark {
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
-  }
-}
-
 @import "print";
 @import "flaneur";
 @import "download-box";
