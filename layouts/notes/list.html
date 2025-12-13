@@ -39,6 +39,6 @@
     {{ end }}
   </div>
 
-  {{ $notesFilter := resources.Get "js/notes-filter.js" | js.Build (dict "minify" true) }}
+  {{ $notesFilter := resources.Get "js/notes-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
   <script src="{{ $notesFilter.RelPermalink }}" defer></script>
 {{ end }}
