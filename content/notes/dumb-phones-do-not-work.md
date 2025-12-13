@@ -1,7 +1,7 @@
 ---
 title: "Dumb phones do not work" 
 date: 2025-12-05
-draft: true
+category: thinking
 ---
 
 The modern world assumes you have a smartphone. You hail taxis, navigate cities, pay for things, and even read restaraunt menus through it. In practice, it’s hard to function day to day without at least a browser in your pocket.

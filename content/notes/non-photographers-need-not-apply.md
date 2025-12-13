@@ -2,6 +2,7 @@
 title: The Silo Problem in Photography
 date: 2024-01-10
 description: Exploring the contrast between written and photographic books.
+category: longform
 aliases:
   - "/essays/non-photographers-need-not-apply/"
   - "/writings/non-photographers-need-not-apply/"

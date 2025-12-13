@@ -2,6 +2,7 @@
 title: 'Stop Saying Russian When You Mean Soviet'
 date: 2018-11-26
 description: An exploration of the common mix-up between Soviet Union, Russia, and related terms and a Georgian perspective on their historical impact.
+category: longform
 aliases:
   - "/essays/soviet-not-russia/"
   - "/writings/soviet-not-russia/"

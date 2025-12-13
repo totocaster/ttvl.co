@@ -2,6 +2,7 @@
 title: Where I Stand on AI—For Now
 date: 2025-06-06
 description: From productivity and translation to image generation and video, this is my current stance on how AI is shaping tools, work, and attention in 2025.
+category: thinking
 aliases:
   - "/essays/where-i-stand-on-ai/"
   - "/writings/where-i-stand-on-ai/"

@@ -4,7 +4,7 @@ date: 2025-01-13
 aliases:
   - "/essays/ten-rules-for-students-and-teachers/"
   - "/writings/ten-rules-for-students-and-teachers/"
-category: literature
+category: collected
 ---
 
 1. Find a place you trust, and then try trusting it for awhile.

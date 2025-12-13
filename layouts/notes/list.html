@@ -1,32 +1,44 @@
 {{ define "main" }}
   {{ .Content }}
-  {{ $notes := .Pages }}
-  {{ $evergreen := where $notes ".Params.category" "==" "evergreen" }}
-  {{ $regular := where $notes ".Params.category" "!=" "evergreen" }}
-  {{ $regularByDate := $regular.ByDate.Reverse }}
-  {{ $regularGroups := sort ($regularByDate.GroupByDate "2006") "Key" "desc" }}
+  {{ $categories := slice
+    (dict "slug" "all" "label" "All")
+    (dict "slug" "collected" "label" "Collected Matter")
+    (dict "slug" "thinking" "label" "Thinking Notes")
+    (dict "slug" "longform" "label" "Longform")
+  }}
 
-  {{ with $evergreen }}
-    <h2>Evergreen</h2>
-    <ul class="notes-list">
-      {{ range .ByDate.Reverse }}
+  <nav class="notes-filter" aria-label="Filter notes by category">
+    <ul>
+      {{ range $categories }}
         <li>
-          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          {{ if eq .Params.category "literature" }}<span class="note-pill note-pill--lit" aria-label="literature note"></span>{{ end }}
+          <a href="?category={{ .slug }}" data-category="{{ .slug }}" class="{{ if eq .slug "all" }}is-active{{ end }}">{{ .label }}</a>
         </li>
       {{ end }}
     </ul>
-  {{ end }}
+  </nav>
 
-  {{ range $regularGroups }}
-    <h2>{{ .Key }}</h2>
-    <ul class="notes-list">
-      {{ range .Pages.ByDate.Reverse }}
-        <li>
-          <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-          {{ if eq .Params.category "literature" }}<span class="note-pill note-pill--lit" aria-label="literature note"></span>{{ end }}
-        </li>
-      {{ end }}
-    </ul>
-  {{ end }}
+  {{ $notes := .Pages.ByDate.Reverse }}
+  {{ $grouped := $notes.GroupByDate "2006" }}
+
+  <div class="notes-groups">
+    {{ range $grouped }}
+      <section class="notes-year" data-year="{{ .Key }}">
+        <h2>{{ .Key }}</h2>
+        <ul class="issue-list">
+          {{ range .Pages.ByDate.Reverse }}
+            {{ $cat := .Params.category | default "thinking" }}
+            <li data-category="{{ $cat }}">
+              <span class="issue-number">
+                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+              </span>
+              <a class="issue-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+            </li>
+          {{ end }}
+        </ul>
+      </section>
+    {{ end }}
+  </div>
+
+  {{ $notesFilter := resources.Get "js/notes-filter.js" | js.Build (dict "minify" true) }}
+  <script src="{{ $notesFilter.RelPermalink }}" defer></script>
 {{ end }}

@@ -1,7 +1,7 @@
 ---
 title: "A low-noise smartphone [that works]" 
 date: 2025-12-05
-draft: true
+category: thinking
 ---
 
 [Dumb phones do not work](/notes/dumb-phones-do-not-work). So I came up with a few tools and tricks to make a modern smartphone work for me.
