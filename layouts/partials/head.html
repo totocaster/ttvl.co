@@ -117,10 +117,6 @@
 <!-- Generator w/ version number. -->
 {{ hugo.Generator }}
 
-<!-- Menu Script -->
-{{ $menu := resources.Get "js/menu.js" | js.Build (dict "minify" true) }}
-<script src="{{ $menu.RelPermalink }}"></script>
-
 <!-- Search Script -->
 {{ partial "search.html" . }}
 

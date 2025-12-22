@@ -12,6 +12,9 @@ main {
   .notes-filter {
     margin: 0 0 1rem;
     @include readable-width;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
 
     ul {
       list-style: none;
@@ -23,6 +26,13 @@ main {
 
       li {
         font-weight: 400;
+      }
+    }
+
+    @include narrow {
+      ul {
+        flex-wrap: nowrap;
+        min-width: max-content;
       }
     }
 

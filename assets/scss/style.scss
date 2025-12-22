@@ -80,9 +80,6 @@ body {
     color: $color-dark-text;
   }
 
-  &.menu-open {
-    overflow: hidden;
-  }
 }
 
 // Layout components
@@ -136,33 +133,6 @@ header {
   justify-content: space-between;
 }
 
-// Menu Toggle Button
-.menu-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: $color-light-text;
-  font-family: $font-family-base;
-  font-size: $font-size-base;
-  cursor: pointer;
-  padding: 10px;
-
-  @include dark {
-    color: $color-dark-text;
-  }
-
-  @include narrow {
-    display: block;
-    position: relative;
-    z-index: 1001; // Higher than the nav overlay
-
-    &.is-active {
-      position: fixed;
-      right: $padding-small;
-    }
-  }
-}
-
 // Typography
 h1 {
   font-size: $font-size-h1;
@@ -187,6 +157,8 @@ a {
 nav#Menu {
   line-height: $line-height-nav;
   width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 
   ul.primary-nav {
     list-style-type: none;
@@ -210,30 +182,12 @@ nav#Menu {
   }
 
   @include narrow {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: $color-light-bg;
-    padding: 20px;
-    overflow-y: auto;
-    z-index: 1000;
-    -webkit-overflow-scrolling: touch; // Smooth scrolling on iOS
+    padding-bottom: 6px;
 
     ul.primary-nav {
-      flex-direction: column;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    @include dark {
-      background: $color-dark-bg;
-    }
-
-    &.is-active {
-      display: block;
+      flex-wrap: nowrap;
+      gap: 18px;
+      min-width: max-content;
     }
   }
 }
