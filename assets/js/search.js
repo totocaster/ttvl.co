@@ -6,6 +6,9 @@
   let searchInput = null;
   let searchResults = null;
   let selectedIndex = -1;
+  let focusTrapHandler = null;
+  let previousActiveElement = null;
+  let searchIndexPromise = null;
 
   // Initialize search functionality
   function initSearch() {
@@ -20,10 +23,18 @@
     searchOverlay.id = 'search-overlay';
     searchOverlay.className = 'search-overlay';
     searchOverlay.style.display = 'none';
+    searchOverlay.setAttribute('role', 'dialog');
+    searchOverlay.setAttribute('aria-modal', 'true');
+    searchOverlay.setAttribute('aria-label', 'Site search');
 
     // Create search container
     const searchContainer = document.createElement('div');
     searchContainer.className = 'search-container';
+
+    // Close hint
+    const closeHint = document.createElement('p');
+    closeHint.className = 'search-close-hint';
+    closeHint.textContent = 'Press Esc to close';
 
     // Create logo element
     const logoContainer = document.createElement('div');
@@ -39,13 +50,16 @@
     searchInput.type = 'text';
     searchInput.className = 'search-input';
     searchInput.placeholder = 'Search...';
+    searchInput.setAttribute('aria-label', 'Search');
     searchInput.setAttribute('autocomplete', 'off');
 
     // Create results container
     searchResults = document.createElement('div');
     searchResults.className = 'search-results';
+    searchResults.setAttribute('role', 'listbox');
 
     // Assemble elements
+    searchContainer.appendChild(closeHint);
     searchContainer.appendChild(logoContainer);
     searchContainer.appendChild(searchInput);
     searchContainer.appendChild(searchResults);
@@ -95,14 +109,20 @@
 
   // Show search overlay
   function showSearch() {
+    previousActiveElement = document.activeElement;
     searchOverlay.style.display = 'flex';
     searchInput.focus();
     searchInput.select();
     document.body.style.overflow = 'hidden';
+    focusTrapHandler = createFocusTrapHandler();
+    searchOverlay.addEventListener('keydown', focusTrapHandler);
 
     // Load search index if not already loaded
     if (!searchIndex) {
-      loadSearchIndex();
+      fetchSearchIndex().catch((error) => {
+        console.error('Failed to load search index:', error);
+        searchResults.innerHTML = '<div class="search-error">Failed to load search index</div>';
+      });
     }
   }
 
@@ -113,21 +133,47 @@
     searchResults.innerHTML = '';
     selectedIndex = -1;
     document.body.style.overflow = '';
-  }
-
-  // Load search index
-  async function loadSearchIndex() {
-    try {
-      const response = await fetch('/index.json');
-      searchIndex = await response.json();
-    } catch (error) {
-      console.error('Failed to load search index:', error);
-      searchResults.innerHTML = '<div class="search-error">Failed to load search index</div>';
+    if (focusTrapHandler) {
+      searchOverlay.removeEventListener('keydown', focusTrapHandler);
+      focusTrapHandler = null;
+    }
+    if (previousActiveElement) {
+      previousActiveElement.focus();
+      previousActiveElement = null;
     }
   }
 
+  // Load search index
+  function fetchSearchIndex() {
+    if (searchIndex) {
+      return Promise.resolve(searchIndex);
+    }
+
+    if (searchIndexPromise) {
+      return searchIndexPromise;
+    }
+
+    searchIndexPromise = fetch('/index.json')
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Search index request failed with status ${response.status}`);
+        }
+        return response.json();
+      })
+      .then((data) => {
+        searchIndex = data;
+        return data;
+      })
+      .catch((error) => {
+        searchIndexPromise = null;
+        throw error;
+      });
+
+    return searchIndexPromise;
+  }
+
   // Handle search input
-  function handleSearch() {
+  async function handleSearch() {
     const query = searchInput.value.trim().toLowerCase();
     
     if (!query) {
@@ -136,19 +182,22 @@
       return;
     }
 
-    if (!searchIndex) {
-      searchResults.innerHTML = '<div class="search-loading">Loading search index...</div>';
-      return;
+    searchResults.innerHTML = '<div class="search-loading">Searching…</div>';
+
+    try {
+      const index = await fetchSearchIndex();
+      const results = index.filter(item => {
+        return item.title.toLowerCase().includes(query) ||
+               item.content.toLowerCase().includes(query) ||
+               item.summary.toLowerCase().includes(query) ||
+               (item.tags && item.tags.some(tag => tag.toLowerCase().includes(query)));
+      });
+
+      displayResults(results, query);
+    } catch (error) {
+      console.error('Failed to load search index:', error);
+      searchResults.innerHTML = '<div class="search-error">Failed to load search index</div>';
     }
-
-    const results = searchIndex.filter(item => {
-      return item.title.toLowerCase().includes(query) ||
-             item.content.toLowerCase().includes(query) ||
-             item.summary.toLowerCase().includes(query) ||
-             (item.tags && item.tags.some(tag => tag.toLowerCase().includes(query)));
-    });
-
-    displayResults(results, query);
   }
 
   // Display search results
@@ -248,6 +297,27 @@
 
   function escapeRegExp(string) {
     return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  function createFocusTrapHandler() {
+    return function(e) {
+      if (e.key !== 'Tab') return;
+      const focusable = searchOverlay.querySelectorAll(
+        'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else if (document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
   }
 
   // Initialize when DOM is ready

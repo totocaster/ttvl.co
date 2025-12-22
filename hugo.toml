@@ -1,7 +1,7 @@
 baseURL = 'https://ttvl.co/'
 title = 'Toto Tvalavadze'
 
-languageCode = "us-en"
+languageCode = "en-us"
 DefaultContentLanguage = "en"
 
 enableEmoji = true

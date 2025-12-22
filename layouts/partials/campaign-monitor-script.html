@@ -1,0 +1,7 @@
+{{ if not ($.Scratch.Get "cmScriptIncluded") }}
+  <script
+    src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"
+    defer
+  ></script>
+  {{ $.Scratch.Set "cmScriptIncluded" true }}
+{{ end }}
