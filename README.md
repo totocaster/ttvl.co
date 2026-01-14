@@ -200,6 +200,11 @@ Creates styled membership links using site configuration.
 {{< membership-link >}}Join Now{{< /membership-link >}}
 ```
 
+## License
+
+- Code: MIT License. See `LICENSE`.
+- Content (text, images, PDFs, and other assets): Copyright (c) 2025 Toto Tvalavadze. All rights reserved. See `LICENSE-CONTENT`.
+
 ### Email Templates
 
 The project includes email templates for newsletters and member communications:
