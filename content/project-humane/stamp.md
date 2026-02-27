@@ -44,3 +44,10 @@ brew install totocaster/tap/stamp
 ```
 
 You can also download release binaries directly from [GitHub releases](https://github.com/totocaster/stamp/releases) if you prefer manual installs.
+
+## Changelog
+
+### 0.3.0 — 2026-02-21
+
+- Added `stamp seq` for general-purpose sequential counters, so you can mint predictable IDs for any object (projects, folios, bindery fixtures, etc.) without relying on a single hard-coded format.
+- Removed the legacy project-specific counters in favor of `stamp seq <key>`, keeping number generation consistent across every workspace.
