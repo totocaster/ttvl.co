@@ -53,3 +53,7 @@ disableKinds = ["taxonomy", "term"]
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
+
+  [markup.highlight]
+    style = "bw"
+    noClasses = true
