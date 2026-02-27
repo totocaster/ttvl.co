@@ -12,6 +12,7 @@ on:
 
 jobs:
   claude-review:
+    if: false # temporarily disable Claude Code Agent on this repo/branch
     # Optional: Filter by PR author
     # if: |
     #   github.event.pull_request.user.login == 'external-contributor' ||
@@ -75,4 +76,3 @@ jobs:
           # if: |
           #   !contains(github.event.pull_request.title, '[skip-review]') &&
           #   !contains(github.event.pull_request.title, '[WIP]')
-
