@@ -1,5 +1,5 @@
 ---
-title: 'Sister Corita Kent: 10 Rules for Students and Teachers'
+title: 'Corita Kent: 10 Rules for Students and Teachers'
 date: 2025-01-13
 aliases:
   - "/essays/ten-rules-for-students-and-teachers/"
@@ -7,7 +7,7 @@ aliases:
 category: collected
 ---
 
-These rules are often misattributed to John Cage, but were written by [Sister Corita Kent](https://www.corita.org/tenrules). Cage contributed 10th rule.
+These rules are often misattributed to John Cage, but were written by [Corita Kent](https://www.corita.org/tenrules). Cage contributed 10th rule.
 
 1. Find a place you trust, and then try trusting it for awhile.
 2. General duties of a student — pull everything out of your teacher; pull everything out of your fellow students.
