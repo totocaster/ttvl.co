@@ -24,6 +24,8 @@ This site serves as a digital garden and documentation hub for various personal 
 
 - [Project Humane](/project-humane/): Tools and toys Toto makes for productivity and work.
   - [EDC Keychain](/project-humane/edc-keychain/): Everyday carry system to carry daily essentials that do not fit into men's pant pockets.
+  - [Whoopy CLI](/project-humane/whoopy/): Unofficial WHOOP data CLI for the terminal, automation, and AI agents.
+  - [Withingy CLI](/project-humane/withingy/): Withings data CLI for the terminal with activity, sleep, and workout support.
   - [Soma](/project-humane/soma/): A macOS app (work in progress) to scan loose leafs and transcribe them into text documents.
 
 ## Notes
