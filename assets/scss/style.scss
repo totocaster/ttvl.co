@@ -382,12 +382,16 @@ main {
     }
 
     pre {
+      @include readable-width;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+
       code {
-        @include readable-width;
         display: block;
         font-size: 14px;
         line-height: 1.4;
         white-space: pre;
+        min-width: max-content;
       }
     }
 

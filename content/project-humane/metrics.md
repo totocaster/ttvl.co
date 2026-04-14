@@ -11,9 +11,24 @@ project:
   image: /visuals/project-thumbs/proj_metrics_obsidian.png
 ---
 
-[Metrics](https://github.com/totocaster/metrics-obsidian) is a file-first [Obsidian](https://obsidian.md/) plugin for viewing and editing canonical `*.metrics.ndjson` files. It follows the [Plaintext Commons](/plaintext-commons/) stance that the folder is the platform, the file is the protocol, and tools should assist without annexing the corpus.
+[Metrics](https://github.com/totocaster/metrics-obsidian) is an [Obsidian](https://obsidian.md/) plugin for viewing and editing structured metric records stored as plain `*.metrics.ndjson` files. It is designed for measurements, scores, counts, durations, and other discrete data that do not fit naturally into notes.
 
-Obsidian is already excellent at handling notes and documents. Metrics is for the other kind of information: discrete data. I built it so measurements, counts, scores, durations, and similar records can live in the same plaintext world, readable and editable by humans and AI agents alike. This plugin is the human-facing part.
+Obsidian is already excellent at handling prose and documents. Metrics handles the structured side, keeping the files readable and editable outside the UI so humans and AI agents can work with the same records. It follows the [Plaintext Commons](/plaintext-commons/) idea that the folder is the platform and the file is the protocol.
+
+It is for people who want structured records in Obsidian without turning them into spreadsheet-only or app-owned data.
+
+![Metrics charts and timeline in Obsidian](/visuals/project-humane/2026.04.14-metrics-charts.png)
+
+## Example file
+
+Each line is one JSON object:
+
+```json
+{"id":"01JV7RK8Q4X60M0E2N0A6QK61V","ts":"2026-04-14T08:30:00+04:00","key":"body.weight","value":105.6,"unit":"kg","source":"withings"}
+{"id":"01JV7RM60M9X1Y9G7TWJ3CF8ES","ts":"2026-04-14T09:10:00+04:00","key":"nutrition.energy_intake","value":720,"unit":"kcal","source":"manual","note":"breakfast"}
+```
+
+The plugin acts as a lens over those files: view them, validate them, edit them, search them, and chart them without moving the data somewhere else.
 
 ## What it does
 
@@ -26,11 +41,13 @@ Obsidian is already excellent at handling notes and documents. Metrics is for th
 - Groups records by day, metric, or source and can compute summaries such as average, median, min, max, sum, or count.
 - Renders built-in charts from the currently visible rows using native SVG and no external services.
 
+![Metrics nutrition view with daily summaries and record notes](/visuals/project-humane/2026.04.14-metrics-nutrition.png)
+
 ## File format
 
 Each line is one JSON object with required fields for `id`, `ts`, `key`, `value`, and `source`, plus optional metadata such as `date`, `unit`, `origin_id`, `note`, `context`, and `tags`.
 
-That makes the files easy to version, grep, transform, and generate from other tools. The built-in catalog currently covers many of the metrics I personally care about, including body measurements, nutrition, sleep, recovery, and WHOOP-derived values, but the format itself is not limited to health data. Unknown keys and units are still allowed and simply show up as warnings rather than being silently normalized away.
+That makes the files easy to version, grep, transform, and generate from other tools. The built-in catalog currently covers many of the metrics I personally track, but the format itself is open-ended. Known keys get nicer labels, units, icons, and formatting; unknown keys and units are still allowed and show up as warnings instead of being silently normalized away.
 
 ## Why it exists
 
@@ -38,6 +55,7 @@ Notes and documents already have a good home in Obsidian. Discrete data usually 
 
 It also gives me a clean destination for data gathered elsewhere, whether that means manual entry or exports from tools like [Whoopy CLI](/project-humane/whoopy/) and [Withingy CLI](/project-humane/withingy/). Other tools and agents can work with the same files directly; Metrics handles the human side inside Obsidian.
 
-## Source
+## Links
 
-The source and release notes live on GitHub: [totocaster/metrics-obsidian](https://github.com/totocaster/metrics-obsidian).
+- Repository and install instructions: [totocaster/metrics-obsidian](https://github.com/totocaster/metrics-obsidian)
+- Metric file format and example records: [README: Metric files](https://github.com/totocaster/metrics-obsidian#metric-files)
