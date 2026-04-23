@@ -66,6 +66,7 @@ As of November 2025, below is the setup I use for my digital note-taking.
   - [Linter](https://github.com/platers/obsidian-linter)
   - [Local images](https://github.com/aleksey-rezvov/obsidian-local-images)
   - [Media Extended](https://github.com/aidenlx/media-extended) for lectures and video transcripts
+  - [Metrics](/project-humane/metrics/) for nutrition, WHOOP data, medications, and other structured records
   - [Natural Language Dates](https://github.com/argenos/nldates-obsidian)
   - [Paste URL into selection](https://github.com/denolehov/obsidian-url-into-selection)
   - [Quick Switcher++](https://github.com/darlal/obsidian-switcher-plus) as my human-accessible FTS
