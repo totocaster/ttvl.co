@@ -4,32 +4,34 @@ date: 2025-10-31
 url: /arrowhead/
 aliases:
   - /project-humane/arrowhead/
-description: "a plain-text search engine and agent bridge for Obsidian vaults"
+description: "helps AI agents and command-line tools make sense of your Obsidian vault"
 featured: true
 project:
   year: 2025
   category: /project-humane
+  description: "helps AI agents and command-line tools make sense of your Obsidian vault"
   image: /visuals/project-thumbs/proj_arrowhead.png
 ---
 
-**Arrowhead** ([on GitHub](https://github.com/totocaster/arrowhead)) is the plain-text search engine and agent bridge for my [Obsidian](https://obsidian.md/) vault. It keeps everything indexed for humans and AI alike, combining fast full-text search, semantic vectors, and graph analytics under one [CLI](https://en.wikipedia.org/wiki/Command-line_interface). Arrowhead is part of **[Plaintext Commons](/plaintext-commons/)**—my broader effort to build file-native thinking systems—with a public site forthcoming at [plaintextcommons.org](https://plaintextcommons.org).
+**Arrowhead** ([on GitHub](https://github.com/totocaster/arrowhead)) helps AI agents and command-line tools make sense of my [Obsidian](https://obsidian.md/) vault. It keeps Markdown notes indexed around the clock, combining fast full-text search, semantic vectors, graph analytics, time-based context, and metric queries under one [CLI](https://en.wikipedia.org/wiki/Command-line_interface) and MCP surface. Arrowhead is part of **[Plaintext Commons](/plaintext-commons/)**—my broader effort to build file-native thinking systems—with a public site forthcoming at [plaintextcommons.org](https://plaintextcommons.org).
 
-I built Arrowhead after years of bouncing between note-taking apps that locked away structure, links, and history. Plain text stayed the only constant, so the tool had to respect the folder as the source of truth. Arrowhead rewrites my earlier [Synapse/Soma](/project-humane/soma/) tools in Rust, trading a single-purpose search utility for a platform that feels at home on the command line, runs an always-on daemon, and speaks to AI agents like Claude and other that can help manage the corpus. 
+I built Arrowhead after years of bouncing between note-taking apps that locked away structure, links, and history. Plain text stayed the only constant, so the tool had to respect the folder as the source of truth. Arrowhead rewrites my earlier [Synapse/Soma](/project-humane/soma/) tools in Rust, trading a single-purpose search utility for a platform that feels at home on the command line, runs an always-on daemon, and speaks to AI agents like Claude, Codex, and OpenClaw.
 
 ## How Arrowhead works
 
 The CLI is the control surface, but the daemon does the real work. Indexing, search, and graph features depend on the daemon staying alive, so the typical flow is to initialize once and let the service run in the background.
 
-- `arrowhead` (CLI) bootstraps the vault, manages the daemon (`arrowhead index start/status/autostart`), and provides search, graph, and CRUD commands.
-- `arrowheadd` (daemon) watches the vault, streams changes into the SQLite + FTS5 + vector indexes, and exposes health/status endpoints.
-- MCP transports (stdio + optional HTTP) read from the same live index so assistants can perform everything the CLI can.
-- Hybrid ranking combines boolean operators, field filters, semantic similarity, and per-result explanations to show why a note surfaced.
+- `arrowhead` (CLI) bootstraps Obsidian vaults or generic Markdown workspaces, manages the daemon (`arrowhead index start/status/autostart`), and provides search, workspace, context, metric, graph, and CRUD commands.
+- `arrowheadd` (daemon) watches the vault, streams changes into the SQLite + FTS5 + vector indexes, and writes status/log files agents can inspect while it starts.
+- MCP transports (stdio + authenticated HTTP) read from the same live index, with bearer or link-token auth, CIDR allowlists, and `/health` readiness checks for remote clients.
+- Context commands surface day, week, month, changed-note, note, metric, and source views with evidence tiers and suggested pivots instead of only raw search hits.
+- Hybrid ranking combines boolean operators, field filters, date filters, semantic similarity, and per-result explanations to show why a note surfaced.
 
-The stack is intentionally pragmatic: Rust for speed and safety, SQLite for portability, `fastembed` embeddings stored with the index. `arrowhead init` seeds configuration, starts the daemon, and can register launchd/systemd autostart so indexing stays on even after reboot. CLI searches and MCP calls read directly from the hot index maintained by the daemon.
+The stack is intentionally pragmatic: Rust for speed and safety, SQLite for portability, `fastembed` embeddings stored with the index. `arrowhead init` seeds configuration, starts the daemon, and can register launchd/systemd autostart so indexing stays on even after reboot. Obsidian settings remain the preferred source of vault conventions, but non-Obsidian Markdown folders can use `.arrowhead/workspace.toml` for attachments, ignored folders, daily-note formats, and link style. Embeddings can also be disabled with `--fts-only` when a lighter full-text-only setup makes more sense.
 
 ## Why it exists
 
-**Plaintext Commons** treats files—not apps—as the durable layer for long-term knowledge work. Arrowhead is the search, discovery, and automation engine for that vision. It gives me confidence that vaults stay queryable, linkable, and agent-friendly without handing control to a silo. Whether I am debugging code, revisiting research threads, or asking Claude to draft a change, Arrowhead keeps the raw materials close while letting assistants do meaningful work.
+**Plaintext Commons** treats files—not apps—as the durable layer for long-term knowledge work. Arrowhead is the search, discovery, and automation engine for that vision. It gives me confidence that vaults stay queryable, linkable, and agent-friendly without handing control to a silo. Whether I am debugging code, revisiting research threads, checking metric trends, or asking an agent to draft a change, Arrowhead keeps the raw materials close while letting assistants do meaningful work.
 
 Arrowhead also absorbs the ingest and transcription ambitions that started with Soma. Analog note capture will migrate here—paired with a dedicated helper tool once the ergonomics are nailed—so a single system handles vault search and the bridges back to paper.
 
