@@ -58,7 +58,7 @@ Lorenzo (right) and I (left) at PeckaKucha Tokyo. (ph. Brian Scott Peterson)
 
 ### Video
 
-- **Creative Curation: Breathing New Life into Tokyo’s Streets**, NHK World, aired June 2023.
+- **Creative Curation: Breathing New Life into Tokyo’s Streets**, NHK World, aired June 2023. [Archival link](https://vimeo.com/1187645245/3d183a475f?share=copy&fl=sv&fe=ci).
 - [Voice of Tokyo, Episode 5: Jinny Street Gallery](https://youtu.be/FtVC0lzo6Ww), Tokyo Weekender, published March 2023.
 
 ### Print
