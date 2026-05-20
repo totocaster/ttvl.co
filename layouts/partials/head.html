@@ -122,3 +122,8 @@
 
 <!-- Text Fragments Script -->
 {{ partial "text-fragments.html" . }}
+
+{{ with .Params.pronunciation_audio }}
+{{ $pronunciationJS := resources.Get "js/pronunciation.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $pronunciationJS.RelPermalink }}" defer></script>
+{{ end }}

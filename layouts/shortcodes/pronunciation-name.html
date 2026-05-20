@@ -1,0 +1,3 @@
+{{- $name := .Get 0 | default "Toto" -}}
+{{- $audio := .Page.Params.pronunciation_audio | default "/audio/toto-pronunciation.mp3" -}}
+<span class="pronunciation-name"><strong>{{ $name }}</strong> <button class="pronunciation-button" type="button" data-pronunciation-button data-pronunciation-name="{{ $name }}" data-pronunciation-state="paused" aria-label="Play pronunciation of {{ $name }}" aria-pressed="false" title="Play pronunciation of {{ $name }}">{{ partial "icons/volume-2.svg" . }}{{ partial "icons/volume-x.svg" . }}</button><audio class="pronunciation-audio" preload="none"><source src="{{ $audio }}" type="audio/mpeg" /></audio></span>

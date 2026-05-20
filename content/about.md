@@ -3,12 +3,13 @@ title: 'About'
 content_css: about
 date: 2025-01-07
 hide_title: true
+pronunciation_audio: /audio/toto-pronunciation.mp3
 aliases:
   - /philosophy/
   - /press/
 ---
 
-I'm **Toto**, and this is ttvl.co; My public notebook of making and wandering curiosities.
+I'm {{< pronunciation-name "Toto" >}}, and this is ttvl.co; My public notebook of making and wandering curiosities.
 
 I'm a photographer, bookbinder, walker, and human-computer interface researcher, small gallery curator, among other smaller things.
 

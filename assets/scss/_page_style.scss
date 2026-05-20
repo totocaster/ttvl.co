@@ -5,6 +5,59 @@ main {
       img {
         @include readable-width();
       }
+
+      .pronunciation-name {
+        display: inline;
+        white-space: nowrap;
+      }
+
+      .pronunciation-button {
+        width: 1.05em;
+        height: 1.05em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        border-radius: 2px;
+        padding: 0;
+        margin: 0 0 0 0.15rem;
+        background: transparent;
+        color: inherit;
+        font: inherit;
+        line-height: 1;
+        cursor: pointer;
+        vertical-align: -0.14em;
+
+        @media (prefers-reduced-motion: no-preference) {
+          transition: opacity 0.16s ease;
+        }
+
+        &:hover {
+          opacity: 0.7;
+        }
+
+        &:focus-visible {
+          outline: 2px solid currentColor;
+          outline-offset: 2px;
+        }
+      }
+
+      .pronunciation-button__icon {
+        width: 1em;
+        height: 1em;
+        display: block;
+        flex: 0 0 auto;
+        stroke-width: 2.15;
+      }
+
+      .pronunciation-button__icon--stop,
+      .pronunciation-button.is-playing .pronunciation-button__icon--play {
+        display: none;
+      }
+
+      .pronunciation-button.is-playing .pronunciation-button__icon--stop {
+        display: block;
+      }
     }
   }
 
