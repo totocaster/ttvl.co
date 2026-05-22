@@ -16,6 +16,8 @@ project:
 
 This is a Bases view: it extends the presentation capabilities of Obsidian Bases without creating a separate Kanban file format or a second set of project-management settings.
 
+The "Better" in the name is mostly practical, not a claim that every other Kanban plugin is worse. I needed a name that was still available, and Kanban-related plugins are popular enough in the Obsidian community directory that the obvious names were already crowded.
+
 I also really like how [Things 3 for Mac](https://culturedcode.com/things/) handles shortcuts, so I tried to emulate that behavior inside the view. The goal is for keyboard navigation and card movement to feel fluid and pleasant, not like an afterthought bolted onto a mouse-first board.
 
 ![Better Kanban Bases View thumbnail](/visuals/project-thumbs/proj_kanban_view_obsdian.png)
