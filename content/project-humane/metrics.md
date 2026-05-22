@@ -57,5 +57,6 @@ It also gives me a clean destination for data gathered elsewhere, whether that m
 
 ## Links
 
+- Community plugin page: [Metrics](https://community.obsidian.md/plugins/metrics-lens)
 - Repository and install instructions: [totocaster/metrics-obsidian](https://github.com/totocaster/metrics-obsidian)
 - Metric file format and example records: [README: Metric files](https://github.com/totocaster/metrics-obsidian#metric-files)

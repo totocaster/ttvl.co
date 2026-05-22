@@ -17,6 +17,8 @@ That feels especially useful now that software agents can help with small, perso
 - [Vault Tasks](/project-humane/vault-tasks/) gathers Markdown tasks from across a vault into one organized view with filters, pinned notes, quick actions, and write-back to the original notes.
 - [Plaintext Task](https://github.com/totocaster/plaintext-task-obsidian) is an alternative Obsidian implementation for plaintext tasks, with a more centralized model than Vault Tasks.
 
+Published community plugins are collected on my [Obsidian Community profile](https://community.obsidian.md/users/ttvl).
+
 ## Vault tools
 
 - [Arrowhead CLI](/arrowhead/) is the search, discovery, graph, metrics, and MCP layer for my vault. It keeps Markdown indexed around the clock and gives local agents a way to work from evidence instead of vague memory.

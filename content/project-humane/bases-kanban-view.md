@@ -43,6 +43,5 @@ Manual card ordering behaves like a deliberate snapshot of the current grouped b
 
 ## Install
 
-Install it from Obsidian's community plugin directory: [Better Kanban Bases View](https://community.obsidian.md/plugins/bases-kanban-view-ttvl).
-
-The source, releases, and development notes live on GitHub: [totocaster/kanban-base-view-obsidian](https://github.com/totocaster/kanban-base-view-obsidian).
+- Community plugin page: [Better Kanban Bases View](https://community.obsidian.md/plugins/bases-kanban-view-ttvl)
+- Source, releases, and development notes: [totocaster/kanban-base-view-obsidian](https://github.com/totocaster/kanban-base-view-obsidian)

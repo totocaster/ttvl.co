@@ -34,5 +34,6 @@ There is also a read-only companion CLI, [vault-tasks](https://github.com/totoca
 
 The source, releases, and development notes live on GitHub:
 
+- Community plugin page: [Vault Tasks](https://community.obsidian.md/plugins/vault-tasks-view)
 - Plugin: [totocaster/vault-tasks-obsidian](https://github.com/totocaster/vault-tasks-obsidian)
 - Companion CLI: [totocaster/vault-tasks-obsidian-cli](https://github.com/totocaster/vault-tasks-obsidian-cli)
