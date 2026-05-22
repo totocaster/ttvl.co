@@ -8,7 +8,7 @@ description: "helps AI agents and command-line tools make sense of your Obsidian
 featured: true
 project:
   year: 2025
-  category: /project-humane
+  category: /obsidian
   description: "helps AI agents and command-line tools make sense of your Obsidian vault"
   image: /visuals/project-thumbs/proj_arrowhead.png
 ---

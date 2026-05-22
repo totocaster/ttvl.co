@@ -6,7 +6,7 @@ aliases:
 description: "file-first Obsidian plugin for viewing and editing plaintext metric files"
 project:
   year: 2026
-  category: /project-humane
+  category: /obsidian
   description: "plaintext metrics view for Obsidian with search, validation, and charts"
   image: /visuals/project-thumbs/proj_metrics_obsidian.png
 ---

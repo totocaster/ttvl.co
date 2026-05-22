@@ -7,7 +7,7 @@ aliases:
 description: "focused Kanban view for Obsidian Bases"
 project:
   year: 2026
-  category: /project-humane
+  category: /obsidian
   description: "focused Kanban view for Obsidian Bases with draggable cards and saved layouts"
   image: /visuals/project-thumbs/proj_kanban_view_obsdian.png
 ---

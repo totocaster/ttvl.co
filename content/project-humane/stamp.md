@@ -7,7 +7,7 @@ aliases:
 description: "tool for generating consistent filenames for notes"
 project:
   year: 2025
-  category: /project-humane
+  category: /obsidian
   image: /visuals/project-thumbs/proj_stamp.png
 ---
 
