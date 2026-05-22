@@ -16,6 +16,7 @@ Project Humane is an umbrella term for my tools for thought and made-for-hands e
 ## Digital Tools
 
 - [Arrowhead CLI](/arrowhead/): Helps AI agents and command-line tools make sense of your Obsidian vault.
+- [Better Kanban Bases View](/project-humane/bases-kanban-view/): A focused Kanban view for Obsidian Bases with draggable cards, keyboard reordering, note previews, and saved layouts.
 - [Metrics](/project-humane/metrics/): A file-first Obsidian plugin for viewing, editing, and charting plaintext metric files.
 - [Stamp CLI](/stamp/): A filename helper that keeps Plaintext Commons vaults consistent for humans, agents, and automation.
 - [Things CLI](/project-humane/things-cli/): A macOS CLI for managing Things 3 tasks from the terminal.
