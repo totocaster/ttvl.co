@@ -15,30 +15,8 @@ sort $ongoing "Date" "desc" }} {{ $dated = sort $dated "Date" "desc" }} {{ if gt
 <section class="project-year">
   <h2>Ongoing</h2>
   <div class="projects-grid">
-    {{ range $ongoing }} {{ $page := . }} {{ $proj := $page.Params.project }} {{
-    $desc := or $proj.description .Params.description }} {{ $cat :=
-    $proj.category }} {{ $catText := cond (not $cat) "" (trim $cat "/") }} {{
-    $catLink := printf "/%s" $catText }}
-    <div class="project-card">
-      <div class="project-image">
-        {{ with $proj.image }}
-        <a href="{{ $page.RelPermalink }}">
-          <img src="{{ . }}" alt="{{ $page.Title }}" loading="lazy" />
-        </a>
-        {{ end }}
-      </div>
-      <div class="project-meta">
-        <a class="project-title" href="{{ $page.RelPermalink }}"
-          >{{ $page.Title }}</a
-        >{{ if $desc }} &ndash; {{ $desc }}{{ end }}
-      </div>
-      {{ if $cat }}
-      <div class="project-category">
-        <a href="{{ $catLink }}">{{ $catText }}</a>
-      </div>
-      {{ end }}
-    </div>
-    {{ end }}
+    {{ range $ongoing }} {{ partial "project-card.html" (dict "page" .) }} {{
+    end }}
   </div>
 </section>
 {{ end }} {{ $years := slice }} {{ range $dated }} {{ $year := printf "%v"
@@ -48,30 +26,8 @@ range $years }} {{ $year := . }}
 <section class="project-year">
   <h2>{{ $year }}</h2>
   <div class="projects-grid">
-    {{ range $dated }} {{ $page := . }} {{ $proj := $page.Params.project }} {{
-    if eq (printf "%v" $proj.year) $year }} {{ $desc := or $proj.description
-    .Params.description }} {{ $cat := $proj.category }} {{ $catText := cond (not
-    $cat) "" (trim $cat "/") }} {{ $catLink := printf "/%s" $catText }}
-    <div class="project-card">
-      <div class="project-image">
-        {{ with $proj.image }}
-        <a href="{{ $page.RelPermalink }}">
-          <img src="{{ . }}" alt="{{ $page.Title }}" loading="lazy" />
-        </a>
-        {{ end }}
-      </div>
-      <div class="project-meta">
-        <a class="project-title" href="{{ $page.RelPermalink }}"
-          >{{ $page.Title }}</a
-        >{{ if $desc }} &ndash; {{ $desc }}{{ end }}
-      </div>
-      {{ if $cat }}
-      <div class="project-category">
-        <a href="{{ $catLink }}">{{ $catText }}</a>
-      </div>
-      {{ end }}
-    </div>
-    {{ end }} {{ end }}
+    {{ range $dated }} {{ if eq (printf "%v" .Params.project.year) $year }} {{
+    partial "project-card.html" (dict "page" .) }} {{ end }} {{ end }}
   </div>
 </section>
 {{ end }} {{ else }}

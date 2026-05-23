@@ -10,27 +10,17 @@ The center of the system is still [plain text](/plaintext-commons/). Obsidian fi
 
 That feels especially useful now that software agents can help with small, personal pieces of infrastructure. A plugin does not have to begin as a product idea. It can start as a missing affordance in one vault, become a tool I rely on, and then be published if it seems useful beyond my own setup.
 
-## Obsidian plugins
+{{< project-grid title="Obsidian plugins" pages="project-humane/bases-kanban-view,project-humane/metrics,project-humane/vault-tasks" />}}
 
-- [Better Kanban Bases View](/project-humane/bases-kanban-view/) adds a focused Kanban layout to [Obsidian Bases](https://help.obsidian.md/bases), using the existing Bases controls for sorting, grouping, filtering, and property selection instead of inventing a separate board format.
-- [Metrics](/project-humane/metrics/) makes plain-text JSON metric files usable inside Obsidian, with friendly editing, validation, search, grouping, and charts while keeping the data readable and editable by AI agents without a proprietary database.
-- [Vault Tasks](/project-humane/vault-tasks/) gathers Markdown tasks from across a vault into one organized view with filters, pinned notes, quick actions, and write-back to the original notes.
-- [Plaintext Task](https://github.com/totocaster/plaintext-task-obsidian) is an alternative Obsidian implementation for plaintext tasks, with a more centralized model than Vault Tasks.
+[Plaintext Task](https://github.com/totocaster/plaintext-task-obsidian) is an alternative Obsidian implementation for plaintext tasks, with a more centralized model than Vault Tasks.
 
 Published community plugins are collected on my [Obsidian Community profile](https://community.obsidian.md/users/ttvl).
 
-## Vault tools
+{{< project-grid title="Vault tools" pages="project-humane/arrowhead,project-humane/stamp,plaintext-commons" />}}
 
-- [Arrowhead CLI](/arrowhead/) is the search, discovery, graph, metrics, and MCP layer for my vault. It keeps Markdown indexed around the clock and gives local agents a way to work from evidence instead of vague memory.
-- [Stamp CLI](/stamp/) generates consistent filenames for daily notes, fleeting notes, project notes, and other predictable objects. It can pick up Obsidian Daily Notes and Unique Note Creator conventions when run inside a vault.
-- [Plaintext Commons](/plaintext-commons/) is the underlying argument: the folder is the platform, and the file is the protocol.
-
-## Data that belongs in the vault
-
+{{< project-grid title="Data that belongs in the vault" pages="project-humane/whoopy,project-humane/withingy" >}}
 Some of the Obsidian work is about making non-prose records feel at home beside notes:
-
-- [Whoopy CLI](/project-humane/whoopy/) pulls WHOOP recovery, sleep, workout, and strain data from the terminal.
-- [Withingy CLI](/project-humane/withingy/) pulls Withings activity, sleep, body metric, and workout data.
+{{< /project-grid >}}
 
 Those command-line tools are not Obsidian plugins, but they produce the kind of plain, scriptable data that can be summarized, charted, and cross-referenced from the same corpus.
 

@@ -1,0 +1,21 @@
+{{ $title := .Get "title" }}
+{{ $pages := slice }}
+{{ range split (.Get "pages") "," }}
+  {{ $path := trim . " \n\t" }}
+  {{ with site.GetPage $path }}
+    {{ $pages = $pages | append . }}
+  {{ else }}
+    {{ warnf "project-grid shortcode could not find page %q in %s" $path $.Page.File.Path }}
+  {{ end }}
+{{ end }}
+{{ if gt (len $pages) 0 }}
+<section class="project-year">
+  {{ with $title }}<h2>{{ . }}</h2>{{ end }}
+  {{ with trim .Inner " \n\t" }}<p>{{ . | markdownify }}</p>{{ end }}
+  <div class="projects-grid">
+    {{ range $pages }}
+      {{ partial "project-card.html" (dict "page" .) }}
+    {{ end }}
+  </div>
+</section>
+{{ end }}
