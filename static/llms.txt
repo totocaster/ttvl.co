@@ -31,6 +31,7 @@ This site serves as a digital garden and documentation hub for various personal 
 ## 8-String Guitar Studies
 
 - [8-String Guitar Studies](/8-strings/): Notes on relearning guitar from scratch on an 8-string instrument for metal, jazz, extended-range tuning, fretboard mapping, muting, and practice systems.
+  - [Treat the 8-String Guitar as a New Instrument](/8-strings/treat-the-8-string-guitar-as-a-new-instrument/): A mindset note on treating extended range as a new instrument rather than a 6-string guitar with two extra strings.
   - [How to Tune an 8-String Guitar](/8-strings/how-to-tune-an-8-string-guitar/): Practical tuning setup for standard F# tuning, Drop E, and slightly flat low-string offsets.
 
 ## Notes
