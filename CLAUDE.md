@@ -14,8 +14,8 @@ hugo server -D              # Start dev server with drafts
 hugo server                 # Start dev server (published only)
 
 # Build
-hugo --destination ./public # Production build
-rm -r ./public && hugo      # Clean build
+HUGO_SITE_UPDATE=$(git rev-list --count HEAD) hugo --destination ./public # Production build
+rm -r ./public && HUGO_SITE_UPDATE=$(git rev-list --count HEAD) hugo      # Clean build
 
 # Content Management
 hugo new darkroom/title.md  # Create photography article
@@ -121,6 +121,13 @@ Native browser feature for deep-linking to specific text:
 - Keyboard shortcuts: Cmd/Ctrl+Shift+L to update URL, Escape to clear
 - Native support only (Chrome 89+, Edge 89+, Firefox 131+, Safari 18.2+)
 - No polyfills or fallbacks - silently disabled on unsupported browsers
+
+### Site Versioning
+- Public site version uses the format `vMAJOR.MINOR.UPDATE`.
+- Current major/minor version is `v7.3`, configured in `hugo.toml` under `[params.version]`.
+- `MAJOR` is the site era. `v7` represents this Hugo/ttvl.co repository; earlier personal-site eras lived under other names/domains.
+- `MINOR` is for visible site-structure or publishing-system revisions, not routine content posts.
+- `UPDATE` is the total Git commit count for this repository. The footer reads `HUGO_SITE_UPDATE` when provided; DigitalOcean sets it with `git rev-list --count HEAD` during deploy. The `update` value in `hugo.toml` is the local fallback.
 
 ## Deployment
 

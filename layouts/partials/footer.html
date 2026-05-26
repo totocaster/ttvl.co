@@ -1,6 +1,9 @@
 <footer>
+  {{- $version := .Site.Params.version }}
+  {{- $update := or (os.Getenv "HUGO_SITE_UPDATE") $version.update }}
   <p>
-    &copy; 2019&ndash;{{ now.Year }} {{ .Site.Title }} ·
-    <a href="/colophon/">Colophon</a> · <a href="/a-z/">Index</a>
+    &copy; 2008&ndash;{{ now.Year }} {{ .Site.Title }} &middot;
+    v{{ $version.major }}.{{ $version.minor }}.{{ $update }} &middot;
+    <a href="/colophon/">Colophon</a> &middot; <a href="/a-z/">Index</a>
   </p>
 </footer>
