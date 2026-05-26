@@ -28,6 +28,11 @@ This site serves as a digital garden and documentation hub for various personal 
   - [Withingy CLI](/project-humane/withingy/): Withings data CLI for the terminal with activity, sleep, and workout support.
   - [Soma](/project-humane/soma/): A macOS app (work in progress) to scan loose leafs and transcribe them into text documents.
 
+## 8-String Guitar Studies
+
+- [8-String Guitar Studies](/8-strings/): Notes on relearning guitar from scratch on an 8-string instrument for metal, jazz, extended-range tuning, fretboard mapping, muting, and practice systems.
+  - [How to Tune an 8-String Guitar](/8-strings/how-to-tune-an-8-string-guitar/): Practical tuning setup for standard F# tuning, Drop E, and slightly flat low-string offsets.
+
 ## Notes
 
 - [Notes](/notes/): Essays, resources, and working notes.
