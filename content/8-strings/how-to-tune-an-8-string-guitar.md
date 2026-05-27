@@ -30,5 +30,4 @@ For Drop E, use the 8th-string offset as the starting point for E1. Heavier stri
 
 ## References
 
-- [6 Challenges when Switching to an 8-STRING Guitar](https://www.youtube.com/watch?v=bwhBIIdh76E) by 
-Eight Metal Strings
+- [6 Challenges when Switching to an 8-STRING Guitar](https://www.youtube.com/watch?v=bwhBIIdh76E), Thomas Powell, Eight Metal Strings

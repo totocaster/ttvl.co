@@ -19,6 +19,6 @@ The companion PDF is useful as a boring reference sheet: first-position notes, s
 
 ## References
 
-- [How to Notate Music for the 8-String Guitar](https://www.youtube.com/watch?v=gj9mDAm9WdQ) by Thomas Powell / Eight Metal Strings
+- [How to Notate Music for the 8-String Guitar](https://www.youtube.com/watch?v=gj9mDAm9WdQ), Thomas Powell, Eight Metal Strings
 - [8-string guitar stave](https://music.stackexchange.com/questions/130448/8-string-guitar-stave) on Music: Practice & Theory Stack Exchange
-- _Notes on the 8-string Guitar in 1st Position_, Thomas Powell / Eight Metal Strings
+- _Notes on the 8-string Guitar in 1st Position_, Thomas Powell, Eight Metal Strings
