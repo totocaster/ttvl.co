@@ -30,7 +30,7 @@ hugo new log/YYYY.MM.md    # Create monthly log
 - **Newsletter**: `/content/flaneur/*.md` → Dual output (HTML + email format)
 - **Photography**: `/content/darkroom/*.md` → Technical documentation
 - **Visual Journal**: `/content/leaves/*.md` → Scanned loose leaves from Unbound Notebook System
-- **Obsidian Hub**: `/content/obsidian.md` → `/obsidian/`, collecting Obsidian plugins, vault tools, life-metrics tooling, and AI-agent context workflows
+- **Obsidian Hub**: `/content/obsidian/_index.md` → `/obsidian/`, collecting Obsidian plugins, vault tools, life-metrics tooling, and AI-agent context workflows
 
 ### Key Configuration
 - Main config: `hugo.toml`
@@ -74,10 +74,17 @@ Vanilla JS in `/assets/js/`:
 3. Optimize images before adding to `/static/images/`
 
 ### Obsidian Projects
-- `/content/obsidian.md` is the hub page for Obsidian-related work: plugins, vault search/discovery tools, plain-text metric workflows, and agent-facing vault tooling.
-- Projects associated primarily with Obsidian should use `project.category: /obsidian` in frontmatter so the Projects grid shows the `obsidian` scope under the project name.
-- When adding a new Obsidian plugin or related vault/agent tool to projects, update `/content/obsidian.md` in the same change so the hub stays current.
-- Obsidian-related project pages may still live under `/content/project-humane/` when that matches the existing URL structure or aliases; the `project.category` controls the visible scope label.
+- `/content/obsidian/_index.md` is the hub page for Obsidian-related work: plugins, vault search/discovery tools, plain-text metric workflows, and agent-facing vault tooling.
+- New Obsidian project pages should live in `/content/obsidian/project-name.md`, which gives them canonical URLs at `/obsidian/project-name/`.
+- Obsidian projects should use `project.category: /obsidian` in frontmatter so the Projects grid shows the `obsidian` scope under the project name.
+- When adding a new Obsidian plugin or related vault/agent tool to projects, update `/content/obsidian/_index.md` in the same change so the hub stays current.
+- Do not add aliases for new Obsidian projects unless there is a deliberate short URL worth keeping, such as `/triage/` or `/metrics/`. Existing legacy aliases should stay in place so old links keep working.
+
+### Project URL Conventions
+- Project Humane project pages should live under `/content/project-humane/` with canonical URLs at `/project-humane/project-name/`.
+- Obsidian project pages are the exception: they live under `/content/obsidian/` and use `/obsidian/project-name/`, even when they are also philosophically related to Project Humane.
+- Keep canonical internal links pointed at the hub path, not at legacy redirects or short aliases. Use `/obsidian/triage/` instead of `/triage/`, and `/project-humane/tp7/` instead of `/tp7/`.
+- Avoid adding extra aliases for new work. Add only intentional short aliases, and preserve existing aliases when moving old pages.
 
 ### Monthly Logs
 - Filename format: `YYYY.MM.md`

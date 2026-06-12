@@ -128,4 +128,4 @@ The idea has deep roots. macOS `.bundle` and `.app` directories pioneered the di
 
 Further back: Ted Nelson's Xanadu imagined documents carrying their own context. Bret Victor's [Explorable Explanations](https://worrydream.com/ExplorableExplanations/) made documents interactive. Alan Kay's Smalltalk objects carried their own behavior. HyperCard bundled content and interaction. More recently, [Ink & Switch](https://www.inkandswitch.com/) (Potluck, Cambria) and Geoffrey Litt (Wildcard, Riffle) have been pushing toward malleable software that adapts to data shapes rather than forcing data into app shapes.
 
-Universal Content Bundle is part of **[Plaintext Commons](/plaintext-commons/)**, continuing the thread that files, not apps, should be the durable layer for knowledge work.
+Universal Content Bundle is part of **[Plaintext Commons](/project-humane/plaintext-commons/)**, continuing the thread that files, not apps, should be the durable layer for knowledge work.

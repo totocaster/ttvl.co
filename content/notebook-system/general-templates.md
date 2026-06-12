@@ -36,6 +36,6 @@ However, this creates a challenge: I often forget about digital books because th
 These templates are licensed under [CC BY 4.0][cc], which means you can share, adapt, modify, build upon, and do pretty much anything you want with them—just mention the notebook system itself somewhere when you publish.
 
 [cc]: https://creativecommons.org/licenses/by/4.0/
-[pv]: /notebook-system/#peripheral-vision
-[uns]: /notebook-system/
+[pv]: /project-humane/notebook-system/#peripheral-vision
+[uns]: /project-humane/notebook-system/
 [film]: /notebook-system/analog-photography-templates/

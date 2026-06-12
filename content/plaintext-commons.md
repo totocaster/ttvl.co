@@ -1,6 +1,9 @@
 ---
 title: Plaintext Commons
 date: 2025-11-04
+url: /project-humane/plaintext-commons/
+aliases:
+  - /plaintext-commons/
 description: "Manifesto for keeping long-form knowledge in durable, human- and agent-friendly files."
 featured: true
 project:
@@ -18,4 +21,4 @@ Plaintext Commons is a manifesto for keeping long-form knowledge in durable, hum
 
 ## About
 
-Plaintext Commons assumes the folder is the platform, the file is the protocol, and tools—including AI agents—should assist without annexing the corpus. Every component I am building, from [Arrowhead CLI](/arrowhead/) to ongoing capture tooling, lives inside that stance.
+Plaintext Commons assumes the folder is the platform, the file is the protocol, and tools—including AI agents—should assist without annexing the corpus. Every component I am building, from [Arrowhead CLI](/obsidian/arrowhead/) to ongoing capture tooling, lives inside that stance.

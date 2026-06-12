@@ -6,17 +6,17 @@ description: "A hub for my Obsidian plugins, vault tools, and plain-text knowled
 
 This page gathers the tools and experiments I have built around [Obsidian](https://obsidian.md/). I use it extensively: as a knowledge base, personal journal, life-metrics workspace, and extended context layer for my personal AI assistant.
 
-The center of the system is still [plain text](/plaintext-commons/). Obsidian fits that philosophy well, but I also value it as a programmable workspace: local files underneath, a flexible plugin layer on top, and enough surface area to shape the tool around the way I actually think and work.
+The center of the system is still [plain text](/project-humane/plaintext-commons/). Obsidian fits that philosophy well, but I also value it as a programmable workspace: local files underneath, a flexible plugin layer on top, and enough surface area to shape the tool around the way I actually think and work.
 
 That feels especially useful now that software agents can help with small, personal pieces of infrastructure. A plugin does not have to begin as a product idea. It can start as a missing affordance in one vault, become a tool I rely on, and then be published if it seems useful beyond my own setup.
 
-{{< project-grid title="Obsidian plugins" pages="project-humane/triage,project-humane/bases-kanban-view,project-humane/metrics,project-humane/vault-tasks" />}}
+{{< project-grid title="Obsidian plugins" pages="obsidian/triage,obsidian/bases-kanban-view,obsidian/metrics,obsidian/vault-tasks" />}}
 
 [Plaintext Task](https://github.com/totocaster/plaintext-task-obsidian) is an alternative Obsidian implementation for plaintext tasks, with a more centralized model than Vault Tasks.
 
 Published community plugins are collected on my [Obsidian Community profile](https://community.obsidian.md/users/ttvl).
 
-{{< project-grid title="Vault tools" pages="project-humane/arrowhead,project-humane/stamp,plaintext-commons" />}}
+{{< project-grid title="Vault tools" pages="obsidian/arrowhead,obsidian/stamp,plaintext-commons" />}}
 
 {{< project-grid title="Data that belongs in the vault" pages="project-humane/whoopy,project-humane/withingy" >}}
 Some of the Obsidian work is about making non-prose records feel at home beside notes:
@@ -28,7 +28,7 @@ Those command-line tools are not Obsidian plugins, but they produce the kind of 
 
 Obsidian, with Sync, is the main human access point to the corpus. Codex, Claude Code, OpenClaw, and other local agents use Arrowhead and shell tools to make the same vault more searchable and discoverable from their side. The goal is to use the Obsidian vault as both my knowledge base and an extended context layer for agents, while keeping Obsidian as the interface I use directly.
 
-The current plugin stack is documented in the [Arrowhead setup notes](/arrowhead/#my-setup). It includes core navigation and linking tools, cleanup utilities, Quick Switcher++, media transcript helpers, and my own Metrics plugin for structured records.
+The current plugin stack is documented in the [Arrowhead setup notes](/obsidian/arrowhead/#my-setup). It includes core navigation and linking tools, cleanup utilities, Quick Switcher++, media transcript helpers, and my own Metrics plugin for structured records.
 
 ## Development log
 

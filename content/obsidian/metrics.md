@@ -2,6 +2,7 @@
 title: Metrics
 date: 2026-04-14
 aliases:
+  - /project-humane/metrics/
   - /metrics/
 description: "file-first Obsidian plugin for viewing and editing plaintext metric files"
 project:
@@ -13,7 +14,7 @@ project:
 
 [Metrics](https://github.com/totocaster/metrics-obsidian) is an [Obsidian](https://obsidian.md/) plugin for viewing and editing structured metric records stored as plain `*.metrics.ndjson` files. It is designed for measurements, scores, counts, durations, and other discrete data that do not fit naturally into notes.
 
-Obsidian is already excellent at handling prose and documents. Metrics handles the structured side, keeping the files readable and editable outside the UI so humans and AI agents can work with the same records. It follows the [Plaintext Commons](/plaintext-commons/) idea that the folder is the platform and the file is the protocol.
+Obsidian is already excellent at handling prose and documents. Metrics handles the structured side, keeping the files readable and editable outside the UI so humans and AI agents can work with the same records. It follows the [Plaintext Commons](/project-humane/plaintext-commons/) idea that the folder is the platform and the file is the protocol.
 
 It is for people who want structured records in Obsidian without turning them into spreadsheet-only or app-owned data.
 
@@ -51,7 +52,7 @@ That makes the files easy to version, grep, transform, and generate from other t
 
 ## Why it exists
 
-Notes and documents already have a good home in Obsidian. Discrete data usually gets pushed into vendor dashboards, spreadsheets, or app-specific schemas. Metrics brings that kind of data into alignment with [Plaintext Commons](/plaintext-commons/): inspectable, editable, durable, and still useful outside any single interface. If the UI disappeared tomorrow, the records would still be ordinary text files.
+Notes and documents already have a good home in Obsidian. Discrete data usually gets pushed into vendor dashboards, spreadsheets, or app-specific schemas. Metrics brings that kind of data into alignment with [Plaintext Commons](/project-humane/plaintext-commons/): inspectable, editable, durable, and still useful outside any single interface. If the UI disappeared tomorrow, the records would still be ordinary text files.
 
 It also gives me a clean destination for data gathered elsewhere, whether that means manual entry or exports from tools like [Whoopy CLI](/project-humane/whoopy/) and [Withingy CLI](/project-humane/withingy/). Other tools and agents can work with the same files directly; Metrics handles the human side inside Obsidian.
 

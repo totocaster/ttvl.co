@@ -1,9 +1,8 @@
 ---
 title: TP-7 CLI
 date: 2026-05-07
-url: /tp7/
 aliases:
-  - /project-humane/tp7/
+  - /tp7/
 description: "CLI tool for humans and agents to manage files on Teenage Engineering TP-7 field recorders"
 project:
   year: 2026

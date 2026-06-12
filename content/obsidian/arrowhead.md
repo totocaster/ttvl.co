@@ -1,8 +1,8 @@
 ---
 title: Arrowhead CLI
 date: 2025-10-31
-url: /arrowhead/
 aliases:
+  - /arrowhead/
   - /project-humane/arrowhead/
 description: "helps AI agents and command-line tools make sense of your Obsidian vault"
 featured: true
@@ -13,7 +13,7 @@ project:
   image: /visuals/project-thumbs/proj_arrowhead.png
 ---
 
-**Arrowhead** ([on GitHub](https://github.com/totocaster/arrowhead)) helps AI agents and command-line tools make sense of my [Obsidian](https://obsidian.md/) vault. It keeps Markdown notes indexed around the clock, combining fast full-text search, semantic vectors, graph analytics, time-based context, and metric queries under one [CLI](https://en.wikipedia.org/wiki/Command-line_interface) and MCP surface. Arrowhead is part of **[Plaintext Commons](/plaintext-commons/)**—my broader effort to build file-native thinking systems—with a public site forthcoming at [plaintextcommons.org](https://plaintextcommons.org).
+**Arrowhead** ([on GitHub](https://github.com/totocaster/arrowhead)) helps AI agents and command-line tools make sense of my [Obsidian](https://obsidian.md/) vault. It keeps Markdown notes indexed around the clock, combining fast full-text search, semantic vectors, graph analytics, time-based context, and metric queries under one [CLI](https://en.wikipedia.org/wiki/Command-line_interface) and MCP surface. Arrowhead is part of **[Plaintext Commons](/project-humane/plaintext-commons/)**—my broader effort to build file-native thinking systems—with a public site forthcoming at [plaintextcommons.org](https://plaintextcommons.org).
 
 I built Arrowhead after years of bouncing between note-taking apps that locked away structure, links, and history. Plain text stayed the only constant, so the tool had to respect the folder as the source of truth. Arrowhead rewrites my earlier [Synapse/Soma](/project-humane/soma/) tools in Rust, trading a single-purpose search utility for a platform that feels at home on the command line, runs an always-on daemon, and speaks to AI agents like Claude, Codex, and OpenClaw.
 
@@ -66,7 +66,7 @@ As of November 2025, below is the setup I use for my digital note-taking.
   - [Linter](https://github.com/platers/obsidian-linter)
   - [Local images](https://github.com/aleksey-rezvov/obsidian-local-images)
   - [Media Extended](https://github.com/aidenlx/media-extended) for lectures and video transcripts
-  - [Metrics](/project-humane/metrics/) for nutrition, WHOOP data, medications, and other structured records
+  - [Metrics](/obsidian/metrics/) for nutrition, WHOOP data, medications, and other structured records
   - [Natural Language Dates](https://github.com/argenos/nldates-obsidian)
   - [Paste URL into selection](https://github.com/denolehov/obsidian-url-into-selection)
   - [Quick Switcher++](https://github.com/darlal/obsidian-switcher-plus) as my human-accessible FTS

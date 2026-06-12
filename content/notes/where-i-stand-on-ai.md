@@ -32,7 +32,7 @@ _AI in programming is a net positive by a significant margin._
 
 ## Productivity / Thinking
 
-Using chatbots for brainstorming, exploring, and navigating my huge vault of notes has become a daily routine (see [Arrowhead](https://ttvl.co/arrowhead/)). It has enhanced both [browsing and searching][search-browse] across my own and external knowledge bases.
+Using chatbots for brainstorming, exploring, and navigating my huge vault of notes has become a daily routine (see [Arrowhead](https://ttvl.co/obsidian/arrowhead/)). It has enhanced both [browsing and searching][search-browse] across my own and external knowledge bases.
 
 Assisting with decisions, planning events, or organizing projects has become easier and more structured with AI tools, giving me more time to actually do said projects. As context windows, RAG/MCP systems, and tooling become more capable, AI-assisted productivity will only improve, effectively unlocking automation for everyone, not only for nerds who like scripting or connecting nodes in visual programming tools.
 
@@ -90,4 +90,4 @@ I'm quite fond of AI tools that enhance human creativity or productivity, wherea
 
 [fable]: https://blog.oup.com/2014/08/unfinished-fable-sparrows-superintelligence/
 [jalkut-toot]: https://mastodon.social/@danielpunkass/116639318125898071
-[search-browse]: https://ttvl.co/notebook-system/#searching-and-browsing
+[search-browse]: https://ttvl.co/project-humane/notebook-system/#searching-and-browsing

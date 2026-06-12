@@ -15,7 +15,7 @@ This site serves as a digital garden and documentation hub for various personal 
 
 ## Notebook System
 
-- [Unbound Notebook System](/notebook-system/), or UNS: Framework for hybrid digital and analog note-taking system that Toto developed and is using.
+- [Unbound Notebook System](/project-humane/notebook-system/), or UNS: Framework for hybrid digital and analog note-taking system that Toto developed and is using.
   - [Analog Photography Templates](/notebook-system/analog-photography-templates/): Templates for film photography workflow.
   - [General Templates](/notebook-system/general-templates/): Basic notebook templates.
   - [Make Your Own](/notebook-system/make-your-own/): Guide to creating custom UNS notebook.
@@ -23,10 +23,17 @@ This site serves as a digital garden and documentation hub for various personal 
 ## Projects
 
 - [Project Humane](/project-humane/): Tools and toys Toto makes for productivity and work.
+  - [Plaintext Commons](/project-humane/plaintext-commons/): Manifesto for durable, human- and agent-friendly files.
+  - [Unbound Notebook System](/project-humane/notebook-system/): Framework for hybrid digital and analog note-taking.
   - [EDC Keychain](/project-humane/edc-keychain/): Everyday carry system to carry daily essentials that do not fit into men's pant pockets.
   - [Whoopy CLI](/project-humane/whoopy/): Unofficial WHOOP data CLI for the terminal, automation, and AI agents.
   - [Withingy CLI](/project-humane/withingy/): Withings data CLI for the terminal with activity, sleep, and workout support.
   - [Soma](/project-humane/soma/): A macOS app (work in progress) to scan loose leafs and transcribe them into text documents.
+- [Obsidian](/obsidian/): Obsidian plugins, vault tools, and plain-text knowledge system experiments.
+  - [Arrowhead CLI](/obsidian/arrowhead/): Search, discovery, and agent context tools for Obsidian vaults and Markdown folders.
+  - [Metrics](/obsidian/metrics/): Obsidian plugin for plaintext metric files.
+  - [Triage](/obsidian/triage/): Obsidian plugin for resurfacing unprocessed notes.
+  - [Vault Tasks](/obsidian/vault-tasks/): Obsidian plugin for gathering Markdown tasks across a vault.
 
 ## Notes
 

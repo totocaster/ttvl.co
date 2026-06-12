@@ -2,6 +2,7 @@
 title: Vault Tasks
 date: 2026-04-08
 aliases:
+  - /project-humane/vault-tasks/
   - /vault-tasks/
 description: "Obsidian plugin that gathers tasks across a vault into one organized view"
 project:

@@ -1,8 +1,8 @@
 ---
 title: Stamp CLI
 date: 2025-09-18
-url: /stamp/
 aliases:
+  - /stamp/
   - /project-humane/stamp/
 description: "tool for generating consistent filenames for notes"
 project:
@@ -11,7 +11,7 @@ project:
   image: /visuals/project-thumbs/proj_stamp.png
 ---
 
-[Stamp CLI](https://github.com/totocaster/stamp) is my note-naming assistant for [Plaintext Commons](/plaintext-commons) vaults and folders. It generates consistent IDs and filenames so humans, agents, and automations can keep a shared corpus tidy without manual bookkeeping.
+[Stamp CLI](https://github.com/totocaster/stamp) is my note-naming assistant for [Plaintext Commons](/project-humane/plaintext-commons/) vaults and folders. It generates consistent IDs and filenames so humans, agents, and automations can keep a shared corpus tidy without manual bookkeeping.
 
 ## What it does
 
@@ -30,7 +30,7 @@ Stamp is Obsidian-aware and automatically picks up [Daily Notes](https://help.ob
 
 ## Why it exists
 
-I wanted [Arrowhead](/arrowhead/) and my AI assistants to agree on the same naming rules without hand-coded prompts. Stamp serves that role:
+I wanted [Arrowhead](/obsidian/arrowhead/) and my AI assistants to agree on the same naming rules without hand-coded prompts. Stamp serves that role:
 
 The side effect is that all automation tools follow same instructions for naming using stamp and thus cross-linking, lookup and note creation is standartized.
 

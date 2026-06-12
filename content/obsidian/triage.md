@@ -2,6 +2,7 @@
 title: Triage
 date: 2026-06-12
 aliases:
+  - /project-humane/triage/
   - /triage/
 description: "Obsidian plugin for resurfacing unprocessed notes in an Anki-style triage queue"
 project:
@@ -32,7 +33,7 @@ Triage is for notes that are not quite tasks. A task manager is the wrong place 
 
 The plugin borrows some ergonomics from Anki: focused cards, numbered decisions, and intervals that feel quick enough to use. It is not a spaced-repetition tool, though. There is no memory model or ease factor. Snooze writes a plain due date to frontmatter, and the note returns when that date arrives.
 
-That keeps the system compatible with [Plaintext Commons](/plaintext-commons/): the plugin adds a useful review surface, but the notes remain ordinary Markdown files with inspectable metadata.
+That keeps the system compatible with [Plaintext Commons](/project-humane/plaintext-commons/): the plugin adds a useful review surface, but the notes remain ordinary Markdown files with inspectable metadata.
 
 ## Links
 

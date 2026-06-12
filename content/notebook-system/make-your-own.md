@@ -73,6 +73,6 @@ I hope this guide inspires you to create your own Unbound notebook.
 
 On a final note, I'd like to reiterate and strongly advise keeping it as simple as possible, especially when starting out. Avoid diving into the rabbit hole of accessorizing and specializing with templates right away. A binder, a set of covers, and plain or ruled paper are the best starting point in 99% of cases. As you use the system, you'll naturally _feel_ what's missing and adapt it to suit your needs.
 
-[uns]: /notebook-system/
+[uns]: /project-humane/notebook-system/
 [dvdr]: https://www.raymay.co.jp/davinci/contents/refill/bible/note.html
-[templ]: /notebook-system/#templates
+[templ]: /project-humane/notebook-system/#templates

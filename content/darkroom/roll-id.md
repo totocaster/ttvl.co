@@ -25,7 +25,7 @@ To keep track of frames when shooting on film, I needed a reliable tracking syst
               (optional)
 ```
 
-This system builds on my existing method for identifying and organizing information in my life. For example, whenever I see `2024.12.22`, it references two things: the date itself and any note—digital or [loose leaf](/notebook-system/#pagination)—that I created on that date. If more specificity is needed, I append additional identifiers after subsequent `.`s. For example, `R7` signifies the **7th roll** loaded into a camera on that day.
+This system builds on my existing method for identifying and organizing information in my life. For example, whenever I see `2024.12.22`, it references two things: the date itself and any note—digital or [loose leaf](/project-humane/notebook-system/#pagination)—that I created on that date. If more specificity is needed, I append additional identifiers after subsequent `.`s. For example, `R7` signifies the **7th roll** loaded into a camera on that day.
 
 ```
  2024.12.22.OOM10.R24

@@ -3,7 +3,7 @@ title: 'Analog Photography Templates'
 date: 2025-01-08
 ---
 
-I predominantly shoot film when working on photo projects. To keep track of my work, I've designed several templates that I print and keep in my [Unbound Notebook System](/notebook-system/).
+I predominantly shoot film when working on photo projects. To keep track of my work, I've designed several templates that I print and keep in my [Unbound Notebook System](/project-humane/notebook-system/).
 
 {{< toc >}}
 

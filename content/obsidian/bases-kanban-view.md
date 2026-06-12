@@ -2,6 +2,7 @@
 title: Better Kanban Bases View
 date: 2026-05-22
 aliases:
+  - /project-humane/bases-kanban-view/
   - /bases-kanban-view/
   - /kanban-base-view/
 description: "focused Kanban view for Obsidian Bases"
