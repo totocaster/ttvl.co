@@ -21,7 +21,7 @@ Project Humane is an umbrella term for my tools for thought and made-for-hands e
 - [Stamp CLI](/stamp/): A filename helper that keeps Plaintext Commons vaults consistent for humans, agents, and automation.
 - [Things CLI](/project-humane/things-cli/): A macOS CLI for managing Things 3 tasks from the terminal.
 - [TP-7 CLI](/tp7/): A CLI tool for humans and agents to manage files on Teenage Engineering TP-7 field recorders.
-- [Triage](/project-humane/triage/): An Obsidian plugin that resurfaces unprocessed notes into a review queue.
+- [Triage](/project-humane/triage/): An Obsidian plugin that resurfaces unprocessed notes in an Anki-style triage queue.
 - [Vault Tasks](/project-humane/vault-tasks/): An Obsidian plugin that collects Markdown tasks across the vault into one organized view.
 - [Whoopy CLI](/project-humane/whoopy/): An unofficial WHOOP data CLI with JSON-first output for people, automations, dashboards, and AI agents.
 - [Withingy CLI](/project-humane/withingy/): A Withings data CLI for activity, sleep, and workouts.
