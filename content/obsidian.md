@@ -10,7 +10,7 @@ The center of the system is still [plain text](/plaintext-commons/). Obsidian fi
 
 That feels especially useful now that software agents can help with small, personal pieces of infrastructure. A plugin does not have to begin as a product idea. It can start as a missing affordance in one vault, become a tool I rely on, and then be published if it seems useful beyond my own setup.
 
-{{< project-grid title="Obsidian plugins" pages="project-humane/bases-kanban-view,project-humane/metrics,project-humane/vault-tasks" />}}
+{{< project-grid title="Obsidian plugins" pages="project-humane/triage,project-humane/bases-kanban-view,project-humane/metrics,project-humane/vault-tasks" />}}
 
 [Plaintext Task](https://github.com/totocaster/plaintext-task-obsidian) is an alternative Obsidian implementation for plaintext tasks, with a more centralized model than Vault Tasks.
 
