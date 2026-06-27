@@ -1,6 +1,4 @@
 {{ define "main" }}
-<h1>Index</h1>
-
 {{ $regularPages := where .Site.RegularPages "Kind" "page" }}
 {{ $regularPages = where $regularPages "Section" "ne" "log" }}
 {{ $regularPages = where $regularPages "Section" "ne" "synapse-pulse" }}
@@ -16,54 +14,58 @@
 
 {{ if $hubPages }}
   <section class="index-hubs">
-    <h2>Hubs / Start Here</h2>
+    <h1>Start Here</h1>
     <ul>
       {{ range $hubPages }}
         <li><a href="{{ .RelPermalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ .File.Path }}{{ end }}</a></li>
       {{ end }}
     </ul>
   </section>
+  <hr class="index-section-separator" />
 {{ end }}
 
-<nav id="Index">
-  {{ range $letters }}
-    {{ $letter := . }}
-    {{ $letterPages := slice }}
+<section class="index-articles">
+  <h1>Index</h1>
+  <nav id="Index">
+    {{ range $letters }}
+      {{ $letter := . }}
+      {{ $letterPages := slice }}
 
-    {{ range $pages }}
-      {{ $firstChar := upper (substr (default .File.Path .Title) 0 1) }}
+      {{ range $pages }}
+        {{ $firstChar := upper (substr (default .File.Path .Title) 0 1) }}
 
-      {{ if eq $letter "#" }}
-        {{ if not (findRE "[A-Z]" $firstChar) }}
-          {{ $letterPages = $letterPages | append . }}
-        {{ end }}
-      {{ else }}
-        {{ if eq $firstChar $letter }}
-          {{ $letterPages = $letterPages | append . }}
+        {{ if eq $letter "#" }}
+          {{ if not (findRE "[A-Z]" $firstChar) }}
+            {{ $letterPages = $letterPages | append . }}
+          {{ end }}
+        {{ else }}
+          {{ if eq $firstChar $letter }}
+            {{ $letterPages = $letterPages | append . }}
+          {{ end }}
         {{ end }}
       {{ end }}
-    {{ end }}
 
-    {{ if $letterPages }}
-      <section class="index-letter">
-        <h2>{{ $letter }}</h2>
-        <ul>
-          {{ range $letterPages }}
-            <li>
-              <a href="{{ .RelPermalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ .File.Path }}{{ end }}</a>
-              {{ if eq .Section "flaneur" }}
-                <a class="index-newsletter-link" href="/newsletter/" aria-label="The Flâneur newsletter archive" title="The Flâneur newsletter archive">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                </a>
-              {{ end }}
-            </li>
-          {{ end }}
-        </ul>
-      </section>
+      {{ if $letterPages }}
+        <section class="index-letter">
+          <h2>{{ $letter }}</h2>
+          <ul>
+            {{ range $letterPages }}
+              <li>
+                <a href="{{ .RelPermalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ .File.Path }}{{ end }}</a>
+                {{ if eq .Section "flaneur" }}
+                  <a class="index-newsletter-link" href="/newsletter/" aria-label="The Flâneur newsletter archive" title="The Flâneur newsletter archive">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  </a>
+                {{ end }}
+              </li>
+            {{ end }}
+          </ul>
+        </section>
+      {{ end }}
     {{ end }}
-  {{ end }}
-</nav>
+  </nav>
+</section>
 
-<hr class="index-log-separator" />
+<hr class="index-section-separator" />
 {{ partial "log_archive.html" (dict "page" . "title" "Log") }}
 {{ end }}

@@ -410,8 +410,6 @@ main {
 
   // Index page
   .index-hubs {
-    margin-bottom: 2rem;
-
     ul {
       columns: 3;
       column-gap: 3rem;
@@ -467,7 +465,7 @@ main {
     }
   }
 
-  .index-log-separator {
+  .index-section-separator {
     width: 20%;
     margin: 2.5rem 0;
     border: 0;
