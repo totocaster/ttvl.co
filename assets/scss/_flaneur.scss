@@ -187,12 +187,11 @@ main {
     }
 
     .issue-number {
-      font-size: 13px;
+      @include type-meta;
       min-width: 110px;
       display: inline-block;
       color: #9b9b9b;
-      font-variant-numeric: tabular-nums;
-      font-feature-settings: "tnum";
+      @include tabular-numbers;
       @include dark {
         color: rgba($color-dark-text, 0.6);
       }
@@ -200,8 +199,8 @@ main {
 
     a.issue-title {
       flex: 1;
-      font-weight: 400;
-      text-decoration: underline;
+      font-weight: $link-weight-quiet;
+      text-decoration: $link-decoration-default;
     }
   }
 
@@ -253,7 +252,7 @@ main {
     margin: 2rem 0 4rem 0;
 
     a {
-      font-weight: 600;
+      font-weight: $link-weight-action;
     }
 
     .flaneur-logo {
@@ -281,6 +280,6 @@ section.flaneur-box {
   }
 
   a {
-    font-weight: 600;
+    font-weight: $link-weight-action;
   }
 }

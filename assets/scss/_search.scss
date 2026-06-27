@@ -38,8 +38,8 @@
 .search-close-hint {
   align-self: flex-end;
   margin: 0 0 $padding-small / 2;
-  font-size: 13px;
-  letter-spacing: 0.08em;
+  @include type-meta;
+  letter-spacing: $letter-spacing-label;
   text-transform: uppercase;
   color: rgba($color-light-text, 0.5);
 
@@ -51,9 +51,8 @@
 .search-input {
   width: 100%;
   padding: $padding-small;
-  font-size: $font-size-h1;
+  @include type-title;
   font-family: $font-family-base;
-  line-height: $line-height-base;
   border: none;
   outline: none;
   background: transparent;
@@ -80,13 +79,13 @@
 
 .search-result-link {
   display: block;
-  text-decoration: none;
-  color: $color-light-text;
+  text-decoration: $link-decoration-plain;
+  color: $link-color;
   padding: $padding-small;
   margin: 0;
   
   @include dark {
-    color: $color-dark-text;
+    color: $link-color-dark;
   }
   
   &:hover,
@@ -100,8 +99,7 @@
 }
 
 .search-result-title {
-  font-size: $font-size-base;
-  line-height: $line-height-base;
+  @include type-body;
   margin-bottom: 4px;
   
   mark {
@@ -111,7 +109,7 @@
 }
 
 .search-result-meta {
-  font-size: 14px;
+  @include type-small;
   opacity: 0.6;
   margin-bottom: 4px;
   
@@ -121,8 +119,7 @@
 }
 
 .search-result-content {
-  font-size: 14px;
-  line-height: 20px;
+  @include type-small;
   opacity: 0.8;
   
   mark {
@@ -137,7 +134,7 @@
   padding: $padding-small 0;
   text-align: center;
   opacity: 0.6;
-  font-size: $font-size-base;
+  @include type-body;
 }
 
 .search-error {

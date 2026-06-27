@@ -3,7 +3,7 @@
 .download-section {
   // @include readable-width;
   max-width: 420px;
-  font-size: 0.9em;
+  @include type-small;
   margin: 2rem 0;
   padding: 0.3rem 1rem;
   border: 1px solid #ddd;
@@ -45,11 +45,11 @@
       }
 
       a[href^="/downloads/"] {
-        text-decoration: none;
-        font-weight: 500;
+        text-decoration: $link-decoration-plain;
+        font-weight: $link-weight-default;
         
         &:hover {
-          text-decoration: underline;
+          text-decoration: $link-decoration-default;
         }
       }
     }

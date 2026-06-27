@@ -48,7 +48,7 @@
 
   // Ensure links are readable in print
   a {
-    text-decoration: none !important;
+    text-decoration: $link-decoration-plain !important;
     color: #000 !important;
   }
 

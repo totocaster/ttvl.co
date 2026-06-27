@@ -1,62 +1,4 @@
-// Breakpoints
-$breakpoint-narrow: 768px;
-
-// Colors
-$color-light-bg: #fff;
-$color-light-text: #000;
-$color-dark-bg: rgb(33, 33, 33);
-$color-dark-text: #e3e3e3;
-
-// Typography
-$font-family-base:
-  -apple-system, BlinkMacSystemFont, "HelveticaNeue", "Helvetica Neue",
-  "Helvetica-Neue", Helvetica, Arial, sans-serif;
-$font-size-base: 16px;
-$font-size-h1: 20px;
-$line-height-base: 25px;
-$line-height-nav: 25px;
-
-// Layout
-$max-width-container: 1008px;
-$max-width-readable: 588px;
-$grid-gap: 72px;
-$padding-small: 20px;
-$header-height: 180px;
-
-// Mixins
-@mixin narrow {
-  @media screen and (max-width: $breakpoint-narrow) {
-    @content;
-  }
-}
-
-@mixin dark {
-  @media screen and (prefers-color-scheme: dark) {
-    @content;
-  }
-}
-
-@mixin dark-invert {
-  @media screen and (prefers-color-scheme: dark) {
-    filter: invert(1);
-  }
-}
-
-@mixin high-contrast {
-  @media screen and (prefers-contrast: more) {
-    @content;
-  }
-}
-
-@mixin readable-width {
-  max-width: $max-width-readable;
-}
-
-@mixin monospace {
-  font-family:
-    "SF Mono", SFMono-Regular, ui-monospace, "DejaVu Sans Mono", Menlo,
-    Consolas, monospace;
-}
+@import "variables";
 
 html {
   scroll-behavior: smooth;
@@ -72,8 +14,7 @@ body {
   font-family: $font-family-base;
   margin: 0;
   padding: 0;
-  line-height: $line-height-base;
-  font-size: $font-size-base;
+  @include type-body;
 
   @include dark {
     background: $color-dark-bg;
@@ -135,18 +76,18 @@ header {
 
 // Typography
 h1 {
-  font-size: $font-size-h1;
+  @include type-title;
 }
 
 h2,
 h3,
 h4,
 h5 {
-  font-size: $font-size-base;
+  @include type-body;
 }
 
 a {
-  color: $color-light-text;
+  color: $link-color;
 
   &:not(:has(img)) {
     @include dark-invert;
@@ -170,14 +111,14 @@ nav#Menu {
   }
 
   li {
-    font-weight: 400;
+    font-weight: $font-weight-regular;
   }
 
   a {
-    text-decoration: none;
+    text-decoration: $link-decoration-plain;
 
     &.is-active {
-      text-decoration: underline;
+      text-decoration: $link-decoration-default;
     }
   }
 
@@ -244,21 +185,20 @@ nav#Menu {
 }
 
 .project-meta {
-  font-size: $font-size-base;
-  line-height: 1.4;
+  @include type-body;
 
   a.project-title {
-    font-weight: 400;
-    text-decoration: underline;
+    font-weight: $link-weight-quiet;
+    text-decoration: $link-decoration-default;
   }
 }
 
 .project-category {
-  font-size: 13px;
+  @include type-meta;
   opacity: 0.4;
 
   a {
-    text-decoration: none;
+    text-decoration: $link-decoration-plain;
   }
 }
 
@@ -269,7 +209,7 @@ nav#Menu {
   a {
     display: inline-block;
     opacity: 0.8;
-    text-decoration: underline;
+    text-decoration: $link-decoration-default;
     transition:
       opacity 0.2s ease,
       color 0.2s ease;
@@ -297,12 +237,12 @@ main {
 
     h1 > a,
     h2 > a {
-      text-decoration: none;
-      font-weight: 700;
+      text-decoration: $link-decoration-plain;
+      font-weight: $link-weight-title;
     }
 
     a {
-      font-weight: 550;
+      font-weight: $link-weight-default;
     }
 
     blockquote > p,
@@ -329,7 +269,7 @@ main {
 
     blockquote,
     li {
-      max-width: 548px;
+      @include readable-list-width;
     }
 
     hr {
@@ -351,7 +291,7 @@ main {
         margin: 0 0 0.75rem;
       }
       a {
-        font-weight: 400;
+        font-weight: $link-weight-quiet;
       }
     }
 
@@ -365,7 +305,7 @@ main {
       li {
         position: relative;
         padding-left: 20px;
-        font-weight: 400;
+        font-weight: $font-weight-regular;
         &::before {
           content: "\2192";
           position: absolute;
@@ -378,7 +318,7 @@ main {
     // Code and plain text
     code {
       @include monospace;
-      font-size: 0.92em;
+      font-size: $font-size-code;
     }
 
     pre {
@@ -388,8 +328,8 @@ main {
 
       code {
         display: block;
-        font-size: 14px;
-        line-height: 1.4;
+        font-size: $font-size-code;
+        line-height: $line-height-tight;
         white-space: pre;
         min-width: max-content;
       }
@@ -431,8 +371,8 @@ main {
         }
 
         a {
-          text-decoration: underline;
-          font-weight: 400;
+          text-decoration: $link-decoration-default;
+          font-weight: $link-weight-quiet;
         }
 
         ul {
@@ -449,7 +389,7 @@ main {
               width: 1.25em;
               margin-right: 0.7rem;
               color: $color-light-text;
-              font-variant-numeric: tabular-nums;
+              @include tabular-numbers;
 
               @include dark {
                 color: $color-dark-text;
@@ -542,7 +482,7 @@ main {
 .log-archive {
   .log-year,
   .log-month {
-    font-variant-numeric: tabular-nums;
+    @include tabular-numbers;
   }
 }
 

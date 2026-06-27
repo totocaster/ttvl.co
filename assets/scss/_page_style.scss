@@ -24,7 +24,7 @@ main {
         background: transparent;
         color: inherit;
         font: inherit;
-        line-height: 1;
+        line-height: $line-height-solid;
         cursor: pointer;
         vertical-align: -0.14em;
 
@@ -78,7 +78,7 @@ main {
       gap: 18px;
 
       li {
-        font-weight: 400;
+        font-weight: $font-weight-regular;
       }
     }
 
@@ -90,25 +90,25 @@ main {
     }
 
     a {
-      text-decoration: none;
-      color: rgba($color-light-text, 0.45);
+      text-decoration: $link-decoration-plain;
+      color: $link-color-muted;
       padding-bottom: 2px;
       filter: none;
 
       &.is-active,
       &:hover {
-        color: $color-light-text;
-        text-decoration: underline;
+        color: $link-color;
+        text-decoration: $link-decoration-default;
       }
 
       @include dark {
-        color: rgba($color-dark-text, 0.65);
+        color: $link-color-muted-dark;
         filter: none;
 
         &.is-active,
         &:hover {
-          color: $color-dark-text;
-          text-decoration: underline;
+          color: $link-color-dark;
+          text-decoration: $link-decoration-default;
         }
       }
     }
@@ -126,7 +126,7 @@ main {
       margin-bottom: 0;
 
       .note-pill {
-        font-size: 0.9rem;
+        font-size: $font-size-small;
         color: rgba(0, 0, 0, 0.45);
         margin-left: 0.35rem;
         @include dark {
@@ -163,7 +163,7 @@ main {
         border: 1px solid $color-dark-bg;
         padding: 8px;
         margin-right: 8px;
-        font-size: 12pt;
+        font-size: $font-size-base;
         height: 40px;
         box-sizing: border-box;
         border-radius: 8px;
@@ -189,7 +189,7 @@ main {
         border: none;
         padding: 8px 16px;
         cursor: pointer;
-        font-size: 12pt;
+        font-size: $font-size-base;
         height: 40px;
         box-sizing: border-box;
         border-radius: 8px;

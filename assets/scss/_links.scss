@@ -35,8 +35,7 @@
     
     .description {
       margin-bottom: 24px;
-      font-size: $font-size-base;
-      line-height: $line-height-base;
+      @include type-body;
       
       p {
         margin: 0 0 16px;
@@ -51,7 +50,7 @@
       background: none;
 
       h1 {
-        font-size: 1.5rem;
+        @include type-title;
         margin-bottom: 1rem;
       }
 
@@ -69,8 +68,7 @@
             padding: 0 24px;
             border: 1px solid #ddd;
             border-radius: 8px;
-            font-size: $font-size-base;
-            line-height: $line-height-base;
+            @include type-body;
             box-sizing: border-box;
             background: transparent;
             margin: 0;
@@ -90,18 +88,17 @@
             padding: 0 24px;
             background: $color-light-text;
             color: $color-light-bg;
-            text-decoration: none;
+            text-decoration: $link-decoration-plain;
             border-radius: 8px;
-            font-weight: 600;
-            font-size: $font-size-base;
-            line-height: $line-height-base;
+            font-weight: $link-weight-action;
+            @include type-body;
             border: 0;
 
           }
         }
 
         .promise {
-          font-size: 14px;
+          @include type-small;
           color: #666;
 
           @include dark {
@@ -114,7 +111,7 @@
 
           a {
             color: inherit;
-            text-decoration: underline;
+            text-decoration: $link-decoration-default;
           }
         }
       }
@@ -136,11 +133,10 @@
           padding: 0 24px;
           background: $color-light-text;
           color: $color-light-bg;
-          text-decoration: none;
+          text-decoration: $link-decoration-plain;
           border-radius: 8px;
-          font-weight: 600;
-          font-size: $font-size-base;
-          line-height: $line-height-base;
+          font-weight: $link-weight-action;
+          @include type-body;
           
           @include dark {
             background: $color-dark-bg;
@@ -158,4 +154,4 @@
     margin: 32px auto;
     background: none;
   }
-} 
+}

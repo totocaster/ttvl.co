@@ -1,0 +1,116 @@
+// Breakpoints
+$breakpoint-narrow: 768px;
+
+// Colors
+$color-light-bg: #fff;
+$color-light-text: #000;
+$color-dark-bg: rgb(33, 33, 33);
+$color-dark-text: #e3e3e3;
+
+// Typography
+$font-family-base:
+  -apple-system, BlinkMacSystemFont, "HelveticaNeue", "Helvetica Neue",
+  "Helvetica-Neue", Helvetica, Arial, sans-serif;
+$font-family-monospace:
+  "SF Mono", SFMono-Regular, ui-monospace, "DejaVu Sans Mono", Menlo,
+  Consolas, monospace;
+
+$font-size-base: 16px;
+$font-size-title: 20px;
+$font-size-small: 14px;
+$font-size-meta: 13px;
+$font-size-code: $font-size-small;
+
+$line-height-base: 25px;
+$line-height-nav: $line-height-base;
+$line-height-small: 20px;
+$line-height-tight: 1.4;
+$line-height-solid: 1;
+
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$link-weight-default: $font-weight-medium;
+$link-weight-quiet: $font-weight-regular;
+$link-weight-action: $font-weight-semibold;
+$link-weight-title: $font-weight-bold;
+$link-color: $color-light-text;
+$link-color-dark: $color-dark-text;
+$link-color-muted: rgba($color-light-text, 0.45);
+$link-color-muted-dark: rgba($color-dark-text, 0.65);
+$link-decoration-default: underline;
+$link-decoration-plain: none;
+
+$letter-spacing-label: 0.08em;
+
+// Layout
+$max-width-container: 1008px;
+$max-width-readable: 588px;
+$max-width-readable-list: 548px;
+$grid-gap: 72px;
+$padding-small: 20px;
+$header-height: 180px;
+
+// Mixins
+@mixin narrow {
+  @media screen and (max-width: $breakpoint-narrow) {
+    @content;
+  }
+}
+
+@mixin dark {
+  @media screen and (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+@mixin dark-invert {
+  @media screen and (prefers-color-scheme: dark) {
+    filter: invert(1);
+  }
+}
+
+@mixin high-contrast {
+  @media screen and (prefers-contrast: more) {
+    @content;
+  }
+}
+
+@mixin readable-width {
+  max-width: $max-width-readable;
+}
+
+@mixin readable-list-width {
+  max-width: $max-width-readable-list;
+}
+
+@mixin monospace {
+  font-family: $font-family-monospace;
+}
+
+@mixin type-body {
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+}
+
+@mixin type-title {
+  font-size: $font-size-title;
+  line-height: $line-height-base;
+}
+
+@mixin type-small {
+  font-size: $font-size-small;
+  line-height: $line-height-small;
+}
+
+@mixin type-meta {
+  font-size: $font-size-meta;
+  line-height: $line-height-tight;
+}
+
+@mixin tabular-numbers {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
