@@ -12,4 +12,4 @@
   </h1>
   {{ .Content }}
 </article>
-{{ end }} {{ partial "log_archive.html" . }} {{ end }}
+{{ end }} {{ partial "log_archive.html" (dict "page" .) }} {{ end }}

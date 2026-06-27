@@ -1,6 +1,8 @@
 <section class="log-archive">
-  {{ $logs := where .Site.RegularPages "Section" "log" }} {{ $years := $logs.GroupByDate "2006" }}
-  <h1>Archive</h1>
+  {{ $logs := where .page.Site.RegularPages "Section" "log" }}
+  {{ $years := $logs.GroupByDate "2006" }}
+  {{ $title := .title | default "Archive" }}
+  <h1>{{ $title }}</h1>
   <ul>
     {{ range $years }}
     <li>
