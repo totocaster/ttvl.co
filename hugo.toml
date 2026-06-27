@@ -23,7 +23,7 @@ disableKinds = ["taxonomy", "term"]
 
 [params.version]
   major = 7
-  minor = 3
+  minor = 4
   update = 328
 
 [params.subscription]

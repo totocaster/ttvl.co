@@ -469,6 +469,24 @@ main {
   }
 
   // Index page
+  .index-hubs {
+    margin-bottom: 2rem;
+
+    ul {
+      columns: 3;
+      column-gap: 3rem;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      break-inside: avoid;
+      padding-left: 0.7rem;
+      page-break-inside: avoid;
+      text-indent: -0.7rem;
+    }
+  }
+
   nav#Index {
     columns: 3;
     column-gap: 3rem;

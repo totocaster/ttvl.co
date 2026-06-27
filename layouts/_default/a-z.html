@@ -5,13 +5,25 @@
 {{ $regularPages = where $regularPages "Section" "ne" "log" }}
 {{ $regularPages = where $regularPages "Section" "ne" "synapse-pulse" }}
 
-{{ $sectionPages := where .Site.Pages "Kind" "section" }}
-{{ $sectionPages = where $sectionPages "Section" "ne" "flaneur" }}
-{{ $sectionPages = where $sectionPages "Section" "ne" "log" }}
-{{ $sectionPages = where $sectionPages "Section" "ne" "synapse-pulse" }}
+{{ $hubPages := where .Site.Pages "Kind" "section" }}
+{{ $hubPages = where $hubPages "Section" "ne" "flaneur" }}
+{{ $hubPages = where $hubPages "Section" "ne" "log" }}
+{{ $hubPages = where $hubPages "Section" "ne" "synapse-pulse" }}
+{{ $hubPages = sort $hubPages "Title" }}
 
-{{ $pages := sort (union $regularPages $sectionPages) "Title" }}
+{{ $pages := sort $regularPages "Title" }}
 {{ $letters := split "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z #" " " }}
+
+{{ if $hubPages }}
+  <section class="index-hubs">
+    <h2>Hubs / Start Here</h2>
+    <ul>
+      {{ range $hubPages }}
+        <li><a href="{{ .RelPermalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ .File.Path }}{{ end }}</a></li>
+      {{ end }}
+    </ul>
+  </section>
+{{ end }}
 
 <nav id="Index">
   {{ range $letters }}
