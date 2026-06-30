@@ -1,14 +1,29 @@
+domains:
+  - domain: ttvl.co
+    type: PRIMARY
+features:
+  - buildpack-stack=ubuntu-22
+ingress:
+  rules:
+    - component:
+        name: ttvlco
+      match:
+        path:
+          prefix: /
 name: ttvlco
+region: fra
 static_sites:
-  - build_command: rm -r ./public; HUGO_SITE_UPDATE=$(git rev-list --count HEAD) hugo --destination ./public
+  - build_command: sh ./tools/build-production.sh
     environment_slug: hugo
     github:
       branch: main
       deploy_on_push: true
       repo: totocaster/ttvl.co
     name: ttvlco
-    env:
+    envs:
       - key: HUGO_VERSION
         value: '0.139.0'
+        scope: BUILD_TIME
       - key: HUGO_EXTENDED
         value: '1'
+        scope: BUILD_TIME
