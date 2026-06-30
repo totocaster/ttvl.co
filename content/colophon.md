@@ -28,14 +28,18 @@ I don't see or get any of your payment information. -->
 
 There is no dynamically or auto-generated AI content on this website. Everything you read is either written, edited, or authored by me. I do use AI tools when working on this website, and you can see my transparency report on the dedicated [AI page](/ai). 
 
+## E-Mails & Newsletter
+
+The Flâneur and membership insider newsletters are distributed using [Campaign Monitor](//campaignmonitor.com). It costs me money, but they do not sell your email to anyone and won't lock you into any systems or walled gardens. You can unsubscribe with a single click.
+
 ## Tracking & Analytics
 
 [Cloudflare](https://cloudflare.com) serves this website. Through them, I have access to minimal web analytics they provide as part of their primary service.
 
 There are no trackers on this website.
 
-## E-Mails & Newsletter
-
-The Flâneur and membership insider newsletters are distributed using [Campaign Monitor](//campaignmonitor.com). It costs me money, but they do not sell your email to anyone and won't lock you into any systems or walled gardens. You can unsubscribe with a single click.
-
 [doref]: https://m.do.co/c/ce1bc8c1cc84
+
+## Cookies
+
+This website does not use cookies.
