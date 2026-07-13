@@ -1,255 +1,174 @@
 # ttvl.co
 
-Personal website of Toto Tvalavadze, built with [Hugo](https://gohugo.io/). A digital garden and documentation hub for various personal and creative projects, with a strong focus on analog photography, notebook systems, and thoughtful writing.
+Source for [ttvl.co](https://ttvl.co/), Toto Tvalavadze's public notebook and project archive. The site covers analog photography, bookbinding, notebook systems, humane interfaces, Obsidian tools, essays, visual records, and a monthly work log.
 
-## Overview
+## Stack
 
-This is the source code for [ttvl.co](https://ttvl.co/), featuring:
+- [Hugo Extended](https://gohugo.io/) renders the site and compiles its SCSS. DigitalOcean is pinned to Hugo `0.139.0` Extended in `.do/app.yaml`.
+- Hugo Pipes minifies and fingerprints the main stylesheet and most JavaScript assets. There is no Node, npm, package manifest, theme, or separate frontend build command.
+- The site's own browser code is vanilla JavaScript. Optional third-party browser code is limited to a vendored `model-viewer` `4.3.1` build on pages with 3D models, Campaign Monitor's hosted subscription-form helper, and Memberful's hosted membership embed.
+- DigitalOcean App Platform builds and hosts the static output from `main`; Cloudflare sits in front of the site.
 
-- **Darkroom & Photography**: Technical documentation and guides for analog photography
-- **Unbound Notebook System (UNS)**: Framework for hybrid digital/analog note-taking
-- **Flaneur Newsletter**: Monthly newsletter archive with email-friendly output
-- **Project Humane**: Personal productivity tools and projects
-- **Writings & Essays**: Long-form articles and thoughts
-- **Monthly Logs**: Personal journal entries from December 2021 onwards
-- **Visual Journal (Leaves)**: Photography and visual notes
+## Repository map
 
-## Technology Stack
-
-- **Static Site Generator**: Hugo v0.139.0 Extended
-- **Styling**: SCSS (compiled by Hugo's built-in processor)
-- **JavaScript**: Vanilla JS (no external dependencies)
-- **Deployment**: DigitalOcean App Platform
-- **Content**: Markdown files
-- **Membership**: Memberful integration for paid subscriptions
-
-## Project Structure
-
-```
+```text
 .
-├── assets/               # Frontend assets processed by Hugo
-│   ├── js/              # JavaScript files
-│   │   ├── lightbox.js  # Simple lightbox for images
-│   │   ├── menu.js      # Mobile menu functionality
-│   │   └── search.js    # Site-wide search functionality
-│   └── scss/            # SCSS stylesheets
-│       ├── style.scss   # Main styles
-│       ├── _search.scss # Search UI styles
-│       └── *.scss       # Component styles
-├── content/             # All site content in Markdown
-│   ├── darkroom/        # Photography documentation (11 articles)
-│   ├── flaneur/         # Newsletter archive (11 issues)
-│   ├── leaves/          # Visual journal
-│   ├── log/             # Monthly logs (2021-12 to 2025-06)
-│   ├── notebook-system/ # UNS documentation
-│   ├── project-humane/  # Personal projects
-│   ├── writings/        # Essays and articles
-│   └── *.md            # Single pages (about, colophon, etc.)
-├── layouts/             # Hugo templates
-│   ├── _default/        # Default templates
-│   ├── flaneur/         # Newsletter-specific layouts
-│   ├── partials/        # Reusable components
-│   └── shortcodes/      # Custom shortcodes
-├── static/              # Static assets (served as-is)
-│   ├── downloads/       # PDFs and downloadable resources
-│   ├── visuals/         # Images organized by section
-│   ├── ui/              # UI assets and logos
-│   └── llms.txt         # AI/LLM-friendly site description
-├── tools/               # Development tools
-│   └── email_templates/ # Campaign Monitor newsletter templates
-├── .do/                 # DigitalOcean deployment
-│   └── app.yaml         # Deployment configuration
-├── hugo.toml            # Hugo configuration
-└── public/              # Generated site (gitignored)
+├── assets/
+│   ├── js/                 # Search, note filters, lightbox, text fragments, pronunciation
+│   └── scss/               # Main, membership, and component styles
+├── content/                # Markdown content and section indexes
+│   ├── bookbinding/
+│   ├── darkroom/
+│   ├── flaneur/            # Numbered newsletter dispatches
+│   ├── leaves/             # Loose Leaves section index; images live in static/leaves
+│   ├── log/                # Monthly YYYY-MM.md entries
+│   ├── newsletter/         # Newsletter landing page and archive
+│   ├── notebook-system/
+│   ├── notes/
+│   ├── obsidian/
+│   ├── project-humane/
+│   ├── projects/           # Generated project archive landing page
+│   └── traces/
+├── layouts/
+│   ├── _default/           # Base, list, single, RSS, A-Z, and utility layouts
+│   ├── partials/           # Shared page and card components
+│   ├── shortcodes/         # Content-facing components
+│   └── <section>/          # Section-specific layouts
+├── static/
+│   ├── downloads/          # PDFs and printable/3D files
+│   ├── flaneur/            # Newsletter images
+│   ├── leaves/             # Date-prefixed Loose Leaves scans
+│   ├── traces/             # Downloadable trace assets such as GLB models
+│   ├── ui/                 # Logos and interface images
+│   ├── vendor/             # Vendored third-party browser code and licenses
+│   ├── visuals/            # Content images and project thumbnails
+│   └── llms.txt            # Concise machine-readable site guide
+├── tools/
+│   ├── build-production.sh # Clean production build and version calculation
+│   └── email_templates/    # Campaign Monitor membership email template
+├── .do/app.yaml            # DigitalOcean App Platform definition
+├── hugo.toml               # Hugo, output, subscription, and version configuration
+├── CLAUDE.md               # Coding-agent guidance (AGENTS.md is a symlink to it)
+└── public/                 # Generated, ignored output
 ```
 
-## Configuration
+## Development and builds
 
-### Hugo Configuration (hugo.toml)
-- Base URL: `https://ttvl.co/`
-- Language: US English
-- Custom permalinks for logs: `/log/:year/:month/`
-- Memberful integration with plan IDs:
-  - Monthly: 121779
-  - Yearly: 121780
-- Custom output format for Flaneur emails
+Install Hugo Extended. To match production exactly, use the version in `.do/app.yaml`.
 
-### Deployment Configuration (.do/app.yaml)
-- Hugo version: 0.139.0 Extended
-- Auto-deploy from main branch
-- Build command: `rm -r ./public; hugo --destination ./public`
+```bash
+# Include draft content while editing
+hugo server -D
 
-## Development
+# Preview published content only
+hugo server
 
-1. Install [Hugo Extended](https://gohugo.io/installation/) (v0.139.0 or later)
-2. Clone this repository
-3. Run the development server:
-   ```bash
-   hugo server -D
-   ```
-4. Visit `http://localhost:1313`
+# Build the same way DigitalOcean does
+sh ./tools/build-production.sh
 
-### Build Commands
-- Development: `hugo server -D`
-- Production build: `hugo --destination ./public`
-- Clean build: `rm -r ./public; hugo --destination ./public`
-
-## Content Management
-
-### Content Sections
-
-- **`/darkroom/`** - Analog photography guides and documentation
-- **`/flaneur/`** - Newsletter issues with web and email versions
-- **`/leaves/`** - Visual journal entries
-- **`/log/`** - Monthly personal logs (permalink: `/log/YYYY/MM/`)
-- **`/notebook-system/`** - UNS templates and documentation
-- **`/project-humane/`** - Personal project documentation
-- **`/writings/`** - Long-form essays and articles
-
-### Special Features
-
-1. **Site-Wide Search**: Press `?` key to activate search overlay with real-time filtering
-2. **Flaneur Email Output**: Newsletter posts generate both web and email-friendly HTML versions
-3. **LLM Support**: `/static/llms.txt` provides AI-friendly site description
-4. **Membership Integration**: Paid subscription support via Memberful
-5. **No External Dependencies**: Pure Hugo build with no npm/yarn requirements
-
-## Tools and Templates
-
-### Search Functionality
-
-The site includes a client-side search feature that indexes all content:
-
-- **Activation**: Press `?` key anywhere on the site to open search
-- **Features**:
-  - Real-time filtering as you type
-  - Highlights matching terms
-  - Shows content preview with section and date
-  - Keyboard navigation (arrow keys + Enter)
-  - Escape key to close
-- **Index Generation**: Hugo automatically generates `/index.json` with all searchable content
-- **Implementation**:
-  - `/assets/js/search.js` - Search functionality
-  - `/assets/scss/_search.scss` - Search UI styles
-  - `/layouts/index.json` - Template for search index generation
-
-### Hugo Shortcodes
-
-The site includes several custom Hugo shortcodes for enhanced content formatting:
-
-#### `flaneur-gallery`
-Creates a responsive image gallery that displays images side by side (2 columns on desktop, single column on mobile).
-
-**Usage:**
-```markdown
-{{< flaneur-gallery >}}
-![Image 1 alt text](/path/to/image1.jpg)
-![Image 2 alt text](/path/to/image2.jpg)
-![Image 3 alt text](/path/to/image3.jpg)
-{{< /flaneur-gallery >}}
+# Build directly without cleaning public/
+HUGO_SITE_UPDATE=$(git rev-list --count HEAD) hugo --destination ./public
 ```
 
-**Features:**
-- Automatic responsive grid layout (2 columns → 1 column on mobile)
-- Maintains readable-width constraints 
-- Works in both web and email templates
-- Supports any number of images (wraps to new rows after 2 images)
-- Email-compatible CSS (no JavaScript required)
+`tools/build-production.sh` obtains full Git history when necessary, derives `HUGO_SITE_UPDATE` from the repository's commit count, removes `public/`, and runs Hugo. The generated directory is intentionally ignored by Git.
 
-**Email Usage:**
-For email templates, manually convert the shortcode to HTML:
-```html
-<div class="flaneur-gallery">
-  <img src="https://ttvl.co/path/to/image1.jpg" alt="Image 1 alt text" />
-  <img src="https://ttvl.co/path/to/image2.jpg" alt="Image 2 alt text" />
-</div>
+## Content and URLs
+
+| Source | Canonical output | Notes |
+| --- | --- | --- |
+| `content/bookbinding/` | `/bookbinding/…/` | Bindery tools and practice notes. |
+| `content/darkroom/` | `/darkroom/…/` | Analog photography processes, downloads, and equipment projects. |
+| `content/flaneur/NNN.md` | `/flaneur/NNN/` and `/flaneur/NNN/email.html` | Each dispatch opts into `HTML` and `email` outputs in frontmatter. |
+| `content/newsletter/_index.md` | `/newsletter/` | Subscription page and archive assembled from Flaneur dispatches. |
+| `content/leaves/_index.md` | `/leaves/` | The layout reads `static/leaves/YYYY-MM-DD-description.jpeg`; there is no Markdown file per leaf. |
+| `content/log/YYYY-MM.md` | `/log/YYYY/MM/` | The URL comes from the page date and the permalink rule in `hugo.toml`. |
+| `content/notebook-system/_index.md` | `/project-humane/notebook-system/` | The section index has a canonical override; its child guides remain under `/notebook-system/`. |
+| `content/notes/` | `/notes/…/` | The old `/writings/` and `/essays/` paths are aliases. |
+| `content/obsidian/` | `/obsidian/…/` | Plugins, vault tools, and related plain-text workflows. |
+| `content/project-humane/` | `/project-humane/…/` | Humane-interface and command-line projects. |
+| `content/projects/_index.md` | `/projects/` | Discovers pages anywhere on the site with `project` frontmatter. |
+| `content/traces/` | `/traces/…/` | Scans, photographs, documents, and interactive spatial records. |
+
+Top-level Markdown files provide the home page and standalone pages such as About, Colophon, AI transparency, A-Z, Links, and Membership. Prefer canonical paths in internal links and retain existing aliases only for compatibility.
+
+## Frontmatter conventions
+
+Project cards are driven by a nested object rather than by content location:
+
+```yaml
+date: 2026-07-13
+description: "Page summary used by metadata and cards"
+featured: true # optional; exposes the page on the home page
+project:
+  year: 2026 # or: ongoing
+  category: /obsidian
+  description: "Short project-grid description"
+  image: /visuals/project-thumbs/example.png
 ```
 
-#### `download-section`
-Creates a styled download box with download icons and formatting.
+The Projects archive includes every page or section with `project` metadata, groups the special `ongoing` value first, and then groups dated projects by year.
 
-**Usage:**
-```markdown
-{{< download-section >}}
-- [Download File 1](/downloads/file1.pdf)
-- [Download File 2](/downloads/file2.pdf)
-{{< /download-section >}}
-```
+Notes use `category: collected`, `category: thinking`, or `category: longform`; missing categories render as `thinking`. The Notes index filters these categories in the browser and preserves the chosen category in the query string. Note pages also calculate backlinks from canonical internal links during the Hugo build.
 
-#### `toc`
-Generates a table of contents from page headers.
+Feature-specific scripts are opt-in where practical:
 
-**Usage:**
-```markdown
-{{< toc >}}
-```
+- Set `lightbox: true` on a page that uses `photo-gallery`.
+- Set `model_viewer: true` on a page that uses `model-viewer`.
+- Set `pronunciation_audio` on a page that uses `pronunciation-name`.
 
-#### `youtube`
-Embeds YouTube videos with responsive container.
+## Shortcodes
 
-**Usage:**
-```markdown
-{{< youtube "VIDEO_ID" >}}
-```
+| Shortcode | Purpose |
+| --- | --- |
+| `download-section` | Wraps Markdown download links in a styled box. |
+| `flaneur-gallery` | Two-column dispatch gallery that also renders in the email layout. |
+| `membership-link` | Links its inner Markdown to `params.membershipURL`. |
+| `model-viewer` | Accessible interactive GLB viewer with poster and no-JavaScript fallback; requires `src`, `poster`, and `alt`. |
+| `photo-gallery` | Lazy-loaded linked-image gallery prepared for the lightbox. |
+| `project-grid` | Renders an explicitly ordered comma-separated list of project pages. |
+| `pronunciation-name` | Audio pronunciation control, currently used on the About page. |
+| `toc` | Renders Hugo's table of contents for the current page. |
+| `youtube` | Lazy-loaded responsive YouTube iframe. |
 
-#### `membership-link`
-Creates styled membership links using site configuration.
+## Generated features
 
-**Usage:**
-```markdown
-{{< membership-link >}}Join Now{{< /membership-link >}}
-```
+- **Search:** On layouts using the shared head, `?` opens an accessible overlay. The JSON index is fetched on first use, results are limited to ten, and arrow keys, Enter, Escape, and focus trapping are supported. `layouts/index.json` currently indexes regular content whose Hugo type is neither `page` nor `json`, so standalone utility pages are not included.
+- **Text fragments:** On shared-head layouts and browsers that expose the native Text Fragments API, selecting 6–499 characters updates the URL. `Cmd/Ctrl+Shift+L` refreshes the fragment for the selection and Escape clears it. There is no polyfill.
+- **Notes:** Category filtering uses `?category=…`; note backlinks are generated at build time.
+- **Images:** Loose Leaves and pages using `photo-gallery` can opt into a keyboard-accessible lightbox.
+- **3D records:** Pages with `model_viewer: true` load the vendored `model-viewer` module only on that page.
+- **Appearance:** The site follows `prefers-color-scheme` for dark mode and includes selected `prefers-contrast: more` rules. There is no theme toggle or mobile-menu script; the compact navigation scrolls horizontally.
+- **Feeds and indexes:** Hugo generates `/index.xml`, `/index.json`, `/sitemap.xml`, and `/robots.txt`. The custom RSS template includes Log, Darkroom, Bookbinding, Notes, Flaneur, Project Humane, and Obsidian entries.
+
+## Newsletter workflow
+
+1. Copy the most recent numbered issue to the next zero-padded filename, for example `content/flaneur/015.md`.
+2. Update its title, description, publication date, and `outputs: ["HTML", "email"]` frontmatter.
+3. Store issue-specific images in `static/flaneur/` and reference them from Markdown.
+4. Use `flaneur-gallery` when a dispatch needs a responsive image pair or grid.
+5. Verify both `/flaneur/015/` and `/flaneur/015/email.html`; test the latter in Campaign Monitor because email-client CSS and URL handling differ from browsers.
+
+The separate `tools/email_templates/insider_template.html` file is for the membership/ROAM Campaign Monitor template, not for Flaneur dispatch rendering.
+
+## Site versioning and deployment
+
+The footer displays `vMAJOR.MINOR.UPDATE`:
+
+- `major` and `minor` come from `[params.version]` in `hugo.toml` and currently identify the `v7.5` site structure. `MAJOR` identifies the site era; `MINOR` advances for visible structural or publishing-system revisions rather than routine content posts.
+- Production sets `UPDATE` to the Git commit count through `HUGO_SITE_UPDATE`.
+- `params.version.update` is a local fallback for direct Hugo commands that do not set the environment variable.
+
+DigitalOcean watches `main`, uses the Hugo buildpack with Extended enabled, and runs `sh ./tools/build-production.sh`. There is currently no repository-hosted CI or automated test suite.
+
+## Verification
+
+For content-only changes, run a published build. For template, SCSS, JavaScript, or responsive-layout changes:
+
+1. Run `hugo server -D` and inspect the affected pages.
+2. Exercise search, keyboard focus, system dark mode, and responsive breakpoints when relevant.
+3. Verify output-specific pages such as newsletter email HTML, the JSON search index, RSS, redirects, and aliases when changed.
+4. Run `sh ./tools/build-production.sh` before deployment and investigate any new warnings.
 
 ## License
 
-- Code: MIT License. See `LICENSE`.
-- Content (text, images, PDFs, and other assets): Copyright (c) 2025 Toto Tvalavadze. All rights reserved. See `LICENSE-CONTENT`.
-
-### Email Templates
-
-The project includes email templates for newsletters and member communications:
-
-- `/tools/email_templates/insider_template.html` - Template for ROAM Insider newsletter
-  - Used with Campaign Monitor
-  - Includes responsive design and inline styles
-  - Supports Campaign Monitor's templating system:
-    - `<multiline>` tag for main content
-    - `<unsubscribe>` tag for unsubscribe links
-  - Styled with variable font for ROAM branding
-  - Copy-paste ready for Campaign Monitor's template system
-
-### Testing & Quality Assurance
-
-Since this is a Hugo static site without JavaScript dependencies or tests:
-
-1. **Visual Testing**: Preview changes with `hugo server -D`
-2. **Build Verification**: Ensure clean builds with `hugo --destination ./public`
-3. **Link Checking**: Verify internal links work correctly
-4. **Responsive Design**: Test on multiple screen sizes
-5. **Email Template Testing**: Test newsletter templates in Campaign Monitor
-
-### Contributing Guidelines
-
-When making changes:
-
-1. **Content**: Add new content to appropriate directories under `/content/`
-2. **Styling**: Edit SCSS files in `/assets/scss/`
-3. **Templates**: Modify layouts in `/layouts/`
-4. **Images**: Add to `/static/visuals/` in appropriate subdirectories
-5. **Downloads**: Place PDFs and resources in `/static/downloads/`
-
-### Key Files for AI Agents
-
-- **`hugo.toml`**: Main configuration file
-- **`/static/llms.txt`**: AI-friendly site overview
-- **`/layouts/`**: Template structure and logic
-- **`/assets/scss/style.scss`**: Main stylesheet
-- **`.do/app.yaml`**: Deployment configuration
-
-## License
-
-All rights reserved. The content and code in this repository are not available for reuse without explicit permission.
-
----
-
-Last updated: July 13, 2025
+Source code is licensed under the [MIT License](LICENSE). Text, photographs, images, PDFs, and other content are not licensed for reuse; see [LICENSE-CONTENT](LICENSE-CONTENT). Third-party assets retain their own licenses, including the license stored beside the vendored `model-viewer` build.

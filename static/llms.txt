@@ -1,73 +1,75 @@
 # ttvl.co
 
-> Personal website of Toto Tvalavadze featuring photography documentation, notebook system templates, personal notes, and various creative projects.
+> Toto Tvalavadze's public notebook and project archive about analog photography, bookbinding, notebook systems, humane interfaces, Obsidian tools, writing, and walking.
 
-This site serves as a digital garden and documentation hub for various personal and creative projects, with a strong focus on analog photography, notebook systems, and thoughtful writing. The site includes a search function accessible via the '?' key.
+ttvl.co is a Hugo-generated digital garden. Most standard pages provide keyboard-accessible search with the `?` key, and the site publishes a combined RSS feed at `/index.xml`.
 
-## Photography & Darkroom
+## Start Here
 
-- [Darkroom](/darkroom/): Technical documentation and guides for analog photography.
-  - [Film Identification Format](/darkroom/roll-id/): Guide for identifying and tracking film rolls.
-  - [Travel Film Development Kit](/darkroom/travel-dev-kit): Portable darkroom setup.
-  - [Bulk Film Canister Stickers](/darkroom/canister-stickers): DIY film canister labeling system.
-  - [Valoi Easy120 with Negative Supply Light](/darkroom/valoi-easy120-with-negative-supply-99cri-light): A 3D-printable adapter that marries two popular systems for film scanning into a single system that produces good colors.
-  - [Thermometer Panel for JOBO Systems](/darkroom/thermometer-panel-for-jobo-systems): 3D-printed temperature monitoring panel for accurate color development.
+- [Projects](/projects/): Chronological archive of ongoing and completed work.
+- [Notes](/notes/): Essays, collected matter, and shorter thinking notes.
+- [Log](/log/): Public monthly summaries beginning in January 2019.
+- [The Flâneur](/newsletter/): Newsletter signup and dispatch archive.
+- [Traces](/traces/): Scans, photographs, documents, and spatial records.
+- [A-Z Index](/a-z/): Site hubs, alphabetical page index, and log archive.
 
-## Notebook System
+## Photography, Darkroom, and Bookbinding
 
-- [Unbound Notebook System](/project-humane/notebook-system/), or UNS: Framework for hybrid digital and analog note-taking system that Toto developed and is using.
-  - [Analog Photography Templates](/notebook-system/analog-photography-templates/): Templates for film photography workflow.
-  - [General Templates](/notebook-system/general-templates/): Basic notebook templates.
-  - [Make Your Own](/notebook-system/make-your-own/): Guide to creating custom UNS notebook.
+- [Darkroom](/darkroom/): Analog photography processes, equipment modifications, printable tools, and manuals.
+  - [Film Identification Format](/darkroom/roll-id/): A compact way to identify and track film rolls.
+  - [Rapid Travel Film Development Kit](/darkroom/travel-dev-kit/): Portable film-development workflow.
+  - [VNS Film-Scanning Adapter](/darkroom/valoi-easy120-with-negative-supply-99cri-light/): Adapter joining a Valoi Easy120 carrier to a Negative Supply light source.
+  - [Bulk Film Canister Stickers](/darkroom/canister-stickers/): Printable labeling system for bulk-loaded film.
+  - [Lucky CP32 Manual](/darkroom/lucky-cp32-manual/): Original Japanese manual and an English translation.
+- [Bookbinding](/bookbinding/): Bindery fixtures, experiments, and practice notes.
+  - [Corner Cutting Jig](/bookbinding/corner-cutting-jig/): Six printable jigs for cutting book-board corners.
 
-## Projects
+## Notebook and Humane Tools
 
-- [Project Humane](/project-humane/): Tools and toys Toto makes for productivity and work.
-  - [Plaintext Commons](/project-humane/plaintext-commons/): Manifesto for durable, human- and agent-friendly files.
-  - [Unbound Notebook System](/project-humane/notebook-system/): Framework for hybrid digital and analog note-taking.
-  - [EDC Keychain](/project-humane/edc-keychain/): Everyday carry system to carry daily essentials that do not fit into men's pant pockets.
-  - [Whoopy CLI](/project-humane/whoopy/): Unofficial WHOOP data CLI for the terminal, automation, and AI agents.
-  - [Withingy CLI](/project-humane/withingy/): Withings data CLI for the terminal with activity, sleep, and workout support.
-  - [Soma](/project-humane/soma/): A macOS app (work in progress) to scan loose leafs and transcribe them into text documents.
-- [Obsidian](/obsidian/): Obsidian plugins, vault tools, and plain-text knowledge system experiments.
-  - [Arrowhead CLI](/obsidian/arrowhead/): Search, discovery, and agent context tools for Obsidian vaults and Markdown folders.
-  - [Metrics](/obsidian/metrics/): Obsidian plugin for plaintext metric files.
-  - [Triage](/obsidian/triage/): Obsidian plugin for resurfacing unprocessed notes.
-  - [Vault Tasks](/obsidian/vault-tasks/): Obsidian plugin for gathering Markdown tasks across a vault.
+- [Project Humane](/project-humane/): Tools for thought and interfaces made for human bodies and durable files.
+  - [Plaintext Commons](/project-humane/plaintext-commons/): Manifesto for human- and agent-friendly plain-text knowledge.
+  - [Unbound Notebook System](/project-humane/notebook-system/): Loose-leaf framework for combining analog thinking with digital retrieval.
+  - [Things CLI](/project-humane/things-cli/): macOS command-line access to Things 3.
+  - [TP-7 CLI](/project-humane/tp7/): File management for Teenage Engineering TP-7 recorders.
+  - [Whoopy CLI](/project-humane/whoopy/): Unofficial WHOOP data CLI for people, automation, dashboards, and agents.
+  - [Withingy CLI](/project-humane/withingy/): Withings activity, sleep, and workout data from the terminal.
+- [Loose Leaves](/leaves/): Reverse-chronological scans from the Unbound Notebook System.
 
-## Notes
+## Obsidian and Plain-Text Workflows
 
-- [Notes](/notes/): Essays, resources, and working notes.
-  - [Where I Stand on AI](/notes/where-i-stand-on-ai): Personal perspective on artificial intelligence.
-  - [Soviet, Not Russia](/notes/soviet-not-russia): Cultural and historical observations.
-  - [Non-Photographers Need Not Apply](/notes/non-photographers-need-not-apply): Thoughts on photography culture.
-  - [Ten Rules for Students and Teachers](/notes/ten-rules-for-students-and-teachers): Educational philosophy.
-  - [Walking](/notes/walking): Notes on walking as a practice.
+- [Obsidian](/obsidian/): Hub for plugins, vault tools, metrics, and agent-facing knowledge workflows.
+  - [Arrowhead CLI](/obsidian/arrowhead/): Search, graph, context, metric, and automation tools for Markdown vaults.
+  - [Better Kanban Bases View](/obsidian/bases-kanban-view/): Draggable, keyboard-friendly Kanban view for Obsidian Bases.
+  - [Metrics](/obsidian/metrics/): View, edit, validate, and chart plaintext metric files.
+  - [Stamp CLI](/obsidian/stamp/): Consistent filenames for humans, agents, and automation.
+  - [Triage](/obsidian/triage/): Anki-style queue for resurfacing unprocessed notes.
+  - [Vault Tasks](/obsidian/vault-tasks/): Organized vault-wide Markdown task view.
 
-## Traces
+## Writing and Publishing
 
-- [Traces](/traces/): Scans, photographs, documents, and other traces of Toto's life and work.
-  - [Kyojima Studio, 2024–2026](/traces/kyojima-studio/): An interactive 3D scan preserving the studio as a spatial record.
+- [Notes](/notes/) supports three reading filters: Collected Matter, Thinking Notes, and Longform.
+  - [Where I Stand on AI](/notes/where-i-stand-on-ai/): Personal perspective on using artificial intelligence.
+  - [The Human Border](/notes/the-human-border/): A line between assistance and authorship.
+  - [Hands Are Not Cursors](/notes/hands-are-not-cursors/): Notes on embodied interaction.
+  - [Soviet, Not Russia](/notes/soviet-not-russia/): Cultural and historical observations.
+  - [Non-Photographers Need Not Apply](/notes/non-photographers-need-not-apply/): Photography books and their audiences.
+- [The Flâneur](/newsletter/): Periodic dispatches about work, photography, books, making, and walking. Individual issues use `/flaneur/NNN/` URLs.
+- [Log](/log/): Monthly project and activity summaries, with archive URLs in `/log/YYYY/MM/` form.
 
-## Flaneur
+## Places and Records
 
-- [Flaneur](/flaneur/): Photography newsletter featuring curated images and stories.
-  - Episodes 001-012 available, including recent editions featuring urban exploration and architectural photography.
+- [Jinny Street Gallery](/jinny/): Outdoor contemporary art space made from streetlamp display cases in Jingumae, Tokyo.
+- [Traces](/traces/): Material and spatial records.
+  - [Kyojima Studio, 2024–2026](/traces/kyojima-studio/): Interactive 3D scan and photographic record of the studio.
 
-## Log
+## About the Site
 
-- [Log](/log/): Monthly journal entries documenting projects and activities.
-  - Backfilled entries from 2020-2022
-  - Current entries through August 2025
+- [About](/about/): Toto's background, philosophy, press, and appearances.
+- [Colophon](/colophon/): Design, implementation, publishing, and privacy notes.
+- [AI Transparency](/ai/): How AI-assisted summaries and image descriptions are produced and reviewed.
 
-## Technical Information
+## Machine-Readable Endpoints
 
-- [Colophon](/colophon/): Technical details about the website.
-- [About](/about/): Information about Toto Tvalavadze.
-- [Philosophy](/philosophy/): Core principles and approach of Toto.
-- [AI Transparency](/ai/): Disclosure of AI usage on this website.
-- [Press & Appearances](/press/): Media appearances, speaking engagements, and publications.
-
-## Optional
-
-- [Newsletter](/newsletter/): Archive of newsletter content.
+- [RSS feed](/index.xml): Combined feed for the main publishing sections.
+- [Search index](/index.json): JSON index consumed by the site's search overlay.
+- [Sitemap](/sitemap.xml): Hugo-generated XML sitemap.
