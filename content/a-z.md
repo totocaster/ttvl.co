@@ -10,6 +10,7 @@ hub_sections:
   - darkroom
   - bookbinding
   - leaves
+  - traces
   - projects
   - newsletter
 ---

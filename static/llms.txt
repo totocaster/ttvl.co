@@ -44,6 +44,11 @@ This site serves as a digital garden and documentation hub for various personal 
   - [Ten Rules for Students and Teachers](/notes/ten-rules-for-students-and-teachers): Educational philosophy.
   - [Walking](/notes/walking): Notes on walking as a practice.
 
+## Traces
+
+- [Traces](/traces/): Scans, photographs, documents, and other traces of Toto's life and work.
+  - [Kyojima Studio, 2024–2026](/traces/kyojima-studio/): An interactive 3D scan preserving the studio as a spatial record.
+
 ## Flaneur
 
 - [Flaneur](/flaneur/): Photography newsletter featuring curated images and stories.

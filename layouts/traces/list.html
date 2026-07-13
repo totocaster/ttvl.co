@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article>
+  {{ if not .Params.hide_title }}
+  <h1>{{ .Title }}</h1>
+  {{ end }}
+  {{ .Content }}
+
+  {{ with .RegularPages }}
+  <section class="trace-archive" aria-labelledby="trace-archive-title">
+    <h2 id="trace-archive-title">Archive</h2>
+    <div class="projects-grid">
+      {{ range sort . "Date" "desc" }}
+        {{ partial "trace-card.html" (dict "page" .) }}
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+</article>
+{{ end }}

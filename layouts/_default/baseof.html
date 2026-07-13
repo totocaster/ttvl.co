@@ -11,5 +11,6 @@
       <main>{{ block "main" . }}{{ end }}</main>
     </div>
     {{ partial "footer.html" . }}
+    {{ if .Params.lightbox }}{{ partial "lightbox.html" . }}{{ end }}
   </body>
 </html>

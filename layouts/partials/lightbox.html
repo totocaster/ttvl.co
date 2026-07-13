@@ -1,3 +1,2 @@
-{{ $lightbox := resources.Get "js/lightbox.js" | js.Build (dict "minify" true)
-}}
-<script src="{{ $lightbox.RelPermalink }}"></script>
+{{ $lightbox := resources.Get "js/lightbox.js" | js.Build (dict "minify" true) | fingerprint }}
+<script src="{{ $lightbox.RelPermalink }}" integrity="{{ $lightbox.Data.Integrity }}" defer></script>

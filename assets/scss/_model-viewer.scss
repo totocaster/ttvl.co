@@ -1,0 +1,41 @@
+.trace-archive {
+  margin-top: 2rem;
+}
+
+.model-viewer-frame {
+  width: 100%;
+  max-width: $max-width-container;
+  margin: 1.5rem 0;
+
+  model-viewer {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    background: #fafafa;
+    --poster-color: #fafafa;
+
+    @include dark {
+      border-color: rgba($color-dark-text, 0.2);
+      background: rgb(28, 28, 28);
+      --poster-color: rgb(28, 28, 28);
+    }
+  }
+
+  figcaption,
+  .model-viewer-noscript {
+    @include type-meta;
+    max-width: $max-width-readable;
+    margin-top: 0.6rem;
+    opacity: 0.65;
+  }
+
+  .model-viewer-static-poster {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid #e0e0e0;
+  }
+}

@@ -1,0 +1,6 @@
+{{ $label := .Get "label" | default "Photo gallery" }}
+{{ $content := .Inner | markdownify }}
+{{ $content = replace $content "<img " "<img loading=\"lazy\" decoding=\"async\" " }}
+<div class="photo-gallery" data-lightbox-gallery aria-label="{{ $label }}">
+  {{ $content | safeHTML }}
+</div>

@@ -1,0 +1,40 @@
+{{ $src := .Get "src" }}
+{{ $poster := .Get "poster" }}
+{{ $alt := .Get "alt" }}
+{{ $size := .Get "size" }}
+{{ $cameraOrbit := .Get "camera-orbit" }}
+{{ $minCameraOrbit := .Get "min-camera-orbit" }}
+{{ if not $src }}{{ errorf "model-viewer shortcode requires a src: %s" .Position }}{{ end }}
+{{ if not $poster }}{{ errorf "model-viewer shortcode requires a poster: %s" .Position }}{{ end }}
+{{ if not $alt }}{{ errorf "model-viewer shortcode requires accessible alt text: %s" .Position }}{{ end }}
+{{ $viewerID := printf "model-viewer-%d" .Ordinal }}
+{{ $captionID := printf "%s-caption" $viewerID }}
+
+<figure class="model-viewer-frame">
+  <model-viewer
+    id="{{ $viewerID }}"
+    data-model-viewer
+    src="{{ $src }}"
+    poster="{{ $poster }}"
+    alt="{{ $alt }}"
+    aria-describedby="{{ $captionID }}"
+    loading="eager"
+    reveal="auto"
+    camera-controls
+    touch-action="pan-y"
+    interaction-prompt="auto"
+    shadow-intensity="0.5"
+    {{ with $cameraOrbit }}camera-orbit="{{ . }}"{{ end }}
+    {{ with $minCameraOrbit }}min-camera-orbit="{{ . }}"{{ end }}
+  ></model-viewer>
+  <figcaption id="{{ $captionID }}">
+    Drag to rotate; scroll or pinch to zoom. Keyboard controls are available when the viewer is focused.
+    <a href="{{ $src }}" download>Download the GLB model{{ with $size }} ({{ . }}){{ end }}</a>.
+  </figcaption>
+  <noscript>
+    <img class="model-viewer-static-poster" src="{{ $poster }}" alt="{{ $alt }}" width="1600" height="900" />
+    <p class="model-viewer-noscript">
+      JavaScript is required for the interactive view. <a href="{{ $src }}" download>Download the GLB model{{ with $size }} ({{ . }}){{ end }}</a>.
+    </p>
+  </noscript>
+</figure>

@@ -1,0 +1,91 @@
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.94);
+  color: #fff;
+}
+
+.lightbox__figure {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 48px 64px;
+  box-sizing: border-box;
+  pointer-events: none;
+
+  @include narrow {
+    padding: 52px 20px;
+  }
+}
+
+.lightbox__image {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 96px);
+  object-fit: contain;
+  pointer-events: auto;
+}
+
+.lightbox__button {
+  position: absolute;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.42);
+  color: #fff;
+  font: inherit;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+
+  &:hover {
+    background: rgba(255, 255, 255, 0.16);
+  }
+
+  &:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.lightbox__close {
+  top: 12px;
+  right: 12px;
+}
+
+.lightbox__previous,
+.lightbox__next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.lightbox__previous {
+  left: 12px;
+}
+
+.lightbox__next {
+  right: 12px;
+}
+
+.lightbox__counter {
+  position: absolute;
+  left: 16px;
+  bottom: 14px;
+  margin: 0;
+  @include type-meta;
+  color: rgba(255, 255, 255, 0.72);
+}

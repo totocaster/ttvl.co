@@ -127,3 +127,7 @@
 {{ $pronunciationJS := resources.Get "js/pronunciation.js" | resources.Minify | resources.Fingerprint }}
 <script src="{{ $pronunciationJS.RelPermalink }}" defer></script>
 {{ end }}
+
+{{ if .Params.model_viewer }}
+<script type="module" src="/vendor/model-viewer/4.3.1/model-viewer.min.js"></script>
+{{ end }}
