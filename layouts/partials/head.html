@@ -130,4 +130,6 @@
 
 {{ if .Params.model_viewer }}
 <script type="module" src="/vendor/model-viewer/4.3.1/model-viewer.min.js"></script>
+{{ $modelViewerFullscreenJS := resources.Get "js/model-viewer-fullscreen.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $modelViewerFullscreenJS.RelPermalink }}" integrity="{{ $modelViewerFullscreenJS.Data.Integrity }}" defer></script>
 {{ end }}
