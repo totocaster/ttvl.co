@@ -18,6 +18,7 @@ Project Humane is an umbrella term for my tools for thought and made-for-hands e
 - [Arrowhead CLI](/obsidian/arrowhead/): Helps AI agents and command-line tools make sense of your Obsidian vault.
 - [Better Kanban Bases View](/obsidian/bases-kanban-view/): A focused Kanban view for Obsidian Bases with draggable cards, keyboard reordering, note previews, and saved layouts.
 - [Metrics](/obsidian/metrics/): A file-first Obsidian plugin for viewing, editing, and charting plaintext metric files.
+- [Patchcord](/project-humane/patchcord/): An agent-friendly development workflow for CircuitPython projects.
 - [Stamp CLI](/obsidian/stamp/): A filename helper that keeps Plaintext Commons vaults consistent for humans, agents, and automation.
 - [Things CLI](/project-humane/things-cli/): A macOS CLI for managing Things 3 tasks from the terminal.
 - [TP-7 CLI](/project-humane/tp7/): A CLI tool for humans and agents to manage files on Teenage Engineering TP-7 field recorders.
