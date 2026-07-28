@@ -1,0 +1,58 @@
+{{- $mapID := printf "spatial-long-exposure-map-%d" .Ordinal -}}
+{{- $dataRevision := .Page.Params.trace_data_revision | default "1" -}}
+<figure
+  class="spatial-long-exposure"
+  data-spatial-long-exposure
+  data-trace-url="/traces/spatial-long-exposure.json?v={{ $dataRevision }}"
+  data-tile-template="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
+>
+  <div class="spatial-long-exposure__controls">
+    <div class="spatial-long-exposure__modes" role="group" aria-label="Map layers">
+      <button type="button" data-map-mode="places" aria-pressed="false">Places</button>
+      <button type="button" data-map-mode="connections" aria-pressed="false">Connections</button>
+      <button type="button" data-map-mode="both" aria-pressed="true">Both</button>
+    </div>
+    <button type="button" data-map-reset>Reset view</button>
+  </div>
+
+  <div class="spatial-long-exposure__frame">
+    <div class="spatial-long-exposure__tiles" data-map-tiles aria-hidden="true"></div>
+    <canvas
+      id="{{ $mapID }}"
+      data-map-canvas
+      tabindex="0"
+      role="img"
+      aria-label="An interactive, undated map of location history, geotagged photographs, and the connections between recorded visits"
+    ></canvas>
+    <button
+      class="spatial-long-exposure__fullscreen"
+      type="button"
+      aria-controls="{{ $mapID }}"
+      aria-label="View map full screen"
+      title="View full screen"
+      data-map-fullscreen
+      hidden
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path class="spatial-long-exposure__fullscreen-enter" d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" />
+        <path class="spatial-long-exposure__fullscreen-exit" d="M3 8h5V3M21 8h-5V3M3 16h5v5M21 16h-5v5" />
+      </svg>
+    </button>
+    <a
+      class="spatial-long-exposure__attribution"
+      href="https://www.openstreetmap.org/copyright"
+    >© OpenStreetMap contributors</a>
+    <div class="spatial-long-exposure__loading" data-map-loading role="status">
+      Developing map…
+    </div>
+  </div>
+
+  <figcaption>
+    <span>Location history and geotagged photographs, shown without individual dates.</span>
+    <span class="spatial-long-exposure__instructions">Drag to move · Scroll or pinch to zoom</span>
+  </figcaption>
+
+  <noscript>
+    This map needs JavaScript to draw its undated places and connections.
+  </noscript>
+</figure>

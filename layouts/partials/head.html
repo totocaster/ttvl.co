@@ -133,3 +133,8 @@
 {{ $modelViewerFullscreenJS := resources.Get "js/model-viewer-fullscreen.js" | resources.Minify | resources.Fingerprint }}
 <script src="{{ $modelViewerFullscreenJS.RelPermalink }}" integrity="{{ $modelViewerFullscreenJS.Data.Integrity }}" defer></script>
 {{ end }}
+
+{{ if .Params.spatial_long_exposure }}
+{{ $spatialLongExposureJS := resources.Get "js/spatial-long-exposure.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $spatialLongExposureJS.RelPermalink }}" integrity="{{ $spatialLongExposureJS.Data.Integrity }}" defer></script>
+{{ end }}

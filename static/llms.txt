@@ -60,6 +60,7 @@ ttvl.co is a Hugo-generated digital garden. Most standard pages provide keyboard
 
 - [Jinny Street Gallery](/jinny/): Outdoor contemporary art space made from streetlamp display cases in Jingumae, Tokyo.
 - [Traces](/traces/): Material and spatial records.
+  - [A Spatial Long Exposure](/traces/spatial-long-exposure/): Interactive map of accumulated location history and geotagged photographs, published without individual dates.
   - [Kyojima Studio, 2024–2026](/traces/kyojima-studio/): Interactive 3D scan and photographic record of the studio.
 
 ## About the Site
