@@ -12,7 +12,7 @@ trace:
 
 This is a long exposure made from my location history and the coordinates embedded in my photographs. Every recorded location is shown at once; visit dates, capture dates, and durations have been removed.
 
-Source coverage: 22 December 2008–28 July 2026. This range applies to the collection as a whole; no location is associated with a public date.
+Source coverage: December 22, 2008–July 28, 2026. This range applies to the collection as a whole; no location is associated with a public date.
 
 {{< spatial-long-exposure >}}
 
@@ -20,4 +20,4 @@ Each point comes from a recorded visit or a geotagged photograph. Lines connect 
 
 ## Data log
 
-- 28 July 2026 — Initial population: added 38,403 points.
+- 2026-07-28 — Initial population: added 38,403 points.
