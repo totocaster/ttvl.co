@@ -43,6 +43,8 @@ HUGO_SITE_UPDATE=$(git rev-list --count HEAD) hugo --destination ./public
 
 Prefer canonical internal paths with trailing slashes. Do not add aliases unless an intentional short URL or a real historical URL must remain valid. Preserve existing aliases when moving content.
 
+The A–Z index ignores the initial English articles `A`, `An`, and `The` when sorting and grouping titles, while displaying each title unchanged. Set `sort_title` in a page's frontmatter to supply an explicit filing title when the automatic behavior is not appropriate.
+
 ### Hugo configuration and output
 
 - `hugo.toml` owns the base URL, language, log permalink, output formats, Memberful checkout URLs, and site version.

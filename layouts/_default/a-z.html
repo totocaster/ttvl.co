@@ -25,7 +25,13 @@
   {{ end }}
 {{ end }}
 
-{{ $pages := sort $regularPages "Title" }}
+{{ $pages := slice }}
+{{ range $regularPages }}
+  {{ $title := default .File.Path .Title }}
+  {{ $filingTitle := .Params.sort_title | default (replaceRE `(?i)^(a|an|the)\s+` "" $title) }}
+  {{ $pages = $pages | append (dict "filingTitle" $filingTitle "page" .) }}
+{{ end }}
+{{ $pages = sort $pages "filingTitle" }}
 {{ $letters := split "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z #" " " }}
 
 {{ if $hubPages }}
@@ -48,7 +54,7 @@
       {{ $letterPages := slice }}
 
       {{ range $pages }}
-        {{ $firstChar := upper (substr (default .File.Path .Title) 0 1) }}
+        {{ $firstChar := upper (substr .filingTitle 0 1) }}
 
         {{ if eq $letter "#" }}
           {{ if not (findRE "[A-Z]" $firstChar) }}
@@ -65,10 +71,11 @@
         <section class="index-letter">
           <h2>{{ $letter }}</h2>
           <ul>
-            {{ range $letterPages }}
+            {{ range $entry := $letterPages }}
+              {{ $page := $entry.page }}
               <li>
-                <a href="{{ .RelPermalink }}">{{ if .Title }}{{ .Title }}{{ else }}{{ .File.Path }}{{ end }}</a>
-                {{ if eq .Section "flaneur" }}
+                <a href="{{ $page.RelPermalink }}">{{ if $page.Title }}{{ $page.Title }}{{ else }}{{ $page.File.Path }}{{ end }}</a>
+                {{ if eq $page.Section "flaneur" }}
                   <a class="index-newsletter-link" href="/newsletter/" aria-label="The Flâneur newsletter archive" title="The Flâneur newsletter archive">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
                   </a>
