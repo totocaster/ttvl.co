@@ -67,7 +67,7 @@ ttvl.co is a Hugo-generated digital garden. Most standard pages provide keyboard
 
 - [About](/about/): Toto's background, philosophy, press, and appearances.
 - [Colophon](/colophon/): Design, implementation, publishing, and privacy notes.
-- [AI Transparency](/ai/): How AI-assisted summaries and image descriptions are produced and reviewed.
+- [AI on ttvl.co](/ai/): How AI is used privately while maintaining the site, within the Human Border principle.
 
 ## Machine-Readable Endpoints
 
