@@ -4,6 +4,8 @@
 
 ttvl.co is a Hugo-generated digital garden. Most standard pages provide keyboard-accessible search with the `?` key, and the site publishes a combined RSS feed at `/index.xml`.
 
+This curated guide was last reviewed on 2026-08-01. The linked human-facing pages are canonical; use `/sitemap.xml` for exhaustive URL discovery.
+
 ## Start Here
 
 - [Projects](/projects/): Chronological archive of ongoing and completed work.
@@ -29,6 +31,7 @@ ttvl.co is a Hugo-generated digital garden. Most standard pages provide keyboard
 - [Project Humane](/project-humane/): Tools for thought and interfaces made for human bodies and durable files.
   - [Plaintext Commons](/project-humane/plaintext-commons/): Manifesto for human- and agent-friendly plain-text knowledge.
   - [Unbound Notebook System](/project-humane/notebook-system/): Loose-leaf framework for combining analog thinking with digital retrieval.
+  - [Patchcord](/project-humane/patchcord/): Agent-friendly development, deployment, and debugging workflow for CircuitPython projects.
   - [Things CLI](/project-humane/things-cli/): macOS command-line access to Things 3.
   - [TP-7 CLI](/project-humane/tp7/): File management for Teenage Engineering TP-7 recorders.
   - [Whoopy CLI](/project-humane/whoopy/): Unofficial WHOOP data CLI for people, automation, dashboards, and agents.
@@ -39,7 +42,7 @@ ttvl.co is a Hugo-generated digital garden. Most standard pages provide keyboard
 
 - [Obsidian](/obsidian/): Hub for plugins, vault tools, metrics, and agent-facing knowledge workflows.
   - [Arrowhead CLI](/obsidian/arrowhead/): Search, graph, context, metric, and automation tools for Markdown vaults.
-  - [Better Kanban Bases View](/obsidian/bases-kanban-view/): Draggable, keyboard-friendly Kanban view for Obsidian Bases.
+  - [Better Kanban Bases View](/obsidian/bases-kanban-view/): Kanban view for Obsidian Bases with draggable cards, keyboard movement, date cues, WIP limits, and saved layouts.
   - [Metrics](/obsidian/metrics/): View, edit, validate, and chart plaintext metric files.
   - [Stamp CLI](/obsidian/stamp/): Consistent filenames for humans, agents, and automation.
   - [Triage](/obsidian/triage/): Anki-style queue for resurfacing unprocessed notes.
@@ -48,12 +51,13 @@ ttvl.co is a Hugo-generated digital garden. Most standard pages provide keyboard
 ## Writing and Publishing
 
 - [Notes](/notes/) supports three reading filters: Collected Matter, Thinking Notes, and Longform.
-  - [Where I Stand on AI](/notes/where-i-stand-on-ai/): Personal perspective on using artificial intelligence.
+  - [Where I Stand on AI—For Now](/notes/where-i-stand-on-ai/): Personal perspective on using artificial intelligence.
   - [The Human Border](/notes/the-human-border/): A line between assistance and authorship.
   - [Hands Are Not Cursors](/notes/hands-are-not-cursors/): Notes on embodied interaction.
-  - [Soviet, Not Russia](/notes/soviet-not-russia/): Cultural and historical observations.
-  - [Non-Photographers Need Not Apply](/notes/non-photographers-need-not-apply/): Photography books and their audiences.
-- [The Flâneur](/newsletter/): Periodic dispatches about work, photography, books, making, and walking. Individual issues use `/flaneur/NNN/` URLs.
+  - [Stop Saying Russian When You Mean Soviet](/notes/soviet-not-russia/): Cultural and historical observations from a Georgian perspective.
+  - [The Silo Problem in Photography](/notes/non-photographers-need-not-apply/): Why photography books and platforms struggle to reach beyond photographers.
+  - [Universal Content Bundle](/notes/universal-content-bundle/): Self-describing bundle format for content readable by humans, software, and agents.
+- [The Flâneur](/newsletter/): Periodic dispatches about work, photography, books, making, and walking. Individual issues use `/flaneur/NNN/`; email renderings use `/flaneur/NNN/email.html`.
 - [Log](/log/): Monthly project and activity summaries, with archive URLs in `/log/YYYY/MM/` form.
 
 ## Places and Records
@@ -71,6 +75,7 @@ ttvl.co is a Hugo-generated digital garden. Most standard pages provide keyboard
 
 ## Machine-Readable Endpoints
 
-- [RSS feed](/index.xml): Combined feed for the main publishing sections.
-- [Search index](/index.json): JSON index consumed by the site's search overlay.
-- [Sitemap](/sitemap.xml): Hugo-generated XML sitemap.
+- [RSS feed](/index.xml): Full-content feed combining Log, Darkroom, Bookbinding, Notes, Flâneur, Project Humane, and Obsidian entries.
+- [Search index](/index.json): JSON consumed by the search overlay; it covers published section content but excludes standalone root pages such as About and Colophon.
+- [Sitemap](/sitemap.xml): Hugo-generated XML index of published canonical routes.
+- [Robots directives](/robots.txt): Hugo-generated crawler directives.
