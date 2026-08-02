@@ -59,6 +59,18 @@ main {
         display: block;
       }
     }
+
+    // Published date - used on individual notes only
+    .note-date {
+      margin-top: 2rem;
+      @include type-meta;
+      @include tabular-numbers;
+      color: #9b9b9b;
+
+      @include dark {
+        color: rgba($color-dark-text, 0.6);
+      }
+    }
   }
 
   // Notes filter nav - used in /notes/

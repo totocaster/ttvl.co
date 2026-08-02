@@ -2,8 +2,12 @@
 <article class="{{ with .Params.content_css }}{{ . }}{{ end }}">
   {{ if not .Params.hide_title }}
   <h1>{{ .Title }}</h1>
-  {{ end }} {{ .Content }} {{/* Collect backlinks from other notes that mention
-  this page */}} {{ $current := . }} {{ $rel := $current.RelPermalink }} {{
+  {{ end }} {{ .Content }}
+  <p class="note-date">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+  </p>
+  {{/* Collect backlinks from other notes that mention this page */}} {{
+  $current := . }} {{ $rel := $current.RelPermalink }} {{
   $relNoSlash := strings.TrimSuffix "/" $rel }} {{ $notes := where
   site.RegularPages "Section" "notes" }} {{ $backlinks := slice }} {{ range
   $notes }} {{ if and (ne .RelPermalink $current.RelPermalink) (or (in
