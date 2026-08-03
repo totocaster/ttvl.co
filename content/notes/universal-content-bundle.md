@@ -1,7 +1,7 @@
 ---
 title: Universal Content Bundle
 date: 2026-02-21
-description: "a self-describing file bundle format for any type of content"
+description: "a proposal for a self-describing file bundle format for any type of content"
 category: thinking
 url: /notes/universal-content-bundle/
 aliases:
@@ -10,7 +10,7 @@ aliases:
   - /ucb/
 ---
 
-**Universal Content Bundle** is a file format for packaging any type of content (text, images, data, code, media) into a single self-describing bundle that humans, software, and AI agents can all read and work with. No external dependencies, no proprietary schema registries, no opinions about how the content should look on screen.
+**Universal Content Bundle** is a proposal for a file format that packages any type of content (text, images, data, code, media) into a single self-describing bundle that humans, software, and AI agents can all read and work with. No external dependencies, no proprietary schema registries, no opinions about how the content should look on screen.
 
 ## The problem
 

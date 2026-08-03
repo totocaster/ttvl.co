@@ -133,7 +133,7 @@ Patchcord coordinates existing CircuitPython tools rather than replacing them. C
 
 ## Current scope
 
-Patchcord currently supports CircuitPython boards that expose the standard `CIRCUITPY` USB drive and serial console. In v0.2, interactive REPL, deployment, monitoring, serial control, library management, and offline hardware validation are available. Bounded code execution and connected pin and I²C probes remain disabled because the candidate execution backend did not pass Patchcord's isolation and reset checks.
+Patchcord currently supports CircuitPython boards that expose the standard `CIRCUITPY` USB drive and serial console. In v0.3, interactive REPL, deployment, monitoring, serial control, library management, and offline hardware validation are available. Bounded code execution and connected pin and I²C probes remain unavailable because the pinned execution backend did not pass Patchcord's isolation and reset checks.
 
 ## Get Patchcord
 

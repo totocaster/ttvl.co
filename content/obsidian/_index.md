@@ -24,11 +24,11 @@ Some of the Obsidian work is about making non-prose records feel at home beside 
 
 Those command-line tools are not Obsidian plugins, but they produce the kind of plain, scriptable data that can be summarized, charted, and cross-referenced from the same corpus.
 
-## My current setup
+## My setup
 
 Obsidian, with Sync, is the main human access point to the corpus. Codex, Claude Code, OpenClaw, and other local agents use Arrowhead and shell tools to make the same vault more searchable and discoverable from their side. The goal is to use the Obsidian vault as both my knowledge base and an extended context layer for agents, while keeping Obsidian as the interface I use directly.
 
-The current plugin stack is documented in the [Arrowhead setup notes](/obsidian/arrowhead/#my-setup). It includes core navigation and linking tools, cleanup utilities, Quick Switcher++, media transcript helpers, and my own Metrics plugin for structured records.
+My November 2025 plugin stack is documented in the [Arrowhead setup notes](/obsidian/arrowhead/#my-setup). It includes core navigation and linking tools, cleanup utilities, Quick Switcher++, media transcript helpers, and my own Metrics plugin for structured records.
 
 ## Development log
 

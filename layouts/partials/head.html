@@ -1,5 +1,7 @@
 {{ $description := .Params.description | default .Summary | default .Site.Params.description | default "" }}
-{{ $description = strings.TrimSpace (plainify $description) }}
+{{ $description = $description | plainify | htmlUnescape | strings.TrimSpace }}
+{{ $description = replaceRE `\s+` " " $description }}
+{{ with $description }}{{ $description = . | truncate 200 }}{{ end }}
 {{ $ogTitle := printf "%s | %s" .Title .Site.Title }}
 
 <!-- Title tags -->
@@ -47,7 +49,9 @@
 {{ end }}
 
 <!-- Date tags -->
+{{ if not .Lastmod.IsZero }}
 <meta property="og:updated_time" content='{{ .Lastmod.Format "2006-01-02T15:04:05Z0700" | safeHTML }}' />
+{{ end }}
 
 <!-- Sitemap and RSS -->
 <link rel="sitemap" type="application/xml" title="Sitemap" href='{{ "sitemap.xml" | absURL }}' />
@@ -66,26 +70,32 @@
 {{ with .Site.Params.github }}{{ if hasPrefix . "http" }}{{ $sameAs = $sameAs | append . }}{{ end }}{{ end }}
 {{ with .Site.Params.instagram }}{{ if hasPrefix . "http" }}{{ $sameAs = $sameAs | append . }}{{ end }}{{ end }}
 {{ with .Site.Params.membershipURL }}{{ if hasPrefix . "http" }}{{ $sameAs = $sameAs | append . }}{{ end }}{{ end }}
-<script defer type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "{{ if .IsPage }}Article{{ else }}WebSite{{ end }}",
-    "url": "{{ .Permalink }}",
-    "name": "{{ .Title }}",
-    "publisher": {
-      "@type": "Person",
-      "name": "{{ .Site.Params.author }}",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "{{ $logo }}"
-      }
-    },
-    "sameAs": {{ $sameAs | jsonify }}{{ if .IsPage }},
-    "headline": "{{ .Title }}",
-    "datePublished": "{{ (.PublishDate | default .Date).Format "2006-01-02T15:04:05Z07:00" }}",
-    "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}"{{ end }}
-  }
-</script>
+{{ $schema := dict
+  "@context" "https://schema.org"
+  "@type" (cond .IsPage "Article" "WebSite")
+  "url" .Permalink
+  "name" .Title
+  "publisher" (dict
+    "@type" "Person"
+    "name" .Site.Params.author
+    "logo" (dict
+      "@type" "ImageObject"
+      "url" $logo
+    )
+  )
+  "sameAs" $sameAs
+}}
+{{ if .IsPage }}
+  {{ $schema = merge $schema (dict "headline" .Title) }}
+  {{ $published := .PublishDate | default .Date }}
+  {{ if not $published.IsZero }}
+    {{ $schema = merge $schema (dict "datePublished" ($published.Format "2006-01-02T15:04:05Z07:00")) }}
+  {{ end }}
+  {{ if not .Lastmod.IsZero }}
+    {{ $schema = merge $schema (dict "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")) }}
+  {{ end }}
+{{ end }}
+<script type="application/ld+json">{{ $schema | jsonify | safeJS }}</script>
 
 <!-- Search engine crawler tags -->
 {{ $robots := .Params.robots | default "index,follow" }}

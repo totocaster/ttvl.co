@@ -1,6 +1,7 @@
 ---
 title: Plaintext Commons
 date: 2025-11-04
+type: project-humane
 url: /project-humane/plaintext-commons/
 aliases:
   - /plaintext-commons/
@@ -12,7 +13,7 @@ project:
   image: /visuals/project-thumbs/proj_plaintext_commons.png
 ---
 
-Plaintext Commons is a manifesto for keeping long-form knowledge in durable, human- and agent-friendly files. The canonical version now lives at [plaintextcommons.org](https://plaintextcommons.org/); this page mirrors the text for readers who prefer to stay on ttvl.co.
+Plaintext Commons is a manifesto for keeping long-form knowledge in durable, human- and agent-friendly files. The canonical version lives at [plaintextcommons.org](https://plaintextcommons.org/); this page provides a short overview and links to the current text.
 
 ## Read it
 

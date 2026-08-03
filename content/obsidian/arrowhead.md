@@ -13,9 +13,9 @@ project:
   image: /visuals/project-thumbs/proj_arrowhead.png
 ---
 
-**Arrowhead** ([on GitHub](https://github.com/totocaster/arrowhead)) helps AI agents and command-line tools make sense of my [Obsidian](https://obsidian.md/) vault. It keeps Markdown notes indexed around the clock, combining fast full-text search, semantic vectors, graph analytics, time-based context, and metric queries under one [CLI](https://en.wikipedia.org/wiki/Command-line_interface) and MCP surface. Arrowhead is part of **[Plaintext Commons](/project-humane/plaintext-commons/)**—my broader effort to build file-native thinking systems—with a public site forthcoming at [plaintextcommons.org](https://plaintextcommons.org).
+**Arrowhead** ([on GitHub](https://github.com/totocaster/arrowhead)) helps AI agents and command-line tools make sense of my [Obsidian](https://obsidian.md/) vault. It keeps Markdown notes indexed around the clock, combining fast full-text search, semantic vectors, graph analytics, time-based context, and metric queries under one [CLI](https://en.wikipedia.org/wiki/Command-line_interface) and MCP surface. Arrowhead is part of **[Plaintext Commons](/project-humane/plaintext-commons/)**—my broader effort to build file-native thinking systems—whose manifesto lives at [plaintextcommons.org](https://plaintextcommons.org/).
 
-I built Arrowhead after years of bouncing between note-taking apps that locked away structure, links, and history. Plain text stayed the only constant, so the tool had to respect the folder as the source of truth. Arrowhead rewrites my earlier [Synapse/Soma](/project-humane/soma/) tools in Rust, trading a single-purpose search utility for a platform that feels at home on the command line, runs an always-on daemon, and speaks to AI agents like Claude, Codex, and OpenClaw.
+I built Arrowhead after years of bouncing between note-taking apps that locked away structure, links, and history. Plain text stayed the only constant, so the tool had to respect the folder as the source of truth. Arrowhead rewrites my earlier search tools in Rust, trading a single-purpose search utility for a platform that feels at home on the command line, runs an always-on daemon, and speaks to AI agents like Claude, Codex, and OpenClaw.
 
 ## How Arrowhead works
 
@@ -33,7 +33,7 @@ The stack is intentionally pragmatic: Rust for speed and safety, SQLite for port
 
 **Plaintext Commons** treats files—not apps—as the durable layer for long-term knowledge work. Arrowhead is the search, discovery, and automation engine for that vision. It gives me confidence that vaults stay queryable, linkable, and agent-friendly without handing control to a silo. Whether I am debugging code, revisiting research threads, checking metric trends, or asking an agent to draft a change, Arrowhead keeps the raw materials close while letting assistants do meaningful work.
 
-Arrowhead also absorbs the ingest and transcription ambitions that started with Soma. Analog note capture will migrate here—paired with a dedicated helper tool once the ergonomics are nailed—so a single system handles vault search and the bridges back to paper.
+Arrowhead also extends into ingest and transcription. Analog note capture will migrate here—paired with a dedicated helper tool once the ergonomics are nailed—so a single system handles vault search and the bridges back to paper.
 
 ## Get Arrowhead
 

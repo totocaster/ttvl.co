@@ -14,7 +14,7 @@ project:
 
 ## What it does
 
-Whoopy gives full access to WHOOP data through a single binary with consistent, scriptable output. Common tasks:
+Whoopy v0.4 provides access to the profile, workouts, sleep, recovery, cycles, and day-level stats exposed by the WHOOP developer API through a single binary with consistent, scriptable output. Common tasks:
 
 - `whoopy stats daily --date 2026-03-03 --text` aggregates workouts, recovery, sleep, and strain for a single day.
 - `whoopy workouts list --sport running --min-strain 8` filters workouts client-side.
@@ -58,7 +58,7 @@ Whoopy follows the same conventions as my other [Project Humane](/project-humane
 
 ## Authentication
 
-Whoopy uses first-party OAuth with PKCE. Running `whoopy auth login` opens the browser for WHOOP authorization, then persists tokens under `~/.config/whoopy/`. Tokens refresh automatically; `whoopy auth status` shows remaining lifetime and scopes. Headless workflows are supported via `--no-browser` and `--manual` flags.
+Whoopy v0.4 uses first-party OAuth with PKCE. Running `whoopy auth login` creates a configuration template at `${XDG_CONFIG_HOME:-~/.config}/whoopy/config.toml` when one does not exist. After the WHOOP client ID and secret have been added, running the command again opens the browser for authorization and stores tokens at `${XDG_STATE_HOME:-~/.local/state}/whoopy/tokens.json`. Existing tokens in the old configuration-directory location are migrated automatically. Tokens refresh automatically; `whoopy auth status` shows remaining lifetime and scopes. Headless workflows are supported via `--no-browser` and `--manual` flags.
 
 ## Get Whoopy
 

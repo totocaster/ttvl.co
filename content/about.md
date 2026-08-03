@@ -51,7 +51,7 @@ Build _here_, now, with the people you can see eyes of. The result is work that 
 
 ## Press & Appearances
 
-Lorenzo (right) and I (left) at PeckaKucha Tokyo. (ph. Brian Scott Peterson)
+Lorenzo (right) and I (left) at PechaKucha Tokyo. (ph. Brian Scott Peterson)
 
 ### Speaking
 
