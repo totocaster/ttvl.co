@@ -36,8 +36,8 @@ Below are the materials and brands _I_ use for my Unbound notebooks:
 - **Cover Pocket**: Traveler's Notebook **Pocket Sticker 006** glued to the back cover. It requires trimming since it's slightly taller than Bible-sized paper.
 - **Paper Holder**: A flat **TOHKIN PC-8S-3 Clip** on the back cover transforms it into a writing pad for loose-leaf pages.
 - **Flags**: **Coco Fusen Sticky Notes** (small size) glued inside the front cover. These are great for marking important pages.
-- **Memorabilia Pocket**: [MISSING BRAND NAME], used for storing receipts and memorabilia.
-- **Ring Hole Reinforcement**: [MISSING BRAND NAME], for reinforcing holes in pages that get frequent use, ensuring longevity.
+- **Memorabilia Pocket**: A clear zip pocket insert for storing receipts and memorabilia.
+- **Ring Hole Reinforcement**: Adhesive reinforcement rings for pages that get frequent use.
 - **Writing Pad Insert**: This accessory features incomplete circles instead of holes, allowing you to insert it anywhere in the notebook quickly. I use it to find the first blank page and as a writing pad. It also includes a pen loop (which I removed).
 
 ## Cover Advice

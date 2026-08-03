@@ -40,7 +40,7 @@ Since Unbound notebooks use loose leaves, traditional page numbers do not make m
 
 ![](/visuals/uns/2025.05_UNS_15.jpg)
 
-I find adding additional page numbers per day unnecessary since I rarely write more than half a dozen pages in one day—an amount that trivial to flip though. If you write more than a dozen pages per day, consider adding `/` and a page number so that the 24th page written on January 6, 2025, would be labeled `2025.01.06/24`.
+I find additional page numbers within a day unnecessary since I rarely write more than half a dozen pages in one day—an amount that is trivial to flip through. If you write more than a dozen pages per day, consider adding `/` and a page number so that the 24th page written on January 6, 2025, would be labeled `2025.01.06/24`.
 
 I use a rubber stamp with changing dates to page my notes, but the simple act of writing the date on the trailing edge of the page would suffice.
 
@@ -56,33 +56,31 @@ Andy Matuschak coining [_Peripheral Vision_][pv]:
 
 > My physical workspace is full of subtle cues. The books I read or bought most recently are lying out. Papers I've accumulated are lying in stacks on my desk, very roughly arranged by their relationship to each other. I notice a broken door every time I walk by it. These cues together give me a kind of "peripheral vision": when I'm doing one thing, it's easy for me to fluidly notice other nearby things. [...] Software systems, by contrast, often lack this kind of peripheral vision. [...] Digital task lists live in a dedicated app. I have no natural reason to look at the contents of that app.
 
-Unbound System is designed to keep notes you want to be reminded of in the notebook, no matter how old, small, or plain they are. Simply having the ability to indefinitely keep pages you want to be reminded during _browsing_ keeps them in your peripheral vision.
+Unbound System is designed to keep notes you want to be reminded of in the notebook, no matter how old, small, or plain they are. The ability to keep those pages available for _browsing_ keeps them in your peripheral vision.
 
 ## Searching and Browsing
 
 **Browsing** is an _open-ended activity_, more akin to walking in the city—exploring like a flâneur—whereas **searching** is _information retrieval_, a brisk walk to a set destination. We may browse with or without a goal, and plans may change as the process unfolds. However, when searching, we need information quickly and reliably.
 
-Unbound System is designed to excel at both. Browsing can be easily accomplished by flipping through the pages of a notebook in either direction, or even accidentally opening it to a random page every so often. Searching, on the other hand, is where its digital counterpart of Unbound System comes into play.
+Unbound System is designed to excel at both. Browsing can be easily accomplished by flipping through the pages of a notebook in either direction, or even accidentally opening it to a random page every so often. Searching, on the other hand, is where the digital counterpart of the Unbound System comes into play.
 
 ## Bridging to Digital
 
-While the thinking part of the Unbound System is primarily analog, its digital tools enhance the system and improve the overall workflow for information retrieval, recall, and archiving.
+While the thinking part of the Unbound System is primarily analog, digital tools can improve information retrieval, recall, and archiving.
 
-I find ChatGPT-4 with vision to be an incredibly reliable transcription tool for the Unbound System. I have an open chat with the following prompt, and I simply upload photos from my notes for transcription:
+Any multimodal AI assistant that accepts images can help transcribe notes. In ChatGPT, Codex, Claude, or a similar tool, attach a clear photo or scan and use a prompt like this:
 
-> "You are an assistant who helps me manage my paper notes. You help me transcribe, describe and categorize my notes. Transcribe text from this loose leaf note. Include only text from the paper. Do not add your comments. If you find a typo in the transcribed word, please fix it, but do not change the sentence. When you see a list of items, please describe them. If the image has a sketch, describe what it is. Format everything in Markdown format, including tables."
+> You help me digitize handwritten paper notes. Transcribe only what appears on the page. Preserve the original wording and structure; do not rewrite or add commentary. Correct an obvious spelling mistake only when you are certain, and mark illegible or uncertain text as `[unclear]`. Represent headings, lists, and tables in Markdown. If the page contains a sketch or diagram, add a brief description in brackets. Return Markdown only.
 
-The resulting text is copied and pasted into my note-taking app of choice along with the loose leaf photo—though you could discard it since you can always reprint the note. Loose leaf sheets are as printer-friendly as any standard piece of paper.
+I save the resulting text in my note-taking app of choice alongside the loose leaf photo. Before archiving it, I compare the transcription with the original because handwriting recognition can still make mistakes. You could discard the paper after checking the scan, though loose leaf sheets are as easy to reprint as any standard piece of paper.
 
-Having a completely digital version of the note opens several options for fast and precise searches. It could be as simple as searching for a keyword on a page or as advanced as storing notes in a database and performing AI-powered chat with it (e.g., Notion).
+A digital version of the note opens several options for fast and precise searches. It could be as simple as searching for a keyword on a page or as advanced as letting an AI assistant search and summarize an archive of notes.
 
 Since pages are unbound, you can use any flatbed or document scanner for digitization. Most high-end document scanners can adjust skew and run automations on scanned pages (e.g., Fujitsu/Ricoh ScanSnap series). You can simplify workflows by leveraging various automation tools.
 
-## Soma.app
+## A Generic AI Workflow
 
-![](/visuals/uns/2025.01.soma_prototype_mac.png)
-
-Some of you can already see dozens of automation and app opportunities. I'm one of those too. I'm working on a note scanner app with a macOS counterpart—[**Soma**](/project-humane/soma/)—that provides a clean and simple way to take pictures of loose leaf sheets with corrected colors and skew adjustment, transcribe them into a digital version, identify the dates they were made (since all pages have dates), and then export the resulting text and image into a note-taking app of choice.
+This workflow does not require a purpose-built app. Scan or photograph a page, attach the image to ChatGPT, Codex, Claude, or another multimodal assistant, and use the prompt above to produce Markdown. Ask it to extract the page date and suggest matching filenames for the text and image, then save both files in the note-taking system of your choice. An agent or local script can repeat the same steps for a folder of scans, while the durable output remains ordinary image and text files that can move between tools.
 
 ## Bridging back to Analog
 
@@ -92,21 +90,21 @@ Abstract and minimalist photos also make a nice writing surface for thoughts or 
 
 ## Linking
 
-At a minimum, it's possible to link notes using their dates. The system is designed to be compatible with **Zettelkasten**, where individual leaves can act as index cards. By adding page numbers after dates, you can ensure uniqueness. Or, you could add additional Zettelkasten-style identifier to only relevant leaves.
+At a minimum, it's possible to link notes using their dates. The system is designed to be compatible with **Zettelkasten**, where individual leaves can act as index cards. By adding page numbers after dates, you can ensure uniqueness. Or, you could add an additional Zettelkasten-style identifier only to relevant leaves.
 
-However, I don't find linking notes particularly useful. Instead, I prefer to **browse** my notes while thinking, allowing connections to emerge organically. When I need to retrieve specific information, I rely on **search**. (see [Searching and Browsing](#searching-and-browsing))
+However, I don't find linking notes particularly useful. Instead, I prefer to **browse** my notes while thinking, allowing connections to emerge organically. When I need to retrieve specific information, I rely on **search**. See [Searching and Browsing](#searching-and-browsing).
 
-For focused work, you can also group notes into their own notebook or a "bunch" for an intense focus session. I do not keep bunched notes together for long time.
+For focused work, you can also group notes into their own notebook or a "bunch" for an intense focus session. I do not keep bunched notes together for a long time.
 
 ## Index
 
-There's no necessity to use a paper index in Unbound System. Since all your notes will eventually be digitized and transcribed, they'll become easily **searchable**, eliminating the need for a traditional paper index.
+There's no necessity to use a paper index in Unbound System. If you choose to digitize and transcribe your notes, they become easily **searchable**, which may eliminate the need for a traditional paper index.
 
 However, if you're an analog purist, you can still maintain a traditional index on paper. Instead of listing page numbers alongside subjects, you could write the _dates_ you worked on them. This approach not only functions as an index but also transforms it into a concise **interstitial work log**.
 
 ## Archiving
 
-In Unbound System notes never get truly retired—they merely migrate from one place to another. Archiving is as straightforward as moving a leaf into a long-term binder. I use thick cardboard binders labeled `2023`, `2024`, `2025`, and so on, for loose leaves from those years. All pages are ordered chronologically, so even if a binder contains hundreds of pages, they are extremely easy to locate.
+In the Unbound System, notes never get truly retired—they merely migrate from one place to another. Archiving is as straightforward as moving a leaf into a long-term binder. I use thick cardboard binders labeled by year for loose leaves from those years. All pages are ordered chronologically, so even if a binder contains hundreds of pages, they are extremely easy to locate.
 
 ![](/visuals/uns/2025.05_UNS_13.jpg) 
 
@@ -118,11 +116,11 @@ I personally never move pages to the archive without scanning them first. Howeve
 
 ## Personalization
 
-The canonical Unbound version is designed so that covers are also loose and **DO NOT** wrap the binder part of the notebook as Filofax, Davinci and Plotter planners. Any thick paper, cloth, leather, or fabric that protects the pages beneath and gives the notebook a pleasing tactile quality can serve as a cover.
+The canonical Unbound version is designed so that covers are also loose and **DO NOT** wrap around the binder mechanism as they do in Filofax, Davinci, and Plotter planners. Any thick paper, cloth, leather, or fabric that protects the pages beneath and gives the notebook a pleasing tactile quality can serve as a cover.
 
 ![](/visuals/uns/2025.05_UNS_03.jpg)
 
-You could even use additional "cover" in between leaves as a writing pad or a separator.
+You could even use an additional "cover" between leaves as a writing pad or separator.
 
 I have two active notebooks: one with a 1mm yellow-tanned leather cover and another cut from a Freitag F08 DAN pouch I got for $5 because it had a broken zipper. All it takes to make new covers are scissors and a hole punch.
 
@@ -140,30 +138,30 @@ In practice, anything that can be kept as a loose leaf notebook can work—even 
 
 I strongly encourage starting simple with plain, dotted, or ruled paper for everyday notebook use without overcomplicating the setup. For some niche types of logging and thinking, I've created several templates that can be printed on any standard printer. Most of these are tailored to my line of work.
 
-- [Templates for General Use](/notebook-system/general-templates)
-- [Templates for Analog Photography](/notebook-system/analog-photography-templates)
+- [Templates for General Use](/notebook-system/general-templates/)
+- [Templates for Analog Photography](/notebook-system/analog-photography-templates/)
 
 ## Make Your Own
 
 I have a separate guide on how to start and create your own Unbound notebook from scratch:
 
-- [Make Your Own Unbound Notebook](/notebook-system/make-your-own)
+- [Make Your Own Unbound Notebook](/notebook-system/make-your-own/)
 
 ## Accessories
 
 ![](/visuals/uns/2025.05_UNS_04.jpg)
 
-I have been using Unbound System for more than two years at the time of publishing this, and I've accumulated some experience with it. Below are a few tips and tricks that I find useful when using the system:
+When I published this guide, I had been using the Unbound System for more than two years. Below are a few tips and tricks that I find useful when using the system:
 
 - I glue a Traveler's Notebook **Pocket Sticker 006** onto the backside of the back cover. It needs a bit of trimming since the pocket is an inch or so taller than Bible-size paper.
-- I keep a flat **TOHKIN PC-8S-3 Clip** on the back cover. It can act as a paper holder, transforming the back cover into a writing pad for loose leaf pages.
+- I keep a flat **TOHKIN PC-8S-3 Clip** on the back cover. It can act as a paper holder, transforming the back cover into a writing pad for loose-leaf pages.
 - I have a single **Coco Fusen Sticky Notes** (small size) glued on the inside of the front cover. They are useful for marking pages of importance in the notebook or book I'm reading.
 - If you are an architect or designer, consider keeping a bunch of tracing paper in your notebook. You can layer it _in front_ of a base sketch to iterate easily and quickly. The rings will act as somewhat loose but reliable registration pins.
 
 ## Tips & Tricks
 
 - I write only on one side of the paper. This makes leaves easy to scan and digitize.
-- I do not mix notebook sizes; this gives me ultimate flexibility in migrating notes. Although some sizes like Japanese _Narrow_, _Bible_, and _HB-WA5_ are compatible with each-other.
+- I do not mix notebook sizes; this gives me ultimate flexibility in migrating notes, although some sizes like Japanese _Narrow_, _Bible_, and _HB-WA5_ are compatible with each other.
 - I tape all business cards I collect onto a page, adding the person's name and _where and how I met them_. For a goldfish like me, this has been invaluable.
 
 ## Companion Tools
@@ -172,19 +170,19 @@ Below are a few tools and toys I use with my Unbound notebook to make it more us
 
 - **Multi-pen** — I use a clear version of the Hi-Tech-C Coleto pen with black, red, highlighter, and mechanical pencil inserts.
 - **Date Stamper** — Absolutely unnecessary, as writing a date on a page is trivial, but I like the uniform look of stamped dates.
-- **Hole Punch** — For making inserts from collected matter. I have both heavy duty and travel versions.
+- **Hole Punch** — For making inserts from collected matter. I have both heavy-duty and travel versions.
 - **Clear Pocket Insert** — For collecting memorabilia, event tickets, or tree leaves from the ground.
 - **Canon ZINK Mini Printer** — For printing photos. ZINK (Zero Ink) paper requires no ink and has a sticker backing, making it easy to create photo sequences in the notebook or just print a nice moment to accompany a journal entry.
-- **Glue Stick** - For things that do not have adhesive backing.
+- **Glue Stick** — For things that do not have adhesive backing.
 
 ## Resources
 
 Collection of links from and around the notebook system.
 
-- [Make Your Own Unbound Notebook](/notebook-system/make-your-own)
-- [Templates for General Use](/notebook-system/general-templates)
-- [Templates for Analog Photography](/notebook-system/analog-photography-templates)
-- [Selection of some of my loose leaves](/leaves)
+- [Make Your Own Unbound Notebook](/notebook-system/make-your-own/)
+- [Templates for General Use](/notebook-system/general-templates/)
+- [Templates for Analog Photography](/notebook-system/analog-photography-templates/)
+- [Selection of some of my loose leaves](/leaves/)
 
 [pv]: https://notes.andymatuschak.org/Peripheral_vision
 [kc]: https://www.kokuyostore.com/en/stationery/stationery-binder/stationery-binder-loose_leaf_paper

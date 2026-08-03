@@ -7,11 +7,11 @@ I don't use many general-purpose templates; I find plain paper to be the best to
 
 I find niche- and domain-specific templates, like the ones I created to [track my film photography][film], far more useful.
 
-I've designed a few general-use templates, but in practice, I rarely use them. Still, I've decided to share them because not everyone's brain works the different way. They might be useful to someone or serve as inspiration to create something new.
+I've designed a few general-use templates, but in practice, I rarely use them. Still, I've decided to share them because not everyone's brain works the same way. They might be useful to someone or serve as inspiration to create something new.
 
 {{< toc >}}
 
-I use _Bible_-size pages, so the templates are formatted accordingly. You're welcome to make your own versions in any size or with any modifications. If they don't fit your needs, simply use them as inspiration. At the heart of Unbound System is extreme flexibility.
+I use _Bible_-size pages, so the templates are formatted accordingly. You're welcome to make your own versions in any size or with any modifications. If they don't fit your needs, simply use them as inspiration. At the heart of the Unbound System is extreme flexibility.
 
 ## Daily Log
 

@@ -18,7 +18,7 @@ I have switched to using the universal film log for 120 film too. It also makes 
 {{< download-section >}}
 - [Universal Roll](/downloads/uns/uns_2025_02_film_bible_universal_roll.pdf)
 - [120 Roll: 6x17 Panoramic](/downloads/uns/uns_2025_02_film_bible_6x17.pdf)
-- [35mm Roll: Horizontal](/downloads/uns/uns_2024_07_film_bible_35mm.pdf)
+- [35mm Roll: Horizontal](/downloads/uns/uns_2025_02_film_bible_35mm.pdf)
 {{< /download-section >}}
 
 The 35mm Horizontal template is designed to work with my bulk film [canister stickers](/darkroom/canister-stickers/). The dark area is prefilled while the roll is in the camera, and once I'm done processing it, I put the sticker from the canister and place it on top of the shaded area.
@@ -31,7 +31,7 @@ For sheet film, I also record where I metered and where I placed values on the E
 - [Sheet Film with delta-EV and Zones](/downloads/uns/uns_2025_02_film_bible_sheet.pdf)
 {{< /download-section >}}
 
-The darker square is designed so I can make a rough sketch of the scene with metering values mapped onto the scale. Lately, I've been photographing the scene with my phone and printing it using my ZINK mini-printer.
+The darker square is designed so I can make a rough sketch of the scene with metering values mapped onto the scale. Sometimes I photograph the scene with my phone and print it using my ZINK mini-printer instead.
 
 ## Scouting
 
@@ -43,7 +43,7 @@ When scouting locations and photos, I usually don't carry camera gear, so most o
 
 ## Processing
 
-Having exact volumes for a 1+4 dilution for my 600ml Jobo Tank already written down is incredibly helpful. With this template, I can pre-calculate and record developer volumes, dilutions, and exact development times for various types of developers and kits.
+Having exact volumes for a 1+4 dilution for my 600 ml Jobo Tank already written down is incredibly helpful. With this template, I can pre-calculate and record developer volumes, dilutions, and exact development times for various types of developers and kits.
 
 ![Film processing template in action](/visuals/uns/2025.01.uns_film_process_sample.jpg)
 
@@ -63,11 +63,12 @@ This template helps me keep track of session-associated rolls as well as wild ro
 
 ## Changelog
 
-v2025.02 (latest):
+v2025.02:
 
 {{< download-section >}}
 - [Universal Roll](/downloads/uns/uns_2025_02_film_bible_universal_roll.pdf)
 - [120 Roll: 6x17 Panoramic](/downloads/uns/uns_2025_02_film_bible_6x17.pdf)
+- [35mm Roll: Horizontal](/downloads/uns/uns_2025_02_film_bible_35mm.pdf)
 - [Sheet Film with delta-EV and Zones](/downloads/uns/uns_2025_02_film_bible_sheet.pdf)
 - [Film Processing](/downloads/uns/uns_2025_02_film_bible_process.pdf)
 - [Location and Photo Scouting Template](/downloads/uns/uns_2025_02_bible_scouted_location.pdf)
@@ -83,7 +84,7 @@ Changes:
 - Reduced column separator prominence to mute visual clutter.
 - Standardized Session vs. Project semantics.
 - Introduced horizontal layout versions.
-- Introduced new visual for checkbox--check circle(?), rather.
+- Replaced checkboxes with check circles.
 - Introduced new icons for development, scanning, archiving, and digital editing.
 - Improved frame indicator visuals on _6x17 Roll Film_ template.
 - Added _filters_ field for some templates.
@@ -103,14 +104,14 @@ v2024.07:
 
 {{< download-section >}}
 - [Universal 35mm Roll](/downloads/uns/uns_2024_07_film_bible_35mm.pdf)
-- [X-Pan/Double-width 35mm Roll](/downloads/uns/uns_2024_07_film_bible_x.pdf)
+- [X-Pan/Double-width 35mm Roll](/downloads/uns/uns_2024_07_film_bible_x-pan.pdf)
 - [120 Roll: 645](/downloads/uns/uns_2024_07_film_bible_645.pdf)
 - [120 Roll: Square Format](/downloads/uns/uns_2024_07_film_bible_6x6.pdf)
 - [120 Roll: 6x7](/downloads/uns/uns_2024_07_film_bible_6x7.pdf)
 - [120 Roll: 6x8](/downloads/uns/uns_2024_07_film_bible_6x8.pdf)
 - [120 Roll: 6x9](/downloads/uns/uns_2024_07_film_bible_6x9.pdf)
 - [120 Roll: 6x17 Panoramic](/downloads/uns/uns_2024_07_film_bible_6x17.pdf)
-- [Sheet Film with No Metering Info](/downloads/uns/uns_2024_07_film_bible_sheet_simple_.pdf)
+- [Sheet Film with No Metering Info](/downloads/uns/uns_2024_07_film_bible_sheet_simple.pdf)
 - [Sheet Film with EV Offsets for Metering Info](/downloads/uns/uns_2024_07_film_bible_sheet_ev.pdf)
 - [Sheet Film with Zone System Markings for Metering Info](/downloads/uns/uns_2024_07_film_bible_sheet_zones.pdf)
 - [Location and Photo Scouting Template](/downloads/uns/uns_2024_07_scouted_location.pdf)
