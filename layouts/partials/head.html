@@ -142,6 +142,10 @@
 <script type="module" src="/vendor/model-viewer/4.3.1/model-viewer.min.js"></script>
 {{ $modelViewerFullscreenJS := resources.Get "js/model-viewer-fullscreen.js" | resources.Minify | resources.Fingerprint }}
 <script src="{{ $modelViewerFullscreenJS.RelPermalink }}" integrity="{{ $modelViewerFullscreenJS.Data.Integrity }}" defer></script>
+{{ if .Params.model_viewer_comparison }}
+{{ $modelViewerComparisonJS := resources.Get "js/model-viewer-comparison.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $modelViewerComparisonJS.RelPermalink }}" integrity="{{ $modelViewerComparisonJS.Data.Integrity }}" defer></script>
+{{ end }}
 {{ end }}
 
 {{ if .Params.spatial_long_exposure }}

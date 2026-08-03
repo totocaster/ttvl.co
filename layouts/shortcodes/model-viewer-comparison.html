@@ -1,0 +1,99 @@
+{{ $poster := .Get "poster" }}
+{{ $beforeSrc := .Get "before-src" }}
+{{ $beforeAlt := .Get "before-alt" }}
+{{ $beforeSize := .Get "before-size" }}
+{{ $beforeLabel := .Get "before-label" | default "Before" }}
+{{ $beforeDate := .Get "before-date" }}
+{{ $afterSrc := .Get "after-src" }}
+{{ $afterAlt := .Get "after-alt" }}
+{{ $afterSize := .Get "after-size" }}
+{{ $afterLabel := .Get "after-label" | default "After" }}
+{{ $afterDate := .Get "after-date" }}
+{{ $cameraOrbit := .Get "camera-orbit" }}
+{{ $minCameraOrbit := .Get "min-camera-orbit" }}
+{{ if not $poster }}{{ errorf "model-viewer-comparison shortcode requires a poster: %s" .Position }}{{ end }}
+{{ if not $beforeSrc }}{{ errorf "model-viewer-comparison shortcode requires before-src: %s" .Position }}{{ end }}
+{{ if not $beforeAlt }}{{ errorf "model-viewer-comparison shortcode requires before-alt: %s" .Position }}{{ end }}
+{{ if not $beforeDate }}{{ errorf "model-viewer-comparison shortcode requires before-date: %s" .Position }}{{ end }}
+{{ if not $afterSrc }}{{ errorf "model-viewer-comparison shortcode requires after-src: %s" .Position }}{{ end }}
+{{ if not $afterAlt }}{{ errorf "model-viewer-comparison shortcode requires after-alt: %s" .Position }}{{ end }}
+{{ if not $afterDate }}{{ errorf "model-viewer-comparison shortcode requires after-date: %s" .Position }}{{ end }}
+{{ $viewerID := printf "model-viewer-comparison-%d" .Ordinal }}
+{{ $captionID := printf "%s-caption" $viewerID }}
+
+<figure class="model-viewer-frame model-viewer-comparison" data-model-viewer-comparison>
+  <div class="model-viewer-comparison__controls">
+    <div class="model-viewer-comparison__modes" role="group" aria-label="Daikyocho scans">
+      <button
+        type="button"
+        data-model-variant="before"
+        data-model-src="{{ $beforeSrc }}"
+        data-model-alt="{{ $beforeAlt }}"
+        data-model-label="{{ $beforeLabel }}"
+        data-model-date="{{ $beforeDate }}"
+        data-model-size="{{ $beforeSize }}"
+        aria-controls="{{ $viewerID }}"
+        aria-label="{{ $beforeLabel }} — {{ $beforeDate }}"
+        aria-pressed="false"
+      >{{ $beforeDate }}</button>
+      <button
+        type="button"
+        data-model-variant="after"
+        data-model-src="{{ $afterSrc }}"
+        data-model-alt="{{ $afterAlt }}"
+        data-model-label="{{ $afterLabel }}"
+        data-model-date="{{ $afterDate }}"
+        data-model-size="{{ $afterSize }}"
+        aria-controls="{{ $viewerID }}"
+        aria-label="{{ $afterLabel }} — {{ $afterDate }}"
+        aria-pressed="true"
+      >{{ $afterDate }}</button>
+    </div>
+  </div>
+
+  <div class="model-viewer-viewport" data-model-viewer-viewport>
+    <model-viewer
+      id="{{ $viewerID }}"
+      data-model-viewer
+      src="{{ $afterSrc }}"
+      poster="{{ $poster }}"
+      alt="{{ $afterAlt }}"
+      aria-describedby="{{ $captionID }}"
+      loading="eager"
+      reveal="auto"
+      camera-controls
+      touch-action="pan-y"
+      interaction-prompt="auto"
+      shadow-intensity="0.5"
+      {{ with $cameraOrbit }}camera-orbit="{{ . }}"{{ end }}
+      {{ with $minCameraOrbit }}min-camera-orbit="{{ . }}"{{ end }}
+    ></model-viewer>
+    <button
+      class="model-viewer-fullscreen"
+      type="button"
+      aria-controls="{{ $viewerID }}"
+      aria-label="View 3D model full screen"
+      title="View full screen"
+      data-model-viewer-fullscreen
+      hidden
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path class="model-viewer-fullscreen__enter" d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" />
+        <path class="model-viewer-fullscreen__exit" d="M3 8h5V3M21 8h-5V3M3 16h5v5M21 16h-5v5" />
+      </svg>
+    </button>
+  </div>
+  <figcaption id="{{ $captionID }}">
+    <span data-model-comparison-status aria-live="polite">Showing {{ $afterLabel }} · {{ $afterDate }}.</span>
+    Drag to rotate; scroll or pinch to zoom. Keyboard controls are available when the viewer is focused.
+    <a href="{{ $afterSrc }}" download data-model-comparison-download>Download the selected GLB model{{ with $afterSize }} ({{ . }}){{ end }}</a>.
+  </figcaption>
+  <noscript>
+    <img class="model-viewer-static-poster" src="{{ $poster }}" alt="{{ $afterAlt }}" width="1600" height="900" />
+    <p class="model-viewer-noscript">
+      JavaScript is required for the interactive comparison.
+      <a href="{{ $beforeSrc }}" download>Download the {{ $beforeDate }} GLB model{{ with $beforeSize }} ({{ . }}){{ end }}</a>.
+      <a href="{{ $afterSrc }}" download>Download the {{ $afterDate }} GLB model{{ with $afterSize }} ({{ . }}){{ end }}</a>.
+    </p>
+  </noscript>
+</figure>

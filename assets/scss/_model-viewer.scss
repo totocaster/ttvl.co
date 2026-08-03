@@ -167,6 +167,52 @@
   }
 }
 
+.model-viewer-comparison {
+  .model-viewer-comparison__controls button {
+    padding: 0 0 2px;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    color: rgba($color-light-text, 0.45);
+    background: transparent;
+    font: inherit;
+    line-height: inherit;
+    cursor: pointer;
+
+    &:hover,
+    &[aria-pressed="true"] {
+      border-bottom-color: currentColor;
+      color: $color-light-text;
+    }
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 3px;
+    }
+
+    @include dark {
+      color: rgba($color-dark-text, 0.65);
+
+      &:hover,
+      &[aria-pressed="true"] {
+        color: $color-dark-text;
+      }
+    }
+  }
+}
+
+.model-viewer-comparison__controls {
+  display: flex;
+  align-items: baseline;
+  max-width: $max-width-readable;
+  margin-bottom: 0.75rem;
+}
+
+.model-viewer-comparison__modes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
 html.model-viewer-fullscreen-active {
   overflow: hidden;
 }
