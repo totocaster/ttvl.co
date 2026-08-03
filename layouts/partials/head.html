@@ -152,3 +152,17 @@
 {{ $spatialLongExposureJS := resources.Get "js/spatial-long-exposure.js" | resources.Minify | resources.Fingerprint }}
 <script src="{{ $spatialLongExposureJS.RelPermalink }}" integrity="{{ $spatialLongExposureJS.Data.Integrity }}" defer></script>
 {{ end }}
+
+{{ if .Params.gaussian_splat }}
+<script type="importmap">
+{
+  "imports": {
+    "three": "/vendor/three/0.180.0/three.module.js",
+    "three/addons/": "/vendor/three/0.180.0/examples/jsm/",
+    "@sparkjsdev/spark": "/vendor/spark/2.1.0/spark.module.js"
+  }
+}
+</script>
+{{ $gaussianSplatJS := resources.Get "js/gaussian-splat-viewer.js" | resources.Minify | resources.Fingerprint }}
+<script type="module" src="{{ $gaussianSplatJS.RelPermalink }}" integrity="{{ $gaussianSplatJS.Data.Integrity }}"></script>
+{{ end }}

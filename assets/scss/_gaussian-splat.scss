@@ -1,0 +1,258 @@
+.gaussian-splat {
+  width: 100%;
+  max-width: $max-width-container;
+  margin: 1.5rem 0;
+
+  .gaussian-splat__controls button {
+    padding: 0 0 2px;
+    border: 0;
+    border-bottom: 1px solid transparent;
+    color: rgba($color-light-text, 0.65);
+    background: transparent;
+    font: inherit;
+    line-height: inherit;
+    cursor: pointer;
+
+    &:hover:not(:disabled) {
+      border-bottom-color: currentColor;
+      color: $color-light-text;
+    }
+
+    &:focus-visible {
+      outline: 2px solid currentColor;
+      outline-offset: 3px;
+    }
+
+    &:disabled {
+      cursor: default;
+      opacity: 0.45;
+    }
+
+    @include dark {
+      color: rgba($color-dark-text, 0.65);
+
+      &:hover:not(:disabled) {
+        color: $color-dark-text;
+      }
+    }
+  }
+}
+
+.gaussian-splat__controls {
+  display: flex;
+  justify-content: flex-end;
+  max-width: $max-width-readable;
+  margin-bottom: 0.75rem;
+}
+
+.gaussian-splat__frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid #e0e0e0;
+  background: #fafafa;
+
+  @include dark {
+    border-color: rgba($color-dark-text, 0.2);
+    background: rgb(28, 28, 28);
+  }
+
+  @include narrow {
+    aspect-ratio: 4 / 5;
+  }
+}
+
+.gaussian-splat__poster,
+.gaussian-splat canvas {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.gaussian-splat__poster {
+  z-index: 0;
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 180ms ease;
+}
+
+.gaussian-splat.is-loaded .gaussian-splat__poster {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.gaussian-splat canvas {
+  z-index: 1;
+  cursor: grab;
+  touch-action: none;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: -3px;
+  }
+}
+
+.gaussian-splat__loading {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  padding: 0.45rem 0.7rem;
+  transform: translate(-50%, -50%);
+  border: 1px solid rgba($color-light-text, 0.16);
+  border-radius: 999px;
+  color: $color-light-text;
+  background: rgba($color-light-bg, 0.86);
+  box-shadow: 0 1px 5px rgba($color-light-text, 0.08);
+  font-size: 0.85rem;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+
+  &[hidden] {
+    display: none;
+  }
+
+  @include dark {
+    border-color: rgba($color-dark-text, 0.2);
+    color: $color-dark-text;
+    background: rgba($color-dark-bg, 0.86);
+    box-shadow: 0 1px 5px rgba(#000, 0.2);
+  }
+}
+
+.gaussian-splat__fullscreen {
+  position: absolute;
+  z-index: 3;
+  top: 0.65rem;
+  right: 0.65rem;
+  display: grid;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0;
+  place-items: center;
+  border: 1px solid rgba($color-light-text, 0.18);
+  border-radius: 50%;
+  color: rgba($color-light-text, 0.72);
+  background: rgba($color-light-bg, 0.78);
+  box-shadow: 0 1px 4px rgba($color-light-text, 0.08);
+  cursor: pointer;
+  opacity: 0.62;
+  backdrop-filter: blur(8px);
+  transition:
+    opacity 120ms ease,
+    background-color 120ms ease;
+
+  &[hidden] {
+    display: none;
+  }
+
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+    background: rgba($color-light-bg, 0.94);
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+
+  @include dark {
+    border-color: rgba($color-dark-text, 0.22);
+    color: rgba($color-dark-text, 0.82);
+    background: rgba($color-dark-bg, 0.76);
+    box-shadow: 0 1px 4px rgba(#000, 0.2);
+
+    &:hover,
+    &:focus-visible {
+      background: rgba($color-dark-bg, 0.94);
+    }
+  }
+
+  @include high-contrast {
+    border-color: currentColor;
+    opacity: 1;
+  }
+
+  @include narrow {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+.gaussian-splat__fullscreen-exit {
+  display: none;
+}
+
+.gaussian-splat__frame:fullscreen,
+.gaussian-splat__frame.is-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-width: none;
+  aspect-ratio: auto;
+  border: 0;
+
+  .gaussian-splat__fullscreen {
+    top: calc(0.75rem + env(safe-area-inset-top));
+    right: calc(0.75rem + env(safe-area-inset-right));
+  }
+
+  .gaussian-splat__fullscreen-enter {
+    display: none;
+  }
+
+  .gaussian-splat__fullscreen-exit {
+    display: block;
+  }
+}
+
+.gaussian-splat__frame:fullscreen::backdrop {
+  background: #fafafa;
+
+  @include dark {
+    background: rgb(28, 28, 28);
+  }
+}
+
+.gaussian-splat__frame.is-fullscreen {
+  position: fixed;
+  z-index: 1000;
+  inset: 0;
+}
+
+html.gaussian-splat-fullscreen-active {
+  overflow: hidden;
+}
+
+.gaussian-splat figcaption,
+.gaussian-splat noscript {
+  @include type-meta;
+  max-width: $max-width-readable;
+  margin-top: 0.6rem;
+  opacity: 0.65;
+}
+
+.gaussian-splat__static-poster {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid #e0e0e0;
+}
