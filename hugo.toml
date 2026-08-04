@@ -1,7 +1,7 @@
 baseURL = 'https://ttvl.co/'
 title = 'Toto Tvalavadze'
 
-languageCode = "en-us"
+locale = "en-us"
 DefaultContentLanguage = "en"
 
 enableEmoji = true
@@ -23,7 +23,7 @@ disableKinds = ["taxonomy", "term"]
 
 [params.version]
   major = 7
-  minor = 6
+  minor = 7
   update = 350
 
 [params.subscription]
@@ -32,8 +32,8 @@ disableKinds = ["taxonomy", "term"]
 
 [languages]
   [languages.en]
-    languageName = "English"
-    languageCode = "en-us"
+    label = "English"
+    locale = "en-us"
     weight = 1
 
 [permalinks]
@@ -43,7 +43,6 @@ disableKinds = ["taxonomy", "term"]
   home = ["HTML", "RSS", "JSON"]
   section = ["HTML"]
   page = ["HTML"]
-  flaneur = ["HTML", "email"]
 
 [outputFormats]
   [outputFormats.email]

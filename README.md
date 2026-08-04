@@ -4,7 +4,7 @@ Source for [ttvl.co](https://ttvl.co/), Toto Tvalavadze's public notebook and pr
 
 ## Stack
 
-- [Hugo Extended](https://gohugo.io/) renders the site and compiles its SCSS. DigitalOcean is pinned to Hugo `0.139.0` Extended in `.do/app.yaml`.
+- [Hugo Extended](https://gohugo.io/) renders the site and compiles its SCSS. DigitalOcean is pinned to Hugo `0.164.0` Extended in `.do/app.yaml`.
 - Hugo Pipes minifies and fingerprints the main stylesheet and most JavaScript assets. There is no Node, npm, package manifest, theme, or separate frontend build command.
 - The site's own browser code is vanilla JavaScript. Optional third-party browser code is limited to a vendored `model-viewer` `4.3.1` build on pages with 3D models, Campaign Monitor's hosted subscription-form helper, and Memberful's hosted membership embed.
 - DigitalOcean App Platform builds and hosts the static output from `main`; Cloudflare sits in front of the site.
@@ -154,7 +154,7 @@ The separate `tools/email_templates/insider_template.html` file is for the membe
 
 The footer displays `vMAJOR.MINOR.UPDATE`:
 
-- `major` and `minor` come from `[params.version]` in `hugo.toml` and currently identify the `v7.5` site structure. `MAJOR` identifies the site era; `MINOR` advances for visible structural or publishing-system revisions rather than routine content posts.
+- `major` and `minor` come from `[params.version]` in `hugo.toml` and currently identify the `v7.7` site structure. `MAJOR` identifies the site era; `MINOR` advances for visible structural or publishing-system revisions rather than routine content posts.
 - Production sets `UPDATE` to the Git commit count through `HUGO_SITE_UPDATE`.
 - `params.version.update` is a local fallback for direct Hugo commands that do not set the environment variable.
 

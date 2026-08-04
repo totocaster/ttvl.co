@@ -22,7 +22,7 @@ static_sites:
     name: ttvlco
     envs:
       - key: HUGO_VERSION
-        value: '0.139.0'
+        value: '0.164.0'
         scope: BUILD_TIME
       - key: HUGO_EXTENDED
         value: '1'

@@ -158,11 +158,11 @@ Project Humane pages normally live in `content/project-humane/`. Obsidian pages 
 ## Site versioning and deployment
 
 - The footer format is `vMAJOR.MINOR.UPDATE`.
-- The configured site era is currently `v7.5` under `[params.version]` in `hugo.toml`.
+- The configured site era is currently `v7.7` under `[params.version]` in `hugo.toml`.
 - `MAJOR` identifies the site era. Change `MINOR` only for a visible site-structure or publishing-system revision, not for routine content.
 - `UPDATE` is the repository commit count supplied through `HUGO_SITE_UPDATE` by `tools/build-production.sh`.
 - `params.version.update` is only a fallback for direct local Hugo invocations and can lag behind Git history.
-- DigitalOcean App Platform watches `main`, uses Hugo Extended `0.139.0`, and runs `sh ./tools/build-production.sh`.
+- DigitalOcean App Platform watches `main`, uses Hugo Extended `0.164.0`, and runs `sh ./tools/build-production.sh`.
 - There is no `.github/` workflow or automated test suite in this repository.
 
 ## Conventions

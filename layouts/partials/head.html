@@ -28,10 +28,10 @@
 <meta property="og:url" content="{{ .Permalink }}" />
 
 <!-- Language tags -->
-<meta property="og:locale" content="{{ .Language.Lang }}" />
-<meta name="language" content="{{ .Language.LanguageName }}" />
+<meta property="og:locale" content="{{ .Language.Name }}" />
+<meta name="language" content="{{ .Language.Label }}" />
 {{ range .AllTranslations }}
-<link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}" title="{{ .Language.LanguageName }}" />
+<link rel="alternate" hreflang="{{ .Language.Name }}" href="{{ .Permalink }}" title="{{ .Language.Label }}" />
 {{ end }}
 
 <!-- Image tags -->
