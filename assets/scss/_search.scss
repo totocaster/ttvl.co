@@ -32,15 +32,13 @@
 
 .search-logo {
   text-align: center;
-  margin-bottom: $padding-small;
+  margin-bottom: $padding-small / 2;
 }
 
-.search-close-hint {
-  align-self: flex-end;
-  margin: 0 0 $padding-small / 2;
+.search-instructions {
+  margin: 0 0 $padding-small;
+  text-align: center;
   @include type-meta;
-  letter-spacing: $letter-spacing-label;
-  text-transform: uppercase;
   color: rgba($color-light-text, 0.5);
 
   @include dark {

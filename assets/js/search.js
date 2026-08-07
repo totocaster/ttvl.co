@@ -31,11 +31,6 @@
     const searchContainer = document.createElement('div');
     searchContainer.className = 'search-container';
 
-    // Close hint
-    const closeHint = document.createElement('p');
-    closeHint.className = 'search-close-hint';
-    closeHint.textContent = 'Press Esc to close';
-
     // Create logo element
     const logoContainer = document.createElement('div');
     logoContainer.className = 'search-logo';
@@ -44,6 +39,11 @@
     logoImg.srcset = '/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x';
     logoImg.alt = 'TTVL';
     logoContainer.appendChild(logoImg);
+
+    // Search instructions
+    const searchInstructions = document.createElement('p');
+    searchInstructions.className = 'search-instructions';
+    searchInstructions.textContent = 'Type to search. Use the arrow keys to navigate, or press Esc to close.';
 
     // Create search input
     searchInput = document.createElement('input');
@@ -59,8 +59,8 @@
     searchResults.setAttribute('role', 'listbox');
 
     // Assemble elements
-    searchContainer.appendChild(closeHint);
     searchContainer.appendChild(logoContainer);
+    searchContainer.appendChild(searchInstructions);
     searchContainer.appendChild(searchInput);
     searchContainer.appendChild(searchResults);
     searchOverlay.appendChild(searchContainer);
