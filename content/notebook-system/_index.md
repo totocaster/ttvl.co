@@ -122,7 +122,7 @@ The canonical Unbound version is designed so that covers are also loose and **DO
 
 You could even use an additional "cover" between leaves as a writing pad or separator.
 
-I have two active notebooks: one with a 1mm yellow-tanned leather cover and another cut from a Freitag F08 DAN pouch I got for $5 because it had a broken zipper. All it takes to make new covers are scissors and a hole punch.
+I have two active notebooks: one with a 1 mm yellow-tanned leather cover and another cut from a Freitag F08 DAN pouch I got for $5 because it had a broken zipper. All it takes to make new covers are scissors and a hole punch.
 
 ![](/visuals/uns/2025.05_UNS_09.jpg)
 

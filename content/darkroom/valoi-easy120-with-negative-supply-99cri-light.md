@@ -20,7 +20,7 @@ But the showstopper for me is that my medium format shooting is mostly color, an
 
 **The Solution**: Modify the Valoi easy120 to use a high-quality light source, reducing the need for extensive color processing after correction.
 
-99 CRI light sources are uncommon, but the best-known one is available from Negative Supply: [4x5 Light Source Basic MK2 - 99 CRI][lsb], so I went with one.
+99 CRI light sources are uncommon, but the best-known one is available from Negative Supply: [4×5 Light Source Basic MK2 - 99 CRI][lsb], so I went with one.
 
 Both Valoi and Negative Supply products have simple constructions with many 3D printed parts, making them easy to disassemble and investigate.
 

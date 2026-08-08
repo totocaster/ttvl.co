@@ -13,13 +13,13 @@ A simple jig for cutting clean 45-degree corners on book board. Slide the board 
 
 ![Render of the corner cutting jig variants, labeled with board thicknesses.](/visuals/project-thumbs/proj_corner_cutting_jig.png)
 
-The jig comes in six versions for common board thicknesses from 0.5mm to 3.0mm. Pick the one that matches your board (or the closest fit) and print it. I used PLA on a Bambu X1C at 0.16mm layer height — nothing exotic needed.
+The jig comes in six versions for common board thicknesses: 0.5–3.0 mm. Pick the one that matches your board (or the closest fit) and print it. I used PLA on a Bambu X1C at 0.16 mm layer height — nothing exotic needed.
 
 {{< download-section >}}
-- [0.5mm board](/downloads/corner-cutting-jig-0.5mm.stl)
-- [1.0mm board](/downloads/corner-cutting-jig-1.0mm.stl)
-- [1.5mm board](/downloads/corner-cutting-jig-1.5mm.stl)
-- [2.0mm board](/downloads/corner-cutting-jig-2.0mm.stl)
-- [2.5mm board](/downloads/corner-cutting-jig-2.5mm.stl)
-- [3.0mm board](/downloads/corner-cutting-jig-3.0mm.stl)
+- [0.5 mm board](/downloads/corner-cutting-jig-0.5mm.stl)
+- [1.0 mm board](/downloads/corner-cutting-jig-1.0mm.stl)
+- [1.5 mm board](/downloads/corner-cutting-jig-1.5mm.stl)
+- [2.0 mm board](/downloads/corner-cutting-jig-2.0mm.stl)
+- [2.5 mm board](/downloads/corner-cutting-jig-2.5mm.stl)
+- [3.0 mm board](/downloads/corner-cutting-jig-3.0mm.stl)
 {{< /download-section >}}

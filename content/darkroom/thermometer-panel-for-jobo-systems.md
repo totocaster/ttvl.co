@@ -18,7 +18,7 @@ The probes go in four locations: left side of the tank, right side of the tank, 
 
 ![Panel in action](/visuals/darkroom/therm-panel-02.jpeg)
 
-The drum probe extends 4-5cm into the tube. By pure luck, it clears the rotation mechanism without any interference.
+The drum probe extends 4–5 cm into the tube. By pure luck, it clears the rotation mechanism without any interference.
 
 ![Tube probe closeup](/visuals/darkroom/therm-panel-03.jpeg)
 

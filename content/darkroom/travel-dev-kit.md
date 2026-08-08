@@ -34,7 +34,7 @@ XTOL has a particularly generous replenishment workflow, allowing you to extend 
 ## Processing
 
 - **Jobo 1520 (2-reel tank) + Jobo 1530 (3-reel extension)** Developing Tank
-- **Jobo Roller 1509**: Uses only 600ml of chemistry for 5 reels
+- **Jobo Roller 1509**: Uses only 600 mL of chemistry for 5 reels
 - **Matin Film Cutter**: Optional, but scissors work fine if you're skilled
 - **Weights for Film Drying**
 
@@ -47,6 +47,6 @@ XTOL has a particularly generous replenishment workflow, allowing you to extend 
 
 - **VALOI easy35** 35mm film scanner with duster
 - **Lumix S5** digital camera
-- **Lumix 100mm Macro** lens
+- **Lumix 100 mm Macro** lens
 - **Adobe Lightroom Classic** for organizing and importing negatives
 - **Negative Lab Pro** plugin for color conversion

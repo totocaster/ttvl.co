@@ -165,6 +165,17 @@ Project Humane pages normally live in `content/project-humane/`. Obsidian pages 
 - DigitalOcean App Platform watches `main`, uses Hugo Extended `0.164.0`, and runs `sh ./tools/build-production.sh`.
 - There is no `.github/` workflow or automated test suite in this repository.
 
+## Editorial style
+
+### Measurements, dimensions, and ranges
+
+- Follow the [NIST Guide to the SI](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values) for unit spacing: put a space between the number and unit symbol, as in `0.5 mm`, `600 mL`, `8 km`, and `39.6 °C`.
+- Plane angles are the spacing exception: write `45°` with no space. Use the degree sign (`°`), not the masculine ordinal indicator (`º`). For Celsius, `°C` is the complete unit symbol and still takes a preceding space: `39.6 °C`.
+- Use the multiplication sign for dimensions: `10 × 22 m`, not `10 x 22 m`.
+- Express every range with an en dash: `8–10 days`, `2025–26`, and `0.5–3.0 mm`. When both endpoints share a measurement unit, place it only after the second value.
+- Keep established photographic format names closed: `35mm film`, `120 film`, `4×5`, and `6×17`.
+- Preserve native syntax in code, CSS, filenames, URLs, postal addresses, and official product names.
+
 ## Conventions
 
 1. Keep the site content-first and avoid adding a Node/npm pipeline without a concrete need.

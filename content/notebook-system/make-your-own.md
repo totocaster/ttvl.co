@@ -32,7 +32,7 @@ Below are the materials and brands _I_ use for my Unbound notebooks:
 - **Size**: I use **System Techō Bible** size paper, also known as _Personal_ or _Compact_ in the Filofax universe. Plotter USA also calls this size _Bible_.
 - **Paper**: Plain white **Davinci DR338W**. It's thin yet fountain pen-friendly, allowing me to carry more paper without making the notebook unreasonably thick.
 - **Binder**: **AC-RING 16R**, which has no mounting hardware for covers—perfect for the Unbound "cover-as-pages" style. It's slightly awkward to open compared to classic ring binders, but it's the best I've found.
-- **Cover**: My primary cover is cut from a discarded **Freitag DAN 08 pouch**, but I also like 1.0mm leather covers, which I've made myself.
+- **Cover**: My primary cover is cut from a discarded **Freitag DAN 08 pouch**, but I also like 1.0 mm leather covers, which I've made myself.
 - **Cover Pocket**: Traveler's Notebook **Pocket Sticker 006** glued to the back cover. It requires trimming since it's slightly taller than Bible-sized paper.
 - **Paper Holder**: A flat **TOHKIN PC-8S-3 Clip** on the back cover transforms it into a writing pad for loose-leaf pages.
 - **Flags**: **Coco Fusen Sticky Notes** (small size) glued inside the front cover. These are great for marking important pages.
@@ -42,9 +42,9 @@ Below are the materials and brands _I_ use for my Unbound notebooks:
 
 ## Cover Advice
 
-Anything works as long as it doesn't make the notebook too bulky or flipping pages too difficult. I've found that 1.0mm leather is the thickest acceptable material—anything thicker wastes ring space and hinders usability. Thin covers may feel floppy on their own but become surprisingly sturdy and pleasant when sandwiched around the notebook.
+Anything works as long as it doesn't make the notebook too bulky or flipping pages too difficult. I've found that 1.0 mm leather is the thickest acceptable material—anything thicker wastes ring space and hinders usability. Thin covers may feel floppy on their own but become surprisingly sturdy and pleasant when sandwiched around the notebook.
 
-My DIY Freitag cover is even thinner—0.6mm of reinforced tarpaulin—and feels incredible in hand.
+My DIY Freitag cover is even thinner—0.6 mm of reinforced tarpaulin—and feels incredible in hand.
 
 ## Recommended Paper
 

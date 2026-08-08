@@ -1,5 +1,5 @@
 ---
-title: Horseman 80mm² Lensboards
+title: Horseman 80 mm² Lensboards
 date: 2025-01-09
 description: "3d printable lensboards for any lens"
 project:
@@ -8,7 +8,7 @@ project:
   image: /visuals/project-thumbs/proj_80sq_leansboards.png
 ---
 
-I briefly owned a Horseman 45FA and had trouble finding good lens boeards for the lenses I own. So I designed 80mm² lens boards. Few shutters and lenses are supported.
+I briefly owned a Horseman 45FA and had trouble finding good lens boeards for the lenses I own. So I designed 80 mm² lens boards. Few shutters and lenses are supported.
 
 - [Download Lensboards SLTs for printing](https://www.printables.com/model/1215922-horseman-80sqmm-lensboards/files)
 
@@ -19,9 +19,9 @@ _I no longer use Horseman view cameras and most probably will not be updating th
 ## Printing Notes
 
 - I print and test using **Bambu X1-C** with generic black **CF-PLA**.
-- First layer height: 0.3mm
-- Layer height: 0.1mm
-- Brim: 5mm
+- First layer height: 0.3 mm
+- Layer height: 0.1 mm
+- Brim: 5 mm
 - Supports:
   - **Yes** for bed for _extended version_,
   - **No** for flat, normal lensboards.
@@ -34,7 +34,7 @@ Copal 0 Flat:
 
 - Nikon Nikkor W 150mm f/5.6
 
-Copal 1 with 10mm extension:
+Copal 1 with 10 mm extension:
 
 - Calumet Caltar II-N 210mm f/5.6, which is the same as
 - Rodenstock APO-Sironar N 210mm f/5.6
