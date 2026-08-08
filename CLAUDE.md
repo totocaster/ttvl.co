@@ -167,6 +167,60 @@ Project Humane pages normally live in `content/project-humane/`. Obsidian pages 
 
 ## Editorial style
 
+### Authorities
+
+- Use [The Chicago Manual of Style, 18th Edition](https://www.chicagomanualofstyle.org/) as the default authority for grammar, punctuation, capitalization, numbers, titles, and other general editorial questions.
+- Use the [Merriam-Webster.com Dictionary](https://www.merriam-webster.com/) as the default authority for spelling and word forms.
+- Follow explicit repository house rules when they differ from either authority. Record each exception in this section so future editing remains consistent.
+
+### Titles and headings
+
+- Use sentence case for Note page titles because they are primarily statements rather than conventional titles. Use Chicago-style Title Case for every other page title and heading, including headings within Notes.
+
+### In-house dictionary
+
+Use the forms below even when Merriam-Webster or a source uses another form. Entries are alphabetical, with one headword per entry. Preserve the original wording in direct quotations and the official styling of names and titles.
+
+- **3D** *(noun or adjective)*: use this exact capitalization.
+- **agent-friendly** *(adjective)*: hyphenate.
+- **AI** *(noun or adjective)*: use this exact capitalization.
+- **bookbinding** *(noun)*: write as one word.
+- **bookmaking** *(noun)*: write as one word; use for the craft of making books.
+- **CLI** *(noun or adjective)*: use this exact capitalization.
+- **command line** *(noun)*: write as two words.
+- **command-line** *(adjective)*: hyphenate.
+- **email** *(noun or verb)*: write without a hyphen.
+- **file-first** *(adjective)*: hyphenate.
+- **file-native** *(adjective)*: hyphenate.
+- **fine art** *(noun)*: write as two words.
+- **fine-art** *(adjective)*: hyphenate.
+- **Flâneur** *(proper name)*: preserve the capitalization and diacritic.
+- **GitHub** *(proper name)*: preserve this capitalization.
+- **handbound** *(adjective)*: write as one word without a hyphen.
+- **human-computer interaction** *(noun)*: hyphenate **human-computer**.
+- **iOS** *(proper name)*: preserve this capitalization.
+- **keyboard-friendly** *(adjective)*: hyphenate.
+- **local-first** *(adjective)*: hyphenate.
+- **macOS** *(proper name)*: preserve this capitalization.
+- **Obsidian** *(proper name)*: preserve this capitalization.
+- **photobook** *(noun)*: write as one word.
+- **plain text** *(noun)*: write as two words.
+- **plain-text** *(adjective)*: hyphenate.
+- **Plaintext Commons** *(proper name)*: preserve this spelling and capitalization.
+- **plugin** *(noun)*: write as one word without a hyphen.
+- **realtime** *(noun or adjective)*: write as one word without a hyphen.
+- **set up** *(verb)*: write as two words.
+- **setup** *(noun)*: write as one word.
+- **website** *(noun)*: write as one word.
+- **work in progress** *(noun)*: write as three words.
+- **work-in-progress** *(adjective)*: hyphenate.
+
+#### Preferred usage
+
+- **everyone**: prefer over **everybody**.
+- **someone**: prefer over **somebody**.
+- **toward**: prefer over **towards**.
+
 ### Measurements, dimensions, and ranges
 
 - Follow the [NIST Guide to the SI](https://www.nist.gov/pml/special-publication-811/nist-guide-si-chapter-7-rules-and-style-conventions-expressing-values) for unit spacing: put a space between the number and unit symbol, as in `0.5 mm`, `600 mL`, `8 km`, and `39.6 °C`.
