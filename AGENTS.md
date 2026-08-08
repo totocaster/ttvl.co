@@ -170,8 +170,9 @@ Project Humane pages normally live in `content/project-humane/`. Obsidian pages 
 ### Authorities
 
 - Use [The Chicago Manual of Style, 18th Edition](https://www.chicagomanualofstyle.org/) as the default authority for grammar, punctuation, capitalization, numbers, titles, and other general editorial questions.
+- For technical content, supplement Chicago with the [Google developer documentation style guide](https://developers.google.com/style). Use Google’s guidance for technical voice, document structure, procedures, code examples, and developer terminology.
 - Use the [Merriam-Webster.com Dictionary](https://www.merriam-webster.com/) as the default authority for spelling and word forms.
-- Follow explicit repository house rules when they differ from either authority. Record each exception in this section so future editing remains consistent.
+- Follow explicit repository house rules when they differ from any external authority. For technical content not covered by a house rule, Google’s guidance takes precedence over Chicago. Record each exception in this section so future editing remains consistent.
 
 ### Titles and headings
 
