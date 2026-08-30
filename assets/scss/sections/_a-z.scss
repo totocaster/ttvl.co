@@ -1,9 +1,10 @@
-// A–Z index page.
+// A–Z index page: dek'd hub list, letter groups on hairlines, and the
+// filing-rule legend. Columns collapse to one on narrow screens.
 
 main {
   .index-hubs {
     ul {
-      columns: 3;
+      columns: 2;
       column-gap: 3rem;
       list-style: none;
       padding-left: 0;
@@ -11,9 +12,28 @@ main {
 
     li {
       break-inside: avoid;
-      padding-left: 0.7rem;
       page-break-inside: avoid;
-      text-indent: -0.7rem;
+      margin-bottom: 12px;
+    }
+
+    .index-hub-dek {
+      display: block;
+      @include type-meta;
+      color: var(--ink-muted);
+    }
+  }
+
+  // Size, filing rule, and envelope legend in one meta line.
+  .index-meta {
+    @include type-meta;
+    color: var(--ink-faint);
+    margin: 0 0 20px;
+
+    .index-meta-envelope {
+      width: 0.85em;
+      height: 0.85em;
+      display: inline-block;
+      vertical-align: -0.05em;
     }
   }
 
@@ -26,10 +46,20 @@ main {
       display: inline-block;
       page-break-inside: avoid;
       width: 100%;
+      margin-bottom: 20px;
+
+      // Each letter sits on its own hairline; rank comes from the rule
+      // and the room, not from size.
+      h2 {
+        margin: 0 0 4px;
+        padding-top: 8px;
+        border-top: 1px solid var(--rule);
+      }
     }
 
     ul {
       list-style: none;
+      margin: 0;
       padding-left: 0;
     }
 
@@ -44,16 +74,24 @@ main {
       height: 1em;
       margin-left: 0.25rem;
       vertical-align: -0.12em;
-      opacity: 0.55;
+      color: var(--ink-faint);
+      transition: color $t-fast;
 
       &:hover {
-        opacity: 1;
+        color: var(--ink);
       }
 
       svg {
         width: 0.85em;
         height: 0.85em;
       }
+    }
+  }
+
+  @include narrow {
+    .index-hubs ul,
+    nav#Index {
+      columns: 1;
     }
   }
 

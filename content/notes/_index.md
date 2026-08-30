@@ -5,4 +5,5 @@ aliases:
   - "/essays/"
   - "/writings"
   - "/essays"
+filter_dek: "Essays and shorter thinking."
 ---
