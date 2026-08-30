@@ -1,12 +1,13 @@
 {{- /* Card for the projects grid. Pass "page"; pass "variant" "trace" for
-trace pages, whose description/image/kind live outside project frontmatter. */ -}}
+trace pages, whose description/image/kind live outside project frontmatter.
+Project cards carry their category only as data-category, for the filter
+rail — the visible kicker is reserved for trace kinds. */ -}}
 {{ $page := .page }}
 {{ $variant := .variant | default "project" }}
 {{ $img := "" }}
 {{ $alt := "" }}
 {{ $desc := "" }}
 {{ $kicker := "" }}
-{{ $kickerURL := "" }}
 {{ if eq $variant "trace" }}
   {{ $img = $page.Params.image }}
   {{ $alt = $page.Params.image_alt | default (printf "Poster for %s" $page.Title) }}
@@ -17,12 +18,9 @@ trace pages, whose description/image/kind live outside project frontmatter. */ -
   {{ $img = and $proj $proj.image }}
   {{ $alt = $page.Title }}
   {{ $desc = or (and $proj $proj.description) $page.Params.description }}
-  {{ with and $proj $proj.category }}
-    {{ $kicker = trim . "/" }}
-    {{ $kickerURL = printf "/%s" $kicker }}
-  {{ end }}
+  {{ with and $proj $proj.category }}{{ $kicker = trim . "/" }}{{ end }}
 {{ end }}
-<div class="project-card">
+<div class="project-card" data-category="{{ $kicker }}">
   <div class="project-image">
     {{ with $img }}
     <a href="{{ $page.RelPermalink }}">
@@ -33,9 +31,7 @@ trace pages, whose description/image/kind live outside project frontmatter. */ -
   <div class="project-meta">
     <a class="project-title" href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>{{ if $desc }} &ndash; {{ $desc }}{{ end }}
   </div>
-  {{ with $kicker }}
-  <div class="project-category">
-    {{ if $kickerURL }}<a href="{{ $kickerURL }}">{{ . }}</a>{{ else }}{{ . }}{{ end }}
-  </div>
-  {{ end }}
+  {{ if eq $variant "trace" }}{{ with $kicker }}
+  <div class="project-category">{{ . }}</div>
+  {{ end }}{{ end }}
 </div>

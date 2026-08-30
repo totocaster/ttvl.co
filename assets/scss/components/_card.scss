@@ -56,17 +56,14 @@
   }
 }
 
+// Kind label on trace cards; project cards carry no visible kicker.
 .project-category {
   @include type-label;
   color: var(--ink-faint);
+}
 
-  a {
-    color: inherit;
-    text-decoration: $link-decoration-plain;
-    transition: color $t-fast;
-
-    &:hover {
-      color: var(--ink);
-    }
-  }
+// Category filtering hides cards; !important beats the card's own display.
+.project-card[hidden],
+.project-year[hidden] {
+  display: none !important;
 }

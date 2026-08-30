@@ -76,7 +76,7 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 
 - Search is available on layouts using the shared head. `?` opens the overlay when focus is not in an input, textarea, or editable element. Arrow keys select results, Enter follows one, Escape closes, and Tab remains trapped in the dialog.
 - `layouts/index.json` indexes regular pages whose Hugo type is neither `page` nor `json`. This includes section content but excludes standalone root pages such as About and Colophon.
-- Notes use `assets/js/notes-filter.js` for query-string category filtering. Individual note pages compute backlinks from internal links at build time.
+- Notes and Projects share `assets/js/category-filter.js` for query-string category filtering (`.category-filter` rail, `data-filter-group` sections, `data-category` items). Individual note pages compute backlinks from internal links at build time.
 - The lightbox is loaded for Loose Leaves and pages with `lightbox: true`; it supports Escape, arrow keys, backdrop close, focus trapping, and focus restoration.
 - Text Fragments are feature-detected through `document.fragmentDirective`. Selecting 6–499 characters updates the URL; `Cmd/Ctrl+Shift+L` updates it from the current selection, and Escape clears a live selection. There is no polyfill.
 - The pronunciation control is loaded only when `pronunciation_audio` is set.

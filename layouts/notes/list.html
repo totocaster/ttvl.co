@@ -7,7 +7,7 @@
     (dict "slug" "longform" "label" "Longform")
   }}
 
-  <nav class="notes-filter" aria-label="Filter notes by category">
+  <nav class="category-filter" aria-label="Filter notes by category">
     <ul>
       {{ range $categories }}
         <li>
@@ -22,7 +22,7 @@
 
   <div class="notes-groups">
     {{ range $grouped }}
-      <section class="notes-year" data-year="{{ .Key }}">
+      <section class="notes-year" data-year="{{ .Key }}" data-filter-group>
         <h2>{{ .Key }}</h2>
         <ul class="issue-list">
           {{ range .Pages.ByDate.Reverse }}
@@ -39,6 +39,6 @@
     {{ end }}
   </div>
 
-  {{ $notesFilter := resources.Get "js/notes-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
-  <script src="{{ $notesFilter.RelPermalink }}" defer></script>
+  {{ $categoryFilter := resources.Get "js/category-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
+  <script src="{{ $categoryFilter.RelPermalink }}" defer></script>
 {{ end }}

@@ -1,9 +1,9 @@
 (() => {
-  const filterNav = document.querySelector(".notes-filter");
+  const filterNav = document.querySelector(".category-filter");
   if (!filterNav) return;
 
   const links = Array.from(filterNav.querySelectorAll("[data-category]"));
-  const yearSections = Array.from(document.querySelectorAll(".notes-year"));
+  const groups = Array.from(document.querySelectorAll("[data-filter-group]"));
 
   const applyFilter = (slug) => {
     const activeSlug = slug && slug !== "" ? slug : "all";
@@ -12,8 +12,8 @@
       link.classList.toggle("is-active", link.dataset.category === activeSlug);
     });
 
-    yearSections.forEach((section) => {
-      const items = Array.from(section.querySelectorAll("li[data-category]"));
+    groups.forEach((group) => {
+      const items = Array.from(group.querySelectorAll("[data-category]"));
       let visibleCount = 0;
 
       items.forEach((item) => {
@@ -22,7 +22,7 @@
         if (match) visibleCount += 1;
       });
 
-      section.hidden = visibleCount === 0;
+      group.hidden = visibleCount === 0;
     });
   };
 

@@ -5,31 +5,63 @@
   {{ end }} {{ .Content }}
 </article>
 
-{{ $projects := sort (where site.Pages "Params.project" "!=" nil) "Date" "desc"
-}} {{ if $projects }} {{ $ongoing := slice }} {{ $dated := slice }} {{ range
-$projects }} {{ $proj := .Params.project }} {{ $year := lower (printf "%v"
-$proj.year) }} {{ if eq $year "ongoing" }} {{ $ongoing = $ongoing | append . }}
-{{ else }} {{ $dated = $dated | append . }} {{ end }} {{ end }} {{ $ongoing =
-sort $ongoing "Date" "desc" }} {{ $dated = sort $dated "Date" "desc" }} {{ if gt
-(len $ongoing) 0 }}
-<section class="project-year">
-  <h2>Ongoing</h2>
-  <div class="projects-grid">
-    {{ range $ongoing }} {{ partial "card.html" (dict "page" .) }} {{
-    end }}
-  </div>
-</section>
-{{ end }} {{ $years := slice }} {{ range $dated }} {{ $year := printf "%v"
-.Params.project.year }} {{ if not (in $years $year) }} {{ $years = $years |
-append $year }} {{ end }} {{ end }} {{ $years = sort $years "value" "desc" }} {{
-range $years }} {{ $year := . }}
-<section class="project-year">
-  <h2>{{ $year }}</h2>
-  <div class="projects-grid">
-    {{ range $dated }} {{ if eq (printf "%v" .Params.project.year) $year }} {{
-    partial "card.html" (dict "page" .) }} {{ end }} {{ end }}
-  </div>
-</section>
-{{ end }} {{ else }}
+{{ $projects := sort (where site.Pages "Params.project" "!=" nil) "Date" "desc" }}
+{{ if $projects }}
+  {{ $categories := slice }}
+  {{ range $projects }}
+    {{ with .Params.project.category }}
+      {{ $cat := trim . "/" }}
+      {{ if not (in $categories $cat) }}{{ $categories = $categories | append $cat }}{{ end }}
+    {{ end }}
+  {{ end }}
+  {{ $categories = sort $categories }}
+
+  <nav class="category-filter" aria-label="Filter projects by category">
+    <ul>
+      <li><a href="?category=all" data-category="all" class="is-active">All</a></li>
+      {{ range $categories }}
+      <li><a href="?category={{ . }}" data-category="{{ . }}">{{ title (humanize .) }}</a></li>
+      {{ end }}
+    </ul>
+  </nav>
+
+  {{ $ongoing := slice }}
+  {{ $dated := slice }}
+  {{ range $projects }}
+    {{ $year := lower (printf "%v" .Params.project.year) }}
+    {{ if eq $year "ongoing" }}{{ $ongoing = $ongoing | append . }}{{ else }}{{ $dated = $dated | append . }}{{ end }}
+  {{ end }}
+  {{ $ongoing = sort $ongoing "Date" "desc" }}
+  {{ $dated = sort $dated "Date" "desc" }}
+
+  {{ if gt (len $ongoing) 0 }}
+  <section class="project-year" data-filter-group>
+    <h2>Ongoing</h2>
+    <div class="projects-grid">
+      {{ range $ongoing }}{{ partial "card.html" (dict "page" .) }}{{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ $years := slice }}
+  {{ range $dated }}
+    {{ $year := printf "%v" .Params.project.year }}
+    {{ if not (in $years $year) }}{{ $years = $years | append $year }}{{ end }}
+  {{ end }}
+  {{ $years = sort $years "value" "desc" }}
+  {{ range $years }}
+    {{ $year := . }}
+  <section class="project-year" data-filter-group>
+    <h2>{{ $year }}</h2>
+    <div class="projects-grid">
+      {{ range $dated }}{{ if eq (printf "%v" .Params.project.year) $year }}{{ partial "card.html" (dict "page" .) }}{{ end }}{{ end }}
+    </div>
+  </section>
+  {{ end }}
+
+  {{ $categoryFilter := resources.Get "js/category-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
+  <script src="{{ $categoryFilter.RelPermalink }}" defer></script>
+{{ else }}
 <p>No projects yet.</p>
-{{ end }} {{ end }}
+{{ end }}
+{{ end }}
