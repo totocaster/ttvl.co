@@ -9,16 +9,7 @@
       {{ .Content }}
     </div>
     <div class="email-subscribe">
-      <form
-        class="js-cm-form"
-        id="cm-form-newsletter"
-        action="https://www.createsend.com/t/subscribeerror?description="
-        method="post"
-        data-id="191722FC90141D02184CB1B62AB3DC26F7C416DE30A85B0B53BD94B6BBB579944F5715088DFCFDDBAF132E94DB6E2DA0EC5A3D9818CF7742D73716649E3ABF04"
-      >
-        <input autocomplete="Email" class="js-cm-email-input qa-input-email" id="cm-email-newsletter" maxlength="200" name="cm-tyithrl-tyithrl" required="" type="email" />
-        <button type="submit">Subscribe</button>
-      </form>
+      {{ partial "subscribe-form.html" (dict "id" "newsletter") }}
       <div class="promise">
         <p>Once a month. One click to unsubscribe.</p>
       </div>

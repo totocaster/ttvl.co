@@ -1,0 +1,56 @@
+// Email subscribe form — rendered by layouts/partials/subscribe-form.html.
+// Scoped to main: the links page (no main element) styles its own variant.
+
+main div.email-subscribe {
+  padding: 2rem 0;
+
+  div.promise > p {
+    padding-top: 1rem;
+    display: block;
+    margin: 0;
+  }
+
+  .js-cm-form {
+    display: flex;
+
+    input[type="email"] {
+      border: 1px solid var(--ink);
+      background: var(--surface-input);
+      color: var(--ink);
+      padding: 8px;
+      margin-right: 8px;
+      font-size: $font-size-base;
+      height: 40px;
+      box-sizing: border-box;
+      border-radius: 8px;
+      width: 40%;
+      // Dark fields use a subtle edge instead of the strong ink border.
+      @include dark {
+        border-color: var(--rule);
+      }
+      @include narrow {
+        width: 66%;
+      }
+    }
+
+    button {
+      background: var(--ink);
+      color: var(--ground);
+      border: none;
+      // Dark buttons carry a hairline to separate from the ground.
+      @include dark {
+        border: 1px solid var(--rule);
+      }
+      padding: 8px 16px;
+      cursor: pointer;
+      font-size: $font-size-base;
+      height: 40px;
+      box-sizing: border-box;
+      border-radius: 8px;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}

@@ -10,7 +10,7 @@
   align-items: flex-start;
   justify-content: center;
   padding-top: $header-height;
-  z-index: 9999;
+  z-index: $z-search;
 
   @include narrow {
     padding-top: 60px;
@@ -28,7 +28,7 @@
 
 .search-logo {
   text-align: center;
-  margin-bottom: $padding-small / 2;
+  margin-bottom: $padding-small * 0.5;
 }
 
 .search-instructions {

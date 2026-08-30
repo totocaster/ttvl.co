@@ -1,7 +1,3 @@
-.trace-archive {
-  margin-top: 2rem;
-}
-
 .model-viewer-frame {
   width: 100%;
   max-width: $max-width-container;
@@ -147,7 +143,7 @@
 
   .model-viewer-viewport.is-fullscreen {
     position: fixed;
-    z-index: 1000;
+    z-index: $z-overlay;
     inset: 0;
   }
 

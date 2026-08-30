@@ -10,7 +10,7 @@
     <h2 id="trace-archive-title">Archive</h2>
     <div class="projects-grid">
       {{ range sort . "Date" "desc" }}
-        {{ partial "trace-card.html" (dict "page" .) }}
+        {{ partial "card.html" (dict "page" . "variant" "trace") }}
       {{ end }}
     </div>
   </section>

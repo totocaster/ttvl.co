@@ -1,6 +1,7 @@
 <header>
   <div class="header-top">
-    <h1>
+    {{ if .IsHome }}
+    <h1 class="site-title">
       <a href="/"
         ><img
           src="/ui/ttvl_logo.png"
@@ -8,6 +9,16 @@
           alt="{{ .Site.Title }}"
       /></a>
     </h1>
+    {{ else }}
+    <p class="site-title">
+      <a href="/"
+        ><img
+          src="/ui/ttvl_logo.png"
+          srcset="/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x"
+          alt="{{ .Site.Title }}"
+      /></a>
+    </p>
+    {{ end }}
   </div>
   {{ partial "nav.html" . }}
 </header>

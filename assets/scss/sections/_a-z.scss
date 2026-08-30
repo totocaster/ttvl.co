@@ -1,0 +1,66 @@
+// A–Z index page.
+
+main {
+  .index-hubs {
+    ul {
+      columns: 3;
+      column-gap: 3rem;
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      break-inside: avoid;
+      padding-left: 0.7rem;
+      page-break-inside: avoid;
+      text-indent: -0.7rem;
+    }
+  }
+
+  nav#Index {
+    columns: 3;
+    column-gap: 3rem;
+
+    .index-letter {
+      break-inside: avoid;
+      display: inline-block;
+      page-break-inside: avoid;
+      width: 100%;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    li {
+      padding-left: 0.7rem;
+      text-indent: -0.7rem;
+    }
+
+    .index-newsletter-link {
+      display: inline-flex;
+      width: 1em;
+      height: 1em;
+      margin-left: 0.25rem;
+      vertical-align: -0.12em;
+      opacity: 0.55;
+
+      &:hover {
+        opacity: 1;
+      }
+
+      svg {
+        width: 0.85em;
+        height: 0.85em;
+      }
+    }
+  }
+
+  .index-section-separator {
+    width: 20%;
+    margin: 2.5rem 0;
+    border: 0;
+    border-top: 1px solid var(--rule);
+  }
+}

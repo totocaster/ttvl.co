@@ -1,0 +1,8 @@
+// Log archive month/year listing.
+
+.log-archive {
+  .log-year,
+  .log-month {
+    @include tabular-numbers;
+  }
+}

@@ -14,7 +14,7 @@
   {{ with trim .Inner " \n\t" }}<p>{{ . | markdownify }}</p>{{ end }}
   <div class="projects-grid">
     {{ range $pages }}
-      {{ partial "project-card.html" (dict "page" .) }}
+      {{ partial "card.html" (dict "page" .) }}
     {{ end }}
   </div>
 </section>

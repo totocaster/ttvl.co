@@ -1,0 +1,29 @@
+// Dated index rows — a metadata column plus a quiet title link.
+// Shared by the notes list, the newsletter archive, and the home issue list.
+
+main .issue-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0 1.5rem;
+  @include readable-width;
+
+  li {
+    margin-bottom: 0.2rem;
+    display: flex;
+    align-items: baseline;
+  }
+
+  .issue-number {
+    @include type-meta;
+    min-width: 110px;
+    display: inline-block;
+    color: var(--ink-faint);
+    @include tabular-numbers;
+  }
+
+  a.issue-title {
+    flex: 1;
+    font-weight: $link-weight-quiet;
+    text-decoration: $link-decoration-default;
+  }
+}

@@ -1,3 +1,5 @@
+// Newsletter landing (hero + archive) and Flâneur issue pages.
+
 main {
   .newsletter-hero {
     position: relative;
@@ -13,6 +15,7 @@ main {
     background-position: center center;
     background-repeat: no-repeat;
 
+    // Over-photo chrome below is theme-independent by design.
     &::after {
       content: "";
       position: absolute;
@@ -159,33 +162,6 @@ main {
     @include readable-width;
     background: var(--ground);
     padding: 0.5rem 0 0;
-  }
-
-  .issue-list {
-    list-style: none;
-    padding: 0;
-    margin: 1rem 0 1.5rem;
-    @include readable-width;
-
-    li {
-      margin-bottom: 0.2rem;
-      display: flex;
-      align-items: baseline;
-    }
-
-    .issue-number {
-      @include type-meta;
-      min-width: 110px;
-      display: inline-block;
-      color: var(--ink-faint);
-      @include tabular-numbers;
-    }
-
-    a.issue-title {
-      flex: 1;
-      font-weight: $link-weight-quiet;
-      text-decoration: $link-decoration-default;
-    }
   }
 
   // Single issue page

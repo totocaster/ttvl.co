@@ -1,0 +1,56 @@
+// Home page composition.
+
+div.home {
+  p:first-of-type {
+    margin-top: 0;
+  }
+  p {
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+
+  .flaneur-inpage-box {
+    div.email-subscribe {
+      padding-top: 0;
+      padding-bottom: 0;
+    }
+  }
+
+  > section {
+    margin-top: 3rem;
+  }
+
+  > section.project-year {
+    margin: 3rem 0 0;
+  }
+}
+
+// Socials section
+.socials {
+  margin-top: 1.5rem;
+
+  a {
+    display: inline-block;
+    opacity: 0.8;
+    text-decoration: $link-decoration-default;
+    transition:
+      opacity 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+.get-in-touch {
+  h2 {
+    margin: 0 0 0.5rem;
+  }
+
+  p {
+    margin: 0 0 0.75rem;
+  }
+}

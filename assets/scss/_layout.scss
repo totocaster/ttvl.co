@@ -1,0 +1,82 @@
+// Page shell: container grid, header, navigation, footer.
+
+%grid-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $grid-gap;
+  max-width: $max-width-container;
+  margin: 0 auto;
+  padding-left: $padding-small;
+  padding-right: $padding-small;
+}
+
+.layout,
+header,
+footer {
+  @extend %grid-layout;
+}
+
+footer {
+  margin-top: 140px;
+}
+
+header {
+  min-height: $header-height;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 12px;
+
+  // The logo is an h1 on home only; both elements share the h1's box.
+  .site-title {
+    @include type-title;
+    margin: 0.67em 0 0;
+  }
+}
+
+.header-top {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Navigation
+nav#Menu {
+  line-height: $line-height-nav;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  ul.primary-nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+
+  li {
+    font-weight: $font-weight-regular;
+  }
+
+  a {
+    text-decoration: $link-decoration-plain;
+
+    &.is-active {
+      text-decoration: $link-decoration-default;
+    }
+  }
+
+  @include narrow {
+    padding-bottom: 6px;
+
+    ul.primary-nav {
+      flex-wrap: nowrap;
+      gap: 18px;
+      min-width: max-content;
+    }
+  }
+}

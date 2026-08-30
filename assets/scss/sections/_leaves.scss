@@ -1,0 +1,30 @@
+// Loose Leaves grid.
+
+.leaves-grid {
+  margin: 2rem 0;
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+
+    .leaf {
+      img {
+        width: 100%;
+        height: auto;
+        display: block;
+        margin-bottom: 0.5rem;
+        border: 1px var(--ink) solid;
+        // Scans sit frameless on the dark ground — structural, not a color swap.
+        @include dark {
+          border: none;
+        }
+      }
+
+      time {
+        display: block;
+        color: var(--ink);
+      }
+    }
+  }
+}

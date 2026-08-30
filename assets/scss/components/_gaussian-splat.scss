@@ -226,7 +226,7 @@
 
 .gaussian-splat__frame.is-fullscreen {
   position: fixed;
-  z-index: 1000;
+  z-index: $z-overlay;
   inset: 0;
 }
 

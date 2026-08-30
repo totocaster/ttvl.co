@@ -9,7 +9,7 @@ first 6 (sort (where $featuredPages "Kind" "in" (slice "page" "section")) "Date"
     <a href="/projects">{{ len $allProjects }} projects</a>.
   </p>
   <div class="projects-grid">
-    {{ range $projects }} {{ partial "project-card.html" (dict "page" .) }} {{
+    {{ range $projects }} {{ partial "card.html" (dict "page" .) }} {{
     end }}
   </div>
 </section>

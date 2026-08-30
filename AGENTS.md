@@ -58,11 +58,19 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 ### Templates and assets
 
 - `layouts/_default/baseof.html` is the standard shell; section layouts override list or single rendering through Hugo's lookup order.
-- `layouts/partials/` contains shared head, navigation, footer, cards, subscription forms, search, lightbox, and home-page components.
-- `assets/scss/style.scss` is the main entry point. `assets/scss/membership.scss` is a separate stylesheet for the Membership page.
+- `layouts/partials/` contains shared head, navigation, footer, the project/trace card (`card.html`, which takes `variant: trace` for trace pages), the Campaign Monitor form (`subscribe-form.html`, which takes a per-page `id`), search, lightbox, and home-page components. Partial filenames are kebab-case.
+- `assets/scss/style.scss` is an import-only manifest. `_tokens.scss` defines the themed color custom properties, `_variables.scss` holds the Sass type/spacing/width/stacking values, `_base.scss` and `_layout.scss` hold the document shell, `components/` holds patterns shared by two or more sections, and `sections/` holds page-specific composition. `assets/scss/membership.scss` is a separate stylesheet for the Membership page.
 - Hugo Pipes compiles/minifies SCSS and minifies/fingerprints most JavaScript. There is no separate npm build step.
 - Dark mode follows `prefers-color-scheme`; there is no manual theme toggle.
 - The narrow navigation is a horizontally scrollable CSS row; there is no mobile-menu JavaScript.
+- Pages can set `content_css` frontmatter to add a class to their `article` element; `about` is the only value in use.
+
+### Design standard
+
+- Themed colors come exclusively from the custom properties in `assets/scss/_tokens.scss` (`--ground`, `--ink`, `--ink-muted`, `--ink-faint`, `--rule`, `--edge`, `--surface`, `--surface-input`, `--highlight`). Dark mode and high contrast override tokens only, never component rules. Deliberate exceptions are commented in place: over-photo chrome, the viewers' media wells, and print.
+- Color encodes role; reserve opacity for state (hover, disabled), never for establishing a text tier.
+- Type, spacing, widths, and motion values come from `assets/scss/_variables.scss`. Full-viewport layers use `$z-overlay`/`$z-search` instead of literal z-indexes.
+- Put a style in `assets/scss/components/` when two or more sections use it, and in `assets/scss/sections/` when one does.
 
 ### Browser features
 

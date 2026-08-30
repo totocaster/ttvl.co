@@ -36,10 +36,6 @@ $link-weight-default: $font-weight-medium;
 $link-weight-quiet: $font-weight-regular;
 $link-weight-action: $font-weight-semibold;
 $link-weight-title: $font-weight-bold;
-$link-color: $color-light-text;
-$link-color-dark: $color-dark-text;
-$link-color-muted: rgba($color-light-text, 0.45);
-$link-color-muted-dark: rgba($color-dark-text, 0.65);
 $link-decoration-default: underline;
 $link-decoration-plain: none;
 
@@ -53,6 +49,10 @@ $grid-gap: 72px;
 $padding-small: 20px;
 $header-height: 180px;
 
+// Stacking — full-viewport layers only; search sits above every overlay.
+$z-overlay: 100;
+$z-search: 110;
+
 // Mixins
 @mixin narrow {
   @media screen and (max-width: $breakpoint-narrow) {
@@ -63,12 +63,6 @@ $header-height: 180px;
 @mixin dark {
   @media screen and (prefers-color-scheme: dark) {
     @content;
-  }
-}
-
-@mixin dark-invert {
-  @media screen and (prefers-color-scheme: dark) {
-    filter: invert(1);
   }
 }
 

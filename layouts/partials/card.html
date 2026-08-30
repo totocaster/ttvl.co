@@ -1,0 +1,41 @@
+{{- /* Card for the projects grid. Pass "page"; pass "variant" "trace" for
+trace pages, whose description/image/kind live outside project frontmatter. */ -}}
+{{ $page := .page }}
+{{ $variant := .variant | default "project" }}
+{{ $img := "" }}
+{{ $alt := "" }}
+{{ $desc := "" }}
+{{ $kicker := "" }}
+{{ $kickerURL := "" }}
+{{ if eq $variant "trace" }}
+  {{ $img = $page.Params.image }}
+  {{ $alt = $page.Params.image_alt | default (printf "Poster for %s" $page.Title) }}
+  {{ $desc = $page.Params.description }}
+  {{ $kicker = $page.Params.trace.kind }}
+{{ else }}
+  {{ $proj := $page.Params.project }}
+  {{ $img = and $proj $proj.image }}
+  {{ $alt = $page.Title }}
+  {{ $desc = or (and $proj $proj.description) $page.Params.description }}
+  {{ with and $proj $proj.category }}
+    {{ $kicker = trim . "/" }}
+    {{ $kickerURL = printf "/%s" $kicker }}
+  {{ end }}
+{{ end }}
+<div class="project-card">
+  <div class="project-image">
+    {{ with $img }}
+    <a href="{{ $page.RelPermalink }}">
+      <img src="{{ . }}" alt="{{ $alt }}" loading="lazy" />
+    </a>
+    {{ end }}
+  </div>
+  <div class="project-meta">
+    <a class="project-title" href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>{{ if $desc }} &ndash; {{ $desc }}{{ end }}
+  </div>
+  {{ with $kicker }}
+  <div class="project-category">
+    {{ if $kickerURL }}<a href="{{ $kickerURL }}">{{ . }}</a>{{ else }}{{ . }}{{ end }}
+  </div>
+  {{ end }}
+</div>
