@@ -8,6 +8,9 @@ project:
   year: 2026
   category: /project-humane
   image: /visuals/project-thumbs/proj_withingy.png
+resources:
+  - title: 'GitHub'
+    url: 'https://github.com/totocaster/withingy'
 ---
 
 [Withingy CLI](https://github.com/totocaster/withingy) is a Go CLI for pulling [Withings](https://www.withings.com/) data from the terminal. It started as a transplant from [Whoopy CLI](/project-humane/whoopy/), keeping the same JSON-first operator experience while swapping in Withings-specific auth, activity, body metrics, sleep, and workouts.

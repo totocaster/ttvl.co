@@ -9,6 +9,9 @@ project:
   category: /project-humane
   description: "agent-friendly development workflow for CircuitPython projects"
   image: /visuals/project-thumbs/proj_patchcord.png
+resources:
+  - title: 'GitHub'
+    url: 'https://github.com/totocaster/patchcord'
 ---
 
 [Patchcord](https://github.com/totocaster/patchcord) is an agent-friendly way to build [CircuitPython](https://circuitpython.org/) projects. It connects a normal project folder on the computer with the microcontroller board on the desk, providing one command-line interface for moving code onto the board, seeing what it does, and keeping track of the software and hardware that belong together.

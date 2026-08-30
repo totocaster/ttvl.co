@@ -11,6 +11,9 @@ project:
   year: 2025
   category: /project-humane
   image: /visuals/project-thumbs/proj_plaintext_commons.png
+resources:
+  - title: 'Manifesto'
+    url: 'https://github.com/totocaster/plaintext-commons/blob/main/MANIFESTO.md'
 ---
 
 Plaintext Commons is a manifesto for keeping long-form knowledge in durable, human- and agent-friendly files. The canonical version lives at [plaintextcommons.org](https://plaintextcommons.org/); this page provides a short overview and links to the current text.

@@ -17,9 +17,9 @@ I use _Bible_-size pages, so the templates are formatted accordingly. You're wel
 
 I've always struggled with food and maintaining my body weight. To stay in shape, I have to be extremely strict about what I eat. In 2012, I learned how to count calories effectively. This template helps me track all the basics I need for a day.
 
-{{< download-section >}}
+{{< resources >}}
 - [Daily Log](/downloads/uns/uns_general_daily_latest.pdf)
-{{< /download-section >}}
+{{< /resources >}}
 
 ## Book List
 
@@ -27,9 +27,9 @@ I love books—real, paper books, especially the beautiful artifacts that are ph
 
 However, this creates a challenge: I often forget about digital books because they tend to fall out of my [peripheral vision][pv]. To address this, I maintain a Book List as an Unbound page. You'll notice the **Medium** column comes even before the book title column. I write entries like _Kindle_ or _Paper_ there.
 
-{{< download-section >}}
+{{< resources >}}
 - [Book List](/downloads/uns/uns_general_books_latest.pdf)
-{{< /download-section >}}
+{{< /resources >}}
 
 ## License
 

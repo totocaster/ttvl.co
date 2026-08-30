@@ -120,7 +120,7 @@ Feature-specific scripts are opt-in where practical:
 
 | Shortcode | Purpose |
 | --- | --- |
-| `download-section` | Wraps Markdown download links in a styled box. |
+| `resources` | Renders a Markdown link list as a manifest of downloads (with build-time sizes) and external sources. |
 | `flaneur-gallery` | Two-column dispatch gallery that also renders in the email layout. |
 | `membership-link` | Links its inner Markdown to `params.membershipURL`. |
 | `model-viewer` | Accessible interactive GLB viewer with poster and no-JavaScript fallback; requires `src`, `poster`, and `alt`. |

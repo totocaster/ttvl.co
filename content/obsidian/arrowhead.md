@@ -11,6 +11,9 @@ project:
   category: /obsidian
   description: "helps AI agents and command-line tools make sense of your Obsidian vault"
   image: /visuals/project-thumbs/proj_arrowhead.png
+resources:
+  - title: 'GitHub'
+    url: 'https://github.com/totocaster/arrowhead'
 ---
 
 **Arrowhead** ([on GitHub](https://github.com/totocaster/arrowhead)) helps AI agents and command-line tools make sense of my [Obsidian](https://obsidian.md/) vault. It keeps Markdown notes indexed around the clock, combining fast full-text search, semantic vectors, graph analytics, time-based context, and metric queries under one [CLI](https://en.wikipedia.org/wiki/Command-line_interface) and MCP surface. Arrowhead is part of **[Plaintext Commons](/project-humane/plaintext-commons/)**—my broader effort to build file-native thinking systems—whose manifesto lives at [plaintextcommons.org](https://plaintextcommons.org/).

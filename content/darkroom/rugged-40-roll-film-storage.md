@@ -24,9 +24,9 @@ Channel for the seal made to accept the TPU filament itself as a seal, eliminati
 
 I don't think the case is actually waterproof, but it is definitely more humidity-resistant than without the seal. The case has a _tiny_ bit of space for a desiccant to be placed on top of the films if you live in a super-humid environment and want to have it inside the box.
 
-{{< download-section >}}
+{{< resources >}}
 - [Download STL files](https://thangs.com/designer/totocaster/3d-model/ttvl.co%2040-roll%20Film%20Storage-1327849?source=All+Files)
-{{< /download-section >}}
+{{< /resources >}}
 
 ## Work Log
 

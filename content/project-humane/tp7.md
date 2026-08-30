@@ -9,6 +9,9 @@ project:
   category: /project-humane
   description: "CLI tool for humans and agents to manage files on Teenage Engineering TP-7 field recorders"
   image: /visuals/project-thumbs/proj_tp7_cli.png
+resources:
+  - title: 'GitHub'
+    url: 'https://github.com/totocaster/tp7'
 ---
 
 [TP-7 CLI](https://github.com/totocaster/tp7) is a Rust command-line tool for humans and agents to manage files on a [Teenage Engineering TP-7](https://teenage.engineering/products/tp-7) field recorder from macOS. It can browse the recorder, download recordings from the device, and upload files back to it without relying on FieldKit or Android File Transfer.

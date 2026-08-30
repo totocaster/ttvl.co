@@ -9,6 +9,9 @@ project:
   year: 2025
   category: /obsidian
   image: /visuals/project-thumbs/proj_stamp.png
+resources:
+  - title: 'GitHub'
+    url: 'https://github.com/totocaster/stamp'
 ---
 
 [Stamp CLI](https://github.com/totocaster/stamp) is my note-naming assistant for [Plaintext Commons](/project-humane/plaintext-commons/) vaults and folders. It generates consistent IDs and filenames so humans, agents, and automations can keep a shared corpus tidy without manual bookkeeping. The same binary is available as both `stamp` and `nid`.

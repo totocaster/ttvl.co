@@ -153,7 +153,7 @@ Project Humane pages normally live in `content/project-humane/`. Obsidian pages 
 
 ## Shortcodes
 
-- `download-section`: styled box around Markdown download links.
+- `resources`: manifest of files and external sources from a Markdown-style link list; file rows read type and size from `static/` at build time (↓), external rows name their destination (↗). Trailing text after a link renders as a muted note. Pages can also declare a `resources:` frontmatter list (title + url) to render a chip strip of canonical links under the title.
 - `flaneur-gallery`: responsive newsletter image grid.
 - `membership-link`: link to `params.membershipURL`.
 - `model-viewer`: interactive GLB viewer with poster, caption, download, and no-JavaScript fallback.

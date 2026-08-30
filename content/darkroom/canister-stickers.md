@@ -44,9 +44,9 @@ These stickers are specifically designed to fit **AP 35mm film reloadable cartri
 
 ![Template for canister stickers; made for A4 paper.](/visuals/darkroom/canister-stickers-preview.png)
 
-{{< download-section >}}
+{{< resources >}}
 - [Download Canister Labels](/downloads/ttvlco-canister-sticker-a4.pdf): 14 stickers on A4. Cut along _cutlines_.
-{{< /download-section >}}
+{{< /resources >}}
 
 [g2]: /objects/contax-g2
 [31271]: https://www.a-one.co.jp/product/search/detail.php?id=31271

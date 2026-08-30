@@ -10,6 +10,11 @@ project:
   category: /obsidian
   description: "plaintext metrics view for Obsidian with search, validation, and charts"
   image: /visuals/project-thumbs/proj_metrics_obsidian.png
+resources:
+  - title: 'GitHub'
+    url: 'https://github.com/totocaster/metrics-obsidian'
+  - title: 'Obsidian Community'
+    url: 'https://community.obsidian.md/plugins/metrics-lens'
 ---
 
 [Metrics](https://github.com/totocaster/metrics-obsidian) is an [Obsidian](https://obsidian.md/) plugin for viewing and editing structured metric records stored as plain `*.metrics.ndjson` files. It is designed for measurements, scores, counts, durations, and other discrete data that do not fit naturally into notes.

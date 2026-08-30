@@ -10,6 +10,11 @@ project:
   category: /obsidian
   description: "organized vault-wide task view for Obsidian with filters, pinning, and quick actions"
   image: /visuals/project-thumbs/proj_vault_tasks_obsidian.png
+resources:
+  - title: 'GitHub'
+    url: 'https://github.com/totocaster/vault-tasks-obsidian'
+  - title: 'Obsidian Community'
+    url: 'https://community.obsidian.md/plugins/vault-tasks-view'
 ---
 
 [Vault Tasks](https://github.com/totocaster/vault-tasks-obsidian) is an [Obsidian](https://obsidian.md/) plugin that gathers Markdown tasks from across the vault into one organized view.

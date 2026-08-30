@@ -1,0 +1,47 @@
+{{- /* Resources manifest: files and external destinations in one row grammar.
+Inner syntax is a markdown-style list; trailing text after a link becomes a note:
+  - [Title](/downloads/file.pdf) optional note
+  - [Title](https://example.com/...)
+File rows read type and size from static/ at build time; external rows name
+their destination in the meta column (GitHub, Thangs, ...). */ -}}
+{{- $destinations := dict
+  "github.com" "GitHub"
+  "community.obsidian.md" "Obsidian Community"
+  "thangs.com" "Thangs"
+  "printables.com" "Printables"
+-}}
+<div class="resources">
+{{- range split (trim .Inner "\n\r\t ") "\n" }}
+  {{- $m := findRE `^\s*[-*]\s*\[[^\]]+\]\([^)]+\).*$` . 1 }}
+  {{- if $m }}
+    {{- $line := index $m 0 }}
+    {{- $title := replaceRE `^\s*[-*]\s*\[([^\]]+)\].*$` "$1" $line }}
+    {{- $url := replaceRE `^\s*[-*]\s*\[[^\]]+\]\(([^)]+)\).*$` "$1" $line }}
+    {{- $note := replaceRE `^\s*[-*]\s*\[[^\]]+\]\([^)]+\)\s*[-–:,]*\s*(.*)$` "$1" $line }}
+    {{- if hasPrefix $url "/" }}
+      {{- $ext := strings.TrimPrefix "." (path.Ext $url) | upper }}
+      {{- $meta := $ext }}
+      {{- $fsPath := printf "static%s" $url }}
+      {{- if os.FileExists $fsPath }}
+        {{- $bytes := (os.Stat $fsPath).Size }}
+        {{- if ge $bytes 1048576 }}
+          {{- $meta = printf "%s · %.1f MB" $ext (div (float $bytes) 1048576) }}
+        {{- else }}
+          {{- $meta = printf "%s · %.0f KB" $ext (div (float $bytes) 1024) }}
+        {{- end }}
+      {{- end }}
+  <div class="resource-row resource-row--file">
+    <span class="resource-title"><a href="{{ $url }}" download>{{ $title }}</a>{{ with $note }} <span class="resource-note">{{ . | markdownify }}</span>{{ end }}</span>
+    <span class="resource-meta">{{ $meta }}</span>
+  </div>
+    {{- else }}
+      {{- $host := strings.TrimPrefix "www." (urls.Parse $url).Host }}
+      {{- $meta := index $destinations $host | default $host }}
+  <div class="resource-row resource-row--external">
+    <span class="resource-title"><a href="{{ $url }}">{{ $title }}</a>{{ with $note }} <span class="resource-note">{{ . | markdownify }}</span>{{ end }}</span>
+    <span class="resource-meta">{{ $meta }}</span>
+  </div>
+    {{- end }}
+  {{- end }}
+{{- end }}
+</div>

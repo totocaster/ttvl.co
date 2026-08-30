@@ -24,9 +24,9 @@ The drum probe extends 4–5 cm into the tube. By pure luck, it clears the rotat
 
 I included label spaces on the holder because once installed, all the probe cables look identical.
 
-{{< download-section >}}
+{{< resources >}}
 - [Download STL file](https://thangs.com/designer/totocaster/3d-model/Thermometer%20Panel%20for%20Jobo-1390747)
-{{< /download-section >}}
+{{< /resources >}}
 
 Print it, mount it, and know your chemistry temperatures with confidence.
 

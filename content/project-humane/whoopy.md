@@ -8,6 +8,9 @@ project:
   year: 2026
   category: /project-humane
   image: /visuals/project-thumbs/proj_whoopy.png
+resources:
+  - title: 'GitHub'
+    url: 'https://github.com/totocaster/whoopy'
 ---
 
 [Whoopy CLI](https://github.com/totocaster/whoopy) is an unofficial [WHOOP](https://www.whoop.com/) data CLI written in Go. It wraps WHOOP's OAuth flow and developer v2 APIs so humans, automations, dashboards, and AI agents can pull workouts, sleep, recovery, and stats securely from the terminal.

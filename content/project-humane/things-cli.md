@@ -8,6 +8,9 @@ project:
   year: 2026
   category: /project-humane
   image: /visuals/project-thumbs/proj_things_cli.png
+resources:
+  - title: 'GitHub'
+    url: 'https://github.com/totocaster/things-cli-go'
 ---
 
 [Things CLI](https://github.com/totocaster/things-cli-go) is a short macOS command-line tool for managing [Things 3](https://culturedcode.com/things/) tasks from the terminal. The binary is called `th`, because task capture and task checks should be quick enough to type without thinking.

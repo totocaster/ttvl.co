@@ -30,9 +30,9 @@ I designed an adapter that mounts directly onto the Negative Supply light source
 
 I call it the **VNS Adapter**. You can grab STL files and print one for yourself too.
 
-{{< download-section >}}
+{{< resources >}}
 - [Download STL files for printing](https://www.printables.com/model/1215933-vns-adapter-for-valoi-easy120-and-negative-supply)
-{{< /download-section >}}
+{{< /resources >}}
 
 The VNS adapter can be printed in two parts. There are two versions of the **base plate**: V1, which is taller and easier to print but loses light due to a greater distance from the light source, and V2, which is shallower and brings the negative closer to the light source. You can use the V1 **film holder** on either of these.
 

@@ -10,6 +10,11 @@ project:
   category: /obsidian
   description: "resurfaces unprocessed notes in an Anki-style triage queue"
   image: /visuals/project-thumbs/proj_triage_obsidian.png
+resources:
+  - title: 'GitHub'
+    url: 'https://github.com/totocaster/triage-obsidian'
+  - title: 'Obsidian Community'
+    url: 'https://community.obsidian.md/plugins/triage'
 ---
 
 [Triage](https://github.com/totocaster/triage-obsidian) is an [Obsidian](https://obsidian.md/) plugin for resurfacing unprocessed notes in an Anki-style triage queue before they disappear into the vault.

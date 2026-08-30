@@ -11,6 +11,11 @@ project:
   category: /obsidian
   description: "focused Kanban view for Obsidian Bases with draggable cards, date cues, WIP limits, and saved layouts"
   image: /visuals/project-thumbs/proj_kanban_view_obsdian.png
+resources:
+  - title: 'GitHub'
+    url: 'https://github.com/totocaster/kanban-base-view-obsidian'
+  - title: 'Obsidian Community'
+    url: 'https://community.obsidian.md/plugins/bases-kanban-view-ttvl'
 ---
 
 [Better Kanban Bases View](https://github.com/totocaster/kanban-base-view-obsidian) is an [Obsidian](https://obsidian.md/) plugin that adds a focused Kanban layout to Bases. It keeps the existing Bases controls for sorting, grouping, filtering, and property selection, then renders the same results as columns and cards.

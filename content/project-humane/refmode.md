@@ -9,6 +9,9 @@ project:
   category: /project-humane
   description: "macOS CLI for switching Apple display reference modes"
   image: /visuals/project-thumbs/proj_refmode_cli.png
+resources:
+  - title: 'GitHub'
+    url: 'https://github.com/totocaster/refmode'
 ---
 
 [Refmode](https://github.com/totocaster/refmode) is a focused macOS command-line tool for discovering, reading, switching, and resetting the reference modes available on compatible Apple displays. It gives Terminal commands, scripts, and hardware controllers such as Stream Deck a direct way to select a display preset without opening System Settings or automating its interface.

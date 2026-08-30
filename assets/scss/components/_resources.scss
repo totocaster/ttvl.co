@@ -1,0 +1,130 @@
+// Resources — the site's one grammar for files and external sources.
+// ↓ means "saves a file"; ↗ means "leaves the site". The manifest block
+// (shortcode "resources") lists sets in context; the strip (frontmatter
+// "resources:") holds a page's canonical doors.
+
+.resources {
+  @include readable-width;
+  margin: 1rem 0 1.5rem;
+}
+
+.resource-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 16px;
+  align-items: baseline;
+  padding: 5px 0;
+  border-top: 1px solid var(--rule);
+
+  &:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+
+  a {
+    font-weight: $link-weight-quiet;
+    text-decoration: $link-decoration-plain;
+
+    &:hover {
+      text-decoration: $link-decoration-default;
+    }
+  }
+}
+
+.resource-row--file .resource-title > a::before {
+  content: "↓ ";
+}
+
+.resource-row--external .resource-title > a::before {
+  content: "↗ ";
+}
+
+.resource-note {
+  color: var(--ink-muted);
+}
+
+.resource-meta {
+  @include type-meta;
+  color: var(--ink-faint);
+  white-space: nowrap;
+}
+
+// The strip of canonical doors under a page title.
+.resource-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  @include readable-width;
+  // Sit under the title on the same rhythm as a first paragraph,
+  // with the same gap below.
+  margin: 1rem 0;
+
+  .chip {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 6px;
+    padding: 6px 14px;
+    border: 1px solid var(--edge);
+    border-radius: $radius-key; // matches the keycaps
+    font-weight: $link-weight-quiet;
+    text-decoration: $link-decoration-plain;
+    @include type-small;
+    transition: border-color $t-fast;
+
+    &:hover {
+      border-color: var(--ink);
+    }
+  }
+
+  .chip--file::before {
+    content: "↓ ";
+  }
+
+  .chip--external::before {
+    content: "↗ ";
+  }
+
+  .chip-meta {
+    @include type-label;
+    color: var(--ink-faint);
+  }
+}
+
+// Stray download links in prose mark themselves.
+main article a[href^="/downloads/"]::before {
+  content: "↓ ";
+}
+
+main article a[href$=".pdf"]::after {
+  content: " pdf";
+}
+
+main article a[href$=".stl"]::after {
+  content: " stl";
+}
+
+main article a[href$=".zip"]::after {
+  content: " zip";
+}
+
+main article a[href$=".glb"]::after {
+  content: " glb";
+}
+
+main article a[href$=".3mf"]::after {
+  content: " 3mf";
+}
+
+main article a[href$=".pdf"]::after,
+main article a[href$=".stl"]::after,
+main article a[href$=".zip"]::after,
+main article a[href$=".glb"]::after,
+main article a[href$=".3mf"]::after {
+  @include type-label;
+  color: var(--ink-faint);
+}
+
+// Inside the resource blocks the meta column already names the type.
+.resources .resource-row a::after,
+.resource-strip .chip::after {
+  content: none;
+}
