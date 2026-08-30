@@ -22,12 +22,15 @@ Reference modes combine settings such as color gamut, white point, transfer func
 
 Refmode provides a small command surface for inspecting displays and changing one preset at a time:
 
-- `refmode doctor` checks whether the current Mac, display, and GUI session are ready without changing anything.
-- `refmode displays` lists every online display and identifies those that expose reference modes.
-- `refmode presets --display builtin` lists the factory and custom presets available for one display.
-- `refmode current --display builtin` prints the active preset.
-- `refmode set --display builtin "Photography (P3-D65)"` selects an exact preset by name.
-- `refmode reset --display builtin` restores the factory-default preset reported by the display.
+| Command | What it does |
+| --- | --- |
+| `refmode doctor` | Checks whether the current Mac, display, and GUI session are ready without changing anything. |
+| `refmode displays` | Lists every online display and identifies those that expose reference modes. |
+| `refmode presets --display builtin` | Lists the factory and custom presets available for one display. |
+| `refmode current --display builtin` | Prints the active preset. |
+| `refmode set --display builtin "Photography (P3-D65)"` | Selects an exact preset by name. |
+| `refmode reset --display builtin` | Restores the factory-default preset reported by the display. |
+{.wide}
 
 For durable automation, displays and presets can also be selected by stable IDs rather than names:
 

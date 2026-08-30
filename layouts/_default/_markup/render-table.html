@@ -1,0 +1,26 @@
+{{- /* Every Markdown table renders framed with a header band, wrapped for
+horizontal scroll on narrow screens. Add {.wide} after a table to let it
+span the full container width. Column alignment follows the Markdown
+delimiter row; right-aligned columns get tabular numerals. */ -}}
+<div class="table-wrap{{ with .Attributes.class }} {{ . }}{{ end }}">
+  <table>
+    <thead>
+      {{- range .THead }}
+      <tr>
+        {{- range . }}
+        <th{{ if ne .Alignment "" }} class="align-{{ .Alignment }}"{{ end }}>{{ .Text }}</th>
+        {{- end }}
+      </tr>
+      {{- end }}
+    </thead>
+    <tbody>
+      {{- range .TBody }}
+      <tr>
+        {{- range . }}
+        <td{{ if ne .Alignment "" }} class="align-{{ .Alignment }}"{{ end }}>{{ .Text }}</td>
+        {{- end }}
+      </tr>
+      {{- end }}
+    </tbody>
+  </table>
+</div>

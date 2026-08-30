@@ -64,6 +64,7 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 - Dark mode follows `prefers-color-scheme`; there is no manual theme toggle.
 - The narrow navigation is a horizontally scrollable CSS row; there is no mobile-menu JavaScript.
 - Pages can set `content_css` frontmatter to add a class to their `article` element; `about` is the only value in use.
+- Markdown tables render via `_markup/render-table.html`: framed with an --edge border and --surface header band, body-size cells on the tight line-height, wrapped for horizontal scroll on narrow screens. Tables sit at prose width; append `{.wide}` after a table (Goldmark block attributes are enabled) to span the container. Right-aligned columns get tabular numerals. Use the `Command | What it does` shape for CLI references.
 - Code fences tagged `sh`/`bash`/`shell`/`zsh` render as dark terminal blocks via `_markup/render-codeblock-*.html` and `partials/shell-block.html`: each command's `$` prompt is a quiet copy button (`assets/js/shell-copy.js`, loaded only on pages with shell blocks), continuation lines after a trailing backslash carry no prompt, and `#` comment lines render faint. Untagged fences and other languages keep the default rendering.
 
 ### Design standard

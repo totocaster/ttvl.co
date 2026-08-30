@@ -1,0 +1,49 @@
+// Tables — framed with a header band, body-size cells on tight leading.
+// Rendered by _markup/render-table.html; {.wide} spans the container.
+
+.table-wrap {
+  @include readable-width;
+  margin: 1rem 0 1.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  &.wide {
+    max-width: none;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid var(--edge);
+  }
+
+  th,
+  td {
+    border: 1px solid var(--rule);
+    padding: 5px 12px;
+    vertical-align: top;
+    text-align: left;
+  }
+
+  th {
+    background: var(--surface);
+    border-bottom: 1px solid var(--edge);
+    font-size: $font-size-meta;
+    line-height: $line-height-small;
+    font-weight: $font-weight-semibold;
+  }
+
+  td {
+    font-size: $font-size-base;
+    line-height: $line-height-tight;
+  }
+
+  .align-right {
+    text-align: right;
+    @include tabular-numbers;
+  }
+
+  .align-center {
+    text-align: center;
+  }
+}

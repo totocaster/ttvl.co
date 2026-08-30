@@ -24,15 +24,18 @@ It is an unofficial project and is not affiliated with Teenage Engineering.
 
 `tp7` gives the terminal a practical file-access surface for the recorder. Common tasks:
 
-- `tp7 devices` lists connected TP-7 recorders.
-- `tp7 doctor` checks macOS USB and MTP setup.
-- `tp7 -a ls -lah /memo` lists memo files with readable sizes.
-- `tp7 -a stat /memo/2026-02-23_112713_000.wav` shows metadata for one recording.
-- `tp7 -a pull /memo/2026-02-23_112713_000.wav ./recordings/` downloads one file.
-- `tp7 -a pull /recordings ./recordings --recursive --skip-existing` copies a folder without replacing existing local files.
-- `tp7 -a push ./clip.wav /memo/clip.wav --dry-run` previews an upload.
-- `tp7 -a push ./clip.wav /memo/clip.wav --overwrite` uploads and replaces an existing remote file.
-- `tp7 -a rm /memo/clip.wav --dry-run` previews a delete.
+| Command | What it does |
+| --- | --- |
+| `tp7 devices` | Lists connected TP-7 recorders. |
+| `tp7 doctor` | Checks macOS USB and MTP setup. |
+| `tp7 -a ls -lah /memo` | Lists memo files with readable sizes. |
+| `tp7 -a stat /memo/2026-02-23_112713_000.wav` | Shows metadata for one recording. |
+| `tp7 -a pull /memo/2026-02-23_112713_000.wav ./recordings/` | Downloads one file. |
+| `tp7 -a pull /recordings ./recordings --recursive --skip-existing` | Copies a folder without replacing existing local files. |
+| `tp7 -a push ./clip.wav /memo/clip.wav --dry-run` | Previews an upload. |
+| `tp7 -a push ./clip.wav /memo/clip.wav --overwrite` | Uploads and replaces an existing remote file. |
+| `tp7 -a rm /memo/clip.wav --dry-run` | Previews a delete. |
+{.wide}
 
 For normal use, `-a` / `--auto-connect` is the important flag. Each command then handles the full TP-7 lifecycle: detect the recorder, switch it to MTP if needed, open the session, perform the operation, and close the session.
 

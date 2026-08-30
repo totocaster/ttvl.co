@@ -55,6 +55,8 @@ disableKinds = ["taxonomy", "term"]
 
 [markup]
   [markup.goldmark]
+    [markup.goldmark.parser.attribute]
+      block = true # enables {.wide} on tables
     [markup.goldmark.renderer]
       unsafe = true
 

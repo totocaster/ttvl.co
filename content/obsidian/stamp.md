@@ -20,10 +20,12 @@ resources:
 
 Stamp prints filename suggestions to stdout, making it useful in shell scripts, AI-agent workflows, and quick terminal sessions. Common tasks include:
 
-- `stamp daily` produces a YYYY-MM-DD daily note name.
-- `stamp fleeting` outputs a timestamped fleeting note ID.
-- `stamp project "Arrowhead CLI"` produces the next project ID, such as `P0461 Arrowhead CLI`.
-- `stamp seq --prefix jin --width 3 "Jinny Research"` produces a custom sequential ID, such as `jin005 Jinny Research`.
+| Command | What it does |
+| --- | --- |
+| `stamp daily` | Produces a YYYY-MM-DD daily note name. |
+| `stamp fleeting` | Outputs a timestamped fleeting note ID. |
+| `stamp project "Arrowhead CLI"` | Produces the next project ID, such as `P0461 Arrowhead CLI`. |
+| `stamp seq --prefix jin --width 3 "Jinny Research"` | Produces a custom sequential ID, such as `jin005 Jinny Research`. |
 
 It also supports default timestamps, voice transcripts, analog or slipbox notes, and monthly and yearly reviews. The `--ext` flag adds a Markdown extension, while `--copy` copies the result to the clipboard on macOS.
 

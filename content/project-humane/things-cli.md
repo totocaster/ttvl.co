@@ -21,18 +21,21 @@ It talks to Things through the app's supported AppleScript automation, so create
 
 `th` gives the terminal a practical control surface for Things. Common tasks:
 
-- `th add "Send invoice" --today --tag Work` creates a to-do for today with a tag.
-- `th add "Draft launch notes" --project JLMPPROJECT123 --deadline 2026-05-01` creates a task directly inside a project.
-- `th today` and `th inbox` show common Things lists quickly.
-- `th list projects` and `th list areas` print Things IDs for move and create commands.
-- `th get <id>` shows one to-do with status, tags, dates, and notes.
-- `th search <query>` searches Things to-dos.
-- `th schedule <id> 2026-04-29` and `th schedule <id> none` set or clear the scheduled date.
-- `th due <id> 2026-05-01` sets a deadline.
-- `th move <id> --list someday` moves a to-do to a built-in list.
-- `th complete <id> --quiet` marks a task completed without printing success text.
-- `th show <id>` reveals a to-do in Things.
-- `th delete <id> --yes` moves a to-do to Things Trash.
+| Command | What it does |
+| --- | --- |
+| `th add "Send invoice" --today --tag Work` | Creates a to-do for today with a tag. |
+| `th add "Draft launch notes" --project JLMPPROJECT123 --deadline 2026-05-01` | Creates a task directly inside a project. |
+| `th today`, `th inbox` | Show common Things lists quickly. |
+| `th list projects`, `th list areas` | Print Things IDs for move and create commands. |
+| `th get <id>` | Shows one to-do with status, tags, dates, and notes. |
+| `th search <query>` | Searches Things to-dos. |
+| `th schedule <id> 2026-04-29`, `th schedule <id> none` | Set or clear the scheduled date. |
+| `th due <id> 2026-05-01` | Sets a deadline. |
+| `th move <id> --list someday` | Moves a to-do to a built-in list. |
+| `th complete <id> --quiet` | Marks a task completed without printing success text. |
+| `th show <id>` | Reveals a to-do in Things. |
+| `th delete <id> --yes` | Moves a to-do to Things Trash. |
+{.wide}
 
 Text output is the default for ordinary terminal use. `--json` switches to structured output for scripts and AI agents, while `--quiet` suppresses successful mutating output when only the exit code matters.
 

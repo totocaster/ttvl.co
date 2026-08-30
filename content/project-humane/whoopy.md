@@ -19,10 +19,13 @@ resources:
 
 Whoopy v0.4 provides access to the profile, workouts, sleep, recovery, cycles, and day-level stats exposed by the WHOOP developer API through a single binary with consistent, scriptable output. Common tasks:
 
-- `whoopy stats daily --date 2026-03-03 --text` aggregates workouts, recovery, sleep, and strain for a single day.
-- `whoopy workouts list --sport running --min-strain 8` filters workouts client-side.
-- `whoopy workouts export --format csv --output workouts.csv` auto-paginates and streams data as CSV or JSON Lines.
-- `whoopy sleep today --text` shows a human-readable sleep summary.
+| Command | What it does |
+| --- | --- |
+| `whoopy stats daily --date 2026-03-03 --text` | Aggregates workouts, recovery, sleep, and strain for a single day. |
+| `whoopy workouts list --sport running --min-strain 8` | Filters workouts client-side. |
+| `whoopy workouts export --format csv --output workouts.csv` | Auto-paginates and streams data as CSV or JSON Lines. |
+| `whoopy sleep today --text` | Shows a human-readable sleep summary. |
+{.wide}
 
 JSON output is the default for scripts and agents; `--text` switches to aligned tables for human reading.
 
