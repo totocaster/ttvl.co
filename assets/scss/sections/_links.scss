@@ -5,6 +5,12 @@
   justify-content: center;
   min-height: 100vh;
   padding: 1px;
+
+  // On phones, start at the top so the first screen carries more content.
+  @include narrow {
+    align-items: flex-start;
+    padding-top: 24px;
+  }
   
   .links-container {
     width: 100%;
@@ -124,8 +130,10 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          height: $control-height;
-          padding: 0 24px;
+          flex-wrap: wrap;
+          min-height: $control-height;
+          padding: 8px 24px;
+          box-sizing: border-box;
           background: var(--ink);
           color: var(--ground);
           text-decoration: $link-decoration-plain;
@@ -139,6 +147,14 @@
             background: var(--ground);
             color: var(--ink);
           }
+        }
+
+        // Context label on the auto-filled pills (Project, Dispatch, Note).
+        .link-kicker {
+          opacity: 0.55;
+          font-weight: $font-weight-regular;
+          margin-right: 0.35em;
+          white-space: nowrap;
         }
       }
     }

@@ -5,8 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ .Title }} - {{ .Site.Title }}</title>
   <meta name="description" content="{{ .Description }}">
-  {{ $style := resources.Get "scss/style.scss" | toCSS | minify }}
-  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+  {{ with .Params.robots }}<meta name="robots" content="{{ . }}">{{ end }}
+  {{ $style := resources.Get "scss/style.scss" | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
 </head>
 <body class="links-page">
   <div class="links-container">
@@ -14,30 +15,38 @@
       <img src="/ui/2023_social_avatar.jpeg" alt="{{ .Site.Title }} avatar">
     </div>
     <div class="site-logo">
-      <img src="/ui/ttvl_logo.png" 
-           srcset="/ui/ttvl_logo.png 1x, /ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x" 
-           alt="{{ .Site.Title }} logo">
+      <a href="/" aria-label="{{ .Site.Title }} — home">
+        <img src="/ui/ttvl_logo.png"
+             srcset="/ui/ttvl_logo.png 1x, /ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x"
+             alt="{{ .Site.Title }} logo">
+      </a>
     </div>
     <div class="description">
-      <p>I'm a photographer, bookbinder, walker, and human-computer interface researcher, small gallery curator, among other smaller things.</p>
+      <p>{{ .Description }}</p>
     </div>
+    <ul>
+      <li><a href="https://toto.photo/">Photography Website</a></li>
+      {{ range first 1 (sort (where site.RegularPages "Params.project" "!=" nil) "Date" "desc") }}
+      <li><a href="{{ .RelPermalink }}"><span class="link-kicker">Project&nbsp;&middot;</span> {{ .Title }}</a></li>
+      {{ end }}
+      {{ range first 1 (sort (where site.RegularPages "Section" "flaneur") "Date" "desc") }}
+      <li><a href="{{ .RelPermalink }}"><span class="link-kicker">Dispatch {{ .File.BaseFileName }}&nbsp;&middot;</span> {{ .Title }}</a></li>
+      {{ end }}
+      {{ range first 1 (sort (where site.RegularPages "Section" "notes") "Date" "desc") }}
+      <li><a href="{{ .RelPermalink }}"><span class="link-kicker">Note&nbsp;&middot;</span> {{ .Title }}</a></li>
+      {{ end }}
+      {{ range .Params.links }}
+      <li><a href="{{ .url }}">{{ .title }}</a></li>
+      {{ end }}
+    </ul>
+    {{ .Content }}
+    <hr>
     <section class="flaneur-inpage-box">
       <div class="email-subscribe">
-        <form
-          class="js-cm-form"
-          id="subForm"
-          action="https://www.createsend.com/t/subscribeerror?description="
-          method="post"
-          data-id="191722FC90141D02184CB1B62AB3DC26F7C416DE30A85B0B53BD94B6BBB579944F5715088DFCFDDBAF132E94DB6E2DA0EC5A3D9818CF7742D73716649E3ABF04"
-        >
-          <input autocomplete="Email" class="js-cm-email-input qa-input-email" id="fieldEmail" maxlength="200" name="cm-tyithrl-tyithrl" required="" type="email" placeholder="Subscribe to The Flâneur via email" />
-          <button type="submit">Subscribe</button>
-        </form>
+        {{ partial "subscribe-form.html" (dict "id" "links" "placeholder" "Subscribe to The Flâneur via email") }}
       </div>
-      <script type="text/javascript" src="https://js.createsend1.com/javascript/copypastesubscribeformlogic.js"></script>
+      {{ partial "campaign-monitor-script.html" . }}
     </section>
-    <hr>
-    {{ .Content }}
   </div>
 </body>
 </html>

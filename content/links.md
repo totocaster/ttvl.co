@@ -1,8 +1,11 @@
 ---
 title: 'Links'
 layout: 'links'
+description: "I'm a photographer, bookbinder, walker, and human-computer interface researcher, small gallery curator, among other smaller things."
+robots: 'noindex,follow'
+sitemap:
+  disable: true
+links:
+  - title: 'Unbound Notebook System'
+    url: '/project-humane/notebook-system/'
 ---
-
-- [On the Importance of Gear](https://ttvl.co/flaneur/010/)
-- [Photography Website](https://toto.photo/)
-- [Unbound Notebook System](/project-humane/notebook-system/)
