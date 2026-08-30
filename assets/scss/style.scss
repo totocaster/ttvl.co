@@ -1,26 +1,42 @@
 @import "variables";
+@import "tokens";
 
 html {
   scroll-behavior: smooth;
-  background: $color-light-bg;
-  @include dark {
-    background: $color-dark-bg;
-  }
+  background: var(--ground);
 }
 
 body {
-  background: $color-light-bg;
-  color: $color-light-text;
+  background: var(--ground);
+  color: var(--ink);
   font-family: $font-family-base;
   margin: 0;
   padding: 0;
   @include type-body;
+}
 
-  @include dark {
-    background: $color-dark-bg;
-    color: $color-dark-text;
+// Base interaction states
+::selection {
+  background: var(--highlight);
+}
+
+:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
 
 // Layout components
@@ -87,11 +103,7 @@ h5 {
 }
 
 a {
-  color: $link-color;
-
-  &:not(:has(img)) {
-    @include dark-invert;
-  }
+  color: var(--ink);
 }
 
 // Navigation
@@ -160,14 +172,9 @@ nav#Menu {
 .project-image {
   width: 100%;
   aspect-ratio: 16 / 9;
-  border: 1px solid #e0e0e0;
-  background: #fafafa;
+  border: 1px solid var(--edge);
+  background: var(--surface);
   overflow: hidden;
-
-  @include dark {
-    border-color: rgba($color-dark-text, 0.2);
-    background: rgba($color-dark-text, 0.05);
-  }
 
   img {
     width: 100%;
@@ -195,9 +202,10 @@ nav#Menu {
 
 .project-category {
   @include type-meta;
-  opacity: 0.4;
+  color: var(--ink-faint);
 
   a {
+    color: inherit;
     text-decoration: $link-decoration-plain;
   }
 }
@@ -276,21 +284,19 @@ main {
       width: 20%;
       margin: 2rem 0;
       border: 0;
-      border-top: 1px solid #efefef;
-      @include dark {
-        border-top: 1px solid rgba($color: white, $alpha: 0.1);
-      }
+      border-top: 1px solid var(--rule);
     }
 
     .note-backlinks {
       @include readable-width;
       margin-top: 2rem;
       padding: 0;
-      opacity: 0.4;
+      color: var(--ink-faint);
       h3 {
         margin: 0 0 0.75rem;
       }
       a {
+        color: inherit;
         font-weight: $link-weight-quiet;
       }
     }
@@ -388,12 +394,8 @@ main {
               display: inline-block;
               width: 1.25em;
               margin-right: 0.7rem;
-              color: $color-light-text;
+              color: var(--ink);
               @include tabular-numbers;
-
-              @include dark {
-                color: $color-dark-text;
-              }
             }
 
             // Reset counter for nested items
@@ -469,10 +471,7 @@ main {
     width: 20%;
     margin: 2.5rem 0;
     border: 0;
-    border-top: 1px solid #efefef;
-    @include dark {
-      border-top: 1px solid rgba($color: white, $alpha: 0.1);
-    }
+    border-top: 1px solid var(--rule);
   }
 }
 
@@ -529,7 +528,8 @@ div.home {
         height: auto;
         display: block;
         margin-bottom: 0.5rem;
-        border: 1px $color-light-text solid;
+        border: 1px var(--ink) solid;
+        // Scans sit frameless on the dark ground — structural, not a color swap.
         @include dark {
           border: none;
         }
@@ -537,10 +537,7 @@ div.home {
 
       time {
         display: block;
-        color: $color-light-text;
-        @include dark {
-          color: $color-dark-text;
-        }
+        color: var(--ink);
       }
     }
   }

@@ -20,18 +20,8 @@
     display: block;
     aspect-ratio: 1;
     overflow: hidden;
-    border: 1px solid #e0e0e0;
-    background: #fafafa;
-
-    @include dark {
-      border-color: rgba($color-dark-text, 0.2);
-      background: rgba($color-dark-text, 0.05);
-    }
-
-    &:focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 2px;
-    }
+    border: 1px solid var(--edge);
+    background: var(--surface);
   }
 
   img {

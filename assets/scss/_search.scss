@@ -5,17 +5,13 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: $color-light-bg;
+  background-color: var(--ground);
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding-top: $header-height;
   z-index: 9999;
-  
-  @include dark {
-    background-color: $color-dark-bg;
-  }
-  
+
   @include narrow {
     padding-top: 60px;
   }
@@ -39,11 +35,7 @@
   margin: 0 0 $padding-small;
   text-align: center;
   @include type-meta;
-  color: rgba($color-light-text, 0.5);
-
-  @include dark {
-    color: rgba($color-dark-text, 0.6);
-  }
+  color: var(--ink-faint);
 }
 
 .search-input {
@@ -54,12 +46,8 @@
   border: none;
   outline: none;
   background: transparent;
-  color: $color-light-text;
-  
-  @include dark {
-    color: $color-dark-text;
-  }
-  
+  color: var(--ink);
+
   &::placeholder {
     opacity: 0.5;
   }
@@ -78,20 +66,17 @@
 .search-result-link {
   display: block;
   text-decoration: $link-decoration-plain;
-  color: $link-color;
+  color: var(--ink);
   padding: $padding-small;
   margin: 0;
-  
-  @include dark {
-    color: $link-color-dark;
-  }
-  
+
   &:hover,
   &.selected {
-    background-color: rgba($color-light-text, 0.05);
-    
+    // State wash — a hair stronger than --surface on purpose.
+    background-color: rgba(0, 0, 0, 0.05);
+
     @include dark {
-      background-color: rgba($color-dark-text, 0.05);
+      background-color: rgba(227, 227, 227, 0.05);
     }
   }
 }
@@ -108,7 +93,7 @@
 
 .search-result-meta {
   @include type-small;
-  opacity: 0.6;
+  color: var(--ink-muted);
   margin-bottom: 4px;
   
   .search-result-section::after {
@@ -131,7 +116,7 @@
 .search-error {
   padding: $padding-small 0;
   text-align: center;
-  opacity: 0.6;
+  color: var(--ink-muted);
   @include type-body;
 }
 

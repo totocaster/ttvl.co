@@ -2,7 +2,7 @@
 
 // Native browser highlight
 ::target-text {
-  background-color: rgba(255, 235, 59, 0.8);
+  background-color: var(--highlight);
   color: black;
   border-radius: 2px;
   padding: 2px 0;
@@ -23,10 +23,9 @@
   }
 }
 
-// Dark mode support
+// Dark mode: the wash is translucent, so text keeps its own color.
 @include dark {
   ::target-text {
-    background-color: rgba(255, 213, 79, 0.3);
     color: inherit;
   }
 }

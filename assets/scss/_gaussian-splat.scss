@@ -7,7 +7,7 @@
     padding: 0 0 2px;
     border: 0;
     border-bottom: 1px solid transparent;
-    color: rgba($color-light-text, 0.65);
+    color: var(--ink-muted);
     background: transparent;
     font: inherit;
     line-height: inherit;
@@ -15,7 +15,7 @@
 
     &:hover:not(:disabled) {
       border-bottom-color: currentColor;
-      color: $color-light-text;
+      color: var(--ink);
     }
 
     &:focus-visible {
@@ -26,14 +26,6 @@
     &:disabled {
       cursor: default;
       opacity: 0.45;
-    }
-
-    @include dark {
-      color: rgba($color-dark-text, 0.65);
-
-      &:hover:not(:disabled) {
-        color: $color-dark-text;
-      }
     }
   }
 }
@@ -50,11 +42,11 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--edge);
+  // Media well: deliberately darker than --surface in dark (sunken, not raised).
   background: #fafafa;
 
   @include dark {
-    border-color: rgba($color-dark-text, 0.2);
     background: rgb(28, 28, 28);
   }
 
@@ -247,12 +239,12 @@ html.gaussian-splat-fullscreen-active {
   @include type-meta;
   max-width: $max-width-readable;
   margin-top: 0.6rem;
-  opacity: 0.65;
+  color: var(--ink-muted);
 }
 
 .gaussian-splat__static-poster {
   display: block;
   width: 100%;
   height: auto;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--edge);
 }

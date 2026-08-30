@@ -66,18 +66,13 @@
             width: 100%;
             height: 44px;
             padding: 0 24px;
-            border: 1px solid #ddd;
+            border: 1px solid var(--edge);
             border-radius: 8px;
             @include type-body;
             box-sizing: border-box;
             background: transparent;
+            color: var(--ink);
             margin: 0;
-
-            @include dark {
-              background: $color-dark-bg;
-              border-color: rgba($color: white, $alpha: 0.2);
-              color: $color-dark-text;
-            }
           }
 
           button {
@@ -86,8 +81,10 @@
             justify-content: center;
             height: 44px;
             padding: 0 24px;
-            background: $color-light-text;
-            color: $color-light-bg;
+            // Stays black-on-white in both themes (pre-token behavior);
+            // unify with the pill links when the forms merge.
+            background: #000;
+            color: #fff;
             text-decoration: $link-decoration-plain;
             border-radius: 8px;
             font-weight: $link-weight-action;
@@ -99,11 +96,7 @@
 
         .promise {
           @include type-small;
-          color: #666;
-
-          @include dark {
-            color: rgba($color: white, $alpha: 0.6);
-          }
+          color: var(--ink-muted);
 
           p {
             margin: 0 0 8px;
@@ -131,16 +124,18 @@
           justify-content: center;
           height: 44px;
           padding: 0 24px;
-          background: $color-light-text;
-          color: $color-light-bg;
+          background: var(--ink);
+          color: var(--ground);
           text-decoration: $link-decoration-plain;
           border-radius: 8px;
           font-weight: $link-weight-action;
           @include type-body;
-          
+
+          // In dark the pills dissolve into the ground and read as a
+          // plain text list — structural, preserved from the pre-token design.
           @include dark {
-            background: $color-dark-bg;
-            color: $color-dark-text;
+            background: var(--ground);
+            color: var(--ink);
           }
         }
       }
@@ -149,7 +144,7 @@
 
   hr {
     border: none;
-    border-top: 1px solid #888;
+    border-top: 1px solid var(--ink-faint);
     width: 50%;
     margin: 32px auto;
     background: none;

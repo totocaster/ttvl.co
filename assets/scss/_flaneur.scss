@@ -106,20 +106,12 @@ main {
       max-width: none;
       padding: 1.75rem 0 0;
       display: block;
-      color: $color-light-text;
-      background: $color-light-bg;
-
-      @include dark {
-        color: $color-dark-text;
-        background: $color-dark-bg;
-      }
+      color: var(--ink);
+      background: var(--ground);
     }
 
     .newsletter-tagline {
-      color: rgba(0, 0, 0, 0.65);
-      @include dark {
-        color: rgba($color: white, $alpha: 0.7);
-      }
+      color: var(--ink-muted);
     }
 
     .newsletter-copy {
@@ -133,28 +125,26 @@ main {
         gap: 0.5rem;
 
         input[type="email"] {
-          background: $color-light-bg;
-          border: 1px solid $color-dark-bg;
-          color: $color-light-text;
+          background: var(--surface-input);
+          border: 1px solid var(--ink);
+          color: var(--ink);
           width: 100%;
           min-width: 0;
 
+          // Dark fields use a subtle edge instead of the strong ink border.
           @include dark {
-            background: rgb(48, 48, 48);
-            color: $color-dark-text;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-color: var(--rule);
           }
         }
 
         button {
-          background: $color-dark-bg;
-          color: $color-dark-text;
+          background: var(--ink);
+          color: var(--ground);
           border: none;
 
+          // Dark buttons carry a hairline to separate from the ground.
           @include dark {
-            background: #e3e3e3;
-            color: $color-light-text;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--rule);
           }
         }
       }
@@ -167,11 +157,8 @@ main {
 
   .newsletter-archive {
     @include readable-width;
-    background: $color-light-bg;
+    background: var(--ground);
     padding: 0.5rem 0 0;
-    @include dark {
-      background: $color-dark-bg;
-    }
   }
 
   .issue-list {
@@ -190,11 +177,8 @@ main {
       @include type-meta;
       min-width: 110px;
       display: inline-block;
-      color: #9b9b9b;
+      color: var(--ink-faint);
       @include tabular-numbers;
-      @include dark {
-        color: rgba($color-dark-text, 0.6);
-      }
     }
 
     a.issue-title {
@@ -212,10 +196,7 @@ main {
 
     p.subtitle {
       margin-bottom: 2rem;
-      color: #666;
-      @include dark {
-        color: rgba($color: white, $alpha: 0.6);
-      }
+      color: var(--ink-muted);
     }
 
     // Flaneur gallery for multiple images
@@ -266,18 +247,9 @@ main {
 section.flaneur-box {
   max-width: 520px;
   margin: 6rem 0;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid var(--edge);
   padding: 1rem 2rem;
-  background: linear-gradient(to bottom, #fafafa, rgba(255, 255, 255, 0));
-
-  @include dark {
-    border-top: 1px solid rgba($color: white, $alpha: 0.2);
-    background: linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.1),
-      rgba(255, 255, 255, 0)
-    );
-  }
+  background: linear-gradient(to bottom, var(--surface), transparent);
 
   a {
     font-weight: $link-weight-action;

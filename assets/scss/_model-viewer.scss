@@ -12,11 +12,11 @@
     width: 100%;
     aspect-ratio: 16 / 9;
     overflow: hidden;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--edge);
+    // Media well: deliberately darker than --surface in dark (sunken, not raised).
     background: #fafafa;
 
     @include dark {
-      border-color: rgba($color-dark-text, 0.2);
       background: rgb(28, 28, 28);
     }
   }
@@ -156,14 +156,14 @@
     @include type-meta;
     max-width: $max-width-readable;
     margin-top: 0.6rem;
-    opacity: 0.65;
+    color: var(--ink-muted);
   }
 
   .model-viewer-static-poster {
     display: block;
     width: 100%;
     height: auto;
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--edge);
   }
 }
 
@@ -172,7 +172,7 @@
     padding: 0 0 2px;
     border: 0;
     border-bottom: 1px solid transparent;
-    color: rgba($color-light-text, 0.45);
+    color: var(--ink-faint);
     background: transparent;
     font: inherit;
     line-height: inherit;
@@ -181,21 +181,12 @@
     &:hover,
     &[aria-pressed="true"] {
       border-bottom-color: currentColor;
-      color: $color-light-text;
+      color: var(--ink);
     }
 
     &:focus-visible {
       outline: 2px solid currentColor;
       outline-offset: 3px;
-    }
-
-    @include dark {
-      color: rgba($color-dark-text, 0.65);
-
-      &:hover,
-      &[aria-pressed="true"] {
-        color: $color-dark-text;
-      }
     }
   }
 }

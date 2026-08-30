@@ -27,18 +27,10 @@ main {
         line-height: $line-height-solid;
         cursor: pointer;
         vertical-align: -0.14em;
-
-        @media (prefers-reduced-motion: no-preference) {
-          transition: opacity 0.16s ease;
-        }
+        transition: opacity 0.16s ease;
 
         &:hover {
           opacity: 0.7;
-        }
-
-        &:focus-visible {
-          outline: 2px solid currentColor;
-          outline-offset: 2px;
         }
       }
 
@@ -65,11 +57,7 @@ main {
       margin-top: 2rem;
       @include type-meta;
       @include tabular-numbers;
-      color: #9b9b9b;
-
-      @include dark {
-        color: rgba($color-dark-text, 0.6);
-      }
+      color: var(--ink-faint);
     }
   }
 
@@ -103,25 +91,13 @@ main {
 
     a {
       text-decoration: $link-decoration-plain;
-      color: $link-color-muted;
+      color: var(--ink-faint);
       padding-bottom: 2px;
-      filter: none;
 
       &.is-active,
       &:hover {
-        color: $link-color;
+        color: var(--ink);
         text-decoration: $link-decoration-default;
-      }
-
-      @include dark {
-        color: $link-color-muted-dark;
-        filter: none;
-
-        &.is-active,
-        &:hover {
-          color: $link-color-dark;
-          text-decoration: $link-decoration-default;
-        }
       }
     }
   }
@@ -139,11 +115,8 @@ main {
 
       .note-pill {
         font-size: $font-size-small;
-        color: rgba(0, 0, 0, 0.45);
+        color: var(--ink-faint);
         margin-left: 0.35rem;
-        @include dark {
-          color: rgba(255, 255, 255, 0.55);
-        }
       }
 
       .note-pill--lit::after {
@@ -172,7 +145,9 @@ main {
       display: flex;
 
       input[type="email"] {
-        border: 1px solid $color-dark-bg;
+        border: 1px solid var(--ink);
+        background: var(--surface-input);
+        color: var(--ink);
         padding: 8px;
         margin-right: 8px;
         font-size: $font-size-base;
@@ -180,10 +155,9 @@ main {
         box-sizing: border-box;
         border-radius: 8px;
         width: 40%;
+        // Dark fields use a subtle edge instead of the strong ink border.
         @include dark {
-          background: rgb(48, 48, 48);
-          color: $color-dark-text;
-          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-color: var(--rule);
         }
         @include narrow {
           width: 66%;
@@ -191,14 +165,13 @@ main {
       }
 
       button {
-        background: $color-dark-bg;
-        @include dark {
-          background: #e3e3e3;
-          color: $color-light-text;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        color: $color-dark-text;
+        background: var(--ink);
+        color: var(--ground);
         border: none;
+        // Dark buttons carry a hairline to separate from the ground.
+        @include dark {
+          border: 1px solid var(--rule);
+        }
         padding: 8px 16px;
         cursor: pointer;
         font-size: $font-size-base;

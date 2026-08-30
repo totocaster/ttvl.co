@@ -17,7 +17,7 @@
     padding: 0 0 2px;
     border: 0;
     border-bottom: 1px solid transparent;
-    color: rgba($color-light-text, 0.45);
+    color: var(--ink-faint);
     background: transparent;
     font: inherit;
     line-height: inherit;
@@ -26,21 +26,12 @@
     &:hover,
     &[aria-pressed="true"] {
       border-bottom-color: currentColor;
-      color: $color-light-text;
+      color: var(--ink);
     }
 
     &:focus-visible {
       outline: 2px solid currentColor;
       outline-offset: 3px;
-    }
-
-    @include dark {
-      color: rgba($color-dark-text, 0.65);
-
-      &:hover,
-      &[aria-pressed="true"] {
-        color: $color-dark-text;
-      }
     }
   }
 }
@@ -65,12 +56,8 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   overflow: hidden;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--edge);
   background: var(--spatial-map-background);
-
-  @include dark {
-    border-color: rgba($color-dark-text, 0.2);
-  }
 
   @include narrow {
     aspect-ratio: 4 / 5;
@@ -254,7 +241,6 @@ html.spatial-long-exposure-fullscreen-active {
   @include dark {
     color: rgba($color-dark-text, 0.68);
     background: rgba($color-dark-bg, 0.78);
-    filter: none;
   }
 
   &:focus-visible {
@@ -286,7 +272,7 @@ html.spatial-long-exposure-fullscreen-active {
   max-width: $max-width-readable;
   margin-top: 0.6rem;
   @include type-meta;
-  opacity: 0.65;
+  color: var(--ink-muted);
 }
 
 .spatial-long-exposure__instructions {
