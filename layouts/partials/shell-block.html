@@ -1,0 +1,26 @@
+{{- /* Terminal block for shell code fences. Each command line's $ prompt is a
+quiet copy button for that command (continuation lines after a trailing
+backslash are included and carry no prompt; # comment lines render faint).
+The copy script loads once per page, only when a shell block is present. */ -}}
+<div class="shell-block">
+{{- $cont := false }}
+{{- range split (trim .Inner "\n") "\n" }}
+{{- $line := . }}
+{{- $trimmed := trim $line " \t" }}
+{{- if $cont }}
+<span class="shell-line shell-line--cont">  {{ $line }}</span>
+{{- else if eq $trimmed "" }}
+<span class="shell-line"> </span>
+{{- else if hasPrefix $trimmed "#" }}
+<span class="shell-line shell-line--comment">{{ $line }}</span>
+{{- else }}
+<span class="shell-line"><button class="shell-copy" type="button" aria-label="Copy command" title="Copy">$</button> {{ $line }}</span>
+{{- end }}
+{{- $cont = hasSuffix (strings.TrimRight " " $line) "\\" }}
+{{- end }}
+</div>
+{{- if not (.Page.Store.Get "shellCopyJS") }}
+{{- .Page.Store.Set "shellCopyJS" true }}
+{{- $js := resources.Get "js/shell-copy.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end }}

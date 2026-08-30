@@ -42,7 +42,7 @@ Arrowhead also extends into ingest and transcription. Analog note capture will m
 
 Install it via my Homebrew tap:
 
-```
+```sh
 brew tap totocaster/tap
 brew install totocaster/tap/arrowhead
 ```

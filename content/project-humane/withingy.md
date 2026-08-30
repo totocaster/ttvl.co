@@ -40,7 +40,7 @@ Withingy stores config and tokens under `~/.config/withingy/`. The current auth 
 
 Install it via my Homebrew tap:
 
-```
+```sh
 brew tap totocaster/tap
 brew install withingy
 ```

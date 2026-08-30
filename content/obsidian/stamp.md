@@ -43,7 +43,7 @@ I wanted [Arrowhead](/obsidian/arrowhead/) and my AI assistants to agree on the 
 
 Install via my Homebrew tap:
 
-```
+```sh
 brew tap totocaster/tap
 brew install stamp
 ```

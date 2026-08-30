@@ -48,7 +48,7 @@ That makes it useful as a bridge between Things and local automation. An agent c
 
 The built-in doctor command checks the local setup:
 
-```
+```sh
 th doctor
 th doctor --check-automation
 ```
@@ -59,13 +59,13 @@ The explicit automation check is read-only, but it may trigger the macOS permiss
 
 Install it via my Homebrew tap:
 
-```
+```sh
 brew install --cask totocaster/tap/th
 ```
 
 Or install it with Go:
 
-```
+```sh
 go install github.com/totocaster/things-cli-go/cmd/th@latest
 ```
 

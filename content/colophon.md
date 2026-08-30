@@ -23,6 +23,7 @@ I don't see or get any of your payment information. -->
 
 * Press <kbd>?</kbd> to activate site-wide search. Navigate results with <kbd>↑</kbd> <kbd>↓</kbd>.
 * Select any text to automatically update the URL with a _text fragment_. Share the link to highlight that exact passage.
+* Click the `$` prompt next to any shell command to copy that command.
 
 ## AI Usage
 

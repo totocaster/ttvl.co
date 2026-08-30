@@ -1,0 +1,61 @@
+// Shell blocks — terminals are dark in both themes (theme-independent
+// chrome, like the lightbox). Rendered by the sh/bash/shell/zsh code
+// fence hooks via partials/shell-block.html.
+
+.shell-block {
+  @include readable-width;
+  background: #1c1c1c;
+  color: #e3e3e3;
+  border: 1px solid var(--rule);
+  border-radius: $radius;
+  padding: 12px 16px;
+  margin: 1rem 0 1.5rem;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  @include monospace;
+  font-size: $font-size-code;
+  line-height: 1.6;
+
+  // Pale text needs its own selection colors over the highlight wash.
+  ::selection {
+    background: var(--highlight);
+    color: #000;
+  }
+
+  @include dark {
+    ::selection {
+      color: #e3e3e3;
+    }
+  }
+}
+
+.shell-line {
+  display: block;
+  white-space: pre;
+  min-width: max-content;
+}
+
+.shell-line--comment {
+  color: rgba(227, 227, 227, 0.45);
+}
+
+// The prompt is the copy control — quiet, no button furniture.
+.shell-copy {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: rgba(227, 227, 227, 0.45);
+  cursor: pointer;
+  user-select: none;
+  transition: color $t-fast;
+
+  &:hover {
+    color: #e3e3e3;
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+  }
+}
