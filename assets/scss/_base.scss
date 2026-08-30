@@ -110,6 +110,39 @@ main {
       @include readable-list-width;
     }
 
+    // Quotations carry an edge rule; text stays full ink — it's content.
+    blockquote {
+      margin: 0 0 25px;
+      border-left: 2px solid var(--edge);
+      padding-left: 20px;
+
+      > p:last-child {
+        margin-bottom: 0;
+      }
+
+      // A quotation hugs its attribution line when one follows.
+      &:has(+ .quote-attribution) {
+        margin-bottom: 8px;
+      }
+    }
+
+    // Attribution under a quotation, in the meta voice.
+    .quote-attribution {
+      @include type-meta;
+      color: var(--ink-faint);
+      padding-left: 22px;
+
+      a {
+        color: inherit;
+        font-weight: $link-weight-quiet;
+        transition: color $t-fast;
+
+        &:hover {
+          color: var(--ink);
+        }
+      }
+    }
+
     hr {
       width: 20%;
       margin: 2rem 0;

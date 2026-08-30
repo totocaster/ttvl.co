@@ -1,8 +1,73 @@
-// About page: image widths and the pronunciation control.
+// About page: ledger composition — lede, section rules, figures with
+// captions, numbered principles, press rows, and the pronunciation
+// control. The quotation voice lives in _base.scss.
 
 main article.about {
-  img {
-    @include readable-width();
+  counter-reset: principle;
+
+  // Quiet wayfinding line under the intro.
+  .on-page {
+    @include type-meta;
+    color: var(--ink-faint);
+
+    a {
+      color: inherit;
+      font-weight: $link-weight-quiet;
+      transition: color $t-fast;
+
+      &:hover {
+        color: var(--ink);
+      }
+    }
+  }
+
+  // Section rules: each --- marks a section start at bleed width.
+  hr {
+    width: 100%;
+    max-width: $max-width-bleed;
+    margin: 56px 0 32px;
+  }
+
+  figure {
+    margin: 0 0 25px;
+    max-width: $max-width-bleed;
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    figcaption {
+      @include type-meta;
+      color: var(--ink-faint);
+      margin-top: 6px;
+    }
+  }
+
+  // Principles carry catalog numbers in the TOC's counter voice.
+  h3.principle {
+    counter-increment: principle;
+
+    &::before {
+      content: counter(principle, decimal-leading-zero) ".";
+      @include type-meta;
+      font-weight: $font-weight-regular;
+      color: var(--ink-faint);
+      margin-right: 10px;
+    }
+  }
+
+  // Press rows reuse the shared index-row grammar (_index-row.scss);
+  // .press-work wraps title and venue so the tail stays inline.
+  ul.issue-list {
+    .press-work {
+      flex: 1;
+    }
+
+    .press-venue {
+      color: var(--ink-muted);
+    }
   }
 
   .pronunciation-name {
