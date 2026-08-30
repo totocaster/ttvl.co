@@ -20,9 +20,9 @@ main div.email-subscribe {
       padding: 8px;
       margin-right: 8px;
       font-size: $font-size-base;
-      height: 40px;
+      height: $control-height;
       box-sizing: border-box;
-      border-radius: 8px;
+      border-radius: $radius;
       width: 40%;
       // Dark fields use a subtle edge instead of the strong ink border.
       @include dark {
@@ -44,9 +44,9 @@ main div.email-subscribe {
       padding: 8px 16px;
       cursor: pointer;
       font-size: $font-size-base;
-      height: 40px;
+      height: $control-height;
       box-sizing: border-box;
-      border-radius: 8px;
+      border-radius: $radius;
 
       &:hover {
         opacity: 0.9;

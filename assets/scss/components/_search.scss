@@ -103,7 +103,7 @@
 
 .search-result-content {
   @include type-small;
-  opacity: 0.8;
+  color: var(--ink-muted);
   
   mark {
     background: transparent;

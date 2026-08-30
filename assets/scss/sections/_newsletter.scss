@@ -42,7 +42,7 @@ main {
     justify-content: flex-start;
     gap: 0.5rem;
     padding: 3rem 3rem 2.5rem;
-    max-width: 450px;
+    max-width: $max-width-panel;
     color: white;
     z-index: 1;
   }
@@ -191,17 +191,13 @@ main {
       }
     }
 
-    // Target images directly in flaneur gallery (no p tags generated)
+    // Gallery images are direct children (no p wrappers), so the article
+    // bleed width never applies to them.
     .flaneur-gallery img {
-      width: 100% !important; // Override global 118% max-width
-      max-width: 100% !important; // Ensure images don't break out
-      height: auto !important;
-      display: block !important;
-
-      // Override the media query from global styles too
-      @media (max-width: 1080px) {
-        max-width: 100% !important;
-      }
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      display: block;
     }
   }
 
@@ -221,7 +217,7 @@ main {
 }
 
 section.flaneur-box {
-  max-width: 520px;
+  max-width: $max-width-readable-list;
   margin: 6rem 0;
   border-top: 1px solid var(--edge);
   padding: 1rem 2rem;

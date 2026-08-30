@@ -33,14 +33,12 @@ div.home {
 
   a {
     display: inline-block;
-    opacity: 0.8;
+    color: var(--ink-muted);
     text-decoration: $link-decoration-default;
-    transition:
-      opacity 0.2s ease,
-      color 0.2s ease;
+    transition: color $t-fast;
 
     &:hover {
-      opacity: 1;
+      color: var(--ink);
     }
   }
 }

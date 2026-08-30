@@ -30,10 +30,10 @@
     display: block;
     width: 95%;
     height: 95%;
-    max-width: none !important;
+    max-width: none;
     max-height: none;
     object-fit: contain;
-    transition: opacity 0.2s ease;
+    transition: opacity $t-fast;
   }
 
   a:hover img {

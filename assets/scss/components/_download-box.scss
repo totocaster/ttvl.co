@@ -1,13 +1,12 @@
 
 // Download section styling
 .download-section {
-  // @include readable-width;
-  max-width: 420px;
+  max-width: $max-width-panel;
   @include type-small;
   margin: 2rem 0;
   padding: 0.3rem 1rem;
   border: 1px solid var(--edge);
-  border-radius: 8px;
+  border-radius: $radius;
   background-color: var(--surface);
 
   ul {

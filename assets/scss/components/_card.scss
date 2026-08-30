@@ -38,7 +38,7 @@
     display: block;
     object-fit: cover;
     filter: grayscale(1);
-    transition: filter 0.25s ease;
+    transition: filter $t-slow;
   }
 }
 
@@ -57,11 +57,16 @@
 }
 
 .project-category {
-  @include type-meta;
+  @include type-label;
   color: var(--ink-faint);
 
   a {
     color: inherit;
     text-decoration: $link-decoration-plain;
+    transition: color $t-fast;
+
+    &:hover {
+      color: var(--ink);
+    }
   }
 }

@@ -8,7 +8,7 @@
   
   .links-container {
     width: 100%;
-    max-width: 428px;
+    max-width: $max-width-panel;
     margin: 0 auto;
     text-align: center;
     
@@ -64,33 +64,35 @@
 
           input {
             width: 100%;
-            height: 44px;
+            height: $control-height;
             padding: 0 24px;
-            border: 1px solid var(--edge);
-            border-radius: 8px;
+            border: 1px solid var(--ink);
+            border-radius: $radius;
             @include type-body;
             box-sizing: border-box;
-            background: transparent;
+            background: var(--surface-input);
             color: var(--ink);
             margin: 0;
+
+            // Dark fields use a subtle edge instead of the strong ink border.
+            @include dark {
+              border-color: var(--rule);
+            }
           }
 
           button {
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 44px;
+            height: $control-height;
             padding: 0 24px;
-            // Stays black-on-white in both themes (pre-token behavior);
-            // unify with the pill links when the forms merge.
-            background: #000;
-            color: #fff;
+            background: var(--ink);
+            color: var(--ground);
             text-decoration: $link-decoration-plain;
-            border-radius: 8px;
+            border-radius: $radius;
             font-weight: $link-weight-action;
             @include type-body;
             border: 0;
-
           }
         }
 
@@ -122,12 +124,12 @@
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 44px;
+          height: $control-height;
           padding: 0 24px;
           background: var(--ink);
           color: var(--ground);
           text-decoration: $link-decoration-plain;
-          border-radius: 8px;
+          border-radius: $radius;
           font-weight: $link-weight-action;
           @include type-body;
 

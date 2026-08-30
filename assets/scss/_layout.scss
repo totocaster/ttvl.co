@@ -18,6 +18,29 @@ footer {
 
 footer {
   margin-top: 140px;
+
+  // Record-keeping line: version, colophon, keyboard hint.
+  p {
+    @include type-meta;
+    color: var(--ink-faint);
+  }
+
+  a {
+    color: inherit;
+    font-weight: $link-weight-quiet;
+    transition: color $t-fast;
+
+    &:hover {
+      color: var(--ink);
+    }
+  }
+
+  // Keyboard affordance is meaningless without a keyboard.
+  .footer-hint {
+    @include narrow {
+      display: none;
+    }
+  }
 }
 
 header {

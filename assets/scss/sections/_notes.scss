@@ -21,6 +21,11 @@ main {
       a {
         color: inherit;
         font-weight: $link-weight-quiet;
+        transition: color $t-fast;
+
+        &:hover {
+          color: var(--ink);
+        }
       }
     }
 
@@ -98,7 +103,7 @@ main {
       margin-bottom: 0;
 
       .note-pill {
-        font-size: $font-size-small;
+        @include type-meta;
         color: var(--ink-faint);
         margin-left: 0.35rem;
       }

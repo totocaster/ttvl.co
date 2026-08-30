@@ -19,6 +19,7 @@ $font-size-base: 16px;
 $font-size-title: 20px;
 $font-size-small: 14px;
 $font-size-meta: 13px;
+$font-size-label: 12px;
 $font-size-code: $font-size-small;
 
 $line-height-base: 25px;
@@ -45,9 +46,20 @@ $letter-spacing-label: 0.08em;
 $max-width-container: 1008px;
 $max-width-readable: 588px;
 $max-width-readable-list: 548px;
+$max-width-bleed: 694px; // 588px readable × 1.18, made explicit
+$max-width-panel: 428px; // boxed asides: download box, links column, hero copy
 $grid-gap: 72px;
 $padding-small: 20px;
 $header-height: 180px;
+
+// Controls
+$control-height: 44px;
+$radius: 8px;
+$radius-tight: 2px;
+
+// Motion
+$t-fast: 150ms ease; // hover, opacity
+$t-slow: 250ms ease; // image colorize
 
 // Stacking — full-viewport layers only; search sits above every overlay.
 $z-overlay: 100;
@@ -94,17 +106,39 @@ $z-search: 110;
   line-height: $line-height-base;
 }
 
+// Body-size title — the voice of every heading below h1. Hierarchy is
+// carried by weight and space, not size.
+@mixin type-heading {
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  font-weight: $font-weight-bold;
+}
+
 @mixin type-small {
   font-size: $font-size-small;
   line-height: $line-height-small;
 }
 
-@mixin type-meta {
-  font-size: $font-size-meta;
-  line-height: $line-height-tight;
-}
-
 @mixin tabular-numbers {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
+}
+
+// Record-keeping text: dates, issue numbers, versions, counters.
+// Color is the caller's job (usually --ink-faint).
+@mixin type-meta {
+  font-size: $font-size-meta;
+  line-height: $line-height-small;
+  @include tabular-numbers;
+}
+
+// Inline labels for data: card kickers, table headers. Never for
+// headings — group headings stay bold body-size (see AGENTS.md).
+@mixin type-label {
+  font-size: $font-size-label;
+  line-height: $line-height-small;
+  font-weight: $font-weight-regular;
+  letter-spacing: $letter-spacing-label;
+  text-transform: uppercase;
+  @include tabular-numbers;
 }

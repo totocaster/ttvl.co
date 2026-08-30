@@ -47,7 +47,7 @@ h2,
 h3,
 h4,
 h5 {
-  @include type-body;
+  @include type-heading;
 }
 
 a {
@@ -74,11 +74,9 @@ main {
       margin-top: 0;
 
       img {
-        max-width: 118%;
+        // Article images bleed past the prose measure when space allows.
+        max-width: unquote("min(#{$max-width-bleed}, 100%)");
         height: auto;
-        @media (max-width: 1080px) {
-          max-width: 100% !important;
-        }
       }
     }
 
