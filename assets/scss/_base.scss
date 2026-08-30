@@ -54,6 +54,22 @@ a {
   color: var(--ink);
 }
 
+// Keycaps — keyboard input renders as keys, in the sans stack like all metadata.
+kbd {
+  font-family: $font-family-base;
+  font-size: $font-size-meta;
+  line-height: $line-height-solid;
+  display: inline-block;
+  min-width: 10px;
+  padding: 2px 5px;
+  text-align: center;
+  vertical-align: 1px;
+  border: 1px solid var(--edge);
+  border-radius: $radius-key;
+  background: var(--surface);
+  box-shadow: 0 1px 0 var(--edge);
+}
+
 // Article prose
 main {
   article {

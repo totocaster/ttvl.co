@@ -35,12 +35,6 @@ footer {
     }
   }
 
-  // Keyboard affordance is meaningless without a keyboard.
-  .footer-hint {
-    @include narrow {
-      display: none;
-    }
-  }
 }
 
 header {

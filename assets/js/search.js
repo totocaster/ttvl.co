@@ -43,7 +43,9 @@
     // Search instructions
     const searchInstructions = document.createElement('p');
     searchInstructions.className = 'search-instructions';
-    searchInstructions.textContent = 'Type to search. Use the arrow keys to navigate, or press Esc to close.';
+    // Static markup only — never interpolate query text here.
+    searchInstructions.innerHTML =
+      'Type to search. Navigate with <kbd>↑</kbd> <kbd>↓</kbd>, open with <kbd>Enter</kbd>, close with <kbd>Esc</kbd>.';
 
     // Create search input
     searchInput = document.createElement('input');

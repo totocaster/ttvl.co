@@ -11,7 +11,7 @@ This website is generated using [Hugo](https://gohugo.io/). The content is manag
 
 The generated website is hosted on DigitalOcean App Platform. If you sign up with DigitalOcean through [this link][doref], we'll both receive generous credits.
 
-This iteration of the website was designed in [2025.11](/log/2025/11/).
+This iteration of the website was designed in [2025-11](/log/2025/11/).
 
 <!-- ## Membership Payments
 
@@ -21,7 +21,7 @@ I don't see or get any of your payment information. -->
 
 ## (Not so obvious) Features
 
-* Press `?` to activate site-wide search. Navigate results with arrow keys.
+* Press <kbd>?</kbd> to activate site-wide search. Navigate results with <kbd>↑</kbd> <kbd>↓</kbd>.
 * Select any text to automatically update the URL with a _text fragment_. Share the link to highlight that exact passage.
 
 ## AI Usage
