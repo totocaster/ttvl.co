@@ -1,36 +1,73 @@
 {{ define "main" }}
-{{ $hero := .Params.hero | default "/visuals/newsletter/mirror-self-portrait.jpg" }}
-<section class="newsletter-hero" style="--newsletter-hero: url('{{ $hero }}');">
-  <div class="newsletter-hero__image" aria-hidden="true"></div>
-  <div class="newsletter-hero__content">
-    <h1>{{ .Title }}</h1>
-    <p class="newsletter-tagline"><em>A newsletter about my work, photography, books, making, and walking.</em></p>
-    <div class="newsletter-copy">
-      {{ .Content }}
-    </div>
-    <div class="email-subscribe">
-      {{ partial "subscribe-form.html" (dict "id" "newsletter") }}
-      <div class="promise">
-        <p>Once a month. One click to unsubscribe.</p>
-      </div>
-    </div>
+{{ $dispatches := (where (where .Site.Pages "Section" "flaneur") "Kind" "page").ByDate.Reverse }}
+{{ $oldest := index $dispatches.ByDate 0 }}
+<section class="newsletter-intro">
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  <div class="email-subscribe">
+    {{ partial "subscribe-form.html" (dict "id" "newsletter") }}
+    <p class="dispatch-legend">{{ len $dispatches }} dispatches since {{ $oldest.Date.Format "2006" }} &middot; seasonal, not monthly &middot; one click to leave</p>
   </div>
 </section>
 
-<section class="newsletter-archive">
-  <p>I see the newsletter as the best way to stay connected. As the world drifts away from RSS and social media becomes increasingly noisy, email feels like a more reliable and personal way to keep in touch.</p>
-  <p>Feel free to explore the archive before subscribing. </p>
-  <h2>Archive</h2>
-  <ul class="issue-list">
-    {{ range (where (where .Site.Pages "Section" "flaneur") "Kind" "page").ByDate.Reverse }}
-      <li>
-        <span class="issue-number">
-          #{{ printf "%03s" .File.BaseFileName }} &middot; <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01" }}</time>
-        </span>
-        <a class="issue-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-      </li>
+{{ if .Params.show_start_here }}
+  {{ with .Params.start_here }}
+  <section class="newsletter-doors">
+    <h2>Start here</h2>
+    <div class="door-grid">
+      {{ range . }}
+        {{ $entry := . }}
+        {{ with site.GetPage $entry.ref }}
+        <div class="door">
+          <p class="door-label">{{ $entry.label }} &middot; #{{ printf "%03s" .File.BaseFileName }} &middot; <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01" }}</time></p>
+          <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+          <p class="door-dek">{{ $entry.dek }}</p>
+        </div>
+        {{ end }}
+      {{ end }}
+    </div>
+  </section>
+  {{ end }}
+{{ end }}
+
+{{ $covered := where $dispatches "Params.cover" "!=" nil }}
+{{ if and .Params.show_contact_sheet (gt (len $covered) 0) }}
+<section class="newsletter-sheet">
+  <h2>Contact Sheet</h2>
+  <ul class="sheet-strip">
+    {{ range $covered }}
+      {{ $img := resources.Get (printf "static%s" .Params.cover) }}
+      {{ if $img }}
+        {{ $thumb := $img.Fill "300x220 center q80" }}
+        <li>
+          <a href="{{ .RelPermalink }}">
+            <img src="{{ $thumb.RelPermalink }}" width="150" height="110" alt="From {{ .Title }}" loading="lazy" />
+            <span class="sheet-cap">#{{ printf "%03s" .File.BaseFileName }} &middot; <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01" }}</time></span>
+          </a>
+        </li>
+      {{ end }}
     {{ end }}
   </ul>
+  <p class="sheet-note">One frame from each dispatch that carried photographs. Each opens the letter it came from.</p>
+</section>
+{{ end }}
+
+<section class="newsletter-archive">
+  <h2>Archive</h2>
+  {{ range $dispatches.GroupByDate "2006" }}
+  <section class="dispatch-year">
+    <h3>{{ .Key }} <span class="year-note">{{ len .Pages }} {{ if eq (len .Pages) 1 }}dispatch{{ else }}dispatches{{ end }}{{ if eq .Key "2021" }} &middot; as Dreaming with One Eye Open{{ end }}</span></h3>
+    <ul class="dispatch-list{{ if $.Params.show_deks }} with-deks{{ end }}">
+      {{ range .Pages.ByDate.Reverse }}
+      <li>
+        <span class="dispatch-num">#{{ printf "%03s" .File.BaseFileName }} &middot; <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01" }}</time></span>
+        <a class="dispatch-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        {{ if $.Params.show_deks }}{{ with .Description }}<span class="dispatch-dek">{{ . }}</span>{{ end }}{{ end }}
+      </li>
+      {{ end }}
+    </ul>
+  </section>
+  {{ end }}
 </section>
 {{ partial "campaign-monitor-script.html" . }}
 {{ end }}

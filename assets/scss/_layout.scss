@@ -16,6 +16,13 @@ footer {
   @extend %grid-layout;
 }
 
+// Grid items refuse to shrink below their content's min-content size, so a
+// wide horizontal scroller (contact sheet, wide table) would blow main out
+// of its track without this.
+.layout > main {
+  min-width: 0;
+}
+
 footer {
   margin-top: 140px;
 

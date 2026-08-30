@@ -53,6 +53,30 @@ disableKinds = ["taxonomy", "term"]
     permalinkable = true
     rel = "alternate"
 
+# Declaring any mount replaces Hugo's defaults, so the standard directories
+# are restated here. The extra static -> assets/static mount lets templates
+# run the image pipeline over static files (newsletter contact-sheet thumbs).
+# If archetypes/ or i18n/ are ever added, they need mounts here too.
+[module]
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "static"
+    target = "assets/static"
+
 [markup]
   [markup.goldmark]
     [markup.goldmark.parser.attribute]

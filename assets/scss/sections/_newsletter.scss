@@ -1,167 +1,196 @@
-// Newsletter landing (hero + archive) and Flâneur issue pages.
+// Newsletter landing (intro, Start here doors, contact sheet, archive
+// ledger) and Flâneur issue pages.
 
 main {
-  .newsletter-hero {
-    position: relative;
-    margin: 0 0 2.5rem;
-  }
-
-  .newsletter-hero__image {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    background-image: var(--newsletter-hero);
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-
-    // Over-photo chrome below is theme-independent by design.
-    &::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        90deg,
-        rgba(0, 0, 0, 0.65) 0%,
-        rgba(0, 0, 0, 0.45) 30%,
-        rgba(0, 0, 0, 0.1) 60%,
-        rgba(0, 0, 0, 0) 100%
-      );
-      pointer-events: none;
-    }
-  }
-
-  .newsletter-hero__content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 0.5rem;
-    padding: 3rem 3rem 2.5rem;
-    max-width: $max-width-panel;
-    color: white;
-    z-index: 1;
-  }
-
-  .newsletter-tagline {
-    margin-top: 0.35rem;
-    margin-bottom: 1.25rem;
-    color: rgba(255, 255, 255, 0.85);
-  }
-
-  .newsletter-copy {
+  .newsletter-intro {
     @include readable-width;
-    margin-bottom: 1.5rem;
-    color: rgba(255, 255, 255, 0.92);
 
-    p {
-      margin-top: 0;
+    div.email-subscribe {
+      padding-bottom: 0;
     }
   }
 
-  .newsletter-hero .email-subscribe {
-    color: white;
+  // Honest promise under the form: count, cadence, exit.
+  .dispatch-legend {
+    @include type-meta;
+    color: var(--ink-faint);
+    margin: 0.75rem 0 0;
+  }
 
-    .js-cm-form {
+  // Start here — three curated doors from _index.md frontmatter.
+  .newsletter-doors {
+    margin-top: 2.5rem;
+
+    .door-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0 2rem;
+
+      @include narrow {
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+      }
+    }
+
+    .door-label {
+      @include type-label;
+      color: var(--ink-faint);
+      margin: 0 0 2px;
+    }
+
+    .door h3 {
+      margin: 0 0 2px;
+    }
+
+    .door-dek {
+      line-height: $line-height-tight;
+      margin: 0;
+    }
+  }
+
+  // Contact sheet — one frame per dispatch that carries a cover.
+  .newsletter-sheet {
+    margin-top: 2.5rem;
+
+    // Explanation below the strip is content: full ink, body size.
+    .sheet-note {
+      @include readable-width;
+      margin: 0.75rem 0 0;
+    }
+
+    ul.sheet-strip {
+      list-style: none;
+      margin: 0;
+      padding: 0;
       display: flex;
-      gap: 0.5rem;
-      flex-wrap: wrap;
+      gap: 12px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
 
-      input[type="email"] {
-        background: rgba(0, 0, 0, 0.35);
-        border: 1px solid rgba(255, 255, 255, 0.7);
-        color: white;
-        width: 50%;
-        min-width: 260px;
-      }
+      // Scrolls without a scrollbar; the clipped frame at the edge is
+      // the affordance.
+      scrollbar-width: none;
 
-      button {
-        background: rgba(255, 255, 255, 0.94);
-        color: #000;
-        border: 1px solid rgba(255, 255, 255, 0.9);
-
-        &:hover {
-          background: white;
-        }
+      &::-webkit-scrollbar {
+        display: none;
       }
     }
 
-    .promise p {
-      color: rgba(255, 255, 255, 0.85);
+    li {
+      flex: none;
+      width: 150px;
+    }
+
+    a {
+      display: block;
+      text-decoration: $link-decoration-plain;
+      font-weight: $link-weight-quiet;
+    }
+
+    img {
+      width: 150px;
+      height: 110px;
+      object-fit: cover;
+      display: block;
+      border: 1px solid var(--edge);
+      background: var(--surface);
+      box-sizing: border-box;
+    }
+
+    .sheet-cap {
+      display: block;
+      @include type-meta;
+      color: var(--ink-faint);
+      margin-top: 2px;
+      transition: color $t-fast;
+    }
+
+    a:hover .sheet-cap {
+      color: var(--ink);
     }
   }
 
-  @include narrow {
-    .newsletter-hero {
-      margin: 0 0 1.75rem;
+  // Archive — year-grouped ledger with deks from frontmatter.
+  .newsletter-archive {
+    @include readable-width;
+    margin-top: 2.5rem;
+
+    > h2 {
+      margin-bottom: 0.5rem;
     }
 
-    .newsletter-hero__image::after {
-      background: none;
+    // Each year sits on its own hairline, count and era note in meta voice.
+    .dispatch-year h3 {
+      margin: 20px 0 8px;
+      padding-top: 8px;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
     }
 
-    .newsletter-hero__content {
-      position: static;
-      max-width: none;
-      padding: 1.75rem 0 0;
-      display: block;
-      color: var(--ink);
-      background: var(--ground);
+    .year-note {
+      @include type-meta;
+      font-weight: $font-weight-regular;
+      color: var(--ink-faint);
+      white-space: nowrap;
     }
 
-    .newsletter-tagline {
+    ul.dispatch-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+
+      li {
+        display: grid;
+        grid-template-columns: 110px 1fr;
+        align-items: baseline;
+        margin-bottom: 4px;
+      }
+
+      // Dek'd rows need air between entries; bare rows sit tight.
+      &.with-deks li {
+        margin-bottom: 14px;
+      }
+    }
+
+    .dispatch-num {
+      @include type-meta;
+      color: var(--ink-faint);
+      white-space: nowrap;
+    }
+
+    a.dispatch-title {
+      font-weight: $link-weight-quiet;
+      text-decoration: $link-decoration-default;
+    }
+
+    // Deks stay body size on tight leading, muted per Toto's call for
+    // this page (2026-08-30).
+    .dispatch-dek {
+      grid-column: 2;
+      line-height: $line-height-tight;
+      margin-top: 1px;
       color: var(--ink-muted);
     }
 
-    .newsletter-copy {
-      color: inherit;
-    }
-
-    .newsletter-hero .email-subscribe {
-      color: inherit;
-
-      .js-cm-form {
-        gap: 0.5rem;
-
-        input[type="email"] {
-          background: var(--surface-input);
-          border: 1px solid var(--ink);
-          color: var(--ink);
-          width: 100%;
-          min-width: 0;
-
-          // Dark fields use a subtle edge instead of the strong ink border.
-          @include dark {
-            border-color: var(--rule);
-          }
-        }
-
-        button {
-          background: var(--ink);
-          color: var(--ground);
-          border: none;
-
-          // Dark buttons carry a hairline to separate from the ground.
-          @include dark {
-            border: 1px solid var(--rule);
-          }
-        }
+    @include narrow {
+      // Only dek'd rows stack; bare rows keep number and title inline.
+      ul.dispatch-list.with-deks li {
+        grid-template-columns: 1fr;
       }
 
-      .promise p {
-        color: inherit;
+      ul.dispatch-list.with-deks .dispatch-dek {
+        grid-column: 1;
+      }
+
+      // The 2021 era note is long; let it wrap instead of overflowing.
+      .year-note {
+        white-space: normal;
+        text-align: right;
       }
     }
-  }
-
-  .newsletter-archive {
-    @include readable-width;
-    background: var(--ground);
-    padding: 0.5rem 0 0;
   }
 
   // Single issue page
