@@ -2,12 +2,21 @@
   {{ $logs := where .page.Site.RegularPages "Section" "log" }}
   {{ $years := $logs.GroupByDate "2006" }}
   {{ $title := .title | default "Archive" }}
+  {{ $current := .page.RelPermalink }}
   <h1>{{ $title }}</h1>
-  <ul>
+  <ul class="log-grid">
     {{ range $years }}
     <li>
-      <b class="log-year">{{ .Key }}</b>: {{ range .Pages.ByDate.Reverse }}
-      <a href="{{ .RelPermalink }}" class="log-month">{{ .Date.Format "1" }}</a>
+      <span class="log-year">{{ .Key }}</span>
+      {{ $pages := .Pages }}
+      {{ range $m := seq 1 12 }}
+        {{ $match := "" }}
+        {{ range $pages }}{{ if eq (int (.Date.Format "1")) $m }}{{ $match = . }}{{ end }}{{ end }}
+        {{ with $match }}
+          <a href="{{ .RelPermalink }}" class="log-month"{{ if eq .RelPermalink $current }} aria-current="page"{{ end }}>{{ printf "%02d" $m }}</a>
+        {{ else }}
+          <span class="log-void" aria-hidden="true">&middot;&middot;</span>
+        {{ end }}
       {{ end }}
     </li>
     {{ end }}

@@ -1,8 +1,56 @@
-// Log archive month/year listing.
+// Log archive — a compact year × month ledger. Every month owns a slot;
+// unwritten months render as faint voids so the grid shows the log's shape.
 
 .log-archive {
-  .log-year,
-  .log-month {
+  ul.log-grid {
+    list-style: none;
+    margin: 1rem 0 0;
+    padding: 0;
+  }
+
+  li {
+    display: grid;
+    // 110px matches the index-row datestamp column.
+    grid-template-columns: 110px repeat(12, minmax(0, 30px));
+    column-gap: 6px;
+    align-items: baseline;
+    margin-bottom: 3px;
+    @include type-body;
     @include tabular-numbers;
+
+    @include narrow {
+      grid-template-columns: 48px repeat(12, minmax(0, 1fr));
+      column-gap: 3px;
+    }
+  }
+
+  // Same voice as the index-row datestamp column.
+  .log-year {
+    @include type-meta;
+    color: var(--ink-faint);
+  }
+
+  a.log-month {
+    color: var(--ink);
+    font-weight: $link-weight-quiet;
+    text-decoration: $link-decoration-plain;
+
+    &:hover {
+      text-decoration: $link-decoration-default;
+    }
+
+    // You-are-here marker on month pages.
+    &[aria-current="page"] {
+      font-weight: $font-weight-bold;
+    }
+  }
+
+  .log-void {
+    color: var(--ink-faint);
+    opacity: 0.5; // decorative void — deliberately below the faint tier
+    user-select: none;
+    // Occupy exactly a two-digit slot and center the dots under it.
+    width: 2ch;
+    text-align: center;
   }
 }
