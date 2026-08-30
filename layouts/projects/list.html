@@ -1,29 +1,63 @@
 {{ define "main" }}
-<article class="{{ with .Params.content_css }}{{ . }}{{ end }}">
-  {{ if not .Params.hide_title }}
+{{ if not .Params.hide_title }}
+<article>
   <h1>{{ .Title }}</h1>
-  {{ end }} {{ .Content }}
 </article>
+{{ end }}
 
 {{ $projects := sort (where site.Pages "Params.project" "!=" nil) "Date" "desc" }}
 {{ if $projects }}
-  {{ $categories := slice }}
+  {{ $slugs := slice }}
   {{ range $projects }}
     {{ with .Params.project.category }}
       {{ $cat := trim . "/" }}
-      {{ if not (in $categories $cat) }}{{ $categories = $categories | append $cat }}{{ end }}
+      {{ if not (in $slugs $cat) }}{{ $slugs = $slugs | append $cat }}{{ end }}
     {{ end }}
   {{ end }}
-  {{ $categories = sort $categories }}
+  {{ $slugs = sort $slugs }}
+  {{ $categories := slice }}
+  {{ range $slugs }}
+    {{ $slug := . }}
+    {{ $hub := site.GetPage (printf "/%s" $slug) }}
+    {{ $label := or (and $hub $hub.Params.filter_label) (title (humanize $slug)) }}
+    {{ $ref := or (and $hub $hub.Params.filter_ref) (and $hub $hub.Title) (title (humanize $slug)) }}
+    {{ $categories = $categories | append (dict
+      "slug" $slug
+      "label" $label
+      "dek" (and $hub $hub.Params.filter_dek)
+      "ref" $ref
+      "url" (and $hub $hub.RelPermalink)
+      "weight" (or (and $hub $hub.Params.filter_weight) 99)
+    ) }}
+  {{ end }}
+  {{/* Weighted hubs lead the rail; the rest stay alphabetical. */}}
+  {{ $ordered := slice }}
+  {{ range sort (where $categories "weight" "ne" 99) "weight" }}{{ $ordered = $ordered | append . }}{{ end }}
+  {{ range where $categories "weight" 99 }}{{ $ordered = $ordered | append . }}{{ end }}
+  {{ $categories = $ordered }}
 
   <nav class="category-filter" aria-label="Filter projects by category">
     <ul>
       <li><a href="?category=all" data-category="all" class="is-active">All</a></li>
       {{ range $categories }}
-      <li><a href="?category={{ . }}" data-category="{{ . }}">{{ title (humanize .) }}</a></li>
+      <li><a href="?category={{ .slug }}" data-category="{{ .slug }}">{{ .label }}</a></li>
+      {{ end }}
+      {{ range $categories }}
+      {{ if .url }}
+      <li><a class="hub-ref" href="{{ .url }}" data-filter-show="{{ .slug }}" hidden>&rarr;&nbsp;{{ .ref }}</a></li>
+      {{ end }}
       {{ end }}
     </ul>
   </nav>
+
+  <div class="filter-dek" data-filter-show="all">
+    {{ .Content }}
+  </div>
+  {{ range $categories }}
+  <div class="filter-dek" data-filter-show="{{ .slug }}" hidden>
+    <p>{{ .dek }}</p>
+  </div>
+  {{ end }}
 
   {{ $ongoing := slice }}
   {{ $dated := slice }}

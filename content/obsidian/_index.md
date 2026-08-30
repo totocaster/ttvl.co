@@ -2,6 +2,9 @@
 title: Obsidian
 date: 2026-05-22
 description: "A hub for my Obsidian plugins, vault tools, and plain-text knowledge system experiments."
+filter_weight: 2
+filter_dek: 'Obsidian plugins, vault tools, and plain-text knowledge experiments.'
+filter_ref: 'Obsidian'
 ---
 
 This page gathers the tools and experiments I have built around [Obsidian](https://obsidian.md/). I use it extensively: as a knowledge base, personal journal, life-metrics workspace, and extended context layer for my personal AI assistant.

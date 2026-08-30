@@ -4,12 +4,18 @@
 
   const links = Array.from(filterNav.querySelectorAll("[data-category]"));
   const groups = Array.from(document.querySelectorAll("[data-filter-group]"));
+  const showEls = Array.from(document.querySelectorAll("[data-filter-show]"));
 
   const applyFilter = (slug) => {
     const activeSlug = slug && slug !== "" ? slug : "all";
 
     links.forEach((link) => {
       link.classList.toggle("is-active", link.dataset.category === activeSlug);
+    });
+
+    // Elements bound to one filter state (e.g. the per-domain dek lines).
+    showEls.forEach((el) => {
+      el.hidden = el.dataset.filterShow !== activeSlug;
     });
 
     groups.forEach((group) => {

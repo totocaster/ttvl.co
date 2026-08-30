@@ -1,6 +1,9 @@
 ---
 title: Bookbinding
 description: "Tools, jigs, and fixtures for bindery experiments"
+filter_weight: 3
+filter_dek: 'Tools, jigs, and fixtures for bindery experiments.'
+filter_ref: 'Bookbinding'
 ---
 
 Bookbinding notes from the studio: small fixtures, experiments from the year-long course at Marumizu-gumi, and the way I adapt photography tooling to the bindery bench.

@@ -39,4 +39,32 @@ main .category-filter {
       text-decoration: $link-decoration-default;
     }
   }
+
+  // Reference to the active domain's page, appended to the rail.
+  a.hub-ref {
+    color: var(--ink-muted);
+    font-weight: $font-weight-regular;
+    transition: color $t-fast;
+
+    &:hover {
+      color: var(--ink);
+      text-decoration: $link-decoration-plain;
+    }
+  }
+}
+
+// One-line dek shown for the active filter, closed by an arrow reference
+// to the domain's landing page.
+main .filter-dek {
+  @include readable-list-width;
+  margin: 0 0 1.5rem;
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    font-weight: $link-weight-default;
+    white-space: nowrap;
+  }
 }

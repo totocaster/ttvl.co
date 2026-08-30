@@ -3,6 +3,4 @@ title: "Projects"
 hide_title: true
 ---
 
-Below is documentation of most of my projects I've done in past few years. There are some categories emerging: [Bookbinding](/bookbinding), [Darkroom](/darkroom), [Obsidian](/obsidian), and [Project Humane](/project-humane).
-
----
+Below is documentation of most of my projects I've done in past few years. Some categories have started to naturally emerge.

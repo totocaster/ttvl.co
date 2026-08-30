@@ -1,5 +1,8 @@
 ---
 title: Darkroom
+filter_weight: 4
+filter_dek: 'Guides, DIY projects, and niche tools for analog photography.'
+filter_ref: 'Darkroom'
 ---
 
 Technical and process-oriented resources focused on photography, darkroom techniques, and the craft of image-making. This page serves as a hub for guides, DIY projects, and niche tools tailored for analog photography enthusiasts.

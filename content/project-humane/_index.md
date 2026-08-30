@@ -1,5 +1,9 @@
 ---
 title: Project Humane
+filter_label: 'Tools'
+filter_weight: 1
+filter_dek: "Project Humane is the name I use as an umbrella for all the tools I'm working on and researching."
+filter_ref: 'Project Humane'
 ---
 
 Project Humane is an umbrella term for my tools for thought and made-for-hands efforts.
