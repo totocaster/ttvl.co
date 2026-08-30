@@ -1,17 +1,7 @@
-{{ $page := .page }}
-{{ if not $page }}
-  {{ $page = . }}
-{{ end }}
-{{ $heading := default "Notes" .heading }}
-{{ $headingTag := default "h2" .headingTag }}
-{{ $notes := first 5 (sort (where $page.Site.RegularPages "Section" "notes") "Date" "desc") }}
+{{ $notes := first 5 (sort (where .Site.RegularPages "Section" "notes") "Date" "desc") }}
 {{ if gt (len $notes) 0 }}
   <section class="recent-notes">
-    {{ if eq $headingTag "h1" }}
-      <h1>{{ $heading }}</h1>
-    {{ else }}
-      <h2>{{ $heading }}</h2>
-    {{ end }}
+    <h1>Notes</h1>
     <ul class="issue-list">
       {{ range $notes }}
         <li>

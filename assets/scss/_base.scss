@@ -147,13 +147,11 @@ main {
 
       nav#TableOfContents {
         columns: 2;
-        column-gap: 1rem;
+        column-gap: 48px;
         @include readable-width();
-        padding-left: 2em;
 
         @include narrow {
-          column-gap: 0.5rem;
-          padding-left: 0;
+          columns: 1;
         }
 
         a {
@@ -168,14 +166,14 @@ main {
 
           li {
             counter-increment: toc;
+            break-inside: avoid;
 
+            // Counters speak in the meta voice.
             &::before {
               content: counter(toc, decimal-leading-zero) ".";
-              display: inline-block;
-              width: 1.25em;
-              margin-right: 0.7rem;
-              color: var(--ink);
-              @include tabular-numbers;
+              @include type-meta;
+              color: var(--ink-faint);
+              margin-right: 10px;
             }
 
             // Reset counter for nested items

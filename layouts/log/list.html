@@ -8,7 +8,7 @@
 {{ range .Pages.ByDate.Reverse }}
 <article class="log-list {{ with .Params.content_css }}{{ . }}{{ end }}">
   <h1 class="log">
-    <a href="{{ .RelPermalink }}">{{ .Date.Format "2006.01" }}</a>
+    <a href="{{ .RelPermalink }}">{{ .Date.Format "2006-01" }}</a>
   </h1>
   {{ .Content }}
 </article>
