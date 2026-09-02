@@ -35,17 +35,62 @@
 {{ end }}
 
 <!-- Image tags -->
-{{ $defaultImage := or .Site.Params.ogimage .Site.Params.og_image }}
+{{- /* Social card resolution. An explicit frontmatter `image` wins. Otherwise
+     the page's own card under static/social/ (rendered locally by
+     tools/social-cards.py and committed), then the Projects hub card for
+     project pages, then the section hub card, then the site card. The URL
+     carries a content hash so scrapers refetch a regenerated card. */ -}}
+{{ $img := "" }}
+{{ $res := "" }}
+{{ $own := false }}
 {{ with .Params.image }}
-<meta itemprop="image" content="{{ . | absURL }}" />
-<meta property="og:image" content="{{ . | absURL }}" />
-<meta name="twitter:image" content="{{ . | absURL }}" />
-<meta name="twitter:image:src" content="{{ . | absURL }}" />
+  {{ $img = . | absURL }}
+  {{ if hasPrefix . "/" }}{{ with resources.Get (printf "static%s" .) }}{{ $res = . }}{{ end }}{{ end }}
 {{ else }}
-<meta itemprop="image" content="{{ $defaultImage | absURL }}" />
-<meta property="og:image" content="{{ $defaultImage | absURL }}" />
-<meta name="twitter:image" content="{{ $defaultImage | absURL }}" />
-<meta name="twitter:image:src" content="{{ $defaultImage | absURL }}" />
+  {{ $key := strings.Trim .RelPermalink "/" }}
+  {{ if .IsHome }}{{ $key = "site" }}{{ end }}
+  {{ $candidates := slice (printf "social/%s" $key) }}
+  {{ if .Params.project }}{{ $candidates = $candidates | append "social/projects" }}{{ end }}
+  {{ with .Section }}{{ $candidates = $candidates | append (printf "social/%s" .) }}{{ end }}
+  {{ $candidates = $candidates | append "social/site" }}
+  {{ $hit := "" }}
+  {{ $i := 0 }}
+  {{ range $c := $candidates }}
+    {{ range $ext := slice "png" "jpg" }}
+      {{ if not $hit }}
+        {{ with resources.Get (printf "static/%s.%s" $c $ext) }}
+          {{ $res = . }}
+          {{ $hit = printf "/%s.%s" $c $ext }}
+          {{ if eq $i 0 }}{{ $own = true }}{{ end }}
+        {{ end }}
+      {{ end }}
+    {{ end }}
+    {{ $i = add $i 1 }}
+  {{ end }}
+  {{ with $hit }}
+    {{ $img = printf "%s?v=%s" (. | absURL) (substr (md5 $res.Content) 0 8) }}
+  {{ else }}
+    {{ with or .Site.Params.ogimage .Site.Params.og_image }}{{ $img = . | absURL }}{{ end }}
+  {{ end }}
+  {{ $wants := or (eq .Section "notes") .Params.project (and .IsSection .Params.filter_dek) .IsHome }}
+  {{ if and (not $own) $wants (ne .Type "redirect") }}
+    {{ warnf "Social card missing for %s (run: python3 tools/social-cards.py)" .RelPermalink }}
+  {{ end }}
+{{ end }}
+{{ $alt := site.Title }}
+{{ if not .IsHome }}{{ $alt = printf "%s · %s" .Title site.Title }}{{ end }}
+{{ with $img }}
+<meta itemprop="image" content="{{ . }}" />
+<meta property="og:image" content="{{ . }}" />
+{{ with $res }}
+<meta property="og:image:width" content="{{ .Width }}" />
+<meta property="og:image:height" content="{{ .Height }}" />
+<meta property="og:image:type" content="{{ .MediaType.Type }}" />
+{{ end }}
+<meta property="og:image:alt" content="{{ $alt }}" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:image" content="{{ . }}" />
+<meta name="twitter:image:alt" content="{{ $alt }}" />
 {{ end }}
 
 <!-- Date tags -->

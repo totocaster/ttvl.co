@@ -1,0 +1,72 @@
+{{- /* Manifest for tools/social-cards.py: one entry per page that gets a
+     generated social card. Rendered only through the "social" output format
+     (see hugo.toml); `hugo --renderSegments social` builds just this file.
+
+     Keys per entry:
+       style  site | hub | note | project
+       out    path under static/, without extension (the script picks it)
+       path   the page's RelPermalink, used by --only and for reporting
+       title  page title as written
+       meta   kicker parts after the section name
+       dek    one-line description where the card shows one
+       image  poster or cover path under static/ where the card uses one */ -}}
+{{- $cards := slice -}}
+
+{{- /* Site card: the fallback for every page without one of its own. */ -}}
+{{- $cards = $cards | append (dict
+  "style" "site"
+  "out" "social/site"
+  "path" "/"
+  "title" site.Title
+  "dek" (site.Params.description | default "")) -}}
+
+{{- /* Hub cards: sections with a filter_dek. Doubles as the section fallback. */ -}}
+{{- range site.Sections -}}
+  {{- if and .Params.filter_dek (ne .Type "redirect") -}}
+    {{- $cards = $cards | append (dict
+      "style" "hub"
+      "out" (printf "social/%s" (strings.Trim .RelPermalink "/"))
+      "path" .RelPermalink
+      "title" .Title
+      "meta" (slice "Hub")
+      "dek" .Params.filter_dek) -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* Notes: category label and ISO date, matching the notes ledger. */ -}}
+{{- $labels := dict "collected" "Collected" "thinking" "Thinking" "longform" "Longform" -}}
+{{- range where site.RegularPages "Section" "notes" -}}
+  {{- $cat := .Params.category | default "thinking" -}}
+  {{- $cards = $cards | append (dict
+    "style" "note"
+    "out" (printf "social/%s" (strings.Trim .RelPermalink "/"))
+    "path" .RelPermalink
+    "title" .Title
+    "meta" (slice (index $labels $cat | default (title $cat)) (.Date.Format "2006-01-02"))) -}}
+{{- end -}}
+
+{{- /* Flâneur dispatches get no card. Their HTML pages are the email source
+     for the mailing system and carry no metadata; the newsletter hub card
+     covers /newsletter/. The plate renderer stays in tools/social-cards.py
+     should dispatch pages ever need to unfurl. */ -}}
+
+{{- /* Projects: every regular page with project frontmatter, wherever it lives.
+     The category label is the hub's filter_label (Tools) or its title. */ -}}
+{{- range where site.RegularPages ".Params.project" "!=" nil -}}
+  {{- $p := .Params.project -}}
+  {{- $cat := "" -}}
+  {{- with $p.category -}}
+    {{- with site.GetPage . -}}{{- $cat = .Params.filter_label | default .Title -}}{{- end -}}
+  {{- end -}}
+  {{- $year := printf "%v" ($p.year | default .Date.Year) -}}
+  {{- if eq $year "ongoing" -}}{{- $year = "Ongoing" -}}{{- end -}}
+  {{- $cards = $cards | append (dict
+    "style" "project"
+    "out" (printf "social/%s" (strings.Trim .RelPermalink "/"))
+    "path" .RelPermalink
+    "title" .Title
+    "meta" (slice $cat $year)
+    "image" ($p.image | default "")) -}}
+{{- end -}}
+
+{{- $cards | jsonify (dict "indent" "  ") -}}

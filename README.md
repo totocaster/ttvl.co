@@ -38,6 +38,7 @@ Source for [ttvl.co](https://ttvl.co/), Toto Tvalavadze's public notebook and pr
 │   ├── downloads/          # PDFs and printable/3D files
 │   ├── flaneur/            # Newsletter images
 │   ├── leaves/             # Date-prefixed Loose Leaves scans
+│   ├── social/             # Committed Open Graph cards and their manifest
 │   ├── traces/             # Downloadable trace assets such as GLB models
 │   ├── ui/                 # Logos and interface images
 │   ├── vendor/             # Vendored third-party browser code and licenses
@@ -45,8 +46,11 @@ Source for [ttvl.co](https://ttvl.co/), Toto Tvalavadze's public notebook and pr
 │   └── llms.txt            # Concise machine-readable site guide
 ├── tools/
 │   ├── build-production.sh # Clean production build and version calculation
+│   ├── pre-commit          # Optional git hook: refuses commits with missing cards
+│   ├── social-cards.py     # Renders missing social cards from Hugo's manifest
 │   └── email_templates/    # Campaign Monitor membership email template
 ├── .do/app.yaml            # DigitalOcean App Platform definition
+├── Makefile                # serve, build, cards, cards-check, hooks
 ├── hugo.toml               # Hugo, output, subscription, and version configuration
 ├── CLAUDE.md               # Coding-agent guidance (AGENTS.md is a symlink to it)
 └── public/                 # Generated, ignored output
@@ -139,6 +143,7 @@ Feature-specific scripts are opt-in where practical:
 - **3D records:** Pages with `model_viewer: true` load the vendored `model-viewer` module only on that page.
 - **Appearance:** The site follows `prefers-color-scheme` for dark mode and includes selected `prefers-contrast: more` rules. There is no theme toggle or mobile-menu script; the compact navigation scrolls horizontally.
 - **Feeds and indexes:** Hugo generates `/index.xml`, `/index.json`, `/sitemap.xml`, and `/robots.txt`. The custom RSS template includes Log, Darkroom, Bookbinding, Notes, Flaneur, Project Humane, and Obsidian entries.
+- **Social cards:** Every note, project page, hub, and the home page has a 1200 × 630 Open Graph image under `static/social/`, rendered locally by `tools/social-cards.py` and committed. The head partial resolves the page card, then the section fallback, then the site card, and Hugo warns at build time when a page lacks its own card. Flaneur dispatch pages are email sources and carry no metadata.
 
 ## Newsletter workflow
 
@@ -150,11 +155,31 @@ Feature-specific scripts are opt-in where practical:
 
 The separate `tools/email_templates/insider_template.html` file is for the membership/ROAM Campaign Monitor template, not for Flaneur dispatch rendering.
 
+## Social cards
+
+Hugo emits `social.json`, a manifest of every page that gets a card (`layouts/index.social.json`). `tools/social-cards.py` reads it through `hugo --renderSegments social`, renders the cards that are missing with Pillow and the system Helvetica Neue, and writes them under `static/social/` next to `manifest.json`, which records a hash of each card's inputs. The script declares its dependencies inline and runs through [uv](https://docs.astral.sh/uv/), which provisions Python and Pillow on first use.
+
+```bash
+# Render cards that are missing
+make cards
+
+# List missing, stale, and orphaned cards
+make cards-check
+
+# Re-render everything after a design change
+make cards-all
+
+# Install a pre-commit hook that refuses commits with missing or stale cards
+make hooks
+```
+
+Run `make cards` after adding a note or project page, or after retitling one, and commit the cards with the content. Rendering needs macOS for the font; the build server never renders and only warns when a card is missing.
+
 ## Site versioning and deployment
 
 The footer displays `vMAJOR.MINOR.UPDATE`:
 
-- `major` and `minor` come from `[params.version]` in `hugo.toml` and currently identify the `v7.7` site structure. `MAJOR` identifies the site era; `MINOR` advances for visible structural or publishing-system revisions rather than routine content posts.
+- `major` and `minor` come from `[params.version]` in `hugo.toml` and currently identify the `v7.9` site structure. `MAJOR` identifies the site era; `MINOR` advances for visible structural or publishing-system revisions rather than routine content posts.
 - Production sets `UPDATE` to the Git commit count through `HUGO_SITE_UPDATE`.
 - `params.version.update` is a local fallback for direct Hugo commands that do not set the environment variable.
 

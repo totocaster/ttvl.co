@@ -15,7 +15,8 @@ disableKinds = ["taxonomy", "term"]
   author = "Toto Tvalavadze"
   github = "https://github.com/totocaster"
   facebook = "https://facebook.com/totocaster"
-  og_image = "/ui/og.png" # TODO: replace with actual website image
+  description = "Public notebook and project archive. Analog photography, bookbinding, notebook systems, humane interfaces, and a monthly log."
+  og_image = "/social/site.png" # last resort; head.html resolves generated cards from static/social/ first
   sitename = "Toto Tvalavadze"
   twitter = "@totocaster"
   instagram = "https://instagram.com/totocaster"
@@ -23,7 +24,7 @@ disableKinds = ["taxonomy", "term"]
 
 [params.version]
   major = 7
-  minor = 8
+  minor = 9
   update = 350
 
 [params.subscription]
@@ -40,11 +41,18 @@ disableKinds = ["taxonomy", "term"]
  log = "/log/:year/:month/"
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
+  home = ["HTML", "RSS", "JSON", "social"]
   section = ["HTML"]
   page = ["HTML"]
 
 [outputFormats]
+  # Manifest for tools/social-cards.py; rendered by layouts/index.social.json.
+  # Not an alternate of the home page, so no <link rel="alternate">.
+  [outputFormats.social]
+    mediaType = "application/json"
+    baseName = "social"
+    isPlainText = true
+    notAlternative = true
   [outputFormats.email]
     mediaType = "text/html"
     baseName = "email"
@@ -52,6 +60,14 @@ disableKinds = ["taxonomy", "term"]
     noUgly = true
     permalinkable = true
     rel = "alternate"
+
+# `hugo --renderSegments social` renders only the social-card manifest, which
+# is how tools/social-cards.py reads the site without a full build.
+[segments]
+  [segments.social]
+    [[segments.social.includes]]
+      kind = "home"
+      output = "social"
 
 # Declaring any mount replaces Hugo's defaults, so the standard directories
 # are restated here. The extra static -> assets/static mount lets templates

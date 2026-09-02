@@ -1,0 +1,16 @@
+#!/bin/sh
+# Git pre-commit hook: refuse a commit when a note, project page, hub, or the
+# home page has no social card, or when a card's inputs changed since it was
+# rendered. Install with `make hooks`. Skip once with `git commit --no-verify`.
+#
+# Only runs when the commit touches content, the card tooling, or the cards
+# themselves, so unrelated commits stay fast.
+
+if git diff --cached --name-only --diff-filter=ACMR | grep -q -E '^(content/|static/social/|static/visuals/|tools/social-cards\.py|layouts/index\.social\.json|hugo\.toml)'; then
+  if ! uv run tools/social-cards.py --check; then
+    echo
+    echo "Social cards are missing or stale. Run: make cards   (or: make cards-stale)"
+    echo "Then stage static/social/ and commit again."
+    exit 1
+  fi
+fi

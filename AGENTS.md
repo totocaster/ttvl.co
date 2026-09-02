@@ -20,7 +20,13 @@ sh ./tools/build-production.sh
 
 # Direct build without cleaning public/
 HUGO_SITE_UPDATE=$(git rev-list --count HEAD) hugo --destination ./public
+
+# Social cards: render the ones that are missing (macOS; reads Helvetica Neue from the system)
+make cards
+make cards-check                        # list missing and stale cards without rendering
 ```
+
+`make` lists every target: `serve`, `serve-drafts`, `build`, the `cards` family, and `hooks`, which installs a pre-commit hook that refuses commits with missing or stale cards. Python tools under `tools/` declare their dependencies inline and run through `uv run`; nothing is installed into the system Python.
 
 `tools/build-production.sh` is the deployment entry point. It unshallows Git when necessary, derives `HUGO_SITE_UPDATE` from the commit count, removes `public/`, and invokes Hugo. There are no custom archetypes, so `hugo new` only supplies Hugo's generic frontmatter; copy a nearby content file when its schema matters.
 
@@ -49,7 +55,7 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 
 - `hugo.toml` owns the base URL, language, log permalink, output formats, Memberful checkout URLs, and site version.
 - Memberful plan IDs are `121779` for monthly membership and `121780` for yearly membership.
-- Home emits HTML, RSS, and the JSON search index. Hugo also generates `sitemap.xml` and `robots.txt`; there is no tracked `static/robots.txt`.
+- Home emits HTML, RSS, the JSON search index, and `social.json`, the social-card manifest rendered by `layouts/index.social.json`. `hugo --renderSegments social` builds only that manifest, which is how `tools/social-cards.py` reads the site. Hugo also generates `sitemap.xml` and `robots.txt`; there is no tracked `static/robots.txt`.
 - The `email` output format is declared globally, while every Flaneur dispatch currently opts into `HTML` and `email` in its frontmatter.
 - Goldmark unsafe rendering is enabled because content includes trusted inline HTML.
 - The custom RSS template includes Log, Darkroom, Bookbinding, Notes, Flaneur, Project Humane, and Obsidian content.
@@ -57,7 +63,8 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 
 ### Templates and assets
 
-- `layouts/_default/baseof.html` is the standard shell; section layouts override list or single rendering through Hugo's lookup order.
+- `layouts/_default/baseof.html` is the standard shell; section layouts override list or single rendering through Hugo's lookup order. `layouts/flaneur/baseof.html` has a deliberately bare head: dispatch HTML pages are the source the mailing system ingests, not pages to share.
+- `partials/head.html` resolves the Open Graph image. An explicit `image` frontmatter value wins; otherwise the page's own card at `static/social/<permalink>.png` or `.jpg`, then `social/projects` for pages with `project` frontmatter, then the section hub card, then `social/site`. The URL carries a content hash so scrapers refetch a regenerated card. Hugo warns at build time when a note, project page, hub, or the home page lacks its own card, but still ships the fallback.
 - `layouts/partials/` contains shared head, navigation, footer, the project/trace card (`card.html`, which takes `variant: trace` for trace pages), the Campaign Monitor form (`subscribe-form.html`, which takes a per-page `id`), search, lightbox, and home-page components. Partial filenames are kebab-case.
 - `assets/scss/style.scss` is an import-only manifest. `_tokens.scss` defines the themed color custom properties, `_variables.scss` holds the Sass type/spacing/width/stacking values, `_base.scss` and `_layout.scss` hold the document shell, `components/` holds patterns shared by two or more sections, and `sections/` holds page-specific composition. `assets/scss/membership.scss` is a separate stylesheet for the Membership page.
 - Hugo Pipes compiles/minifies SCSS and minifies/fingerprints most JavaScript. There is no separate npm build step.
@@ -123,7 +130,7 @@ project:
   image: /visuals/project-thumbs/example.png
 ```
 
-Use `project.category: /obsidian` for Obsidian work, `/project-humane` for Project Humane, `/darkroom` for photography tooling, and `/bookbinding` for bindery tools. Store card images in `static/visuals/`, usually `static/visuals/project-thumbs/`.
+Use `project.category: /obsidian` for Obsidian work, `/project-humane` for Project Humane, `/darkroom` for photography tooling, and `/bookbinding` for bindery tools. Store card images in `static/visuals/`, usually `static/visuals/project-thumbs/`. The same image becomes the page's social card; run `make cards` after adding or replacing it.
 
 Project Humane pages normally live in `content/project-humane/`. Obsidian pages are the deliberate exception: even when philosophically related to Project Humane, they live in `content/obsidian/` and use `/obsidian/…/` canonical URLs.
 
@@ -139,6 +146,18 @@ Project Humane pages normally live in `content/project-humane/`. Obsidian pages 
 - Put notes in `content/notes/` and use one supported category: `collected`, `thinking`, or `longform`.
 - A missing category is treated as `thinking` by the list template.
 - Link to another note by its canonical `/notes/slug/` path so the build-time backlink detector can find it.
+- After adding a note, run `make cards` and commit its card under `static/social/notes/`.
+
+### Social cards
+
+Every note, project page, hub with a `filter_dek`, and the home page has a 1200 × 630 Open Graph card under `static/social/`, committed to the repository. Cards are rendered locally, never on the build server.
+
+- Run `make cards` (`uv run tools/social-cards.py`) after adding a note or project page, or after changing a title, date, category, description, or poster. It builds the manifest through Hugo, renders only the cards that are missing, and updates `static/social/manifest.json`. Commit the new files with the content change; `make hooks` installs a pre-commit hook that refuses a commit while cards are missing or stale.
+- `make cards-check` lists missing, stale, and orphaned cards without rendering; `make cards-stale` also re-renders cards whose inputs changed; `make cards-all` re-renders everything after a design change (bump `DESIGN_VERSION` in the script when the design changes); `uv run tools/social-cards.py --only /notes/walking/` limits a run, and `--drafts` includes draft pages.
+- Card voices: Notes are the ledger header with the title set as a text-fragment highlight; Projects are the poster from `project.image` matted on a pale blueprint grid with a wall label; hubs and the site card are the ledger with a dek. Hub deks come from `filter_dek`; the site dek from `params.description` in `hugo.toml`.
+- Flaneur dispatches get no card: their HTML pages are email sources with no metadata. The plate and engraving renderers remain in the script, dormant, and the manifest template says how to re-enable them.
+- Rendering needs macOS: Helvetica Neue is read from `/System/Library/Fonts/HelveticaNeue.ttc` (override with `SOCIAL_CARDS_FONT`). uv provisions Python and Pillow from the script's inline metadata.
+- Log months, About, Colophon, Leaves, and Traces without an explicit `image` fall back to the site card; Traces set `image` in frontmatter and keep it.
 
 ### Photography, downloads, and visual assets
 
@@ -168,7 +187,7 @@ Project Humane pages normally live in `content/project-humane/`. Obsidian pages 
 ## Site versioning and deployment
 
 - The footer format is `vMAJOR.MINOR.UPDATE`.
-- The configured site era is currently `v7.7` under `[params.version]` in `hugo.toml`.
+- The configured site era is currently `v7.9` under `[params.version]` in `hugo.toml`.
 - `MAJOR` identifies the site era. Change `MINOR` only for a visible site-structure or publishing-system revision, not for routine content.
 - `UPDATE` is the repository commit count supplied through `HUGO_SITE_UPDATE` by `tools/build-production.sh`.
 - `params.version.update` is only a fallback for direct local Hugo invocations and can lag behind Git history.
@@ -261,3 +280,4 @@ There are no automated tests. Match verification to the change:
 5. Check Notes filtering/backlinks, lightbox controls, Text Fragment URLs, or pronunciation when touching those features.
 6. Verify both browser and email outputs for Flaneur changes.
 7. Inspect `/index.json`, `/index.xml`, aliases, redirects, `robots.txt`, and `sitemap.xml` when changing outputs or routing.
+8. Run `make cards-check` before committing content. A production build warns about missing cards but still ships the fallback.

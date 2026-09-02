@@ -1,0 +1,270 @@
+{
+  "version": "1",
+  "cards": {
+    "social/bookbinding": {
+      "hash": "d062fcc08e91a36b",
+      "file": "social/bookbinding.png",
+      "style": "hub"
+    },
+    "social/bookbinding/corner-cutting-jig": {
+      "hash": "5b0ccd56adfa0f79",
+      "file": "social/bookbinding/corner-cutting-jig.jpg",
+      "style": "project"
+    },
+    "social/darkroom": {
+      "hash": "1843f155ea410f58",
+      "file": "social/darkroom.png",
+      "style": "hub"
+    },
+    "social/darkroom/canister-stickers": {
+      "hash": "95b9f2b8a590389c",
+      "file": "social/darkroom/canister-stickers.jpg",
+      "style": "project"
+    },
+    "social/darkroom/foldable-film-reminder": {
+      "hash": "67b82b6a4b0009ec",
+      "file": "social/darkroom/foldable-film-reminder.jpg",
+      "style": "project"
+    },
+    "social/darkroom/horseman-lensboards": {
+      "hash": "194e31e88e143f60",
+      "file": "social/darkroom/horseman-lensboards.jpg",
+      "style": "project"
+    },
+    "social/darkroom/lucky-cp32-manual": {
+      "hash": "40e7c8f3f57f2066",
+      "file": "social/darkroom/lucky-cp32-manual.jpg",
+      "style": "project"
+    },
+    "social/darkroom/pentax-digital-spotmeter-sticker": {
+      "hash": "ebf15d7f433805bd",
+      "file": "social/darkroom/pentax-digital-spotmeter-sticker.jpg",
+      "style": "project"
+    },
+    "social/darkroom/roll-id": {
+      "hash": "4e4baef581d2657b",
+      "file": "social/darkroom/roll-id.jpg",
+      "style": "project"
+    },
+    "social/darkroom/rugged-40-roll-film-storage": {
+      "hash": "53ed5025144e7d84",
+      "file": "social/darkroom/rugged-40-roll-film-storage.jpg",
+      "style": "project"
+    },
+    "social/darkroom/rz67-focus-gear-stl": {
+      "hash": "305c86a5ef4a0f49",
+      "file": "social/darkroom/rz67-focus-gear-stl.jpg",
+      "style": "project"
+    },
+    "social/darkroom/thermometer-panel-for-jobo-systems": {
+      "hash": "8d4ec11b2a50bf25",
+      "file": "social/darkroom/thermometer-panel-for-jobo-systems.jpg",
+      "style": "project"
+    },
+    "social/darkroom/travel-dev-kit": {
+      "hash": "4b443a7c4a7ad8ec",
+      "file": "social/darkroom/travel-dev-kit.jpg",
+      "style": "project"
+    },
+    "social/darkroom/valoi-easy120-with-negative-supply-99cri-light": {
+      "hash": "b8645c03296c0740",
+      "file": "social/darkroom/valoi-easy120-with-negative-supply-99cri-light.jpg",
+      "style": "project"
+    },
+    "social/jinny": {
+      "hash": "450ea75da173866b",
+      "file": "social/jinny.jpg",
+      "style": "project"
+    },
+    "social/leaves": {
+      "hash": "00f1515a2f465285",
+      "file": "social/leaves.png",
+      "style": "hub"
+    },
+    "social/newsletter": {
+      "hash": "65ba7df317507f99",
+      "file": "social/newsletter.png",
+      "style": "hub"
+    },
+    "social/notes": {
+      "hash": "5931907bac853d49",
+      "file": "social/notes.png",
+      "style": "hub"
+    },
+    "social/notes/a-low-noise-smartphone": {
+      "hash": "a6989350547328b3",
+      "file": "social/notes/a-low-noise-smartphone.png",
+      "style": "note"
+    },
+    "social/notes/ai-coding-took-off-because-the-tooling-was-already-there": {
+      "hash": "23d6068fb7c7a471",
+      "file": "social/notes/ai-coding-took-off-because-the-tooling-was-already-there.png",
+      "style": "note"
+    },
+    "social/notes/attention-platforms-cannot-invent-new-interfaces": {
+      "hash": "84cc498349e1e77b",
+      "file": "social/notes/attention-platforms-cannot-invent-new-interfaces.png",
+      "style": "note"
+    },
+    "social/notes/dumb-phones-do-not-work": {
+      "hash": "c24da1c929eb79d5",
+      "file": "social/notes/dumb-phones-do-not-work.png",
+      "style": "note"
+    },
+    "social/notes/hands-are-not-cursors": {
+      "hash": "2c8d0154a5930ce2",
+      "file": "social/notes/hands-are-not-cursors.png",
+      "style": "note"
+    },
+    "social/notes/headsets-and-glasses-are-a-stepping-stone-at-best": {
+      "hash": "b24e280a70de97e4",
+      "file": "social/notes/headsets-and-glasses-are-a-stepping-stone-at-best.png",
+      "style": "note"
+    },
+    "social/notes/non-photographers-need-not-apply": {
+      "hash": "6a599f0e01819a3f",
+      "file": "social/notes/non-photographers-need-not-apply.png",
+      "style": "note"
+    },
+    "social/notes/preservation-of-fire": {
+      "hash": "f4fae43f233d2581",
+      "file": "social/notes/preservation-of-fire.png",
+      "style": "note"
+    },
+    "social/notes/ship-the-tool-not-the-agent": {
+      "hash": "91802f9df1257b45",
+      "file": "social/notes/ship-the-tool-not-the-agent.png",
+      "style": "note"
+    },
+    "social/notes/soviet-not-russia": {
+      "hash": "2066ceda21a2e1c6",
+      "file": "social/notes/soviet-not-russia.png",
+      "style": "note"
+    },
+    "social/notes/ten-rules-for-students-and-teachers": {
+      "hash": "f3dfd55adc04e431",
+      "file": "social/notes/ten-rules-for-students-and-teachers.png",
+      "style": "note"
+    },
+    "social/notes/the-human-border": {
+      "hash": "3ab2e3c9cdbec444",
+      "file": "social/notes/the-human-border.png",
+      "style": "note"
+    },
+    "social/notes/universal-content-bundle": {
+      "hash": "7ce52decd2ae8192",
+      "file": "social/notes/universal-content-bundle.png",
+      "style": "note"
+    },
+    "social/notes/walking": {
+      "hash": "1ee238197e6477ca",
+      "file": "social/notes/walking.png",
+      "style": "note"
+    },
+    "social/notes/where-i-stand-on-ai": {
+      "hash": "e09a2347923fb283",
+      "file": "social/notes/where-i-stand-on-ai.png",
+      "style": "note"
+    },
+    "social/obsidian": {
+      "hash": "5f9085f208f653a5",
+      "file": "social/obsidian.png",
+      "style": "hub"
+    },
+    "social/obsidian/arrowhead": {
+      "hash": "711d66c9912026df",
+      "file": "social/obsidian/arrowhead.jpg",
+      "style": "project"
+    },
+    "social/obsidian/bases-kanban-view": {
+      "hash": "5fa1e43d0f00fd19",
+      "file": "social/obsidian/bases-kanban-view.jpg",
+      "style": "project"
+    },
+    "social/obsidian/metrics": {
+      "hash": "9a19821950ea6928",
+      "file": "social/obsidian/metrics.jpg",
+      "style": "project"
+    },
+    "social/obsidian/stamp": {
+      "hash": "ae6cd4324f81daa7",
+      "file": "social/obsidian/stamp.jpg",
+      "style": "project"
+    },
+    "social/obsidian/triage": {
+      "hash": "04e1fe22b5498476",
+      "file": "social/obsidian/triage.jpg",
+      "style": "project"
+    },
+    "social/obsidian/vault-tasks": {
+      "hash": "d76feb4ff03a632e",
+      "file": "social/obsidian/vault-tasks.jpg",
+      "style": "project"
+    },
+    "social/project-humane": {
+      "hash": "e636882fe6c23a5f",
+      "file": "social/project-humane.png",
+      "style": "hub"
+    },
+    "social/project-humane/edc-keychain": {
+      "hash": "8faee23b7e8f4540",
+      "file": "social/project-humane/edc-keychain.jpg",
+      "style": "project"
+    },
+    "social/project-humane/notebook-system": {
+      "hash": "bec766e3695e82f9",
+      "file": "social/project-humane/notebook-system.png",
+      "style": "hub"
+    },
+    "social/project-humane/patchcord": {
+      "hash": "d3c70583fa7822bd",
+      "file": "social/project-humane/patchcord.jpg",
+      "style": "project"
+    },
+    "social/project-humane/plaintext-commons": {
+      "hash": "8da356c9a1aac401",
+      "file": "social/project-humane/plaintext-commons.jpg",
+      "style": "project"
+    },
+    "social/project-humane/refmode": {
+      "hash": "0958e68efcf003f3",
+      "file": "social/project-humane/refmode.jpg",
+      "style": "project"
+    },
+    "social/project-humane/things-cli": {
+      "hash": "b591aa70637cd14e",
+      "file": "social/project-humane/things-cli.jpg",
+      "style": "project"
+    },
+    "social/project-humane/tp7": {
+      "hash": "e5dd16c38320a3f2",
+      "file": "social/project-humane/tp7.jpg",
+      "style": "project"
+    },
+    "social/project-humane/whoopy": {
+      "hash": "03a22a4c48351187",
+      "file": "social/project-humane/whoopy.jpg",
+      "style": "project"
+    },
+    "social/project-humane/withingy": {
+      "hash": "13f46e3e15150a08",
+      "file": "social/project-humane/withingy.jpg",
+      "style": "project"
+    },
+    "social/projects": {
+      "hash": "0b02e3d545df66ba",
+      "file": "social/projects.png",
+      "style": "hub"
+    },
+    "social/site": {
+      "hash": "cd3a915ba8c27d09",
+      "file": "social/site.png",
+      "style": "site"
+    },
+    "social/traces": {
+      "hash": "7f46538dd1b685e0",
+      "file": "social/traces.png",
+      "style": "hub"
+    }
+  }
+}

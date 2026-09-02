@@ -1,4 +1,7 @@
-#!/usr/bin/env python3
+#!/usr/bin/env -S uv run --script
+# /// script
+# requires-python = ">=3.12"
+# ///
 """Build the public, undated data for the spatial long-exposure trace.
 
 The source exports remain the canonical history. To update the map, replace
