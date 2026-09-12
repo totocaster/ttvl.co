@@ -59,6 +59,7 @@ Updated 2026-09 · Not awards. Things that exist.
 
 <ul class="issue-list">
   <li><span class="issue-number"><time datetime="2026-11">2026-11</time></span><span class="press-work"><a class="issue-title" href="https://toto.photo/exhibitions/fotofilmic-book-program-paris/">FotoFilmic Book Program 2025–26: Paris</a> <span class="press-venue">· FotoFilmic Paris, Paris Photo week</span></span></li>
+  <li><span class="issue-number"><time datetime="2026-09-19">2026-09</time></span><span class="press-work"><a class="issue-title" href="https://toto.photo/exhibitions/wirescapes-reprise/">Wirescapes: Connected With the Urban Fabric (Reprise)</a> <span class="press-venue">· Mutant Radio, Tbilisi, duo, September 19, 2026</span></span></li>
   <li><span class="issue-number"><time datetime="2026-06">2026-06</time></span><span class="press-work"><a class="issue-title" href="https://toto.photo/exhibitions/fotofilmic-book-program-bowen-island/">FotoFilmic Book Program 2025–26: Bowen Island</a> <span class="press-venue">· FotoFilmic Space, British Columbia</span></span></li>
   <li><span class="issue-number"><time datetime="2024-01">2024-01</time></span><span class="press-work"><a class="issue-title" href="https://toto.photo/exhibitions/flaneur-vol-2/">Tokyo Flâneur Vol. 2: The Moments I Stood Still</a> <span class="press-venue">· Jinny Street Gallery, group</span></span></li>
   <li><span class="issue-number"><time datetime="2023-01">2023-01</time></span><span class="press-work"><a class="issue-title" href="https://toto.photo/exhibitions/flaneur/">Tokyo Flâneur: Through the Eyes of a Stroller</a> <span class="press-venue">· Jinny Street Gallery, group</span></span></li>
@@ -70,7 +71,7 @@ Updated 2026-09 · Not awards. Things that exist.
 
 ### Curation
 
-[Jinny Street Gallery](/jinny/), co-founded with [Lorenzo Menghi](https://www.instagram.com/_lorenzomenghi/) in January 2023: 42 streetlamps with display cases across Jingumae 2-chome, more than thirty exhibitions so far, a magazine, and artist walks. NHK World filmed it in 2023.
+[Jinny Street Gallery](/jinny/), co-founded with [Lorenzo Menghi](https://www.instagram.com/_lorenzomenghi/) in January 2023: 42 streetlamps with display cases across Jingumae 2-chome, more than thirty exhibitions so far, a magazine, and artist walks. [NHK World filmed it in 2023](https://vimeo.com/1187645245/3d183a475f?share=copy&fl=sv&fe=ci).
 
 <figure>
   <img src="/visuals/jinny_setup.jpg" alt="Lorenzo and Toto on ladders installing artwork in a streetlamp display case" loading="lazy" />
@@ -107,7 +108,7 @@ Updated 2026-09 · Not awards. Things that exist.
 
 <ul class="issue-list">
   <li><span class="issue-number"><time datetime="2025">2025</time></span><span class="press-work"><a class="issue-title" href="https://www.reuseitaly.com/books/atlas-of-ruins/">Three Photographs from Tskaltubo, Georgia</a> <span class="press-venue">· Atlas of Ruins, Vol. 1, STH Press, Italy</span></span></li>
-  <li><span class="issue-number"><time datetime="2025-02">2025-02</time></span><span class="press-work">Cover story on Jinny Street Gallery <span class="press-venue">· andJ, Jingumae neighborhood magazine</span></span></li>
+  <li><span class="issue-number"><time datetime="2025-03">2025-03</time></span><span class="press-work"><a class="issue-title" href="/downloads/andJ06_interview.pdf">Cover and interview on Jinny Street Gallery, with Lorenzo Menghi</a> <span class="press-venue">· andJ, Issue 6, Jingumae neighborhood magazine (PDF, 1.5 MB)</span></span></li>
   <li><span class="issue-number"><time datetime="2022-11">2022-11</time></span><span class="press-work"><a class="issue-title" href="https://www.adfwebmagazine.jp/en/art/wirescapes-connected-with-the-urban-fabric/">Wirescapes: connected with the urban fabric</a> <span class="press-venue">· ADF Magazine, exhibition report by Matteo Belfiore</span></span></li>
   <li><span class="issue-number"><time datetime="2022-03">2022-03</time></span><span class="press-work"><a class="issue-title" href="https://www.amazon.co.jp/-/en/生活の友社/dp/B09PMKBZY9">Lone Man, 2019</a> <span class="press-venue">· ARTcollectors’ アートコレクターズ Magazine, Issue 156</span></span></li>
 </ul>
@@ -196,9 +197,7 @@ People ask, so here is the kit. The rule is two bodies with two lenses over one 
       <ul>
         <li>Summilux-M 50mm f/1.4 ASPH, the close-focus version</li>
         <li>Summilux-M 35mm f/1.4 ASPH FLE</li>
-        <li>Summicron-M 28mm f/2</li>
-        <li>Contax G lenses on the G2</li>
-        <li>Lumix S 100mm f/2.8 Macro for scanning</li>
+        <li>On the G2, mostly the G 28mm f/2.8 or the G 35mm f/2. I own all of them, because it makes me feel good.</li>
       </ul>
     </dd>
   </div>
@@ -206,10 +205,8 @@ People ask, so here is the kit. The rule is two bodies with two lenses over one 
     <dt>Film</dt>
     <dd>
       <ul>
-        <li>Portra 400 and 160, Ektar 100 in 120</li>
-        <li>Tri-X and HP5 Plus in black and white</li>
-        <li>Kodak P3200 when the light is gone</li>
-        <li>4×5 holders, still in the fridge</li>
+        <li>HP5 Plus for black and white</li>
+        <li>Portra or Ultramax for color</li>
       </ul>
     </dd>
   </div>
@@ -249,7 +246,7 @@ People ask, so here is the kit. The rule is two bodies with two lenses over one 
     <dd>
       <ul>
         <li>The <a href="/project-humane/notebook-system/">Unbound Notebook System</a>, loose leaves in covers I make myself</li>
-        <li>Field Notes in the pocket</li>
+        <li>A3 kraft paper and a Sharpie for ideation</li>
         <li>A daily journal since 2019</li>
       </ul>
     </dd>
@@ -268,20 +265,10 @@ People ask, so here is the kit. The rule is two bodies with two lenses over one 
     </dd>
   </div>
   <div>
-    <dt>Making</dt>
-    <dd>
-      <ul>
-        <li>A resin 3D printer, the first tool bought for Rome</li>
-        <li>Bone folders made at Marumizu-gumi</li>
-        <li>A birch plywood worktable</li>
-      </ul>
-    </dd>
-  </div>
-  <div>
     <dt>Carry</dt>
     <dd>
       <ul>
-        <li>Freitag F05 Blair</li>
+        <li>Freitag F05 Blair, for money</li>
         <li>Freitag F35 Cheyenne, for stationery</li>
         <li>Freitag F155 Clapton, for everything</li>
       </ul>
