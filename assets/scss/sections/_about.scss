@@ -45,6 +45,78 @@ main article.about {
     }
   }
 
+  // The portrait sits to the right of the opening paragraphs; the prose
+  // measure is narrower than the container, so wide screens keep the two
+  // apart and narrow ones wrap the text around it.
+  figure.portrait {
+    float: right;
+    width: 240px;
+    margin: 4px 0 20px 40px;
+
+    @include narrow {
+      width: 132px;
+      margin: 4px 0 12px 20px;
+    }
+  }
+
+  // Section rules also clear the floated portrait.
+  hr {
+    clear: both;
+  }
+
+  // Record-keeping line under a section heading ("Updated 2026-09").
+  .section-meta {
+    @include type-meta;
+    color: var(--ink-faint);
+    margin: -8px 0 20px;
+  }
+
+  // "Where it shows" line under each principle, in the meta voice.
+  .where {
+    @include type-meta;
+    color: var(--ink-faint);
+    margin: -8px 0 25px;
+    @include readable-width;
+
+    a {
+      color: inherit;
+      font-weight: $link-weight-quiet;
+      transition: color $t-fast;
+
+      &:hover {
+        color: var(--ink);
+      }
+    }
+  }
+
+  // Inline Flâneur form (the `subscribe` shortcode) sits inside prose.
+  div.email-subscribe {
+    padding: 0.5rem 0 0;
+  }
+
+  // Kit list: label/value pairs in two quiet columns at bleed width.
+  dl.kit {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0 32px;
+    max-width: $max-width-bleed;
+    margin: 0 0 25px;
+
+    @include narrow {
+      grid-template-columns: 1fr;
+    }
+
+    dt {
+      @include type-label;
+      color: var(--ink-faint);
+      margin-top: 8px;
+    }
+
+    dd {
+      margin: 0 0 8px;
+    }
+  }
+
   // Principles carry catalog numbers in the TOC's counter voice.
   h3.principle {
     counter-increment: principle;

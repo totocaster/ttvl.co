@@ -1,0 +1,11 @@
+{{- /* Inline Flâneur subscribe form for content pages. Reuses the Campaign
+Monitor form partial and the newsletter page's honest legend. Pass "id" to
+keep element ids unique when a page carries more than one form. */ -}}
+{{- $id := .Get "id" | default "inline" -}}
+{{- $dispatches := where (where site.Pages "Section" "flaneur") "Kind" "page" -}}
+{{- $oldest := index $dispatches.ByDate 0 -}}
+<div class="email-subscribe">
+  {{ partial "subscribe-form.html" (dict "id" $id) }}
+  <p class="dispatch-legend">{{ len $dispatches }} dispatches since {{ $oldest.Date.Format "2006" }} &middot; seasonal, not monthly &middot; one click to leave</p>
+</div>
+{{ partial "campaign-monitor-script.html" .Page }}
