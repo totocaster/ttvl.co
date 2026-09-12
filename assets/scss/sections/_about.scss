@@ -71,27 +71,10 @@ main article.about {
     margin: -8px 0 20px;
   }
 
-  // "Where it shows" line under each principle, in the meta voice.
-  .where {
-    @include type-meta;
-    color: var(--ink-faint);
-    margin: -8px 0 25px;
-    @include readable-width;
-
-    a {
-      color: inherit;
-      font-weight: $link-weight-quiet;
-      transition: color $t-fast;
-
-      &:hover {
-        color: var(--ink);
-      }
-    }
-  }
-
-  // Inline Flâneur form (the `subscribe` shortcode) sits inside prose.
+  // Inline Flâneur form (the `subscribe` shortcode) sits inside prose;
+  // the bottom padding keeps the next paragraph off the legend line.
   div.email-subscribe {
-    padding: 0.5rem 0 0;
+    padding: 0.5rem 0 1.5rem;
   }
 
   // Kit list: label/value pairs in two quiet columns at bleed width.
@@ -114,6 +97,17 @@ main article.about {
 
     dd {
       margin: 0 0 8px;
+    }
+
+    // Each entry is a short bullet list.
+    dd ul {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    dd li {
+      max-width: none;
+      margin-bottom: 2px;
     }
   }
 

@@ -12,7 +12,7 @@ aliases:
 
 <figure class="portrait">
   <img src="/visuals/toto_self_portrait_2022.jpg" alt="Toto Tvalavadze, self-portrait" width="960" height="960" />
-  <figcaption>Self-portrait, 2022.</figcaption>
+  <figcaption>Self-portrait, 2022. Due for a newer one.</figcaption>
 </figure>
 
 I'm {{< pronunciation-name "Toto" >}}, a Georgian photographer, bookmaker, and toolmaker. I was born in Tbilisi in 1988, moved to Japan in December 2014, first to Kanazawa and then to Tokyo, and in 2026 started setting up a studio in Rome. Toto is short for Tornike, a name only my passport uses.
@@ -29,7 +29,8 @@ This site is my public notebook: what the work teaches me, findings, research, a
 
 {{< subscribe id="about" >}}
 
-After that: [RSS](/index.xml), [Instagram](https://instagram.com/totocaster), [Mastodon](https://mastodon.social/@ttt). Email is the best way to reach me: [toto@ttvl.co](mailto:toto@ttvl.co). I read everything, and everything I send back is written by me.
+
+After that: [RSS](/index.xml) and [Instagram](https://instagram.com/totocaster). Email is the best way to reach me: [toto@ttvl.co](mailto:toto@ttvl.co). I read everything, unless it is obviously AI-generated, and everything I send back is written by me.
 
 On this page: [Record](#record) · [Philosophy](#philosophy) · [Extended about](#extended-about) · [Tools I use](#tools-i-use) · [AI](#how-i-use-ai) · [Get in touch](#get-in-touch)
 {.on-page}
@@ -69,7 +70,7 @@ Updated 2026-09 · Not awards. Things that exist.
 
 ### Curation
 
-[Jinny Street Gallery](/jinny/), co-founded with [Lorenzo Menghi](https://www.instagram.com/_lorenzomenghi/) in January 2023: 42 streetlamps with display cases across Jingumae 2-chome, more than thirty exhibitions so far, a magazine, artist walks, and Jinny Lemon Sour with Open Book in Golden Gai. NHK World filmed it in 2023.
+[Jinny Street Gallery](/jinny/), co-founded with [Lorenzo Menghi](https://www.instagram.com/_lorenzomenghi/) in January 2023: 42 streetlamps with display cases across Jingumae 2-chome, more than thirty exhibitions so far, a magazine, and artist walks. NHK World filmed it in 2023.
 
 <figure>
   <img src="/visuals/jinny_setup.jpg" alt="Lorenzo and Toto on ladders installing artwork in a streetlamp display case" loading="lazy" />
@@ -87,7 +88,6 @@ Updated 2026-09 · Not awards. Things that exist.
 ### Speaking
 
 <ul class="issue-list">
-  <li><span class="issue-number"><time datetime="2025-07">2025-07</time></span><span class="press-work">Creative drawing workshop, co-led <span class="press-venue">· Jinny Street Gallery</span></span></li>
   <li><span class="issue-number"><time datetime="2023-12">2023-12</time></span><span class="press-work"><a class="issue-title" href="https://www.pechakucha.com/presentations/light-posts-of-jinny-street-gallery">Light Posts of Jinny Street Gallery</a> <span class="press-venue">· PechaKucha Night Tokyo, Vol. 186</span></span></li>
 </ul>
 
@@ -114,42 +114,33 @@ Updated 2026-09 · Not awards. Things that exist.
 
 ### Tools I made
 
-Thirteen tools and plugins under [Project Humane](/project-humane/), all open source. For Obsidian: [Arrowhead](/obsidian/arrowhead/), [Stamp](/obsidian/stamp/), [Triage](/obsidian/triage/), [Vault Tasks](/obsidian/vault-tasks/), [Metrics](/obsidian/metrics/), and [Better Kanban](/obsidian/bases-kanban-view/). For the terminal: [Whoopy](/project-humane/whoopy/), [Withingy](/project-humane/withingy/), [Things CLI](/project-humane/things-cli/), [TP-7 CLI](/project-humane/tp7/), [Refmode](/project-humane/refmode/), and [Patchcord](/project-humane/patchcord/). For paper: the [Unbound Notebook System](/project-humane/notebook-system/). The stance behind all of them is [Plaintext Commons](/project-humane/plaintext-commons/).
+Toolmaking is the software half of the practice: command-line tools and Obsidian plugins for people who keep their notes in plain files, built to work for a person at a keyboard and for an agent alike. All of it lives under [Project Humane](/project-humane/), thirteen tools so far, with [Plaintext Commons](/project-humane/plaintext-commons/) as the stance.
 
 ---
 
 ## Philosophy
 
-Three principles I try to live by and build into everything I make. Each one comes with the place it shows.
+Three principles I try to live by and build into everything I make.
+
+### Follow Irrational Thoughts {.principle}
 
 <figure>
   <img src="/visuals/2024.12_irrational_thoughts.png" alt="Desert landscape with scattered rocks and handwritten text reading IRRATIONAL THOUGHTS MUST BE FOLLOWED ABSOLUTELY AND LOGICALLY, quote by Sol LeWitt" loading="lazy" />
   <figcaption>Sol LeWitt’s sentence, written into the desert. Still from Tom Sachs’s <em>Paradox Bullets</em>.</figcaption>
 </figure>
 
-### Follow Irrational Thoughts {.principle}
-
 > We are mystics, not rationalists. Art, like marathon running, is an irrational, useless endeavor. But we expend the enormous energy art demands anyway. Because through our efforts, we expand our threshold for the human spirit. This is what distinguishes us from the cows in the field.
 
 — Tom Sachs, [_Paradox Bullets_](https://youtu.be/-Evrm03Y5hI), on Sol LeWitt's renowned quote
 {.quote-attribution}
 
-Where it shows: a gallery made of streetlamps that nobody asked for, and a photobook about how time feels.
-{.where}
-
 ### Made for Humans {.principle}
 
 Hands are extraordinary, and their ingenuity is among the clearest markers of what it means to be human. They sculpt, write, design, build; they are the conduits through which imagination becomes form. Yet modern technology has largely relegated them to repetitive tapping on glass, an interface that betrays their potential. Design tools and systems with the human body in mind: tools that respond to the complexity of touch, motion, and thought.
 
-Where it shows: [Project Humane](/project-humane/), the [Unbound Notebook System](/project-humane/notebook-system/), and [Hands Are Not Cursors](/notes/hands-are-not-cursors/).
-{.where}
-
 ### Local First {.principle}
 
 Every project has a landscape, and that landscape is local. For a decade it was the neighborhood around Jinny Street Gallery and a print shop that smelled of ink, a short walk from home in Tokyo. Now it is a studio in Monteverde, Rome, with the boxes still arriving. Build _here_, now, with people whose eyes you can see. The result is work that carries the texture of a place, the unmistakable scent of belonging.
-
-Where it shows: [Jinny Lemon Sour](https://www.jinnystreetgallery.com/lemon-sour), made with a bar in Golden Gai and sold only in the gallery’s neighborhood.
-{.where}
 
 ---
 
@@ -164,7 +155,7 @@ Software paid for all of this. I wrote iPhone apps for over a decade without a d
 
 In late 2024 I built a darkroom for color and black-and-white printing in Kyojima, Tokyo. It was the production space for _Out of Memory_, the maquettes, and everything I bound, until August 2026, when 400 kilograms of it left for Italy in seventeen parcels. Minutes before packing, I scanned the room. It lives on as [_Kyojima Studio, 2024–2026_](/traces/kyojima-studio/) in Traces.
 
-In June 2026 I married Ludo in Rome. We share a studio in Monteverde, where the worktable is new and the boxes are still arriving. Tokyo is home for a little longer. Tbilisi is where the family is.
+In June 2026 I married Ludo in Rome. We share a studio in Monteverde, called Project Humane or Studio Humane depending on the weather, where the worktable is new and the boxes are still arriving. Tokyo is home for a little longer. Tbilisi is where the family is, and my escape hatch from Rome.
 
 ---
 
@@ -178,51 +169,132 @@ People ask, so here is the kit. The rule is two bodies with two lenses over one 
 <dl class="kit">
   <div>
     <dt>Cameras</dt>
-    <dd>Leica M11-P, the primary body. Leica Q3 43, the fixed-lens pairing. Contax G2 and Ricoh GR IV Monochrome, my fourth GR, for <em>Out of Memory</em>; earlier volumes were shot on a Sony RX100 VII, a Leica M-D, a Leica Q2 Monochrom, and many Ricoh GR IIIs. Two Konica Big Mini F, one for each of us, for a family project of 80–100 rolls a year. A Panasonic Lumix S5 as the utility camera.</dd>
+    <dd>
+      <ul>
+        <li>Leica M11-P, the primary body</li>
+        <li>Leica Q3 43, the fixed-lens pairing</li>
+        <li>Panasonic Lumix S5, utility and scanning</li>
+        <li>Two Konica Big Mini F for the family rolls, 80–100 a year</li>
+      </ul>
+    </dd>
+  </div>
+  <div>
+    <dt>Out of Memory kit</dt>
+    <dd>
+      <ul>
+        <li>Contax G2</li>
+        <li>Ricoh GR IV Monochrome, my fourth GR</li>
+        <li>Teenage Engineering TP-7 for voice notes</li>
+        <li>An Unbound notebook</li>
+        <li>Earlier volumes: Sony RX100 VII, Leica M-D, Leica Q2 Monochrom, and many Ricoh GR IIIs</li>
+      </ul>
+    </dd>
   </div>
   <div>
     <dt>Lenses</dt>
-    <dd>Summilux-M 50mm f/1.4 ASPH, the close-focus version. Summilux-M 35mm f/1.4 ASPH FLE. Summicron-M 28mm f/2. Contax G lenses on the G2. Lumix S 100mm f/2.8 Macro for scanning.</dd>
+    <dd>
+      <ul>
+        <li>Summilux-M 50mm f/1.4 ASPH, the close-focus version</li>
+        <li>Summilux-M 35mm f/1.4 ASPH FLE</li>
+        <li>Summicron-M 28mm f/2</li>
+        <li>Contax G lenses on the G2</li>
+        <li>Lumix S 100mm f/2.8 Macro for scanning</li>
+      </ul>
+    </dd>
   </div>
   <div>
     <dt>Film</dt>
-    <dd>Portra 400 and 160 and Ektar 100 in 120. Tri-X and HP5 Plus in black and white. Kodak P3200 when the light is gone. The 4×5 holders are still in the fridge.</dd>
+    <dd>
+      <ul>
+        <li>Portra 400 and 160, Ektar 100 in 120</li>
+        <li>Tri-X and HP5 Plus in black and white</li>
+        <li>Kodak P3200 when the light is gone</li>
+        <li>4×5 holders, still in the fridge</li>
+      </ul>
+    </dd>
   </div>
   <div>
     <dt>Darkroom</dt>
-    <dd>A JOBO rotary processor with the <a href="/darkroom/thermometer-panel-for-jobo-systems/">four-probe thermometer panel</a> I built for it. Replenished C-41 mixed from minilab concentrates. RA-4 color prints.</dd>
+    <dd>
+      <ul>
+        <li>JOBO rotary processor with the <a href="/darkroom/thermometer-panel-for-jobo-systems/">four-probe thermometer panel</a> I built for it</li>
+        <li>Replenished C-41 mixed from minilab concentrates</li>
+        <li>RA-4 color prints</li>
+      </ul>
+    </dd>
   </div>
   <div>
     <dt>Scanning</dt>
-    <dd>LPL DS-4 copy stand, Leica Bellows-R, and the <a href="/darkroom/valoi-easy120-with-negative-supply-99cri-light/">VNS adapter</a> with Apo-Rodagon optics over Valoi easy120 and easy35 carriers. Negative Lab Pro inside Lightroom. Two minutes a roll.</dd>
+    <dd>
+      <ul>
+        <li>LPL DS-4 copy stand with a Leica Bellows-R</li>
+        <li><a href="/darkroom/valoi-easy120-with-negative-supply-99cri-light/">VNS adapter</a> with Apo-Rodagon optics over Valoi easy120 and easy35 carriers</li>
+        <li>Negative Lab Pro for conversions. Two minutes a roll.</li>
+      </ul>
+    </dd>
   </div>
   <div>
     <dt>Desk</dt>
-    <dd>MacBook Pro and an Apple Studio Display. A Mac mini that never sleeps, running the home server and the assistant. Teenage Engineering TP-7 for voice notes. reMarkable Paper Pro Move. The plainest iPhone on sale. A Stream Deck, mostly for <a href="/project-humane/refmode/">Refmode</a>.</dd>
+    <dd>
+      <ul>
+        <li>MacBook Pro and an Apple Studio Display</li>
+        <li>A Mac mini that never sleeps, running the home server and the assistant</li>
+        <li>The plainest iPhone on sale</li>
+        <li>A Stream Deck, mostly for <a href="/project-humane/refmode/">Refmode</a></li>
+      </ul>
+    </dd>
   </div>
   <div>
     <dt>Paper</dt>
-    <dd>The <a href="/project-humane/notebook-system/">Unbound Notebook System</a>, loose leaves in covers I make myself. Field Notes in the pocket. A daily journal since 2019.</dd>
+    <dd>
+      <ul>
+        <li>The <a href="/project-humane/notebook-system/">Unbound Notebook System</a>, loose leaves in covers I make myself</li>
+        <li>Field Notes in the pocket</li>
+        <li>A daily journal since 2019</li>
+      </ul>
+    </dd>
   </div>
   <div>
     <dt>Software</dt>
-    <dd>Obsidian, with <a href="/obsidian/arrowhead/">Arrowhead</a> underneath it. Things for tasks. Day One for the journal. Lightroom for photographs, InDesign for books, Fusion 360 for parts. Claude Code and Codex for code. Hugo for this site.</dd>
+    <dd>
+      <ul>
+        <li>Obsidian, with <a href="/obsidian/arrowhead/">Arrowhead</a> underneath it</li>
+        <li>Things for tasks, Day One for the journal</li>
+        <li>Capture One for photographs</li>
+        <li>InDesign for books, Fusion 360 for parts</li>
+        <li>Claude Code and Codex for code</li>
+        <li>Hugo for this site</li>
+      </ul>
+    </dd>
   </div>
   <div>
     <dt>Making</dt>
-    <dd>Elegoo Saturn 4 Ultra 16K resin printer, the first tool bought for Rome. Bone folders made at Marumizu-gumi. A birch plywood worktable.</dd>
+    <dd>
+      <ul>
+        <li>A resin 3D printer, the first tool bought for Rome</li>
+        <li>Bone folders made at Marumizu-gumi</li>
+        <li>A birch plywood worktable</li>
+      </ul>
+    </dd>
   </div>
   <div>
     <dt>Carry</dt>
-    <dd>Freitag F155 Clapton. Wotancraft Pilot 10L when the cameras come along. A Brompton, which has toured Japan.</dd>
+    <dd>
+      <ul>
+        <li>Freitag F05 Blair</li>
+        <li>Freitag F35 Cheyenne, for stationery</li>
+        <li>Freitag F155 Clapton, for everything</li>
+      </ul>
+    </dd>
   </div>
   <div>
     <dt>Body</dt>
-    <dd>Whoop on the wrist. Twenty kilometers on foot as often as the week allows.</dd>
-  </div>
-  <div>
-    <dt>Kitchen</dt>
-    <dd>Fellow Stagg EKG kettle. An espresso machine in the Rome studio, installed before the light fixtures.</dd>
+    <dd>
+      <ul>
+        <li>Whoop on the wrist</li>
+        <li>Twenty kilometers on foot as often as the week allows</li>
+      </ul>
+    </dd>
   </div>
 </dl>
 
@@ -238,4 +310,4 @@ Freely in private, never across the border. Anything that reaches you, an email,
 
 Best way to reach me is via [email](mailto:toto@ttvl.co).
 
-For following: [newsletter](/newsletter/), then [RSS](/index.xml), then [Instagram](https://instagram.com/totocaster), then [Mastodon](https://mastodon.social/@ttt).
+For following: [newsletter](/newsletter/), then [RSS](/index.xml), then [Instagram](https://instagram.com/totocaster).
