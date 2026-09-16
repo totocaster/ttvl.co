@@ -71,44 +71,16 @@ main article.about {
     margin: -8px 0 20px;
   }
 
-  // Inline Flâneur form (the `subscribe` shortcode) sits inside prose;
-  // the bottom padding keeps the next paragraph off the legend line.
+  // The form ends its section; the divider supplies the bottom spacing.
   div.email-subscribe {
-    padding: 0.5rem 0 1.5rem;
+    padding: 0.5rem 0 0;
   }
 
-  // Kit list: label/value pairs in two quiet columns at bleed width.
-  dl.kit {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0 32px;
-    max-width: $max-width-bleed;
-    margin: 0 0 25px;
-
-    @include narrow {
-      grid-template-columns: 1fr;
-    }
-
-    dt {
-      @include type-label;
-      color: var(--ink-faint);
-      margin-top: 8px;
-    }
-
-    dd {
-      margin: 0 0 8px;
-    }
-
-    // Each entry is a short bullet list.
-    dd ul {
-      margin: 0;
-      padding-left: 18px;
-    }
-
-    dd li {
-      max-width: none;
-      margin-bottom: 2px;
-    }
+  // Record rows name their archive in words, so a download link in them
+  // carries no ↓ or file-type mark (see components/_resources.scss).
+  ul.issue-list a::before,
+  ul.issue-list a::after {
+    content: none;
   }
 
   // Principles carry catalog numbers in the TOC's counter voice.
