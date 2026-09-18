@@ -101,5 +101,6 @@ disableKinds = ["taxonomy", "term"]
       unsafe = true
 
   [markup.highlight]
-    style = "bw"
-    noClasses = true
+    # Classes only, and no Chroma stylesheet: fences render as sheets that
+    # colour comments and nothing else (components/_sheet.scss).
+    noClasses = false

@@ -1,0 +1,24 @@
+{{- /* Sheet for every fence that is not a shell fence (those have their own
+hooks). Tagged fences go through Chroma with classes, so only what
+components/_sheet.scss styles gets a colour: comments. Untagged fences are
+escaped as-is; a trailing annotation set off by two spaces and a hash gets
+the same comment class (a leading hash is ambiguous in plain text: a legend
+symbol, a Markdown heading, so it stays ink). An optional
+title attribute prints a filename kicker: ```toml {title="manifest.toml"} */ -}}
+{{- $plain := in (slice "" "text" "txt" "plain" "plaintext") .Type -}}
+<div class="sheet"{{ with .Type }} data-lang="{{ . }}"{{ end }}>
+{{- with .Attributes.title }}
+<div class="sheet__kicker">{{ . }}</div>
+{{- end }}
+<div class="sheet__scroll">
+{{- if $plain }}
+<pre><code>
+{{- range $i, $line := split (strings.TrimSuffix "\n" .Inner) "\n" }}
+{{- if $i }}{{ "\n" }}{{ end }}
+{{- $line | htmlEscape | replaceRE `^(.*\S)(\s{2,})(#\s.*)$` `$1$2<span class="c">$3</span>` | safeHTML }}
+{{- end }}</code></pre>
+{{- else }}
+<pre><code>{{ (transform.HighlightCodeBlock .).Inner }}</code></pre>
+{{- end }}
+</div>
+</div>

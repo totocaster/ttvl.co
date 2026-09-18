@@ -1,0 +1,85 @@
+// Sheets — plain-text and data fences, everything that isn't a shell fence.
+// The terminal's geometry in page materials: a terminal is a screen and
+// stays dark in both themes; a file is paper and follows the theme.
+// Rendered by _markup/render-codeblock.html.
+
+.sheet {
+  @include readable-width;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--edge);
+  border-radius: $radius;
+  padding: 12px 16px;
+  margin: 1rem 0 1.5rem;
+  @include monospace;
+  font-size: $font-size-code;
+  line-height: 1.6;
+
+  // The base pre rules make a scroller of every pre; here the scroller is
+  // .sheet__scroll, so the pre is a plain box.
+  pre {
+    max-width: none;
+    margin: 0;
+    overflow: visible;
+    font: inherit;
+  }
+
+  code {
+    display: block;
+    font: inherit;
+    white-space: pre;
+    min-width: max-content;
+  }
+
+  // Comments are the one thing that gets a colour: Chroma's comment
+  // classes on tagged fences, the same class on plain fences.
+  .c,
+  .c1,
+  .ch,
+  .cm,
+  .cs {
+    color: var(--ink-faint);
+  }
+}
+
+// Filename band from a fence title attribute, in the meta voice.
+.sheet__kicker {
+  @include type-meta;
+  font-family: $font-family-base;
+  color: var(--ink-faint);
+  margin: -12px -16px 10px;
+  padding: 6px 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+// The scroller spans the frame's inner width, so long lines slide under
+// the padding instead of stopping at it.
+.sheet__scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin: 0 -16px;
+  padding: 0 16px;
+
+  // Right-edge fade while there is more to scroll. The mask is 56px wider
+  // than the box and sits flush at rest, so nothing fades. A scroll
+  // timeline slides it left; that timeline is inactive when nothing
+  // overflows and absent in browsers without scroll-driven animations, so
+  // both fall back to the plain box.
+  mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent);
+  mask-size: calc(100% + 56px) 100%;
+  mask-repeat: no-repeat;
+  mask-position: 0 0;
+  animation: sheet-fade linear both;
+  animation-timeline: scroll(self x);
+}
+
+@keyframes sheet-fade {
+  0%,
+  85% {
+    mask-position: -56px 0;
+  }
+
+  100% {
+    mask-position: 0 0;
+  }
+}

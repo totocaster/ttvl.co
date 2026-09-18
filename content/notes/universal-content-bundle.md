@@ -53,7 +53,7 @@ The optional `workspace/` directory gives reader applications a scratchpad scope
 
 The manifest is a TOML file called `manifest.toml`. It describes every part of the bundle:
 
-```toml
+```toml {title="manifest.toml"}
 [bundle]
 name = "Understanding Neural Networks"
 description = "Literature review with annotated source paper and experimental data"
