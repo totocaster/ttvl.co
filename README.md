@@ -143,7 +143,7 @@ Feature-specific scripts are opt-in where practical:
 - **3D records:** Pages with `model_viewer: true` load the vendored `model-viewer` module only on that page.
 - **Appearance:** The site follows `prefers-color-scheme` for dark mode and includes selected `prefers-contrast: more` rules. There is no theme toggle or mobile-menu script; the compact navigation scrolls horizontally.
 - **Feeds and indexes:** Hugo generates `/index.xml`, `/index.json`, `/sitemap.xml`, and `/robots.txt`. The custom RSS template includes Log, Darkroom, Bookbinding, Notes, Flaneur, Project Humane, and Obsidian entries.
-- **Social cards:** Every note, project page, hub, and the home page has a 1200 × 630 Open Graph image under `static/social/`, rendered locally by `tools/social-cards.py` and committed. The head partial resolves the page card, then the section fallback, then the site card, and Hugo warns at build time when a page lacks its own card. Flaneur dispatch pages are email sources and carry no metadata.
+- **Social cards:** Every note, project page, section article, hub, and the home page has a 1200 × 630 Open Graph image under `static/social/`, rendered locally by `tools/social-cards.py` and committed. The head partial resolves the page card, then the section fallback, then the site card, and Hugo warns at build time when a page lacks its own card. Flaneur dispatch pages are email sources and carry no metadata.
 
 ## Newsletter workflow
 
@@ -173,7 +173,7 @@ make cards-all
 make hooks
 ```
 
-Run `make cards` after adding a note or project page, or after retitling one, and commit the cards with the content. Rendering needs macOS for the font; the build server never renders and only warns when a card is missing.
+Run `make cards` after adding a note, project page, or section article, or after retitling one, and commit the cards with the content. Rendering needs macOS for the font; the build server never renders and only warns when a card is missing.
 
 ## Site versioning and deployment
 

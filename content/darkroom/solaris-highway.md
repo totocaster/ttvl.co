@@ -1,6 +1,7 @@
 ---
 title: 'Tracking Highway Sequence from Solaris'
 date: 2024-12-24
+description: "The Tokyo expressway locations behind the highway sequence in Tarkovsky’s Solaris (1972), traced on Google Maps."
 ---
 
 Andrei Tarkovsky’s _Solaris (1972)_ was set in a future that should have felt distant to the audience when the film was released. To depict this future, Tarkovsky needed a modern, unfamiliar cityscape—something Soviet citizens had never seen. Instead of building a set, he turned to Tokyo’s newly constructed expressway system for an infamous highway sequence.

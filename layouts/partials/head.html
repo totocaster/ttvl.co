@@ -72,9 +72,10 @@
   {{ else }}
     {{ with or .Site.Params.ogimage .Site.Params.og_image }}{{ $img = . | absURL }}{{ end }}
   {{ end }}
-  {{ $wants := or (eq .Section "notes") .Params.project (and .IsSection .Params.filter_dek) .IsHome }}
+  {{ $article := and .IsPage .Section (not (in (slice "notes" "log" "traces" "flaneur") .Section)) }}
+  {{ $wants := or (eq .Section "notes") .Params.project (and .IsSection .Params.filter_dek) .IsHome $article }}
   {{ if and (not $own) $wants (ne .Type "redirect") }}
-    {{ warnf "Social card missing for %s (run: python3 tools/social-cards.py)" .RelPermalink }}
+    {{ warnf "Social card missing for %s (run: make cards)" .RelPermalink }}
   {{ end }}
 {{ end }}
 {{ $alt := site.Title }}

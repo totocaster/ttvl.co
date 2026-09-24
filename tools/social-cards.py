@@ -28,7 +28,8 @@ Card styles (one per section voice):
   note           Ledger: kicker, rule, highlighted title, wordmark
   project        Mount: poster on a white mat over pale blueprint grid, wall label (JPEG)
   hub, site      Ledger with a dek
-  flaneur        Plate: cover photo with a white label bottom left (JPEG). Dormant:
+  article        Ledger with a dek, kicker naming the page's section
+  flaneur       Plate: cover photo with a white label bottom left (JPEG). Dormant:
   flaneur-plain  Ledger with the engraving. Dispatch pages are email sources and
                  carry no metadata, so the manifest emits no entries for them.
 
@@ -228,7 +229,8 @@ def rule(draw, y, x0=MARGIN, x1=W - MARGIN):
 
 def ledger_head(draw, entry):
     """Kicker on the first row and the hairline under it; returns the body's top y."""
-    kicker(draw, MARGIN, MARGIN, SECTION_NAME[entry["style"]], entry.get("meta", []))
+    section = entry.get("section") or SECTION_NAME[entry["style"]]
+    kicker(draw, MARGIN, MARGIN, section, entry.get("meta", []))
     rule(draw, MARGIN + 34 + 18)
     return MARGIN + 34 + 18 + 2 + 44
 
@@ -275,10 +277,12 @@ def render_hub(entry):
     for line in clamp(wrap(entry["title"], f, LIVE), 2, f, LIVE):
         text_at(draw, MARGIN, y, line, f, INK, 76)
         y += 76
-    if entry.get("dek"):
+    # A two-line title leaves room for fewer dek lines above the wordmark.
+    room = min(3, (H - MARGIN - 72 - 16 - (y + 20)) // 40)
+    if entry.get("dek") and room > 0:
         y += 20
         fd = font("regular", 30)
-        for line in clamp(wrap(entry["dek"], fd, 900), 3, fd, 900):
+        for line in clamp(wrap(entry["dek"], fd, 900), room, fd, 900):
             text_at(draw, MARGIN, y, line, fd, MUTED, 40)
             y += 40
     wordmark_and_url(img, draw)
@@ -369,9 +373,10 @@ RENDERERS = {
     "flaneur": render_flaneur,
     "flaneur-plain": render_flaneur_plain,
     "hub": render_hub,
+    "article": render_hub,
     "site": render_site,
 }
-PALETTE_STYLES = {"note", "hub", "site", "flaneur-plain"}  # flat cards quantize cleanly
+PALETTE_STYLES = {"note", "hub", "article", "site", "flaneur-plain"}  # flat cards quantize cleanly
 
 
 JPEG_STYLES = {"flaneur", "project"}  # photographic cards; PNG would be 3x the size

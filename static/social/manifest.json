@@ -56,6 +56,11 @@
       "file": "social/darkroom/rz67-focus-gear-stl.jpg",
       "style": "project"
     },
+    "social/darkroom/solaris-highway": {
+      "hash": "aef451a2d56dd4f8",
+      "file": "social/darkroom/solaris-highway.png",
+      "style": "article"
+    },
     "social/darkroom/thermometer-panel-for-jobo-systems": {
       "hash": "8d4ec11b2a50bf25",
       "file": "social/darkroom/thermometer-panel-for-jobo-systems.jpg",
@@ -81,10 +86,30 @@
       "file": "social/leaves.png",
       "style": "hub"
     },
+    "social/log": {
+      "hash": "9a81ef47455ae426",
+      "file": "social/log.png",
+      "style": "hub"
+    },
     "social/newsletter": {
       "hash": "65ba7df317507f99",
       "file": "social/newsletter.png",
       "style": "hub"
+    },
+    "social/notebook-system/analog-photography-templates": {
+      "hash": "6bc3c9018eb6b7cc",
+      "file": "social/notebook-system/analog-photography-templates.png",
+      "style": "article"
+    },
+    "social/notebook-system/general-templates": {
+      "hash": "fc656bb4afec0800",
+      "file": "social/notebook-system/general-templates.png",
+      "style": "article"
+    },
+    "social/notebook-system/make-your-own": {
+      "hash": "51f48af2d6b1d3fc",
+      "file": "social/notebook-system/make-your-own.png",
+      "style": "article"
     },
     "social/notes": {
       "hash": "5931907bac853d49",

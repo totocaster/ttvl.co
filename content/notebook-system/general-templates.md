@@ -1,6 +1,7 @@
 ---
 title: 'General Templates'
 date: 2025-01-08
+description: "Printable daily log and book list templates for the Unbound Notebook System."
 ---
 
 I don't use many general-purpose templates; I find plain paper to be the best tool for most daily tasks. I designed the [Unbound Notebook System][uns] to be as elastic as the brain itself, so rigid templates for daily use would go against the core design principles of the system.

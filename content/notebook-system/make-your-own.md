@@ -1,6 +1,7 @@
 ---
 title: 'Make Your Own Unbound Notebook'
 date: 2025-01-10
+description: "A guide to making the canonical Unbound notebook, with tools, materials, cover advice, and recommended paper."
 ---
 
 This is a guide to making the canonical (version I use) [Unbound][uns] notebook. The entire system is designed to be loose and flexible, tailored to fit only me. I encourage you to use the following information as inspiration and modify the steps to make a notebook that matches _you_.

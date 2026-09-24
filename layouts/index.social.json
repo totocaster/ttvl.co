@@ -3,10 +3,11 @@
      (see hugo.toml); `hugo --renderSegments social` builds just this file.
 
      Keys per entry:
-       style  site | hub | note | project
+       style  site | hub | note | project | article
        out    path under static/, without extension (the script picks it)
        path   the page's RelPermalink, used by --only and for reporting
        title  page title as written
+       section  kicker's section name, where the style does not fix it
        meta   kicker parts after the section name
        dek    one-line description where the card shows one
        image  poster or cover path under static/ where the card uses one */ -}}
@@ -67,6 +68,23 @@
     "title" .Title
     "meta" (slice $cat $year)
     "image" ($p.image | default "")) -}}
+{{- end -}}
+
+{{- /* Articles: every other regular page inside a section, such as a Darkroom
+     essay or a notebook guide. The kicker names the section and the dek is
+     the page description. Log months fall back to the Log hub card, Traces
+     set an explicit image, and dispatches carry no metadata. */ -}}
+{{- range site.RegularPages -}}
+  {{- if and .Section (not (in (slice "notes" "log" "traces" "flaneur") .Section)) (not .Params.project) (not .Params.image) -}}
+    {{- $cards = $cards | append (dict
+      "style" "article"
+      "out" (printf "social/%s" (strings.Trim .RelPermalink "/"))
+      "path" .RelPermalink
+      "title" .Title
+      "section" .CurrentSection.Title
+      "meta" (slice (.Date.Format "2006-01-02"))
+      "dek" (.Description | default "")) -}}
+  {{- end -}}
 {{- end -}}
 
 {{- $cards | jsonify (dict "indent" "  ") -}}
