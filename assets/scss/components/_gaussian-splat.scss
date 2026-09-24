@@ -4,6 +4,7 @@
   margin: 1.5rem 0;
 
   .gaussian-splat__controls button {
+    flex-shrink: 0;
     padding: 0 0 2px;
     border: 0;
     border-bottom: 1px solid transparent;
@@ -32,9 +33,15 @@
 
 .gaussian-splat__controls {
   display: flex;
+  align-items: baseline;
+  gap: 1em;
   justify-content: flex-end;
   max-width: $max-width-readable;
   margin-bottom: 0.75rem;
+}
+
+.gaussian-splat__title {
+  margin-right: auto;
 }
 
 .gaussian-splat__frame {

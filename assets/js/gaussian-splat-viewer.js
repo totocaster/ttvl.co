@@ -46,6 +46,14 @@ const gaussianSplatViewer = {
       let defaultTarget = null;
       let fallbackFullscreen = false;
 
+      const readVector = (value) => {
+        if (!value || !value.trim()) return null;
+        const coordinates = value.trim().split(/\s+/).map(Number);
+        return coordinates.length === 3 && coordinates.every(Number.isFinite)
+          ? new THREE.Vector3(...coordinates)
+          : null;
+      };
+
       const updateBackground = () => {
         const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         renderer.setClearColor(dark ? 0x1c1c1c : 0xfafafa, 1);
@@ -104,6 +112,10 @@ const gaussianSplatViewer = {
 
         controls.minDistance = Math.max(safeRadius * 0.04, 0.05);
         controls.maxDistance = Math.max(safeRadius * 10, 20);
+        const cameraPosition = readVector(root.dataset.cameraPosition);
+        const cameraTarget = readVector(root.dataset.cameraTarget);
+        if (cameraPosition) camera.position.copy(cameraPosition);
+        if (cameraTarget) controls.target.copy(cameraTarget);
         controls.update();
 
         defaultPosition = camera.position.clone();
@@ -194,7 +206,6 @@ const gaussianSplatViewer = {
       resetButton.addEventListener("click", resetView);
       fullscreenButton.hidden = false;
       fullscreenButton.addEventListener("click", toggleFullscreen);
-      canvas.addEventListener("pointerdown", () => canvas.focus({ preventScroll: true }));
 
       document.addEventListener("fullscreenchange", () => {
         updateFullscreenButton();

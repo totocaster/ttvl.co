@@ -90,6 +90,7 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 - Text Fragments are feature-detected through `document.fragmentDirective`. Selecting 6–499 characters updates the URL; `Cmd/Ctrl+Shift+L` updates it from the current selection, and Escape clears a live selection. There is no polyfill.
 - The pronunciation control is loaded only when `pronunciation_audio` is set.
 - The vendored `model-viewer` `4.3.1` module is loaded only when `model_viewer: true` is set.
+- Gaussian splats use vendored Spark `2.1.0` and Three.js `0.180.0`, loaded only when `gaussian_splat: true` is set.
 
 ## Content workflows
 
@@ -178,6 +179,7 @@ Every note, project page, hub with a `filter_dek`, and the home page has a 1200 
 - `flaneur-gallery`: responsive newsletter image grid.
 - `membership-link`: link to `params.membershipURL`.
 - `model-viewer`: interactive GLB viewer with poster, caption, download, and no-JavaScript fallback.
+- `gaussian-splat`: interactive SPZ viewer with poster, download, and no-JavaScript fallback; requires `gaussian_splat: true`. Optional `camera-position` and `camera-target` values are space-separated x/y/z coordinates in the scan's coordinate system; use them when automatic framing puts the camera outside the scanned space.
 - `photo-gallery`: linked-image gallery prepared for the lightbox.
 - `project-grid`: explicitly ordered project-card group from a comma-separated `pages` parameter.
 - `pronunciation-name`: accessible audio pronunciation control.

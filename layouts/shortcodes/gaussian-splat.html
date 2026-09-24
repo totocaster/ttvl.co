@@ -12,8 +12,11 @@
   class="gaussian-splat"
   data-gaussian-splat
   data-splat-src="{{ $src }}"
+  {{ with .Get "camera-position" }}data-camera-position="{{ . }}"{{ end }}
+  {{ with .Get "camera-target" }}data-camera-target="{{ . }}"{{ end }}
 >
   <div class="gaussian-splat__controls">
+    {{ with .Get "title" }}<span class="gaussian-splat__title">{{ . }}</span>{{ end }}
     <button type="button" data-splat-reset disabled>Reset view</button>
   </div>
 
