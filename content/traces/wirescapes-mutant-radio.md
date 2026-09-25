@@ -29,29 +29,45 @@ _Wirescapes_ brings together my urban photography and Ludo’s work with reused 
 ## Photographs
 
 {{< photo-gallery label="Photographs of Wirescapes at Mutant Radio" >}}
-[![Welding the metal frame of the Wirescapes cube at Mutant Radio](/visuals/traces/wirescapes-mutant-radio/01-building-the-frame.jpeg)](/visuals/traces/wirescapes-mutant-radio/01-building-the-frame.jpeg)
+[![An urban photograph suspended within the Wirescapes cable network](/visuals/traces/wirescapes-mutant-radio/01-photograph-in-cable-network.jpeg)](/visuals/traces/wirescapes-mutant-radio/01-photograph-in-cable-network.jpeg)
 
-[![Assembling the cube with cables laid out on the floor](/visuals/traces/wirescapes-mutant-radio/02-installing-the-cables.jpeg)](/visuals/traces/wirescapes-mutant-radio/02-installing-the-cables.jpeg)
+[![A vertical street photograph mounted among the installation’s cables](/visuals/traces/wirescapes-mutant-radio/02-vertical-street-photograph.jpeg)](/visuals/traces/wirescapes-mutant-radio/02-vertical-street-photograph.jpeg)
 
-[![The assembled cube with illuminated edges and suspended photographs](/visuals/traces/wirescapes-mutant-radio/03-cube-with-lights.jpeg)](/visuals/traces/wirescapes-mutant-radio/03-cube-with-lights.jpeg)
+[![A street photograph mounted inside the Wirescapes installation](/visuals/traces/wirescapes-mutant-radio/03-street-photograph.jpeg)](/visuals/traces/wirescapes-mutant-radio/03-street-photograph.jpeg)
 
-[![A visitor looking at the Wirescapes installation during the celebration](/visuals/traces/wirescapes-mutant-radio/04-viewing-the-installation.jpeg)](/visuals/traces/wirescapes-mutant-radio/04-viewing-the-installation.jpeg)
+[![A photograph of a temple suspended in the Wirescapes cable network](/visuals/traces/wirescapes-mutant-radio/04-temple-photograph.jpeg)](/visuals/traces/wirescapes-mutant-radio/04-temple-photograph.jpeg)
 
-[![The illuminated cube beneath Mutant Radio’s tall windows at dusk](/visuals/traces/wirescapes-mutant-radio/05-cube-at-dusk.jpeg)](/visuals/traces/wirescapes-mutant-radio/05-cube-at-dusk.jpeg)
+[![A photograph in the installation seen through another frame](/visuals/traces/wirescapes-mutant-radio/05-photograph-seen-through-frame.jpeg)](/visuals/traces/wirescapes-mutant-radio/05-photograph-seen-through-frame.jpeg)
 
-[![Urban photographs suspended inside the illuminated cube](/visuals/traces/wirescapes-mutant-radio/06-urban-photographs.jpeg)](/visuals/traces/wirescapes-mutant-radio/06-urban-photographs.jpeg)
+[![The Wirescapes cube beneath the tall windows at Mutant Radio](/visuals/traces/wirescapes-mutant-radio/06-installation-beneath-windows.jpeg)](/visuals/traces/wirescapes-mutant-radio/06-installation-beneath-windows.jpeg)
 
-[![Photographs connected by cables below the glowing edge of the cube](/visuals/traces/wirescapes-mutant-radio/07-photographs-and-cables.jpeg)](/visuals/traces/wirescapes-mutant-radio/07-photographs-and-cables.jpeg)
+[![A wide view of the Wirescapes installation inside Mutant Radio](/visuals/traces/wirescapes-mutant-radio/07-installation-in-mutant-radio.jpeg)](/visuals/traces/wirescapes-mutant-radio/07-installation-in-mutant-radio.jpeg)
 
-[![A close view through the cables and frames of the installation](/visuals/traces/wirescapes-mutant-radio/08-installation-detail.jpeg)](/visuals/traces/wirescapes-mutant-radio/08-installation-detail.jpeg)
+[![The Wirescapes installation viewed from the front](/visuals/traces/wirescapes-mutant-radio/08-installation-front-view.jpeg)](/visuals/traces/wirescapes-mutant-radio/08-installation-front-view.jpeg)
 
-[![The cube beneath the tall windows a few days after the celebration](/visuals/traces/wirescapes-mutant-radio/09-cube-before-disassembly.jpeg)](/visuals/traces/wirescapes-mutant-radio/09-cube-before-disassembly.jpeg)
+[![An urban photograph connected to the installation by cables](/visuals/traces/wirescapes-mutant-radio/09-photograph-and-cables.jpeg)](/visuals/traces/wirescapes-mutant-radio/09-photograph-and-cables.jpeg)
 
-[![The installation viewed toward the open entrance of Mutant Radio](/visuals/traces/wirescapes-mutant-radio/10-cube-toward-entrance.jpeg)](/visuals/traces/wirescapes-mutant-radio/10-cube-toward-entrance.jpeg)
+[![A visitor looking at the Wirescapes installation](/visuals/traces/wirescapes-mutant-radio/10-visitor-viewing-installation.jpeg)](/visuals/traces/wirescapes-mutant-radio/10-visitor-viewing-installation.jpeg)
 
-[![A side view of the cube and its suspended photographs before disassembly](/visuals/traces/wirescapes-mutant-radio/11-cube-side-view.jpeg)](/visuals/traces/wirescapes-mutant-radio/11-cube-side-view.jpeg)
+[![A visitor reading the wall text beside the installation](/visuals/traces/wirescapes-mutant-radio/11-visitor-reading-wall-text.jpeg)](/visuals/traces/wirescapes-mutant-radio/11-visitor-reading-wall-text.jpeg)
 
-[![The cube and its network of cables against the windows and brick walls](/visuals/traces/wirescapes-mutant-radio/12-cube-and-windows.jpeg)](/visuals/traces/wirescapes-mutant-radio/12-cube-and-windows.jpeg)
+[![A visitor standing among the photographs and cables](/visuals/traces/wirescapes-mutant-radio/12-visitor-inside-installation.jpeg)](/visuals/traces/wirescapes-mutant-radio/12-visitor-inside-installation.jpeg)
+
+[![A detail of a mounted photograph with a visitor beyond it](/visuals/traces/wirescapes-mutant-radio/13-installation-detail-with-visitor.jpeg)](/visuals/traces/wirescapes-mutant-radio/13-installation-detail-with-visitor.jpeg)
+
+[![A visitor standing beside the Wirescapes installation](/visuals/traces/wirescapes-mutant-radio/14-visitor-at-installation.jpeg)](/visuals/traces/wirescapes-mutant-radio/14-visitor-at-installation.jpeg)
+
+[![Visitors seen through the frame of a photograph in the installation](/visuals/traces/wirescapes-mutant-radio/15-visitors-through-photograph-frame.jpeg)](/visuals/traces/wirescapes-mutant-radio/15-visitors-through-photograph-frame.jpeg)
+
+[![Wedding guests gathered around the illuminated installation](/visuals/traces/wirescapes-mutant-radio/16-wedding-guests-around-installation.jpeg)](/visuals/traces/wirescapes-mutant-radio/16-wedding-guests-around-installation.jpeg)
+
+[![Guests talking in front of Wirescapes at Mutant Radio](/visuals/traces/wirescapes-mutant-radio/17-guests-at-wirescapes.jpeg)](/visuals/traces/wirescapes-mutant-radio/17-guests-at-wirescapes.jpeg)
+
+[![The back of a photograph wired into the installation](/visuals/traces/wirescapes-mutant-radio/18-back-of-photograph.jpeg)](/visuals/traces/wirescapes-mutant-radio/18-back-of-photograph.jpeg)
+
+[![A couple taking a selfie inside the Wirescapes installation](/visuals/traces/wirescapes-mutant-radio/19-couple-taking-selfie.jpeg)](/visuals/traces/wirescapes-mutant-radio/19-couple-taking-selfie.jpeg)
+
+[![A dog sitting in front of the illuminated Wirescapes cube](/visuals/traces/wirescapes-mutant-radio/20-dog-at-installation.jpeg)](/visuals/traces/wirescapes-mutant-radio/20-dog-at-installation.jpeg)
 
 {{< /photo-gallery >}}
 
