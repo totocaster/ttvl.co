@@ -231,6 +231,11 @@
       "file": "social/project-humane.png",
       "style": "hub"
     },
+    "social/project-humane/copy-editor": {
+      "hash": "491c6384f1308184",
+      "file": "social/project-humane/copy-editor.jpg",
+      "style": "project"
+    },
     "social/project-humane/edc-keychain": {
       "hash": "8faee23b7e8f4540",
       "file": "social/project-humane/edc-keychain.jpg",

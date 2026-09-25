@@ -21,6 +21,7 @@ Project Humane is an umbrella term for my tools for thought and made-for-hands e
 
 - [Arrowhead CLI](/obsidian/arrowhead/): Helps AI agents and command-line tools make sense of your Obsidian vault.
 - [Better Kanban Bases View](/obsidian/bases-kanban-view/): A focused Kanban view for Obsidian Bases with draggable cards, keyboard reordering, note previews, and saved layouts.
+- [Copy Editor](/project-humane/copy-editor/): AI writing tool for people who love to write.
 - [Metrics](/obsidian/metrics/): A file-first Obsidian plugin for viewing, editing, and charting plaintext metric files.
 - [Patchcord](/project-humane/patchcord/): An agent-friendly development workflow for CircuitPython projects.
 - [Refmode CLI](/project-humane/refmode/): A macOS CLI for switching Apple display reference modes.
