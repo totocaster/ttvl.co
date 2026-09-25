@@ -1,0 +1,13 @@
+{{- /* RSS readers do not load the site's CSS or JavaScript. Convert only the
+shell renderer's known markup to semantic code blocks, preserving escaped
+command text and explicit line breaks without interactive copy controls. */ -}}
+{{- $content := .Content -}}
+{{- range findRE `(?s)<div class="shell-block">.*?</div>` $content -}}
+  {{- $block := replaceRE `^<div class="shell-block">\s*|</div>$` "" . -}}
+  {{- $block = replaceRE `<button class="shell-copy"[^>]*>\$</button>` "$" $block -}}
+  {{- $block = replaceRE `</span>\s*` "\n" $block -}}
+  {{- $block = replaceRE `<span class="shell-line[^"]*">` "" $block -}}
+  {{- $content = replace $content . (printf "<pre><code>%s</code></pre>" $block) -}}
+{{- end -}}
+{{- $content = replaceRE `<script\s[^>]*src="[^"]*/js/shell-copy\.[^"]+\.js"[^>]*></script>` "" $content -}}
+{{- return $content -}}
