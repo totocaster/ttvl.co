@@ -28,6 +28,10 @@ Jinny Street Gallery consists of 42 streetlamps with integrated display cases, s
 
 ![Lorenzo and I setting up the gallery](/visuals/jinny_setup.jpg)
 
+## The Website
+
+In 2026, I designed and built a new website for the gallery, with a 3D neighborhood map, an exhibition archive, and interactive tools for artists. [Read about the website project](/jinny-website/).
+
 ## Jinny Lemon Sour
 
 - Website: [jinnystreetgallery.com/lemon-sour](https://www.jinnystreetgallery.com/lemon-sour)

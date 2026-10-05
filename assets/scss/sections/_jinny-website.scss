@@ -1,0 +1,15 @@
+// Full-width screenshots keep their own proportions as their crops change.
+.jinny-website .photo-gallery {
+  grid-template-columns: minmax(0, 1fr);
+  max-width: $max-width-container;
+
+  a {
+    aspect-ratio: auto;
+  }
+
+  img {
+    position: static;
+    width: 100%;
+    height: auto;
+  }
+}
