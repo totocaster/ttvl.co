@@ -1,0 +1,18 @@
+{{- /* A short silent loop, the moving counterpart of an article image:
+     {{< clip src="/visuals/research/stream/clip.mp4" poster="/visuals/research/stream/clip.jpg"
+              alt="What the clip shows" caption="Optional caption, Markdown allowed" >}}
+     Plays muted on repeat. Readers who ask for reduced motion get the
+     poster frame and the browser's controls instead (assets/js/clip.js). */ -}}
+{{- $src := .Get "src" -}}
+{{- if not $src }}{{ errorf "clip: missing src in %s" .Position }}{{ end -}}
+<figure class="clip">
+  <video class="clip__video" src="{{ $src }}"{{ with .Get "poster" }} poster="{{ . }}"{{ end }}{{ with .Get "alt" }} aria-label="{{ . }}"{{ end }} autoplay muted loop playsinline preload="metadata"></video>
+  {{- with .Get "caption" }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>
+{{- if not (.Page.Store.Get "clipJS") }}
+{{- .Page.Store.Set "clipJS" true }}
+{{- $js := resources.Get "js/clip.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end }}

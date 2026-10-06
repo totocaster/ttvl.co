@@ -1,0 +1,10 @@
+{{- /* /research/ is the journal hub; its subsections are the streams. */ -}}
+{{ define "main" }}
+<div class="research">
+  {{ if .Parent.IsHome }}
+    {{ partial "research-hub.html" . }}
+  {{ else }}
+    {{ partial "research-stream.html" . }}
+  {{ end }}
+</div>
+{{ end }}

@@ -1,0 +1,5 @@
+{{- /* Display label for a research entry's `category`: finding, progress,
+     question, or reading. Returns an empty string when the entry has none. */ -}}
+{{- $labels := dict "finding" "Finding" "progress" "Progress" "question" "Question" "reading" "Reading" -}}
+{{- $category := lower (.Params.category | default "") -}}
+{{- return (index $labels $category) | default (title $category) -}}

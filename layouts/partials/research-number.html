@@ -1,0 +1,8 @@
+{{- /* An entry's number within its stream: its position by date, oldest
+     first, as 001. Computed, never written; a backdated entry renumbers
+     the ones after it. Call through partialCached keyed on .Path. */ -}}
+{{- $n := 0 -}}
+{{- range $i, $p := .CurrentSection.RegularPages.ByDate -}}
+  {{- if eq $p.Path $.Path -}}{{- $n = add $i 1 -}}{{- end -}}
+{{- end -}}
+{{- return printf "%03d" $n -}}

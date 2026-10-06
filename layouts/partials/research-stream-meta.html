@@ -1,0 +1,14 @@
+{{- /* A stream's status line: Active · 14 entries since 2026-07 · updated
+     2026-10-05. Each part stays whole when the line wraps. */ -}}
+{{- $entries := .RegularPages.ByDate -}}
+{{- $parts := slice (title (.Params.status | default "active")) -}}
+{{- with $entries -}}
+  {{- $count := len . -}}
+  {{- $parts = $parts | append (printf "%d %s since %s" $count (cond (eq $count 1) "entry" "entries") ((index . 0).Date.Format "2006-01")) -}}
+  {{- $parts = $parts | append (printf "updated %s" ((index (last 1 .) 0).Date.Format "2006-01-02")) -}}
+{{- else -}}
+  {{- $parts = $parts | append "no entries yet" -}}
+{{- end -}}
+{{- $html := slice -}}
+{{- range $parts }}{{ $html = $html | append (printf "<span class=\"research-part\">%s</span>" .) }}{{ end -}}
+{{- return (delimit $html " · " | safeHTML) -}}

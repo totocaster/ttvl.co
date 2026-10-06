@@ -1,0 +1,67 @@
+{{- /* The journal hub: intro, the stream ledger with activity pulses, and
+     every entry as a dated row, filterable by stream. */ -}}
+{{ $streams := .Sections.ByWeight }}
+{{ $entries := .RegularPagesRecursive.ByDate.Reverse }}
+
+<article>
+  <h1>{{ .Title }}</h1>
+  {{ .Content }}
+  {{ with .OutputFormats.Get "rss" }}
+  <p class="research-meta">
+    Follow by RSS: <a href="{{ .RelPermalink }}">all streams</a>
+    {{- range $streams }}{{ $stream := . }}{{ with .OutputFormats.Get "rss" }} · <a href="{{ .RelPermalink }}">{{ $stream.Title }}</a>{{ end }}{{ end }}
+  </p>
+  {{ end }}
+</article>
+
+{{ with $streams }}
+<section class="research-streams" aria-labelledby="research-streams-title">
+  <h2 id="research-streams-title">Streams</h2>
+  <ul class="stream-ledger">
+    {{ range . }}
+    <li>
+      <div class="stream-ledger__top">
+        <a class="stream-ledger__name" href="{{ .RelPermalink }}">{{ .Title }}</a>
+        {{ partial "research-pulse.html" . }}
+      </div>
+      {{ with .Description }}<p class="stream-ledger__dek">{{ . }}</p>{{ end }}
+      <p class="stream-ledger__meta">{{ partial "research-stream-meta.html" . }}</p>
+    </li>
+    {{ end }}
+  </ul>
+  <p class="research-legend">Each mark is one week, the last 26 of them, newest at right. Taller marks mean more entries.</p>
+</section>
+{{ end }}
+
+<section class="research-entries" aria-labelledby="research-entries-title">
+  <h2 id="research-entries-title">Entries</h2>
+  {{ with $entries }}
+    {{ if gt (len $streams) 1 }}
+    <nav class="category-filter" aria-label="Filter entries by stream">
+      <ul>
+        <li><a href="?category=all" data-category="all" class="is-active">All</a></li>
+        {{ range $streams }}
+        <li><a href="?category={{ .File.ContentBaseName }}" data-category="{{ .File.ContentBaseName }}">{{ .Title }}</a></li>
+        {{ end }}
+        {{ range $streams }}
+        <li><a class="hub-ref" href="{{ .RelPermalink }}" data-filter-show="{{ .File.ContentBaseName }}" hidden>&rarr;&nbsp;{{ .Title }}</a></li>
+        {{ end }}
+      </ul>
+    </nav>
+    {{ end }}
+
+    {{ range .GroupByDate "2006" }}
+    <section class="research-year" data-filter-group>
+      <h3>{{ .Key }}</h3>
+      <ul class="issue-list">
+        {{ range .Pages }}{{ partial "research-row.html" (dict "page" . "stream" true "number" true "category" true) }}{{ end }}
+      </ul>
+    </section>
+    {{ end }}
+
+    {{ $categoryFilter := resources.Get "js/category-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
+    <script src="{{ $categoryFilter.RelPermalink }}" defer></script>
+  {{ else }}
+    <p>No entries yet.</p>
+  {{ end }}
+</section>

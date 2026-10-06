@@ -1,0 +1,20 @@
+{{- /* A stream's activity over the last 26 weeks, oldest at left: one mark
+     per seven days counted back from the build, taller for more entries
+     (capped at three). */ -}}
+{{- $now := now.Unix -}}
+{{- $entries := .RegularPages -}}
+{{- $levels := slice -}}
+{{- $total := 0 -}}
+{{- range $w := seq 0 25 -}}
+  {{- $ago := sub 25 $w -}}
+  {{- $count := 0 -}}
+  {{- range $entries -}}
+    {{- $age := sub $now .Date.Unix -}}
+    {{- if and (ge $age 0) (eq (div $age 604800) $ago) -}}{{- $count = add $count 1 -}}{{- end -}}
+  {{- end -}}
+  {{- $total = add $total $count -}}
+  {{- $levels = $levels | append (cond (gt $count 3) 3 $count) -}}
+{{- end -}}
+<span class="research-pulse" role="img" aria-label="{{ $total }} {{ cond (eq $total 1) "entry" "entries" }} in the last 26 weeks">
+  {{- range $levels }}<span class="research-pulse__cell research-pulse__cell--{{ . }}"></span>{{ end -}}
+</span>

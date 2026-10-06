@@ -1,0 +1,72 @@
+{{- /* A stream: its brief, the optional bench, open questions collected
+     from entries, then every entry in full, newest first, so the stream
+     reads as one page. */ -}}
+{{ $entries := .RegularPages.ByDate.Reverse }}
+
+<article class="research-stream">
+  <p class="research-kicker"><a href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a> · Stream</p>
+  <h1>{{ .Title }}</h1>
+  <p class="research-status">
+    {{- partial "research-stream-meta.html" . -}}
+    {{- with .OutputFormats.Get "rss" }} · <a href="{{ .RelPermalink }}">RSS</a>{{ end -}}
+  </p>
+  {{ .Content }}
+</article>
+
+{{ with .Params.bench }}
+<section class="research-bench" aria-labelledby="research-bench-title">
+  <h2 id="research-bench-title">Bench</h2>
+  <ul class="research-ledger">
+    {{ range . }}
+    <li>
+      <span class="research-ledger__key">{{ index . 0 }}</span>
+      <span class="research-ledger__value">{{ index . 1 | markdownify }}</span>
+    </li>
+    {{ end }}
+  </ul>
+</section>
+{{ end }}
+
+{{ $open := slice }}
+{{ $closed := slice }}
+{{ range $entries }}
+  {{ $e := . }}
+  {{ if eq (lower (.Params.category | default "")) "question" }}
+    {{ with partial "research-answered-by.html" . }}
+      {{ $closed = $closed | append (dict "page" $e "by" .) }}
+    {{ else }}
+      {{ $open = $open | append . }}
+    {{ end }}
+  {{ end }}
+{{ end }}
+{{ if or $open $closed }}
+<section class="research-questions" aria-labelledby="research-questions-title">
+  <h2 id="research-questions-title">Open Questions</h2>
+  <ul class="research-ledger">
+    {{ range $open }}
+    <li>
+      <span class="research-ledger__key"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time></span>
+      <span class="research-ledger__value"><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="research-ledger__tail">{{ partialCached "research-number.html" . .Path }}</span></span>
+    </li>
+    {{ end }}
+    {{ range $closed }}
+    {{ $q := .page }}
+    {{ $by := index .by 0 }}
+    <li>
+      <span class="research-ledger__key"><time datetime="{{ $q.Date.Format "2006-01-02" }}">{{ $q.Date.Format "2006-01-02" }}</time></span>
+      <span class="research-ledger__value"><a class="is-closed" href="{{ $q.RelPermalink }}">{{ $q.Title }}</a> <span class="research-ledger__tail">{{ partialCached "research-number.html" $q $q.Path }} · answered in <a href="{{ $by.RelPermalink }}">{{ partialCached "research-number.html" $by $by.Path }}</a></span></span>
+    </li>
+    {{ end }}
+  </ul>
+  <p class="research-legend">Collected from entries marked as questions. An entry that answers one closes it.</p>
+</section>
+{{ end }}
+
+<section class="research-entries" aria-labelledby="research-entries-title">
+  <h2 id="research-entries-title">Entries</h2>
+  {{ with $entries }}
+    {{ range . }}{{ partial "research-entry.html" . }}{{ end }}
+  {{ else }}
+    <p>No entries yet.</p>
+  {{ end }}
+</section>

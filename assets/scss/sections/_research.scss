@@ -1,0 +1,313 @@
+// Research journal: the hub's stream ledger and activity pulses, stream
+// status lines and ledgers (bench, open questions, relations), entry
+// meta lines, figures and clips, and the in-stream pager.
+
+// Record-keeping lines: kickers, status, datelines, legends, feeds.
+.research {
+  .research-kicker,
+  .research-status,
+  .research-dateline,
+  .research-meta,
+  .research-legend {
+    @include type-meta;
+    color: var(--ink-faint);
+
+    a {
+      color: inherit;
+      font-weight: $link-weight-quiet;
+      text-decoration: $link-decoration-plain;
+      transition: color $t-fast;
+
+      &:hover {
+        color: var(--ink);
+        text-decoration: $link-decoration-default;
+      }
+    }
+  }
+
+  .research-kicker {
+    margin: 0;
+
+    + h1 {
+      margin-top: 4px;
+      margin-bottom: 6px;
+    }
+  }
+
+  .research-status,
+  .research-dateline {
+    margin-bottom: 24px;
+  }
+
+  // A status part ("updated 2026-10-05") never breaks at its hyphens.
+  .research-part {
+    white-space: nowrap;
+  }
+
+  .research-legend {
+    @include readable-width;
+    margin: 10px 0 0;
+  }
+
+  > section {
+    margin-top: 48px;
+
+    > h2 {
+      margin: 0 0 10px;
+    }
+  }
+}
+
+// Hub: one row per stream, name and pulse on the first line.
+.stream-ledger {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  @include readable-width;
+  border-top: 1px solid var(--rule);
+
+  > li {
+    padding: 14px 0 12px;
+    border-bottom: 1px solid var(--rule);
+  }
+}
+
+.stream-ledger__top {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 6px 16px;
+}
+
+a.stream-ledger__name {
+  font-weight: $link-weight-title;
+  text-decoration: $link-decoration-plain;
+
+  &:hover {
+    text-decoration: $link-decoration-default;
+  }
+}
+
+.stream-ledger__dek {
+  margin: 2px 0;
+  color: var(--ink-muted);
+}
+
+.stream-ledger__meta {
+  @include type-meta;
+  color: var(--ink-faint);
+  margin: 0;
+}
+
+// Activity pulse: a week per mark, height by entry count. Empty weeks
+// keep a low edge-colored stub so the strip reads as a timeline.
+.research-pulse {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 18px;
+  padding-bottom: 4px;
+}
+
+.research-pulse__cell {
+  display: block;
+  width: 6px;
+  height: 3px;
+  border-radius: 1px;
+  background: var(--edge);
+
+  &--1,
+  &--2,
+  &--3 {
+    background: var(--ink);
+  }
+
+  &--1 {
+    height: 8px;
+  }
+
+  &--2 {
+    height: 13px;
+  }
+
+  &--3 {
+    height: 18px;
+  }
+}
+
+// Hub entry list: year groups under the Entries heading.
+.research-year {
+  > h3 {
+    margin: 20px 0 0;
+  }
+
+  .issue-list {
+    margin-top: 6px;
+  }
+}
+
+// Index rows carry their meta inline after the title, so a long title
+// keeps the full width and the tail wraps as a unit.
+.research-row__body {
+  flex: 1;
+  min-width: 0;
+
+  .issue-title {
+    flex: none;
+  }
+}
+
+.research-row__tail {
+  @include type-meta;
+  color: var(--ink-faint);
+  margin-left: 4px;
+  white-space: nowrap;
+}
+
+// Bench, open questions, and an entry's relations: key column, value,
+// optional meta tail, on hairlines.
+.research-ledger {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  @include readable-width;
+  border-top: 1px solid var(--rule);
+
+  > li {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--rule);
+    max-width: none;
+  }
+}
+
+.research-ledger__key {
+  @include type-meta;
+  color: var(--ink-faint);
+  min-width: 110px;
+}
+
+.research-ledger__value {
+  flex: 1;
+  min-width: 0;
+
+  p {
+    display: inline;
+  }
+
+  > a {
+    font-weight: $link-weight-quiet;
+  }
+
+  // An answered question: still linked, set back a tier.
+  > a.is-closed {
+    color: var(--ink-muted);
+  }
+}
+
+.research-ledger__tail {
+  @include type-meta;
+  color: var(--ink-faint);
+  margin-left: 4px;
+  white-space: nowrap;
+
+  a {
+    color: inherit;
+    font-weight: $link-weight-quiet;
+
+    &:hover {
+      color: var(--ink);
+    }
+  }
+}
+
+.research-relations {
+  margin-top: 36px;
+}
+
+// Entries in full on a stream page.
+main article.research-entry {
+  > .research-meta {
+    margin: 0 0 4px;
+  }
+
+  > h3 {
+    margin: 0 0 6px;
+
+    > a {
+      text-decoration: $link-decoration-plain;
+      font-weight: $link-weight-title;
+
+      &:hover {
+        text-decoration: $link-decoration-default;
+      }
+    }
+  }
+}
+
+// Figures and clips bleed past the prose measure like article images.
+.research figure {
+  margin: 0 0 25px;
+  max-width: $max-width-bleed;
+
+  // Phone screens and other tall captures: class="portrait" on the figure.
+  &.portrait {
+    max-width: 360px;
+  }
+
+  img,
+  video {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--surface);
+  }
+
+  figcaption {
+    @include type-small;
+    @include readable-width;
+    color: var(--ink-muted);
+    margin-top: 8px;
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+// Previous and next entry within the stream.
+main .research-pager {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  @include readable-width;
+  margin-top: 40px;
+
+  a {
+    display: block;
+    font-weight: $link-weight-quiet;
+    text-decoration: $link-decoration-plain;
+
+    &:hover .research-pager__title {
+      text-decoration: $link-decoration-default;
+    }
+  }
+
+  .research-pager__next {
+    grid-column: 2;
+    text-align: right;
+  }
+
+  .research-pager__label {
+    display: block;
+    @include type-meta;
+    color: var(--ink-faint);
+  }
+
+  .research-pager__title {
+    display: block;
+  }
+}

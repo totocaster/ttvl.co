@@ -1,0 +1,34 @@
+{{- /* Research feeds: the hub's covers every stream, each stream's covers
+     itself. Research stays out of the main site feed (_default/rss.xml). */ -}}
+{{- $pages := .RegularPagesRecursive.ByDate.Reverse -}}
+{{- $limit := .Site.Config.Services.RSS.Limit -}}
+{{- if ge $limit 1 -}}
+    {{- $pages = $pages | first $limit -}}
+{{- end -}}
+{{- $title := printf "%s on %s" .Title .Site.Title -}}
+{{- if not .Parent.IsHome }}{{ $title = printf "%s · %s on %s" .Title .Parent.Title .Site.Title }}{{ end -}}
+{{ printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>{{ $title }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ .Description }}</description>
+    <generator>Hugo -- gohugo.io</generator>{{ with .Site.Language.Locale }}
+    <language>{{.}}</language>{{end}}{{ with .Site.Copyright }}
+    <copyright>{{.}}</copyright>{{end}}{{ with $pages }}
+    <lastBuildDate>{{ (index . 0).Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>{{ end }}
+    {{ with .OutputFormats.Get "RSS" }}
+    {{ printf "<atom:link href=%q rel=\"self\" type=%q />" .Permalink .MediaType | safeHTML }}
+    {{ end }}
+    {{ range $pages }}
+    <item>
+      <title>{{ .Title }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      <guid>{{ .Permalink }}</guid>
+      <category>{{ .CurrentSection.Title }}</category>
+      <description>{{ partial "rss-content.html" . | html }}&lt;hr&gt;Thank you for keeping RSS alive. &lt;a href="https://ttvl.co/newsletter/"&gt;Subscribe to Flâneur.&lt;/a&gt;</description>
+    </item>
+    {{ end }}
+  </channel>
+</rss>

@@ -2,7 +2,7 @@
 # Run `make` for the list.
 
 .DEFAULT_GOAL := help
-.PHONY: help serve serve-drafts build cards cards-check cards-stale cards-all hooks
+.PHONY: help serve serve-drafts build entry cards cards-check cards-stale cards-all hooks
 
 help: ## Show this list
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*## "}; {printf "  %-14s %s\n", $$1, $$2}'
@@ -15,6 +15,9 @@ serve-drafts: ## Hugo dev server including drafts (port 1314)
 
 build: ## Production-equivalent build into public/
 	sh ./tools/build-production.sh
+
+entry: ## Start a research entry: make entry STREAM=ambient-computing SLUG=four-corners
+	@sh ./tools/new-entry.sh "$(STREAM)" "$(SLUG)"
 
 # Social cards live in static/social/ and are committed. Render them locally
 # after adding or retitling a note, project page, or hub; the build server

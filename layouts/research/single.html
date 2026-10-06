@@ -1,0 +1,98 @@
+{{ define "main" }}
+{{ $stream := .CurrentSection }}
+{{ $no := partialCached "research-number.html" . .Path }}
+{{ $rel := .RelPermalink }}
+{{ $relNoSlash := strings.TrimSuffix "/" $rel }}
+
+{{/* Relations: the questions this entry answers, the entries that answer
+     it, then every other page whose text links here. */}}
+{{ $rows := slice }}
+{{ $seen := slice .Path }}
+{{ range partial "research-answers.html" . }}
+  {{ $rows = $rows | append (dict "label" "Answers" "page" .) }}
+  {{ $seen = $seen | append .Path }}
+{{ end }}
+{{ range partial "research-answered-by.html" . }}
+  {{ $rows = $rows | append (dict "label" "Answered in" "page" .) }}
+  {{ $seen = $seen | append .Path }}
+{{ end }}
+{{ range site.RegularPages.ByDate }}
+  {{ if and (not (in $seen .Path)) (or (in .RawContent $rel) (in .RawContent $relNoSlash)) }}
+    {{ $rows = $rows | append (dict "label" "Referenced by" "page" .) }}
+  {{ end }}
+{{ end }}
+
+{{/* Neighbours within the stream, by date. Left and Right arrow keys
+     follow them (assets/js/research-pager.js). */}}
+{{ $prev := false }}
+{{ $next := false }}
+{{ $found := false }}
+{{ range $stream.RegularPages.ByDate }}
+  {{ if $found }}
+    {{ if not $next }}{{ $next = . }}{{ end }}
+  {{ else if eq .Path $.Path }}
+    {{ $found = true }}
+  {{ else }}
+    {{ $prev = . }}
+  {{ end }}
+{{ end }}
+
+<div class="research">
+<article class="research-single">
+  <p class="research-kicker">
+    <a href="{{ $stream.Parent.RelPermalink }}">{{ $stream.Parent.Title }}</a>
+    · <a href="{{ $stream.RelPermalink }}">{{ $stream.Title }}</a>
+    · {{ $no }}
+  </p>
+  <h1>{{ .Title }}</h1>
+  <p class="research-dateline">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+    {{- with partial "research-category.html" . }} · {{ . }}{{ end }}
+  </p>
+
+  {{ .Content }}
+
+  {{ with $rows }}
+  <ul class="research-ledger research-relations">
+    {{ range . }}
+    {{ $p := .page }}
+    {{ $tail := "" }}
+    {{ if eq $p.Section "research" }}
+      {{ $tail = partialCached "research-number.html" $p $p.Path }}
+      {{ if ne $p.CurrentSection.Path $stream.Path }}{{ $tail = printf "%s · %s" $p.CurrentSection.Title $tail }}{{ end }}
+    {{ else if eq $p.Section "notes" }}
+      {{ $tail = "Note" }}
+    {{ else if eq $p.Section "log" }}
+      {{ $tail = "Log" }}
+    {{ else }}
+      {{ $tail = $p.CurrentSection.Title }}
+    {{ end }}
+    <li>
+      <span class="research-ledger__key">{{ .label }}</span>
+      <span class="research-ledger__value"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>{{ with $tail }} <span class="research-ledger__tail">{{ . }}</span>{{ end }}</span>
+    </li>
+    {{ end }}
+  </ul>
+  {{ end }}
+
+  {{ if or $prev $next }}
+  <nav class="research-pager" aria-label="Entries in {{ $stream.Title }}">
+    {{ with $prev }}
+    <a class="research-pager__prev" href="{{ .RelPermalink }}" rel="prev" aria-keyshortcuts="ArrowLeft">
+      <span class="research-pager__label">&larr; {{ partialCached "research-number.html" . .Path }}</span>
+      <span class="research-pager__title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+    {{ with $next }}
+    <a class="research-pager__next" href="{{ .RelPermalink }}" rel="next" aria-keyshortcuts="ArrowRight">
+      <span class="research-pager__label">{{ partialCached "research-number.html" . .Path }} &rarr;</span>
+      <span class="research-pager__title">{{ .Title }}</span>
+    </a>
+    {{ end }}
+  </nav>
+  {{ $pager := resources.Get "js/research-pager.js" | resources.Minify | resources.Fingerprint }}
+  <script src="{{ $pager.RelPermalink }}" integrity="{{ $pager.Data.Integrity }}" defer></script>
+  {{ end }}
+</article>
+</div>
+{{ end }}

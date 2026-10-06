@@ -1,0 +1,10 @@
+{{- /* Entries in the same stream whose `answers` field names this one,
+     oldest first. An empty result means the question is still open. */ -}}
+{{- $by := slice -}}
+{{- range .CurrentSection.RegularPages.ByDate -}}
+  {{- $p := . -}}
+  {{- range partial "research-answers.html" $p -}}
+    {{- if eq .Path $.Path -}}{{- $by = $by | append $p -}}{{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $by -}}

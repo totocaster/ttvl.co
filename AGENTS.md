@@ -4,7 +4,7 @@ This guide gives coding agents the project context, conventions, and workflows n
 
 ## Project overview
 
-ttvl.co is Toto Tvalavadze's Hugo-based public notebook and project archive. Its main subjects are analog photography, bookbinding, notebook systems, humane interfaces, Obsidian tools, creative writing, and a monthly work log.
+ttvl.co is Toto Tvalavadze's Hugo-based public notebook and project archive. Its main subjects are analog photography, bookbinding, notebook systems, humane interfaces, Obsidian tools, creative writing, a research journal, and a monthly work log.
 
 The repository has no Node/npm toolchain, package manifest, or theme. Hugo Extended renders Markdown, compiles SCSS, and processes the site's vanilla JavaScript. Third-party browser code consists of a vendored `model-viewer` module plus hosted Campaign Monitor and Memberful scripts on the pages that need them.
 
@@ -24,9 +24,12 @@ HUGO_SITE_UPDATE=$(git rev-list --count HEAD) hugo --destination ./public
 # Social cards: render the ones that are missing (macOS; reads Helvetica Neue from the system)
 make cards
 make cards-check                        # list missing and stale cards without rendering
+
+# Research journal: start a dated entry in a stream
+make entry STREAM=ambient-computing SLUG=four-corners
 ```
 
-`make` lists every target: `serve`, `serve-drafts`, `build`, the `cards` family, and `hooks`, which installs a pre-commit hook that refuses commits with missing or stale cards. Python tools under `tools/` declare their dependencies inline and run through `uv run`; nothing is installed into the system Python.
+`make` lists every target: `serve`, `serve-drafts`, `build`, `entry`, the `cards` family, and `hooks`, which installs a pre-commit hook that refuses commits with missing or stale cards. Python tools under `tools/` declare their dependencies inline and run through `uv run`; nothing is installed into the system Python.
 
 `tools/build-production.sh` is the deployment entry point. It unshallows Git when necessary, derives `HUGO_SITE_UPDATE` from the commit count, removes `public/`, and invokes Hugo. There are no custom archetypes, so `hugo new` only supplies Hugo's generic frontmatter; copy a nearby content file when its schema matters.
 
@@ -46,10 +49,11 @@ make cards-check                        # list missing and stale cards without r
 - Projects archive: `content/projects/_index.md` discovers pages and sections with `project` frontmatter.
 - Loose Leaves: `content/leaves/_index.md` renders date-prefixed JPEG files from `static/leaves/`; there are no per-leaf Markdown pages.
 - Traces: `content/traces/*.md` → `/traces/…/` for scans, photographs, documents, and spatial records.
+- Research journal: `content/research/_index.md` → `/research/`; each stream is a subsection, `content/research/<stream>/_index.md` → `/research/<stream>/`; entries are `content/research/<stream>/YYYY-MM-DD-slug.md` → `/research/<stream>/<slug>/` from their `slug` frontmatter.
 
 Prefer canonical internal paths with trailing slashes. Do not add aliases unless an intentional short URL or a real historical URL must remain valid. Preserve existing aliases when moving content.
 
-The A–Z index ignores the initial English articles `A`, `An`, and `The` when sorting and grouping titles, while displaying each title unchanged. Set `sort_title` in a page's frontmatter to supply an explicit filing title when the automatic behavior is not appropriate.
+The A–Z index ignores the initial English articles `A`, `An`, and `The` when sorting and grouping titles, while displaying each title unchanged. Set `sort_title` in a page's frontmatter to supply an explicit filing title when the automatic behavior is not appropriate. Research entries stay out of the index, like Log months; the Research hub files under Start Here, and only top-level sections appear there.
 
 ### Hugo configuration and output
 
@@ -58,13 +62,13 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 - Home emits HTML, RSS, the JSON search index, and `social.json`, the social-card manifest rendered by `layouts/index.social.json`. `hugo --renderSegments social` builds only that manifest, which is how `tools/social-cards.py` reads the site. Hugo also generates `sitemap.xml` and `robots.txt`; there is no tracked `static/robots.txt`.
 - The `email` output format is declared globally, while every Flaneur dispatch currently opts into `HTML` and `email` in its frontmatter.
 - Goldmark unsafe rendering is enabled because content includes trusted inline HTML.
-- The custom RSS template includes Log, Darkroom, Bookbinding, Notes, Flaneur, Project Humane, and Obsidian content.
+- The custom RSS template includes Log, Darkroom, Bookbinding, Notes, Flaneur, Project Humane, and Obsidian content. Research stays out of it and publishes its own feeds through `layouts/research/rss.xml`: `/research/index.xml` for every stream and `/research/<stream>/index.xml` for one. The hub and each stream opt in with `outputs: ["HTML", "RSS"]`.
 - `data/` is currently unused except for `.gitkeep`.
 
 ### Templates and assets
 
 - `layouts/_default/baseof.html` is the standard shell; section layouts override list or single rendering through Hugo's lookup order. `layouts/flaneur/baseof.html` has a deliberately bare head: dispatch HTML pages are the source the mailing system ingests, not pages to share.
-- `partials/head.html` resolves the Open Graph image. An explicit `image` frontmatter value wins; otherwise the page's own card at `static/social/<permalink>.png` or `.jpg`, then `social/projects` for pages with `project` frontmatter, then the section hub card, then `social/site`. The URL carries a content hash so scrapers refetch a regenerated card. Hugo warns at build time when a note, project page, article, hub, or the home page lacks its own card, but still ships the fallback.
+- `partials/head.html` resolves the Open Graph image. An explicit `image` frontmatter value wins; otherwise the page's own card at `static/social/<permalink>.png` or `.jpg`, then `social/projects` for pages with `project` frontmatter, then the card of the page's own section (a research entry uses its stream's), then the top-level section hub card, then `social/site`. The URL carries a content hash so scrapers refetch a regenerated card. Hugo warns at build time when a note, project page, article, hub, research stream, or the home page lacks its own card, but still ships the fallback.
 - `layouts/partials/` contains shared head, navigation, footer, the project/trace card (`card.html`, which takes `variant: trace` for trace pages), the Campaign Monitor form (`subscribe-form.html`, which takes a per-page `id`), search, lightbox, and home-page components. Partial filenames are kebab-case.
 - `assets/scss/style.scss` is an import-only manifest. `_tokens.scss` defines the themed color custom properties, `_variables.scss` holds the Sass type/spacing/width/stacking values, `_base.scss` and `_layout.scss` hold the document shell, `components/` holds patterns shared by two or more sections, and `sections/` holds page-specific composition. `assets/scss/membership.scss` is a separate stylesheet for the Membership page.
 - Hugo Pipes compiles/minifies SCSS and minifies/fingerprints most JavaScript. There is no separate npm build step.
@@ -85,8 +89,9 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 
 - Search is available on layouts using the shared head. `?` opens the overlay when focus is not in an input, textarea, or editable element. Arrow keys select results, Enter follows one, Escape closes, and Tab remains trapped in the dialog.
 - `layouts/index.json` indexes regular pages whose Hugo type is neither `page` nor `json`. This includes section content but excludes standalone root pages such as About and Colophon.
-- Notes and Projects share `assets/js/category-filter.js` for query-string category filtering (`.category-filter` rail, `data-filter-group` sections, `data-category` items, `data-filter-show` per-state elements). The projects rail is driven by hub `_index.md` frontmatter: `filter_label` (chip name), `filter_dek` (one-line description shown while filtered), `filter_ref` (name of the arrow reference to the hub), and `filter_weight` (rail position; unweighted hubs sort alphabetically). Individual note pages compute backlinks from internal links at build time.
+- Notes, Projects, and the Research hub share `assets/js/category-filter.js` for query-string category filtering (on the Research hub, each stream's folder name is a category) (`.category-filter` rail, `data-filter-group` sections, `data-category` items, `data-filter-show` per-state elements). The projects rail is driven by hub `_index.md` frontmatter: `filter_label` (chip name), `filter_dek` (one-line description shown while filtered), `filter_ref` (name of the arrow reference to the hub), and `filter_weight` (rail position; unweighted hubs sort alphabetically). Individual note pages compute backlinks from internal links at build time.
 - The lightbox is loaded for Loose Leaves and pages with `lightbox: true`; it supports Escape, arrow keys, backdrop close, focus trapping, and focus restoration.
+- Research entry pages map the Left and Right arrow keys to the in-stream pager. The keys are ignored in fields and media players, with modifiers, and while text is selected.
 - Text Fragments are feature-detected through `document.fragmentDirective`. Selecting 6–499 characters updates the URL; `Cmd/Ctrl+Shift+L` updates it from the current selection, and Escape clears a live selection. There is no polyfill.
 - The pronunciation control is loaded only when `pronunciation_audio` is set.
 - The vendored `model-viewer` `4.3.1` module is loaded only when `model_viewer: true` is set.
@@ -151,14 +156,26 @@ Project Humane pages normally live in `content/project-humane/`. Obsidian pages 
 
 ### Social cards
 
-Every note, project page, article, hub with a `filter_dek`, and the home page has a 1200 × 630 Open Graph card under `static/social/`, committed to the repository. An article is any other regular page inside a section except Log months, Traces, and Flâneur dispatches, such as a Darkroom essay or a notebook guide. Cards are rendered locally, never on the build server.
+Every note, project page, article, hub with a `filter_dek`, research stream, and the home page has a 1200 × 630 Open Graph card under `static/social/`, committed to the repository. An article is any other regular page inside a section except Log months, Traces, research entries, and Flâneur dispatches, such as a Darkroom essay or a notebook guide. Cards are rendered locally, never on the build server.
 
-- Run `make cards` (`uv run tools/social-cards.py`) after adding a note, project page, or article, or after changing a title, date, category, description, or poster. It builds the manifest through Hugo, renders only the cards that are missing, and updates `static/social/manifest.json`. Commit the new files with the content change; `make hooks` installs a pre-commit hook that refuses a commit while cards are missing or stale.
+- Run `make cards` (`uv run tools/social-cards.py`) after adding a note, project page, article, or research stream, or after changing a title, date, category, description, or poster. It builds the manifest through Hugo, renders only the cards that are missing, and updates `static/social/manifest.json`. Commit the new files with the content change; `make hooks` installs a pre-commit hook that refuses a commit while cards are missing or stale.
 - `make cards-check` lists missing, stale, and orphaned cards without rendering; `make cards-stale` also re-renders cards whose inputs changed; `make cards-all` re-renders everything after a design change (bump `DESIGN_VERSION` in the script when the design changes); `uv run tools/social-cards.py --only /notes/walking/` limits a run, and `--drafts` includes draft pages.
-- Card voices: Notes are the ledger header with the title set as a text-fragment highlight; Projects are the poster from `project.image` matted on a pale blueprint grid with a wall label; articles are the ledger with the section name in the kicker and the page `description` as the dek; hubs and the site card are the ledger with a dek. Hub deks come from `filter_dek`; the site dek from `params.description` in `hugo.toml`. Give every article a `description`, since a card without one is a bare title.
+- Card voices: Notes are the ledger header with the title set as a text-fragment highlight; Projects are the poster from `project.image` matted on a pale blueprint grid with a wall label; articles are the ledger with the section name in the kicker and the page `description` as the dek; research streams are the article ledger with "Research · Stream" in the kicker and the stream `description` as the dek; hubs and the site card are the ledger with a dek. Hub deks come from `filter_dek`; the site dek from `params.description` in `hugo.toml`. Give every article a `description`, since a card without one is a bare title.
 - Flaneur dispatches get no card: their HTML pages are email sources with no metadata. The plate and engraving renderers remain in the script, dormant, and the manifest template says how to re-enable them.
 - Rendering needs macOS: Helvetica Neue is read from `/System/Library/Fonts/HelveticaNeue.ttc` (override with `SOCIAL_CARDS_FONT`). uv provisions Python and Pillow from the script's inline metadata.
-- Log months fall back to the Log hub card. About, Colophon, AI, and other root pages fall back to the site card. Traces set `image` in frontmatter and keep it.
+- Log months fall back to the Log hub card, and research entries to their stream's card. About, Colophon, AI, and other root pages fall back to the site card. Traces set `image` in frontmatter and keep it.
+
+### Research journal
+
+- `/research/` is a working journal of short, dated entries: what was tried, found, or asked. Arguments and opinions belong in Notes.
+- Streams are subsections. A stream's `_index.md` sets `title`, `description` (the hub dek and the card dek), `status` (`active`, `paused`, or `concluded`), `weight` (order on the hub), and `outputs: ["HTML", "RSS"]`, plus an optional `bench` list of `[label, text]` pairs describing the current apparatus. Its body is the stream's brief. Current streams: `ambient-computing` and `tools-for-thought`; plain-text systems belong to Tools for Thought.
+- Start an entry with `make entry STREAM=<stream> SLUG=<slug>` (`tools/new-entry.sh`). It writes `YYYY-MM-DD-<slug>.md` with `date` (local time and offset), `slug`, and `category`. Keep `slug`: it sets the URL, and the filename's date prefix only orders the folder.
+- `category` is one of `finding`, `progress`, `question`, or `reading`. Hugo reserves `kind`, so do not use it.
+- `answers:` names a question in the same stream by slug or filename (one value or a list) and closes it. Unanswered questions collect under Open Questions on the stream page; an entry page lists Answers, Answered in, and Referenced by rows, the last from any page whose text links to it.
+- Entry numbers (001, 002, …) come from date order within the stream. Never write them; a backdated entry renumbers the ones after it.
+- Store media in `static/visuals/research/<stream>/`. Use Hugo's built-in `figure` shortcode for images and `clip` for short silent loops (an MP4 with a JPEG poster frame).
+- The stream page shows every entry in full, newest first, so a stream reads as one page. The hub lists every entry as a row. On an entry page, the Left and Right arrow keys follow the previous and next links within the stream (`assets/js/research-pager.js`, loaded only on entry pages).
+- Entries have no social card of their own and use their stream's. Run `make cards` after adding or retitling a stream.
 
 ### Photography, downloads, and visual assets
 
@@ -177,6 +194,7 @@ Every note, project page, article, hub with a `filter_dek`, and the home page ha
 
 - `resources`: manifest of files and external sources from a Markdown-style link list; file rows read type and size from `static/` at build time (↓), external rows name their destination (↗). Trailing text after a link renders as a muted note. Pages can also declare a `resources:` frontmatter list (title + url) to render a chip strip of canonical links under the title.
 - `flaneur-gallery`: responsive newsletter image grid.
+- `clip`: short silent looping video with `src`, `poster`, `alt`, and an optional Markdown `caption`; plays muted on repeat, and readers who prefer reduced motion get the poster and controls (`assets/js/clip.js`, loaded only on pages with a clip).
 - `membership-link`: link to `params.membershipURL`.
 - `model-viewer`: interactive GLB viewer with poster, caption, download, and no-JavaScript fallback.
 - `gaussian-splat`: interactive SPZ viewer with poster, download, and no-JavaScript fallback; requires `gaussian_splat: true`. Optional `camera-position` and `camera-target` values are space-separated x/y/z coordinates in the scan's coordinate system; use them when automatic framing puts the camera outside the scanned space.
@@ -189,7 +207,7 @@ Every note, project page, article, hub with a `filter_dek`, and the home page ha
 ## Site versioning and deployment
 
 - The footer format is `vMAJOR.MINOR.UPDATE`.
-- The configured site era is currently `v7.9` under `[params.version]` in `hugo.toml`.
+- The configured site era is currently `v7.10` under `[params.version]` in `hugo.toml`.
 - `MAJOR` identifies the site era. Change `MINOR` only for a visible site-structure or publishing-system revision, not for routine content.
 - `UPDATE` is the repository commit count supplied through `HUGO_SITE_UPDATE` by `tools/build-production.sh`.
 - `params.version.update` is only a fallback for direct local Hugo invocations and can lag behind Git history.
@@ -207,7 +225,7 @@ Every note, project page, article, hub with a `filter_dek`, and the home page ha
 
 ### Titles and headings
 
-- Use sentence case for Note page titles because they are primarily statements rather than conventional titles. Use Chicago-style Title Case for every other page title and heading, including headings within Notes.
+- Use sentence case for Note page titles and research entry titles because they are primarily statements or questions rather than conventional titles. Use Chicago-style Title Case for every other page title and heading, including headings within Notes.
 
 ### In-house dictionary
 
@@ -279,7 +297,7 @@ There are no automated tests. Match verification to the change:
 2. Run `sh ./tools/build-production.sh` and investigate new build warnings.
 3. Exercise `?` search, keyboard navigation, and focus restoration when shared layout or JavaScript changes.
 4. Emulate light and dark `prefers-color-scheme`; there is no theme toggle.
-5. Check Notes filtering/backlinks, lightbox controls, Text Fragment URLs, or pronunciation when touching those features.
+5. Check Notes filtering/backlinks, the Research hub filter, stream Open Questions, entry relations, lightbox controls, Text Fragment URLs, or pronunciation when touching those features.
 6. Verify both browser and email outputs for Flaneur changes.
 7. Inspect `/index.json`, `/index.xml`, aliases, redirects, `robots.txt`, and `sitemap.xml` when changing outputs or routing.
 8. Run `make cards-check` before committing content. A production build warns about missing cards but still ships the fallback.

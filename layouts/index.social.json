@@ -34,6 +34,22 @@
   {{- end -}}
 {{- end -}}
 
+{{- /* Research streams: the article ledger with Research in the kicker and the
+     stream description as the dek. Entries carry no card of their own and
+     fall back to their stream's, the way Log months use the Log card. */ -}}
+{{- with site.GetPage "/research" -}}
+  {{- range .Sections -}}
+    {{- $cards = $cards | append (dict
+      "style" "article"
+      "out" (printf "social/%s" (strings.Trim .RelPermalink "/"))
+      "path" .RelPermalink
+      "title" .Title
+      "section" .Parent.Title
+      "meta" (slice "Stream")
+      "dek" (.Description | default "")) -}}
+  {{- end -}}
+{{- end -}}
+
 {{- /* Notes: category label and ISO date, matching the notes ledger. */ -}}
 {{- $labels := dict "collected" "Collected" "thinking" "Thinking" "longform" "Longform" -}}
 {{- range where site.RegularPages "Section" "notes" -}}
@@ -72,10 +88,11 @@
 
 {{- /* Articles: every other regular page inside a section, such as a Darkroom
      essay or a notebook guide. The kicker names the section and the dek is
-     the page description. Log months fall back to the Log hub card, Traces
-     set an explicit image, and dispatches carry no metadata. */ -}}
+     the page description. Log months fall back to the Log hub card, research
+     entries to their stream's card, Traces set an explicit image, and
+     dispatches carry no metadata. */ -}}
 {{- range site.RegularPages -}}
-  {{- if and .Section (not (in (slice "notes" "log" "traces" "flaneur") .Section)) (not .Params.project) (not .Params.image) -}}
+  {{- if and .Section (not (in (slice "notes" "log" "traces" "flaneur" "research") .Section)) (not .Params.project) (not .Params.image) -}}
     {{- $cards = $cards | append (dict
       "style" "article"
       "out" (printf "social/%s" (strings.Trim .RelPermalink "/"))

@@ -1,0 +1,11 @@
+{{- /* A research entry in full, as the stream page lists it. */ -}}
+{{- $no := partialCached "research-number.html" . .Path -}}
+<article class="research-entry">
+  <p class="research-meta">
+    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
+    · <a href="{{ .RelPermalink }}">{{ $no }}</a>
+    {{- with partial "research-category.html" . }} · {{ . }}{{ end }}
+  </p>
+  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+  {{ .Content }}
+</article>

@@ -10,6 +10,7 @@ This curated guide was last reviewed on 2026-08-01. The linked human-facing page
 
 - [Projects](/projects/): Chronological archive of ongoing and completed work.
 - [Notes](/notes/): Essays, collected matter, and shorter thinking notes.
+- [Research](/research/): Working journal of short, dated entries in two streams, Ambient Computing and Tools for Thought, with its own feed at `/research/index.xml`.
 - [Log](/log/): Public monthly summaries beginning in January 2019.
 - [The Flâneur](/newsletter/): Newsletter signup and dispatch archive.
 - [Traces](/traces/): Scans, photographs, documents, and spatial records.

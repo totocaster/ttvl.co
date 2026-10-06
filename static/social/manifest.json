@@ -166,6 +166,11 @@
       "file": "social/notes/ship-the-tool-not-the-agent.png",
       "style": "note"
     },
+    "social/notes/software-gets-malleable": {
+      "hash": "6a2a3802ed6f0a1e",
+      "file": "social/notes/software-gets-malleable.png",
+      "style": "note"
+    },
     "social/notes/soviet-not-russia": {
       "hash": "2066ceda21a2e1c6",
       "file": "social/notes/soviet-not-russia.png",
@@ -290,6 +295,21 @@
       "hash": "0b02e3d545df66ba",
       "file": "social/projects.png",
       "style": "hub"
+    },
+    "social/research": {
+      "hash": "cf590acf55cea459",
+      "file": "social/research.png",
+      "style": "hub"
+    },
+    "social/research/ambient-computing": {
+      "hash": "5923078e2d90e048",
+      "file": "social/research/ambient-computing.png",
+      "style": "article"
+    },
+    "social/research/tools-for-thought": {
+      "hash": "479b657275f28962",
+      "file": "social/research/tools-for-thought.png",
+      "style": "article"
     },
     "social/site": {
       "hash": "cd3a915ba8c27d09",

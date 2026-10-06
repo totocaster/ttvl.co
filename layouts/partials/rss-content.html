@@ -9,5 +9,5 @@ command text and explicit line breaks without interactive copy controls. */ -}}
   {{- $block = replaceRE `<span class="shell-line[^"]*">` "" $block -}}
   {{- $content = replace $content . (printf "<pre><code>%s</code></pre>" $block) -}}
 {{- end -}}
-{{- $content = replaceRE `<script\s[^>]*src="[^"]*/js/shell-copy\.[^"]+\.js"[^>]*></script>` "" $content -}}
+{{- $content = replaceRE `<script\s[^>]*src="[^"]*/js/(shell-copy|clip)\.[^"]+\.js"[^>]*></script>` "" $content -}}
 {{- return $content -}}

@@ -1,0 +1,9 @@
+{{ $entries := first 5 (where .Site.RegularPages "Section" "research").ByDate.Reverse }}
+{{ with $entries }}
+  <section class="recent-research">
+    <h1>Research</h1>
+    <ul class="issue-list">
+      {{ range . }}{{ partial "research-row.html" (dict "page" . "stream" true) }}{{ end }}
+    </ul>
+  </section>
+{{ end }}

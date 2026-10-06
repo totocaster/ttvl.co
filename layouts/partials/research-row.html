@@ -1,0 +1,16 @@
+{{- /* One index row for a research entry: date, title, and a meta tail.
+     Takes dict "page" plus booleans "stream", "number", "category" choosing
+     what the tail names. data-category is the stream's folder name, for
+     the hub's stream filter. */ -}}
+{{- $p := .page -}}
+{{- $parts := slice -}}
+{{- if .stream }}{{ $parts = $parts | append $p.CurrentSection.Title }}{{ end -}}
+{{- if .number }}{{ $parts = $parts | append (partialCached "research-number.html" $p $p.Path) }}{{ end -}}
+{{- if .category }}{{ with partial "research-category.html" $p }}{{ $parts = $parts | append . }}{{ end }}{{ end -}}
+<li data-category="{{ $p.CurrentSection.File.ContentBaseName }}">
+  <span class="issue-number"><time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "2006-01-02" }}</time></span>
+  <span class="research-row__body">
+    <a class="issue-title" href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
+    {{- with $parts }} <span class="research-row__tail">{{ delimit . " · " }}</span>{{ end }}
+  </span>
+</li>

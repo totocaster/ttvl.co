@@ -7,6 +7,7 @@ hub_sections:
   - notebook-system
   - obsidian
   - notes
+  - research
   - darkroom
   - bookbinding
   - leaves

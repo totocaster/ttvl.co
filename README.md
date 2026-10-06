@@ -28,6 +28,7 @@ Source for [ttvl.co](https://ttvl.co/), Toto Tvalavadze's public notebook and pr
 │   ├── obsidian/
 │   ├── project-humane/
 │   ├── projects/           # Generated project archive landing page
+│   ├── research/           # Research journal: one folder per stream, one file per entry
 │   └── traces/
 ├── layouts/
 │   ├── _default/           # Base, list, single, RSS, A-Z, and utility layouts
@@ -46,11 +47,12 @@ Source for [ttvl.co](https://ttvl.co/), Toto Tvalavadze's public notebook and pr
 │   └── llms.txt            # Concise machine-readable site guide
 ├── tools/
 │   ├── build-production.sh # Clean production build and version calculation
+│   ├── new-entry.sh        # Starts a dated research entry (make entry)
 │   ├── pre-commit          # Optional git hook: refuses commits with missing cards
 │   ├── social-cards.py     # Renders missing social cards from Hugo's manifest
 │   └── email_templates/    # Campaign Monitor membership email template
 ├── .do/app.yaml            # DigitalOcean App Platform definition
-├── Makefile                # serve, build, cards, cards-check, hooks
+├── Makefile                # serve, build, entry, cards, cards-check, hooks
 ├── hugo.toml               # Hugo, output, subscription, and version configuration
 ├── CLAUDE.md               # Coding-agent guidance (AGENTS.md is a symlink to it)
 └── public/                 # Generated, ignored output
@@ -91,6 +93,7 @@ HUGO_SITE_UPDATE=$(git rev-list --count HEAD) hugo --destination ./public
 | `content/obsidian/` | `/obsidian/…/` | Plugins, vault tools, and related plain-text workflows. |
 | `content/project-humane/` | `/project-humane/…/` | Humane-interface and command-line projects. |
 | `content/projects/_index.md` | `/projects/` | Discovers pages anywhere on the site with `project` frontmatter. |
+| `content/research/<stream>/YYYY-MM-DD-slug.md` | `/research/<stream>/<slug>/` | Research journal. Each stream is a subsection with its own page and feed; the URL takes the entry's `slug`. |
 | `content/traces/` | `/traces/…/` | Scans, photographs, documents, and interactive spatial records. |
 
 Top-level Markdown files provide the home page and standalone pages such as About, Colophon, AI transparency, A-Z, Links, and Membership. Prefer canonical paths in internal links and retain existing aliases only for compatibility.
@@ -114,6 +117,8 @@ The Projects archive includes every page or section with `project` metadata, gro
 
 Notes use `category: collected`, `category: thinking`, or `category: longform`; missing categories render as `thinking`. The Notes index filters these categories in the browser and preserves the chosen category in the query string. Note pages also calculate backlinks from canonical internal links during the Hugo build.
 
+Research entries carry `title`, `date` with a time and offset, `slug`, and `category: finding`, `progress`, `question`, or `reading`. An entry can close a question with `answers:` naming the question's slug or filename. Streams set `description`, `status` (`active`, `paused`, or `concluded`), `weight`, and an optional `bench` list of `[label, text]` pairs. `make entry STREAM=ambient-computing SLUG=four-corners` starts an entry with the right filename and frontmatter.
+
 Feature-specific scripts are opt-in where practical:
 
 - Set `lightbox: true` on a page that uses `photo-gallery`.
@@ -127,6 +132,7 @@ Feature-specific scripts are opt-in where practical:
 | `resources` | Renders a Markdown link list as a manifest of downloads (with build-time sizes) and external sources. |
 | `flaneur-gallery` | Two-column dispatch gallery that also renders in the email layout. |
 | `membership-link` | Links its inner Markdown to `params.membershipURL`. |
+| `clip` | Short silent looping video with `src`, `poster`, `alt`, and an optional Markdown `caption`; reduced-motion readers get the poster and controls. |
 | `model-viewer` | Accessible interactive GLB viewer with poster and no-JavaScript fallback; requires `src`, `poster`, and `alt`. |
 | `photo-gallery` | Lazy-loaded linked-image gallery prepared for the lightbox. |
 | `project-grid` | Renders an explicitly ordered comma-separated list of project pages. |
@@ -139,11 +145,12 @@ Feature-specific scripts are opt-in where practical:
 - **Search:** On layouts using the shared head, `?` opens an accessible overlay. The JSON index is fetched on first use, results are limited to ten, and arrow keys, Enter, Escape, and focus trapping are supported. `layouts/index.json` currently indexes regular content whose Hugo type is neither `page` nor `json`, so standalone utility pages are not included.
 - **Text fragments:** On shared-head layouts and browsers that expose the native Text Fragments API, selecting 6–499 characters updates the URL. `Cmd/Ctrl+Shift+L` refreshes the fragment for the selection and Escape clears it. There is no polyfill.
 - **Notes:** Category filtering uses `?category=…`; note backlinks are generated at build time.
+- **Research:** The hub lists streams with a 26-week activity strip and every entry as a dated row, filterable by stream with `?category=<stream>`. Stream pages show every entry in full, newest first. Entry numbers within a stream, open questions, and an entry's Answers, Answered in, and Referenced by rows are computed at build time. On an entry page, the Left and Right arrow keys go to the previous and next entry in the stream.
 - **Images:** Loose Leaves and pages using `photo-gallery` can opt into a keyboard-accessible lightbox.
 - **3D records:** Pages with `model_viewer: true` load the vendored `model-viewer` module only on that page.
 - **Appearance:** The site follows `prefers-color-scheme` for dark mode and includes selected `prefers-contrast: more` rules. There is no theme toggle or mobile-menu script; the compact navigation scrolls horizontally.
-- **Feeds and indexes:** Hugo generates `/index.xml`, `/index.json`, `/sitemap.xml`, and `/robots.txt`. The custom RSS template includes Log, Darkroom, Bookbinding, Notes, Flaneur, Project Humane, and Obsidian entries.
-- **Social cards:** Every note, project page, section article, hub, and the home page has a 1200 × 630 Open Graph image under `static/social/`, rendered locally by `tools/social-cards.py` and committed. The head partial resolves the page card, then the section fallback, then the site card, and Hugo warns at build time when a page lacks its own card. Flaneur dispatch pages are email sources and carry no metadata.
+- **Feeds and indexes:** Hugo generates `/index.xml`, `/index.json`, `/sitemap.xml`, and `/robots.txt`. The custom RSS template includes Log, Darkroom, Bookbinding, Notes, Flaneur, Project Humane, and Obsidian entries. Research publishes its own feeds instead: `/research/index.xml` for every stream and `/research/<stream>/index.xml` for one.
+- **Social cards:** Every note, project page, section article, hub, research stream, and the home page has a 1200 × 630 Open Graph image under `static/social/`, rendered locally by `tools/social-cards.py` and committed. The head partial resolves the page card, then the page's own section card (a research entry uses its stream's), then the top-level section fallback, then the site card, and Hugo warns at build time when a page lacks its own card. Flaneur dispatch pages are email sources and carry no metadata.
 
 ## Newsletter workflow
 
@@ -173,13 +180,13 @@ make cards-all
 make hooks
 ```
 
-Run `make cards` after adding a note, project page, or section article, or after retitling one, and commit the cards with the content. Rendering needs macOS for the font; the build server never renders and only warns when a card is missing.
+Run `make cards` after adding a note, project page, section article, or research stream, or after retitling one, and commit the cards with the content. Rendering needs macOS for the font; the build server never renders and only warns when a card is missing.
 
 ## Site versioning and deployment
 
 The footer displays `vMAJOR.MINOR.UPDATE`:
 
-- `major` and `minor` come from `[params.version]` in `hugo.toml` and currently identify the `v7.9` site structure. `MAJOR` identifies the site era; `MINOR` advances for visible structural or publishing-system revisions rather than routine content posts.
+- `major` and `minor` come from `[params.version]` in `hugo.toml` and currently identify the `v7.10` site structure. `MAJOR` identifies the site era; `MINOR` advances for visible structural or publishing-system revisions rather than routine content posts.
 - Production sets `UPDATE` to the Git commit count through `HUGO_SITE_UPDATE`.
 - `params.version.update` is a local fallback for direct Hugo commands that do not set the environment variable.
 

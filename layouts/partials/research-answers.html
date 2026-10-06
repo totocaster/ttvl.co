@@ -1,0 +1,16 @@
+{{- /* Pages in the same stream that an entry's `answers` field names.
+     `answers` takes one target or a list of them. */ -}}
+{{- $found := slice -}}
+{{- with .Params.answers -}}
+  {{- $targets := . -}}
+  {{- if not (reflect.IsSlice $targets) -}}{{- $targets = slice $targets -}}{{- end -}}
+  {{- range $targets -}}
+    {{- $t := . -}}
+    {{- range $.CurrentSection.RegularPages -}}
+      {{- if partial "research-matches.html" (dict "target" $t "page" .) -}}
+        {{- $found = $found | append . -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $found -}}

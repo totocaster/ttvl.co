@@ -1,0 +1,9 @@
+{{- /* Whether an `answers` target names a page: its filename without the
+     extension, its slug, or its path. Takes dict "target" and "page". */ -}}
+{{- $target := strings.Trim (string .target) "/" -}}
+{{- $page := .page -}}
+{{- $hit := false -}}
+{{- with $target -}}
+  {{- $hit = or (eq . $page.File.ContentBaseName) (eq . $page.Slug) (eq . (strings.Trim $page.RelPermalink "/")) -}}
+{{- end -}}
+{{- return $hit -}}
