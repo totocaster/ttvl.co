@@ -3,11 +3,11 @@ title: Patchcord
 date: 2026-07-27
 aliases:
   - /patchcord/
-description: "agent-friendly development workflow for CircuitPython projects"
+description: "Agent-friendly development workflow for CircuitPython projects."
 project:
   year: 2026
   category: /project-humane
-  description: "agent-friendly development workflow for CircuitPython projects"
+  description: "Agent-friendly development workflow for CircuitPython projects."
   image: /visuals/project-thumbs/proj_patchcord.png
 resources:
   - title: 'GitHub'

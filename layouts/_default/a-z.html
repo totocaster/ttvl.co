@@ -40,9 +40,11 @@
 {{ $pages = sort $pages "filingTitle" }}
 {{ $letters := split "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z #" " " }}
 
+{{ partial "page-head.html" . }}
+
 {{ if $hubPages }}
   <section class="index-hubs">
-    <h1>Start Here</h1>
+    <h2 class="section-head">Start Here</h2>
     <ul>
       {{ range $hubPages }}
         <li>
@@ -52,11 +54,10 @@
       {{ end }}
     </ul>
   </section>
-  <hr class="index-section-separator" />
 {{ end }}
 
 <section class="index-articles">
-  <h1>Index</h1>
+  <h2 class="section-head">A–Z</h2>
   <p class="index-meta">
     {{ len $pages }} entries, filed by title. A leading A, An, or The is ignored.
     <svg class="index-meta-envelope" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
@@ -83,7 +84,7 @@
 
       {{ if $letterPages }}
         <section class="index-letter">
-          <h2>{{ $letter }}</h2>
+          <h2 class="group-head">{{ $letter }} <span class="count">{{ len $letterPages }}</span></h2>
           <ul>
             {{ range $entry := $letterPages }}
               {{ $page := $entry.page }}
@@ -103,6 +104,5 @@
   </nav>
 </section>
 
-<hr class="index-section-separator" />
 {{ partial "log-archive.html" (dict "page" . "title" "Log") }}
 {{ end }}

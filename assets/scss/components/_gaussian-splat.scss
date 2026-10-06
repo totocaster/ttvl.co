@@ -1,7 +1,7 @@
 .gaussian-splat {
   width: 100%;
   max-width: $max-width-container;
-  margin: 1.5rem 0;
+  margin: $space-5 0 $space-6;
 
   .gaussian-splat__controls button {
     flex-shrink: 0;
@@ -37,7 +37,7 @@
   gap: 1em;
   justify-content: flex-end;
   max-width: $max-width-readable;
-  margin-bottom: 0.75rem;
+  margin-bottom: $space-3;
 }
 
 .gaussian-splat__title {
@@ -245,7 +245,7 @@ html.gaussian-splat-fullscreen-active {
 .gaussian-splat noscript {
   @include type-meta;
   max-width: $max-width-readable;
-  margin-top: 0.6rem;
+  margin-top: $space-2;
   color: var(--ink-muted);
 }
 

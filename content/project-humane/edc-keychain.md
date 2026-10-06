@@ -1,7 +1,7 @@
 ---
 title: EDC Modular Keychain
 date: 2024-12-20
-description: "lightweight, modular EDC system"
+description: "Lightweight, modular EDC system."
 project:
   year: 2024
   category: /project-humane

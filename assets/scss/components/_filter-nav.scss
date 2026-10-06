@@ -2,11 +2,11 @@
 // Driven by assets/js/category-filter.js via ?category= query strings.
 
 main .category-filter {
-  margin: 0 0 1rem;
+  margin: 0 0 $space-3;
   @include readable-width;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 4px;
+  padding-bottom: $space-1; // room for focus rings while scrolling
 
   ul {
     list-style: none;
@@ -14,7 +14,7 @@ main .category-filter {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 18px;
+    gap: $space-3;
 
     li {
       font-weight: $font-weight-regular;
@@ -31,7 +31,6 @@ main .category-filter {
   a {
     text-decoration: $link-decoration-plain;
     color: var(--ink-faint);
-    padding-bottom: 2px;
 
     &.is-active,
     &:hover {
@@ -54,10 +53,10 @@ main .category-filter {
 }
 
 // One-line dek shown for the active filter, closed by an arrow reference
-// to the domain's landing page.
+// to the domain's landing page. Content: full ink, text size.
 main .filter-dek {
-  @include readable-list-width;
-  margin: 0 0 1.5rem;
+  @include readable-width;
+  margin: 0;
 
   p {
     margin: 0;

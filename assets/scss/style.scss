@@ -7,10 +7,11 @@
 @import "base";
 @import "layout";
 
+@import "components/page-head";
+@import "components/row";
 @import "components/card";
 @import "components/control";
 @import "components/filter-nav";
-@import "components/index-row";
 @import "components/resources";
 @import "components/shell";
 @import "components/sheet";
@@ -30,7 +31,6 @@
 @import "sections/research";
 @import "sections/log";
 @import "sections/newsletter";
-@import "sections/traces";
 @import "sections/leaves";
 @import "sections/links";
 @import "sections/a-z";

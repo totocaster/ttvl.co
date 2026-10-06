@@ -4,11 +4,11 @@ date: 2026-04-14
 aliases:
   - /project-humane/metrics/
   - /metrics/
-description: "file-first Obsidian plugin for viewing and editing plaintext metric files"
+description: "File-first Obsidian plugin for viewing and editing plaintext metric files."
 project:
   year: 2026
   category: /obsidian
-  description: "plaintext metrics view for Obsidian with search, validation, and charts"
+  description: "Plaintext metrics view for Obsidian with search, validation, and charts."
   image: /visuals/project-thumbs/proj_metrics_obsidian.png
 resources:
   - title: 'GitHub'

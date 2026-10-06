@@ -3,7 +3,7 @@ title: Things CLI
 date: 2026-04-28
 aliases:
   - /things-cli/
-description: "macOS CLI for managing Things 3 tasks from the terminal"
+description: "macOS CLI for managing Things 3 tasks from the terminal."
 project:
   year: 2026
   category: /project-humane

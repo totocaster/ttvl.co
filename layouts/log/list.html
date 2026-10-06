@@ -1,15 +1,14 @@
 {{ define "main" }}
-<article class="log-content {{ with .Params.content_css }}{{ . }}{{ end }}">
-  {{ if not .Params.hide_title }}
-  <h1>{{ .Title }}</h1>
-  {{ end }} {{ .Content }}
+<article class="hub log-content {{ with .Params.content_css }}{{ . }}{{ end }}">
+  {{ partial "page-head.html" . }}
+  {{ .Content }}
 </article>
 
 {{ range .Pages.ByDate.Reverse }}
 <article class="log-list {{ with .Params.content_css }}{{ . }}{{ end }}">
-  <h1 class="log">
+  <h2 class="section-head log">
     <a href="{{ .RelPermalink }}">{{ .Date.Format "2006-01" }}</a>
-  </h1>
+  </h2>
   {{ .Content }}
 </article>
 {{ end }} {{ partial "log-archive.html" (dict "page" .) }} {{ end }}

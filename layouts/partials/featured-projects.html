@@ -1,4 +1,4 @@
-{{ $allProjects := where .Site.RegularPages "Params.project" "!=" nil }} {{
+{{ $allProjects := where .Site.Pages "Params.project" "!=" nil }} {{
 $featuredPages := where .Site.Pages "Params.featured" true }} {{ $projects :=
 first 6 (sort (where $featuredPages "Kind" "in" (slice "page" "section")) "Date"
 "desc") }} {{ if gt (len $projects) 0 }}

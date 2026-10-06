@@ -1,0 +1,61 @@
+// The page head: the title, one meta line, and the strip of canonical
+// doors. Rendered by layouts/partials/page-head.html; the meta line comes
+// from page-meta.html. The body starts 48px under the head.
+
+main .page-head {
+  margin: $space-3 0 $rhythm-head;
+
+  h1 {
+    margin: 0;
+    @include readable-width;
+  }
+
+  .page-meta {
+    @include type-meta;
+    color: var(--ink-faint);
+    margin: $space-1 0 0;
+    @include readable-width;
+    @include meta-links;
+  }
+
+  // A date never breaks at its hyphens; research status parts carry
+  // their own nowrap spans.
+  time {
+    white-space: nowrap;
+  }
+
+  // A subtitle under the meta line (dispatches): content, so text size,
+  // muted like every dek.
+  .page-dek {
+    color: var(--ink-muted);
+    margin: $space-3 0 0;
+    @include readable-width;
+  }
+
+  .resource-strip {
+    margin: $space-4 0 0;
+  }
+}
+
+// Group heads: a heading that groups a list carries its count inline.
+main .group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: $space-2;
+
+  .count {
+    @include type-meta;
+    font-weight: $font-weight-regular;
+    color: var(--ink-faint);
+  }
+}
+
+// End matter: Links and Mentioned in, 64px after the article.
+main .end-matter {
+  margin-top: $rhythm-section-above;
+
+  > h2:first-child {
+    margin-top: 0;
+  }
+}

@@ -13,7 +13,7 @@
   z-index: $z-search;
 
   @include narrow {
-    padding-top: 60px;
+    padding-top: $space-7;
   }
 }
 
@@ -28,11 +28,11 @@
 
 .search-logo {
   text-align: center;
-  margin-bottom: $padding-small * 0.5;
+  margin-bottom: $space-2;
 }
 
 .search-instructions {
-  margin: 0 0 $padding-small;
+  margin: 0 0 $space-4;
   text-align: center;
   @include type-meta;
   color: var(--ink-faint);
@@ -40,8 +40,9 @@
 
 .search-input {
   width: 100%;
-  padding: $padding-small;
-  @include type-title;
+  padding: $space-4;
+  font-size: $font-size-title;
+  line-height: $line-height-base;
   font-family: $font-family-base;
   border: none;
   outline: none;
@@ -56,7 +57,7 @@
 .search-results {
   overflow-y: auto;
   max-height: calc(100vh - #{$header-height} - 100px);
-  margin-top: $padding-small;
+  margin-top: $space-4;
   
   @include narrow {
     max-height: calc(100vh - 160px);
@@ -67,7 +68,7 @@
   display: block;
   text-decoration: $link-decoration-plain;
   color: var(--ink);
-  padding: $padding-small;
+  padding: $space-4;
   margin: 0;
 
   &:hover,
@@ -83,8 +84,8 @@
 
 .search-result-title {
   @include type-body;
-  margin-bottom: 4px;
-  
+  margin-bottom: $space-1;
+
   mark {
     background: transparent;
     text-decoration: underline;
@@ -94,7 +95,7 @@
 .search-result-meta {
   @include type-small;
   color: var(--ink-muted);
-  margin-bottom: 4px;
+  margin-bottom: $space-1;
   
   .search-result-section::after {
     content: " / ";
@@ -114,7 +115,7 @@
 .search-no-results,
 .search-loading,
 .search-error {
-  padding: $padding-small 0;
+  padding: $space-4 0;
   text-align: center;
   color: var(--ink-muted);
   @include type-body;

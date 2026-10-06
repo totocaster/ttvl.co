@@ -1,7 +1,7 @@
 ---
 title: Universal Content Bundle
 date: 2026-02-21
-description: "a proposal for a self-describing file bundle format for any type of content"
+description: "A proposal for a self-describing file bundle format for any type of content."
 category: thinking
 url: /notes/universal-content-bundle/
 aliases:

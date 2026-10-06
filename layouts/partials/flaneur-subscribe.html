@@ -1,12 +1,12 @@
-<section class="flaneur-box">
+{{- /* End matter on dispatch pages: an invitation, the form, and the same
+     honest legend as /newsletter/. Space alone separates it from the letter. */ -}}
+<section class="end-matter flaneur-box">
+  <h2 class="group-head">The Flâneur</h2>
   <p>Not subscribed to <a href="/newsletter/">The Flâneur</a>? Subscribe to get the next dispatch in your inbox.</p>
   <p>The Flâneur is a newsletter about my work, photography, books, making, and walking.</p>
   <div class="email-subscribe">
     {{ partial "subscribe-form.html" (dict "id" "article") }}
-    <div class="promise">
-      <p>Once a month. One click to unsubscribe.</p>
-      <p>Browse the complete <a href="/newsletter/">archive</a>.</p>
-    </div>
+    <p class="dispatch-legend">Seasonal, not monthly &middot; one click to leave &middot; <a href="/newsletter/">the archive</a></p>
   </div>
   {{ partial "campaign-monitor-script.html" . }}
 </section>

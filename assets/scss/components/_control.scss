@@ -2,10 +2,10 @@
 // Scoped to main: the links page (no main element) styles its own variant.
 
 main div.email-subscribe {
-  padding: 2rem 0;
+  padding: $space-5 0;
 
   div.promise > p {
-    padding-top: 1rem;
+    padding-top: $space-3;
     display: block;
     margin: 0;
   }
@@ -17,8 +17,8 @@ main div.email-subscribe {
       border: 1px solid var(--ink);
       background: var(--surface-input);
       color: var(--ink);
-      padding: 8px;
-      margin-right: 8px;
+      padding: $space-2; // control geometry
+      margin-right: $space-2;
       font-size: $font-size-base;
       height: $control-height;
       box-sizing: border-box;
@@ -41,7 +41,7 @@ main div.email-subscribe {
       @include dark {
         border: 1px solid var(--rule);
       }
-      padding: 8px 16px;
+      padding: $space-2 $space-3;
       cursor: pointer;
       font-size: $font-size-base;
       height: $control-height;

@@ -1,24 +1,27 @@
-// A–Z index page: dek'd hub list, letter groups on hairlines, and the
-// filing-rule legend. Columns collapse to one on narrow screens.
+// A–Z index page: the page head, then three sections (Start Here, A–Z,
+// Log) on the shared section rhythm: dek'd hub list, letter groups with
+// counts, the filing-rule legend. Columns collapse to one on narrow screens.
 
 main {
   .index-hubs {
     ul {
       columns: 2;
-      column-gap: 3rem;
+      column-gap: $space-6;
       list-style: none;
       padding-left: 0;
+      margin: 0;
     }
 
     li {
       break-inside: avoid;
       page-break-inside: avoid;
-      margin-bottom: 12px;
+      margin-bottom: $space-3;
     }
 
+    // Hub deks: muted, in the small voice (Toto's call on the A–Z).
     .index-hub-dek {
       display: block;
-      @include type-meta;
+      @include type-small;
       color: var(--ink-muted);
     }
   }
@@ -26,8 +29,9 @@ main {
   // Size, filing rule, and envelope legend in one meta line.
   .index-meta {
     @include type-meta;
+    @include readable-width;
     color: var(--ink-faint);
-    margin: 0 0 20px;
+    margin: 0 0 $space-4;
 
     .index-meta-envelope {
       width: 0.85em;
@@ -39,21 +43,17 @@ main {
 
   nav#Index {
     columns: 3;
-    column-gap: 3rem;
+    column-gap: $space-6;
 
     .index-letter {
       break-inside: avoid;
       display: inline-block;
       page-break-inside: avoid;
       width: 100%;
-      margin-bottom: 20px;
+      margin-bottom: $space-4;
 
-      // Each letter sits on its own hairline; rank comes from the rule
-      // and the room, not from size.
       h2 {
-        margin: 0 0 4px;
-        padding-top: 8px;
-        border-top: 1px solid var(--rule);
+        margin: 0 0 $space-1;
       }
     }
 
@@ -64,7 +64,7 @@ main {
     }
 
     li {
-      padding-left: 0.7rem;
+      padding-left: 0.7rem; // hanging indent for wrapped titles
       text-indent: -0.7rem;
     }
 
@@ -72,7 +72,7 @@ main {
       display: inline-flex;
       width: 1em;
       height: 1em;
-      margin-left: 0.25rem;
+      margin-left: $space-1;
       vertical-align: -0.12em;
       color: var(--ink-faint);
       transition: color $t-fast;
@@ -93,12 +93,5 @@ main {
     nav#Index {
       columns: 1;
     }
-  }
-
-  .index-section-separator {
-    width: 20%;
-    margin: 2.5rem 0;
-    border: 0;
-    border-top: 1px solid var(--rule);
   }
 }

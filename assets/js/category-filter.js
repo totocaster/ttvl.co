@@ -29,6 +29,13 @@
       });
 
       group.hidden = visibleCount === 0;
+
+      // A group head's count follows the filter ("3 notes").
+      const count = group.querySelector(".count[data-singular]");
+      if (count) {
+        const noun = visibleCount === 1 ? count.dataset.singular : count.dataset.plural;
+        count.textContent = `${visibleCount} ${noun}`;
+      }
     });
   };
 

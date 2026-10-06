@@ -7,13 +7,16 @@
 {{- $rest := slice -}}
 {{- if .number }}{{ $rest = $rest | append (partialCached "research-number.html" $p $p.Path) }}{{ end -}}
 {{- if .category }}{{ with partial "research-category.html" $p }}{{ $rest = $rest | append . }}{{ end }}{{ end -}}
-<li data-category="{{ $p.CurrentSection.File.ContentBaseName }}">
-  <span class="issue-number"><time datetime="{{ $p.Date.Format "2006-01-02" }}">{{ $p.Date.Format "2006-01-02" }}</time></span>
-  <span class="research-row__body">
-    <a class="issue-title" href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>
-    {{- if or .stream $rest }} <span class="research-row__tail">
-      {{- if .stream }}<span data-filter-show="all">{{ $p.CurrentSection.Title }}{{ with $rest }} · {{ end }}</span>{{ end -}}
-      {{- delimit $rest " · " -}}
-    </span>{{ end }}
-  </span>
-</li>
+{{- $tail := "" -}}
+{{- if or .stream $rest -}}
+  {{- $html := "" -}}
+  {{- if .stream }}{{ $html = printf `<span data-filter-show="all">%s%s</span>` (htmlEscape $p.CurrentSection.Title) (cond (gt (len $rest) 0) " · " "") }}{{ end -}}
+  {{- $tail = printf "%s%s" $html (delimit $rest " · ") | safeHTML -}}
+{{- end -}}
+{{ partial "row.html" (dict
+  "meta" (printf `<time datetime="%s">%s</time>` ($p.Date.Format "2006-01-02") ($p.Date.Format "2006-01-02") | safeHTML)
+  "url" $p.RelPermalink
+  "title" $p.Title
+  "tail" $tail
+  "category" $p.CurrentSection.File.ContentBaseName
+) }}

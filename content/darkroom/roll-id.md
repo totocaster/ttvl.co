@@ -1,7 +1,7 @@
 ---
 title: Film Identification Format
 date: 2024-12-02
-description: "film orhganization and archiving aid"
+description: "Film organization and archiving aid."
 project:
   year: 2024
   category: /darkroom

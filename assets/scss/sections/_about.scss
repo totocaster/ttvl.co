@@ -1,6 +1,6 @@
-// About page: ledger composition — lede, section rules, figures with
-// captions, numbered principles, press rows, and the pronunciation
-// control. The quotation voice lives in _base.scss.
+// About page: lede, sections separated by space, the floated portrait,
+// numbered principles, press rows (shared rows), and the pronunciation
+// control. Figures and the quotation voice live in _base.scss.
 
 main article.about {
   counter-reset: principle;
@@ -21,28 +21,14 @@ main article.about {
     }
   }
 
-  // Section rules: each --- marks a section start at bleed width.
+  // Each --- marks a section start. Air draws no dividing rules: the
+  // --- becomes space, 16px here plus the heading's 48px, the 64px of a
+  // section.
   hr {
-    width: 100%;
-    max-width: $max-width-bleed;
-    margin: 56px 0 32px;
-  }
-
-  figure {
-    margin: 0 0 25px;
-    max-width: $max-width-bleed;
-
-    img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-
-    figcaption {
-      @include type-meta;
-      color: var(--ink-faint);
-      margin-top: 6px;
-    }
+    width: auto;
+    height: 0;
+    margin: $space-3 0 0;
+    border: 0;
   }
 
   // The portrait sits to the right of the opening paragraphs; the prose
@@ -51,11 +37,12 @@ main article.about {
   figure.portrait {
     float: right;
     width: 240px;
-    margin: 4px 0 20px 40px;
+    max-width: none;
+    margin: $space-1 0 $space-4 $space-6;
 
     @include narrow {
       width: 132px;
-      margin: 4px 0 12px 20px;
+      margin: $space-1 0 $space-3 $space-4;
     }
   }
 
@@ -68,12 +55,12 @@ main article.about {
   .section-meta {
     @include type-meta;
     color: var(--ink-faint);
-    margin: -8px 0 20px;
+    margin: (-$space-2) 0 $space-4; // hugs the heading above it
   }
 
   // The form ends its section; the divider supplies the bottom spacing.
   div.email-subscribe {
-    padding: 0.5rem 0 0;
+    padding: $space-2 0 0;
   }
 
   // Record rows name their archive in words, so a download link in them
@@ -92,7 +79,7 @@ main article.about {
       @include type-meta;
       font-weight: $font-weight-regular;
       color: var(--ink-faint);
-      margin-right: 10px;
+      margin-right: $space-2;
     }
   }
 
@@ -122,7 +109,7 @@ main article.about {
     border: 0;
     border-radius: $radius-tight;
     padding: 0;
-    margin: 0 0 0 0.15rem;
+    margin: 0 0 0 0.15rem; // control geometry: hugs the name
     background: transparent;
     color: inherit;
     font: inherit;

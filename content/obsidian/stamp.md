@@ -4,7 +4,7 @@ date: 2025-09-18
 aliases:
   - /stamp/
   - /project-humane/stamp/
-description: "A CLI tool for generating consistent filenames for notes"
+description: "A CLI tool for generating consistent filenames for notes."
 project:
   year: 2025
   category: /obsidian

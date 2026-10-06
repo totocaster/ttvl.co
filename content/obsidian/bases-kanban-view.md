@@ -5,11 +5,11 @@ aliases:
   - /project-humane/bases-kanban-view/
   - /bases-kanban-view/
   - /kanban-base-view/
-description: "focused Kanban view for Obsidian Bases with keyboard-friendly card movement, date states, and workload cues"
+description: "Focused Kanban view for Obsidian Bases with keyboard-friendly card movement, date states, and workload cues."
 project:
   year: 2026
   category: /obsidian
-  description: "focused Kanban view for Obsidian Bases with draggable cards, date cues, WIP limits, and saved layouts"
+  description: "Focused Kanban view for Obsidian Bases with draggable cards, date cues, WIP limits, and saved layouts."
   image: /visuals/project-thumbs/proj_kanban_view_obsdian.png
 resources:
   - title: 'GitHub'

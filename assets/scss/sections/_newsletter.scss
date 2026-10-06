@@ -1,45 +1,43 @@
-// Newsletter landing (intro, Start here doors, contact sheet, archive
-// ledger) and Flâneur issue pages.
+// Newsletter landing (intro, Start Here doors, contact sheet, archive) and
+// Flâneur issue pages. The archive uses the shared rows and group heads;
+// sections open on the shared section rhythm.
 
 main {
   .newsletter-intro {
-    @include readable-width;
-
     div.email-subscribe {
       padding-bottom: 0;
     }
   }
 
-  // Honest promise under the form: count, cadence, exit.
+  // Honest promise under the form: start year, cadence, exit.
   .dispatch-legend {
     @include type-meta;
     color: var(--ink-faint);
-    margin: 0.75rem 0 0;
+    margin: $space-3 0 0;
   }
 
-  // Start here — three curated doors from _index.md frontmatter.
+  // Start Here — three curated doors from _index.md frontmatter.
   .newsletter-doors {
-    margin-top: 2.5rem;
-
     .door-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 0 2rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0 $space-5;
 
       @include narrow {
         grid-template-columns: 1fr;
-        gap: 1.25rem;
+        gap: $space-4;
       }
     }
 
+    // Label, number, and month in the meta voice, sentence case.
     .door-label {
-      @include type-label;
+      @include type-meta;
       color: var(--ink-faint);
-      margin: 0 0 2px;
+      margin: 0 0 $space-1;
     }
 
     .door h3 {
-      margin: 0 0 2px;
+      margin: 0 0 $space-1;
     }
 
     .door-dek {
@@ -50,12 +48,10 @@ main {
 
   // Contact sheet — one frame per dispatch that carries a cover.
   .newsletter-sheet {
-    margin-top: 2.5rem;
-
     // Explanation below the strip is content: full ink, body size.
     .sheet-note {
       @include readable-width;
-      margin: 0.75rem 0 0;
+      margin: $space-3 0 0;
     }
 
     ul.sheet-strip {
@@ -63,7 +59,7 @@ main {
       margin: 0;
       padding: 0;
       display: flex;
-      gap: 12px;
+      gap: $space-3;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
 
@@ -101,7 +97,7 @@ main {
       display: block;
       @include type-meta;
       color: var(--ink-faint);
-      margin-top: 2px;
+      margin-top: $space-1;
       transition: color $t-fast;
     }
 
@@ -110,113 +106,27 @@ main {
     }
   }
 
-  // Archive — year-grouped ledger with deks from frontmatter.
+  // Archive — year groups under the Archive section, rows with optional
+  // deks (show_deks in _index.md). Deks are muted per Toto's call for this
+  // page (2026-08-30), which is now the row standard everywhere.
   .newsletter-archive {
     @include readable-width;
-    margin-top: 2.5rem;
-
-    > h2 {
-      margin-bottom: 0.5rem;
-    }
-
-    // Each year sits on its own hairline, count and era note in meta voice.
-    .dispatch-year h3 {
-      margin: 20px 0 8px;
-      padding-top: 8px;
-      border-top: 1px solid var(--rule);
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 12px;
-    }
-
-    .year-note {
-      @include type-meta;
-      font-weight: $font-weight-regular;
-      color: var(--ink-faint);
-      white-space: nowrap;
-    }
-
-    ul.dispatch-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-
-      li {
-        display: grid;
-        grid-template-columns: 110px 1fr;
-        align-items: baseline;
-        margin-bottom: 4px;
-      }
-
-      // Dek'd rows need air between entries; bare rows sit tight.
-      &.with-deks li {
-        margin-bottom: 14px;
-      }
-    }
-
-    .dispatch-num {
-      @include type-meta;
-      color: var(--ink-faint);
-      white-space: nowrap;
-    }
-
-    a.dispatch-title {
-      font-weight: $link-weight-quiet;
-      text-decoration: $link-decoration-default;
-    }
-
-    // Deks stay body size on tight leading, muted per Toto's call for
-    // this page (2026-08-30).
-    .dispatch-dek {
-      grid-column: 2;
-      line-height: $line-height-tight;
-      margin-top: 1px;
-      color: var(--ink-muted);
-    }
-
-    @include narrow {
-      // Only dek'd rows stack; bare rows keep number and title inline.
-      ul.dispatch-list.with-deks li {
-        grid-template-columns: 1fr;
-      }
-
-      ul.dispatch-list.with-deks .dispatch-dek {
-        grid-column: 1;
-      }
-
-      // The 2021 era note is long; let it wrap instead of overflowing.
-      .year-note {
-        white-space: normal;
-        text-align: right;
-      }
-    }
   }
 
-  // Single issue page
+  // Dispatch pages: the letter uses the shared page head (title, meta line,
+  // subtitle as its dek); only the gallery is the dispatch's own.
   article.flaneur {
-    h1 {
-      margin-bottom: 0.5rem;
-    }
-
-    p.subtitle {
-      margin-bottom: 2rem;
-      color: var(--ink-muted);
-    }
-
     // Flaneur gallery for multiple images
     .flaneur-gallery {
-      @include readable-width; // Constrain to same width as other content
-      margin: 1.5rem 0;
-
-      // Use CSS Grid for responsive layout
+      @include readable-width;
+      margin: $space-5 0 $space-6;
       display: grid;
-      grid-template-columns: 1fr 1fr; // 2 columns
-      gap: 1rem;
+      grid-template-columns: 1fr 1fr;
+      gap: $space-3;
 
       @include narrow {
-        grid-template-columns: 1fr; // Single column on mobile
-        gap: 0.5rem;
+        grid-template-columns: 1fr;
+        gap: $space-2;
       }
     }
 
@@ -230,29 +140,24 @@ main {
     }
   }
 
-  section.flaneur-header {
-    margin: 2rem 0 4rem 0;
+  // The invitation at the end of a dispatch: end matter like any other,
+  // separated by space alone.
+  .flaneur-box {
+    @include readable-width;
 
-    a {
-      font-weight: $link-weight-action;
+    > p {
+      margin: 0 0 $rhythm-paragraph;
     }
 
-    .flaneur-logo {
-      margin-top: 2rem;
-      width: 120px;
-      height: auto;
+    div.email-subscribe {
+      padding: $space-2 0 0;
     }
   }
 }
 
-section.flaneur-box {
-  max-width: $max-width-readable-list;
-  margin: 6rem 0;
-  border-top: 1px solid var(--edge);
-  padding: 1rem 2rem;
-  background: linear-gradient(to bottom, var(--surface), transparent);
-
-  a {
-    font-weight: $link-weight-action;
-  }
+// The engraving in a dispatch's header, where the site logo would be.
+.flaneur-logo {
+  display: block;
+  width: 120px;
+  height: auto;
 }

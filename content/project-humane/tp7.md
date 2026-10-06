@@ -3,11 +3,11 @@ title: TP-7 CLI
 date: 2026-05-07
 aliases:
   - /tp7/
-description: "CLI tool for humans and agents to manage files on Teenage Engineering TP-7 field recorders"
+description: "CLI tool for humans and agents to manage files on Teenage Engineering TP-7 field recorders."
 project:
   year: 2026
   category: /project-humane
-  description: "CLI tool for humans and agents to manage files on Teenage Engineering TP-7 field recorders"
+  description: "CLI tool for humans and agents to manage files on Teenage Engineering TP-7 field recorders."
   image: /visuals/project-thumbs/proj_tp7_cli.png
 resources:
   - title: 'GitHub'

@@ -1,4 +1,6 @@
 {{ define "main" }}
+<article class="hub">
+  {{ partial "page-head.html" . }}
   {{ .Content }}
   {{ $categories := slice
     (dict "slug" "all" "label" "All")
@@ -22,22 +24,23 @@
 
   <div class="notes-groups">
     {{ range $grouped }}
+      {{ $n := len .Pages }}
       <section class="notes-year" data-year="{{ .Key }}" data-filter-group>
-        <h2>{{ .Key }}</h2>
-        <ul class="issue-list">
+        <h2 class="group-head">{{ .Key }} <span class="count" data-singular="note" data-plural="notes">{{ $n }} {{ cond (eq $n 1) "note" "notes" }}</span></h2>
+        <ul class="rows">
           {{ range .Pages.ByDate.Reverse }}
-            {{ $cat := .Params.category | default "thinking" }}
-            <li data-category="{{ $cat }}">
-              <span class="issue-number">
-                <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
-              </span>
-              <a class="issue-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-            </li>
+            {{ partial "row.html" (dict
+              "meta" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02") | safeHTML)
+              "url" .RelPermalink
+              "title" .Title
+              "category" (.Params.category | default "thinking")
+            ) }}
           {{ end }}
         </ul>
       </section>
     {{ end }}
   </div>
+</article>
 
   {{ $categoryFilter := resources.Get "js/category-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
   <script src="{{ $categoryFilter.RelPermalink }}" defer></script>

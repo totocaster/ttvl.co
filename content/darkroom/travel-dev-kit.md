@@ -1,7 +1,7 @@
 ---
 title: 'Rapid Travel Film Development Kit'
 date: 2024-12-20
-description: "for nomad film shooters"
+description: "For nomad film shooters."
 project:
   year: 2024
   category: /darkroom

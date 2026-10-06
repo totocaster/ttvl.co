@@ -1,18 +1,17 @@
-// Card grid — projects archive, featured projects on home, traces archive.
+// Cards: for things with a poster. A 16:9 tile, the title in the quiet
+// link voice, the dek on its own line. Project archive, featured projects
+// on home, the project-grid shortcode, the traces archive.
 // Rendered by layouts/partials/card.html.
 
+// A group of cards under its heading. Spacing comes from the heading rhythm.
 .project-year {
-  margin: 2rem 0;
-
-  h2 {
-    margin-bottom: 1rem;
-  }
+  margin: 0;
 }
 
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 24px;
+  gap: $space-4;
 
   @include narrow {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -22,9 +21,11 @@
 .project-card {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: $space-2;
+  min-width: 0;
 }
 
+// The tile: an edge frame on a surface well.
 .project-image {
   width: 100%;
   aspect-ratio: 16 / 9;
@@ -56,9 +57,16 @@
   }
 }
 
-// Kind label on trace cards; project cards carry no visible kicker.
+.project-dek {
+  display: block;
+  color: var(--ink-muted);
+  line-height: $line-height-tight;
+  margin-top: 2px; // sits under the title's descenders
+}
+
+// Kind on trace cards, in the meta voice; project cards carry no kicker.
 .project-category {
-  @include type-label;
+  @include type-meta;
   color: var(--ink-faint);
 }
 

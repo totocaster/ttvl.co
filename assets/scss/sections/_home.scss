@@ -1,36 +1,40 @@
-// Home page composition.
+// Home page composition: the intro, then sections titled with h1 (the home
+// page's sections are top level). Sections open at 64/16 like every hub
+// section; text holds the measure like every other page.
 
 div.home {
-  p:first-of-type {
-    margin-top: 0;
-  }
   p {
+    margin: 0 0 $rhythm-paragraph;
+    @include readable-width;
+
     img {
       max-width: 100%;
       height: auto;
     }
   }
 
+  > section {
+    margin-top: $rhythm-section-above;
+  }
+
+  h1 {
+    margin: 0 0 $rhythm-section-below;
+  }
+
   .flaneur-inpage-box {
     div.email-subscribe {
-      padding-top: 0;
-      padding-bottom: 0;
+      padding: 0;
     }
-  }
 
-  > section {
-    margin-top: 3rem;
-  }
-
-  > section.project-year {
-    margin: 3rem 0 0;
+    // The recent dispatches follow the promise line like a paragraph.
+    .rows {
+      margin-top: $rhythm-paragraph;
+    }
   }
 }
 
-// Socials section
+// Socials: the follow links in Get in Touch.
 .socials {
-  margin-top: 1.5rem;
-
   a {
     display: inline-block;
     color: var(--ink-muted);
@@ -40,15 +44,5 @@ div.home {
     &:hover {
       color: var(--ink);
     }
-  }
-}
-
-.get-in-touch {
-  h1 {
-    margin: 0 0 0.5rem;
-  }
-
-  p {
-    margin: 0 0 0.75rem;
   }
 }

@@ -1,0 +1,46 @@
+{{- /* End matter: every page whose text links to this one, as rows under
+"Mentioned in". Hubs first, then pages newest first. A link counts when the
+raw content holds the permalink, the permalink before ")" or "#", or the
+content path inside a page-list or project-grid shortcode. Call through
+partialCached keyed on .Path. docs/styleguide.md, End Matter. */ -}}
+{{- $self := . -}}
+{{- $rel := .RelPermalink -}}
+{{- $bare := strings.TrimSuffix "/" $rel -}}
+{{- $path := strings.TrimPrefix "/" $bare -}}
+{{- $needles := slice $rel (printf "%s)" $bare) (printf "%s#" $bare) (printf "%s," $path) (printf "%s\"" $path) -}}
+{{- /* Shortcodes name pages by content path, which differs from the
+     permalink when a page sets `url` (Plaintext Commons, the notebook system). */ -}}
+{{- $logical := strings.TrimPrefix "/" .Path -}}
+{{- if ne $logical $path }}{{ $needles = $needles | append (printf "%s," $logical) (printf "%s\"" $logical) }}{{ end -}}
+{{- $hubs := slice -}}
+{{- $pages := slice -}}
+{{- range site.Pages -}}
+  {{- if and (in (slice "page" "section") .Kind) (ne .Path $self.Path) (ne .Type "redirect") -}}
+    {{- $raw := .RawContent -}}
+    {{- $hit := false -}}
+    {{- range $needles }}{{ if in $raw . }}{{ $hit = true }}{{ end }}{{ end -}}
+    {{- if $hit -}}
+      {{- if .IsSection }}{{ $hubs = $hubs | append . }}{{ else }}{{ $pages = $pages | append . }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- $all := (sort $hubs "Title") | append (sort $pages "Date" "desc") -}}
+{{- with $all }}
+<section class="end-matter">
+  <h2 class="group-head">Mentioned in</h2>
+  <ul class="rows">
+    {{- range . }}
+    {{- $kind := "Page" -}}
+    {{- if .IsSection }}{{ $kind = "Hub" -}}
+    {{- else if eq .Section "notes" }}{{ $kind = "Note" -}}
+    {{- else if eq .Section "log" }}{{ $kind = "Log" -}}
+    {{- else if eq .Section "research" }}{{ $kind = printf "Research %s" (partialCached "research-number.html" . .Path) -}}
+    {{- else if eq .Section "flaneur" }}{{ $kind = printf "Dispatch %s" .File.BaseFileName -}}
+    {{- else if .Params.project }}{{ $kind = "Project" -}}
+    {{- else if .Section }}{{ $kind = .CurrentSection.Title -}}
+    {{- end }}
+    {{ partial "row.html" (dict "meta" $kind "url" .RelPermalink "title" .Title) }}
+    {{- end }}
+  </ul>
+</section>
+{{- end -}}

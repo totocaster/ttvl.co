@@ -1,7 +1,7 @@
 ---
 title: 'Rugged 40-Roll Film Storage'
 date: 2025-05-04
-description: "3d printable film holders for any roll film format"
+description: "3D printable film holders for any roll film format."
 project:
   year: 2025
   category: /darkroom

@@ -1,6 +1,6 @@
 ---
 title: Bookbinding
-description: "Tools, jigs, and fixtures for bindery experiments"
+description: "Tools, jigs, and fixtures for bindery experiments."
 filter_weight: 3
 filter_dek: 'Tools, jigs, and fixtures for bindery experiments.'
 filter_ref: 'Bookbinding'
@@ -10,7 +10,7 @@ Bookbinding notes from the studio: small fixtures, experiments from the year-lon
 
 ## Fixtures and Tools
 
-- [Corner Cutting Jig for Bookbinding](/bookbinding/corner-cutting-jig/)
+{{< page-list pages="bookbinding/corner-cutting-jig" >}}
 
 ## Practice Notes
 

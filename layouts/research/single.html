@@ -1,6 +1,5 @@
 {{ define "main" }}
 {{ $stream := .CurrentSection }}
-{{ $no := partialCached "research-number.html" . .Path }}
 {{ $rel := .RelPermalink }}
 {{ $relNoSlash := strings.TrimSuffix "/" $rel }}
 
@@ -39,21 +38,15 @@
 
 <div class="research">
 <article class="research-single">
-  <p class="research-kicker">
-    <a href="{{ $stream.Parent.RelPermalink }}">{{ $stream.Parent.Title }}</a>
-    · <a href="{{ $stream.RelPermalink }}">{{ $stream.Title }}</a>
-    · {{ $no }}
-  </p>
-  <h1>{{ .Title }}</h1>
-  <p class="research-dateline">
-    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
-    {{- with partial "research-category.html" . }} · {{ . }}{{ end }}
-  </p>
+  {{ partial "page-head.html" . }}
 
   {{ .Content }}
+</article>
 
   {{ with $rows }}
-  <ul class="research-ledger research-relations">
+  <section class="end-matter">
+  <h2 class="group-head">Related</h2>
+  <ul class="rows">
     {{ range . }}
     {{ $p := .page }}
     {{ $tail := "" }}
@@ -67,12 +60,10 @@
     {{ else }}
       {{ $tail = $p.CurrentSection.Title }}
     {{ end }}
-    <li>
-      <span class="research-ledger__key">{{ .label }}</span>
-      <span class="research-ledger__value"><a href="{{ $p.RelPermalink }}">{{ $p.Title }}</a>{{ with $tail }} <span class="research-ledger__tail">{{ . }}</span>{{ end }}</span>
-    </li>
+    {{ partial "row.html" (dict "meta" .label "url" $p.RelPermalink "title" $p.Title "tail" $tail) }}
     {{ end }}
   </ul>
+  </section>
   {{ end }}
 
   {{ if or $prev $next }}
@@ -93,6 +84,5 @@
   {{ $pager := resources.Get "js/research-pager.js" | resources.Minify | resources.Fingerprint }}
   <script src="{{ $pager.RelPermalink }}" integrity="{{ $pager.Data.Integrity }}" defer></script>
   {{ end }}
-</article>
 </div>
 {{ end }}

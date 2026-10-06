@@ -1,7 +1,7 @@
 ---
 title: 'Valoi easy120 with Negative Supply 99 CRI Light Source'
 date: 2025-02-27
-description: "hybrid scanning system for easy setup and correct colors"
+description: "Hybrid scanning system for easy setup and correct colors."
 project:
   year: 2025
   category: /darkroom

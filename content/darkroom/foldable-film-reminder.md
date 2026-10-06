@@ -1,7 +1,7 @@
 ---
 title: 'Foldable Film Reminders'
 date: 2025-01-03
-description: "so that you always know what film loaded in the camera"
+description: "So you always know what film is loaded in the camera."
 project:
   year: 2025
   category: /darkroom

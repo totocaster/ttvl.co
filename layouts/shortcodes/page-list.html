@@ -1,0 +1,29 @@
+{{- /* Rows for a hub, read from each page's front matter: date, title, and
+description. Titles can't drift from the pages they name. Curate order in
+the pages parameter; write group headings and introductions as content:
+  {{< page-list pages="darkroom/roll-id, darkroom/travel-dev-kit" >}}
+Records the pages in .Page.Store "hubPages" for the hub's meta line.
+docs/styleguide.md, Hub Lists. */ -}}
+{{- $pages := slice -}}
+{{- range split (.Get "pages") "," -}}
+  {{- $path := trim . " \n\t" -}}
+  {{- with site.GetPage $path -}}
+    {{- $pages = $pages | append . -}}
+  {{- else -}}
+    {{- warnf "page-list shortcode could not find page %q in %s" $path $.Page.File.Path -}}
+  {{- end -}}
+{{- end -}}
+{{- with $pages }}
+{{- $.Page.Store.Add "hubPages" . }}
+<ul class="rows with-deks">
+  {{- range . }}
+  {{- $dek := .Description | default (and .Params.project .Params.project.description) }}
+  {{ partial "row.html" (dict
+    "meta" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02") | safeHTML)
+    "url" .RelPermalink
+    "title" .Title
+    "dek" $dek
+  ) }}
+  {{- end }}
+</ul>
+{{- end }}

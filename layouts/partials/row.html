@@ -1,0 +1,17 @@
+{{- /* One row: the site's grammar for a list of pages. Pass a dict:
+     "meta"     HTML for the meta column (a date, a number, or a key)
+     "url"      the link; with "title", the row's title
+     "value"    HTML instead of a link, for rows that aren't pages (a bench entry)
+     "tail"     optional HTML inline after the title, in the meta voice
+     "dek"      optional line under the title, muted
+     "category" optional data-category for the filter rail
+     "class"    optional extra class on the li
+     docs/styleguide.md, Rows. */ -}}
+<li class="row{{ with .class }} {{ . }}{{ end }}"{{ with .category }} data-category="{{ . }}"{{ end }}>
+  <span class="row-meta">{{ .meta }}</span>
+  <span class="row-main">
+    {{- if .url }}<a class="row-title{{ with .linkClass }} {{ . }}{{ end }}" href="{{ .url }}">{{ .title }}</a>{{ else }}<span class="row-value">{{ .value }}</span>{{ end }}
+    {{- with .tail }} <span class="row-tail">{{ . }}</span>{{ end }}
+    {{- with .dek }}<span class="row-dek">{{ . }}</span>{{ end -}}
+  </span>
+</li>

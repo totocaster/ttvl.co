@@ -3,11 +3,11 @@ title: Refmode CLI
 date: 2026-08-05
 aliases:
   - /refmode/
-description: "macOS CLI for switching Apple display reference modes"
+description: "macOS CLI for switching Apple display reference modes."
 project:
   year: 2026
   category: /project-humane
-  description: "macOS CLI for switching Apple display reference modes"
+  description: "macOS CLI for switching Apple display reference modes."
   image: /visuals/project-thumbs/proj_refmode_cli.png
 resources:
   - title: 'GitHub'

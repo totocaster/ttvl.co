@@ -30,6 +30,8 @@ Source for [ttvl.co](https://ttvl.co/), Toto Tvalavadze's public notebook and pr
 │   ├── projects/           # Generated project archive landing page
 │   ├── research/           # Research journal: one folder per stream, one file per entry
 │   └── traces/
+├── docs/
+│   └── styleguide.md       # The visual standard (Air): tokens, type, spacing, patterns
 ├── layouts/
 │   ├── _default/           # Base, list, single, RSS, A-Z, and utility layouts
 │   ├── partials/           # Shared page and card components

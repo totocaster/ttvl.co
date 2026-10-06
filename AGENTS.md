@@ -80,6 +80,11 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 
 ### Design standard
 
+`docs/styleguide.md` is the visual standard, called Air: principles, tokens with their contrast ratios, the three type sizes, the spacing scale and rhythm, widths, and every shared pattern (page head, rows, group heads, cards, figures, hub lists, end matter). Read it before adding a page type, a list, or a component. The rules below are its short form.
+
+- Legibility above everything: every text tier passes 4.5:1 in both themes, and nothing is smaller than 14 px. No uppercase labels, no letter-spacing, no weight 600.
+- Space does the work: structure comes from the spacing scale (`$space-1` to `$space-8`, 4 to 96 px) and the rhythm variables built on it, never from dividing lines. Lines that mark a kind of content stay (tables, code, quotations, tile frames). The space above a heading is at least three times the space below it.
+- One way to do each thing: every page opens with `partials/page-head.html` (title, one meta line from `page-meta.html`, the resource strip); every list of pages uses `partials/row.html`; groups carry an inline count; articles end with `partials/mentioned-in.html`; hub lists use the `page-list` shortcode.
 - Themed colors come exclusively from the custom properties in `assets/scss/_tokens.scss` (`--ground`, `--ink`, `--ink-muted`, `--ink-faint`, `--rule`, `--edge`, `--surface`, `--surface-input`, `--highlight`). Dark mode and high contrast override tokens only, never component rules. Deliberate exceptions are commented in place: over-photo chrome, the viewers' media wells, and print.
 - Color encodes role; reserve opacity for state (hover, disabled), never for establishing a text tier.
 - Type, spacing, widths, and motion values come from `assets/scss/_variables.scss`. Full-viewport layers use `$z-overlay`/`$z-search` instead of literal z-indexes.
@@ -89,7 +94,7 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 
 - Search is available on layouts using the shared head. `?` opens the overlay when focus is not in an input, textarea, or editable element. Arrow keys select results, Enter follows one, Escape closes, and Tab remains trapped in the dialog.
 - `layouts/index.json` indexes regular pages whose Hugo type is neither `page` nor `json`. This includes section content but excludes standalone root pages such as About and Colophon.
-- Notes, Projects, and the Research hub share `assets/js/category-filter.js` for query-string category filtering (on the Research hub, each stream's folder name is a category) (`.category-filter` rail, `data-filter-group` sections, `data-category` items, `data-filter-show` per-state elements). The projects rail is driven by hub `_index.md` frontmatter: `filter_label` (chip name), `filter_dek` (one-line description shown while filtered), `filter_ref` (name of the arrow reference to the hub), and `filter_weight` (rail position; unweighted hubs sort alphabetically). Individual note pages compute backlinks from internal links at build time.
+- Notes, Projects, and the Research hub share `assets/js/category-filter.js` for query-string category filtering (on the Research hub, each stream's folder name is a category) (`.category-filter` rail, `data-filter-group` sections, `data-category` items, `data-filter-show` per-state elements). The projects rail is driven by hub `_index.md` frontmatter: `filter_label` (chip name), `filter_dek` (one-line description shown while filtered), `filter_ref` (name of the arrow reference to the hub), and `filter_weight` (rail position; unweighted hubs sort alphabetically). Group-head counts (`.count` with `data-singular`/`data-plural`) follow the filter. Every article computes "Mentioned in" rows from internal links at build time (`partials/mentioned-in.html`), including content paths named in `page-list` and `project-grid`.
 - The lightbox is loaded for Loose Leaves and pages with `lightbox: true`; it supports Escape, arrow keys, backdrop close, focus trapping, and focus restoration.
 - Research entry pages map the Left and Right arrow keys to the in-stream pager. The keys are ignored in fields and media players, with modifiers, and while text is selected.
 - Text Fragments are feature-detected through `document.fragmentDirective`. Selecting 6–499 characters updates the URL; `Cmd/Ctrl+Shift+L` updates it from the current selection, and Escape clears a live selection. There is no polyfill.
@@ -111,7 +116,7 @@ The archive itself is `/newsletter/`; do not treat `/flaneur/` as the canonical 
 
 ### Monthly logs
 
-- Use the filename `content/log/YYYY-MM.md` and the title `YYYY.MM`.
+- Use the filename `content/log/YYYY-MM.md` and the title `YYYY-MM`. Templates write ISO dates everywhere; the dot notation (`2024.12.22.R6`) is a personal ID system for prose only.
 - Set `date` to a date inside the represented month. For new entries, use the month's final calendar day so the permalink and ordering are unambiguous.
 - Put the public bullet summary immediately after frontmatter. The log layouts render full page content; they do not depend on a `summary` frontmatter field.
 - Use `-` bullets with one hierarchy level, canonical internal links, `_italics_`, and `**names**` where appropriate.
@@ -135,6 +140,8 @@ project:
   description: "Short card description"
   image: /visuals/project-thumbs/example.png
 ```
+
+Write `description` and `project.description` as sentences, with a capital first letter and a final period: they appear as deks under row and card titles, in meta descriptions, and on social cards.
 
 Use `project.category: /obsidian` for Obsidian work, `/project-humane` for Project Humane, `/darkroom` for photography tooling, and `/bookbinding` for bindery tools. Store card images in `static/visuals/`, usually `static/visuals/project-thumbs/`. The same image becomes the page's social card; run `make cards` after adding or replacing it.
 
@@ -194,20 +201,21 @@ Every note, project page, article, hub with a `filter_dek`, research stream, and
 
 - `resources`: manifest of files and external sources from a Markdown-style link list; file rows read type and size from `static/` at build time (↓), external rows name their destination (↗). Trailing text after a link renders as a muted note. Pages can also declare a `resources:` frontmatter list (title + url) to render a chip strip of canonical links under the title.
 - `flaneur-gallery`: responsive newsletter image grid.
+- `page-list`: rows for a hub from a comma-separated `pages` parameter (content paths), each showing the page's date, title, and `description` as a dek. Titles come from the pages, so they can't drift; write group headings and introductions as ordinary content. Records its pages so the hub's meta line can count them.
 - `clip`: short silent looping video with `src`, `poster`, `alt`, and an optional Markdown `caption`; plays muted on repeat, and readers who prefer reduced motion get the poster and controls (`assets/js/clip.js`, loaded only on pages with a clip).
 - `membership-link`: link to `params.membershipURL`.
 - `model-viewer`: interactive GLB viewer with poster, caption, download, and no-JavaScript fallback.
 - `gaussian-splat`: interactive SPZ viewer with poster, download, and no-JavaScript fallback; requires `gaussian_splat: true`. Optional `camera-position` and `camera-target` values are space-separated x/y/z coordinates in the scan's coordinate system; use them when automatic framing puts the camera outside the scanned space.
 - `photo-gallery`: linked-image gallery prepared for the lightbox.
-- `project-grid`: explicitly ordered project-card group from a comma-separated `pages` parameter.
+- `project-grid`: explicitly ordered project-card group from a comma-separated `pages` parameter. Also counted by the hub's meta line.
 - `pronunciation-name`: accessible audio pronunciation control.
-- `toc`: current page's generated table of contents.
+- `toc`: current page's generated table of contents, under an `h2`.
 - `youtube`: lazy-loaded responsive video embed.
 
 ## Site versioning and deployment
 
 - The footer format is `vMAJOR.MINOR.UPDATE`.
-- The configured site era is currently `v7.10` under `[params.version]` in `hugo.toml`.
+- The configured site era is currently `v7.11` under `[params.version]` in `hugo.toml`.
 - `MAJOR` identifies the site era. Change `MINOR` only for a visible site-structure or publishing-system revision, not for routine content.
 - `UPDATE` is the repository commit count supplied through `HUGO_SITE_UPDATE` by `tools/build-production.sh`.
 - `params.version.update` is only a fallback for direct local Hugo invocations and can lag behind Git history.

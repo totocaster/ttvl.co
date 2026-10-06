@@ -1,26 +1,30 @@
-// Links page specific styles
+// The link pages (/links/ and /found/): a centered column of large tap
+// targets for phones, on the site's tokens, type, and spacing scale. Their
+// own layouts (_default/links.html, found.html) skip the site header.
+
 .links-page {
   display: flex;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 1px;
+  margin: 0;
+  padding: $space-4 $page-gutter;
+  box-sizing: border-box;
 
   // On phones, start at the top so the first screen carries more content.
   @include narrow {
     align-items: flex-start;
-    padding-top: 24px;
   }
-  
+
   .links-container {
     width: 100%;
     max-width: $max-width-panel;
     margin: 0 auto;
     text-align: center;
-    
+
     .avatar {
-      margin-bottom: 16px;
-      
+      margin-bottom: $space-3;
+
       img {
         width: 90px;
         height: 90px;
@@ -31,47 +35,42 @@
     }
 
     .site-logo {
-      margin-bottom: 16px;
-      
+      margin-bottom: $space-3;
+
       img {
         width: 140px;
         height: auto;
       }
     }
-    
+
     .description {
-      margin-bottom: 24px;
+      margin-bottom: $space-4;
       @include type-body;
-      
-      p {
-        margin: 0 0 16px;
-      }
     }
 
-    // Flaneur form styles for links page
+    p {
+      margin: 0 0 $rhythm-paragraph;
+    }
+
+    // The subscribe form at the foot of /links/.
     .flaneur-inpage-box {
-      margin: 0 0 24px 0;
+      margin: 0 0 $space-4;
       padding: 0;
       border: none;
       background: none;
-
-      h1 {
-        @include type-title;
-        margin-bottom: 1rem;
-      }
 
       .email-subscribe {
         form {
           display: flex;
           flex-direction: column;
-          gap: 8px;
+          gap: $space-2;
           margin-bottom: 0;
           align-items: stretch;
 
           input {
             width: 100%;
             height: $control-height;
-            padding: 0 24px;
+            padding: 0 $space-4;
             border: 1px solid var(--ink);
             border-radius: $radius;
             @include type-body;
@@ -91,54 +90,40 @@
             align-items: center;
             justify-content: center;
             height: $control-height;
-            padding: 0 24px;
+            padding: 0 $space-4;
             background: var(--ink);
             color: var(--ground);
             text-decoration: $link-decoration-plain;
             border-radius: $radius;
-            font-weight: $link-weight-action;
+            font-weight: $font-weight-bold;
             @include type-body;
             border: 0;
           }
         }
-
-        .promise {
-          @include type-small;
-          color: var(--ink-muted);
-
-          p {
-            margin: 0 0 8px;
-          }
-
-          a {
-            color: inherit;
-            text-decoration: $link-decoration-default;
-          }
-        }
       }
     }
-    
+
     ul {
       list-style: none;
       padding: 0;
-      margin: 0;
-      
+      margin: 0 0 $rhythm-paragraph;
+
       li {
-        margin: 0 0 8px;
-        
+        margin: 0 0 $space-2;
+
         a {
           display: flex;
           align-items: center;
           justify-content: center;
           flex-wrap: wrap;
           min-height: $control-height;
-          padding: 8px 24px;
+          padding: $space-2 $space-4;
           box-sizing: border-box;
           background: var(--ink);
           color: var(--ground);
           text-decoration: $link-decoration-plain;
           border-radius: $radius;
-          font-weight: $link-weight-action;
+          font-weight: $font-weight-bold;
           @include type-body;
 
           // In dark the pills dissolve into the ground and read as a
@@ -149,22 +134,21 @@
           }
         }
 
-        // Context label on the auto-filled pills (Project, Dispatch, Note).
+        // Context label on the auto-filled pills (Project, Dispatch, Note):
+        // set apart by weight, not by fading the text.
         .link-kicker {
-          opacity: 0.55;
           font-weight: $font-weight-regular;
-          margin-right: 0.35em;
+          margin-right: $space-1;
           white-space: nowrap;
         }
       }
     }
   }
 
+  // A --- in these pages separates groups by space alone.
   hr {
-    border: none;
-    border-top: 1px solid var(--ink-faint);
-    width: 50%;
-    margin: 32px auto;
-    background: none;
+    height: 0;
+    margin: $space-5 0;
+    border: 0;
   }
 }

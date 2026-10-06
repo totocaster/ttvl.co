@@ -1,0 +1,22 @@
+{{- /* The page head: the title, one meta line, and the strip of canonical
+     doors from `resources:` front matter. hide_title suppresses the whole
+     head. Pass the page, or a dict with "page" and optional "title"
+     (override) and "dek" (a subtitle line under the meta, for dispatches). Hubs that list pages through shortcodes must render .Content
+     before calling this, so the meta line can count them.
+     docs/styleguide.md, Page Head. */ -}}
+{{- $p := . -}}
+{{- $title := "" -}}
+{{- $dek := "" -}}
+{{- if reflect.IsMap . }}{{ $p = .page }}{{ $title = .title }}{{ $dek = .dek }}{{ end -}}
+{{- if not $p.Params.hide_title }}
+<header class="page-head">
+  <h1>{{ $title | default $p.Title }}</h1>
+  {{- with partial "page-meta.html" $p }}
+  <p class="page-meta">{{ . }}</p>
+  {{- end }}
+  {{- with $dek }}
+  <p class="page-dek">{{ . }}</p>
+  {{- end }}
+  {{ partial "resource-strip.html" $p }}
+</header>
+{{- end }}

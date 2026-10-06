@@ -2,31 +2,25 @@
 // ↓ means "saves a file"; ↗ means "leaves the site". The manifest block
 // (shortcode "resources") lists sets in context; the strip (frontmatter
 // "resources:") holds a page's canonical doors.
+// The manifest is the row's one variant: its meta column sits on the
+// right because it describes the file rather than ordering it. Same
+// voices and spacing as rows, no hairlines.
 
 .resources {
   @include readable-width;
-  margin: 1rem 0 1.5rem;
+  margin: 0 0 $space-4;
 }
 
 .resource-row {
   display: grid;
   grid-template-columns: 1fr auto;
-  column-gap: 16px;
+  column-gap: $space-3;
   align-items: baseline;
-  padding: 5px 0;
-  border-top: 1px solid var(--rule);
-
-  &:last-child {
-    border-bottom: 1px solid var(--rule);
-  }
+  margin-bottom: $rhythm-row;
 
   a {
     font-weight: $link-weight-quiet;
-    text-decoration: $link-decoration-plain;
-
-    &:hover {
-      text-decoration: $link-decoration-default;
-    }
+    text-decoration: $link-decoration-default;
   }
 }
 
@@ -52,17 +46,16 @@
 .resource-strip {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: $space-2;
   @include readable-width;
-  // Sit under the title on the same rhythm as a first paragraph,
-  // with the same gap below.
-  margin: 1rem 0;
+  // Outside a page head (where the head sets it), sit like a paragraph.
+  margin: 0 0 $rhythm-paragraph;
 
   .chip {
     display: inline-flex;
     align-items: baseline;
     gap: 6px;
-    padding: 6px 14px;
+    padding: 6px 14px; // chip geometry
     border: 1px solid var(--edge);
     border-radius: $radius-key; // matches the keycaps
     font-weight: $link-weight-quiet;
@@ -84,7 +77,7 @@
   }
 
   .chip-meta {
-    @include type-label;
+    @include type-meta;
     color: var(--ink-faint);
   }
 }
@@ -95,23 +88,23 @@ main article a[href^="/downloads/"]::before {
 }
 
 main article a[href$=".pdf"]::after {
-  content: " pdf";
+  content: " PDF";
 }
 
 main article a[href$=".stl"]::after {
-  content: " stl";
+  content: " STL";
 }
 
 main article a[href$=".zip"]::after {
-  content: " zip";
+  content: " ZIP";
 }
 
 main article a[href$=".glb"]::after {
-  content: " glb";
+  content: " GLB";
 }
 
 main article a[href$=".3mf"]::after {
-  content: " 3mf";
+  content: " 3MF";
 }
 
 main article a[href$=".pdf"]::after,
@@ -119,7 +112,7 @@ main article a[href$=".stl"]::after,
 main article a[href$=".zip"]::after,
 main article a[href$=".glb"]::after,
 main article a[href$=".3mf"]::after {
-  @include type-label;
+  @include type-meta;
   color: var(--ink-faint);
 }
 

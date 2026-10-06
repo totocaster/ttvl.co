@@ -1,9 +1,7 @@
 {{ define "main" }}
 <article class="{{ with .Params.content_css }}{{ . }}{{ end }}">
-  {{ if not .Params.hide_title }}
-  <h1>{{ .Title }}</h1>
-  {{ end }}
-  {{ partial "resource-strip.html" . }}
+  {{ partial "page-head.html" . }}
   {{ .Content }}
 </article>
+{{ if and (or .Section .Params.project) (not .Params.hide_title) }}{{ partialCached "mentioned-in.html" . .Path }}{{ end }}
 {{ end }}

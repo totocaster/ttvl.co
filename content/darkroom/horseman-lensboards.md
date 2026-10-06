@@ -1,7 +1,7 @@
 ---
 title: Horseman 80 mm² Lensboards
 date: 2025-01-09
-description: "3d printable lensboards for any lens"
+description: "3D printable lensboards for any lens."
 project:
   year: 2025
   category: /darkroom

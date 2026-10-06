@@ -1,29 +1,32 @@
-// Loose Leaves grid.
+// Loose Leaves grid: scans as tiles, each with its date in the meta voice.
 
 .leaves-grid {
-  margin: 2rem 0;
+  margin: 0;
 
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $space-5;
+
+    @include narrow {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: $space-3;
+    }
 
     .leaf {
       img {
         width: 100%;
         height: auto;
         display: block;
-        margin-bottom: 0.5rem;
-        border: 1px var(--ink) solid;
-        // Scans sit frameless on the dark ground — structural, not a color swap.
-        @include dark {
-          border: none;
-        }
+        margin-bottom: $space-2;
+        // A tile like every other: an edge frame in both themes.
+        border: 1px solid var(--edge);
       }
 
       time {
         display: block;
-        color: var(--ink);
+        @include type-meta;
+        color: var(--ink-faint);
       }
     }
   }

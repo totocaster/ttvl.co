@@ -4,19 +4,18 @@
   <div class="email-subscribe">
     {{ partial "subscribe-form.html" (dict "id" "home") }}
     <div class="promise">
-      <p>Dispatched around once a month. One click to unsubscribe. Or, browse the <a href="/newsletter/">archive</a> first:</p>
+      <p>Seasonal, not monthly. One click to unsubscribe. Or, browse the <a href="/newsletter/">archive</a> first:</p>
     </div>
   </div>
   {{ $issues := first 5 (sort (where .Site.RegularPages "Section" "flaneur") "Date" "desc") }}
   {{ if gt (len $issues) 0 }}
-    <ul class="issue-list">
+    <ul class="rows">
       {{ range $issues }}
-        <li>
-          <span class="issue-number">
-            #{{ printf "%03s" .File.BaseFileName }} &middot; <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01" }}</time>
-          </span>
-          <a class="issue-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-        </li>
+        {{ partial "row.html" (dict
+          "meta" (printf `#%03s · <time datetime="%s">%s</time>` .File.BaseFileName (.Date.Format "2006-01-02") (.Date.Format "2006-01") | safeHTML)
+          "url" .RelPermalink
+          "title" .Title
+        ) }}
       {{ end }}
     </ul>
   {{ end }}

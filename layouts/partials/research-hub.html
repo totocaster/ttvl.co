@@ -3,8 +3,8 @@
 {{ $streams := .Sections.ByWeight }}
 {{ $entries := .RegularPagesRecursive.ByDate.Reverse }}
 
-<article>
-  <h1>{{ .Title }}</h1>
+<article class="hub">
+  {{ partial "page-head.html" . }}
   {{ .Content }}
   {{ with .OutputFormats.Get "rss" }}
   <p class="research-meta">
@@ -16,7 +16,7 @@
 
 {{ with $streams }}
 <section class="research-streams" aria-labelledby="research-streams-title">
-  <h2 id="research-streams-title">Streams</h2>
+  <h2 class="section-head" id="research-streams-title">Streams</h2>
   <ul class="stream-ledger">
     {{ range . }}
     <li>
@@ -34,7 +34,7 @@
 {{ end }}
 
 <section class="research-entries" aria-labelledby="research-entries-title">
-  <h2 id="research-entries-title">Entries</h2>
+  <h2 class="section-head" id="research-entries-title">Entries</h2>
   {{ with $entries }}
     {{ if gt (len $streams) 1 }}
     <nav class="category-filter" aria-label="Filter entries by stream">
@@ -51,9 +51,10 @@
     {{ end }}
 
     {{ range .GroupByDate "2006" }}
+    {{ $n := len .Pages }}
     <section class="research-year" data-filter-group>
-      <h3>{{ .Key }}</h3>
-      <ul class="issue-list">
+      <h3 class="group-head">{{ .Key }} <span class="count" data-singular="entry" data-plural="entries">{{ $n }} {{ cond (eq $n 1) "entry" "entries" }}</span></h3>
+      <ul class="rows stacked">
         {{ range .Pages }}{{ partial "research-row.html" (dict "page" . "stream" true "number" true "category" true) }}{{ end }}
       </ul>
     </section>

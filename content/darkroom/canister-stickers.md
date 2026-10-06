@@ -1,7 +1,7 @@
 ---
 title: 'Bulk Film Canister Stickers'
 date: 2024-12-18
-description: "film roll identification for better archiving and organization"
+description: "Film roll identification for better archiving and organization."
 project:
   year: 2024
   category: /darkroom

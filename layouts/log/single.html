@@ -1,6 +1,6 @@
 {{ define "main" }}
 <article>
-  <h1>{{ .Title }}</h1>
+  {{ partial "page-head.html" . }}
   {{ .Content }}
 </article>
 {{ partial "log-archive.html" (dict "page" .) }} {{ end }}

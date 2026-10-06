@@ -4,11 +4,11 @@ date: 2026-04-08
 aliases:
   - /project-humane/vault-tasks/
   - /vault-tasks/
-description: "Obsidian plugin that gathers tasks across a vault into one organized view"
+description: "Obsidian plugin that gathers tasks across a vault into one organized view."
 project:
   year: 2026
   category: /obsidian
-  description: "organized vault-wide task view for Obsidian with filters, pinning, and quick actions"
+  description: "Organized vault-wide task view for Obsidian with filters, pinning, and quick actions."
   image: /visuals/project-thumbs/proj_vault_tasks_obsidian.png
 resources:
   - title: 'GitHub'

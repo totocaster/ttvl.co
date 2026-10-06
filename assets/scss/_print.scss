@@ -1,6 +1,6 @@
 @media print {
-  // Keep header but adjust its display
-  header {
+  // Keep the site header but adjust its display
+  body > header {
     display: block !important;
     padding: 0 !important;
     margin: 20px 0 !important;
@@ -17,7 +17,7 @@
 
   // Hide navigation and footer
   nav,
-  footer {
+  body > footer {
     display: none !important;
   }
 

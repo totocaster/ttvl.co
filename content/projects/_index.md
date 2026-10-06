@@ -1,6 +1,5 @@
 ---
 title: "Projects"
-hide_title: true
 filter_dek: "Documentation of most of my projects from the past few years."
 ---
 

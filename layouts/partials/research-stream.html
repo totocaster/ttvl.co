@@ -3,25 +3,17 @@
      reads as one page. */ -}}
 {{ $entries := .RegularPages.ByDate.Reverse }}
 
-<article class="research-stream">
-  <p class="research-kicker"><a href="{{ .Parent.RelPermalink }}">{{ .Parent.Title }}</a> · Stream</p>
-  <h1>{{ .Title }}</h1>
-  <p class="research-status">
-    {{- partial "research-stream-meta.html" . -}}
-    {{- with .OutputFormats.Get "rss" }} · <a href="{{ .RelPermalink }}">RSS</a>{{ end -}}
-  </p>
+<article class="research-stream hub">
+  {{ partial "page-head.html" . }}
   {{ .Content }}
 </article>
 
 {{ with .Params.bench }}
 <section class="research-bench" aria-labelledby="research-bench-title">
-  <h2 id="research-bench-title">Bench</h2>
-  <ul class="research-ledger">
+  <h2 class="section-head" id="research-bench-title">Bench</h2>
+  <ul class="rows">
     {{ range . }}
-    <li>
-      <span class="research-ledger__key">{{ index . 0 }}</span>
-      <span class="research-ledger__value">{{ index . 1 | markdownify }}</span>
-    </li>
+    {{ partial "row.html" (dict "meta" (index . 0) "value" (index . 1 | markdownify)) }}
     {{ end }}
   </ul>
 </section>
@@ -41,21 +33,23 @@
 {{ end }}
 {{ if or $open $closed }}
 <section class="research-questions" aria-labelledby="research-questions-title">
-  <h2 id="research-questions-title">Open Questions</h2>
-  <ul class="research-ledger">
+  <h2 class="section-head" id="research-questions-title">Open Questions</h2>
+  <ul class="rows">
     {{ range $open }}
-    <li>
-      <span class="research-ledger__key"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time></span>
-      <span class="research-ledger__value"><a href="{{ .RelPermalink }}">{{ .Title }}</a> <span class="research-ledger__tail">{{ partialCached "research-number.html" . .Path }}</span></span>
-    </li>
+    {{ partial "row.html" (dict
+      "meta" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02") | safeHTML)
+      "url" .RelPermalink "title" .Title
+      "tail" (partialCached "research-number.html" . .Path)
+    ) }}
     {{ end }}
     {{ range $closed }}
     {{ $q := .page }}
     {{ $by := index .by 0 }}
-    <li>
-      <span class="research-ledger__key"><time datetime="{{ $q.Date.Format "2006-01-02" }}">{{ $q.Date.Format "2006-01-02" }}</time></span>
-      <span class="research-ledger__value"><a class="is-closed" href="{{ $q.RelPermalink }}">{{ $q.Title }}</a> <span class="research-ledger__tail">{{ partialCached "research-number.html" $q $q.Path }} · answered in <a href="{{ $by.RelPermalink }}">{{ partialCached "research-number.html" $by $by.Path }}</a></span></span>
-    </li>
+    {{ partial "row.html" (dict
+      "meta" (printf `<time datetime="%s">%s</time>` ($q.Date.Format "2006-01-02") ($q.Date.Format "2006-01-02") | safeHTML)
+      "url" $q.RelPermalink "title" $q.Title "linkClass" "is-closed"
+      "tail" (printf `%s · answered in <a href="%s">%s</a>` (partialCached "research-number.html" $q $q.Path) $by.RelPermalink (partialCached "research-number.html" $by $by.Path) | safeHTML)
+    ) }}
     {{ end }}
   </ul>
   <p class="research-legend">Collected from entries marked as questions. An entry that answers one closes it.</p>
@@ -63,7 +57,7 @@
 {{ end }}
 
 <section class="research-entries" aria-labelledby="research-entries-title">
-  <h2 id="research-entries-title">Entries</h2>
+  <h2 class="section-head" id="research-entries-title">Entries</h2>
   {{ with $entries }}
     {{ range . }}{{ partial "research-entry.html" . }}{{ end }}
   {{ else }}

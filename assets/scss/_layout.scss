@@ -1,18 +1,19 @@
-// Page shell: container grid, header, navigation, footer.
+// Page shell: container, header, navigation, footer.
 
 %grid-layout {
   display: grid;
   grid-template-columns: 1fr;
-  gap: $grid-gap;
   max-width: $max-width-container;
   margin: 0 auto;
-  padding-left: $padding-small;
-  padding-right: $padding-small;
+  padding-left: $page-gutter;
+  padding-right: $page-gutter;
 }
 
+// The site header and footer are the body's own; headers inside content
+// (the page head) and footers inside articles are not the shell.
 .layout,
-header,
-footer {
+body > header,
+body > footer {
   @extend %grid-layout;
 }
 
@@ -23,39 +24,30 @@ footer {
   min-width: 0;
 }
 
-footer {
-  margin-top: 140px;
+body > footer {
+  margin-top: $space-8;
 
-  // Record-keeping line: version, colophon, keyboard hint.
+  // Record-keeping line: copyright, version, colophon, index.
   p {
     @include type-meta;
     color: var(--ink-faint);
   }
 
-  a {
-    color: inherit;
-    font-weight: $link-weight-quiet;
-    transition: color $t-fast;
-
-    &:hover {
-      color: var(--ink);
-    }
-  }
-
+  @include meta-links;
 }
 
-header {
+body > header {
   min-height: $header-height;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 12px;
+  gap: $space-3;
 
   // The logo is an h1 on home only; both elements share the h1's box.
   .site-title {
     @include type-title;
-    margin: 0.67em 0 0;
+    margin: $space-3 0 0;
   }
 }
 
@@ -68,10 +60,17 @@ header {
 
 // Navigation
 nav#Menu {
-  line-height: $line-height-nav;
+  line-height: $line-height-base;
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  // Scrolls sideways on phones without a visible scrollbar; the clipped
+  // item at the edge is the affordance.
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 
   ul.primary-nav {
     list-style-type: none;
@@ -79,7 +78,7 @@ nav#Menu {
     padding: 0;
     display: flex;
     flex-wrap: wrap;
-    gap: 18px;
+    gap: $space-3;
   }
 
   li {
@@ -95,11 +94,8 @@ nav#Menu {
   }
 
   @include narrow {
-    padding-bottom: 6px;
-
     ul.primary-nav {
       flex-wrap: nowrap;
-      gap: 18px;
       min-width: max-content;
     }
   }

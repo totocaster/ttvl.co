@@ -1,7 +1,7 @@
 ---
 title: 'Zone Placement Sticker for Pentax Digital Spotmeter'
 date: 2025-02-12
-description: "DYI replica of Ansel Adams' zone scale"
+description: "DIY replica of Ansel Adams' zone scale."
 project:
   year: 2025
   category: /darkroom

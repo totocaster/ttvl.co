@@ -1,7 +1,7 @@
 ---
 title: 'Thermometer Panel for Jobo Systems'
 date: 2025-08-01
-description: "3d printable panel for precision temperature monitoring and control"
+description: "3D printable panel for precision temperature monitoring and control."
 project:
   year: 2025
   category: /darkroom

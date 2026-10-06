@@ -3,7 +3,7 @@
   {{ $years := $logs.GroupByDate "2006" }}
   {{ $title := .title | default "Archive" }}
   {{ $current := .page.RelPermalink }}
-  <h1>{{ $title }}</h1>
+  <h2 class="section-head">{{ $title }}</h2>
   <ul class="log-grid">
     {{ range $years }}
     <li>

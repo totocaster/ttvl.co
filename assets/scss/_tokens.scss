@@ -5,19 +5,23 @@
 // Roles:
 //   --ground         page background
 //   --ink            text, links, buttons, frames
-//   --ink-muted      secondary prose (subtitles, promises, descriptions)
-//   --ink-faint      metadata (dates, pills, categories, counters)
-//   --rule           hairlines (hr, row separators)
-//   --edge           component borders (thumbnails, panels, inputs)
-//   --surface        raised panels (download box, thumbnail wells)
+//   --ink-muted      secondary prose (deks, captions, descriptions)
+//   --ink-faint      metadata (dates, counts, kickers, legends)
+//   --rule           hairlines inside tables and code bands
+//   --edge           frames (tiles, inputs, chips, table borders)
+//   --surface        raised panels (sheets, table headers, image wells)
 //   --surface-input  form fields
 //   --highlight      the one accent (text fragments, selection)
+//
+// Muted and faint are solid values, not alpha, so each keeps its contrast
+// on --surface panels too. Every text tier passes 4.5:1 in both themes
+// (docs/styleguide.md): faint is 4.95:1 light and 5.31:1 dark.
 
 :root {
   --ground: #fff;
   --ink: #000;
-  --ink-muted: rgba(0, 0, 0, 0.55);
-  --ink-faint: rgba(0, 0, 0, 0.4);
+  --ink-muted: #555;
+  --ink-faint: #707070;
   --rule: #eee;
   --edge: #ddd;
   --surface: #fafafa;
@@ -29,8 +33,8 @@
   :root {
     --ground: rgb(33, 33, 33);
     --ink: #e3e3e3;
-    --ink-muted: rgba(227, 227, 227, 0.65);
-    --ink-faint: rgba(227, 227, 227, 0.45);
+    --ink-muted: #b4b4b4;
+    --ink-faint: #949494;
     --rule: rgba(255, 255, 255, 0.1);
     --edge: rgba(227, 227, 227, 0.2);
     --surface: rgba(255, 255, 255, 0.05);

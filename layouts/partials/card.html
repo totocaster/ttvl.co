@@ -1,7 +1,8 @@
 {{- /* Card for the projects grid. Pass "page"; pass "variant" "trace" for
 trace pages, whose description/image/kind live outside project frontmatter.
 Project cards carry their category only as data-category, for the filter
-rail — the visible kicker is reserved for trace kinds. */ -}}
+rail; the visible kicker is reserved for trace kinds. The dek sits on its
+own line under the title (docs/styleguide.md, Cards). */ -}}
 {{ $page := .page }}
 {{ $variant := .variant | default "project" }}
 {{ $img := "" }}
@@ -29,7 +30,8 @@ rail — the visible kicker is reserved for trace kinds. */ -}}
     {{ end }}
   </div>
   <div class="project-meta">
-    <a class="project-title" href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>{{ if $desc }} &ndash; {{ $desc }}{{ end }}
+    <a class="project-title" href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
+    {{- with $desc }}<span class="project-dek">{{ . }}</span>{{ end }}
   </div>
   {{ if eq $variant "trace" }}{{ with $kicker }}
   <div class="project-category">{{ . }}</div>

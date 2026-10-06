@@ -1,7 +1,11 @@
 {{ define "main" }}
-<article>
-  {{ if not .Params.hide_title }}
-  <h1>{{ .Title }}</h1>
-  {{ end }} {{ .Content }}
+{{- /* Content first: page-list and project-grid record what the hub lists,
+     and the head's meta line counts it. A section with project front
+     matter (the notebook system) is an article, not a hub. */ -}}
+{{ $content := .Content }}
+<article class="{{ if not .Params.project }}hub{{ end }}{{ with .Params.content_css }} {{ . }}{{ end }}">
+  {{ partial "page-head.html" . }}
+  {{ $content }}
 </article>
+{{ if .Params.project }}{{ partialCached "mentioned-in.html" . .Path }}{{ end }}
 {{ end }}

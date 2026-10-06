@@ -2,8 +2,8 @@
 {{ with $entries }}
   <section class="recent-research">
     <h1>Research</h1>
-    <ul class="issue-list">
-      {{ range . }}{{ partial "research-row.html" (dict "page" . "stream" true) }}{{ end }}
+    <ul class="rows">
+      {{ range . }}{{ partial "research-row.html" (dict "page" .) }}{{ end }}
     </ul>
   </section>
 {{ end }}

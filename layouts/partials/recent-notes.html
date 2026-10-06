@@ -2,14 +2,13 @@
 {{ if gt (len $notes) 0 }}
   <section class="recent-notes">
     <h1>Notes</h1>
-    <ul class="issue-list">
+    <ul class="rows">
       {{ range $notes }}
-        <li>
-          <span class="issue-number">
-            <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
-          </span>
-          <a class="issue-title" href="{{ .RelPermalink }}">{{ .Title }}</a>
-        </li>
+        {{ partial "row.html" (dict
+          "meta" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02") | safeHTML)
+          "url" .RelPermalink
+          "title" .Title
+        ) }}
       {{ end }}
     </ul>
   </section>

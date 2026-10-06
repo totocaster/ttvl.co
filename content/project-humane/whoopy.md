@@ -3,7 +3,7 @@ title: Whoopy CLI
 date: 2026-03-04
 aliases:
   - /whoopy/
-description: "unofficial WHOOP data CLI for humans, automations, and AI agents"
+description: "Unofficial WHOOP data CLI for humans, automations, and AI agents."
 project:
   year: 2026
   category: /project-humane

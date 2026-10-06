@@ -9,37 +9,30 @@ Technical and process-oriented resources focused on photography, darkroom techni
 
 ## Process and Techniques
 
-- [Film Identification Format](/darkroom/roll-id/)
-- [Rapid Travel Film Development Kit](/darkroom/travel-dev-kit)
-- [Unbound Templates for Analog Photography](/notebook-system/analog-photography-templates/)
+{{< page-list pages="darkroom/roll-id, darkroom/travel-dev-kit, notebook-system/analog-photography-templates" >}}
 
 ## DIY Projects
 
 For enhancing the shooting process and overall experience:
 
-- [VNS Adapter: Valoi easy120 tube and carrier mount for Negative Supply light source](/darkroom/valoi-easy120-with-negative-supply-99cri-light)
-- [Zone Placement Sticker for Pentax Digital Spotmeter](/darkroom/pentax-digital-spotmeter-sticker)
-- [Rugged 40-Roll Film Storage](/darkroom/rugged-40-roll-film-storage)
-- [Bulk Film Canister Stickers](/darkroom/canister-stickers)
-- [Foldable Film Reminder](/darkroom/foldable-film-reminder)
+{{< page-list pages="darkroom/valoi-easy120-with-negative-supply-99cri-light, darkroom/pentax-digital-spotmeter-sticker, darkroom/rugged-40-roll-film-storage, darkroom/canister-stickers, darkroom/foldable-film-reminder" >}}
 
 Improve, fix, and modify camera equipment:
 
-- [Mamiya RZ67 PRO II Fine Focus Gear](/darkroom/rz67-focus-gear-stl)
-- [Horseman 80sqmm Lensboards](/darkroom/horseman-lensboards)
+{{< page-list pages="darkroom/rz67-focus-gear-stl, darkroom/horseman-lensboards" >}}
 
 Accessories and improvements for the JOBO system:
 
-- [Thermometer Panel for Jobo Systems](/darkroom/thermometer-panel-for-jobo-systems/)
+{{< page-list pages="darkroom/thermometer-panel-for-jobo-systems" >}}
 
 ## Tools and Manuals
 
 Guides and manuals for specialized tools and workflows:
 
-- [Lucky CP32 Color Print Processor Manual](/darkroom/lucky-cp32-manual)
+{{< page-list pages="darkroom/lucky-cp32-manual" >}}
 
 ## Miscellaneous
 
 Other resources and niche interests:
 
-- [Tracking Highway Sequence from Solaris](/darkroom/solaris-highway)
+{{< page-list pages="darkroom/solaris-highway" >}}

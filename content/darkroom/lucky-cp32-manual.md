@@ -1,7 +1,7 @@
 ---
 title: Lucky/Fujimoto CP32 Manual in English
 date: 2025-01-09
-description: "English translation of JDM paper processor manual"
+description: "English translation of JDM paper processor manual."
 project:
   year: 2024
   category: /darkroom

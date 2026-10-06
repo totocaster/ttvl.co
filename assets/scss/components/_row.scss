@@ -1,0 +1,84 @@
+// Rows: the site's one grammar for a list of pages. A meta column (a date,
+// a number, or a key), the title in the quiet link voice, an optional tail
+// inline after the title, an optional dek on its own line. No hairlines:
+// rows sit 4px apart, or 16px apart when they carry deks.
+// Rendered by layouts/partials/row.html. About's record is written as HTML
+// in content with the older .issue-list names, styled here as aliases.
+
+main .rows,
+main .issue-list {
+  list-style: none;
+  margin: 0 0 $rhythm-paragraph;
+  padding: 0;
+  @include readable-width;
+
+  > li {
+    display: grid;
+    grid-template-columns: $row-meta-width minmax(0, 1fr);
+    align-items: baseline;
+    max-width: none;
+    margin: 0 0 $rhythm-row;
+  }
+
+  // Rows with a second line (a dek, or a stacked tail) sit 16px apart.
+  &.with-deks > li,
+  &.stacked > li {
+    margin-bottom: $rhythm-row-dek;
+  }
+
+  // Stacked: the tail becomes the row's second line, in the meta voice,
+  // instead of trailing the title. For lists whose tails would otherwise
+  // wrap unevenly (research entries: stream, number, category).
+  &.stacked .row-tail {
+    display: block;
+    margin: 0;
+    white-space: normal;
+  }
+
+  // Filtering hides rows; !important beats the row's own display.
+  > li[hidden] {
+    display: none !important;
+  }
+}
+
+main .row-meta,
+main .issue-list .issue-number {
+  @include type-meta;
+  color: var(--ink-faint);
+  @include meta-links;
+}
+
+main .row-main {
+  min-width: 0;
+}
+
+main .rows .row-title,
+main .issue-list .issue-title {
+  font-weight: $link-weight-quiet;
+  text-decoration: $link-decoration-default;
+}
+
+// Tail: what the row's page is, inline after the title, in the meta voice.
+main .row-tail {
+  @include type-meta;
+  color: var(--ink-faint);
+  margin-left: $space-1;
+  white-space: nowrap; // wraps to the next line as a unit
+  @include meta-links;
+}
+
+// Dek: the page's description, muted, on tight leading.
+main .row-dek {
+  display: block;
+  color: var(--ink-muted);
+  line-height: $line-height-tight;
+  margin-top: 2px; // sits under the title's descenders
+}
+
+// A value that is not a link (a bench entry) reads as body text.
+main .row-value {
+  p {
+    display: inline;
+    margin: 0;
+  }
+}

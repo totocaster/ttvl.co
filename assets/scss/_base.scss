@@ -1,4 +1,6 @@
-// Document shell, typography, links, and interaction states.
+// Document shell, typography, prose rhythm, figures, and interaction
+// states. Spacing comes from the scale in _variables.scss; see
+// docs/styleguide.md for the rules.
 
 html {
   scroll-behavior: smooth;
@@ -38,7 +40,8 @@ body {
   }
 }
 
-// Typography
+// Typography: three sizes. Every heading below the title is text size,
+// bold; hierarchy is carried by weight and space.
 h1 {
   @include type-title;
 }
@@ -54,14 +57,21 @@ a {
   color: var(--ink);
 }
 
+// Bold is one weight. Browsers resolve `bolder` inside a bold context to
+// 900; the site has no 900.
+strong,
+b {
+  font-weight: $font-weight-bold;
+}
+
 // Keycaps — keyboard input renders as keys, in the sans stack like all metadata.
 kbd {
   font-family: $font-family-base;
-  font-size: $font-size-meta;
+  font-size: $font-size-small;
   line-height: $line-height-solid;
   display: inline-block;
   min-width: 10px;
-  padding: 2px 5px;
+  padding: 2px 5px; // keycap geometry
   text-align: center;
   vertical-align: 1px;
   border: 1px solid var(--edge);
@@ -70,10 +80,43 @@ kbd {
   box-shadow: 0 1px 0 var(--edge);
 }
 
+// Heading rhythm. Article headings: h2 48/8, h3 to h5 32/8. Hubs and
+// indexes (.hub) open sections at 64/16. Above is always at least three
+// times below, so a heading belongs to what follows.
+main {
+  h2 {
+    margin: $rhythm-h2-above 0 $rhythm-heading-below;
+  }
+
+  h3,
+  h4,
+  h5 {
+    margin: $rhythm-h3-above 0 $rhythm-heading-below;
+  }
+
+  .hub h2,
+  h2.section-head {
+    margin: $rhythm-section-above 0 $rhythm-section-below;
+  }
+
+  // A heading that follows a heading belongs to it: the pair sits 8px
+  // apart (Current version / 0.3.0).
+  :is(h2, h3, h4) + :is(h3, h4, h5) {
+    margin-top: $space-2;
+  }
+
+  // The first group in a section sits on the section's 16px, not its own
+  // 32px above (Archive / 2026).
+  .section-head + section > .group-head:first-child,
+  .section-head + .group-head {
+    margin-top: 0;
+  }
+}
+
 // Article prose
 main {
   article {
-    margin: 0 0 40px 0;
+    margin: 0;
 
     h1 > a,
     h2 > a {
@@ -85,10 +128,22 @@ main {
       font-weight: $link-weight-default;
     }
 
+    p {
+      margin: 0 0 $rhythm-paragraph;
+    }
+
+    ul,
+    ol {
+      margin: 0 0 $rhythm-paragraph;
+
+      ul,
+      ol {
+        margin-bottom: 0;
+      }
+    }
+
     blockquote > p,
     p {
-      margin-top: 0;
-
       img {
         // Article images bleed past the prose measure when space allows.
         max-width: unquote("min(#{$max-width-bleed}, 100%)");
@@ -110,11 +165,12 @@ main {
       @include readable-list-width;
     }
 
-    // Quotations carry an edge rule; text stays full ink — it's content.
+    // Quotations carry an edge rule: a line that marks a kind of content,
+    // not a divider. Text stays full ink — it's content.
     blockquote {
-      margin: 0 0 25px;
+      margin: 0 0 $rhythm-paragraph;
       border-left: 2px solid var(--edge);
-      padding-left: 20px;
+      padding-left: 20px; // quotation geometry
 
       > p:last-child {
         margin-bottom: 0;
@@ -122,7 +178,7 @@ main {
 
       // A quotation hugs its attribution line when one follows.
       &:has(+ .quote-attribution) {
-        margin-bottom: 8px;
+        margin-bottom: $space-2;
       }
     }
 
@@ -130,22 +186,15 @@ main {
     .quote-attribution {
       @include type-meta;
       color: var(--ink-faint);
-      padding-left: 22px;
-
-      a {
-        color: inherit;
-        font-weight: $link-weight-quiet;
-        transition: color $t-fast;
-
-        &:hover {
-          color: var(--ink);
-        }
-      }
+      box-sizing: border-box;
+      padding-left: 22px; // aligns with the quotation's text
+      @include meta-links;
     }
 
+    // A `---` the author wrote: a pause, not structure.
     hr {
       width: 20%;
-      margin: 2rem 0;
+      margin: $space-5 0;
       border: 0;
       border-top: 1px solid var(--rule);
     }
@@ -164,19 +213,19 @@ main {
       code {
         display: block;
         font-size: $font-size-code;
-        line-height: $line-height-tight;
+        line-height: $line-height-small;
         white-space: pre;
         min-width: max-content;
       }
     }
 
-    // YouTube videos
+    // YouTube videos sit like figures.
     .video-container {
       position: relative;
       padding-bottom: 56.25%; /* 16:9 aspect ratio */
       height: 0;
       overflow: hidden;
-      margin: 1.5rem 0;
+      margin: $space-5 0 $space-6;
     }
 
     .video-container iframe {
@@ -188,15 +237,15 @@ main {
     }
 
     .table-of-contents {
-      margin: 2rem 0;
+      margin: $space-5 0;
 
-      h4 {
-        margin-bottom: 1rem;
+      h2 {
+        margin: 0 0 $rhythm-heading-below;
       }
 
       nav#TableOfContents {
         columns: 2;
-        column-gap: 48px;
+        column-gap: $space-6;
         @include readable-width();
 
         @include narrow {
@@ -222,18 +271,65 @@ main {
               content: counter(toc, decimal-leading-zero) ".";
               @include type-meta;
               color: var(--ink-faint);
-              margin-right: 10px;
+              margin-right: $space-2;
             }
 
             // Reset counter for nested items
             ul {
               counter-reset: toc;
-              margin-top: 0.5rem;
-              margin-left: 2.5rem;
+              margin-top: $space-2;
+              margin-left: 40px; // the list indent
             }
           }
         }
       }
     }
   }
+}
+
+// Figures: one rule for the whole site. Bleed width, block media, the
+// caption in the small voice. Viewer figures carry their own classes and
+// override this; :where keeps the rule easy to beat.
+:where(main) figure {
+  margin: $space-5 0 $space-6;
+  max-width: $max-width-bleed;
+
+  > img,
+  > video,
+  > a > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    background: var(--surface);
+  }
+
+  // Tall captures: phone screens and the like.
+  &.portrait {
+    max-width: 360px;
+  }
+
+  // A screenshot whose white edge would vanish into the ground.
+  &.framed > img,
+  &.framed > a > img {
+    border: 1px solid var(--edge);
+  }
+}
+
+:where(main) figcaption {
+  @include type-small;
+  @include readable-width;
+  color: var(--ink-muted);
+  margin-top: $space-2;
+
+  p {
+    margin: 0;
+  }
+}
+
+// Media directly under a heading takes the heading's 8px instead of the
+// figure's 32px, so the heading stays with what it names. Last in the file
+// so it beats the media's own margins at equal specificity.
+main :is(h2, h3, h4, h5)
+  + :is(figure, .photo-gallery, .video-container, .model-viewer-frame, .gaussian-splat, .spatial-long-exposure, .table-wrap, .sheet, .shell-block, .resources, .projects-grid) {
+  margin-top: 0;
 }

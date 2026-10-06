@@ -1,7 +1,7 @@
 .spatial-long-exposure {
   width: 100%;
   max-width: $max-width-container;
-  margin: 1.5rem 0;
+  margin: $space-5 0 $space-6;
 
   --spatial-map-background: #fafafa;
   --spatial-map-connection: 0, 0, 0;
@@ -42,7 +42,7 @@
   justify-content: space-between;
   gap: 18px;
   max-width: $max-width-readable;
-  margin-bottom: 0.75rem;
+  margin-bottom: $space-3;
 }
 
 .spatial-long-exposure__modes {
@@ -268,9 +268,9 @@ html.spatial-long-exposure-fullscreen-active {
 .spatial-long-exposure noscript {
   display: flex;
   justify-content: space-between;
-  gap: 1rem;
+  gap: $space-3;
   max-width: $max-width-readable;
-  margin-top: 0.6rem;
+  margin-top: $space-2;
   @include type-meta;
   color: var(--ink-muted);
 }
@@ -284,7 +284,7 @@ html.spatial-long-exposure-fullscreen-active {
   .spatial-long-exposure figcaption {
     align-items: flex-start;
     flex-direction: column;
-    gap: 0.35rem;
+    gap: $space-1;
   }
 
   .spatial-long-exposure__instructions {

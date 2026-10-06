@@ -1,11 +1,11 @@
 ---
 title: Corner Cutting Jig for Bookbinding
 date: 2026-02-27
-description: "3d printable corner cutting jig for trimming board corners at 45 degrees"
+description: "3D printable corner cutting jig for trimming board corners at 45 degrees."
 project:
   year: 2026
   category: /bookbinding
-  description: "3d-printed fixture for slicing perfect 45° book board corners"
+  description: "3D-printed fixture for slicing perfect 45° book board corners."
   image: /visuals/project-thumbs/proj_corner_cutting_jig.png
 ---
 

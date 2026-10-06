@@ -1,7 +1,7 @@
 ---
 title: Mamiya RZ67 PRO II Fine Focus Gear
 date: 2025-01-09
-description: "3d printable replacement gear for fine focus"
+description: "3D printable replacement gear for fine focus."
 project:
   year: 2025
   category: /darkroom

@@ -9,6 +9,7 @@
   {{ end }}
 {{ end }}
 {{ if gt (len $pages) 0 }}
+{{ $.Page.Store.Add "hubPages" $pages }}
 <section class="project-year">
   {{ with $title }}<h2>{{ . }}</h2>{{ end }}
   {{ with trim .Inner " \n\t" }}<p>{{ . | markdownify }}</p>{{ end }}

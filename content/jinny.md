@@ -1,20 +1,20 @@
 ---
 title: 'Jinny Street Gallery'
 date: 2024-12-12
-hide_title: true
 description: "Art space uniquely created from streetlamps in Harajuku, Tokyo."
 project:
   year: ongoing
   image: /visuals/jinny_flag.jpg
+resources:
+  - title: 'Website'
+    url: 'https://jinnystreetgallery.com'
+  - title: 'Store'
+    url: 'https://store.jinnystreetgallery.com'
+  - title: 'Instagram'
+    url: 'https://instagram.com/jinny.gallery'
 ---
 
 ![Jinny flag on top of street lamp #1](/visuals/jinny_flag.jpg)
-
-# Jinny Street Gallery
-
-- Website: [jinnystreetgallery.com](https://jinnystreetgallery.com)
-- Store/Merch: [store.jinnystreetgallery.com](https://store.jinnystreetgallery.com)
-- Instagram: [@jinny.gallery](https://instagram.com/jinny.gallery)
 
 Jinny Street Gallery is a contemporary art space uniquely created from streetlamps in the walkable and charming neighborhood of Jingumae 2-chome, Shibuya, Tokyo. Just north of Harajuku.
 

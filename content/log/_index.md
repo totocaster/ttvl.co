@@ -1,6 +1,5 @@
 ---
 title: "Log"
-hide_title: true
 description: "A chronological record of thoughts, experiences, and project updates"
 filter_dek: "A chronological record of thoughts, experiences, and project updates."
 ---

@@ -1,0 +1,123 @@
+{{- /* The meta line under every page title: date first, then context, parts
+     joined by a middle dot. Returns HTML, or "" when the page has no line.
+     Hubs count what they list; the page-list and project-grid shortcodes
+     record their pages in .Store "hubPages", so render .Content before
+     calling this. Every case is listed in docs/styleguide.md, Page Head. */ -}}
+{{- $p := . -}}
+{{- $parts := slice -}}
+{{- $day := "" -}}
+{{- if not $p.Date.IsZero -}}
+  {{- $day = printf `<time datetime="%s">%s</time>` ($p.Date.Format "2006-01-02") ($p.Date.Format "2006-01-02") -}}
+{{- end -}}
+{{- $nouns := dict
+  "notes" (slice "note" "notes")
+  "log" (slice "month" "months")
+  "traces" (slice "trace" "traces")
+  "projects" (slice "project" "projects")
+  "newsletter" (slice "dispatch" "dispatches")
+  "leaves" (slice "leaf" "leaves")
+-}}
+{{- $listed := slice -}}
+
+{{- if or $p.IsHome $p.Params.hide_meta -}}
+  {{- /* No line. */ -}}
+
+{{- else if eq $p.Section "research" -}}
+  {{- $hub := site.GetPage "/research" -}}
+  {{- if $p.IsPage -}}
+    {{- $stream := $p.CurrentSection -}}
+    {{- $parts = $parts | append $day -}}
+    {{- with partial "research-category.html" $p }}{{ $parts = $parts | append . }}{{ end -}}
+    {{- $parts = $parts | append (printf `<a href="%s">%s</a>` $hub.RelPermalink (htmlEscape $hub.Title)) -}}
+    {{- $parts = $parts | append (printf `<a href="%s">%s</a>` $stream.RelPermalink (htmlEscape $stream.Title)) -}}
+    {{- $parts = $parts | append (partialCached "research-number.html" $p $p.Path) -}}
+  {{- else if ne $p.Path $hub.Path -}}
+    {{- $parts = $parts | append (printf `<a href="%s">%s</a> stream` $hub.RelPermalink (htmlEscape $hub.Title)) -}}
+    {{- $parts = $parts | append (partial "research-stream-meta.html" $p) -}}
+    {{- with $p.OutputFormats.Get "rss" }}{{ $parts = $parts | append (printf `<a href="%s">RSS</a>` .RelPermalink) }}{{ end -}}
+  {{- else -}}
+    {{- $streams := len $p.Sections -}}
+    {{- $entries := $p.RegularPagesRecursive.ByDate.Reverse -}}
+    {{- $n := len $entries -}}
+    {{- $parts = $parts | append (printf "%d %s" $streams (cond (eq $streams 1) "stream" "streams")) -}}
+    {{- $parts = $parts | append (printf "%d %s" $n (cond (eq $n 1) "entry" "entries")) -}}
+    {{- with $entries }}{{ $parts = $parts | append (printf `updated <time>%s</time>` ((index . 0).Date.Format "2006-01-02")) }}{{ end -}}
+  {{- end -}}
+
+{{- else if eq $p.Section "notes" -}}
+  {{- if $p.IsPage -}}
+    {{- $labels := dict "collected" "Collected Matter" "thinking" "Thinking Notes" "longform" "Longform" -}}
+    {{- $cat := $p.Params.category | default "thinking" -}}
+    {{- $notes := site.GetPage "/notes" -}}
+    {{- $parts = $parts | append $day (printf `<a href="%s">%s</a>` $notes.RelPermalink (htmlEscape $notes.Title)) -}}
+    {{- with index $labels $cat }}{{ $parts = $parts | append (printf `<a href="%s?category=%s">%s</a>` $notes.RelPermalink $cat .) }}{{ end -}}
+  {{- else -}}
+    {{- $listed = $p.RegularPages -}}
+  {{- end -}}
+
+{{- else if eq $p.Section "log" -}}
+  {{- if $p.IsPage -}}
+    {{- with site.GetPage "/log" }}{{ $parts = $parts | append (printf `<a href="%s">%s</a>` .RelPermalink (htmlEscape .Title)) }}{{ end -}}
+  {{- else -}}
+    {{- $listed = $p.RegularPages -}}
+  {{- end -}}
+
+{{- else if eq $p.Section "traces" -}}
+  {{- if $p.IsPage -}}
+    {{- $parts = $parts | append $day -}}
+    {{- with $p.CurrentSection }}{{ $parts = $parts | append (printf `<a href="%s">%s</a>` .RelPermalink (htmlEscape .Title)) }}{{ end -}}
+    {{- with $p.Params.trace.kind }}{{ $parts = $parts | append (htmlEscape .) }}{{ end -}}
+  {{- else -}}
+    {{- $listed = $p.RegularPages -}}
+  {{- end -}}
+
+{{- else if and (eq $p.Section "flaneur") $p.IsPage -}}
+  {{- $parts = $parts | append $day -}}
+  {{- with site.GetPage "/newsletter" }}{{ $parts = $parts | append (printf `<a href="%s">%s</a>` .RelPermalink (htmlEscape .Title)) }}{{ end -}}
+  {{- $parts = $parts | append (printf "Dispatch %s" $p.File.BaseFileName) -}}
+
+{{- else if eq $p.Section "leaves" -}}
+  {{- $files := slice -}}
+  {{- range readDir "static/leaves" }}{{ if findRE `^\d{4}-\d{2}-\d{2}.*\.jpeg$` .Name }}{{ $files = $files | append .Name }}{{ end }}{{ end -}}
+  {{- $n := len $files -}}
+  {{- $parts = $parts | append (printf "%d %s" $n (cond (eq $n 1) "leaf" "leaves")) -}}
+  {{- with last 1 (sort $files) }}{{ $parts = $parts | append (printf `updated <time>%s</time>` (substr (index . 0) 0 10)) }}{{ end -}}
+
+{{- else if eq $p.Section "projects" -}}
+  {{- $listed = where site.Pages "Params.project" "!=" nil -}}
+
+{{- else if eq $p.Section "newsletter" -}}
+  {{- $listed = where (where site.Pages "Section" "flaneur") "Kind" "page" -}}
+
+{{- else if $p.Params.project -}}
+  {{- $parts = $parts | append $day -}}
+  {{- with $p.Params.project.category -}}
+    {{- with site.GetPage . -}}
+      {{- if ne .Path $p.Path }}{{ $parts = $parts | append (printf `<a href="%s">%s</a>` .RelPermalink (htmlEscape .Title)) }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $parts = $parts | append "Project" -}}
+
+{{- else if and $p.IsPage $p.Section -}}
+  {{- $parts = $parts | append $day -}}
+  {{- with $p.CurrentSection }}{{ $parts = $parts | append (printf `<a href="%s">%s</a>` .RelPermalink (htmlEscape .Title)) }}{{ end -}}
+
+{{- else if $p.IsSection -}}
+  {{- $listed = $p.Store.Get "hubPages" | default $p.RegularPagesRecursive -}}
+{{- end -}}
+
+{{- /* Hubs: how many pages they list, and when the newest was written. */ -}}
+{{- with $listed -}}
+  {{- $pages := uniq . -}}
+  {{- $n := len $pages -}}
+  {{- $noun := index $nouns $p.Section | default (slice "page" "pages") -}}
+  {{- $parts = $parts | append (printf "%d %s" $n (cond (eq $n 1) (index $noun 0) (index $noun 1))) -}}
+  {{- with first 1 (sort $pages "Date" "desc") -}}
+    {{- $newest := index . 0 -}}
+    {{- if not $newest.Date.IsZero }}{{ $parts = $parts | append (printf `updated <time>%s</time>` ($newest.Date.Format "2006-01-02")) }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- $html := slice -}}
+{{- range $parts }}{{ with . }}{{ $html = $html | append . }}{{ end }}{{ end -}}
+{{- return (delimit $html " · " | safeHTML) -}}

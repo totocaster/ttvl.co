@@ -1,8 +1,6 @@
 {{ define "main" }}
-<article>
-  {{ if not .Params.hide_title }}
-  <h1>{{ .Title }}</h1>
-  {{ end }}
+<article class="hub">
+  {{ partial "page-head.html" . }}
   {{ .Content }}
 
   {{ with .RegularPages }}

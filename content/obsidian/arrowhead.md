@@ -4,12 +4,12 @@ date: 2025-10-31
 aliases:
   - /arrowhead/
   - /project-humane/arrowhead/
-description: "helps AI agents and command-line tools make sense of your Obsidian vault"
+description: "Helps AI agents and command-line tools make sense of your Obsidian vault."
 featured: true
 project:
   year: 2025
   category: /obsidian
-  description: "helps AI agents and command-line tools make sense of your Obsidian vault"
+  description: "Helps AI agents and command-line tools make sense of your Obsidian vault."
   image: /visuals/project-thumbs/proj_arrowhead.png
 resources:
   - title: 'GitHub'

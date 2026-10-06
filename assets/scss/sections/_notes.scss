@@ -1,82 +1,9 @@
-// Notes: list filter, note pills, published date, backlinks.
+// Notes: the index uses the shared rows and group heads, and backlinks are
+// the shared end matter (partials/mentioned-in.html). Only the filter's
+// year hiding lives here.
 
-main {
-  article {
-    // Published date - used on individual notes only
-    .note-date {
-      margin-top: 2rem;
-      @include type-meta;
-      @include tabular-numbers;
-      color: var(--ink-faint);
-    }
-
-    .note-backlinks {
-      @include readable-width;
-      margin-top: 2rem;
-      padding: 0;
-      color: var(--ink-faint);
-      h3 {
-        margin: 0 0 0.75rem;
-      }
-      a {
-        color: inherit;
-        font-weight: $link-weight-quiet;
-        transition: color $t-fast;
-
-        &:hover {
-          color: var(--ink);
-        }
-      }
-    }
-
-    .note-backlinks__list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-      li {
-        position: relative;
-        padding-left: 20px;
-        font-weight: $font-weight-regular;
-        &::before {
-          content: "\2192";
-          position: absolute;
-          left: 0;
-          color: inherit;
-        }
-      }
-    }
-  }
-
-  // Notes list - used in /notes/
-  .notes-list,
-  .writings-list {
-    list-style: disc;
-    padding-left: 1.25rem;
-    margin: 0 0 1.5rem;
-    @include readable-width;
-
-    li {
-      margin-bottom: 0;
-
-      .note-pill {
-        @include type-meta;
-        color: var(--ink-faint);
-        margin-left: 0.35rem;
-      }
-
-      .note-pill--lit::after {
-        content: "lit.";
-      }
-    }
-  }
-
-  // Category filtering hides rows; !important beats the rows' own display.
-  .notes-year[hidden],
-  .notes-list li[hidden],
-  .issue-list li[hidden] {
-    display: none !important;
-  }
+// Category filtering hides whole years; !important beats the section's
+// own display.
+main .notes-year[hidden] {
+  display: none !important;
 }

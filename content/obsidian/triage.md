@@ -4,11 +4,11 @@ date: 2026-06-12
 aliases:
   - /project-humane/triage/
   - /triage/
-description: "Obsidian plugin for resurfacing unprocessed notes in an Anki-style triage queue"
+description: "Obsidian plugin for resurfacing unprocessed notes in an Anki-style triage queue."
 project:
   year: 2026
   category: /obsidian
-  description: "resurfaces unprocessed notes in an Anki-style triage queue"
+  description: "Resurfaces unprocessed notes in an Anki-style triage queue."
   image: /visuals/project-thumbs/proj_triage_obsidian.png
 resources:
   - title: 'GitHub'

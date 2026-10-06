@@ -3,7 +3,7 @@ title: Withingy CLI
 date: 2026-03-06
 aliases:
   - /withingy/
-description: "Withings data CLI for humans, automation, and AI agents"
+description: "Withings data CLI for humans, automation, and AI agents."
 project:
   year: 2026
   category: /project-humane
