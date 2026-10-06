@@ -137,6 +137,8 @@ a.stream-ledger__name {
 }
 
 // Hub entry list: year groups under the Entries heading.
+// Each entry is two lines: the title, then its stream, number, and
+// category in the meta voice underneath.
 .research-year {
   > h3 {
     margin: 20px 0 0;
@@ -144,11 +146,21 @@ a.stream-ledger__name {
 
   .issue-list {
     margin-top: 6px;
+
+    li {
+      margin-bottom: 12px;
+    }
+  }
+
+  .research-row__tail {
+    display: block;
+    margin: 1px 0 0;
+    white-space: normal;
   }
 }
 
-// Index rows carry their meta inline after the title, so a long title
-// keeps the full width and the tail wraps as a unit.
+// Elsewhere (the home page), index rows carry their meta inline after the
+// title, so a long title keeps the full width and the tail wraps as a unit.
 .research-row__body {
   flex: 1;
   min-width: 0;

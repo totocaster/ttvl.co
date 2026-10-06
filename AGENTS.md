@@ -174,7 +174,7 @@ Every note, project page, article, hub with a `filter_dek`, research stream, and
 - `answers:` names a question in the same stream by slug or filename (one value or a list) and closes it. Unanswered questions collect under Open Questions on the stream page; an entry page lists Answers, Answered in, and Referenced by rows, the last from any page whose text links to it.
 - Entry numbers (001, 002, …) come from date order within the stream. Never write them; a backdated entry renumbers the ones after it.
 - Store media in `static/visuals/research/<stream>/`. Use Hugo's built-in `figure` shortcode for images and `clip` for short silent loops (an MP4 with a JPEG poster frame).
-- The stream page shows every entry in full, newest first, so a stream reads as one page. The hub lists every entry as a row. On an entry page, the Left and Right arrow keys follow the previous and next links within the stream (`assets/js/research-pager.js`, loaded only on entry pages).
+- The stream page shows every entry in full, newest first, so a stream reads as one page. The hub lists every entry in two lines: the title, then its stream, number, and category in the meta voice, with the stream name hidden while a stream filter is active. On an entry page, the Left and Right arrow keys follow the previous and next links within the stream (`assets/js/research-pager.js`, loaded only on entry pages).
 - Entries have no social card of their own and use their stream's. Run `make cards` after adding or retitling a stream.
 
 ### Photography, downloads, and visual assets
