@@ -17,7 +17,7 @@
 {{- end }}
 
 {{- $feed := "" -}}
-{{- with .OutputFormats.Get "rss" }}{{ $feed = printf ` · <a href="%s">RSS</a>` .RelPermalink }}{{ end -}}
+{{- with .OutputFormats.Get "rss" }}{{ $feed = printf `<a href="%s">RSS</a>` .RelPermalink }}{{ end -}}
 
 {{ with $streams }}
 <section class="block">
@@ -38,13 +38,13 @@
 {{ end }}
 
 <section class="block">
-  <div class="rail"><h2>Entries</h2><p class="meta">{{ partial "count.html" (dict "n" (len $entries) "one" "entry" "many" "entries") }}{{ $feed | safeHTML }}</p></div>
+  <div class="rail"><h2>Entries</h2>{{ with $feed }}<p class="meta">{{ . | safeHTML }}</p>{{ end }}</div>
   <div class="main">
     {{- range $streams }}
     {{- $stream := . }}
     {{- with .RegularPages.ByDate.Reverse }}
     <div class="group">
-      <h3 class="group-head"><a href="{{ $stream.RelPermalink }}">{{ $stream.Title }}</a> <span class="count">{{ partial "count.html" (dict "n" (len .) "one" "entry" "many" "entries") }}</span></h3>
+      <h3 class="group-head"><a href="{{ $stream.RelPermalink }}">{{ $stream.Title }}</a></h3>
       <ul class="rows">
         {{- range . }}
         {{ partial "research-row.html" (dict "page" . "number" true "category" true) }}

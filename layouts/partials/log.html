@@ -1,12 +1,12 @@
 {{- /* Home: the latest Log month. Its title (linked) is the rail heading,
-     the meta line counts the months; the month's content fills the column. */ -}}
+     the meta line names the Log; the month's content fills the column. */ -}}
 {{- $months := (where site.RegularPages "Section" "log").ByDate.Reverse -}}
 {{- with $months }}
 {{- $m := index . 0 }}
 <section class="block home-log">
   <div class="rail">
     <h2><a href="{{ $m.RelPermalink }}">{{ $m.Title }}</a></h2>
-    <p class="meta">Log · {{ partial "count.html" (dict "n" (len $months) "one" "month" "many" "months") }} · <a href="/log/">all →</a></p>
+    <p class="meta">Log · <a href="/log/">all months →</a></p>
   </div>
   <div class="main prose">
     {{ $m.Content }}

@@ -72,11 +72,11 @@
   {{- end }}
 
   <section class="block">
-    <div class="rail"><h2>Archive</h2><p class="meta">{{ partial "count.html" (dict "n" (len $dispatches) "one" "dispatch" "many" "dispatches") }}</p></div>
+    <div class="rail"><h2>Archive</h2></div>
     <div class="main">
       {{- range $dispatches.GroupByDate "2006" }}
       <div class="group">
-        <h3 class="group-head">{{ .Key }} <span class="count">{{ partial "count.html" (dict "n" (len .Pages) "one" "dispatch" "many" "dispatches") }}{{ if eq .Key "2021" }} · as Dreaming with One Eye Open{{ end }}</span></h3>
+        <h3 class="group-head">{{ .Key }}{{ if eq .Key "2021" }} <span class="tail">as Dreaming with One Eye Open</span>{{ end }}</h3>
         <ul class="rows{{ if $.Params.show_deks }} with-deks{{ end }}">
           {{- range .Pages.ByDate.Reverse }}
           {{ partial "row.html" (dict

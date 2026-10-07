@@ -143,11 +143,13 @@
   {{- if not $d.IsZero }}{{ $one = slice (printf `Updated <time datetime="%s">%s</time>` ($d.Format "2006-01-02") ($d.Format "2006-01-02")) }}{{ end -}}
 {{- end -}}
 
-{{- /* Hubs: how many pages they list, and when the newest was written. */ -}}
+{{- /* Hubs: how many pages they list, and when the newest was written.
+     This is the one count a page carries; on Notes and Projects it is live,
+     so the filter can rewrite it. */ -}}
 {{- with $listed -}}
   {{- $pages := uniq . -}}
   {{- $noun := index $nouns $p.Section | default (slice "page" "pages") -}}
-  {{- $one = slice (partial "count.html" (dict "n" (len $pages) "one" (index $noun 0) "many" (index $noun 1))) -}}
+  {{- $one = slice (partial "count.html" (dict "n" (len $pages) "one" (index $noun 0) "many" (index $noun 1) "live" (in (slice "notes" "projects") $p.Section))) -}}
   {{- with first 1 (sort $pages "Date" "desc") -}}
     {{- $newest := index . 0 -}}
     {{- if not $newest.Date.IsZero }}{{ $one = $one | append (printf `updated <time datetime="%s">%s</time>` ($newest.Date.Format "2006-01-02") ($newest.Date.Format "2006-01-02")) }}{{ end -}}

@@ -5,7 +5,7 @@
 <section class="block home-flaneur" id="newsletter">
   <div class="rail">
     <h2>The Flâneur</h2>
-    <p class="meta">{{ partial "count.html" (dict "n" (len $issues) "one" "dispatch" "many" "dispatches") }} · <a href="{{ with $archive }}{{ .RelPermalink }}{{ else }}/newsletter/{{ end }}">all →</a></p>
+    <p class="meta"><a href="{{ with $archive }}{{ .RelPermalink }}{{ else }}/newsletter/{{ end }}">All dispatches →</a></p>
   </div>
   <div class="main">
     <div class="prose">

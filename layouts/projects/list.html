@@ -1,10 +1,12 @@
 {{ define "main" }}
-{{- /* Projects hub: the head with the intro as its dek and the filter and
-     its deks in the column, then tight year blocks (Ongoing, 2026, …) of
-     cards. The filter is assets/js/category-filter.js: each year block is
-     a [data-filter-group], each card carries data-category, the rail's
-     .count follows the filter, and [data-filter-show] swaps the active
-     hub's reference and dek. docs/styleguide.md, Page by Page: Projects hub. */ -}}
+{{- /* Projects hub: the head with the intro as its dek and the filter
+     chips in the column, then year blocks (Ongoing, 2026, …) of cards, and
+     Hubs as end matter: one row per hub the projects come from, its title
+     and filter_dek, the door to the pages the chips only filter. The filter
+     is assets/js/category-filter.js: each year block and the Hubs block are
+     [data-filter-group]s, every card and hub row carries data-category, and
+     the head rail's count follows the filter (the Hubs block is
+     data-filter-uncounted). docs/styleguide.md, Page by Page: Projects hub. */ -}}
 {{- $projects := sort (uniq (where site.Pages "Params.project" "!=" nil)) "Date" "desc" -}}
 
 {{- /* The intro paragraph is the head's dek. */ -}}
@@ -31,7 +33,7 @@
     "slug" $slug
     "label" (or (and $hub $hub.Params.filter_label) (title (humanize $slug)))
     "dek" (and $hub $hub.Params.filter_dek)
-    "ref" (or (and $hub $hub.Params.filter_ref) (and $hub $hub.Title) (title (humanize $slug)))
+    "title" (or (and $hub $hub.Title) (title (humanize $slug)))
     "url" (and $hub $hub.RelPermalink)
     "weight" (or (and $hub $hub.Params.filter_weight) 99)
   ) -}}
@@ -67,12 +69,8 @@
   {{ partial "page-head.html" (dict "page" . "dek" $dek "extra" ($filter | safeHTML)) }}
   {{- with trim $content " \n\t" }}{{ partial "block-body.html" . }}{{ end }}
   {{- range $groups }}
-  {{- $n := len .pages }}
   <section class="block year project-year" data-filter-group>
-    <div class="rail">
-      <h2>{{ .key }}</h2>
-      <p class="meta"><span class="count" data-singular="project" data-plural="projects">{{ $n }} {{ cond (eq $n 1) "project" "projects" }}</span></p>
-    </div>
+    <div class="rail"><h2>{{ .key }}</h2></div>
     <div class="main">
       <div class="projects-grid">
         {{- range .pages }}
@@ -83,6 +81,20 @@
   </section>
   {{- else }}
   <section class="block body"><div class="rail"></div><div class="main prose"><p>No projects yet.</p></div></section>
+  {{- end }}
+  {{- with $categories }}
+  <section class="block end ledger" id="hubs" data-filter-group data-filter-uncounted>
+    <div class="rail"><h2>Hubs</h2></div>
+    <div class="main">
+      <ul class="rows with-deks">
+        {{- range . }}
+        {{- if .url }}
+        {{ partial "row.html" (dict "meta" "" "url" .url "title" .title "dek" .dek "category" .slug) }}
+        {{- end }}
+        {{- end }}
+      </ul>
+    </div>
+  </section>
   {{- end }}
 </article>
 {{ $categoryFilter := resources.Get "js/category-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}

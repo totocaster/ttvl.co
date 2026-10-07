@@ -1,5 +1,5 @@
 {{- /* Home: the Projects block. The six newest featured pages as cards,
-     with every project counted in the rail. */ -}}
+     with the door to the archive in the rail. */ -}}
 {{- $all := where site.Pages "Params.project" "!=" nil -}}
 {{- $featured := where (where site.Pages "Params.featured" true) "Kind" "in" (slice "page" "section") -}}
 {{- $projects := first 6 (sort $featured "Date" "desc") -}}
@@ -7,7 +7,7 @@
 <section class="block">
   <div class="rail">
     <h2>Projects</h2>
-    <p class="meta">{{ partial "count.html" (dict "n" (len (uniq $all)) "one" "project" "many" "projects") }} · <a href="/projects/">all →</a></p>
+    <p class="meta"><a href="/projects/">All projects →</a></p>
   </div>
   <div class="main">
     <div class="projects-grid">

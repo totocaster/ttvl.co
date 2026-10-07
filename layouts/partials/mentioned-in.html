@@ -1,5 +1,5 @@
 {{- /* End matter: every page whose text links to this one, as one block,
-"Mentioned in", with the count in the rail and rows keyed by what each page
+"Mentioned in", with rows keyed by what each page
 is (Hub, Note, Project, Log, Research, Dispatch, Trace, a section's name,
 or a root page's own title), the page's date as the tail where it has one.
 Hubs first, then pages newest first. A link counts when the
@@ -30,7 +30,7 @@ partialCached keyed on .Path. docs/styleguide.md, End Matter. */ -}}
 {{- $all := (sort $hubs "Title") | append (sort $pages "Date" "desc") -}}
 {{- with $all }}
 <section class="block end">
-  <div class="rail"><h2>Mentioned in</h2><p class="meta">{{ partial "count.html" (dict "n" (len .) "one" "page" "many" "pages") }}</p></div>
+  <div class="rail"><h2>Mentioned in</h2></div>
   <div class="main">
     <ul class="rows">
       {{- range . }}

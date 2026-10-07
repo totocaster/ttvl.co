@@ -31,7 +31,7 @@ This site is my public notebook. I write about what I'm making and share things 
 
 My photography-only alter ego has a separate home at [toto.photo](https://toto.photo/).
 
-{{< section title="Newsletter" meta="16 dispatches · [all →](/newsletter/)" id="newsletter" >}}
+{{< section title="Newsletter" meta="[All dispatches →](/newsletter/)" id="newsletter" >}}
 
 [The Flâneur](/newsletter/) is my newsletter: projects, photography, books, and walking, a little more private and a little more drifting than the site. New readers can start with [the essay](/flaneur/008/), [the method](/flaneur/010/), or [the story so far](/flaneur/014/).
 
@@ -118,7 +118,7 @@ Toolmaking is the software half of the practice: command-line tools and Obsidian
 
 {{< /section >}}
 
-{{< section title="Philosophy" meta="3 principles" id="philosophy" >}}
+{{< section title="Philosophy" id="philosophy" >}}
 
 Three principles I try to live by and build into everything I make.
 

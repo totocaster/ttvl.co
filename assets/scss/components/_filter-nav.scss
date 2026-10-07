@@ -1,10 +1,9 @@
 // The filter rail under a hub's dek: chips in the control voice, faint,
-// 20 px apart; the active one in ink, underlined 5 px below the baseline;
-// the active filter's dek under it at text size.
+// 20 px apart; the active one in ink, underlined 5 px below the baseline.
+// Chips only: no reference to the hub, no dek that follows the filter.
 // Driven by assets/js/category-filter.js via ?category= query strings; the
-// hooks (.category-filter, [data-category], [data-filter-group],
-// [data-filter-show], .count, .hub-ref) are unchanged.
-// docs/styleguide.md, Filter Rail.
+// hooks (.category-filter, [data-category], [data-filter-group], the head
+// rail's .count) are documented there. docs/styleguide.md, Filter Rail.
 
 .category-filter {
   @include type-control;
@@ -43,29 +42,5 @@
       text-decoration-thickness: 1px;
       text-underline-offset: 5px;
     }
-  }
-
-  // The reference to the active domain's page, appended to the rail.
-  a.hub-ref {
-    color: var(--ink);
-  }
-}
-
-// The active filter's dek: content, full ink, text size.
-.filter-dek {
-  @include readable-width;
-  margin: $space-3 0 0;
-
-  p {
-    margin: 0;
-  }
-
-  a {
-    font-weight: $link-weight-default;
-    white-space: nowrap;
-  }
-
-  &[hidden] {
-    display: none;
   }
 }

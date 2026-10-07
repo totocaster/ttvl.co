@@ -38,7 +38,6 @@
 <section class="block">
   <div class="rail">
     <h2>Open Questions</h2>
-    <p class="meta"><span class="n">{{ len $open }}</span> open{{ with $closed }} · <span class="n">{{ len . }}</span> answered{{ end }}</p>
   </div>
   <div class="main">
     <ul class="rows">
@@ -70,9 +69,9 @@
 {{ end }}
 
 {{- $feed := "" -}}
-{{- with .OutputFormats.Get "rss" }}{{ $feed = printf ` · <a href="%s">RSS</a>` .RelPermalink }}{{ end }}
+{{- with .OutputFormats.Get "rss" }}{{ $feed = printf `<a href="%s">RSS</a>` .RelPermalink }}{{ end }}
 <section class="block">
-  <div class="rail"><h2>Entries</h2><p class="meta">{{ partial "count.html" (dict "n" (len $entries) "one" "entry" "many" "entries") }}{{ $feed | safeHTML }}</p></div>
+  <div class="rail"><h2>Entries</h2>{{ with $feed }}<p class="meta">{{ . | safeHTML }}</p>{{ end }}</div>
   <div class="main">{{ if not $entries }}<p class="legend">No entries yet.</p>{{ end }}</div>
 </section>
 {{ range $entries }}{{ partial "research-entry.html" . }}{{ end }}

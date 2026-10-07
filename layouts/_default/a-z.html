@@ -1,8 +1,9 @@
 {{ define "main" }}
 {{- /* The Index: the head (75 entries · 11 hubs), then three blocks.
-     Start Here: rows, each hub's count as the meta and its filter_dek as
-     the dek. A–Z: letter groups in three columns (one on phones), each an
-     h3 with its count, the ✉ legend under them. Log: the archive grid.
+     Start Here: rows, one per hub, its filter_dek as the dek and nothing in
+     the meta column. A–Z: letter groups in three columns (one on phones),
+     each an h3, the ✉ legend under them. Log: the archive grid. The head
+     rail carries the page's only counts.
      The A–Z files titles without a leading A, An, or The (or by
      sort_title), and leaves out Log months and research entries.
      docs/styleguide.md, Page by Page: Index. */ -}}
@@ -35,41 +36,18 @@
 {{- $pages = sort $pages "filingTitle" -}}
 {{- $letters := split "A B C D E F G H I J K L M N O P Q R S T U V W X Y Z #" " " -}}
 
-{{- /* What each hub lists, counted in its own noun. Hubs that curate
-     through page-list or project-grid record their pages when their
-     content renders, so render it first. */ -}}
-{{- $leaves := 0 -}}
-{{- range readDir "static/leaves" }}{{ if findRE `^\d{4}-\d{2}-\d{2}.*\.jpeg$` .Name }}{{ $leaves = add $leaves 1 }}{{ end }}{{ end -}}
-{{- $nouns := dict
-  "notes" (slice "note" "notes")
-  "research" (slice "entry" "entries")
-  "leaves" (slice "leaf" "leaves")
-  "traces" (slice "trace" "traces")
-  "projects" (slice "project" "projects")
-  "newsletter" (slice "dispatch" "dispatches")
--}}
 {{ partial "page-head.html" . }}
 
 {{- with $hubPages }}
 <section class="block" id="start-here">
   <div class="rail">
     <h2>Start Here</h2>
-    <p class="meta">{{ partial "count.html" (dict "n" (len .) "one" "hub" "many" "hubs") }}</p>
   </div>
   <div class="main">
     <ul class="rows with-deks">
       {{- range . }}
-      {{- $n := 0 }}
-      {{- if eq .Section "leaves" }}{{ $n = $leaves }}
-      {{- else if eq .Section "projects" }}{{ $n = len (uniq (where site.Pages "Params.project" "!=" nil)) }}
-      {{- else if eq .Section "newsletter" }}{{ $n = len (where site.RegularPages "Section" "flaneur") }}
-      {{- else }}
-        {{- $_ := .Content }}
-        {{- $n = len (uniq (.Store.Get "hubPages" | default .RegularPagesRecursive)) }}
-      {{- end }}
-      {{- $noun := index $nouns .Section | default (slice "page" "pages") }}
       {{ partial "row.html" (dict
-        "meta" (partial "count.html" (dict "n" $n "one" (index $noun 0) "many" (index $noun 1)))
+        "meta" ""
         "url" .RelPermalink
         "title" (.Title | default .File.Path)
         "dek" (.Params.filter_dek | default .Description)
@@ -83,7 +61,6 @@
 <section class="block" id="a-z">
   <div class="rail">
     <h2>A–Z</h2>
-    <p class="meta">{{ partial "count.html" (dict "n" (len $pages) "one" "entry" "many" "entries") }}</p>
   </div>
   <div class="main">
     <div class="letters" id="Index">

@@ -1,5 +1,5 @@
 {{- /* The Log's year-by-month grid as a block: the title in the rail with
-     the month count and the first month, then one line per year, twelve
+     the first month, then one line per year, twelve
      cells, voids as ··. On a month page that month is aria-current and
      carries the signal underline. Pass a dict: "page" (required), "title"
      (default "Archive"), "class" (extra block classes, e.g. "end").
@@ -11,7 +11,7 @@
 <section class="block log-archive{{ with $.class }} {{ . }}{{ end }}">
   <div class="rail">
     <h2>{{ $.title | default "Archive" }}</h2>
-    <p class="meta">{{ partial "count.html" (dict "n" (len .) "one" "month" "many" "months") }} · since <time datetime="{{ $first.Date.Format "2006-01" }}">{{ $first.Date.Format "2006-01" }}</time></p>
+    <p class="meta">Since <time datetime="{{ $first.Date.Format "2006-01" }}">{{ $first.Date.Format "2006-01" }}</time></p>
   </div>
   <div class="main">
     <ul class="log-grid">

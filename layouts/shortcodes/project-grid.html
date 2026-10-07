@@ -22,13 +22,13 @@ docs/styleguide.md, Block and Cards. */ -}}
 {{- $seams := partialCached "block-seams.html" "seams" -}}
 {{- $title := $.Get "title" -}}
 {{- $id := $.Get "id" | default (cond (ne $title "") (anchorize $title) "") -}}
-{{- $meta := partial "count.html" (dict "n" (len .) "one" "project" "many" "projects") -}}
+{{- $meta := "" -}}
 {{- with $.Get "meta" }}{{ $meta = partial "numerals.html" . }}{{ end -}}
 {{- $lead := $.Get "lead" | default (trim (string $.Inner) " \n\t") -}}
 {{- $seams.close | safeHTML }}
 <section class="block"{{ with $id }} id="{{ . }}"{{ end }}>
   <div class="rail">
-    {{- with $title }}<h2>{{ . }}</h2>{{ end }}<p class="meta">{{ $meta }}</p>
+    {{- with $title }}<h2>{{ . }}</h2>{{ end }}{{ with $meta }}<p class="meta">{{ . }}</p>{{ end }}
     {{- with $lead }}<p class="lead">{{ . | $.Page.RenderString }}</p>{{ end -}}
   </div>
   <div class="main">

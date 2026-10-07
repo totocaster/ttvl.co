@@ -6,7 +6,9 @@
      Humane reads "Tools"); ongoing work reads "Since YYYY · hub"; traces
      read "date · kind". Optional project.since (a year) and project.kind
      (a word) override the year and the hub for work without a category.
-     docs/styleguide.md, Cards. */ -}}
+     A project card always carries data-category (empty without a hub) so
+     the Projects filter hides it under any one hub and counts it under
+     All. docs/styleguide.md, Cards. */ -}}
 {{- $page := .page -}}
 {{- $variant := .variant | default "project" -}}
 {{- $img := "" -}}
@@ -39,7 +41,7 @@
     {{- with $proj.category }}{{ with site.GetPage . }}{{ $label = $label | append (htmlEscape (.Params.filter_label | default .Title)) }}{{ end }}{{ end -}}
   {{- end -}}
 {{- end }}
-<div class="card"{{ with $category }} data-category="{{ . }}"{{ end }}>
+<div class="card"{{ if eq $variant "trace" }}{{ with $category }} data-category="{{ . }}"{{ end }}{{ else }} data-category="{{ $category }}"{{ end }}>
   <a class="tile" href="{{ $page.RelPermalink }}" tabindex="-1" aria-hidden="true">
     {{- with $img }}<img src="{{ . }}" alt="" loading="lazy" />{{ end -}}
   </a>

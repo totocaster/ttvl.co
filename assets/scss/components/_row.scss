@@ -139,11 +139,6 @@
       grid-row: 1;
     }
 
-    .count {
-      grid-column: 1;
-      grid-row: 1;
-    }
-
     .tail {
       grid-column: 2;
       grid-row: 2;
@@ -186,7 +181,6 @@
     }
   }
 
-  .count,
   .tail {
     @include type-meta;
     font-weight: $font-weight-regular;

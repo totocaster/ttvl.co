@@ -1,6 +1,6 @@
 // The Index: Start Here and the Log grid are the shared rows and the
 // Log's grid (sections/_log.scss); the A–Z is letter groups in three
-// columns (one on phones), each an h3 with its count in Mono, titles at
+// columns (one on phones), each an h3, titles at
 // dek size, ✉ marking pages that also went out as a dispatch.
 // docs/styleguide.md, Page by Page: Index.
 
@@ -30,11 +30,6 @@
     margin: 0 0 $space-1;
   }
 
-  .count {
-    @include type-meta;
-    font-weight: $font-weight-regular;
-    color: var(--ink-faint);
-  }
 
   ul {
     list-style: none;

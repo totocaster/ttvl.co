@@ -4,7 +4,6 @@
 
   const links = Array.from(filterNav.querySelectorAll("[data-category]"));
   const groups = Array.from(document.querySelectorAll("[data-filter-group]"));
-  const showEls = Array.from(document.querySelectorAll("[data-filter-show]"));
 
   const applyFilter = (slug) => {
     const activeSlug = slug && slug !== "" ? slug : "all";
@@ -13,11 +12,7 @@
       link.classList.toggle("is-active", link.dataset.category === activeSlug);
     });
 
-    // Elements bound to one filter state (e.g. the per-domain dek lines).
-    showEls.forEach((el) => {
-      el.hidden = el.dataset.filterShow !== activeSlug;
-    });
-
+    let total = 0;
     groups.forEach((group) => {
       const items = Array.from(group.querySelectorAll("[data-category]"));
       let visibleCount = 0;
@@ -29,13 +24,17 @@
       });
 
       group.hidden = visibleCount === 0;
+      // A group of doors (the Hubs block on Projects) follows the filter
+      // without adding to the count.
+      if (!("filterUncounted" in group.dataset)) total += visibleCount;
+    });
 
-      // A group head's count follows the filter ("3 notes").
-      const count = group.querySelector(".count[data-singular]");
-      if (count) {
-        const noun = visibleCount === 1 ? count.dataset.singular : count.dataset.plural;
-        count.innerHTML = `<span class="n">${visibleCount}</span> ${noun}`;
-      }
+    // The page head's count follows the filter ("12 projects"). It is the
+    // only count on the page; a group carries none.
+    document.querySelectorAll(".count[data-singular]").forEach((count) => {
+      if (count.closest("[data-filter-group]")) return;
+      const noun = total === 1 ? count.dataset.singular : count.dataset.plural;
+      count.innerHTML = `<span class="n">${total}</span> ${noun}`;
     });
   };
 

@@ -7,7 +7,7 @@ The standard is called **Panel**. It replaced Air on 2026-10-07 and ships as sit
 ## Principles
 
 1. **Content over chrome.** Body text is full ink at 18/28. Everything that is not content is 14 px, faint, and off to the side. Nothing is smaller than 14 px, and every text tier passes 4.5:1 in both themes.
-2. **The rail carries the metadata.** A page head and every block are two columns: a 192 px rail at left for the label, date, count, or kind, and the column for the content. On wide screens the rail is the page's one column of labels: a list's dates and a group's count sit in it too, so titles and text start at one edge. Nothing sits under a title, and no statistic sits in the column.
+2. **The rail carries the metadata.** A page head and every block are two columns: a 192 px rail at left for the label, date, count, or kind, and the column for the content. On wide screens the rail is the page's one column of labels: a list's dates sit in it too, so titles and text start at one edge. Nothing sits under a title, and no statistic sits in the column. A page carries one count at most, in its head rail (`75 notes · updated 2026-09`): how many pages a hub lists. Block rails, group heads, and end matter carry none; a reader who wants the number has it at the top.
 3. **Words in Sans, numbers in Mono.** Dates, counts, issue and entry numbers, sizes, and the version are set in Plex Mono with tabular figures. Every other label is Plex Sans in sentence case. No uppercase, no letter-spacing.
 4. **One way to do each thing.** One page head, one block, one row, one card, one button, one legend, one form. Everything that is listed is a row: streams, doors, search results, the index's hubs, the pager.
 5. **Hairlines you have to look for.** Lines sit only between rows and under the masthead. Nothing frames a list, nothing rules the footer. Frames stay on tiles, tables, sheets, and the quotation.
@@ -189,12 +189,12 @@ Rendered by `partials/page-head.html`; the rail lines come from `partials/page-m
 
 ```html
 <section class="block">
-  <div class="rail"><h2>Projects</h2><p class="meta"><span class="n">31</span> projects · <a href="/projects/">all →</a></p></div>
+  <div class="rail"><h2>Projects</h2><p class="meta"><a href="/projects/">All projects →</a></p></div>
   <div class="main">…</div>
 </section>
 ```
 
-The unit of every page below the head. The rail holds a heading and one meta line: a count, with `all →` where the home page lists a few of many. A block whose rail is empty (an article's body) still keeps the grid, so prose and figures align with every other column on the site.
+The unit of every page below the head. The rail holds a heading and, where there is something to say, one meta line: `All notes →` where the home page lists a few of many, `RSS` on the research ledgers, `Updated 2026-09` on About's record. Never a count: the head rail already says how many the page lists. A block whose rail is empty (an article's body) still keeps the grid, so prose and figures align with every other column on the site.
 
 - `.block.year`: a year or letter group directly under a hub's head; tight blocks sit 40 px apart.
 - `.block.entry`: a research entry on a stream page; the rail holds `date · number`, then the kind.
@@ -229,7 +229,7 @@ The article body is one block with an empty rail. Prose holds the measure.
 <li class="row"><span class="row-meta"><time>2026-06-28</time></span><span class="row-main"><a class="row-title" href="…">Hands Are Not Cursors</a><span class="row-dek">…</span></span><span class="row-tail">Thinking</span></li>
 ```
 
-The one grammar for anything listed. Three columns: the meta column, the title (with an optional dek under it), and a right-aligned tail. On wide screens a list inside a block reaches left across the gap so its meta column is the rail itself (192 px, then the 48 px gap): dates, kinds, and counts line up with every other label on the page, and titles start where content starts. The search overlay's rows are not in a block and keep a 128 px column. A `--rule` hairline between rows, none above the first or under the last. Rows carry 10 px padding, 12 with deks.
+The one grammar for anything listed. Three columns: the meta column, the title (with an optional dek under it), and a right-aligned tail. On wide screens a list inside a block reaches left across the gap so its meta column is the rail itself (192 px, then the 48 px gap): dates and kinds line up with every other label on the page, and titles start where content starts. The search overlay's rows are not in a block and keep a 128 px column. A `--rule` hairline between rows, none above the first or under the last. Rows carry 10 px padding, 12 with deks.
 
 - The meta column holds the ordering key or the kind: a date, `#016 · 2026-09` for dispatches, `Hub` / `Note` / `Project` / `Log` / `Research` / `Dispatch` / `About` in end matter, `Active` in the stream ledger, `The essay` on the newsletter's doors, `Model` / `Lights` on the bench, `← 018` / `020 →` in the pager. A list with nothing to order by (the Index's Start Here) drops the column (`rows no-meta`).
 - The tail holds one qualifier, the same kind in every row of a list: the category on Notes (`Thinking`), `024 · Question` on research lists, the venue on About's record, the date in end matter, `#008 · 2024-01` on the newsletter's doors. Home lists and the stream ledger carry none; a count never rides in a tail.
@@ -242,7 +242,7 @@ Rendered by `partials/row.html`, styled by `components/_row.scss`.
 
 ### Ledger Blocks and Group Heads
 
-A block whose column starts with a list or a group head is a ledger: on wide screens its rail heading takes its own line, and the list below uses the rail as its meta column, so the page keeps one column of labels. A group head inside the list (a year, a stream, Books inside the record) is a line of the same ledger: an `h3.group-head` with its count in the rail cell and its name where the titles start, 40 px below the previous group. Ledger mode is set by the content (`:has()`) or by a `ledger` class on the block. On phones the rail stacks and the rows keep a 96 px column.
+A block whose column starts with a list or a group head is a ledger: on wide screens its rail heading takes its own line, and the list below uses the rail as its meta column, so the page keeps one column of labels. A group head inside the list (a year, a stream, Books inside the record) is a line of the same ledger: an `h3.group-head` with its name where the titles start and nothing in the rail cell, 40 px below the previous group. A qualifier (the newsletter's `as Dreaming with One Eye Open`) sits under the name as a `.tail` in the label voice. Ledger mode is set by the content (`:has()`) or by a `ledger` class on the block. On phones the rail stacks and the rows keep a 96 px column.
 
 ### Cards
 
@@ -284,13 +284,13 @@ A `p.legend` in the label voice explains the thing directly above it, in the col
 
 ### End Matter
 
-Every article ends with one block, `Mentioned in`, 64 px after the body: the count in the rail (`3 pages`) and rows keyed by what each page is, with the page's date as the tail where it has one. Hubs first, then pages newest first. A research entry adds a second block, `In this stream`, with the stream's name as its meta line and two rows, `← 018` and `020 →`, then a legend with keycaps: `← → move between entries`. The relation words of the old `Related` block are retired; an entry that answers a question says so in its head rail.
+Every article ends with one block, `Mentioned in`, 64 px after the body: nothing but the heading in the rail, and rows keyed by what each page is, with the page's date as the tail where it has one. Hubs first, then pages newest first. A research entry adds a second block, `In this stream`, with the stream's name as its meta line and two rows, `← 018` and `020 →`, then a legend with keycaps: `← → move between entries`. The relation words of the old `Related` block are retired; an entry that answers a question says so in its head rail.
 
 Rendered by `partials/mentioned-in.html` and `research/single.html`.
 
 ### Filter Rail
 
-`nav.category-filter` under a hub's dek: chips in the control voice, faint, 20 px apart, the active one in ink and underlined 5 px below the baseline. Notes and Projects use the same rail, chips only: no arrow to the hub, no dek that changes with the filter. The JavaScript hooks (`.category-filter`, `[data-category]`, `[data-filter-group]`, `[data-filter-show]`, `.count[data-singular][data-plural]`, `.hub-ref`) are unchanged.
+`nav.category-filter` under a hub's dek: chips in the control voice, faint, 20 px apart, the active one in ink and underlined 5 px below the baseline. Notes and Projects use the same rail, chips only: no arrow to the hub, no dek that changes with the filter. The head rail's count follows the filter (`12 projects`): `count.html` with `live` wraps it as `.count[data-singular][data-plural]`, and `category-filter.js` sums the visible `[data-category]` items of every `[data-filter-group]` not marked `data-filter-uncounted`. Groups carry no count of their own.
 
 ### Search Overlay
 
@@ -298,26 +298,26 @@ Full ground. Centered, 96 px down: the hint in the label voice with keycaps (`Ty
 
 ## Page by Page
 
-- **Home.** Head: the intro sentence as the title, the second sentence as the dek, rail `Public notebook · since 2008`. Then six blocks: The Flâneur (`16 dispatches · all →`; a sentence, the form and legend, the five latest dispatches as rows), Projects (`31 projects · all →`; the featured cards), Notes (`16 notes · all →`; five rows without tails), Research (`25 entries · all →`; five rows without tails), the latest month (its title as the rail heading, `Log · 93 months · all →`; the month's content), Get in touch (`toto@ttvl.co`).
+- **Home.** Head: the intro sentence as the title, the second sentence as the dek, rail `Public notebook · since 2008`. Then six blocks: The Flâneur (`All dispatches →`; a sentence, the form and legend, the five latest dispatches as rows), Projects (`All projects →`; the featured cards), Notes (`All notes →`; five rows without tails), Research (`All entries →`; five rows without tails), the latest month (its title as the rail heading, `Log · all months →`; the month's content), Get in touch (`toto@ttvl.co`).
 - **Notes hub.** Head with the filter. One tight year block per year: `2026` with `9 notes`, rows `date | title | category`.
 - **Note.** Head, the body block, Mentioned in.
-- **Projects hub.** Head with the filter and its deks. Tight year blocks (`Ongoing`, `2026`, …) with card grids. The filter's group counts follow the filter as now.
+- **Projects hub.** Head with the chips; the head's count follows the filter. Year blocks (`Ongoing`, `2026`, …) with card grids and nothing in their rails but the year. Then Hubs, as end matter (`.block.end`): one row per hub the projects come from, its title linked and its `filter_dek` as the dek, nothing in the meta column. The block follows the filter, so a page filtered to Obsidian ends with the one door to Obsidian: the chips only filter, the end block leads on.
 - **Long articles** (the notebook system and its guides, Walking) call the `toc` shortcode and get the table of contents in the body block's rail.
 - **Project page.** Head with the strip. The body block. Mentioned in. The `resources` manifest, where a page writes one, stays in the body under its own heading and renders as rows: the type as the meta column (`STL`, `PDF`, `GitHub`), the title, the size in Mono as the tail.
-- **Section hubs (Darkroom, Bookbinding, Project Humane, Obsidian, the notebook system).** Head with the intro as the dek. One block per `page-list` or `project-grid`, titled from the shortcode, with the count in its rail and the lead (where one is written) under the count in the rail.
-- **Research hub.** Head. Streams: rows with `Active` as the meta, the name, the pulse, and the dek; the pulse legend under them. Entries (`25 entries · RSS` in the rail): a ledger with one group head per stream, its count in the rail cell, rows `date | title | 024 · Question`. No filter.
+- **Section hubs (Darkroom, Bookbinding, Project Humane, Obsidian, the notebook system).** Head with the intro as the dek. One block per `page-list` or `project-grid`, titled from the shortcode, with the lead (where one is written) in its rail.
+- **Research hub.** Head. Streams: rows with `Active` as the meta, the name, the pulse, and the dek; the pulse legend under them. Entries (`RSS` in the rail): a ledger with one group head per stream, linked, rows `date | title | 024 · Question`. No filter.
 - **Research stream.** Head with the brief as the body block. Bench: rows `Model | text`. Open Questions: rows `date | title | 024`; a closed question is struck through in the meta column. Then an `Entries` block whose column is empty, followed by one `.block.entry` per entry, newest first: rail `date · number` then the kind, column the title at 22/30 and the entry in full. Entries sit 56 px apart; the first sits 16 px under the Entries heading.
 - **Research entry.** Head (`date · number` / `Stream · Kind`). Body. Mentioned in. In this stream, with the legend. The arrow keys keep working.
 - **Log hub.** Head. One block per month, newest first: the month as the rail heading (linked), its content in the column. Then the Archive block with the year-by-month grid: Mono 14, 64 px year column, twelve cells, hairlines between years, voids as `··`, the current month in 500 with a 2 px `--signal` underline.
 - **Log month.** Head (`Month 93` / `Log`). Body. Archive block.
-- **Newsletter.** Head with the intro as the dek, the form and legend in the column. Start Here: rows `The essay | title + dek | #008 · 2024-01`. Contact Sheet: the strip of 150 × 110 frames with `#016 · 2026-09` under each, the legend under the strip. Archive (`16 dispatches` in the rail): a ledger with one group head per year, its count in the rail cell (2021 adds `as Dreaming with One Eye Open`), rows `#016 · 2026-09 | title`.
-- **Dispatch.** No masthead: the engraving centered, 120 px tall. Head (`2026-09-02 · 016` / `The Flâneur · Dispatch`, the subtitle as the dek). The letter, photographs unframed, galleries in two columns. End block `The Flâneur` (`16 dispatches · all →`): one sentence, the form, the legend. Footer `ttvl.co · Archive`. The email output is untouched.
+- **Newsletter.** Head with the intro as the dek, the form and legend in the column. Start Here: rows `The essay | title + dek | #008 · 2024-01`. Contact Sheet: the strip of 150 × 110 frames with `#016 · 2026-09` under each, the legend under the strip. Archive: a ledger with one group head per year (2021 adds `as Dreaming with One Eye Open` under it), rows `#016 · 2026-09 | title`.
+- **Dispatch.** No masthead: the engraving centered, 120 px tall. Head (`2026-09-02 · 016` / `The Flâneur · Dispatch`, the subtitle as the dek). The letter, photographs unframed, galleries in two columns. End block `The Flâneur` (`All dispatches →`): one sentence, the form, the legend. Footer `ttvl.co · Archive`. The email output is untouched.
 - **Traces hub.** Head. Archive block with trace cards (`date · kind`).
 - **Trace.** Head with the download chip in the strip. The viewer and the gallery span the full page width, reaching back across the empty rail; the viewer bar's title then sits in the rail column. (`SPZ scan · 16.7 MB ↓`; sizes are read from the file and use binary megabytes, as the strip does). The body block holds the viewer and the prose; Photographs as a prose `h2` over the gallery. Mentioned in.
-- **Loose Leaves.** Head. One tight year block per year with the count; a four-column grid of 3:4 tiles on `--edge` frames with the date in Mono under each; two columns on phones.
-- **About.** Head (`Updated 2026-09-16`) over the opening sentence as the title; the on-page nav in the column in the label voice. Then one block per section through the `section` shortcode: Newsletter (`16 dispatches · all →`), Record (`Updated 2026-09 · Not awards. Things that exist.`; a ledger whose group heads are Books, Exhibitions, Curation, Programs and training, Speaking, Video, Print, Tools I made, with the venue as each row's tail), Philosophy (`3 principles`), Extended About, Tools I use (`Updated 2026-09 · Nothing here is sponsored`), How I use AI, Get in touch. The principles are `h3.principle` with Mono numerals in the rail.
+- **Loose Leaves.** Head. One year block per year, the year alone in its rail; a four-column grid of 3:4 tiles on `--edge` frames with the date in Mono under each; two columns on phones.
+- **About.** Head (`Updated 2026-09-16`) over the opening sentence as the title; the on-page nav in the column in the label voice. Then one block per section through the `section` shortcode: Newsletter (`All dispatches →`), Record (`Updated 2026-09 · Not awards. Things that exist.`; a ledger whose group heads are Books, Exhibitions, Curation, Programs and training, Speaking, Video, Print, Tools I made, with the venue as each row's tail), Philosophy, Extended About, Tools I use (`Updated 2026-09 · Nothing here is sponsored`), How I use AI, Get in touch. The principles are `h3.principle` with Mono numerals in the rail.
 - **Colophon.** Head (`v8.0.351`). Body.
-- **Index.** Head (`75 entries · 11 hubs`). Start Here: a ledger with each hub's count in the rail and its `filter_dek` as the dek. A–Z: letter groups in three columns (one on phones), each an `h3` without a count, the ✉ legend under the letters. Log: the archive grid.
+- **Index.** Head (`75 entries · 11 hubs`). Start Here: a ledger of the hubs, each with its `filter_dek` as the dek and nothing in the meta column. A–Z: letter groups in three columns (one on phones), each an `h3` without a count, the ✉ legend under the letters. Log: the archive grid.
 - **Search.** The overlay above.
 - **404.** `layouts/404.html`: head (`404 · Not found` / the path), one sentence pointing to search, the index, and home.
 - **`/links/` and `/found/`.** Avatar, logo, the description, then pills on 2 px ink shadows 12 px apart with the kind in the label voice at the right, the form and legend under them. No masthead.
@@ -365,7 +365,7 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 **A new page type.** Use `page-head.html`; add its rail lines to the table above and its case to `page-meta.html`. Wrap its body in a block. End it with `mentioned-in.html` if it is an article.
 
-**A new list.** Use `row.html`. Decide what the meta column orders by and what the one tail says. If it groups, each group is a tight block with its name and count in the rail.
+**A new list.** Use `row.html`. Decide what the meta column orders by and what the one tail says. If it groups, each group head is a line of the ledger with its name where the titles start; it carries no count.
 
 **A new control.** It is a block on a shadow; pick the row of the table above. Check it pressed, focused, in dark, and at 375 px.
 
@@ -373,6 +373,6 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 ## Changelog
 
-- **2026-10-07, v8.0, second pass.** One column of labels: lists use the rail as their meta column and group heads put their counts there (ledger blocks); viewers and galleries span the page; the table of contents in the body rail; the logo at 44 px; the search key faded; the Projects filter is chips only, like Notes.
+- **2026-10-07, v8.0, second pass.** One column of labels: lists use the rail as their meta column and group heads put their counts there (ledger blocks); viewers and galleries span the page; the table of contents in the body rail; the logo at 44 px; the search key faded; the Projects filter is chips only, like Notes, and the page ends with Hubs; counts only in the head rail, which follows the filter.
 - **2026-10-07, v8.0.** Panel replaces Air: IBM Plex Sans and Mono self-hosted; body 18/28 in full ink and titles 34/40; a 192 px rail beside every head and block; words in Sans and numbers in Mono; hairlines only between rows; one row grammar for everything listed; buttons as blocks on hard shadows with the project doors joined into one row; a two-line masthead; research entries with their metadata in the rail; the social cards reset in Plex.
 - **2026-10-06, v7.11.** Air: contrast floor, three sizes, one page head, one row, inline group counts. Superseded.

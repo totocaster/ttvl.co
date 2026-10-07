@@ -2,7 +2,7 @@
 {{- /* Notes hub: the head with the filter in its column, then one tight
      year block per year, rows date | title | category. The filter is
      assets/js/category-filter.js: each year block is a [data-filter-group],
-     each row carries data-category, and the rail's .count follows the
+     each row carries data-category, and the head rail's count follows the
      filter. docs/styleguide.md, Page by Page: Notes hub. */ -}}
 {{- $categories := slice
   (dict "slug" "all" "label" "All")
@@ -25,11 +25,9 @@
   ) }}
   {{- with trim (string .Content) " \n\t" }}{{ partial "block-body.html" . }}{{ end }}
   {{- range .Pages.ByDate.Reverse.GroupByDate "2006" }}
-  {{- $n := len .Pages }}
   <section class="block year notes-year" data-year="{{ .Key }}" data-filter-group>
     <div class="rail">
       <h2>{{ .Key }}</h2>
-      <p class="meta"><span class="count" data-singular="note" data-plural="notes">{{ $n }} {{ cond (eq $n 1) "note" "notes" }}</span></p>
     </div>
     <div class="main">
       <ul class="rows">
