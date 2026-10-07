@@ -311,7 +311,7 @@ html.spatial-long-exposure-fullscreen-active {
   width: 24px;
   height: 24px;
   padding: 0;
-  vertical-align: -5px; // sits on the body text's baseline
+  vertical-align: middle; // centred on the x-height of the word beside it
   border: 1px solid var(--ink);
   border-radius: $radius;
   background: var(--ground);

@@ -39,9 +39,7 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
 
 {{< /section >}}
 
-{{< section title="Record" meta="Updated 2026-09 · Not awards. Things that exist." id="record" >}}
-
-### Books {.group-head}
+{{< section title="Books" meta="Record · Updated 2026-09 · Not awards. Things that exist." id="record" >}}
 
 <ul class="rows record">
   <li class="row"><span class="row-meta"><time datetime="2026">2026</time></span><span class="row-main"><a class="row-title" href="/flaneur/014/">Scent of Time</a><span class="row-dek">photobook maquette about how we perceive time, developed in the FotoFilmic Book Program with Greg Girard. Shown at FotoFilmic Paris during Paris Photo week, November 2026.</span></span></li>
@@ -54,7 +52,9 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
   <figcaption>Greg Girard and the FotoFilmic Book Program group reviewing the <em>Scent of Time</em> maquette in Tokyo, March 2026. Photo: Paulo Lopez.</figcaption>
 </figure>
 
-### Exhibitions {.group-head}
+{{< /section >}}
+
+{{< section title="Exhibitions" id="exhibitions" class="tight" >}}
 
 <ul class="rows record">
   <li class="row"><span class="row-meta"><time datetime="2026-11">2026-11</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/fotofilmic-book-program-paris/">FotoFilmic Book Program 2025–26: Paris</a></span><span class="row-tail">FotoFilmic Paris, Paris Photo week</span></li>
@@ -68,7 +68,9 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
   <li class="row"><span class="row-meta"><time datetime="2021-12">2021-12</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/perspectives/">Perspectives</a></span><span class="row-tail">Gallery Ether, Tokyo, group</span></li>
 </ul>
 
-### Curation {.group-head}
+{{< /section >}}
+
+{{< section title="Curation" id="curation" class="tight" >}}
 
 [Jinny Street Gallery](/jinny/), co-founded with [Lorenzo Menghi](https://www.instagram.com/_lorenzomenghi/) in January 2023: forty-two streetlamps with display cases across Jingumae 2-chome, more than thirty exhibitions so far, a magazine, and artist walks. [NHK World filmed it in 2023](https://vimeo.com/1187645245/3d183a475f?share=copy&fl=sv&fe=ci).
 
@@ -77,7 +79,9 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
   <figcaption>Lorenzo and me setting up the gallery.</figcaption>
 </figure>
 
-### Programs and training {.group-head}
+{{< /section >}}
+
+{{< section title="Programs and training" id="programs-and-training" class="tight" >}}
 
 <ul class="rows record">
   <li class="row"><span class="row-meta"><time datetime="2025">2025–26</time></span><span class="row-main"><a class="row-title" href="https://fotofilmic.com/fotofilmic-book-program/">FotoFilmic Book Program</a><span class="row-dek">directed by Greg Girard, with Michael Kominek and Gonzalo Sanchez</span></span></li>
@@ -85,7 +89,9 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
   <li class="row"><span class="row-meta"></span><span class="row-main"><span class="row-value">Everything else, self-taught</span><span class="row-dek">software and photography alike</span></span></li>
 </ul>
 
-### Speaking {.group-head}
+{{< /section >}}
+
+{{< section title="Speaking" id="speaking" class="tight" >}}
 
 <ul class="rows record">
   <li class="row"><span class="row-meta"><time datetime="2023-12">2023-12</time></span><span class="row-main"><a class="row-title" href="https://www.pechakucha.com/presentations/light-posts-of-jinny-street-gallery">Light Posts of Jinny Street Gallery</a></span><span class="row-tail">PechaKucha Night Tokyo, Vol. <span class="n">186</span></span></li>
@@ -96,14 +102,18 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
   <figcaption>Lorenzo (right) and me (left) at PechaKucha Tokyo. Photo: Brian Scott Peterson.</figcaption>
 </figure>
 
-### Video {.group-head}
+{{< /section >}}
+
+{{< section title="Video" id="video" class="tight" >}}
 
 <ul class="rows record">
   <li class="row"><span class="row-meta"><time datetime="2023-06">2023-06</time></span><span class="row-main"><span class="row-value">Creative Curation: Breathing New Life into Tokyo’s Streets</span></span><span class="row-tail">NHK World · <a class="row-link" href="https://vimeo.com/1187645245/3d183a475f?share=copy&amp;fl=sv&amp;fe=ci">archival link</a></span></li>
   <li class="row"><span class="row-meta"><time datetime="2023-03">2023-03</time></span><span class="row-main"><a class="row-title" href="https://youtu.be/FtVC0lzo6Ww">Voice of Tokyo, Episode 5: Jinny Street Gallery</a></span><span class="row-tail">Tokyo Weekender</span></li>
 </ul>
 
-### Print {.group-head}
+{{< /section >}}
+
+{{< section title="Print" id="print" class="tight" >}}
 
 <ul class="rows record">
   <li class="row"><span class="row-meta"><time datetime="2025">2025</time></span><span class="row-main"><a class="row-title" href="https://www.reuseitaly.com/books/atlas-of-ruins/">Three Photographs from Tskaltubo, Georgia</a></span><span class="row-tail">Atlas of Ruins, Vol. <span class="n">1</span>, STH Press, Italy</span></li>
@@ -112,7 +122,9 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
   <li class="row"><span class="row-meta"><time datetime="2022-03">2022-03</time></span><span class="row-main"><a class="row-title" href="https://www.amazon.co.jp/-/en/生活の友社/dp/B09PMKBZY9">Lone Man, 2019</a></span><span class="row-tail">ARTcollectors’ アートコレクターズ Magazine, Issue <span class="n">156</span></span></li>
 </ul>
 
-### Tools I made {.group-head}
+{{< /section >}}
+
+{{< section title="Tools I made" id="tools-i-made" class="tight" >}}
 
 Toolmaking is the software half of the practice: command-line tools and Obsidian plugins for people who keep their notes in plain files, built to work for a person at a keyboard and for an agent alike. All of it lives under [Project Humane](/project-humane/), with [Plaintext Commons](/project-humane/plaintext-commons/) as the stance.
 

@@ -138,8 +138,98 @@
   margin-top: $rhythm-masthead;
 }
 
+// The table of contents in the body block's rail (pages that call the toc
+// shortcode): a "Contents" label, then the sections as a numbered list in
+// the label voice. It stays in view while the page scrolls. The prose
+// drops its heading numerals, since the list numbers the sections.
+.block.body.has-toc {
+  > .rail {
+    position: sticky;
+    top: $space-5;
+    align-self: start;
+  }
+
+  .prose h2::before {
+    display: none;
+  }
+}
+
+.rail-toc {
+  .meta {
+    margin-bottom: $space-2;
+  }
+
+  .toc {
+    @include type-meta;
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      counter-reset: toc;
+    }
+
+    li {
+      counter-increment: toc;
+      position: relative;
+      padding-left: $space-6;
+      margin: 0 0 $space-2;
+
+      &::before {
+        content: counter(toc, decimal-leading-zero);
+        position: absolute;
+        left: 0;
+        font-family: $font-family-mono;
+        @include tabular-numbers;
+        color: var(--ink-faint);
+      }
+
+      // Subsections: indented, unnumbered.
+      li {
+        padding-left: 0;
+        margin: $space-1 0 0;
+
+        &::before {
+          content: none;
+        }
+      }
+
+      ul {
+        margin-top: $space-1;
+      }
+    }
+
+    a {
+      color: var(--ink-muted);
+      text-decoration: none;
+      transition: color $t-fast;
+
+      &:hover {
+        color: var(--ink);
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
 // Phones: the rail stacks above its column; its lines join with 12 px gaps.
 @include narrow {
+  // The table of contents stacks above the body in two columns.
+  .block.body.has-toc > .rail {
+    position: static;
+    display: block;
+    margin-bottom: $space-6;
+
+    .toc > nav > ul {
+      columns: 2;
+      column-gap: $space-4;
+    }
+
+    .toc li {
+      break-inside: avoid;
+    }
+  }
+
   .block {
     display: block;
     margin-top: $space-7;

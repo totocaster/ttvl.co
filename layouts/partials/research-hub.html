@@ -1,7 +1,7 @@
 {{- /* The journal hub: the head with the intro as its dek, the Streams
-     ledger as rows with each stream's activity pulse and the pulse legend,
-     then every entry grouped by stream. docs/styleguide.md, Page by Page
-     (Research hub). */ -}}
+     block as rows with each stream's activity pulse and the pulse legend,
+     then one block per stream listing its entries. Counts live in the
+     rails only. docs/styleguide.md, Page by Page (Research hub). */ -}}
 {{- $streams := .Sections.ByWeight -}}
 {{- $entries := .RegularPagesRecursive -}}
 
@@ -16,12 +16,12 @@
 {{ partial "block-body.html" .Content }}
 {{- end }}
 
-{{- $feed := "" -}}
-{{- with .OutputFormats.Get "rss" }}{{ $feed = printf ` · <a href="%s">RSS</a>` .RelPermalink }}{{ end -}}
-
 {{ with $streams }}
-<section class="block">
-  <div class="rail"><h2>Streams</h2><p class="meta">{{ partial "count.html" (dict "n" (len .) "one" "stream" "many" "streams") }}</p></div>
+<section class="block" id="streams">
+  <div class="rail">
+    <h2>Streams</h2>
+    {{- with $.OutputFormats.Get "rss" }}<p class="meta">All streams · <a href="{{ .RelPermalink }}">RSS</a></p>{{ end }}
+  </div>
   <div class="main">
     <ul class="rows with-deks">
       {{- range . }}
@@ -29,7 +29,6 @@
         "meta" (title (.Params.status | default "active"))
         "value" (printf `<a class="row-title" href="%s">%s</a>%s` .RelPermalink (htmlEscape .Title) (partial "research-pulse.html" .) | safeHTML)
         "dek" .Description
-        "tail" (partial "research-stream-meta.html" .)
       ) }}
       {{- end }}
     </ul>
@@ -38,24 +37,27 @@
 </section>
 {{ end }}
 
-<section class="block">
-  <div class="rail"><h2>Entries</h2><p class="meta">{{ partial "count.html" (dict "n" (len $entries) "one" "entry" "many" "entries") }}{{ $feed | safeHTML }}</p></div>
+{{- range $streams }}
+{{- $stream := . }}
+{{- with .RegularPages.ByDate.Reverse }}
+<section class="block tight stream-entries" id="{{ $stream.File.ContentBaseName }}">
+  <div class="rail">
+    <h2><a href="{{ $stream.RelPermalink }}">{{ $stream.Title }}</a></h2>
+    <p class="meta">{{ partial "count.html" (dict "n" (len .) "one" "entry" "many" "entries") }}{{ with $stream.OutputFormats.Get "rss" }} · <a href="{{ .RelPermalink }}">RSS</a>{{ end }}</p>
+  </div>
   <div class="main">
-    {{- range $streams }}
-    {{- $stream := . }}
-    {{- with .RegularPages.ByDate.Reverse }}
-    <div class="group">
-      <h3 class="group-head"><a href="{{ $stream.RelPermalink }}">{{ $stream.Title }}</a> <span class="count">{{ partial "count.html" (dict "n" (len .) "one" "entry" "many" "entries") }}</span></h3>
-      <ul class="rows">
-        {{- range . }}
-        {{ partial "research-row.html" (dict "page" . "number" true "category" true) }}
-        {{- end }}
-      </ul>
-    </div>
-    {{- end }}
-    {{- end }}
-    {{- if not $entries }}
-    <p class="legend">No entries yet.</p>
-    {{- end }}
+    <ul class="rows">
+      {{- range . }}
+      {{ partial "research-row.html" (dict "page" . "number" true "category" true) }}
+      {{- end }}
+    </ul>
   </div>
 </section>
+{{- end }}
+{{- end }}
+{{- if not $entries }}
+<section class="block">
+  <div class="rail"><h2>Entries</h2></div>
+  <div class="main"><p class="legend">No entries yet.</p></div>
+</section>
+{{- end }}

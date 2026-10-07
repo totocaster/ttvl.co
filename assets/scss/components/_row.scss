@@ -125,6 +125,15 @@
 // Group heads: a heading that groups rows inside a block, with its count
 // 12 px after it in the label voice. The first sits on the block; the rest
 // sit 40 px below the previous group.
+// Rows without a meta column (the Index's Start Here): title and dek only.
+.rows.no-meta .row {
+  grid-template-columns: minmax(0, 1fr) auto;
+
+  .row-meta {
+    display: none;
+  }
+}
+
 .group-head {
   display: flex;
   flex-wrap: wrap;

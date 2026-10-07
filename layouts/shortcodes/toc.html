@@ -1,4 +1,5 @@
-<div class="table-of-contents">
-  <h2>Table of Contents</h2>
-  {{ .Page.TableOfContents }}
-</div>
+{{- /* Marks the page as wanting a table of contents. The list itself is
+     rendered by partials/block-body.html in the body block's rail, where
+     it stays in view while the page scrolls; the shortcode's position in
+     the Markdown no longer matters. docs/styleguide.md, Prose. */ -}}
+{{- .Page.Store.Set "toc" true -}}

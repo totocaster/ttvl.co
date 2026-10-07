@@ -1,8 +1,16 @@
 {{- /* An article's body: one block with an empty rail, prose in the column.
      Pass the rendered content (HTML). Blocks that shortcodes emitted inside
      it stand beside it; body blocks left empty by them are dropped.
+     A page that calls the toc shortcode gets its table of contents in the
+     body block's rail (sticky on wide screens); the prose then carries no
+     heading numerals, since the list numbers the sections.
      docs/styleguide.md, Block and Prose. */ -}}
 {{- $seams := partialCached "block-seams.html" "seams" -}}
-{{- $html := printf "%s%s%s" $seams.open (string .) $seams.close -}}
+{{- $p := page -}}
+{{- $open := $seams.open -}}
+{{- if and ($p.Store.Get "toc") $p.TableOfContents -}}
+  {{- $open = printf `<section class="block body has-toc"><div class="rail rail-toc"><p class="meta">Contents</p><div class="toc">%s</div></div><div class="main prose">` $p.TableOfContents -}}
+{{- end -}}
+{{- $html := printf "%s%s%s" $open (string .) $seams.close -}}
 {{- $html = replaceRE (printf `%s\s*%s` $seams.open $seams.close) "" $html -}}
 {{- return ($html | safeHTML) -}}
