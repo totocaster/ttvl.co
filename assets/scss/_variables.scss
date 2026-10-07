@@ -1,89 +1,128 @@
-// Sass values for the Air standard: type, weights, the spacing scale and
-// the rhythm built on it, widths, motion, stacking, and mixins.
+// Sass values for the Panel standard: type, weights, the spacing scale and
+// the rhythm built on it, widths, controls, motion, stacking, and mixins.
 // docs/styleguide.md explains each rule; themed colors live in _tokens.
 
 // Breakpoints
 $breakpoint-narrow: 768px;
 
 // Literal colors for the deliberate exceptions only (viewer chrome over
-// media). Everything else styles against the tokens in _tokens.scss.
+// media, print). Everything else styles against the tokens in _tokens.scss.
 $color-light-bg: #fff;
 $color-light-text: #000;
-$color-dark-bg: rgb(33, 33, 33);
-$color-dark-text: #e3e3e3;
+$color-dark-bg: #141414;
+$color-dark-text: #ededed;
 
-// Typography: one sans family, mono for code only.
-$font-family-base:
-  -apple-system, BlinkMacSystemFont, "HelveticaNeue", "Helvetica Neue",
-  "Helvetica-Neue", Helvetica, Arial, sans-serif;
-$font-family-monospace:
-  "SF Mono", SFMono-Regular, ui-monospace, "DejaVu Sans Mono", Menlo,
-  Consolas, monospace;
+// Typography: Plex Sans for words, Plex Mono for numbers and code.
+// The faces are declared in _fonts.scss.
+$font-family-sans: "IBM Plex Sans", system-ui, "Helvetica Neue", Arial, sans-serif;
+$font-family-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+$font-family-base: $font-family-sans;
+$font-family-monospace: $font-family-mono;
 
-// Three sizes. Nothing on the site is smaller than $font-size-small.
-$font-size-title: 20px; // the page title and home section titles
-$font-size-base: 16px; // body text and every heading below the title
-$font-size-small: 14px; // meta, captions, code, chips, table headers
-$font-size-code: $font-size-small;
-
-$line-height-base: 25px;
+// Six sizes, each with its own line. Nothing is smaller than 14 px.
+$font-size-title: 34px; // the page title (h1)
+$line-height-title: 40px;
+$font-size-entry: 22px; // research entry titles on a stream page
+$line-height-entry: 30px;
+$font-size-base: 18px; // body, headings below the title, row and card titles
+$line-height-base: 28px;
+$line-height-head-dek: 27px; // the dek under a page title, at base size
+$font-size-dek: 16px; // deks under rows and cards, table cells, the nav
+$line-height-dek: 24px;
+$line-height-nav: 25px;
+$line-height-cell: 23px;
+$font-size-control: 15px; // filter chips, buttons, the search key
+$line-height-control: 22px;
+$font-size-small: 14px; // labels, meta, captions, legends, chips, footer
 $line-height-small: 20px;
-$line-height-tight: 22px; // deks and table cells: density from leading
+$font-size-code: 16px; // inline code
+$font-size-code-block: 14px; // sheets and terminals
+$line-height-code: 22px;
+$line-height-tight: $line-height-dek; // older name for dek leading
 $line-height-solid: 1;
 
-// Three weights. 600 is retired.
+// Three weights. 700 is retired; strong is 600.
 $font-weight-regular: 400;
 $font-weight-medium: 500;
-$font-weight-bold: 700;
+$font-weight-semibold: 600;
+$font-weight-bold: $font-weight-semibold; // older name: "bold" is 600 now
 
 $link-weight-default: $font-weight-medium; // links in running text
-$link-weight-quiet: $font-weight-regular; // rows, cards, meta, footer
-$link-weight-title: $font-weight-bold; // titles that are links
+$link-weight-quiet: $font-weight-regular; // rows, cards, rails, footer
+$link-weight-title: $font-weight-medium; // titles that are links
 $link-decoration-default: underline;
 $link-decoration-plain: none;
+$link-underline-offset: 3px;
 
-// Spacing scale. Every margin, padding, and gap between things uses a
-// step; a component's internal geometry may use its own documented values.
+// Spacing scale: nine steps. Every margin, padding, and gap uses a step
+// (or a rhythm value below); spacing never uses rem or em.
 $space-1: 4px;
 $space-2: 8px;
-$space-3: 16px;
-$space-4: 24px;
-$space-5: 32px;
-$space-6: 48px;
-$space-7: 64px;
-$space-8: 96px;
+$space-3: 12px;
+$space-4: 16px;
+$space-5: 24px;
+$space-6: 32px;
+$space-7: 48px;
+$space-8: 64px;
+$space-9: 96px;
 
-// Rhythm. The space above a heading is at least three times the space
-// below it, so a heading always belongs to what follows.
-$rhythm-paragraph: $space-3; // paragraphs, list blocks, quotations
-$rhythm-head: $space-6; // page head to body
-$rhythm-h2-above: $space-6; // article h2
-$rhythm-h3-above: $space-5; // article h3 to h5, groups inside a hub section
+// Rhythm (docs/styleguide.md, Space). The space above a heading is at
+// least three times the space below it.
+$rhythm-masthead: 56px; // masthead to the page head
+$rhythm-head: $space-7; // page head to the first block
+$rhythm-block: $space-8; // between blocks
+$rhythm-block-tight: 40px; // between tight blocks: year groups, end matter
+$rhythm-rail-meta: $space-1; // a rail heading and its meta line
+$rhythm-paragraph: 18px; // paragraphs, lists, quotations
+$rhythm-h2-above: $space-7;
+$rhythm-h3-above: $space-6;
 $rhythm-heading-below: $space-2;
-$rhythm-section-above: $space-7; // hub sections, home sections, end matter
-$rhythm-section-below: $space-3;
-$rhythm-row: $space-1; // rows without deks
-$rhythm-row-dek: $space-3; // rows with deks
+$rhythm-group-above: 40px; // a group head after the previous group
+$rhythm-row: 10px; // padding each side of a row's hairline
+$rhythm-row-dek: $space-3; // the same, for rows with deks
+$rhythm-figure-above: $space-6;
+$rhythm-figure-below: $space-7;
+$rhythm-caption: $space-2;
+$rhythm-legend: $space-3; // a form and its legend
+$rhythm-footer: $space-9; // the last block and the footer
+// Older names, kept for the section stylesheets.
+$rhythm-section-above: $rhythm-block;
+$rhythm-section-below: $space-4;
 
 // Layout
-$max-width-container: 1008px;
-$max-width-readable: 588px;
-$max-width-readable-list: 548px; // list items inside the 40px indent
-$max-width-bleed: 694px; // 588px readable × 1.18, made explicit
-$max-width-panel: 428px; // boxed asides: links column
-$page-gutter: 20px;
-$header-height: 180px;
-$row-meta-width: 128px; // the row's meta column: fits "#016 · 2026-09" with room
+$max-width-page: 1200px; // masthead, main, footer
+$page-padding: 40px;
+$page-padding-narrow: 20px;
+$rail-width: 192px;
+$rail-gap: $space-7;
+$rail-offset: 11px; // a head's first rail line sits on the title's x-height
+$max-width-column: 880px; // rows, cards, galleries, viewers, wide tables
+$max-width-measure: 640px; // running text, deks, forms, legends
+$max-width-bleed: 760px; // figures, sheets, terminals, tables
+$row-meta-width: 128px;
+$row-meta-width-narrow: 96px;
+// Older names, kept for the section and viewer stylesheets.
+$max-width-container: $max-width-column;
+$max-width-readable: $max-width-measure;
+$max-width-readable-list: $max-width-measure - 24px; // inside the list indent
+$max-width-panel: 428px; // the links column
+$page-gutter: $page-padding-narrow;
+$header-height: 160px; // the search overlay's top offset until it is restyled
 
-// Controls
-$control-height: 44px;
-$radius: 8px;
-$radius-key: 5px; // keycaps and chips
-$radius-tight: 2px;
+// Controls: blocks on hard shadows (docs/styleguide.md, Buttons and Forms).
+$control-height: 44px; // pills on /links/ and /found/
+$control-height-primary: 40px; // the subscribe key, primary .btn, inputs
+$control-height-quiet: 32px; // quiet .btn, viewer bar buttons, chips
+$shadow-primary: 3px;
+$shadow-quiet: 2px;
+$radius: 2px;
+$radius-key: $radius;
+$radius-tight: $radius;
 
 // Motion
 $t-fast: 150ms ease; // hover, opacity
 $t-slow: 250ms ease; // image colorize
+$t-press: 80ms ease; // a key moving into its shadow
 
 // Stacking — full-viewport layers only; search sits above every overlay.
 $z-overlay: 100;
@@ -109,7 +148,7 @@ $z-search: 110;
 }
 
 @mixin readable-width {
-  max-width: $max-width-readable;
+  max-width: $max-width-measure;
 }
 
 @mixin readable-list-width {
@@ -117,33 +156,7 @@ $z-search: 110;
 }
 
 @mixin monospace {
-  font-family: $font-family-monospace;
-}
-
-@mixin type-body {
-  font-size: $font-size-base;
-  line-height: $line-height-base;
-}
-
-@mixin type-title {
-  font-size: $font-size-title;
-  line-height: $line-height-base;
-  font-weight: $font-weight-bold;
-}
-
-// Body-size title — the voice of every heading below h1. Hierarchy is
-// carried by weight and space, not size.
-@mixin type-heading {
-  font-size: $font-size-base;
-  line-height: $line-height-base;
-  font-weight: $font-weight-bold;
-}
-
-// Captions, chips, code: the small size. Color is the caller's job
-// (captions are muted).
-@mixin type-small {
-  font-size: $font-size-small;
-  line-height: $line-height-small;
+  font-family: $font-family-mono;
 }
 
 @mixin tabular-numbers {
@@ -151,23 +164,95 @@ $z-search: 110;
   font-feature-settings: "tnum";
 }
 
-// Record-keeping text: dates, counts, kickers, legends, the page meta
-// line. Color is the caller's job (usually --ink-faint). Sentence case,
-// never uppercase or tracked.
-@mixin type-meta {
-  @include type-small;
-  @include tabular-numbers;
+@mixin type-title {
+  font-size: $font-size-title;
+  line-height: $line-height-title;
+  font-weight: $font-weight-medium;
 }
 
-// Quiet links inside meta: inherit the faint color, darken on hover.
+@mixin type-body {
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+}
+
+// Headings below the title: body size, 600.
+@mixin type-heading {
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+  font-weight: $font-weight-semibold;
+}
+
+// Deks under row and card titles. Color is the caller's job (muted).
+@mixin type-dek {
+  font-size: $font-size-dek;
+  line-height: $line-height-dek;
+}
+
+// Buttons, filter chips, the search key.
+@mixin type-control {
+  font-family: $font-family-sans;
+  font-size: $font-size-control;
+  line-height: $line-height-control;
+  font-weight: $font-weight-medium;
+}
+
+// Labels, captions, chips, the footer. Color is the caller's job.
+@mixin type-small {
+  font-size: $font-size-small;
+  line-height: $line-height-small;
+}
+
+// The label voice: rail lines, tails, legends. Sans, sentence case, never
+// uppercase or tracked. Numbers inside opt into Mono per element through
+// `time` and `.n`, never through this mixin. Color is the caller's job
+// (usually --ink-faint).
+@mixin type-meta {
+  @include type-small;
+  font-family: $font-family-sans;
+}
+
+// Quiet links inside labels: inherit the faint color, ink on hover.
 @mixin meta-links {
   a {
     color: inherit;
     font-weight: $link-weight-quiet;
+    text-decoration: none;
     transition: color $t-fast;
 
     &:hover {
       color: var(--ink);
+      text-decoration: underline;
     }
+  }
+}
+
+// The rail + column grid of the page head and every block.
+@mixin block-grid {
+  display: grid;
+  grid-template-columns: $rail-width minmax(0, 1fr);
+  column-gap: $rail-gap;
+}
+
+// A control as a block on a hard offset shadow. Pressing moves the block
+// into its shadow; the margin keeps the shadow inside the column edge.
+@mixin key($shadow: $shadow-quiet, $shadow-color: var(--ink)) {
+  box-shadow: $shadow $shadow 0 $shadow-color;
+  margin: 0 $shadow $shadow 0;
+  transition:
+    transform $t-press,
+    box-shadow $t-press,
+    background-color $t-fast;
+
+  &:active {
+    transform: translate($shadow, $shadow);
+    box-shadow: none;
+  }
+}
+
+// The focus ring on every control.
+@mixin focus-ring {
+  &:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
   }
 }

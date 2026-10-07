@@ -1,77 +1,84 @@
-// Cards: for things with a poster. A 16:9 tile, the title in the quiet
-// link voice, the dek on its own line. Project archive, featured projects
-// on home, the project-grid shortcode, the traces archive.
-// Rendered by layouts/partials/card.html.
+// Cards: for things with a poster. A 16:9 tile on an edge frame over the
+// surface, grayscale until hover or focus; one label line (date · hub,
+// date · kind, or Since YYYY · hub); the title at 500; the dek.
+// Three columns in the column, two on phones. Rendered by
+// layouts/partials/card.html. docs/styleguide.md, Cards.
 
-// A group of cards under its heading. Spacing comes from the heading rhythm.
-.project-year {
-  margin: 0;
-}
-
-.projects-grid {
+.projects-grid,
+.cards {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: $space-4;
+  gap: $space-6 $space-5;
+  max-width: $max-width-column;
 
   @include narrow {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-5 $space-3;
   }
 }
 
-.project-card {
-  display: flex;
-  flex-direction: column;
-  gap: $space-2;
+.prose :is(.projects-grid, .cards) {
+  margin: $rhythm-figure-above 0 $rhythm-figure-below;
+}
+
+.card {
   min-width: 0;
-}
 
-// The tile: an edge frame on a surface well.
-.project-image {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border: 1px solid var(--edge);
-  background: var(--surface);
-  overflow: hidden;
-
-  img {
-    width: 100%;
-    height: 100%;
+  .tile {
     display: block;
-    object-fit: cover;
-    filter: grayscale(1);
-    transition: filter $t-slow;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border: 1px solid var(--edge);
+    border-radius: $radius;
+    background: var(--surface);
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(1);
+      transition: filter $t-slow;
+    }
+  }
+
+  &:hover .tile img,
+  &:focus-within .tile img {
+    filter: none;
   }
 }
 
-.project-card:hover .project-image img,
-.project-card:focus-within .project-image img {
-  filter: none;
+.card-label {
+  display: flex;
+  justify-content: space-between;
+  gap: $space-3;
+  @include type-meta;
+  color: var(--ink-faint);
+  margin: $space-2 0 0;
+  @include meta-links;
 }
 
-.project-meta {
-  @include type-body;
-
-  a.project-title {
-    font-weight: $link-weight-quiet;
-    text-decoration: $link-decoration-default;
-  }
-}
-
-.project-dek {
+.card-title {
   display: block;
+  margin-top: 2px; // title geometry under the label
+  font-weight: $font-weight-medium;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.card-dek {
+  display: block;
+  @include type-dek;
   color: var(--ink-muted);
-  line-height: $line-height-tight;
   margin-top: 2px; // sits under the title's descenders
 }
 
-// Kind on trace cards, in the meta voice; project cards carry no kicker.
-.project-category {
-  @include type-meta;
-  color: var(--ink-faint);
-}
-
-// Category filtering hides cards; !important beats the card's own display.
-.project-card[hidden],
+// Category filtering hides cards and their groups; !important beats the
+// card's own display.
+.card[hidden],
 .project-year[hidden] {
   display: none !important;
 }

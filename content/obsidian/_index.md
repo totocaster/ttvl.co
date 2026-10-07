@@ -21,9 +21,7 @@ Published community plugins are collected on my [Obsidian Community profile](htt
 
 {{< project-grid title="Vault tools" pages="obsidian/arrowhead,obsidian/stamp,plaintext-commons" />}}
 
-{{< project-grid title="Data that belongs in the vault" pages="project-humane/whoopy,project-humane/withingy" >}}
-Some of the Obsidian work is about making non-prose records feel at home beside notes:
-{{< /project-grid >}}
+{{< project-grid title="Data that belongs in the vault" lead="Some of the Obsidian work is about making non-prose records feel at home beside notes." pages="project-humane/whoopy,project-humane/withingy" />}}
 
 Those command-line tools are not Obsidian plugins, but they produce the kind of plain, scriptable data that can be summarized, charted, and cross-referenced from the same corpus.
 

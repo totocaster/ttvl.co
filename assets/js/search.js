@@ -81,6 +81,15 @@
       }
     });
 
+    // The masthead's search key opens the overlay like '?' does.
+    document.addEventListener('click', function(e) {
+      const key = e.target.closest && e.target.closest('a.search-key');
+      if (key) {
+        e.preventDefault();
+        showSearch();
+      }
+    });
+
     // Handle search input
     searchInput.addEventListener('input', debounce(handleSearch, 300));
 

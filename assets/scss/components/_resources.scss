@@ -1,123 +1,147 @@
-// Resources — the site's one grammar for files and external sources.
-// ↓ means "saves a file"; ↗ means "leaves the site". The manifest block
-// (shortcode "resources") lists sets in context; the strip (frontmatter
-// "resources:") holds a page's canonical doors.
-// The manifest is the row's one variant: its meta column sits on the
-// right because it describes the file rather than ordering it. Same
-// voices and spacing as rows, no hairlines.
+// Resources: the site's one grammar for files and external sources.
+// ↓ means "saves a file"; ↗ means "leaves the site".
+// The strip (front matter `resources:`) holds a page's canonical doors as
+// one joined row of keys on one 2 px ink shadow; the manifest (shortcode
+// `resources`) lists sets in context as rows.
+// docs/styleguide.md, Doors, Chips, and the Strip.
 
-.resources {
-  @include readable-width;
-  margin: 0 0 $space-4;
-}
-
-.resource-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  column-gap: $space-3;
-  align-items: baseline;
-  margin-bottom: $rhythm-row;
-
-  a {
-    font-weight: $link-weight-quiet;
-    text-decoration: $link-decoration-default;
-  }
-}
-
-.resource-row--file .resource-title > a::before {
-  content: "↓ ";
-}
-
-.resource-row--external .resource-title > a::before {
-  content: "↗ ";
-}
-
-.resource-note {
-  color: var(--ink-muted);
-}
-
-.resource-meta {
-  @include type-meta;
-  color: var(--ink-faint);
-  white-space: nowrap;
-}
-
-// The strip of canonical doors under a page title.
-.resource-strip {
-  display: flex;
+// The strip: chips share edges, the first and last carry the outer radius,
+// and the whole row sits on one shadow.
+.resource-strip,
+.strip {
+  display: inline-flex;
   flex-wrap: wrap;
-  gap: $space-2;
-  @include readable-width;
-  // Outside a page head (where the head sets it), sit like a paragraph.
-  margin: 0 0 $rhythm-paragraph;
+  vertical-align: top;
+  max-width: 100%;
+  margin: 0 $shadow-quiet $rhythm-paragraph 0;
+  border-radius: $radius;
+  box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+}
 
-  .chip {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 6px;
-    padding: 6px 14px; // chip geometry
-    border: 1px solid var(--edge);
-    border-radius: $radius-key; // matches the keycaps
-    font-weight: $link-weight-quiet;
-    text-decoration: $link-decoration-plain;
-    @include type-small;
-    transition: border-color $t-fast;
+.chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px; // chip geometry
+  padding: 6px 12px; // chip geometry
+  margin-left: -1px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  background: var(--ground);
+  color: var(--ink);
+  font-family: $font-family-sans;
+  @include type-small;
+  font-weight: $link-weight-quiet;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color $t-fast;
 
-    &:hover {
-      border-color: var(--ink);
+  &:first-child {
+    margin-left: 0;
+    border-top-left-radius: $radius;
+    border-bottom-left-radius: $radius;
+  }
+
+  &:last-child {
+    border-top-right-radius: $radius;
+    border-bottom-right-radius: $radius;
+  }
+
+  &:hover {
+    background: var(--surface);
+  }
+
+  &:active {
+    background: var(--ink);
+    color: var(--ground);
+
+    &::after,
+    .chip-meta {
+      color: var(--ground);
     }
   }
 
-  .chip--file::before {
-    content: "↓ ";
-  }
-
-  .chip--external::before {
-    content: "↗ ";
-  }
-
-  .chip-meta {
-    @include type-meta;
-    color: var(--ink-faint);
+  &:focus-visible {
+    position: relative; // the ring draws over the neighbouring key
+    z-index: 1;
   }
 }
 
-// Stray download links in prose mark themselves.
-main article a[href^="/downloads/"]::before {
-  content: "↓ ";
-}
-
-main article a[href$=".pdf"]::after {
-  content: " PDF";
-}
-
-main article a[href$=".stl"]::after {
-  content: " STL";
-}
-
-main article a[href$=".zip"]::after {
-  content: " ZIP";
-}
-
-main article a[href$=".glb"]::after {
-  content: " GLB";
-}
-
-main article a[href$=".3mf"]::after {
-  content: " 3MF";
-}
-
-main article a[href$=".pdf"]::after,
-main article a[href$=".stl"]::after,
-main article a[href$=".zip"]::after,
-main article a[href$=".glb"]::after,
-main article a[href$=".3mf"]::after {
-  @include type-meta;
+.chip--external::after {
+  content: "↗";
   color: var(--ink-faint);
 }
 
-// Inside the resource blocks the meta column already names the type.
-.resources .resource-row a::after,
-.resource-strip .chip::after {
-  content: none;
+.chip--file::after {
+  content: "↓";
+  color: var(--ink-faint);
+}
+
+.chip-meta {
+  color: var(--ink-faint);
+}
+
+// Phones: the row falls apart into single keys, each on its own shadow.
+@include narrow {
+  .resource-strip,
+  .strip {
+    display: flex;
+    gap: $space-3;
+    box-shadow: none;
+  }
+
+  .chip,
+  .chip:first-child,
+  .chip:last-child {
+    margin-left: 0;
+    border-radius: $radius;
+    @include key($shadow-quiet);
+  }
+}
+
+// The manifest: rows with the type or destination as the meta column, the
+// title (and a muted note as its dek), the size in Mono as the tail.
+.prose .resources {
+  margin: 0 0 $rhythm-paragraph;
+}
+
+// Stray download links in prose mark themselves.
+.prose a[href^="/downloads/"]::before {
+  content: "↓ ";
+}
+
+.prose a[href$=".pdf"]::after {
+  content: " PDF";
+}
+
+.prose a[href$=".stl"]::after {
+  content: " STL";
+}
+
+.prose a[href$=".zip"]::after {
+  content: " ZIP";
+}
+
+.prose a[href$=".glb"]::after {
+  content: " GLB";
+}
+
+.prose a[href$=".3mf"]::after {
+  content: " 3MF";
+}
+
+.prose a[href$=".pdf"]::after,
+.prose a[href$=".stl"]::after,
+.prose a[href$=".zip"]::after,
+.prose a[href$=".glb"]::after,
+.prose a[href$=".3mf"]::after {
+  @include type-meta;
+  font-weight: $font-weight-regular;
+  color: var(--ink-faint);
+}
+
+// Inside the manifest the meta column already names the type.
+.resources a::before,
+.resources a::after,
+.chip::before {
+  content: none !important;
 }

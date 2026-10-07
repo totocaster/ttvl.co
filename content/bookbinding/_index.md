@@ -8,9 +8,7 @@ filter_ref: 'Bookbinding'
 
 Bookbinding notes from the studio: small fixtures, experiments from the year-long course at Marumizu-gumi, and the way I adapt photography tooling to the bindery bench.
 
-## Fixtures and Tools
-
-{{< page-list pages="bookbinding/corner-cutting-jig" >}}
+{{< page-list title="Fixtures and Tools" pages="bookbinding/corner-cutting-jig" >}}
 
 ## Practice Notes
 

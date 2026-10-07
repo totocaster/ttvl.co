@@ -1,61 +1,84 @@
-// The page head: the title, one meta line, and the strip of canonical
-// doors. Rendered by layouts/partials/page-head.html; the meta line comes
-// from page-meta.html. The body starts 48px under the head.
+// The page head: the rail with at most two lines at left; the title, the
+// dek, the strip of doors, and on hubs the filter in the column. The rail's
+// first line starts 11 px down so it sits on the title's x-height.
+// Rendered by layouts/partials/page-head.html; the rail lines come from
+// page-meta.html. docs/styleguide.md, Page Head.
 
-main .page-head {
-  margin: $space-3 0 $rhythm-head;
+.page-head {
+  @include block-grid;
+  margin: 0 0 $rhythm-head;
 
-  h1 {
-    margin: 0;
-    @include readable-width;
-  }
-
-  .page-meta {
+  > .rail {
+    min-width: 0;
+    padding-top: $rail-offset;
     @include type-meta;
     color: var(--ink-faint);
-    margin: $space-1 0 0;
-    @include readable-width;
     @include meta-links;
+
+    p {
+      margin: 0;
+    }
   }
 
-  // A date never breaks at its hyphens; research status parts carry
-  // their own nowrap spans.
+  // A date never breaks at its hyphens.
   time {
     white-space: nowrap;
   }
 
-  // A subtitle under the meta line (dispatches): content, so text size,
-  // muted like every dek.
+  > .main {
+    min-width: 0;
+    max-width: $max-width-column;
+  }
+
+  h1 {
+    margin: 0;
+    max-width: $max-width-bleed;
+
+    a {
+      text-decoration: none;
+    }
+  }
+
   .page-dek {
+    font-size: $font-size-base;
+    line-height: $line-height-head-dek;
     color: var(--ink-muted);
     margin: $space-3 0 0;
     @include readable-width;
+
+    a {
+      font-weight: $link-weight-default;
+    }
   }
 
-  .resource-strip {
-    margin: $space-4 0 0;
+  .resource-strip,
+  .strip {
+    margin-top: $space-5;
   }
-}
 
-// Group heads: a heading that groups a list carries its count inline.
-main .group-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  column-gap: $space-2;
-
-  .count {
-    @include type-meta;
-    font-weight: $font-weight-regular;
-    color: var(--ink-faint);
+  .category-filter {
+    margin-top: $space-5;
   }
-}
 
-// End matter: Links and Mentioned in, 64px after the article.
-main .end-matter {
-  margin-top: $rhythm-section-above;
+  @include narrow {
+    display: block;
+    margin-bottom: 40px; // phone rhythm
 
-  > h2:first-child {
-    margin-top: 0;
+    > .rail {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: $space-3;
+      padding-top: 0;
+      margin-bottom: $space-2;
+
+      &:empty {
+        display: none;
+      }
+    }
+
+    h1 {
+      font-size: 28px; // the title on phones
+      line-height: 34px;
+    }
   }
 }

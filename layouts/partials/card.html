@@ -1,39 +1,53 @@
-{{- /* Card for the projects grid. Pass "page"; pass "variant" "trace" for
-trace pages, whose description/image/kind live outside project frontmatter.
-Project cards carry their category only as data-category, for the filter
-rail; the visible kicker is reserved for trace kinds. The dek sits on its
-own line under the title (docs/styleguide.md, Cards). */ -}}
-{{ $page := .page }}
-{{ $variant := .variant | default "project" }}
-{{ $img := "" }}
-{{ $alt := "" }}
-{{ $desc := "" }}
-{{ $kicker := "" }}
-{{ if eq $variant "trace" }}
-  {{ $img = $page.Params.image }}
-  {{ $alt = $page.Params.image_alt | default (printf "Poster for %s" $page.Title) }}
-  {{ $desc = $page.Params.description }}
-  {{ $kicker = $page.Params.trace.kind }}
-{{ else }}
-  {{ $proj := $page.Params.project }}
-  {{ $img = and $proj $proj.image }}
-  {{ $alt = $page.Title }}
-  {{ $desc = or (and $proj $proj.description) $page.Params.description }}
-  {{ with and $proj $proj.category }}{{ $kicker = trim . "/" }}{{ end }}
-{{ end }}
-<div class="project-card" data-category="{{ $kicker }}">
-  <div class="project-image">
-    {{ with $img }}
-    <a href="{{ $page.RelPermalink }}">
-      <img src="{{ . }}" alt="{{ $alt }}" loading="lazy" />
-    </a>
-    {{ end }}
-  </div>
-  <div class="project-meta">
-    <a class="project-title" href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
-    {{- with $desc }}<span class="project-dek">{{ . }}</span>{{ end }}
-  </div>
-  {{ if eq $variant "trace" }}{{ with $kicker }}
-  <div class="project-category">{{ . }}</div>
-  {{ end }}{{ end }}
+{{- /* A card: a 16:9 tile, one label line, the title, the dek. Pass "page";
+     pass "variant" "trace" for trace pages, whose description, image, and
+     kind live outside project front matter.
+     The label line: projects read "date · hub" (the hub is the title, or
+     filter_label, of the page named by project.category, so Project
+     Humane reads "Tools"); ongoing work reads "Since YYYY · hub"; traces
+     read "date · kind". Optional project.since (a year) and project.kind
+     (a word) override the year and the hub for work without a category.
+     docs/styleguide.md, Cards. */ -}}
+{{- $page := .page -}}
+{{- $variant := .variant | default "project" -}}
+{{- $img := "" -}}
+{{- $desc := "" -}}
+{{- $category := "" -}}
+{{- $label := slice -}}
+{{- if eq $variant "trace" -}}
+  {{- $img = $page.Params.image -}}
+  {{- $desc = $page.Params.description -}}
+  {{- $category = $page.Params.trace.kind -}}
+  {{- with $page.Date }}{{ if not .IsZero }}{{ $label = $label | append (printf `<time datetime="%s">%s</time>` (.Format "2006-01-02") (.Format "2006-01-02")) }}{{ end }}{{ end -}}
+  {{- with $page.Params.trace.kind }}{{ $label = $label | append (htmlEscape .) }}{{ end -}}
+{{- else -}}
+  {{- $proj := $page.Params.project | default (dict) -}}
+  {{- $img = $proj.image -}}
+  {{- $desc = or $proj.description $page.Params.description -}}
+  {{- with $proj.category }}{{ $category = trim . "/" }}{{ end -}}
+  {{- if eq (printf "%v" $proj.year) "ongoing" -}}
+    {{- $since := $proj.since -}}
+    {{- if not $since -}}
+      {{- with $page.RegularPages.ByDate }}{{ $since = (index . 0).Date.Year }}{{ else }}{{ if not $page.Date.IsZero }}{{ $since = $page.Date.Year }}{{ end }}{{ end -}}
+    {{- end -}}
+    {{- $label = $label | append (cond (ne (printf "%v" $since) "") (printf `Since <span class="n">%v</span>` $since) "Ongoing") -}}
+  {{- else if not $page.Date.IsZero -}}
+    {{- $label = $label | append (printf `<time datetime="%s">%s</time>` ($page.Date.Format "2006-01") ($page.Date.Format "2006-01")) -}}
+  {{- end -}}
+  {{- with $proj.kind -}}
+    {{- $label = $label | append (htmlEscape .) -}}
+  {{- else -}}
+    {{- with $proj.category }}{{ with site.GetPage . }}{{ $label = $label | append (htmlEscape (.Params.filter_label | default .Title)) }}{{ end }}{{ end -}}
+  {{- end -}}
+{{- end }}
+<div class="card"{{ with $category }} data-category="{{ . }}"{{ end }}>
+  <a class="tile" href="{{ $page.RelPermalink }}" tabindex="-1" aria-hidden="true">
+    {{- with $img }}<img src="{{ . }}" alt="" loading="lazy" />{{ end -}}
+  </a>
+  {{- with $label }}
+  <p class="card-label"><span>{{ delimit . " · " | safeHTML }}</span></p>
+  {{- end }}
+  <a class="card-title" href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
+  {{- with $desc }}
+  <span class="card-dek">{{ . }}</span>
+  {{- end }}
 </div>

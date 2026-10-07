@@ -1,0 +1,178 @@
+// Blocks: the unit of every page below the head. Two columns, a 192 px
+// rail for the label, date, count, or kind, and the column for the
+// content. A block whose rail is empty (an article's body) keeps the grid,
+// so prose aligns with every other column on the site.
+// docs/styleguide.md, Block. Rendered by _default/single.html and
+// list.html, the section shortcode, page-list, project-grid, and
+// partials/mentioned-in.html.
+
+.block {
+  @include block-grid;
+  margin-top: $rhythm-block;
+
+  > .main {
+    min-width: 0;
+    max-width: $max-width-column;
+
+    > :first-child {
+      margin-top: 0;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    &:empty {
+      display: none;
+    }
+  }
+}
+
+// The rail's voices: a heading, one meta line, an optional lead.
+.block > .rail {
+  min-width: 0;
+
+  h2,
+  h1 {
+    @include type-heading;
+    margin: 0;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .meta {
+    @include type-meta;
+    color: var(--ink-faint);
+    margin-top: $rhythm-rail-meta;
+    @include meta-links;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    & + .meta {
+      margin-top: 0;
+    }
+  }
+
+  // A sentence that introduces the block's list, under the count.
+  .lead {
+    @include type-dek;
+    color: var(--ink-muted);
+    margin-top: $space-2;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    a {
+      font-weight: $link-weight-default;
+    }
+  }
+}
+
+// Inside a section shortcode a `---` is a pause: space, no rule.
+.block.section .prose hr {
+  border: 0;
+  height: 0;
+  margin: $space-6 0 0;
+  width: auto;
+}
+
+// The head is followed by its first block 48 px down.
+.page-head + .block {
+  margin-top: 0;
+}
+
+// Tight blocks: year and letter groups under a hub's head, end matter.
+.block.year + .block.year,
+.block.tight + .block.tight,
+.block.end + .block.end {
+  margin-top: $rhythm-block-tight;
+}
+
+// End matter sits 64 px after the body.
+.block.end {
+  margin-top: $rhythm-block;
+}
+
+// A research entry on a stream page: the rail holds date · number, then
+// the kind; the column holds the title at 22/30 and the entry in full.
+.block.entry {
+  > .rail {
+    padding-top: $space-1; // the 20 px rail lines on the title's 30 px line
+  }
+
+  > .main > h3:first-child,
+  > .main > .entry-title {
+    font-size: $font-size-entry;
+    line-height: $line-height-entry;
+    font-weight: $font-weight-medium;
+    margin: 0 0 $space-3;
+
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.block:not(.entry) + .block.entry {
+  margin-top: $space-4;
+}
+
+.block.entry + .block.entry {
+  margin-top: $rhythm-masthead;
+}
+
+// Phones: the rail stacks above its column; its lines join with 12 px gaps.
+@include narrow {
+  .block {
+    display: block;
+    margin-top: $space-7;
+
+    > .rail {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      column-gap: $space-3;
+      margin-bottom: $space-3;
+
+      &:empty {
+        display: none;
+      }
+
+      .meta,
+      .meta + .meta {
+        margin-top: 0;
+      }
+
+      .lead {
+        flex-basis: 100%;
+        margin-top: $space-1;
+      }
+    }
+  }
+
+  .block.entry > .rail {
+    padding-top: 0;
+    margin-bottom: $space-2;
+  }
+
+  .block:not(.entry) + .block.entry {
+    margin-top: $space-4;
+  }
+}

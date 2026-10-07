@@ -1,102 +1,160 @@
-// Page shell: container, header, navigation, footer.
+// Page shell: the container, the masthead, the nav, the footer.
+// docs/styleguide.md, Layout, Masthead, and Footer.
 
-%grid-layout {
-  display: grid;
-  grid-template-columns: 1fr;
-  max-width: $max-width-container;
+// The page: 1200 px in 40 px side padding, 20 on phones.
+.wrap,
+.layout {
+  max-width: $max-width-page;
   margin: 0 auto;
-  padding-left: $page-gutter;
-  padding-right: $page-gutter;
+  padding-left: $page-padding;
+  padding-right: $page-padding;
+
+  @include narrow {
+    padding-left: $page-padding-narrow;
+    padding-right: $page-padding-narrow;
+  }
 }
 
-// The site header and footer are the body's own; headers inside content
-// (the page head) and footers inside articles are not the shell.
-.layout,
-body > header,
-body > footer {
-  @extend %grid-layout;
-}
-
-// Grid items refuse to shrink below their content's min-content size, so a
-// wide horizontal scroller (contact sheet, wide table) would blow main out
-// of its track without this.
+// Grid and flex children refuse to shrink below their content's
+// min-content size; a wide scroller (the contact sheet, a wide table)
+// would push main out of the page without this.
 .layout > main {
+  display: block;
   min-width: 0;
 }
 
-body > footer {
-  margin-top: $space-8;
-
-  // Record-keeping line: copyright, version, colophon, index.
-  p {
-    @include type-meta;
-    color: var(--ink-faint);
-  }
-
-  @include meta-links;
-}
-
-body > header {
-  min-height: $header-height;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: $space-3;
-
-  // The logo is an h1 on home only; both elements share the h1's box.
-  .site-title {
-    @include type-title;
-    margin: $space-3 0 0;
-  }
-}
-
-.header-top {
-  width: 100%;
-  display: flex;
+// The masthead: two lines. The logo with the search key at right, then
+// the nav on its own line, then one rule hairline.
+header.site {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  justify-content: space-between;
-}
+  row-gap: 20px; // masthead geometry
+  padding-top: 36px; // masthead geometry
+  padding-bottom: $space-4;
+  border-bottom: 1px solid var(--rule);
 
-// Navigation
-nav#Menu {
-  line-height: $line-height-base;
-  width: 100%;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  // Scrolls sideways on phones without a visible scrollbar; the clipped
-  // item at the edge is the affordance.
-  scrollbar-width: none;
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-
-  ul.primary-nav {
-    list-style-type: none;
+  .logo {
+    grid-column: 1;
+    grid-row: 1;
     margin: 0;
-    padding: 0;
+    font-size: 0;
+    line-height: 0;
+
+    a {
+      display: inline-block;
+    }
+
+    img {
+      display: block;
+      height: 36px;
+      width: auto;
+    }
+
+    // The signature is black ink; it inverts on the dark ground.
+    @include dark {
+      img {
+        filter: invert(1);
+      }
+    }
+  }
+
+  .search-key {
+    grid-column: 2;
+    grid-row: 1;
     display: flex;
-    flex-wrap: wrap;
-    gap: $space-3;
+    align-items: center;
+    gap: $space-2;
+    @include type-control;
+    color: var(--ink-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    transition: color $t-fast;
+
+    &:hover {
+      color: var(--ink);
+    }
   }
 
-  li {
-    font-weight: $font-weight-regular;
-  }
+  .nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    gap: $space-6;
+    font-size: $font-size-dek;
+    line-height: $line-height-nav;
+    min-width: 0;
 
-  a {
-    text-decoration: $link-decoration-plain;
+    a {
+      color: var(--ink-muted);
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color $t-fast;
 
-    &.is-active {
-      text-decoration: $link-decoration-default;
+      &:hover {
+        color: var(--ink);
+      }
+
+      &[aria-current] {
+        color: var(--ink);
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 6px;
+      }
     }
   }
 
   @include narrow {
-    ul.primary-nav {
-      flex-wrap: nowrap;
-      min-width: max-content;
+    padding-top: $space-5;
+    padding-bottom: $space-3;
+    row-gap: $space-3;
+
+    .logo img {
+      height: 28px;
     }
+
+    // The nav scrolls sideways without a visible scrollbar; the clipped
+    // item at the edge is the affordance.
+    .nav {
+      gap: $space-5;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      padding: $space-1 0 2px; // room for the underline and focus ring
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  }
+}
+
+// The page head starts 56 px under the masthead.
+.layout > main {
+  padding-top: $rhythm-masthead;
+
+  @include narrow {
+    padding-top: 40px; // phone rhythm
+  }
+}
+
+// The footer: no rule. 96 px after the last block, faint 14 px.
+footer.foot {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: $space-2 $space-5;
+  margin-top: $rhythm-footer;
+  padding-bottom: $space-7;
+  @include type-meta;
+  color: var(--ink-faint);
+  @include meta-links;
+
+  p {
+    margin: 0;
+  }
+
+  @include narrow {
+    margin-top: $space-8;
   }
 }

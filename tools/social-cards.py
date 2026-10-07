@@ -9,8 +9,9 @@ Hugo emits a manifest of every page that gets a card (layouts/index.social.json,
 built alone with `hugo --renderSegments social`). This script renders one
 1200 x 630 card per entry with Pillow and writes it under static/social/, where
 it is committed. The deploy never renders anything; head.html only resolves the
-committed file. Helvetica Neue is read from the macOS system font file, which
-the build box does not have, so cards are rendered on a Mac.
+committed file. IBM Plex Sans and Mono are read from the owner's OTF files in
+~/Library/Fonts (override the folder with SOCIAL_CARDS_FONT_DIR), which the
+build box does not have, so cards are rendered on a Mac.
 
 Usage:
   uv run tools/social-cards.py              render cards that are missing (or: make cards)
@@ -24,14 +25,17 @@ Usage:
 uv reads the inline metadata above, provisions Python and Pillow on first run,
 and caches the environment; nothing is installed into the system Python.
 
-Card styles (one per section voice):
-  note           Ledger: kicker, rule, highlighted title, wordmark
-  project        Mount: poster on a white mat over pale blueprint grid, wall label (JPEG)
-  hub, site      Ledger with a dek
-  article        Ledger with a dek, kicker naming the page's section
-  flaneur       Plate: cover photo with a white label bottom left (JPEG). Dormant:
-  flaneur-plain  Ledger with the engraving. Dispatch pages are email sources and
-                 carry no metadata, so the manifest emits no entries for them.
+Card styles, all in the Panel language (docs/styleguide.md):
+  note, article, hub, site   Panel: a 280 px rail (date in Mono, section and
+                             kind, the signal square and ttvl.co) beside a
+                             column with the title, the dek, and the signature;
+                             a hairline 48 px above the bottom edge
+  project                    Panel split: rail stacked over the title on the
+                             left 55%, the poster in a framed surface well on
+                             the right 45% (JPEG)
+  flaneur                    Plate: cover photo with a white label bottom left (JPEG). Dormant:
+  flaneur-plain              Ledger with the engraving. Dispatch pages are email sources and
+                             carry no metadata, so the manifest emits no entries for them.
 
 The manifest sidecar static/social/manifest.json records a hash of each card's
 inputs so --check and --stale can tell when a title, date, or poster changed.
@@ -41,6 +45,7 @@ import argparse
 import hashlib
 import json
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -56,40 +61,55 @@ OUT_DIR = os.path.join(STATIC, "social")
 SIDECAR = os.path.join(OUT_DIR, "manifest.json")
 
 # Bump when the design changes so --check reports every card as stale.
-DESIGN_VERSION = "1"
+DESIGN_VERSION = "2"
 
-FONT_PATH = os.environ.get("SOCIAL_CARDS_FONT", "/System/Library/Fonts/HelveticaNeue.ttc")
-FONT_INDEX = {"regular": 0, "bold": 1, "medium": 10}  # faces inside the .ttc
+FONT_DIR = os.path.expanduser(os.environ.get("SOCIAL_CARDS_FONT_DIR", "~/Library/Fonts"))
+FONT_FILES = {
+    "regular": "IBMPlexSans-Regular.otf",
+    "medium": "IBMPlexSans-Medium.otf",
+    "semibold": "IBMPlexSans-SemiBold.otf",
+    "mono": "IBMPlexMono-Regular.otf",
+}
 
 WORDMARK = os.path.join(STATIC, "ui", "ttvl_logo@3x.png")
 ENGRAVING = os.path.join(STATIC, "ui", "flaneur_logo@3x.png")
 
 W, H = 1200, 630
+
+# The Panel grid.
+PAD_X, PAD_Y = 72, 64           # card padding: sides, top and bottom
+RAIL_W, GUTTER = 280, 64        # rail width and the gap to the column
+RAIL_DROP = 14                  # the rail's first line sits on the title's x-height
+COL_X = PAD_X + RAIL_W + GUTTER  # 416
+COL_W = W - PAD_X - COL_X        # 712
+DEK_W = 700
+RULE_Y = H - 48 - 1              # the hairline, 48 px above the bottom edge
+SIGN_H = 44                      # the signature wordmark
+SPLIT = round(W * 0.55)          # project cards: text left of this, poster right
+
+# The legacy grid the dormant Flâneur renderers still use.
 MARGIN = 96
-LIVE = W - 2 * MARGIN  # 1008, the site's own container width
 
 # Fixed light palette: the card is an image, so the site's tokens are baked in.
 WHITE = (255, 255, 255)
-INK = (0, 0, 0)
-MUTED = (115, 115, 115)      # --ink-muted, 55% black on white
-FAINT = (153, 153, 153)      # --ink-faint, 40% black on white
-RULE = (238, 238, 238)       # --rule
-EDGE = (221, 221, 221)       # --edge
-SURFACE = (250, 250, 250)    # --surface
-HIGHLIGHT = (255, 239, 98)   # --highlight, rgba(255,235,59,.8) on white
-GRID_MINOR = (245, 247, 250)  # blueprint blue-grey at 5%
-GRID_MAJOR = (235, 239, 244)  # blueprint blue-grey at 10%
+INK = (0, 0, 0)              # --ink
+MUTED = (0x55, 0x55, 0x55)   # --ink-muted
+FAINT = (0x6E, 0x6E, 0x6E)   # --ink-faint
+RULE = (0xEC, 0xEC, 0xEC)    # --rule
+EDGE = (0xD9, 0xD9, 0xD9)    # --edge
+SURFACE = (0xF7, 0xF7, 0xF7)  # --surface
+SIGNAL = (0xFF, 0x4F, 0x00)  # --signal: the 10 px square only, never text
 
 SECTION_NAME = {
     "note": "Notes",
-    "project": "Projects",
+    "project": "Project",
     "flaneur": "The Flâneur",
     "flaneur-plain": "The Flâneur",
     "hub": "ttvl.co",
     "site": "ttvl.co",
 }
 
-# Characters Helvetica Neue has no glyph for, or that should not break lines.
+# Characters that should not break lines or that the cards normalize.
 GLYPH_FIXES = {
     "‑": "-",   # non-breaking hyphen
     "‐": "-",   # hyphen
@@ -98,6 +118,8 @@ GLYPH_FIXES = {
     " ": " ",   # narrow no-break space
 }
 
+NUMERIC = re.compile(r"^[\d\-–./:]+$")  # dates, years, counts: set in Mono
+
 
 # --- text -------------------------------------------------------------------
 
@@ -105,11 +127,14 @@ _fonts = {}
 
 
 def font(weight, size):
+    """Plex at a weight: regular, medium, or semibold Sans, or mono."""
+    weight = {"bold": "semibold"}.get(weight, weight)
     key = (weight, size)
     if key not in _fonts:
-        if not os.path.exists(FONT_PATH):
-            sys.exit(f"Font not found: {FONT_PATH} (set SOCIAL_CARDS_FONT to a Helvetica Neue .ttc)")
-        _fonts[key] = ImageFont.truetype(FONT_PATH, size, index=FONT_INDEX[weight])
+        path = os.path.join(FONT_DIR, FONT_FILES[weight])
+        if not os.path.exists(path):
+            sys.exit(f"Font not found: {path} (set SOCIAL_CARDS_FONT_DIR to the folder holding the IBM Plex OTF files)")
+        _fonts[key] = ImageFont.truetype(path, size)
     return _fonts[key]
 
 
@@ -154,7 +179,7 @@ def clamp(lines, max_lines, f, max_w):
     last = kept[-1]
     while last and width(f, last + "…") > max_w:
         last = last[:-1].rstrip()
-    kept[-1] = last + "…"
+    kept[-1] = last.rstrip(" ,;:·—–-") + "…"
     return kept
 
 
@@ -204,6 +229,7 @@ def paste_contain(img, src, box):
     x, y, w, h = box
     scaled = ImageOps.contain(src, (w, h), Image.LANCZOS)
     img.paste(scaled, (x + (w - scaled.width) // 2, y + (h - scaled.height) // 2), scaled)
+    return (x + (w - scaled.width) // 2, y + (h - scaled.height) // 2, scaled.width, scaled.height)
 
 
 def paste_cover(img, path, box):
@@ -214,18 +240,147 @@ def paste_cover(img, path, box):
     img.paste(fitted, (x, y))
 
 
+def poster(path):
+    """A poster as RGBA, upright, so transparent PNGs sit on the well."""
+    with Image.open(path) as src:
+        return ImageOps.exif_transpose(src).convert("RGBA")
+
+
 def wordmark_and_url(img, draw):
-    """The Ledger foot: wordmark bottom left, ttvl.co bottom right."""
+    """The old Ledger foot, kept for the dormant Flâneur plain card."""
     bottom = H - MARGIN
     paste_height(img, asset(WORDMARK), MARGIN, bottom - 72, 72)
     text_at(draw, W - MARGIN, bottom - 34, "ttvl.co", font("regular", 26), MUTED, 34, anchor="r")
 
 
-def rule(draw, y, x0=MARGIN, x1=W - MARGIN):
-    draw.rectangle([x0, y, x1 - 1, y + 1], fill=RULE)
+def rule(draw, y, x0=MARGIN, x1=W - MARGIN, fill=RULE, thickness=2):
+    draw.rectangle([x0, y, x1 - 1, y + thickness - 1], fill=fill)
 
 
-# --- card styles ------------------------------------------------------------
+# --- the Panel ----------------------------------------------------------------
+
+RAIL_SIZE, RAIL_LINE = 22, 32
+
+
+def rail_lines(entry):
+    """The rail's two lines: the ordering key (date or year) and section · kind."""
+    style, meta = entry["style"], [clean(m) for m in entry.get("meta") or []]
+    if style == "note":    # meta: category, date
+        return (meta[1] if len(meta) > 1 else ""), " · ".join(p for p in ("Notes", meta[0] if meta else "") if p)
+    if style == "project":  # meta: hub label, year
+        hub, year = (meta + ["", ""])[:2]
+        return year, " · ".join(p for p in (hub, "Project") if p)
+    if style == "hub":
+        return "", "ttvl.co · Hub"
+    if style == "site":
+        return "", ""     # the signal line below already says ttvl.co
+    # article and research stream: section, then a date or a kind
+    section = clean(entry.get("section"))
+    dates = [m for m in meta if NUMERIC.match(m)]
+    kinds = [m for m in meta if m and not NUMERIC.match(m)]
+    return (dates[0] if dates else ""), " · ".join([section] + kinds if section else kinds)
+
+
+def draw_rail(img, draw, entry, x, y, w=RAIL_W):
+    """Rail: key in Mono, section and kind in Sans, then the signal and ttvl.co.
+    Lines that are empty collapse. Returns the y under the last line."""
+    first, second = rail_lines(entry)
+    fs, fm = font("regular", RAIL_SIZE), font("mono", RAIL_SIZE)
+    if first:
+        text_at(draw, x, y, first, fm if NUMERIC.match(first) else fs, FAINT, RAIL_LINE)
+        y += RAIL_LINE
+    if second:
+        for line in clamp(wrap(second, fs, w), 2, fs, w):
+            text_at(draw, x, y, line, fs, FAINT, RAIL_LINE)
+            y += RAIL_LINE
+    if first or second:
+        y += 24
+    sq = 10
+    top = y + (RAIL_LINE - sq) // 2
+    draw.rectangle([x, top, x + sq - 1, top + sq - 1], fill=SIGNAL)
+    text_at(draw, x + sq + 12, y, "ttvl.co", fs, FAINT, RAIL_LINE)
+    return y + RAIL_LINE
+
+
+def title_lines(title, max_w):
+    """Sans Medium 56/64 in at most 3 lines; 48/56 in up to 4 when it needs more."""
+    f = font("medium", 56)
+    lines = wrap(title, f, max_w)
+    if len(lines) <= 3:
+        return lines, f, 64
+    f = font("medium", 48)
+    return clamp(wrap(title, f, max_w), 4, f, max_w), f, 56
+
+
+def draw_title(draw, entry, x, y, max_w):
+    lines, f, lh = title_lines(entry["title"], max_w)
+    for line in lines:
+        text_at(draw, x, y, line, f, INK, lh)
+        y += lh
+    return y
+
+
+def draw_signature(img, x):
+    """The signature wordmark, 44 px tall, on the bottom padding line."""
+    paste_height(img, asset(WORDMARK), x, H - PAD_Y - SIGN_H, SIGN_H)
+
+
+def draw_hairline(draw):
+    rule(draw, RULE_Y, PAD_X, W - PAD_X, fill=RULE, thickness=1)
+
+
+def render_text(entry):
+    """Note, article, research stream, hub, and site: rail beside the column."""
+    img = Image.new("RGB", (W, H), WHITE)
+    draw = ImageDraw.Draw(img)
+    draw_rail(img, draw, entry, PAD_X, PAD_Y + RAIL_DROP)
+    y = draw_title(draw, entry, COL_X, PAD_Y, COL_W)
+    dek = clean(entry.get("dek"))
+    if dek:
+        y += 24
+        fd = font("regular", 28)
+        room = min(3, (H - PAD_Y - SIGN_H - 32 - y) // 40)
+        for line in clamp(wrap(dek, fd, DEK_W), room, fd, DEK_W):
+            text_at(draw, COL_X, y, line, fd, MUTED, 40)
+            y += 40
+    draw_signature(img, COL_X)
+    draw_hairline(draw)
+    return img
+
+
+def render_project(entry):
+    """Rail stacked over the title on the left 55%, the poster on the right 45%."""
+    img = Image.new("RGB", (W, H), WHITE)
+    draw = ImageDraw.Draw(img)
+    # The poster well: a surface mat 24 px wide in a 1 px edge frame with a
+    # 2 px radius, sized to the poster inside the area right of the split
+    # (72 px from the right edge, on the top and bottom padding lines) and
+    # centered in it vertically.
+    ax0, ax1, ay0, ay1 = SPLIT, W - PAD_X, PAD_Y, H - PAD_Y
+    mat = 24
+    image = entry.get("image")
+    src = poster(os.path.join(STATIC, image.lstrip("/"))) if image else None
+    inner_w, inner_h = ax1 - ax0 - 2 * mat - 2, ay1 - ay0 - 2 * mat - 2
+    if src:
+        fitted = ImageOps.contain(src, (inner_w, inner_h), Image.LANCZOS)
+    else:
+        fitted = None
+    pw, ph = (fitted.size if fitted else (inner_w, round(inner_w * 9 / 16)))
+    ww, wh = pw + 2 * mat + 2, ph + 2 * mat + 2
+    wx0 = ax1 - ww
+    wy0 = ay0 + (ay1 - ay0 - wh) // 2
+    draw.rounded_rectangle([wx0, wy0, wx0 + ww - 1, wy0 + wh - 1], radius=2, fill=SURFACE, outline=EDGE, width=1)
+    if fitted:
+        img.paste(fitted, (wx0 + 1 + mat, wy0 + 1 + mat), fitted)
+    text_w = SPLIT - GUTTER - PAD_X
+    y = draw_rail(img, draw, entry, PAD_X, PAD_Y, w=text_w)
+    draw_title(draw, entry, PAD_X, y + 40, text_w)
+    draw_signature(img, PAD_X)
+    draw_hairline(draw)
+    return img
+
+
+# --- the dormant Flâneur cards -----------------------------------------------
 
 def ledger_head(draw, entry):
     """Kicker on the first row and the hairline under it; returns the body's top y."""
@@ -235,26 +390,12 @@ def ledger_head(draw, entry):
     return MARGIN + 34 + 18 + 2 + 44
 
 
-def render_note(entry):
-    img = Image.new("RGB", (W, H), WHITE)
-    draw = ImageDraw.Draw(img)
-    y = ledger_head(draw, entry)
-    f = font("bold", 64)
-    lines = clamp(wrap(entry["title"], f, LIVE - 20), 3, f, LIVE - 20)
-    for line in lines:  # the highlight: one band per line, as a selection renders
-        draw.rectangle([MARGIN - 10, y, MARGIN + width(f, line) + 10, y + 76 - 1], fill=HIGHLIGHT)
-        text_at(draw, MARGIN, y, line, f, INK, 76)
-        y += 76
-    wordmark_and_url(img, draw)
-    return img
-
-
 def render_flaneur_plain(entry):
     img = Image.new("RGB", (W, H), WHITE)
     draw = ImageDraw.Draw(img)
     y = ledger_head(draw, entry)
     body_w = 640
-    f = font("bold", 56)
+    f = font("medium", 56)
     for line in clamp(wrap(entry["title"], f, body_w), 3, f, body_w):
         text_at(draw, MARGIN, y, line, f, INK, 66)
         y += 66
@@ -269,71 +410,6 @@ def render_flaneur_plain(entry):
     return img
 
 
-def render_hub(entry):
-    img = Image.new("RGB", (W, H), WHITE)
-    draw = ImageDraw.Draw(img)
-    y = ledger_head(draw, entry)
-    f = font("bold", 64)
-    for line in clamp(wrap(entry["title"], f, LIVE), 2, f, LIVE):
-        text_at(draw, MARGIN, y, line, f, INK, 76)
-        y += 76
-    # A two-line title leaves room for fewer dek lines above the wordmark.
-    room = min(3, (H - MARGIN - 72 - 16 - (y + 20)) // 40)
-    if entry.get("dek") and room > 0:
-        y += 20
-        fd = font("regular", 30)
-        for line in clamp(wrap(entry["dek"], fd, 900), room, fd, 900):
-            text_at(draw, MARGIN, y, line, fd, MUTED, 40)
-            y += 40
-    wordmark_and_url(img, draw)
-    return img
-
-
-def render_site(entry):
-    img = Image.new("RGB", (W, H), WHITE)
-    draw = ImageDraw.Draw(img)
-    y = ledger_head(draw, entry)
-    paste_height(img, asset(WORDMARK), MARGIN, y, 150)
-    y += 150 + 28
-    if entry.get("dek"):
-        fd = font("regular", 30)
-        for line in clamp(wrap(entry["dek"], fd, 900), 3, fd, 900):
-            text_at(draw, MARGIN, y, line, fd, MUTED, 40)
-            y += 40
-    text_at(draw, W - MARGIN, H - MARGIN - 34, "ttvl.co", font("regular", 26), MUTED, 34, anchor="r")
-    return img
-
-
-def render_project(entry):
-    img = Image.new("RGB", (W, H), WHITE)
-    draw = ImageDraw.Draw(img)
-    # Blueprint grid: minor line every 20 px, a heavier one every fifth.
-    for x in range(0, W, 20):
-        draw.line([(x, 0), (x, H)], fill=GRID_MINOR, width=1)
-    for y in range(0, H, 20):
-        draw.line([(0, y), (W, y)], fill=GRID_MINOR, width=1)
-    for x in range(0, W, 100):
-        draw.rectangle([x, 0, x + 1, H], fill=GRID_MAJOR)
-    for y in range(0, H, 100):
-        draw.rectangle([0, y, W, y + 1], fill=GRID_MAJOR)
-    # White mat, frame, and the poster fitted inside.
-    px, py, pw, ph = 200, 40, 800, 450
-    draw.rectangle([px - 12, py - 12, px + pw + 11, py + ph + 11], fill=WHITE)
-    draw.rectangle([px, py, px + pw - 1, py + ph - 1], fill=SURFACE, outline=EDGE, width=2)
-    image = entry.get("image")
-    if image:
-        paste_cover(img, os.path.join(STATIC, image.lstrip("/")), (px + 2, py + 2, pw - 4, ph - 4))
-    # Wall label: kicker over title at the left, wordmark 96 px tall at the right.
-    label_bottom = 606
-    mark_w = paste_height(img, asset(WORDMARK), px + pw, label_bottom - 96, 96, align="right")
-    text_w = pw - mark_w - 40
-    kicker(draw, px, label_bottom - 38 - 4 - 32, "Projects", entry.get("meta", []), size=24, line_h=32)
-    ft = font("bold", 30)
-    title = clamp(wrap(entry["title"], ft, 10_000), 1, ft, text_w)[0]
-    text_at(draw, px, label_bottom - 38, title, ft, INK, 38)
-    return img
-
-
 def render_flaneur(entry):
     img = Image.new("RGB", (W, H), WHITE)
     cover = entry.get("image")
@@ -343,7 +419,7 @@ def render_flaneur(entry):
     # The label shrinks to its content and never exceeds 760 px outside.
     pad_l, pad_r, pad_t, pad_b, border = 44, 44, 40, 36, 2
     inner_max = 760 - pad_l - pad_r - 2 * border
-    fk, ft, fu = font("regular", 24), font("bold", 48), font("regular", 26)
+    fk, ft, fu = font("regular", 24), font("medium", 48), font("regular", 26)
     kick_text = SECTION_NAME["flaneur"] + "".join(f" · {clean(p)}" for p in entry.get("meta", []) if clean(p))
     foot_w = 132 + 40 + width(fu, "ttvl.co")  # wordmark at 52 px tall is about 132 wide
     natural = max(width(fk, kick_text), width(ft, clean(entry["title"])), foot_w)
@@ -368,13 +444,13 @@ def render_flaneur(entry):
 
 
 RENDERERS = {
-    "note": render_note,
+    "note": render_text,
     "project": render_project,
     "flaneur": render_flaneur,
     "flaneur-plain": render_flaneur_plain,
-    "hub": render_hub,
-    "article": render_hub,
-    "site": render_site,
+    "hub": render_text,
+    "article": render_text,
+    "site": render_text,
 }
 PALETTE_STYLES = {"note", "hub", "article", "site", "flaneur-plain"}  # flat cards quantize cleanly
 

@@ -1,54 +1,62 @@
+// Print: the article on paper. Literal black and white throughout: paper
+// has no theme.
 @media print {
-  // Keep the site header but adjust its display
-  body > header {
+  // Keep the signature, drop the nav, the search key, and the footer.
+  header.site {
     display: block !important;
     padding: 0 !important;
     margin: 20px 0 !important;
-    min-height: auto !important;
+    border: 0 !important;
     text-align: center !important;
 
-    .site-title {
-      img {
-        height: 80px !important;
-        width: auto !important;
-      }
+    .logo img {
+      height: 48px !important;
+      width: auto !important;
+      filter: none !important;
     }
   }
 
-  // Hide navigation and footer
   nav,
-  body > footer {
+  .search-key,
+  footer.foot,
+  .category-filter {
     display: none !important;
   }
 
-  // Adjust layout for printing
   .layout {
-    display: block !important;
     padding: 0 !important;
 
     main {
-      width: 70% !important;
+      padding-top: 0 !important;
+      max-width: 640px !important;
       margin: 0 auto !important;
-      max-width: 600px !important;
 
-      article {
-        margin: 0 !important;
-
-        img {
-          max-width: 100% !important;
-        }
+      img {
+        max-width: 100% !important;
       }
     }
   }
 
-  // Remove background colors and adjust text for better printing
+  // The rail stacks above the column on paper.
+  .page-head,
+  .block {
+    display: block !important;
+  }
+
+  .prose > h2::before {
+    position: static !important;
+    display: inline-block !important;
+    width: auto !important;
+    margin-right: 12px;
+  }
+
   body {
+    background: #fff !important;
     color: #000 !important;
   }
 
-  // Ensure links are readable in print
   a {
-    text-decoration: $link-decoration-plain !important;
+    text-decoration: none !important;
     color: #000 !important;
   }
 

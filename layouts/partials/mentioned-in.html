@@ -1,5 +1,8 @@
-{{- /* End matter: every page whose text links to this one, as rows under
-"Mentioned in". Hubs first, then pages newest first. A link counts when the
+{{- /* End matter: every page whose text links to this one, as one block,
+"Mentioned in", with the count in the rail and rows keyed by what each page
+is (Hub, Note, Project, Log, Research, Dispatch, Trace, a section's name,
+or a root page's own title), the page's date as the tail where it has one.
+Hubs first, then pages newest first. A link counts when the
 raw content holds the permalink, the permalink before ")" or "#", or the
 content path inside a page-list or project-grid shortcode. Call through
 partialCached keyed on .Path. docs/styleguide.md, End Matter. */ -}}
@@ -26,21 +29,28 @@ partialCached keyed on .Path. docs/styleguide.md, End Matter. */ -}}
 {{- end -}}
 {{- $all := (sort $hubs "Title") | append (sort $pages "Date" "desc") -}}
 {{- with $all }}
-<section class="end-matter">
-  <h2 class="group-head">Mentioned in</h2>
-  <ul class="rows">
-    {{- range . }}
-    {{- $kind := "Page" -}}
-    {{- if .IsSection }}{{ $kind = "Hub" -}}
-    {{- else if eq .Section "notes" }}{{ $kind = "Note" -}}
-    {{- else if eq .Section "log" }}{{ $kind = "Log" -}}
-    {{- else if eq .Section "research" }}{{ $kind = printf "Research %s" (partialCached "research-number.html" . .Path) -}}
-    {{- else if eq .Section "flaneur" }}{{ $kind = printf "Dispatch %s" .File.BaseFileName -}}
-    {{- else if .Params.project }}{{ $kind = "Project" -}}
-    {{- else if .Section }}{{ $kind = .CurrentSection.Title -}}
-    {{- end }}
-    {{ partial "row.html" (dict "meta" $kind "url" .RelPermalink "title" .Title) }}
-    {{- end }}
-  </ul>
+<section class="block end">
+  <div class="rail"><h2>Mentioned in</h2><p class="meta">{{ partial "count.html" (dict "n" (len .) "one" "page" "many" "pages") }}</p></div>
+  <div class="main">
+    <ul class="rows">
+      {{- range . }}
+      {{- $kind := "Page" -}}
+      {{- $title := .Title -}}
+      {{- $tail := "" -}}
+      {{- if not .Date.IsZero }}{{ $tail = printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02") }}{{ end -}}
+      {{- if .IsSection }}{{ $kind = "Hub" }}{{ $tail = "" -}}
+      {{- else if eq .Section "notes" }}{{ $kind = "Note" -}}
+      {{- else if eq .Section "log" }}{{ $kind = "Log" }}{{ $tail = "" }}{{ $title = printf `<span class="n">%s</span>` (htmlEscape .Title) -}}
+      {{- else if eq .Section "research" }}{{ $kind = "Research" -}}
+      {{- else if eq .Section "flaneur" }}{{ $kind = "Dispatch" -}}
+      {{- else if eq .Section "traces" }}{{ $kind = "Trace" -}}
+      {{- else if .Params.project }}{{ $kind = "Project" -}}
+      {{- else if .Section }}{{ $kind = .CurrentSection.Title -}}
+      {{- else }}{{ $kind = .Title }}{{ $title = .Title -}}
+      {{- end }}
+      {{ partial "row.html" (dict "meta" $kind "url" .RelPermalink "title" ($title | safeHTML) "tail" ($tail | safeHTML)) }}
+      {{- end }}
+    </ul>
+  </div>
 </section>
 {{- end -}}

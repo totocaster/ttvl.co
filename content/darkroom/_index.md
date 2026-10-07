@@ -7,32 +7,14 @@ filter_ref: 'Darkroom'
 
 Technical and process-oriented resources focused on photography, darkroom techniques, and the craft of image-making. This page serves as a hub for guides, DIY projects, and niche tools tailored for analog photography enthusiasts.
 
-## Process and Techniques
+{{< page-list title="Process and Techniques" pages="darkroom/roll-id, darkroom/travel-dev-kit, notebook-system/analog-photography-templates" >}}
 
-{{< page-list pages="darkroom/roll-id, darkroom/travel-dev-kit, notebook-system/analog-photography-templates" >}}
+{{< page-list title="DIY Projects" lead="For enhancing the shooting process and overall experience." pages="darkroom/valoi-easy120-with-negative-supply-99cri-light, darkroom/pentax-digital-spotmeter-sticker, darkroom/rugged-40-roll-film-storage, darkroom/canister-stickers, darkroom/foldable-film-reminder" >}}
 
-## DIY Projects
+{{< page-list lead="Improve, fix, and modify camera equipment." pages="darkroom/rz67-focus-gear-stl, darkroom/horseman-lensboards" >}}
 
-For enhancing the shooting process and overall experience:
+{{< page-list lead="Accessories and improvements for the JOBO system." pages="darkroom/thermometer-panel-for-jobo-systems" >}}
 
-{{< page-list pages="darkroom/valoi-easy120-with-negative-supply-99cri-light, darkroom/pentax-digital-spotmeter-sticker, darkroom/rugged-40-roll-film-storage, darkroom/canister-stickers, darkroom/foldable-film-reminder" >}}
+{{< page-list title="Tools and Manuals" lead="Guides and manuals for specialized tools and workflows." pages="darkroom/lucky-cp32-manual" >}}
 
-Improve, fix, and modify camera equipment:
-
-{{< page-list pages="darkroom/rz67-focus-gear-stl, darkroom/horseman-lensboards" >}}
-
-Accessories and improvements for the JOBO system:
-
-{{< page-list pages="darkroom/thermometer-panel-for-jobo-systems" >}}
-
-## Tools and Manuals
-
-Guides and manuals for specialized tools and workflows:
-
-{{< page-list pages="darkroom/lucky-cp32-manual" >}}
-
-## Miscellaneous
-
-Other resources and niche interests:
-
-{{< page-list pages="darkroom/solaris-highway" >}}
+{{< page-list title="Miscellaneous" lead="Other resources and niche interests." pages="darkroom/solaris-highway" >}}

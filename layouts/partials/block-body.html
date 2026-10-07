@@ -1,0 +1,8 @@
+{{- /* An article's body: one block with an empty rail, prose in the column.
+     Pass the rendered content (HTML). Blocks that shortcodes emitted inside
+     it stand beside it; body blocks left empty by them are dropped.
+     docs/styleguide.md, Block and Prose. */ -}}
+{{- $seams := partialCached "block-seams.html" "seams" -}}
+{{- $html := printf "%s%s%s" $seams.open (string .) $seams.close -}}
+{{- $html = replaceRE (printf `%s\s*%s` $seams.open $seams.close) "" $html -}}
+{{- return ($html | safeHTML) -}}

@@ -1,40 +1,49 @@
-// Tables — framed with a header band, body-size cells on tight leading.
-// Rendered by _markup/render-table.html; {.wide} spans the container.
+// Tables: a 1 px ink rule under the header row, rule hairlines between
+// rows, no frame. Headers in the label voice at 500; cells 16/23.
+// Rendered by _markup/render-table.html; {.wide} spans the column.
+// docs/styleguide.md, Prose.
 
 .table-wrap {
-  @include readable-width;
-  margin: 0 0 $space-4;
+  max-width: $max-width-bleed;
+  margin: $space-5 0;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 
   &.wide {
-    max-width: none;
+    max-width: $max-width-column;
   }
 
   table {
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid var(--edge);
+    font-size: $font-size-dek;
+    line-height: $line-height-cell;
   }
 
   th,
   td {
-    border: 1px solid var(--rule);
-    padding: 5px 12px; // cell geometry
-    vertical-align: top;
+    padding: $space-2 $space-4 $space-2 0;
     text-align: left;
+    vertical-align: top;
+
+    &:last-child {
+      padding-right: 0;
+    }
   }
 
   th {
-    background: var(--surface);
-    border-bottom: 1px solid var(--edge);
-    @include type-small;
-    font-weight: $font-weight-bold;
+    @include type-meta;
+    font-weight: $font-weight-medium;
+    color: var(--ink-faint);
+    border-bottom: 1px solid var(--ink);
   }
 
-  td {
-    font-size: $font-size-base;
-    line-height: $line-height-tight;
+  tbody tr + tr td {
+    border-top: 1px solid var(--rule);
+  }
+
+  td code {
+    font-size: $font-size-small;
   }
 
   .align-right {

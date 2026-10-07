@@ -1,28 +1,43 @@
-// Document shell, typography, prose rhythm, figures, and interaction
-// states. Spacing comes from the scale in _variables.scss; see
-// docs/styleguide.md for the rules.
+// Document shell, type, prose, figures, and interaction states.
+// Spacing comes from the scale and rhythm in _variables.scss; see
+// docs/styleguide.md (Type, Prose, Figures) for the rules.
 
 html {
   scroll-behavior: smooth;
   background: var(--ground);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
   background: var(--ground);
   color: var(--ink);
-  font-family: $font-family-base;
+  font-family: $font-family-sans;
+  font-feature-settings: "kern";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   margin: 0;
   padding: 0;
   @include type-body;
 }
 
-// Base interaction states
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+}
+
+// Interaction states
 ::selection {
   background: var(--highlight);
 }
 
 :focus-visible {
-  outline: 2px solid currentColor;
+  outline: 2px solid var(--signal);
   outline-offset: 2px;
 }
 
@@ -40,8 +55,16 @@ body {
   }
 }
 
-// Typography: three sizes. Every heading below the title is text size,
-// bold; hierarchy is carried by weight and space.
+// Words in Sans, numbers in Mono: dates and every other number in the
+// chrome opt in through `time` and `.n`. They inherit size and color.
+time,
+.n {
+  font-family: $font-family-mono;
+  font-weight: $font-weight-regular;
+  @include tabular-numbers;
+}
+
+// Type
 h1 {
   @include type-title;
 }
@@ -53,37 +76,123 @@ h5 {
   @include type-heading;
 }
 
-a {
-  color: var(--ink);
+h3,
+h4,
+h5 {
+  font-weight: $font-weight-medium;
 }
 
-// Bold is one weight. Browsers resolve `bolder` inside a bold context to
-// 900; the site has no 900.
+a {
+  color: inherit;
+  text-decoration-thickness: 1px;
+  text-underline-offset: $link-underline-offset;
+}
+
 strong,
 b {
-  font-weight: $font-weight-bold;
+  font-weight: $font-weight-semibold;
 }
 
-// Keycaps — keyboard input renders as keys, in the sans stack like all metadata.
+mark {
+  background: var(--highlight);
+  color: inherit;
+}
+
+// Inline code: Mono 16, no background.
+code {
+  font-family: $font-family-mono;
+  font-size: $font-size-code;
+}
+
+// Keycaps: Mono 14 on an edge frame with a 2 px bottom edge.
 kbd {
-  font-family: $font-family-base;
+  font-family: $font-family-mono;
   font-size: $font-size-small;
-  line-height: $line-height-solid;
+  line-height: 18px; // keycap geometry
   display: inline-block;
-  min-width: 10px;
-  padding: 2px 5px; // keycap geometry
-  text-align: center;
+  padding: 0 6px; // keycap geometry
   vertical-align: 1px;
-  border: 1px solid var(--edge);
-  border-radius: $radius-key;
+  color: var(--ink);
   background: var(--surface);
-  box-shadow: 0 1px 0 var(--edge);
+  border: 1px solid var(--edge);
+  border-bottom-width: 2px;
+  border-radius: $radius;
 }
 
-// Heading rhythm. Article headings: h2 48/8, h3 to h5 32/8. Hubs and
-// indexes (.hub) open sections at 64/16. Above is always at least three
-// times below, so a heading belongs to what follows.
-main {
+// The legend: what the thing directly above it means, in the label voice.
+.legend {
+  @include type-meta;
+  color: var(--ink-faint);
+  margin: $space-2 0 0;
+  @include readable-width;
+  @include meta-links;
+}
+
+// Prose: the article body. The column is 880 px; running text holds the
+// 640 px measure, figures and sheets bleed to 760 px.
+.prose {
+  max-width: $max-width-column;
+  counter-reset: prose-h2;
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  p,
+  ul,
+  ol,
+  dl,
+  blockquote,
+  h2,
+  h3,
+  h4,
+  h5,
+  .quote-attribution {
+    @include readable-width;
+  }
+
+  p {
+    margin: 0 0 $rhythm-paragraph;
+  }
+
+  a {
+    font-weight: $link-weight-default;
+  }
+
+  // Headings rendered as links keep the heading's weight.
+  :is(h2, h3, h4, h5) > a {
+    font-weight: inherit;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // h2 carries a Mono numeral in the rail; h3 carries none.
+  > h2 {
+    position: relative;
+    margin: $rhythm-h2-above 0 $rhythm-heading-below;
+
+    &::before {
+      counter-increment: prose-h2;
+      content: counter(prose-h2, decimal-leading-zero);
+      position: absolute;
+      top: 4px; // the numeral's 20 px line on the heading's 28 px line
+      left: -($rail-width + $rail-gap);
+      width: $rail-width;
+      font-family: $font-family-mono;
+      font-weight: $font-weight-regular;
+      @include type-small;
+      @include tabular-numbers;
+      color: var(--ink-faint);
+    }
+  }
+
   h2 {
     margin: $rhythm-h2-above 0 $rhythm-heading-below;
   }
@@ -94,204 +203,168 @@ main {
     margin: $rhythm-h3-above 0 $rhythm-heading-below;
   }
 
-  .hub h2,
-  h2.section-head {
-    margin: $rhythm-section-above 0 $rhythm-section-below;
-  }
-
-  // A heading that follows a heading belongs to it: the pair sits 8px
-  // apart (Current version / 0.3.0).
+  // A heading directly under a heading sits 8 px below it.
   :is(h2, h3, h4) + :is(h3, h4, h5) {
     margin-top: $space-2;
   }
 
-  // The first group in a section sits on the section's 16px, not its own
-  // 32px above (Archive / 2026).
-  .section-head + section > .group-head:first-child,
-  .section-head + .group-head {
-    margin-top: 0;
-  }
-}
-
-// Article prose
-main {
-  article {
-    margin: 0;
-
-    h1 > a,
-    h2 > a {
-      text-decoration: $link-decoration-plain;
-      font-weight: $link-weight-title;
-    }
-
-    a {
-      font-weight: $link-weight-default;
-    }
-
-    p {
-      margin: 0 0 $rhythm-paragraph;
-    }
+  ul,
+  ol {
+    margin: 0 0 $rhythm-paragraph;
+    padding-left: $space-5;
 
     ul,
     ol {
-      margin: 0 0 $rhythm-paragraph;
-
-      ul,
-      ol {
-        margin-bottom: 0;
-      }
+      margin: $space-1 0 0;
     }
+  }
 
-    blockquote > p,
-    p {
-      img {
-        // Article images bleed past the prose measure when space allows.
-        max-width: unquote("min(#{$max-width-bleed}, 100%)");
-        height: auto;
-      }
-    }
+  li {
+    margin: 0 0 6px; // list item geometry
 
-    p,
-    h1,
-    h2,
-    h3,
-    h4,
-    h5 {
-      @include readable-width;
-    }
-
-    blockquote,
-    li {
-      @include readable-list-width;
-    }
-
-    // Quotations carry an edge rule: a line that marks a kind of content,
-    // not a divider. Text stays full ink — it's content.
-    blockquote {
-      margin: 0 0 $rhythm-paragraph;
-      border-left: 2px solid var(--edge);
-      padding-left: 20px; // quotation geometry
-
-      > p:last-child {
-        margin-bottom: 0;
-      }
-
-      // A quotation hugs its attribution line when one follows.
-      &:has(+ .quote-attribution) {
-        margin-bottom: $space-2;
-      }
-    }
-
-    // Attribution under a quotation, in the meta voice.
-    .quote-attribution {
-      @include type-meta;
+    &::marker {
       color: var(--ink-faint);
-      box-sizing: border-box;
-      padding-left: 22px; // aligns with the quotation's text
-      @include meta-links;
     }
 
-    // A `---` the author wrote: a pause, not structure.
-    hr {
-      width: 20%;
-      margin: $space-5 0;
-      border: 0;
-      border-top: 1px solid var(--rule);
+    > p {
+      margin-bottom: 6px;
+    }
+  }
+
+  // Quotations: a 2 px edge rule, full ink — they are content.
+  blockquote {
+    margin: 0 0 $rhythm-paragraph;
+    padding: 0 0 0 20px; // quotation geometry
+    border-left: 2px solid var(--edge);
+
+    > :last-child {
+      margin-bottom: 0;
     }
 
-    // Code and plain text
-    code {
-      @include monospace;
-      font-size: $font-size-code;
+    &:has(+ .quote-attribution) {
+      margin-bottom: $space-2;
     }
+  }
 
-    pre {
-      @include readable-width;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
+  .quote-attribution {
+    @include type-meta;
+    color: var(--ink-faint);
+    margin: 0 0 $rhythm-paragraph;
+    @include meta-links;
+  }
 
-      code {
-        display: block;
-        font-size: $font-size-code;
-        line-height: $line-height-small;
-        white-space: pre;
-        min-width: max-content;
-      }
-    }
+  // A `---` the author wrote: a pause, a short edge rule at the left.
+  hr {
+    width: 128px;
+    margin: $space-6 0;
+    border: 0;
+    border-top: 1px solid var(--edge);
+  }
 
-    // YouTube videos sit like figures.
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
-      height: 0;
-      overflow: hidden;
-      margin: $space-5 0 $space-6;
-    }
+  // Images written as Markdown paragraphs take the figure's place.
+  p > img:only-child {
+    display: block;
+    width: auto;
+    max-width: unquote("min(#{$max-width-bleed}, 100%)");
+    height: auto;
+    border: 1px solid var(--edge);
+    border-radius: $radius;
+  }
 
-    .video-container iframe {
+  p:has(> img:only-child) {
+    max-width: $max-width-bleed;
+    margin: $rhythm-figure-above 0 $rhythm-figure-below;
+  }
+
+  pre {
+    max-width: $max-width-bleed;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  // YouTube embeds take the figure frame.
+  .video-container {
+    position: relative;
+    max-width: $max-width-bleed;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    margin: $rhythm-figure-above 0 $rhythm-figure-below;
+    border: 1px solid var(--edge);
+    border-radius: $radius;
+    background: var(--surface);
+
+    iframe {
       position: absolute;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
+      border: 0;
+    }
+  }
+
+  // The table of contents: a numbered list in the label voice.
+  .table-of-contents {
+    margin: 0 0 $rhythm-paragraph;
+    @include readable-width;
+
+    h2 {
+      margin: 0 0 $rhythm-heading-below;
     }
 
-    .table-of-contents {
-      margin: $space-5 0;
+    nav#TableOfContents {
+      @include type-meta;
+      line-height: $line-height-code;
 
-      h2 {
-        margin: 0 0 $rhythm-heading-below;
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        counter-reset: toc;
       }
 
-      nav#TableOfContents {
-        columns: 2;
-        column-gap: $space-6;
-        @include readable-width();
+      li {
+        counter-increment: toc;
+        margin: 0;
 
-        @include narrow {
-          columns: 1;
-        }
-
-        a {
-          text-decoration: $link-decoration-default;
-          font-weight: $link-weight-quiet;
+        &::before {
+          content: counter(toc, decimal-leading-zero) "  ";
+          white-space: pre;
+          font-family: $font-family-mono;
+          @include tabular-numbers;
+          color: var(--ink-faint);
         }
 
         ul {
-          list-style: none;
-          margin: 0;
-          padding: 0;
+          margin: 0 0 0 $space-5;
+        }
+      }
 
-          li {
-            counter-increment: toc;
-            break-inside: avoid;
+      a {
+        font-weight: $link-weight-quiet;
+        text-decoration: none;
 
-            // Counters speak in the meta voice.
-            &::before {
-              content: counter(toc, decimal-leading-zero) ".";
-              @include type-meta;
-              color: var(--ink-faint);
-              margin-right: $space-2;
-            }
-
-            // Reset counter for nested items
-            ul {
-              counter-reset: toc;
-              margin-top: $space-2;
-              margin-left: 40px; // the list indent
-            }
-          }
+        &:hover {
+          text-decoration: underline;
         }
       }
     }
   }
+
+  @include narrow {
+    > h2::before {
+      position: static;
+      display: inline-block;
+      width: auto;
+      margin-right: $space-3;
+    }
+  }
 }
 
-// Figures: one rule for the whole site. Bleed width, block media, the
-// caption in the small voice. Viewer figures carry their own classes and
-// override this; :where keeps the rule easy to beat.
+// Figures: one rule for the whole site. Bleed width, block media on an
+// edge frame, the caption in the label voice, muted. Viewer figures carry
+// their own classes and override this; :where keeps the rule easy to beat.
 :where(main) figure {
-  margin: $space-5 0 $space-6;
+  margin: $rhythm-figure-above 0 $rhythm-figure-below;
   max-width: $max-width-bleed;
 
   > img,
@@ -301,35 +374,40 @@ main {
     width: 100%;
     height: auto;
     background: var(--surface);
+    border: 1px solid var(--edge);
+    border-radius: $radius;
+  }
+
+  // Photographs in letters go unframed.
+  &.plain > img,
+  &.plain > video,
+  &.plain > a > img {
+    border: 0;
+    border-radius: 0;
+    background: none;
   }
 
   // Tall captures: phone screens and the like.
   &.portrait {
     max-width: 360px;
   }
-
-  // A screenshot whose white edge would vanish into the ground.
-  &.framed > img,
-  &.framed > a > img {
-    border: 1px solid var(--edge);
-  }
 }
 
 :where(main) figcaption {
-  @include type-small;
+  @include type-meta;
   @include readable-width;
   color: var(--ink-muted);
-  margin-top: $space-2;
+  margin-top: $rhythm-caption;
 
   p {
     margin: 0;
   }
 }
 
-// Media directly under a heading takes the heading's 8px instead of the
-// figure's 32px, so the heading stays with what it names. Last in the file
-// so it beats the media's own margins at equal specificity.
+// Media directly under a heading takes the heading's 8 px instead of its
+// own top margin, so the heading stays with what it names. Last in the
+// file so it beats the media's own margins at equal specificity.
 main :is(h2, h3, h4, h5)
-  + :is(figure, .photo-gallery, .video-container, .model-viewer-frame, .gaussian-splat, .spatial-long-exposure, .table-wrap, .sheet, .shell-block, .resources, .projects-grid) {
-  margin-top: 0;
+  + :is(figure, p:has(> img:only-child), .photo-gallery, .video-container, .model-viewer-frame, .gaussian-splat, .spatial-long-exposure, .table-wrap, .sheet, .shell-block, .resources, .projects-grid, .cards) {
+  margin-top: $rhythm-heading-below;
 }

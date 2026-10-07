@@ -19,6 +19,18 @@
         "1314"
       ],
       "port": 1314
+    },
+    {
+      "name": "panel-qa",
+      "runtimeExecutable": "hugo",
+      "runtimeArgs": [
+        "server",
+        "-D",
+        "--port",
+        "1315",
+        "--disableFastRender"
+      ],
+      "port": 1315
     }
   ]
 }

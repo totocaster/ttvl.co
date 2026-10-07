@@ -1,11 +1,22 @@
 {{ define "main" }}
 {{- /* Content first: page-list and project-grid record what the hub lists,
-     and the head's meta line counts it. A section with project front
-     matter (the notebook system) is an article, not a hub. */ -}}
-{{ $content := .Content }}
-<article class="{{ if not .Params.project }}hub{{ end }}{{ with .Params.content_css }} {{ . }}{{ end }}">
-  {{ partial "page-head.html" . }}
-  {{ $content }}
+     and the head's rail counts it. A hub's opening paragraph becomes the
+     head's dek (docs/styleguide.md, Page by Page: section hubs); the rest
+     is the body block, with each page-list or project-grid standing beside
+     it as a block of its own. A section with project front matter (the
+     notebook system) is an article, not a hub. */ -}}
+{{ $content := string .Content }}
+{{ $isHub := not .Params.project }}
+{{ $dek := .Params.description }}
+{{ if $isHub }}
+  {{ with findRESubmatch `^\s*<p>((?s:.*?))</p>` $content 1 }}
+    {{ $dek = index (index . 0) 1 | safeHTML }}
+    {{ $content = replaceRE `^\s*<p>(?s:.*?)</p>` "" $content 1 }}
+  {{ end }}
+{{ end }}
+<article class="{{ if $isHub }}hub{{ end }}{{ with .Params.content_css }} {{ . }}{{ end }}">
+  {{ partial "page-head.html" (dict "page" . "dek" $dek) }}
+  {{ partial "block-body.html" $content }}
 </article>
 {{ if .Params.project }}{{ partialCached "mentioned-in.html" . .Path }}{{ end }}
 {{ end }}

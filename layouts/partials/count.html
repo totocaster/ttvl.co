@@ -1,0 +1,3 @@
+{{- /* A count as words after the number: "13 pages", "1 page", with the
+     number in Mono. Pass a dict with "n", "one", and "many". Returns HTML. */ -}}
+{{- return (printf `<span class="n">%d</span> %s` (int .n) (cond (eq (int .n) 1) .one .many) | safeHTML) -}}

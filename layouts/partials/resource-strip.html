@@ -1,7 +1,9 @@
-{{- /* A page's canonical doors, from `resources:` frontmatter (title + url).
-File chips carry their size; external chips carry the ↗ mark via CSS. */ -}}
-{{ with .Params.resources }}
-<p class="resource-strip">
+{{- /* A page's canonical doors, from `resources:` front matter (title + url):
+     one joined row of keys under the title. File keys carry their size in
+     Mono and the ↓ mark; external keys the ↗ mark (both via CSS).
+     docs/styleguide.md, Doors, Chips, and the Strip. */ -}}
+{{- with .Params.resources }}
+<p class="strip resource-strip">
   {{- range . }}
   {{- $url := .url }}
   {{- if hasPrefix $url "/" }}
@@ -10,11 +12,11 @@ File chips carry their size; external chips carry the ↗ mark via CSS. */ -}}
     {{- if os.FileExists $fsPath }}
       {{- $bytes := (os.Stat $fsPath).Size }}
       {{- if ge $bytes 1048576 }}{{ $size = printf "%.1f MB" (div (float $bytes) 1048576) }}{{ else }}{{ $size = printf "%.0f KB" (div (float $bytes) 1024) }}{{ end }}
-    {{- end }}
-  <a class="chip chip--file" href="{{ $url }}" download>{{ .title }}{{ with $size }} <span class="chip-meta">{{ . }}</span>{{ end }}</a>
-  {{- else }}
+    {{- end -}}
+  <a class="chip chip--file" href="{{ $url }}" download>{{ .title }}{{ with $size }} <span class="chip-meta">· <span class="n">{{ . }}</span></span>{{ end }}</a>
+  {{- else -}}
   <a class="chip chip--external" href="{{ $url }}">{{ .title }}</a>
   {{- end }}
-  {{- end }}
+  {{- end -}}
 </p>
-{{ end }}
+{{- end }}

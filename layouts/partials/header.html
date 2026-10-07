@@ -1,24 +1,13 @@
-<header>
-  <div class="header-top">
-    {{ if .IsHome }}
-    <h1 class="site-title">
-      <a href="/"
-        ><img
-          src="/ui/ttvl_logo.png"
-          srcset="/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x"
-          alt="{{ .Site.Title }}"
-      /></a>
-    </h1>
-    {{ else }}
-    <p class="site-title">
-      <a href="/"
-        ><img
-          src="/ui/ttvl_logo.png"
-          srcset="/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x"
-          alt="{{ .Site.Title }}"
-      /></a>
-    </p>
-    {{ end }}
-  </div>
+{{- /* The masthead: the signature and the search key, then the nav, then
+     one rule hairline. The logo is the h1 on home only.
+     docs/styleguide.md, Masthead. */ -}}
+<header class="site wrap">
+  {{- $logo := printf `<a href="/"><img src="/ui/ttvl_logo.png" srcset="/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x" width="92" height="36" alt="%s" /></a>` (htmlEscape .Site.Title) | safeHTML }}
+  {{- if .IsHome }}
+  <h1 class="logo">{{ $logo }}</h1>
+  {{- else }}
+  <p class="logo">{{ $logo }}</p>
+  {{- end }}
+  <a class="search-key" href="#search">Search <kbd>?</kbd></a>
   {{ partial "nav.html" . }}
 </header>

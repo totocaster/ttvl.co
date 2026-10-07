@@ -1,0 +1,25 @@
+{{ define "main" }}
+{{- /* Not found: the head with the path that was asked for (filled in by
+     the browser, since the page is static), one sentence pointing to
+     search, the index, and home. docs/styleguide.md, Page by Page. */ -}}
+<article>
+  {{ partial "page-head.html" (dict
+    "page" .
+    "title" "Nothing at this address."
+    "dek" "The page moved, was never here, or the link has a typo. Old URLs under /writings/ and /essays/ still forward to Notes."
+    "rail" (slice `<span class="n">404</span> · Not found` `<span class="not-found-path"></span>`)
+  ) }}
+  <section class="block body">
+    <div class="rail"></div>
+    <div class="main prose">
+      <p>Try <a class="search-key" href="#search">search</a> (press <kbd>?</kbd> anywhere), the <a href="/a-z/">index</a> of every page by title, or go <a href="/">home</a>.</p>
+    </div>
+  </section>
+</article>
+<script>
+  (function () {
+    var el = document.querySelector(".not-found-path");
+    if (el) el.textContent = window.location.pathname;
+  })();
+</script>
+{{ end }}

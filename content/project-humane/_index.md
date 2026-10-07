@@ -8,14 +8,8 @@ filter_ref: 'Project Humane'
 
 Project Humane is an umbrella term for my tools for thought and made-for-hands efforts.
 
-## Ideological Projects
+{{< page-list title="Ideological Projects" pages="plaintext-commons" >}}
 
-{{< page-list pages="plaintext-commons" >}}
+{{< page-list title="Analog Tools" pages="notebook-system, project-humane/edc-keychain" >}}
 
-## Analog Tools
-
-{{< page-list pages="notebook-system, project-humane/edc-keychain" >}}
-
-## Digital Tools
-
-{{< page-list pages="obsidian/arrowhead, obsidian/bases-kanban-view, project-humane/copy-editor, obsidian/metrics, project-humane/patchcord, project-humane/refmode, obsidian/stamp, project-humane/things-cli, project-humane/tp7, obsidian/triage, obsidian/vault-tasks, project-humane/whoopy, project-humane/withingy" >}}
+{{< page-list title="Digital Tools" pages="obsidian/arrowhead, obsidian/bases-kanban-view, project-humane/copy-editor, obsidian/metrics, project-humane/patchcord, project-humane/refmode, obsidian/stamp, project-humane/things-cli, project-humane/tp7, obsidian/triage, obsidian/vault-tasks, project-humane/whoopy, project-humane/withingy" >}}

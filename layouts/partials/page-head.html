@@ -1,22 +1,48 @@
-{{- /* The page head: the title, one meta line, and the strip of canonical
-     doors from `resources:` front matter. hide_title suppresses the whole
-     head. Pass the page, or a dict with "page" and optional "title"
-     (override) and "dek" (a subtitle line under the meta, for dispatches). Hubs that list pages through shortcodes must render .Content
-     before calling this, so the meta line can count them.
-     docs/styleguide.md, Page Head. */ -}}
+{{- /* The page head: the rail at left with at most two lines (from
+     page-meta.html), and the column with the title, the dek, the strip of
+     doors from `resources:` front matter, and anything a hub appends.
+     hide_title suppresses the whole head. docs/styleguide.md, Page Head.
+
+     Pass the page, or a dict:
+       "page"   the page (required)
+       "title"  overrides the page title
+       "dek"    the line under the title; defaults to the page description.
+                Pass "" in a dict to suppress it. HTML is allowed.
+       "rail"   a slice of HTML lines that replaces page-meta's
+       "extra"  HTML appended inside .main after the strip (a hub's filter)
+
+     Hubs that list pages through shortcodes must render .Content before
+     calling this, so the rail can count them. */ -}}
 {{- $p := . -}}
 {{- $title := "" -}}
 {{- $dek := "" -}}
-{{- if reflect.IsMap . }}{{ $p = .page }}{{ $title = .title }}{{ $dek = .dek }}{{ end -}}
+{{- $rail := slice -}}
+{{- $extra := "" -}}
+{{- $hasDek := false -}}
+{{- $hasRail := false -}}
+{{- if reflect.IsMap . -}}
+  {{- $p = .page -}}
+  {{- $title = .title -}}
+  {{- if isset . "dek" }}{{ $dek = .dek }}{{ $hasDek = true }}{{ end -}}
+  {{- if isset . "rail" }}{{ $rail = .rail }}{{ $hasRail = true }}{{ end -}}
+  {{- $extra = .extra -}}
+{{- end -}}
+{{- if not $hasDek }}{{ $dek = $p.Params.description }}{{ end -}}
+{{- if not $hasRail }}{{ $rail = partial "page-meta.html" $p }}{{ end -}}
 {{- if not $p.Params.hide_title }}
 <header class="page-head">
-  <h1>{{ $title | default $p.Title }}</h1>
-  {{- with partial "page-meta.html" $p }}
-  <p class="page-meta">{{ . }}</p>
-  {{- end }}
-  {{- with $dek }}
-  <p class="page-dek">{{ . }}</p>
-  {{- end }}
-  {{ partial "resource-strip.html" $p }}
+  <div class="rail">
+    {{- range $rail }}{{ with . }}<p>{{ . | safeHTML }}</p>{{ end }}{{ end -}}
+  </div>
+  <div class="main">
+    <h1>{{ $title | default $p.Title }}</h1>
+    {{- with $dek }}
+    <p class="page-dek">{{ . }}</p>
+    {{- end }}
+    {{- partial "resource-strip.html" $p }}
+    {{- with $extra }}
+    {{ . }}
+    {{- end }}
+  </div>
 </header>
 {{- end }}

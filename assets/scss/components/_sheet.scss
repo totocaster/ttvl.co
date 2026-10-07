@@ -1,19 +1,19 @@
-// Sheets — plain-text and data fences, everything that isn't a shell fence.
-// The terminal's geometry in page materials: a terminal is a screen and
-// stays dark in both themes; a file is paper and follows the theme.
-// Rendered by _markup/render-codeblock.html.
+// Sheets: plain-text and data fences, everything that isn't a shell fence.
+// A file is paper and follows the theme; a terminal is a screen and stays
+// dark (_shell.scss). Mono 14/22, radius 2, the bleed width.
+// Rendered by _markup/render-codeblock.html. docs/styleguide.md, Prose.
 
 .sheet {
-  @include readable-width;
+  max-width: $max-width-bleed;
+  margin: $space-5 0;
+  padding: $space-3 $space-4; // sheet geometry, shared with the terminal
   background: var(--surface);
   color: var(--ink);
   border: 1px solid var(--edge);
   border-radius: $radius;
-  padding: 12px 16px; // sheet geometry, shared with the terminal
-  margin: 0 0 $space-4;
-  @include monospace;
-  font-size: $font-size-code;
-  line-height: 1.6;
+  font-family: $font-family-mono;
+  font-size: $font-size-code-block;
+  line-height: $line-height-code;
 
   // The base pre rules make a scroller of every pre; here the scroller is
   // .sheet__scroll, so the pre is a plain box.
@@ -31,7 +31,7 @@
     min-width: max-content;
   }
 
-  // Comments are the one thing that gets a colour: Chroma's comment
+  // Comments are the one thing that gets a color: Chroma's comment
   // classes on tagged fences, the same class on plain fences.
   .c,
   .c1,
@@ -42,13 +42,13 @@
   }
 }
 
-// Filename band from a fence title attribute, in the meta voice.
+// The filename kicker from a fence title attribute: Mono, faint.
 .sheet__kicker {
-  @include type-meta;
-  font-family: $font-family-base;
+  font-family: $font-family-mono;
+  @include type-small;
   color: var(--ink-faint);
-  margin: -12px -16px 10px;
-  padding: 6px 16px;
+  margin: (-$space-3) (-$space-4) $space-3;
+  padding: 6px $space-4; // kicker geometry
   border-bottom: 1px solid var(--rule);
 }
 
@@ -57,8 +57,8 @@
 .sheet__scroll {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  margin: 0 -16px;
-  padding: 0 16px;
+  margin: 0 (-$space-4);
+  padding: 0 $space-4;
 
   // Right-edge fade while there is more to scroll. The mask is 56px wider
   // than the box and sits flush at rest, so nothing fades. A scroll

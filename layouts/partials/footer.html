@@ -1,9 +1,8 @@
-<footer>
-  {{- $version := .Site.Params.version }}
-  {{- $update := or (os.Getenv "HUGO_SITE_UPDATE") $version.update }}
-  <p>
-    &copy; 2008&ndash;{{ now.Year }} {{ .Site.Title }} &middot;
-    v{{ $version.major }}.{{ $version.minor }}.{{ $update }} &middot;
-    <a href="/colophon/">Colophon</a> &middot; <a href="/a-z/">Index</a>
-  </p>
+{{- /* The footer: no rule. Copyright and version at left, numbers in Mono;
+     Colophon, Index, and RSS at right. docs/styleguide.md, Footer. */ -}}
+{{- $version := .Site.Params.version }}
+{{- $update := or (os.Getenv "HUGO_SITE_UPDATE") $version.update }}
+<footer class="foot wrap">
+  <p>&copy; <span class="n">2008–{{ now.Year }}</span> {{ .Site.Title }} · <span class="n">v{{ $version.major }}.{{ $version.minor }}.{{ $update }}</span></p>
+  <p><a href="/colophon/">Colophon</a> · <a href="/a-z/">Index</a> · <a href="/index.xml">RSS</a></p>
 </footer>

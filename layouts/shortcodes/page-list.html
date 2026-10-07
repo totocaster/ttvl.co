@@ -1,9 +1,14 @@
-{{- /* Rows for a hub, read from each page's front matter: date, title, and
-description. Titles can't drift from the pages they name. Curate order in
-the pages parameter; write group headings and introductions as content:
-  {{< page-list pages="darkroom/roll-id, darkroom/travel-dev-kit" >}}
-Records the pages in .Page.Store "hubPages" for the hub's meta line.
-docs/styleguide.md, Hub Lists. */ -}}
+{{- /* A hub block of rows, read from each page's front matter: date, title,
+and description as the dek. Titles can't drift from the pages they name.
+Curate order in the pages parameter:
+  {{< page-list title="Process and Techniques" pages="darkroom/roll-id, darkroom/travel-dev-kit" >}}
+Parameters: "pages" (content paths, comma-separated), "title" (the rail
+heading), "meta" (replaces the count line; numbers are set in Mono),
+"lead" (a sentence under the count, Markdown), "id" (the anchor; defaults
+to the title's). Emits a whole block: closes the article's body block
+before itself and reopens it after (partials/block-seams.html).
+Records the pages in .Page.Store "hubPages" for the hub's rail.
+docs/styleguide.md, Block. */ -}}
 {{- $pages := slice -}}
 {{- range split (.Get "pages") "," -}}
   {{- $path := trim . " \n\t" -}}
@@ -15,15 +20,30 @@ docs/styleguide.md, Hub Lists. */ -}}
 {{- end -}}
 {{- with $pages }}
 {{- $.Page.Store.Add "hubPages" . }}
-<ul class="rows with-deks">
-  {{- range . }}
-  {{- $dek := .Description | default (and .Params.project .Params.project.description) }}
-  {{ partial "row.html" (dict
-    "meta" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02") | safeHTML)
-    "url" .RelPermalink
-    "title" .Title
-    "dek" $dek
-  ) }}
-  {{- end }}
-</ul>
+{{- $seams := partialCached "block-seams.html" "seams" -}}
+{{- $title := $.Get "title" -}}
+{{- $id := $.Get "id" | default (cond (ne $title "") (anchorize $title) "") -}}
+{{- $meta := partial "count.html" (dict "n" (len .) "one" "page" "many" "pages") -}}
+{{- with $.Get "meta" }}{{ $meta = partial "numerals.html" . }}{{ end -}}
+{{- $seams.close | safeHTML }}
+<section class="block"{{ with $id }} id="{{ . }}"{{ end }}>
+  <div class="rail">
+    {{- with $title }}<h2>{{ . }}</h2>{{ end }}<p class="meta">{{ $meta }}</p>
+    {{- with $.Get "lead" }}<p class="lead">{{ . | $.Page.RenderString }}</p>{{ end -}}
+  </div>
+  <div class="main">
+    <ul class="rows with-deks">
+      {{- range . }}
+      {{- $dek := .Description | default (and .Params.project .Params.project.description) }}
+      {{ partial "row.html" (dict
+        "meta" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02") | safeHTML)
+        "url" .RelPermalink
+        "title" .Title
+        "dek" $dek
+      ) }}
+      {{- end }}
+    </ul>
+  </div>
+</section>
+{{ $seams.open | safeHTML -}}
 {{- end }}

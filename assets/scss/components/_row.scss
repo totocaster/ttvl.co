@@ -1,38 +1,36 @@
-// Rows: the site's one grammar for a list of pages. A meta column (a date,
-// a number, or a key), the title in the quiet link voice, an optional tail
-// inline after the title, an optional dek on its own line. No hairlines:
-// rows sit 4px apart, or 16px apart when they carry deks.
-// Rendered by layouts/partials/row.html. About's record is written as HTML
-// in content with the older .issue-list names, styled here as aliases.
+// Rows: the one grammar for anything listed. Three columns: a 128 px meta
+// column (the ordering key or the kind), the title with an optional dek
+// under it, and a right-aligned tail with one qualifier. A rule hairline
+// between rows, none above the first or under the last.
+// Rendered by layouts/partials/row.html. docs/styleguide.md, Rows.
+// About's record is still written as HTML with the older .issue-list
+// names; they are styled here as aliases until that page is converted.
 
-main .rows,
-main .issue-list {
+.rows,
+.issue-list {
   list-style: none;
-  margin: 0 0 $rhythm-paragraph;
+  margin: 0;
   padding: 0;
-  @include readable-width;
+  max-width: $max-width-column;
 
   > li {
     display: grid;
-    grid-template-columns: $row-meta-width minmax(0, 1fr);
+    grid-template-columns: $row-meta-width minmax(0, 1fr) auto;
+    column-gap: $space-5;
     align-items: baseline;
-    max-width: none;
-    margin: 0 0 $rhythm-row;
-  }
-
-  // Rows with a second line (a dek, or a stacked tail) sit 16px apart.
-  &.with-deks > li,
-  &.stacked > li {
-    margin-bottom: $rhythm-row-dek;
-  }
-
-  // Stacked: the tail becomes the row's second line, in the meta voice,
-  // instead of trailing the title. For lists whose tails would otherwise
-  // wrap unevenly (research entries: stream, number, category).
-  &.stacked .row-tail {
-    display: block;
     margin: 0;
-    white-space: normal;
+    padding: $rhythm-row 0;
+    max-width: none;
+  }
+
+  // Hairlines between visible rows only, so filtering never leaves a
+  // rule above the first row or under the last.
+  > li:not([hidden]) ~ li:not([hidden]) {
+    border-top: 1px solid var(--rule);
+  }
+
+  &.with-deks > li {
+    padding: $rhythm-row-dek 0;
   }
 
   // Filtering hides rows; !important beats the row's own display.
@@ -41,44 +39,121 @@ main .issue-list {
   }
 }
 
-main .row-meta,
-main .issue-list .issue-number {
-  @include type-meta;
-  color: var(--ink-faint);
-  @include meta-links;
+// Rows inside prose (the resources manifest, About's record) keep the
+// paragraph rhythm after them and none of the prose list styling.
+.prose .rows,
+.prose .issue-list {
+  padding: 0;
+  margin: 0 0 $rhythm-paragraph;
+  max-width: $max-width-column;
+
+  .row-title,
+  .issue-title {
+    font-weight: $link-weight-quiet;
+  }
 }
 
-main .row-main {
+.row-meta,
+.issue-list .issue-number {
+  @include type-meta;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  @include meta-links;
+
+  // A closed question.
+  &.closed {
+    text-decoration: line-through;
+  }
+}
+
+.row-main,
+.issue-list .press-work {
   min-width: 0;
 }
 
-main .rows .row-title,
-main .issue-list .issue-title {
+.row-title,
+.issue-list .issue-title {
   font-weight: $link-weight-quiet;
-  text-decoration: $link-decoration-default;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
-// Tail: what the row's page is, inline after the title, in the meta voice.
-main .row-tail {
-  @include type-meta;
-  color: var(--ink-faint);
-  margin-left: $space-1;
-  white-space: nowrap; // wraps to the next line as a unit
-  @include meta-links;
-}
-
-// Dek: the page's description, muted, on tight leading.
-main .row-dek {
+// The dek: the page's description, muted, under the title.
+.row-dek {
   display: block;
+  @include type-dek;
   color: var(--ink-muted);
-  line-height: $line-height-tight;
   margin-top: 2px; // sits under the title's descenders
 }
 
+// The tail: one qualifier, the same kind in every row of a list.
+.row-tail {
+  @include type-meta;
+  color: var(--ink-faint);
+  text-align: right;
+  white-space: nowrap;
+  @include meta-links;
+}
+
 // A value that is not a link (a bench entry) reads as body text.
-main .row-value {
+.row-value {
   p {
     display: inline;
     margin: 0;
   }
+}
+
+// Phones: the meta column narrows and the tail drops under the title.
+@include narrow {
+  .rows > li,
+  .issue-list > li {
+    grid-template-columns: $row-meta-width-narrow minmax(0, 1fr);
+    column-gap: $space-3;
+  }
+
+  .row-tail {
+    grid-column: 2;
+    text-align: left;
+    white-space: normal;
+    margin-top: 2px;
+  }
+}
+
+// Group heads: a heading that groups rows inside a block, with its count
+// 12 px after it in the label voice. The first sits on the block; the rest
+// sit 40 px below the previous group.
+.group-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  column-gap: $space-3;
+  @include type-heading;
+  margin: $rhythm-group-above 0 $rhythm-heading-below;
+
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .count,
+  .tail {
+    @include type-meta;
+    font-weight: $font-weight-regular;
+    color: var(--ink-faint);
+  }
+}
+
+.prose .group-head {
+  margin: $rhythm-group-above 0 $rhythm-heading-below;
+}
+
+.main > .group-head:first-child,
+.main > :first-child > .group-head:first-child {
+  margin-top: 0;
 }

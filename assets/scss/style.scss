@@ -2,11 +2,13 @@
 // Placement rule: used by two or more sections → components/;
 // used by one → sections/. Themed colors are defined in _tokens only.
 
+@import "fonts";
 @import "variables";
 @import "tokens";
 @import "base";
 @import "layout";
 
+@import "components/block";
 @import "components/page-head";
 @import "components/row";
 @import "components/card";

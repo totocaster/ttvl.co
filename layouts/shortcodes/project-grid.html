@@ -1,22 +1,43 @@
-{{ $title := .Get "title" }}
-{{ $pages := slice }}
-{{ range split (.Get "pages") "," }}
-  {{ $path := trim . " \n\t" }}
-  {{ with site.GetPage $path }}
-    {{ $pages = $pages | append . }}
-  {{ else }}
-    {{ warnf "project-grid shortcode could not find page %q in %s" $path $.Page.File.Path }}
-  {{ end }}
-{{ end }}
-{{ if gt (len $pages) 0 }}
-{{ $.Page.Store.Add "hubPages" $pages }}
-<section class="project-year">
-  {{ with $title }}<h2>{{ . }}</h2>{{ end }}
-  {{ with trim .Inner " \n\t" }}<p>{{ . | markdownify }}</p>{{ end }}
-  <div class="projects-grid">
-    {{ range $pages }}
+{{- /* A hub block of cards, in the order given:
+  {{< project-grid title="Vault tools" pages="obsidian/arrowhead, obsidian/stamp" >}}
+Parameters: "pages" (content paths, comma-separated), "title" (the rail
+heading), "meta" (replaces the count line; numbers are set in Mono),
+"lead" (a sentence under the count, Markdown; the paired form's inner
+text serves as the lead when "lead" is absent), "id" (the anchor; defaults
+to the title's). Emits a whole block: closes the article's body block
+before itself and reopens it after (partials/block-seams.html).
+Records the pages in .Page.Store "hubPages" for the hub's rail.
+docs/styleguide.md, Block and Cards. */ -}}
+{{- $pages := slice -}}
+{{- range split (.Get "pages") "," -}}
+  {{- $path := trim . " \n\t" -}}
+  {{- with site.GetPage $path -}}
+    {{- $pages = $pages | append . -}}
+  {{- else -}}
+    {{- warnf "project-grid shortcode could not find page %q in %s" $path $.Page.File.Path -}}
+  {{- end -}}
+{{- end -}}
+{{- with $pages }}
+{{- $.Page.Store.Add "hubPages" . }}
+{{- $seams := partialCached "block-seams.html" "seams" -}}
+{{- $title := $.Get "title" -}}
+{{- $id := $.Get "id" | default (cond (ne $title "") (anchorize $title) "") -}}
+{{- $meta := partial "count.html" (dict "n" (len .) "one" "project" "many" "projects") -}}
+{{- with $.Get "meta" }}{{ $meta = partial "numerals.html" . }}{{ end -}}
+{{- $lead := $.Get "lead" | default (trim (string $.Inner) " \n\t") -}}
+{{- $seams.close | safeHTML }}
+<section class="block"{{ with $id }} id="{{ . }}"{{ end }}>
+  <div class="rail">
+    {{- with $title }}<h2>{{ . }}</h2>{{ end }}<p class="meta">{{ $meta }}</p>
+    {{- with $lead }}<p class="lead">{{ . | $.Page.RenderString }}</p>{{ end -}}
+  </div>
+  <div class="main">
+    <div class="projects-grid">
+      {{- range . }}
       {{ partial "card.html" (dict "page" .) }}
-    {{ end }}
+      {{- end }}
+    </div>
   </div>
 </section>
-{{ end }}
+{{ $seams.open | safeHTML -}}
+{{- end }}

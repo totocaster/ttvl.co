@@ -1,0 +1,11 @@
+{{- /* The seams of an article's body block. _default/single.html and
+     list.html wrap .Content in one block with an empty rail; a shortcode
+     that emits a whole block of its own (section, page-list, project-grid)
+     closes the body block before itself and reopens it after, and
+     block-body.html drops the body blocks that end up empty.
+     Returns a dict with "open" and "close". Keep both regex-safe: they are
+     matched literally in block-body.html. */ -}}
+{{- return dict
+  "open" `<section class="block body"><div class="rail"></div><div class="main prose">`
+  "close" `</div></section>`
+-}}

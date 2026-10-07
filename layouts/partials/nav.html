@@ -1,12 +1,17 @@
-<nav id="Menu" aria-label="Primary">
-  <ul class="primary-nav">
-    {{ $current := .RelPermalink }}
-    <li><a class="{{ if eq $current "/projects/" }}is-active{{ end }}" href="/projects/">Projects</a></li>
-    <li><a class="{{ if hasPrefix $current "/notes/" }}is-active{{ end }}" href="/notes/">Notes</a></li>
-    <li><a class="{{ if hasPrefix $current "/research/" }}is-active{{ end }}" href="/research/">Research</a></li>
-    <li><a class="{{ if hasPrefix $current "/log/" }}is-active{{ end }}" href="/log/">Log</a></li>
-    <li><a class="{{ if hasPrefix $current "/newsletter/" }}is-active{{ end }}" href="/newsletter/">Newsletter</a></li>
-    <li><a class="{{ if hasPrefix $current "/traces/" }}is-active{{ end }}" href="/traces/">Traces</a></li>
-    <li><a class="{{ if eq $current "/about/" }}is-active{{ end }}" href="/about/">About</a></li>
-  </ul>
+{{- /* Primary navigation. The current section reads in ink, underlined. */ -}}
+{{- $current := .RelPermalink -}}
+{{- $items := slice
+  (dict "url" "/projects/" "label" "Projects" "match" "exact")
+  (dict "url" "/notes/" "label" "Notes")
+  (dict "url" "/research/" "label" "Research")
+  (dict "url" "/log/" "label" "Log")
+  (dict "url" "/newsletter/" "label" "Newsletter")
+  (dict "url" "/traces/" "label" "Traces")
+  (dict "url" "/about/" "label" "About" "match" "exact")
+-}}
+<nav class="nav" aria-label="Primary">
+  {{- range $items }}
+  {{- $on := cond (eq .match "exact") (eq $current .url) (hasPrefix $current .url) }}
+  <a href="{{ .url }}"{{ if $on }} aria-current="{{ if eq $current .url }}page{{ else }}true{{ end }}"{{ end }}>{{ .label }}</a>
+  {{- end }}
 </nav>

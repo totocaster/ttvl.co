@@ -1,51 +1,60 @@
 // Design tokens — the only place themed color values are defined.
-// Light is the default; dark and high-contrast override tokens only,
+// Light is the default; dark and high contrast override tokens only,
 // never component rules. Everything else styles against var(--*).
 //
-// Roles:
+// Roles (docs/styleguide.md, Color):
 //   --ground         page background
-//   --ink            text, links, buttons, frames
-//   --ink-muted      secondary prose (deks, captions, descriptions)
-//   --ink-faint      metadata (dates, counts, kickers, legends)
-//   --rule           hairlines inside tables and code bands
-//   --edge           frames (tiles, inputs, chips, table borders)
-//   --surface        raised panels (sheets, table headers, image wells)
+//   --ink            text, frames, buttons
+//   --ink-muted      deks, captions, the nav at rest
+//   --ink-faint      labels, meta, legends, rail lines, the subscribe key's shadow
+//   --rule           hairlines between rows, under the masthead, inside tables
+//   --edge           frames: tiles, sheets, figures, keycaps, the quotation
+//   --surface        raised panels: sheets, hover tints, the selected search row
 //   --surface-input  form fields
-//   --highlight      the one accent (text fragments, selection)
+//   --highlight      text fragments and selection
+//   --signal         what is live: the current month, the pulse, the focus ring;
+//                    never under text
+//   --term*          the terminal block, dark in both themes
 //
 // Muted and faint are solid values, not alpha, so each keeps its contrast
-// on --surface panels too. Every text tier passes 4.5:1 in both themes
-// (docs/styleguide.md): faint is 4.95:1 light and 5.31:1 dark.
+// on --surface panels too. Every text tier passes 4.5:1 in both themes:
+// muted 7.5:1 light and 9:1 dark, faint 5.1:1 light and 6:1 dark.
 
 :root {
   --ground: #fff;
   --ink: #000;
   --ink-muted: #555;
-  --ink-faint: #707070;
-  --rule: #eee;
-  --edge: #ddd;
-  --surface: #fafafa;
+  --ink-faint: #6e6e6e;
+  --rule: #ececec;
+  --edge: #d9d9d9;
+  --surface: #f7f7f7;
   --surface-input: #fff;
   --highlight: rgba(255, 235, 59, 0.8);
+  --signal: #ff4f00;
+  --term: #161616;
+  --term-ink: #e6e6e6;
+  --term-faint: #8f8f8f;
 }
 
 @media screen and (prefers-color-scheme: dark) {
   :root {
-    --ground: rgb(33, 33, 33);
-    --ink: #e3e3e3;
-    --ink-muted: #b4b4b4;
-    --ink-faint: #949494;
-    --rule: rgba(255, 255, 255, 0.1);
-    --edge: rgba(227, 227, 227, 0.2);
+    --ground: #141414;
+    --ink: #ededed;
+    --ink-muted: #b5b5b5;
+    --ink-faint: #929292;
+    --rule: rgba(255, 255, 255, 0.09);
+    --edge: rgba(255, 255, 255, 0.2);
     --surface: rgba(255, 255, 255, 0.05);
-    --surface-input: rgb(48, 48, 48);
+    --surface-input: #1e1e1e;
     --highlight: rgba(255, 213, 79, 0.3);
+    --term: #0a0a0a;
   }
 }
 
 @media screen and (prefers-contrast: more) {
   :root {
     --ink-faint: var(--ink-muted);
+    --rule: var(--ink);
     --edge: var(--ink);
     --surface: var(--ground);
   }

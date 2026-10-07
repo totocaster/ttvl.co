@@ -1,56 +1,143 @@
-// Email subscribe form — rendered by layouts/partials/subscribe-form.html.
-// Scoped to main: the links page (no main element) styles its own variant.
+// Controls: every button is a flat block on a hard offset shadow. Pressing
+// (:active) moves it into the shadow; :focus-visible draws a 2 px signal
+// ring 2 px out. Every block carries a right and bottom margin equal to
+// its shadow, so nothing clips at a column edge.
+// docs/styleguide.md, Buttons and Forms. The subscribe form is rendered by
+// layouts/partials/subscribe-form.html, its legend by subscribe-legend.html.
 
-main div.email-subscribe {
-  padding: $space-5 0;
+// The primary key: ink face, ground text, on a 3 px faint shadow.
+.btn,
+.subscribe button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: $control-height-primary;
+  padding: 0 $space-4;
+  border: 1px solid var(--ink);
+  border-radius: $radius;
+  background: var(--ink);
+  color: var(--ground);
+  @include type-control;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  @include key($shadow-primary, var(--ink-faint));
+  @include focus-ring;
+}
 
-  div.promise > p {
-    padding-top: $space-3;
-    display: block;
-    margin: 0;
+// The quiet key: ground face, ink text, on a 2 px ink shadow. Viewer bar
+// buttons take the same block.
+.btn--quiet,
+.btn.quiet {
+  height: $control-height-quiet;
+  padding: 0 $space-3;
+  background: var(--ground);
+  color: var(--ink);
+  @include type-small;
+  font-weight: $font-weight-regular;
+  @include key($shadow-quiet);
+
+  &:hover {
+    background: var(--surface);
   }
+}
 
-  .js-cm-form {
-    display: flex;
+// A segmented control: joined keys like the strip on one 2 px ink shadow;
+// the pressed key is ink.
+.segmented {
+  display: inline-flex;
+  border-radius: $radius;
+  box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+  margin: 0 $shadow-quiet $shadow-quiet 0;
 
-    input[type="email"] {
-      border: 1px solid var(--ink);
-      background: var(--surface-input);
-      color: var(--ink);
-      padding: $space-2; // control geometry
-      margin-right: $space-2;
-      font-size: $font-size-base;
-      height: $control-height;
-      box-sizing: border-box;
-      border-radius: $radius;
-      width: 40%;
-      // Dark fields use a subtle edge instead of the strong ink border.
-      @include dark {
-        border-color: var(--rule);
-      }
-      @include narrow {
-        width: 66%;
-      }
+  button {
+    height: $control-height-quiet;
+    padding: 0 $space-3;
+    margin: 0 0 0 -1px;
+    border: 1px solid var(--ink);
+    border-radius: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: $font-family-sans;
+    @include type-small;
+    cursor: pointer;
+    transition: background-color $t-fast;
+    @include focus-ring;
+
+    &:first-child {
+      margin-left: 0;
+      border-radius: $radius 0 0 $radius;
     }
 
-    button {
+    &:last-child {
+      border-radius: 0 $radius $radius 0;
+    }
+
+    &:hover {
+      background: var(--surface);
+    }
+
+    &[aria-pressed="true"] {
       background: var(--ink);
       color: var(--ground);
-      border: none;
-      // Dark buttons carry a hairline to separate from the ground.
-      @include dark {
-        border: 1px solid var(--rule);
-      }
-      padding: $space-2 $space-3;
-      cursor: pointer;
-      font-size: $font-size-base;
-      height: $control-height;
-      box-sizing: border-box;
-      border-radius: $radius;
-
-      &:hover {
-        opacity: 0.9;
-      }
     }
+
+    &:focus-visible {
+      position: relative;
+      z-index: 1;
+    }
+  }
+}
+
+// The subscribe form: a 40 px input, a 12 px gap, the key. No box around
+// it; the legend sits 12 px under it.
+.subscribe {
+  display: flex;
+  align-items: flex-start;
+  gap: $space-3;
+  max-width: $max-width-measure;
+  margin: 0;
+
+  label {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  input[type="email"] {
+    flex: 1;
+    min-width: 0;
+    height: $control-height-primary;
+    padding: 0 $space-3;
+    border: 1px solid var(--ink);
+    border-radius: $radius;
+    background: var(--surface-input);
+    color: var(--ink);
+    font-family: $font-family-sans;
+    font-size: $font-size-dek;
+    line-height: $line-height-dek;
+
+    &::placeholder {
+      color: var(--ink-faint);
+      opacity: 1;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--signal);
+      outline-offset: 2px;
+    }
+  }
+
+  & + .legend {
+    margin-top: $rhythm-legend;
+  }
+
+  @include narrow {
+    flex-direction: column;
+    align-items: stretch;
   }
 }

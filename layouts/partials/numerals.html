@@ -1,0 +1,9 @@
+{{- /* Sets the numbers in a short label in Mono: escapes the text, wraps
+     every number that starts a word in <span class="n">, and turns
+     Markdown links [text](url) into links. For rail meta lines written in
+     front matter or shortcode parameters ("Updated 2026-09 · Not awards").
+     Returns HTML. */ -}}
+{{- $s := htmlEscape (string .) -}}
+{{- $s = replaceRE `(^|[\s(])(\d(?:[\d\-–.:,/]*\d)?)` `${1}<span class="n">${2}</span>` $s -}}
+{{- $s = replaceRE `\[([^\]]+)\]\(([^)\s]+)\)` `<a href="${2}">${1}</a>` $s -}}
+{{- return ($s | safeHTML) -}}
