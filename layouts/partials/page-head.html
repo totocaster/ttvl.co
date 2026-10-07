@@ -5,9 +5,10 @@
 
      Pass the page, or a dict:
        "page"   the page (required)
-       "title"  overrides the page title
+       "title"  overrides the page title (so does `head_title` front matter)
        "dek"    the line under the title; defaults to the page description.
                 Pass "" in a dict to suppress it. HTML is allowed.
+                Front matter `head_dek` overrides it the same way (About sets it empty).
        "rail"   a slice of HTML lines that replaces page-meta's
        "extra"  HTML appended inside .main after the strip (a hub's filter)
 
@@ -27,7 +28,7 @@
   {{- if isset . "rail" }}{{ $rail = .rail }}{{ $hasRail = true }}{{ end -}}
   {{- $extra = .extra -}}
 {{- end -}}
-{{- if not $hasDek }}{{ $dek = $p.Params.description }}{{ end -}}
+{{- if not $hasDek }}{{ $dek = $p.Params.description }}{{ if isset $p.Params "head_dek" }}{{ $dek = $p.Params.head_dek }}{{ end }}{{ end -}}
 {{- if not $hasRail }}{{ $rail = partial "page-meta.html" $p }}{{ end -}}
 {{- if not $p.Params.hide_title }}
 <header class="page-head">
@@ -35,7 +36,7 @@
     {{- range $rail }}{{ with . }}<p>{{ . | safeHTML }}</p>{{ end }}{{ end -}}
   </div>
   <div class="main">
-    <h1>{{ $title | default $p.Title }}</h1>
+    <h1>{{ $title | default $p.Params.head_title | default $p.Title }}</h1>
     {{- with $dek }}
     <p class="page-dek">{{ . }}</p>
     {{- end }}

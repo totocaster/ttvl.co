@@ -34,7 +34,7 @@
       const count = group.querySelector(".count[data-singular]");
       if (count) {
         const noun = visibleCount === 1 ? count.dataset.singular : count.dataset.plural;
-        count.textContent = `${visibleCount} ${noun}`;
+        count.innerHTML = `<span class="n">${visibleCount}</span> ${noun}`;
       }
     });
   };

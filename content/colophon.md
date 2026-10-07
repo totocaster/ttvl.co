@@ -11,7 +11,7 @@ This website is generated using [Hugo](https://gohugo.io/). The content is manag
 
 The generated website is hosted on DigitalOcean App Platform. If you sign up with DigitalOcean through [this link][doref], we'll both receive generous credits.
 
-This iteration of the website was designed in [2026-10](/log/2026/10/).
+This iteration of the website was designed in [2026-10](/log/).
 
 <!-- ## Membership Payments
 

@@ -61,11 +61,10 @@
     -webkit-appearance: none;
   }
 
-  // The rule under the field is the focus state; keyboard focus adds the
-  // signal ring like every other control.
+  // The rule under the field and the caret are the focus state: the field
+  // is the only thing focused when the overlay opens, so no ring.
   &:focus-visible {
-    outline: 2px solid var(--signal);
-    outline-offset: 2px;
+    outline: none;
   }
 }
 

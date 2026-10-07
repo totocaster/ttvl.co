@@ -1,8 +1,9 @@
-{{- $.Scratch.Add "searchIndex" slice -}}
+{{- /* A local slice, not Scratch: Scratch persists across dev-server rebuilds and doubled the index. */ -}}
+{{- $entries := slice -}}
 {{- $pages := where site.RegularPages "Type" "not in" (slice "page" "json") -}}
 {{- $pages := where $pages "Params.draft" "!=" true -}}
 {{- range $index, $page := $pages -}}
-  {{- $.Scratch.Add "searchIndex" (dict 
+  {{- $entries = $entries | append (dict 
     "id" $index
     "title" $page.Title
     "permalink" $page.Permalink
@@ -13,4 +14,4 @@
     "tags" (or $page.Params.tags slice)
   ) -}}
 {{- end -}}
-{{- $.Scratch.Get "searchIndex" | jsonify -}}
+{{- $entries | jsonify -}}

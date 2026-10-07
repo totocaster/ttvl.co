@@ -21,7 +21,7 @@ sh ./tools/build-production.sh
 # Direct build without cleaning public/
 HUGO_SITE_UPDATE=$(git rev-list --count HEAD) hugo --destination ./public
 
-# Social cards: render the ones that are missing (macOS; reads Helvetica Neue from the system)
+# Social cards: render the ones that are missing (macOS; reads IBM Plex from ~/Library/Fonts)
 make cards
 make cards-check                        # list missing and stale cards without rendering
 
@@ -63,7 +63,7 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 - The `email` output format is declared globally, while every Flaneur dispatch currently opts into `HTML` and `email` in its frontmatter.
 - Goldmark unsafe rendering is enabled because content includes trusted inline HTML.
 - The custom RSS template includes Log, Darkroom, Bookbinding, Notes, Flaneur, Project Humane, and Obsidian content. Research stays out of it and publishes its own feeds through `layouts/research/rss.xml`: `/research/index.xml` for every stream and `/research/<stream>/index.xml` for one. The hub and each stream opt in with `outputs: ["HTML", "RSS"]`.
-- `data/square-crops.json` supplies the point of interest and aspect ratios shared by the square-crops diagram and its static image renderer.
+- `data/` is currently unused except for `.gitkeep`.
 
 ### Templates and assets
 
@@ -74,27 +74,30 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 - Hugo Pipes compiles/minifies SCSS and minifies/fingerprints most JavaScript. There is no separate npm build step.
 - Dark mode follows `prefers-color-scheme`; there is no manual theme toggle.
 - The narrow navigation is a horizontally scrollable CSS row; there is no mobile-menu JavaScript.
-- Pages can set `content_css` frontmatter to add a class to their `article` element; `about` is the only value in use.
-- Markdown tables render via `_markup/render-table.html`: framed with an --edge border and --surface header band, body-size cells on the tight line-height, wrapped for horizontal scroll on narrow screens. Tables sit at prose width; append `{.wide}` after a table (Goldmark block attributes are enabled) to span the container. Right-aligned columns get tabular numerals. Use the `Command | What it does` shape for CLI references.
+- Pages can set `content_css` frontmatter to add a class to their `article` element; `about` is the only value in use. `head_title` replaces the page title in the head (About opens with its sentence) and `head_dek` replaces or, when empty, removes the dek.
+- Markdown tables render via `_markup/render-table.html`: a 1 px ink rule under the header row and `--rule` hairlines between rows, no frame, cells at 16/23, wrapped for horizontal scroll on narrow screens. Tables sit at prose width; append `{.wide}` after a table (Goldmark block attributes are enabled) to span the container. Right-aligned columns get tabular numerals. Use the `Command | What it does` shape for CLI references.
 - Code fences tagged `sh`/`bash`/`shell`/`zsh` render as dark terminal blocks via `_markup/render-codeblock-*.html` and `partials/shell-block.html`: each command's `$` prompt is a quiet copy button (`assets/js/shell-copy.js`, loaded only on pages with shell blocks), continuation lines after a trailing backslash carry no prompt, and `#` comment lines render faint. Every other fence renders as a sheet via `_markup/render-codeblock.html` and `components/_sheet.scss`: the terminal's geometry in page materials (`--surface` fill, `--edge` hairline), following the theme. Chroma runs with `noClasses = false` and no stylesheet, so tagged fences look like untagged ones except that comments render faint; on untagged fences a trailing annotation set off by two spaces and `#` gets the same treatment. A fence attribute such as ```` ```toml {title="manifest.toml"} ```` prints a filename band above the block. Long lines scroll inside the frame with a right-edge fade while there is more to scroll.
 
 ### Design standard
 
-`docs/styleguide.md` is the visual standard, called Air: principles, tokens with their contrast ratios, the three type sizes, the spacing scale and rhythm, widths, and every shared pattern (page head, rows, group heads, cards, figures, hub lists, end matter). Read it before adding a page type, a list, or a component. The rules below are its short form.
+`docs/styleguide.md` is the visual standard, called Panel (v8.0, 2026-10): principles, the two IBM Plex families and their voices, tokens with their contrast ratios, the spacing scale and rhythm, the rail-and-column layout, and every shared pattern (masthead, page head, block, rows, group heads, cards, doors, buttons and forms, legends, end matter, media chrome), plus a page-by-page map. Read it before adding a page type, a list, or a component. The rules below are its short form.
 
-- Legibility above everything: every text tier passes 4.5:1 in both themes, and nothing is smaller than 14 px. No uppercase labels, no letter-spacing, no weight 600.
-- Space does the work: structure comes from the spacing scale (`$space-1` to `$space-8`, 4 to 96 px) and the rhythm variables built on it, never from dividing lines. Lines that mark a kind of content stay (tables, code, quotations, tile frames). The space above a heading is at least three times the space below it.
-- One way to do each thing: every page opens with `partials/page-head.html` (title, one meta line from `page-meta.html`, the resource strip); every list of pages uses `partials/row.html`; groups carry an inline count; articles end with `partials/mentioned-in.html`; hub lists use the `page-list` shortcode.
-- Themed colors come exclusively from the custom properties in `assets/scss/_tokens.scss` (`--ground`, `--ink`, `--ink-muted`, `--ink-faint`, `--rule`, `--edge`, `--surface`, `--surface-input`, `--highlight`). Dark mode and high contrast override tokens only, never component rules. Deliberate exceptions are commented in place: over-photo chrome, the viewers' media wells, and print.
-- Color encodes role; reserve opacity for state (hover, disabled), never for establishing a text tier.
-- Type, spacing, widths, and motion values come from `assets/scss/_variables.scss`. Full-viewport layers use `$z-overlay`/`$z-search` instead of literal z-indexes.
-- Put a style in `assets/scss/components/` when two or more sections use it, and in `assets/scss/sections/` when one does.
+- Content over chrome: body text is full ink at 18/28; everything that describes it is 14 px and faint. Every text tier passes 4.5:1 in both themes, and nothing is smaller than 14 px. No uppercase labels, no letter-spacing.
+- The rail carries the metadata: a page head and every block are a 192 px rail (label, date, count, kind) beside the content column. Nothing sits under a title. Templates build blocks from `partials/page-head.html` (rail lines from `page-meta.html`), `partials/block-body.html` for an article body, and the `section`, `page-list`, and `project-grid` shortcodes for authored pages and hubs.
+- Words in Plex Sans, numbers in Plex Mono: dates are `<time>`, other numbers in the chrome are `<span class="n">` (`partials/count.html` and `numerals.html` help). Labels are sentence case.
+- One way to do each thing: every list is `partials/row.html` (meta column, title, one tail); groups carry a count; cards are `partials/card.html`; articles end with `partials/mentioned-in.html`; the subscribe form is `subscribe-form.html` with `subscribe-legend.html`; a `p.legend` explains the thing directly above it.
+- Hairlines sit only between rows and under the masthead. Frames stay on tiles, tables, sheets, and the quotation. Buttons are blocks on hard offset shadows (`components/_control.scss`); the door strip under a title is one joined row on one shadow.
+- Themed colors come exclusively from the custom properties in `assets/scss/_tokens.scss` (`--ground`, `--ink`, `--ink-muted`, `--ink-faint`, `--rule`, `--edge`, `--surface`, `--surface-input`, `--highlight`, `--signal`, and the `--term*` terminal set). Dark mode and high contrast override tokens only, never component rules. Deliberate exceptions are commented in place: controls over photographs, the viewers' media wells, the terminal, and print.
+- Type, spacing (`$space-1` to `$space-9`, 4 to 96 px), widths, and motion values come from `assets/scss/_variables.scss`. Full-viewport layers use `$z-overlay`/`$z-search` instead of literal z-indexes.
+- Put a style in `assets/scss/components/` when two or more sections use it, and in `assets/scss/sections/` when one does. The media chrome (viewers, clip, pronunciation) lives in `components/_model-viewer.scss`.
+- Fonts are self-hosted subsets under `static/fonts/plex/` (six WOFF2 files, about 154 KB), declared in `assets/scss/_fonts.scss` and preloaded from `partials/head.html`. Regenerate them with `pyftsubset` (through `uvx --from fonttools --with brotli pyftsubset`) from the OTFs in `~/Library/Fonts` when a glyph is missing.
 
 ### Browser features
 
-- Search is available on layouts using the shared head. `?` opens the overlay when focus is not in an input, textarea, or editable element. Arrow keys select results, Enter follows one, Escape closes, and Tab remains trapped in the dialog.
-- `layouts/index.json` indexes regular pages whose Hugo type is neither `page` nor `json`. This includes section content but excludes standalone root pages such as About and Colophon.
-- Notes, Projects, and the Research hub share `assets/js/category-filter.js` for query-string category filtering (on the Research hub, each stream's folder name is a category) (`.category-filter` rail, `data-filter-group` sections, `data-category` items, `data-filter-show` per-state elements). The projects rail is driven by hub `_index.md` frontmatter: `filter_label` (chip name), `filter_dek` (one-line description shown while filtered), `filter_ref` (name of the arrow reference to the hub), and `filter_weight` (rail position; unweighted hubs sort alphabetically). Group-head counts (`.count` with `data-singular`/`data-plural`) follow the filter. Every article computes "Mentioned in" rows from internal links at build time (`partials/mentioned-in.html`), including content paths named in `page-list` and `project-grid`.
+- Search is available on layouts using the shared head. `?` opens the overlay when focus is not in an input, textarea, or editable element, as does the `Search ?` key in the masthead. Arrow keys select results, Enter follows one, Escape closes, and Tab remains trapped in the dialog.
+- `layouts/index.json` indexes regular pages whose Hugo type is neither `page` nor `json`. This includes section content but excludes standalone root pages such as About and Colophon. The overlay renders results as rows (section, title, summary, date).
+- `layouts/404.html` is the not-found page; DigitalOcean serves it for unknown paths.
+- Notes and Projects share `assets/js/category-filter.js` for query-string category filtering (the Research hub groups entries by stream instead) (`.category-filter` rail, `data-filter-group` sections, `data-category` items, `data-filter-show` per-state elements). The projects rail is driven by hub `_index.md` frontmatter: `filter_label` (chip name), `filter_dek` (one-line description shown while filtered), `filter_ref` (name of the arrow reference to the hub), and `filter_weight` (rail position; unweighted hubs sort alphabetically). Group-head counts (`.count` with `data-singular`/`data-plural`) follow the filter. Every article computes "Mentioned in" rows from internal links at build time (`partials/mentioned-in.html`), including content paths named in `page-list` and `project-grid`.
 - The lightbox is loaded for Loose Leaves and pages with `lightbox: true`; it supports Escape, arrow keys, backdrop close, focus trapping, and focus restoration.
 - Research entry pages map the Left and Right arrow keys to the in-stream pager. The keys are ignored in fields and media players, with modifiers, and while text is selected.
 - Text Fragments are feature-detected through `document.fragmentDirective`. Selecting 6–499 characters updates the URL; `Cmd/Ctrl+Shift+L` updates it from the current selection, and Escape clears a live selection. There is no polyfill.
@@ -167,9 +170,9 @@ Every note, project page, article, hub with a `filter_dek`, research stream, and
 
 - Run `make cards` (`uv run tools/social-cards.py`) after adding a note, project page, article, or research stream, or after changing a title, date, category, description, or poster. It builds the manifest through Hugo, renders only the cards that are missing, and updates `static/social/manifest.json`. Commit the new files with the content change; `make hooks` installs a pre-commit hook that refuses a commit while cards are missing or stale.
 - `make cards-check` lists missing, stale, and orphaned cards without rendering; `make cards-stale` also re-renders cards whose inputs changed; `make cards-all` re-renders everything after a design change (bump `DESIGN_VERSION` in the script when the design changes); `uv run tools/social-cards.py --only /notes/walking/` limits a run, and `--drafts` includes draft pages.
-- Card voices: Notes are the ledger header with the title set as a text-fragment highlight; Projects are the poster from `project.image` matted on a pale blueprint grid with a wall label; articles are the ledger with the section name in the kicker and the page `description` as the dek; research streams are the article ledger with "Research · Stream" in the kicker and the stream `description` as the dek; hubs and the site card are the ledger with a dek. Hub deks come from `filter_dek`; the site dek from `params.description` in `hugo.toml`. Give every article a `description`, since a card without one is a bare title.
+- Card voices: every text card (notes, articles, hubs, research streams, the site) is the Panel ledger: a rail at left with the date in Plex Mono and the section and kind in Plex Sans, a signal square with `ttvl.co`, then the title and the dek in the column, the signature at the bottom, and one rule across. Projects put the rail and title at left and the poster from `project.image` on a framed surface well at right (JPEG). Hub deks come from `filter_dek`; the site dek from `params.description` in `hugo.toml`. Give every article a `description`, since a card without one is a bare title.
 - Flaneur dispatches get no card: their HTML pages are email sources with no metadata. The plate and engraving renderers remain in the script, dormant, and the manifest template says how to re-enable them.
-- Rendering needs macOS: Helvetica Neue is read from `/System/Library/Fonts/HelveticaNeue.ttc` (override with `SOCIAL_CARDS_FONT`). uv provisions Python and Pillow from the script's inline metadata.
+- Rendering needs the IBM Plex OTFs (Sans Regular, Medium, SemiBold; Mono Regular) in `~/Library/Fonts` (override the folder with `SOCIAL_CARDS_FONT_DIR`). uv provisions Python and Pillow from the script's inline metadata.
 - Log months fall back to the Log hub card, and research entries to their stream's card. About, Colophon, AI, and other root pages fall back to the site card. Traces set `image` in frontmatter and keep it.
 
 ### Research journal
@@ -201,22 +204,22 @@ Every note, project page, article, hub with a `filter_dek`, research stream, and
 
 - `resources`: manifest of files and external sources from a Markdown-style link list; file rows read type and size from `static/` at build time (↓), external rows name their destination (↗). Trailing text after a link renders as a muted note. Pages can also declare a `resources:` frontmatter list (title + url) to render a chip strip of canonical links under the title.
 - `flaneur-gallery`: responsive newsletter image grid.
-- `page-list`: rows for a hub from a comma-separated `pages` parameter (content paths), each showing the page's date, title, and `description` as a dek. Titles come from the pages, so they can't drift; write group headings and introductions as ordinary content. Records its pages so the hub's meta line can count them.
+- `page-list`: a block of rows for a hub from a comma-separated `pages` parameter (content paths), each showing the page's date, title, and `description` as a dek. `title` names the block in the rail, `lead` adds a sentence under its count, `meta` replaces the count, and `id` the anchor (it defaults to the anchorized title). Titles come from the pages, so they can't drift; hubs no longer write `##` headings around it. Records its pages so the hub's rail can count them.
+- `section`: a paired shortcode for Markdown-authored pages (About) that wraps its inner Markdown in a block with `title`, `meta`, `lead`, and `id`; `---` inside it renders as space. It only works in content rendered through `partials/block-body.html`.
 - `clip`: short silent looping video with `src`, `poster`, `alt`, and an optional Markdown `caption`; plays muted on repeat, and readers who prefer reduced motion get the poster and controls (`assets/js/clip.js`, loaded only on pages with a clip).
 - `membership-link`: link to `params.membershipURL`.
 - `model-viewer`: interactive GLB viewer with poster, caption, download, and no-JavaScript fallback.
 - `gaussian-splat`: interactive SPZ viewer with poster, download, and no-JavaScript fallback; requires `gaussian_splat: true`. Optional `camera-position` and `camera-target` values are space-separated x/y/z coordinates in the scan's coordinate system; use them when automatic framing puts the camera outside the scanned space.
 - `photo-gallery`: linked-image gallery prepared for the lightbox.
-- `square-crops`: interactive aspect-ratio diagram with a PNG fallback for RSS, print, and readers without the site's styles. After changing `data/square-crops.json`, run `uv run tools/square-crops-image.py` and include the updated image under `static/visuals/notes/`. `partials/rss-content.html` removes the interactive figure from feeds and retains the image, alt text, and caption.
-- `project-grid`: explicitly ordered project-card group from a comma-separated `pages` parameter. Also counted by the hub's meta line.
+- `project-grid`: a block of explicitly ordered project cards from a comma-separated `pages` parameter, with the same `title`, `meta`, `lead`, and `id` parameters as `page-list`; the inner Markdown is the lead. Also counted by the hub's rail.
 - `pronunciation-name`: accessible audio pronunciation control.
-- `toc`: current page's generated table of contents, under an `h2`.
+- `toc`: current page's generated table of contents, under an `h2`, as a numbered list in the label voice with Mono numerals.
 - `youtube`: lazy-loaded responsive video embed.
 
 ## Site versioning and deployment
 
 - The footer format is `vMAJOR.MINOR.UPDATE`.
-- The configured site era is currently `v7.11` under `[params.version]` in `hugo.toml`.
+- The configured site era is currently `v8.0` under `[params.version]` in `hugo.toml` (v8 is Panel; v7 was the Helvetica era).
 - `MAJOR` identifies the site era. Change `MINOR` only for a visible site-structure or publishing-system revision, not for routine content.
 - `UPDATE` is the repository commit count supplied through `HUGO_SITE_UPDATE` by `tools/build-production.sh`.
 - `params.version.update` is only a fallback for direct local Hugo invocations and can lag behind Git history.
@@ -302,11 +305,11 @@ Use the forms below even when Merriam-Webster or a source uses another form. Ent
 
 There are no automated tests. Match verification to the change:
 
-1. Run `hugo server -D` and inspect affected pages at multiple widths.
+1. Run `hugo server -D` and inspect affected pages at multiple widths. The dev server renders to `public/`, so a production build run beside it overwrites what it serves with production-base pages until it rebuilds; restart it after `tools/build-production.sh`.
 2. Run `sh ./tools/build-production.sh` and investigate new build warnings.
 3. Exercise `?` search, keyboard navigation, and focus restoration when shared layout or JavaScript changes.
 4. Emulate light and dark `prefers-color-scheme`; there is no theme toggle.
-5. Check Notes filtering/backlinks, the Research hub filter, stream Open Questions, entry relations, lightbox controls, Text Fragment URLs, or pronunciation when touching those features.
+5. Check Notes filtering/backlinks, the Research hub's stream groups, stream Open Questions, an entry's Mentioned in and In this stream blocks, lightbox controls, Text Fragment URLs, or pronunciation when touching those features.
 6. Verify both browser and email outputs for Flaneur changes.
 7. Inspect `/index.json`, `/index.xml`, aliases, redirects, `robots.txt`, and `sitemap.xml` when changing outputs or routing.
 8. Run `make cards-check` before committing content. A production build warns about missing cards but still ships the fallback.

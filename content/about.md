@@ -1,7 +1,8 @@
 ---
 title: 'About'
 content_css: about
-hide_title: true
+head_title: "A public notebook of making and wandering curiosities."
+head_dek: ""
 date: 2025-01-07
 lastmod: 2026-09-16
 description: "Toto Tvalavadze: Georgian photographer, bookmaker, and toolmaker. Tokyo from 2014, Rome from 2026. The record, the principles, and the kit."
@@ -11,20 +12,9 @@ aliases:
   - /press/
 ---
 
-</div></section>
-<header class="page-head">
-<div class="rail"><p>Updated <time datetime="2026-09-16">2026-09-16</time></p></div>
-<div class="main">
-<h1>A public notebook of making and wandering curiosities.</h1>
-<p class="on-page">On this page: <a href="#newsletter">Newsletter</a> · <a href="#record">Record</a> · <a href="#philosophy">Philosophy</a> · <a href="#extended-about">Extended about</a> · <a href="#tools-i-use">Tools I use</a> · <a href="#how-i-use-ai">AI</a> · <a href="#get-in-touch">Get in touch</a></p>
-</div>
-</header>
-<section class="block body"><div class="rail"></div><div class="main prose">
+On this page: [Newsletter](#newsletter) · [Record](#record) · [Philosophy](#philosophy) · [Extended about](#extended-about) · [Tools I use](#tools-i-use) · [AI](#how-i-use-ai) · [Get in touch](#get-in-touch)
+{.on-page}
 
-<!-- Above: the page head, written here because the title is the opening
-sentence rather than the page title (hide_title keeps the template's own head
-off). The head closes the body block the template opened and reopens it after.
-Keep the rail date in step with lastmod. -->
 
 <figure class="portrait">
   <img src="/visuals/toto_self_portrait_2022.jpg" alt="Toto Tvalavadze, self-portrait" width="960" height="960" />

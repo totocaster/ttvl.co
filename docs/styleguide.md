@@ -180,7 +180,7 @@ The rail holds at most two lines; the column holds the title, the dek where the 
 | Index | `75 entries · 11 hubs` | |
 | 404 | `404 · Not found` | the path that was asked for |
 
-Counts read as words after the number: `13 pages`, `1 page`. Hubs use their own noun: notes, projects, months, dispatches, leaves, traces, entries. `hide_title: true` suppresses the whole head.
+Counts read as words after the number: `13 pages`, `1 page`. Hubs use their own noun: notes, projects, months, dispatches, leaves, traces, entries. `hide_title: true` suppresses the whole head. Front matter `head_title` replaces the title with another line (About opens with its sentence) and `head_dek` replaces or, when empty, removes the dek.
 
 Rendered by `partials/page-head.html`; the rail lines come from `partials/page-meta.html`, which returns them as a list.
 
@@ -198,7 +198,7 @@ The unit of every page below the head. The rail holds a heading and one meta lin
 - `.block.year`: a year or letter group directly under a hub's head; tight blocks sit 40 px apart.
 - `.block.entry`: a research entry on a stream page; the rail holds `date · number`, then the kind.
 - `.block.end`: end matter; sits 64 px after the body, 40 px after another end block.
-- Markdown-authored pages (About) wrap each section in the paired `section` shortcode: `{{< section title="Record" meta="Updated 2026-09 · Not awards. Things that exist." id="record" >}}…{{< /section >}}`. Hubs that curate lists in Markdown use `page-list` and `project-grid` with `title`, `meta`, and `lead` parameters, which emit a block each; they no longer write `##` headings around them.
+- Markdown-authored pages (About) wrap each section in the paired `section` shortcode: `{{< section title="Record" meta="Updated 2026-09 · Not awards. Things that exist." id="record" >}}…{{< /section >}}`. The shortcode closes the body block the template opened and reopens it after itself, so it only works in content rendered through `partials/block-body.html`. Numbers in `meta` are set in Mono automatically and `[text](url)` links work there; `id` defaults to the anchorized title. Hubs that curate lists in Markdown use `page-list` and `project-grid` with `title`, `meta`, and `lead` parameters, which emit a block each; they no longer write `##` headings around them.
 
 ### Prose
 
@@ -311,7 +311,7 @@ Full ground. Centered, 96 px down: the hint in the label voice with keycaps (`Ty
 - **Newsletter.** Head with the intro as the dek, the form and legend in the column. Start Here: rows `The essay | title + dek | #008 · 2024-01`. Contact Sheet: the strip of 150 × 110 frames with `#016 · 2026-09` under each, the legend under the strip, `7 frames` in the rail. Archive: `16 dispatches` in the rail, one group head per year with the count, rows `#016 · 2026-09 | title`.
 - **Dispatch.** No masthead: the engraving centered, 120 px tall. Head (`2026-09-02 · 016` / `The Flâneur · Dispatch`, the subtitle as the dek). The letter, photographs unframed, galleries in two columns. End block `The Flâneur` (`16 dispatches · all →`): one sentence, the form, the legend. Footer `ttvl.co · Archive`. The email output is untouched.
 - **Traces hub.** Head. Archive block with trace cards (`date · kind`).
-- **Trace.** Head with the download chip in the strip (`SPZ scan · 17.5 MB ↓`). The body block holds the viewer and the prose; Photographs as a prose `h2` over the gallery. Mentioned in.
+- **Trace.** Head with the download chip in the strip (`SPZ scan · 16.7 MB ↓`; sizes are read from the file and use binary megabytes, as the strip does). The body block holds the viewer and the prose; Photographs as a prose `h2` over the gallery. Mentioned in.
 - **Loose Leaves.** Head. One tight year block per year with the count; a four-column grid of 3:4 tiles on `--edge` frames with the date in Mono under each; two columns on phones.
 - **About.** Head (`Updated 2026-09-16`) over the opening sentence as the title; the on-page nav in the column in the label voice. Then one block per section through the `section` shortcode: Newsletter (`16 dispatches · all →`), Record (`Updated 2026-09 · Not awards. Things that exist.`), Philosophy (`3 principles`), Extended About, Tools I use (`Updated 2026-09 · Nothing here is sponsored`), How I use AI, Get in touch. Record's subheads are group heads with rows (the venue as the tail). The principles are `h3.principle` with Mono numerals in the rail.
 - **Colophon.** Head (`v8.0.351`). Body.
@@ -319,17 +319,17 @@ Full ground. Centered, 96 px down: the hint in the label voice with keycaps (`Ty
 - **Search.** The overlay above.
 - **404.** `layouts/404.html`: head (`404 · Not found` / the path), one sentence pointing to search, the index, and home.
 - **`/links/` and `/found/`.** Avatar, logo, the description, then pills on 2 px ink shadows 12 px apart with the kind in the label voice at the right, the form and legend under them. No masthead.
-- **Membership (`/membership/`), the Flâneur email output, and the Jinny website page's gallery keep their own styles.**
+- **Membership (`/membership/`) and the Flâneur email output keep their own styles.** The Jinny website page is an ordinary project page; a gallery holding one image renders as a 760 px figure in the image's own proportions.
 
 ## Media Chrome
 
 The viewers (`model-viewer`, `model-viewer-comparison`, `gaussian-splat`, `spatial-long-exposure`) share one geometry:
 
 - A bar above the frame in the label voice: the title at left, the controls at right as quiet blocks; the comparison viewer's two dates and the map's `Places · Connections · Both` modes are one segmented control, the pressed key in ink. 12 px between the bar and the frame.
-- The frame: 16:10, the column's width, a 1 px `--edge` frame with radius 2, the media well dark (`#111`, a deliberate exception). The fullscreen key at the bottom right: 36 px, 1 px white at 60%, black at 50% behind, a stroke icon. A status badge at the bottom left (`Loading scan…`, `Showing after Kyojima · …`) in 14 px white on black at 50%.
+- The frame: 16:10, the column's width, a 1 px `--edge` frame with radius 2, the media well dark (`#111`, a deliberate exception). The fullscreen key at the bottom right: 36 px, 1 px white at 60%, black at 50% behind, a stroke icon. A status badge at the bottom left (`Loading scan…`, `Showing after Kyojima · 2026-08-03`) in 14 px white on black at 55%, which keeps white text at 4.5:1 over a light poster; the map's OpenStreetMap credit is the same badge at the top right.
 - A legend under the frame: how to move, and the download with its size in Mono and `↓`.
 - Galleries (`photo-gallery`, the trace photographs): three columns of 4:3 tiles on `--edge` frames, 16 px gaps, two columns on phones. The lightbox: black at 94%, the image contained, a counter `2 / 57 · 2025-04-19` in white at 72% at the bottom left with the numbers in Mono, `× ← →` keys as 44 px squares with a 1 px white frame at 50% and radius 2. Escape, the arrow keys, and the focus trap are unchanged.
-- The pronunciation control: a 24 px block on a 1 px shadow with the stroke icon; it stays inline in the sentence.
+- The pronunciation control: a 24 px block on a 1 px shadow with the stroke icon; it stays inline in the sentence. Its styles and the clip's live in `components/_model-viewer.scss` with the rest of the media chrome.
 - YouTube embeds take the figure frame.
 
 ## Dark Mode and High Contrast
