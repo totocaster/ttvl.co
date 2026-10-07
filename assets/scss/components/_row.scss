@@ -1,7 +1,11 @@
-// Rows: the one grammar for anything listed. Three columns: a 128 px meta
+// Rows: the one grammar for anything listed. Three columns: the meta
 // column (the ordering key or the kind), the title with an optional dek
 // under it, and a right-aligned tail with one qualifier. A rule hairline
 // between rows, none above the first or under the last.
+// On wide screens a list inside a block reaches left across the gap so its
+// meta column IS the rail: dates, kinds, and counts share one column with
+// every other label on the page, and titles start where content starts.
+// The search overlay's rows are not in a block and keep the 128 px column.
 // Rendered by layouts/partials/row.html. docs/styleguide.md, Rows.
 // About's record is still written as HTML with the older .issue-list
 // names; they are styled here as aliases until that page is converted.
@@ -106,6 +110,47 @@
   }
 }
 
+// Wide screens: the meta column is the rail.
+@include wide {
+  .block > .main .rows,
+  .block > .main .issue-list {
+    margin-left: -($rail-width + $rail-gap);
+    width: calc(100% + #{$rail-width + $rail-gap});
+    max-width: none;
+
+    > li {
+      grid-template-columns: $rail-width minmax(0, 1fr) auto;
+      column-gap: $rail-gap;
+    }
+  }
+
+  // A group head is a line of the same ledger: its count in the rail
+  // cell, its name where the titles start.
+  .block > .main .group-head {
+    display: grid;
+    grid-template-columns: $rail-width minmax(0, 1fr);
+    column-gap: $rail-gap;
+    align-items: baseline;
+    margin-left: -($rail-width + $rail-gap);
+
+    &::before {
+      content: "";
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .count {
+      grid-column: 1;
+      grid-row: 1;
+    }
+
+    .tail {
+      grid-column: 2;
+      grid-row: 2;
+    }
+  }
+}
+
 // Phones: the meta column narrows and the tail drops under the title.
 @include narrow {
   .rows > li,
@@ -125,15 +170,6 @@
 // Group heads: a heading that groups rows inside a block, with its count
 // 12 px after it in the label voice. The first sits on the block; the rest
 // sit 40 px below the previous group.
-// Rows without a meta column (the Index's Start Here): title and dek only.
-.rows.no-meta .row {
-  grid-template-columns: minmax(0, 1fr) auto;
-
-  .row-meta {
-    display: none;
-  }
-}
-
 .group-head {
   display: flex;
   flex-wrap: wrap;

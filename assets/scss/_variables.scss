@@ -96,7 +96,7 @@ $page-padding-narrow: 20px;
 $rail-width: 192px;
 $rail-gap: $space-7;
 $rail-offset: 11px; // a head's first rail line sits on the title's x-height
-$max-width-column: 880px; // rows, cards, galleries, viewers, wide tables
+$max-width-column: 960px; // the rest of the page beside the rail: rows, cards, media
 $max-width-measure: 640px; // running text, deks, forms, legends
 $max-width-bleed: 760px; // figures, sheets, terminals, tables
 $row-meta-width: 128px;
@@ -131,6 +131,12 @@ $z-search: 110;
 // Mixins
 @mixin narrow {
   @media screen and (max-width: $breakpoint-narrow) {
+    @content;
+  }
+}
+
+@mixin wide {
+  @media screen and (min-width: $breakpoint-narrow + 1px) {
     @content;
   }
 }

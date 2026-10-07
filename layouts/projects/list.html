@@ -46,17 +46,7 @@
 {{- range $categories -}}
   {{- $filter = printf `%s<li><a href="?category=%s" data-category="%s">%s</a></li>` $filter .slug .slug (htmlEscape .label) -}}
 {{- end -}}
-{{- range $c := $categories -}}
-  {{- with $c.url -}}
-    {{- $filter = printf `%s<li><a class="hub-ref" href="%s" data-filter-show="%s" hidden>→&nbsp;%s</a></li>` $filter . $c.slug (htmlEscape $c.ref) -}}
-  {{- end -}}
-{{- end -}}
 {{- $filter = printf "%s</ul></nav>" $filter -}}
-{{- range $c := $categories -}}
-  {{- with $c.dek -}}
-    {{- $filter = printf `%s<div class="filter-dek" data-filter-show="%s" hidden><p>%s</p></div>` $filter $c.slug (htmlEscape .) -}}
-  {{- end -}}
-{{- end -}}
 
 {{- $ongoing := slice -}}
 {{- $dated := slice -}}

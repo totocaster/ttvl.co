@@ -94,6 +94,39 @@
   margin-top: 0;
 }
 
+// Ledger blocks: a block whose column starts with a list or a group head.
+// The rail heading takes its own line, and the list below it uses the
+// rail as its meta column (components/_row.scss), so the page keeps one
+// column of labels. Set by the content (:has) or by a `ledger` class.
+@include wide {
+  .block.ledger,
+  .block:has(> .main > :is(.rows, .issue-list, .group, .group-head, .resources):first-child),
+  .block:has(> .main.prose > :is(.rows, .issue-list, .group-head):first-child) {
+    grid-template-rows: auto auto;
+
+    > .rail {
+      grid-row: 1;
+      grid-column: 1;
+    }
+
+    > .main {
+      grid-row: 2;
+      grid-column: 1 / -1;
+      max-width: none;
+      padding-left: $rail-width + $rail-gap;
+      margin-top: $space-3;
+    }
+  }
+
+  // Media that needs width spans the page when the rail beside the body
+  // is empty: the viewers, galleries, and wide tables.
+  .block.body:not(.has-toc) > .main :is(.viewer, .photo-gallery, .table-wrap.wide) {
+    margin-left: -($rail-width + $rail-gap);
+    width: calc(100% + #{$rail-width + $rail-gap});
+    max-width: none;
+  }
+}
+
 // Tight blocks: year and letter groups under a hub's head, end matter.
 .block.year + .block.year,
 .block.tight + .block.tight,
@@ -155,8 +188,9 @@
 }
 
 .rail-toc {
-  .meta {
-    margin-bottom: $space-2;
+  .toc-title {
+    @include type-heading;
+    margin: 0 0 $space-2;
   }
 
   .toc {

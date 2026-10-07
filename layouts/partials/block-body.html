@@ -9,7 +9,7 @@
 {{- $p := page -}}
 {{- $open := $seams.open -}}
 {{- if and ($p.Store.Get "toc") $p.TableOfContents -}}
-  {{- $open = printf `<section class="block body has-toc"><div class="rail rail-toc"><p class="meta">Contents</p><div class="toc">%s</div></div><div class="main prose">` $p.TableOfContents -}}
+  {{- $open = printf `<section class="block body has-toc"><div class="rail rail-toc"><p class="toc-title">Contents</p><div class="toc">%s</div></div><div class="main prose">` $p.TableOfContents -}}
 {{- end -}}
 {{- $html := printf "%s%s%s" $open (string .) $seams.close -}}
 {{- $html = replaceRE (printf `%s\s*%s` $seams.open $seams.close) "" $html -}}
