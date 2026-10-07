@@ -1,19 +1,50 @@
-{{ define "main" }} {{ partial "lightbox.html" . }}
-<article class="hub">
-  {{ partial "page-head.html" . }}
-  {{ .Content }}
-</article>
-<div class="leaves-grid">
-  {{ $path := "/leaves/" }} {{ $leaves := readDir (printf "static%s" $path) }}
-  <div class="grid">
-    {{ range sort $leaves "Name" "desc" }} {{ if findRE "\\.jpeg$" .Name }} {{ $date := index (findRE "\\d{4}-\\d{2}-\\d{2}" .Name) 0 }}
-    <div class="leaf">
-      <a href="{{ $path }}{{ .Name }}">
-        <img src="{{ $path }}{{ .Name }}" alt="Leaf note from {{ $date }}" />
-      </a>
-      <time datetime="{{ $date }}">{{ $date }}</time>
-    </div>
-    {{ end }} {{ end }}
+{{ define "main" }}
+{{- /* Loose Leaves: the head with the intro as its dek, then one tight
+     year block per year with its count, a four-column grid of 3:4 tiles
+     with the date in Mono under each. The leaves are the date-prefixed
+     JPEG files in static/leaves/. All years sit in one .leaves-grid so the
+     lightbox (assets/js/lightbox.js) pages through every leaf.
+     docs/styleguide.md, Page by Page: Loose Leaves. */ -}}
+{{- $content := string .Content -}}
+{{- $dek := .Params.description -}}
+{{- with findRESubmatch `^\s*<p>((?s:.*?))</p>` $content 1 -}}
+  {{- $dek = index (index . 0) 1 | safeHTML -}}
+  {{- $content = replaceRE `^\s*<p>(?s:.*?)</p>` "" $content 1 -}}
+{{- end -}}
+{{- $path := "/leaves/" -}}
+{{- $files := slice -}}
+{{- range readDir (printf "static%s" $path) -}}
+  {{- if findRE `^\d{4}-\d{2}-\d{2}.*\.jpeg$` .Name }}{{ $files = $files | append .Name }}{{ end -}}
+{{- end -}}
+{{- $files = sort $files "value" "desc" -}}
+{{- $years := slice -}}
+{{- range $files }}{{ $y := substr . 0 4 }}{{ if not (in $years $y) }}{{ $years = $years | append $y }}{{ end }}{{ end -}}
+{{ partial "lightbox.html" . }}
+<article class="hub leaves-hub">
+  {{ partial "page-head.html" (dict "page" . "dek" $dek) }}
+  {{- with trim $content " \n\t" }}{{ partial "block-body.html" . }}{{ end }}
+  <div class="leaves-grid">
+    {{- range $year := $years }}
+    {{- $in := slice }}
+    {{- range $files }}{{ if hasPrefix . $year }}{{ $in = $in | append . }}{{ end }}{{ end }}
+    <section class="block year">
+      <div class="rail">
+        <h2>{{ $year }}</h2>
+        <p class="meta">{{ partial "count.html" (dict "n" (len $in) "one" "leaf" "many" "leaves") }}</p>
+      </div>
+      <div class="main">
+        <ul class="leaves">
+          {{- range $in }}
+          {{- $date := substr . 0 10 }}
+          <li class="leaf">
+            <a href="{{ $path }}{{ . }}"><img src="{{ $path }}{{ . }}" alt="Loose leaf, {{ $date }}" loading="lazy" /></a>
+            <time datetime="{{ $date }}">{{ $date }}</time>
+          </li>
+          {{- end }}
+        </ul>
+      </div>
+    </section>
+    {{- end }}
   </div>
-</div>
+</article>
 {{ end }}

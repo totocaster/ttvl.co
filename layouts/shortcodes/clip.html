@@ -1,12 +1,17 @@
 {{- /* A short silent loop, the moving counterpart of an article image:
      {{< clip src="/visuals/research/stream/clip.mp4" poster="/visuals/research/stream/clip.jpg"
               alt="What the clip shows" caption="Optional caption, Markdown allowed" >}}
-     Plays muted on repeat. Readers who ask for reduced motion get the
-     poster frame and the browser's controls instead (assets/js/clip.js). */ -}}
+     The figure frame with a "Clip · loops muted" badge at the bottom left
+     (drawn by CSS from data-badge, so feeds don't carry it), the caption
+     below. Plays muted on repeat. Readers who ask for reduced motion get
+     the poster frame and the browser's controls instead (assets/js/clip.js).
+     docs/styleguide.md, Figures; styled in components/_model-viewer.scss. */ -}}
 {{- $src := .Get "src" -}}
 {{- if not $src }}{{ errorf "clip: missing src in %s" .Position }}{{ end -}}
 <figure class="clip">
-  <video class="clip__video" src="{{ $src }}"{{ with .Get "poster" }} poster="{{ . }}"{{ end }}{{ with .Get "alt" }} aria-label="{{ . }}"{{ end }} autoplay muted loop playsinline preload="metadata"></video>
+  <div class="clip-frame" data-badge="Clip · loops muted">
+    <video class="clip__video" src="{{ $src }}"{{ with .Get "poster" }} poster="{{ . }}"{{ end }}{{ with .Get "alt" }} aria-label="{{ . }}"{{ end }} autoplay muted loop playsinline preload="metadata"></video>
+  </div>
   {{- with .Get "caption" }}
   <figcaption>{{ . | markdownify }}</figcaption>
   {{- end }}

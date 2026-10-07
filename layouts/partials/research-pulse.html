@@ -1,6 +1,8 @@
 {{- /* A stream's activity over the last 26 weeks, oldest at left: one mark
      per seven days counted back from the build, taller for more entries
-     (capped at three). */ -}}
+     (capped at three). The current week's mark takes the signal color
+     when it holds an entry. Sits inline after the stream's name in the
+     hub's Streams rows; the legend under the rows explains it. */ -}}
 {{- $now := now.Unix -}}
 {{- $entries := .RegularPages -}}
 {{- $levels := slice -}}
@@ -16,5 +18,5 @@
   {{- $levels = $levels | append (cond (gt $count 3) 3 $count) -}}
 {{- end -}}
 <span class="research-pulse" role="img" aria-label="{{ $total }} {{ cond (eq $total 1) "entry" "entries" }} in the last 26 weeks">
-  {{- range $levels }}<span class="research-pulse__cell research-pulse__cell--{{ . }}"></span>{{ end -}}
+  {{- range $i, $l := $levels }}<span class="research-pulse__cell research-pulse__cell--{{ $l }}{{ if and (eq $i 25) (gt $l 0) }} research-pulse__cell--now{{ end }}"></span>{{ end -}}
 </span>

@@ -1,56 +1,68 @@
-// Log: month sections on the hub, and the archive as a compact year ×
-// month ledger. Every month owns a slot; unwritten months render as faint
-// voids so the grid shows the log's shape.
+// Log: month blocks on the hub, and the Archive as a compact year-by-month
+// grid: Mono 14, a 64 px year column, twelve cells, hairlines between
+// years, voids as ··, the current month in 500 on a 2 px signal underline.
+// The grid also closes the Index (layouts/_default/a-z.html).
+// docs/styleguide.md, Page by Page: Log hub.
 
-.log-archive {
-  ul.log-grid {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+// Month bullets breathe a little more than prose list items.
+:is(.log-hub, .log-month, .home) .prose li {
+  margin-bottom: 10px; // log list geometry
+}
+
+.log-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: $max-width-measure;
+  font-family: $font-family-mono;
+  @include type-small;
+  @include tabular-numbers;
 
   li {
     display: grid;
-    // The year sits in the row's meta column.
-    grid-template-columns: $row-meta-width repeat(12, minmax(0, 30px));
+    grid-template-columns: 64px repeat(12, minmax(0, 1fr));
     column-gap: $space-2;
-    align-items: baseline;
-    margin-bottom: $space-1;
-    @include type-body;
-    @include tabular-numbers;
+    align-items: center;
+    padding: 6px 0; // grid geometry
+  }
 
-    @include narrow {
-      grid-template-columns: 48px repeat(12, minmax(0, 1fr));
-      column-gap: $space-1;
-    }
+  li + li {
+    border-top: 1px solid var(--rule);
   }
 
   .log-year {
-    @include type-meta;
     color: var(--ink-faint);
   }
 
   a.log-month {
+    justify-self: center;
     color: var(--ink);
-    font-weight: $link-weight-quiet;
-    text-decoration: $link-decoration-plain;
+    text-decoration: none;
 
     &:hover {
-      text-decoration: $link-decoration-default;
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
     }
 
-    // You-are-here marker on month pages.
+    // You are here: a month page marks itself.
     &[aria-current="page"] {
-      font-weight: $font-weight-bold;
+      font-weight: $font-weight-medium;
+      box-shadow: inset 0 -2px var(--signal);
     }
   }
 
+  // Unwritten months: decorative, so they take the edge color, not a
+  // text tier.
   .log-void {
-    color: var(--ink-faint);
-    opacity: 0.5; // decorative void — deliberately below the faint tier
+    justify-self: center;
+    color: var(--edge);
     user-select: none;
-    // Occupy exactly a two-digit slot and center the dots under it.
-    width: 2ch;
-    text-align: center;
+  }
+
+  @include narrow {
+    li {
+      grid-template-columns: 44px repeat(12, minmax(0, 1fr));
+      column-gap: 2px;
+    }
   }
 }

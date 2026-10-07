@@ -1,14 +1,10 @@
-{{- /* A stream's status line: Active · 14 entries since 2026-07 · updated
-     2026-10-05. Each part stays whole when the line wraps. */ -}}
-{{- $entries := .RegularPages.ByDate -}}
-{{- $parts := slice (title (.Params.status | default "active")) -}}
+{{- /* A stream's tail in the hub's Streams rows: its entry count and the
+     date of its newest entry, numbers in Mono ("24 entries · 2026-10-06").
+     Returns HTML. */ -}}
+{{- $entries := .RegularPages.ByDate.Reverse -}}
+{{- $parts := slice (partial "count.html" (dict "n" (len $entries) "one" "entry" "many" "entries")) -}}
 {{- with $entries -}}
-  {{- $count := len . -}}
-  {{- $parts = $parts | append (printf "%d %s since %s" $count (cond (eq $count 1) "entry" "entries") ((index . 0).Date.Format "2006-01")) -}}
-  {{- $parts = $parts | append (printf "updated %s" ((index (last 1 .) 0).Date.Format "2006-01-02")) -}}
-{{- else -}}
-  {{- $parts = $parts | append "no entries yet" -}}
+  {{- $d := (index . 0).Date.Format "2006-01-02" -}}
+  {{- $parts = $parts | append (printf `<time datetime="%s">%s</time>` $d $d) -}}
 {{- end -}}
-{{- $html := slice -}}
-{{- range $parts }}{{ $html = $html | append (printf "<span class=\"research-part\">%s</span>" .) }}{{ end -}}
-{{- return (delimit $html " · " | safeHTML) -}}
+{{- return (delimit $parts " · " | safeHTML) -}}

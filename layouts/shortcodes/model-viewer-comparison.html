@@ -1,63 +1,79 @@
-{{ $poster := .Get "poster" }}
-{{ $beforeSrc := .Get "before-src" }}
-{{ $beforeAlt := .Get "before-alt" }}
-{{ $beforeSize := .Get "before-size" }}
-{{ $beforeLabel := .Get "before-label" | default "Before" }}
-{{ $beforeDate := .Get "before-date" }}
-{{ $afterSrc := .Get "after-src" }}
-{{ $afterAlt := .Get "after-alt" }}
-{{ $afterSize := .Get "after-size" }}
-{{ $afterLabel := .Get "after-label" | default "After" }}
-{{ $afterDate := .Get "after-date" }}
-{{ $cameraOrbit := .Get "camera-orbit" }}
-{{ $minCameraOrbit := .Get "min-camera-orbit" }}
-{{ if not $poster }}{{ errorf "model-viewer-comparison shortcode requires a poster: %s" .Position }}{{ end }}
-{{ if not $beforeSrc }}{{ errorf "model-viewer-comparison shortcode requires before-src: %s" .Position }}{{ end }}
-{{ if not $beforeAlt }}{{ errorf "model-viewer-comparison shortcode requires before-alt: %s" .Position }}{{ end }}
-{{ if not $beforeDate }}{{ errorf "model-viewer-comparison shortcode requires before-date: %s" .Position }}{{ end }}
-{{ if not $afterSrc }}{{ errorf "model-viewer-comparison shortcode requires after-src: %s" .Position }}{{ end }}
-{{ if not $afterAlt }}{{ errorf "model-viewer-comparison shortcode requires after-alt: %s" .Position }}{{ end }}
-{{ if not $afterDate }}{{ errorf "model-viewer-comparison shortcode requires after-date: %s" .Position }}{{ end }}
-{{ $viewerID := printf "model-viewer-comparison-%d" .Ordinal }}
-{{ $captionID := printf "%s-caption" $viewerID }}
-
-<figure class="model-viewer-frame model-viewer-comparison" data-model-viewer-comparison>
-  <div class="model-viewer-comparison__controls">
-    <div class="model-viewer-comparison__modes" role="group" aria-label="Daikyocho scans">
-      <button
-        type="button"
-        data-model-variant="before"
-        data-model-src="{{ $beforeSrc }}"
-        data-model-alt="{{ $beforeAlt }}"
-        data-model-label="{{ $beforeLabel }}"
-        data-model-date="{{ $beforeDate }}"
-        data-model-size="{{ $beforeSize }}"
-        aria-controls="{{ $viewerID }}"
-        aria-label="{{ $beforeLabel }} — {{ $beforeDate }}"
-        aria-pressed="false"
-      >{{ $beforeDate }}</button>
-      <button
-        type="button"
-        data-model-variant="after"
-        data-model-src="{{ $afterSrc }}"
-        data-model-alt="{{ $afterAlt }}"
-        data-model-label="{{ $afterLabel }}"
-        data-model-date="{{ $afterDate }}"
-        data-model-size="{{ $afterSize }}"
-        aria-controls="{{ $viewerID }}"
-        aria-label="{{ $afterLabel }} — {{ $afterDate }}"
-        aria-pressed="true"
-      >{{ $afterDate }}</button>
+{{- /* Two GLB scans of one place in the shared media chrome, switched by a
+     segmented control in the bar (docs/styleguide.md, Media Chrome):
+       {{< model-viewer-comparison poster="…"
+            before-src="…" before-label="Before Kyojima" before-date="February 28, 2023" before-alt="…"
+            after-src="…" after-label="After Kyojima" after-date="August 3, 2026" after-alt="…" >}}
+     Dates may be written as "February 28, 2023" or 2023-02-28; the keys and
+     the badge show them as ISO dates. Optional: "title" (the bar's label;
+     defaults to the page's trace kind), "before-size" and "after-size" (used
+     when a file is not under static/), "camera-orbit", "min-camera-orbit".
+     assets/js/model-viewer-comparison.js reads [data-model-variant] and its
+     data-model-* attributes, [data-model-comparison-status],
+     [data-model-comparison-download], and [data-model-comparison-size]. */ -}}
+{{- $poster := .Get "poster" -}}
+{{- $cameraOrbit := .Get "camera-orbit" -}}
+{{- $minCameraOrbit := .Get "min-camera-orbit" -}}
+{{- if not $poster }}{{ errorf "model-viewer-comparison shortcode requires a poster: %s" .Position }}{{ end -}}
+{{- $months := dict "January" 1 "February" 2 "March" 3 "April" 4 "May" 5 "June" 6 "July" 7 "August" 8 "September" 9 "October" 10 "November" 11 "December" 12 -}}
+{{- $variants := slice -}}
+{{- range $key := slice "before" "after" -}}
+  {{- $src := $.Get (printf "%s-src" $key) -}}
+  {{- $alt := $.Get (printf "%s-alt" $key) -}}
+  {{- $date := $.Get (printf "%s-date" $key) -}}
+  {{- if not $src }}{{ errorf "model-viewer-comparison shortcode requires %s-src: %s" $key $.Position }}{{ end -}}
+  {{- if not $alt }}{{ errorf "model-viewer-comparison shortcode requires %s-alt: %s" $key $.Position }}{{ end -}}
+  {{- if not $date }}{{ errorf "model-viewer-comparison shortcode requires %s-date: %s" $key $.Position }}{{ end -}}
+  {{- $iso := $date -}}
+  {{- with findRESubmatch `^(\w+) (\d{1,2}), (\d{4})$` $date 1 -}}
+    {{- $m := index . 0 -}}
+    {{- with index $months (index $m 1) }}{{ $iso = printf "%s-%02d-%02d" (index $m 3) . (int (index $m 2)) }}{{ end -}}
+  {{- end -}}
+  {{- $size := $.Get (printf "%s-size" $key) -}}
+  {{- $fsPath := printf "static%s" $src -}}
+  {{- if and (hasPrefix $src "/") (os.FileExists $fsPath) -}}
+    {{- $bytes := (os.Stat $fsPath).Size -}}
+    {{- if ge $bytes 1048576 }}{{ $size = printf "%.1f MB" (div (float $bytes) 1048576) }}{{ else }}{{ $size = printf "%.0f KB" (div (float $bytes) 1024) }}{{ end -}}
+  {{- end -}}
+  {{- $label := $.Get (printf "%s-label" $key) | default (title $key) -}}
+  {{- /* The badge reads "Showing after Kyojima": the label in sentence position. */ -}}
+  {{- $inline := printf "%s%s" (lower (substr $label 0 1)) (substr $label 1) -}}
+  {{- $variants = $variants | append (dict "key" $key "src" $src "alt" $alt "date" $iso "size" $size "label" $label "inline" $inline) -}}
+{{- end -}}
+{{- $before := index $variants 0 -}}
+{{- $after := index $variants 1 -}}
+{{- $kind := "3D models" }}{{ with .Page.Params.trace }}{{ with .kind }}{{ $kind = . }}{{ end }}{{ end -}}
+{{- $title := .Get "title" | default $kind -}}
+{{- $viewerID := printf "model-viewer-comparison-%d" .Ordinal -}}
+{{- $captionID := printf "%s-caption" $viewerID }}
+<figure class="viewer model-viewer-frame model-viewer-comparison" data-model-viewer-comparison>
+  <div class="viewer-bar">
+    <span class="viewer-title">{{ $title }} · GLB</span>
+    <div class="viewer-controls">
+      <div class="segmented" role="group" aria-label="{{ $title }}">
+        {{- range $variants }}
+        <button
+          type="button"
+          data-model-variant="{{ .key }}"
+          data-model-src="{{ .src }}"
+          data-model-alt="{{ .alt }}"
+          data-model-label="{{ .inline }}"
+          data-model-date="{{ .date }}"
+          data-model-size="{{ .size }}"
+          aria-controls="{{ $viewerID }}"
+          aria-label="{{ .label }}, {{ .date }}"
+          aria-pressed="{{ cond (eq .key "after") "true" "false" }}"
+        ><time datetime="{{ .date }}">{{ .date }}</time></button>
+        {{- end }}
+      </div>
     </div>
   </div>
-
-  <div class="model-viewer-viewport" data-model-viewer-viewport>
+  <div class="viewer-frame model-viewer-viewport" data-model-viewer-viewport>
     <model-viewer
       id="{{ $viewerID }}"
       data-model-viewer
-      src="{{ $afterSrc }}"
+      src="{{ $after.src }}"
       poster="{{ $poster }}"
-      alt="{{ $afterAlt }}"
+      alt="{{ $after.alt }}"
       aria-describedby="{{ $captionID }}"
       loading="eager"
       reveal="auto"
@@ -68,8 +84,10 @@
       {{ with $cameraOrbit }}camera-orbit="{{ . }}"{{ end }}
       {{ with $minCameraOrbit }}min-camera-orbit="{{ . }}"{{ end }}
     ></model-viewer>
+    <noscript><img class="viewer-poster" src="{{ $poster }}" alt="{{ $after.alt }}" width="1600" height="1000" /></noscript>
+    <span class="viewer-status" data-model-comparison-status aria-live="polite">Showing {{ $after.inline }} · <time datetime="{{ $after.date }}">{{ $after.date }}</time></span>
     <button
-      class="model-viewer-fullscreen"
+      class="viewer-fs"
       type="button"
       aria-controls="{{ $viewerID }}"
       aria-label="View 3D model full screen"
@@ -77,23 +95,13 @@
       data-model-viewer-fullscreen
       hidden
     >
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path class="model-viewer-fullscreen__enter" d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" />
-        <path class="model-viewer-fullscreen__exit" d="M3 8h5V3M21 8h-5V3M3 16h5v5M21 16h-5v5" />
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path class="viewer-fs-enter" d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4" />
+        <path class="viewer-fs-exit" d="M6 2v4H2M10 2v4h4M6 14v-4H2M10 14v-4h4" />
       </svg>
     </button>
   </div>
-  <figcaption id="{{ $captionID }}">
-    <span data-model-comparison-status aria-live="polite">Showing {{ $afterLabel }} · {{ $afterDate }}.</span>
-    Drag to rotate; scroll or pinch to zoom. Keyboard controls are available when the viewer is focused.
-    <a href="{{ $afterSrc }}" download data-model-comparison-download>Download the selected GLB model{{ with $afterSize }} ({{ . }}){{ end }}</a>.
-  </figcaption>
-  <noscript>
-    <img class="model-viewer-static-poster" src="{{ $poster }}" alt="{{ $afterAlt }}" width="1600" height="900" />
-    <p class="model-viewer-noscript">
-      JavaScript is required for the interactive comparison.
-      <a href="{{ $beforeSrc }}" download>Download the {{ $beforeDate }} GLB model{{ with $beforeSize }} ({{ . }}){{ end }}</a>.
-      <a href="{{ $afterSrc }}" download>Download the {{ $afterDate }} GLB model{{ with $afterSize }} ({{ . }}){{ end }}</a>.
-    </p>
-  </noscript>
+  <figcaption class="legend" id="{{ $captionID }}">Drag to rotate · scroll or pinch to zoom · arrow keys when the model is focused · <a href="{{ $after.src }}" download data-model-comparison-download>download this scan<span data-model-comparison-size>{{ with $after.size }} (<span class="n">{{ . }}</span>){{ end }}</span> ↓</a></figcaption>
+  <noscript><p class="legend">The interactive comparison needs JavaScript. Download either scan:
+    {{- range $i, $v := $variants }}{{ if $i }} ·{{ end }} <a href="{{ $v.src }}" download><time datetime="{{ $v.date }}">{{ $v.date }}</time>{{ with $v.size }} (<span class="n">{{ . }}</span>){{ end }} ↓</a>{{ end }}</p></noscript>
 </figure>

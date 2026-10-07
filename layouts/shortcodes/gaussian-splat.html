@@ -1,32 +1,48 @@
-{{ $src := .Get "src" }}
-{{ $poster := .Get "poster" }}
-{{ $alt := .Get "alt" }}
-{{ $size := .Get "size" }}
-{{ if not $src }}{{ errorf "gaussian-splat shortcode requires a src: %s" .Position }}{{ end }}
-{{ if not $poster }}{{ errorf "gaussian-splat shortcode requires a poster: %s" .Position }}{{ end }}
-{{ if not $alt }}{{ errorf "gaussian-splat shortcode requires accessible alt text: %s" .Position }}{{ end }}
-{{ $viewerID := printf "gaussian-splat-%d" .Ordinal }}
-{{ $captionID := printf "%s-caption" $viewerID }}
-
+{{- /* An interactive Gaussian splat (SPZ) in the shared media chrome
+     (docs/styleguide.md, Media Chrome; components/_model-viewer.scss):
+       {{< gaussian-splat title="…" src="/traces/x/x.spz" poster="…" alt="…"
+            camera-position="x y z" camera-target="x y z" >}}
+     Optional: "title" (the bar's label; defaults to the page's trace kind),
+     "size" (used when the file is not under static/; otherwise read from
+     the file), "camera-position" and "camera-target". The page must set
+     gaussian_splat: true. assets/js/gaussian-splat-viewer.js reads the
+     data-splat-* hooks. */ -}}
+{{- $src := .Get "src" -}}
+{{- $poster := .Get "poster" -}}
+{{- $alt := .Get "alt" -}}
+{{- if not $src }}{{ errorf "gaussian-splat shortcode requires a src: %s" .Position }}{{ end -}}
+{{- if not $poster }}{{ errorf "gaussian-splat shortcode requires a poster: %s" .Position }}{{ end -}}
+{{- if not $alt }}{{ errorf "gaussian-splat shortcode requires accessible alt text: %s" .Position }}{{ end -}}
+{{- $size := .Get "size" -}}
+{{- $fsPath := printf "static%s" $src -}}
+{{- if and (hasPrefix $src "/") (os.FileExists $fsPath) -}}
+  {{- $bytes := (os.Stat $fsPath).Size -}}
+  {{- if ge $bytes 1048576 }}{{ $size = printf "%.1f MB" (div (float $bytes) 1048576) }}{{ else }}{{ $size = printf "%.0f KB" (div (float $bytes) 1024) }}{{ end -}}
+{{- end -}}
+{{- $kind := "3D scan" }}{{ with .Page.Params.trace }}{{ with .kind }}{{ $kind = . }}{{ end }}{{ end -}}
+{{- $title := .Get "title" | default $kind -}}
+{{- $viewerID := printf "gaussian-splat-%d" .Ordinal -}}
+{{- $captionID := printf "%s-caption" $viewerID }}
 <figure
-  class="gaussian-splat"
+  class="viewer gaussian-splat"
   data-gaussian-splat
   data-splat-src="{{ $src }}"
   {{ with .Get "camera-position" }}data-camera-position="{{ . }}"{{ end }}
   {{ with .Get "camera-target" }}data-camera-target="{{ . }}"{{ end }}
 >
-  <div class="gaussian-splat__controls">
-    {{ with .Get "title" }}<span class="gaussian-splat__title">{{ . }}</span>{{ end }}
-    <button type="button" data-splat-reset disabled>Reset view</button>
+  <div class="viewer-bar">
+    <span class="viewer-title">{{ $title }} · SPZ{{ with $size }} · <span class="n">{{ . }}</span>{{ end }}</span>
+    <div class="viewer-controls">
+      <button class="btn btn--quiet" type="button" data-splat-reset disabled>Reset view</button>
+    </div>
   </div>
-
-  <div class="gaussian-splat__frame" data-splat-frame>
+  <div class="viewer-frame" data-splat-frame>
     <img
       class="gaussian-splat__poster"
       src="{{ $poster }}"
       alt=""
-      width="960"
-      height="540"
+      width="1600"
+      height="1000"
       aria-hidden="true"
       data-splat-poster
     />
@@ -38,8 +54,9 @@
       aria-label="{{ $alt }}"
       aria-describedby="{{ $captionID }}"
     ></canvas>
+    <span class="viewer-status" data-splat-status role="status">Loading scan…</span>
     <button
-      class="gaussian-splat__fullscreen"
+      class="viewer-fs"
       type="button"
       aria-controls="{{ $viewerID }}"
       aria-label="View Gaussian splat full screen"
@@ -47,26 +64,15 @@
       data-splat-fullscreen
       hidden
     >
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path class="gaussian-splat__fullscreen-enter" d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" />
-        <path class="gaussian-splat__fullscreen-exit" d="M3 8h5V3M21 8h-5V3M3 16h5v5M21 16h-5v5" />
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path class="viewer-fs-enter" d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4" />
+        <path class="viewer-fs-exit" d="M6 2v4H2M10 2v4h4M6 14v-4H2M10 14v-4h4" />
       </svg>
     </button>
-    <div class="gaussian-splat__loading" data-splat-status role="status">
-      Loading scan…
-    </div>
   </div>
-
-  <figcaption id="{{ $captionID }}">
-    Drag to orbit; right-drag or use two fingers to pan; scroll or pinch to zoom.
-    <a href="{{ $src }}" download>Download the SPZ scan{{ with $size }} ({{ . }}){{ end }}</a>.
-  </figcaption>
-
+  <figcaption class="legend" id="{{ $captionID }}">Drag to orbit · right-drag or two fingers to pan · scroll or pinch to zoom · <a href="{{ $src }}" download>download the SPZ scan{{ with $size }} (<span class="n">{{ . }}</span>){{ end }} ↓</a></figcaption>
   <noscript>
-    <img class="gaussian-splat__static-poster" src="{{ $poster }}" alt="{{ $alt }}" width="960" height="540" />
-    <p>
-      JavaScript is required for the interactive view.
-      <a href="{{ $src }}" download>Download the SPZ scan{{ with $size }} ({{ . }}){{ end }}</a>.
-    </p>
+    <style>#{{ $viewerID | safeCSS }} ~ .viewer-status { display: none; }</style>
+    <p class="legend">The interactive view needs JavaScript; the poster above shows the scan, and the download opens in any splat viewer.</p>
   </noscript>
 </figure>

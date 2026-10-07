@@ -1,102 +1,100 @@
 {{ define "main" }}
-<article class="hub">
-{{ partial "page-head.html" . }}
+{{- /* Projects hub: the head with the intro as its dek and the filter and
+     its deks in the column, then tight year blocks (Ongoing, 2026, …) of
+     cards. The filter is assets/js/category-filter.js: each year block is
+     a [data-filter-group], each card carries data-category, the rail's
+     .count follows the filter, and [data-filter-show] swaps the active
+     hub's reference and dek. docs/styleguide.md, Page by Page: Projects hub. */ -}}
+{{- $projects := sort (uniq (where site.Pages "Params.project" "!=" nil)) "Date" "desc" -}}
 
-{{ $projects := sort (where site.Pages "Params.project" "!=" nil) "Date" "desc" }}
-{{ if $projects }}
-  {{ $slugs := slice }}
-  {{ range $projects }}
-    {{ with .Params.project.category }}
-      {{ $cat := trim . "/" }}
-      {{ if not (in $slugs $cat) }}{{ $slugs = $slugs | append $cat }}{{ end }}
-    {{ end }}
-  {{ end }}
-  {{ $slugs = sort $slugs }}
-  {{ $categories := slice }}
-  {{ range $slugs }}
-    {{ $slug := . }}
-    {{ $hub := site.GetPage (printf "/%s" $slug) }}
-    {{ $label := or (and $hub $hub.Params.filter_label) (title (humanize $slug)) }}
-    {{ $ref := or (and $hub $hub.Params.filter_ref) (and $hub $hub.Title) (title (humanize $slug)) }}
-    {{ $categories = $categories | append (dict
-      "slug" $slug
-      "label" $label
-      "dek" (and $hub $hub.Params.filter_dek)
-      "ref" $ref
-      "url" (and $hub $hub.RelPermalink)
-      "weight" (or (and $hub $hub.Params.filter_weight) 99)
-    ) }}
-  {{ end }}
-  {{/* Weighted hubs lead the rail; the rest stay alphabetical. */}}
-  {{ $ordered := slice }}
-  {{ range sort (where $categories "weight" "ne" 99) "weight" }}{{ $ordered = $ordered | append . }}{{ end }}
-  {{ range where $categories "weight" 99 }}{{ $ordered = $ordered | append . }}{{ end }}
-  {{ $categories = $ordered }}
+{{- /* The intro paragraph is the head's dek. */ -}}
+{{- $content := string .Content -}}
+{{- $dek := .Params.description -}}
+{{- with findRESubmatch `^\s*<p>((?s:.*?))</p>` $content 1 -}}
+  {{- $dek = index (index . 0) 1 | safeHTML -}}
+  {{- $content = replaceRE `^\s*<p>(?s:.*?)</p>` "" $content 1 -}}
+{{- end -}}
 
-  <nav class="category-filter" aria-label="Filter projects by category">
-    <ul>
-      <li><a href="?category=all" data-category="all" class="is-active">All</a></li>
-      {{ range $categories }}
-      <li><a href="?category={{ .slug }}" data-category="{{ .slug }}">{{ .label }}</a></li>
-      {{ end }}
-      {{ range $categories }}
-      {{ if .url }}
-      <li><a class="hub-ref" href="{{ .url }}" data-filter-show="{{ .slug }}" hidden>&rarr;&nbsp;{{ .ref }}</a></li>
-      {{ end }}
-      {{ end }}
-    </ul>
-  </nav>
+{{- /* The rail of hubs, from each hub's filter_* front matter. */ -}}
+{{- $slugs := slice -}}
+{{- range $projects -}}
+  {{- with .Params.project.category -}}
+    {{- $cat := trim . "/" -}}
+    {{- if not (in $slugs $cat) }}{{ $slugs = $slugs | append $cat }}{{ end -}}
+  {{- end -}}
+{{- end -}}
+{{- $categories := slice -}}
+{{- range sort $slugs -}}
+  {{- $slug := . -}}
+  {{- $hub := site.GetPage (printf "/%s" $slug) -}}
+  {{- $categories = $categories | append (dict
+    "slug" $slug
+    "label" (or (and $hub $hub.Params.filter_label) (title (humanize $slug)))
+    "dek" (and $hub $hub.Params.filter_dek)
+    "ref" (or (and $hub $hub.Params.filter_ref) (and $hub $hub.Title) (title (humanize $slug)))
+    "url" (and $hub $hub.RelPermalink)
+    "weight" (or (and $hub $hub.Params.filter_weight) 99)
+  ) -}}
+{{- end -}}
+{{- /* Weighted hubs lead the rail; the rest stay alphabetical. */ -}}
+{{- $ordered := slice -}}
+{{- range sort (where $categories "weight" "ne" 99) "weight" }}{{ $ordered = $ordered | append . }}{{ end -}}
+{{- range where $categories "weight" 99 }}{{ $ordered = $ordered | append . }}{{ end -}}
+{{- $categories = $ordered -}}
 
-  <div class="filter-dek" data-filter-show="all">
-    {{ .Content }}
-  </div>
-  {{ range $categories }}
-  <div class="filter-dek" data-filter-show="{{ .slug }}" hidden>
-    <p>{{ .dek }}</p>
-  </div>
-  {{ end }}
+{{- $filter := `<nav class="category-filter" aria-label="Filter projects by category"><ul><li><a href="?category=all" data-category="all" class="is-active">All</a></li>` -}}
+{{- range $categories -}}
+  {{- $filter = printf `%s<li><a href="?category=%s" data-category="%s">%s</a></li>` $filter .slug .slug (htmlEscape .label) -}}
+{{- end -}}
+{{- range $c := $categories -}}
+  {{- with $c.url -}}
+    {{- $filter = printf `%s<li><a class="hub-ref" href="%s" data-filter-show="%s" hidden>→&nbsp;%s</a></li>` $filter . $c.slug (htmlEscape $c.ref) -}}
+  {{- end -}}
+{{- end -}}
+{{- $filter = printf "%s</ul></nav>" $filter -}}
+{{- range $c := $categories -}}
+  {{- with $c.dek -}}
+    {{- $filter = printf `%s<div class="filter-dek" data-filter-show="%s" hidden><p>%s</p></div>` $filter $c.slug (htmlEscape .) -}}
+  {{- end -}}
+{{- end -}}
 
-  {{ $ongoing := slice }}
-  {{ $dated := slice }}
-  {{ range $projects }}
-    {{ $year := lower (printf "%v" .Params.project.year) }}
-    {{ if eq $year "ongoing" }}{{ $ongoing = $ongoing | append . }}{{ else }}{{ $dated = $dated | append . }}{{ end }}
-  {{ end }}
-  {{ $ongoing = sort $ongoing "Date" "desc" }}
-  {{ $dated = sort $dated "Date" "desc" }}
-
-  {{ if gt (len $ongoing) 0 }}
-  {{ $n := len $ongoing }}
-  <section class="project-year" data-filter-group>
-    <h2 class="group-head">Ongoing <span class="count" data-singular="project" data-plural="projects">{{ $n }} {{ cond (eq $n 1) "project" "projects" }}</span></h2>
-    <div class="projects-grid">
-      {{ range $ongoing }}{{ partial "card.html" (dict "page" .) }}{{ end }}
+{{- $ongoing := slice -}}
+{{- $dated := slice -}}
+{{- range $projects -}}
+  {{- if eq (lower (printf "%v" .Params.project.year)) "ongoing" }}{{ $ongoing = $ongoing | append . }}{{ else }}{{ $dated = $dated | append . }}{{ end -}}
+{{- end -}}
+{{- $groups := slice -}}
+{{- with $ongoing }}{{ $groups = $groups | append (dict "key" "Ongoing" "pages" (sort . "Date" "desc")) }}{{ end -}}
+{{- $years := slice -}}
+{{- range $dated }}{{ $y := printf "%v" .Params.project.year }}{{ if not (in $years $y) }}{{ $years = $years | append $y }}{{ end }}{{ end -}}
+{{- range sort $years "value" "desc" -}}
+  {{- $year := . -}}
+  {{- $in := slice -}}
+  {{- range $dated }}{{ if eq (printf "%v" .Params.project.year) $year }}{{ $in = $in | append . }}{{ end }}{{ end -}}
+  {{- $groups = $groups | append (dict "key" $year "pages" $in) -}}
+{{- end }}
+<article class="hub projects-hub">
+  {{ partial "page-head.html" (dict "page" . "dek" $dek "extra" ($filter | safeHTML)) }}
+  {{- with trim $content " \n\t" }}{{ partial "block-body.html" . }}{{ end }}
+  {{- range $groups }}
+  {{- $n := len .pages }}
+  <section class="block year project-year" data-filter-group>
+    <div class="rail">
+      <h2>{{ .key }}</h2>
+      <p class="meta"><span class="count" data-singular="project" data-plural="projects">{{ $n }} {{ cond (eq $n 1) "project" "projects" }}</span></p>
+    </div>
+    <div class="main">
+      <div class="projects-grid">
+        {{- range .pages }}
+        {{ partial "card.html" (dict "page" .) }}
+        {{- end }}
+      </div>
     </div>
   </section>
-  {{ end }}
-
-  {{ $years := slice }}
-  {{ range $dated }}
-    {{ $year := printf "%v" .Params.project.year }}
-    {{ if not (in $years $year) }}{{ $years = $years | append $year }}{{ end }}
-  {{ end }}
-  {{ $years = sort $years "value" "desc" }}
-  {{ range $years }}
-    {{ $year := . }}
-    {{ $n := 0 }}
-    {{ range $dated }}{{ if eq (printf "%v" .Params.project.year) $year }}{{ $n = add $n 1 }}{{ end }}{{ end }}
-  <section class="project-year" data-filter-group>
-    <h2 class="group-head">{{ $year }} <span class="count" data-singular="project" data-plural="projects">{{ $n }} {{ cond (eq $n 1) "project" "projects" }}</span></h2>
-    <div class="projects-grid">
-      {{ range $dated }}{{ if eq (printf "%v" .Params.project.year) $year }}{{ partial "card.html" (dict "page" .) }}{{ end }}{{ end }}
-    </div>
-  </section>
-  {{ end }}
-
-  {{ $categoryFilter := resources.Get "js/category-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
-  <script src="{{ $categoryFilter.RelPermalink }}" defer></script>
-{{ else }}
-<p>No projects yet.</p>
-{{ end }}
+  {{- else }}
+  <section class="block body"><div class="rail"></div><div class="main prose"><p>No projects yet.</p></div></section>
+  {{- end }}
 </article>
+{{ $categoryFilter := resources.Get "js/category-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
+<script src="{{ $categoryFilter.RelPermalink }}" defer></script>
 {{ end }}

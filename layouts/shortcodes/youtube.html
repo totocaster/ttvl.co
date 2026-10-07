@@ -1,3 +1,6 @@
+{{- /* A YouTube video in the figure frame (16:9, the edge frame, bleed
+     width), lazy-loaded: {{< youtube "VIDEO_ID" >}}. Styled by
+     .video-container in _base.scss. docs/styleguide.md, Media Chrome. */ -}}
 <div class="video-container">
-  <iframe src="https://www.youtube.com/embed/{{ .Get 0 }}" frameborder="0" allowfullscreen loading="lazy"> </iframe>
+  <iframe src="https://www.youtube.com/embed/{{ .Get 0 }}" title="YouTube video" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
 </div>

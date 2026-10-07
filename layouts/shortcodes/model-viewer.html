@@ -1,17 +1,35 @@
-{{ $src := .Get "src" }}
-{{ $poster := .Get "poster" }}
-{{ $alt := .Get "alt" }}
-{{ $size := .Get "size" }}
-{{ $cameraOrbit := .Get "camera-orbit" }}
-{{ $minCameraOrbit := .Get "min-camera-orbit" }}
-{{ if not $src }}{{ errorf "model-viewer shortcode requires a src: %s" .Position }}{{ end }}
-{{ if not $poster }}{{ errorf "model-viewer shortcode requires a poster: %s" .Position }}{{ end }}
-{{ if not $alt }}{{ errorf "model-viewer shortcode requires accessible alt text: %s" .Position }}{{ end }}
-{{ $viewerID := printf "model-viewer-%d" .Ordinal }}
-{{ $captionID := printf "%s-caption" $viewerID }}
-
-<figure class="model-viewer-frame">
-  <div class="model-viewer-viewport" data-model-viewer-viewport>
+{{- /* An interactive GLB viewer in the shared media chrome
+     (docs/styleguide.md, Media Chrome; components/_model-viewer.scss):
+       {{< model-viewer src="/traces/x/x.glb" poster="/visuals/x.png" alt="…"
+            camera-orbit="auto auto 70%" min-camera-orbit="auto auto 45%" >}}
+     Optional: "title" (the bar's label; defaults to the page's trace kind),
+     "size" (used when the file is not under static/; otherwise the size is
+     read from the file, as the head strip does). The page must set
+     model_viewer: true. assets/js/model-viewer-fullscreen.js reads
+     [data-model-viewer-viewport] and [data-model-viewer-fullscreen]. */ -}}
+{{- $src := .Get "src" -}}
+{{- $poster := .Get "poster" -}}
+{{- $alt := .Get "alt" -}}
+{{- $cameraOrbit := .Get "camera-orbit" -}}
+{{- $minCameraOrbit := .Get "min-camera-orbit" -}}
+{{- if not $src }}{{ errorf "model-viewer shortcode requires a src: %s" .Position }}{{ end -}}
+{{- if not $poster }}{{ errorf "model-viewer shortcode requires a poster: %s" .Position }}{{ end -}}
+{{- if not $alt }}{{ errorf "model-viewer shortcode requires accessible alt text: %s" .Position }}{{ end -}}
+{{- $size := .Get "size" -}}
+{{- $fsPath := printf "static%s" $src -}}
+{{- if and (hasPrefix $src "/") (os.FileExists $fsPath) -}}
+  {{- $bytes := (os.Stat $fsPath).Size -}}
+  {{- if ge $bytes 1048576 }}{{ $size = printf "%.1f MB" (div (float $bytes) 1048576) }}{{ else }}{{ $size = printf "%.0f KB" (div (float $bytes) 1024) }}{{ end -}}
+{{- end -}}
+{{- $kind := "3D model" }}{{ with .Page.Params.trace }}{{ with .kind }}{{ $kind = . }}{{ end }}{{ end -}}
+{{- $title := .Get "title" | default $kind -}}
+{{- $viewerID := printf "model-viewer-%d" .Ordinal -}}
+{{- $captionID := printf "%s-caption" $viewerID }}
+<figure class="viewer model-viewer-frame">
+  <div class="viewer-bar">
+    <span class="viewer-title">{{ $title }} · GLB{{ with $size }} · <span class="n">{{ . }}</span>{{ end }}</span>
+  </div>
+  <div class="viewer-frame model-viewer-viewport" data-model-viewer-viewport>
     <model-viewer
       id="{{ $viewerID }}"
       data-model-viewer
@@ -28,8 +46,9 @@
       {{ with $cameraOrbit }}camera-orbit="{{ . }}"{{ end }}
       {{ with $minCameraOrbit }}min-camera-orbit="{{ . }}"{{ end }}
     ></model-viewer>
+    <noscript><img class="viewer-poster" src="{{ $poster }}" alt="{{ $alt }}" width="1600" height="1000" /></noscript>
     <button
-      class="model-viewer-fullscreen"
+      class="viewer-fs"
       type="button"
       aria-controls="{{ $viewerID }}"
       aria-label="View 3D model full screen"
@@ -37,20 +56,12 @@
       data-model-viewer-fullscreen
       hidden
     >
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path class="model-viewer-fullscreen__enter" d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" />
-        <path class="model-viewer-fullscreen__exit" d="M3 8h5V3M21 8h-5V3M3 16h5v5M21 16h-5v5" />
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path class="viewer-fs-enter" d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4" />
+        <path class="viewer-fs-exit" d="M6 2v4H2M10 2v4h4M6 14v-4H2M10 14v-4h4" />
       </svg>
     </button>
   </div>
-  <figcaption id="{{ $captionID }}">
-    Drag to rotate; scroll or pinch to zoom. Keyboard controls are available when the viewer is focused.
-    <a href="{{ $src }}" download>Download the GLB model{{ with $size }} ({{ . }}){{ end }}</a>.
-  </figcaption>
-  <noscript>
-    <img class="model-viewer-static-poster" src="{{ $poster }}" alt="{{ $alt }}" width="1600" height="900" />
-    <p class="model-viewer-noscript">
-      JavaScript is required for the interactive view. <a href="{{ $src }}" download>Download the GLB model{{ with $size }} ({{ . }}){{ end }}</a>.
-    </p>
-  </noscript>
+  <figcaption class="legend" id="{{ $captionID }}">Drag to rotate · scroll or pinch to zoom · arrow keys when the model is focused · <a href="{{ $src }}" download>download the GLB model{{ with $size }} (<span class="n">{{ . }}</span>){{ end }} ↓</a></figcaption>
+  <noscript><p class="legend">The interactive view needs JavaScript; the download above opens in any 3D viewer.</p></noscript>
 </figure>

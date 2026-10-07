@@ -1,15 +1,5 @@
-// Full-width screenshots keep their own proportions as their crops change.
-.jinny-website .photo-gallery {
-  grid-template-columns: minmax(0, 1fr);
-  max-width: $max-width-container;
-
-  a {
-    aspect-ratio: auto;
-  }
-
-  img {
-    position: static;
-    width: 100%;
-    height: auto;
-  }
-}
+// The Jinny Street Gallery website page is an ordinary project page. Its
+// galleries each hold one screenshot, which photo-gallery renders as a
+// figure in the image's own proportions (components/_photo-gallery.scss),
+// so the page needs no styles of its own. The file stays as the home for
+// anything the page later needs that no other page uses.

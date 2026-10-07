@@ -4,6 +4,8 @@ date: 2024-12-12
 description: "Art space uniquely created from streetlamps in Harajuku, Tokyo."
 project:
   year: ongoing
+  since: 2023
+  kind: "Gallery"
   image: /visuals/jinny_flag.jpg
 resources:
   - title: 'Website'

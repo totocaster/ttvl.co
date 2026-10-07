@@ -1,205 +1,352 @@
-.model-viewer-frame {
+// Media chrome: the one geometry every viewer shares (model-viewer,
+// model-viewer-comparison, gaussian-splat, spatial-long-exposure), plus the
+// clip badge and the pronunciation control. docs/styleguide.md, Media
+// Chrome and Figures.
+//
+//   figure.viewer
+//     .viewer-bar      the title at left in the label voice, the controls
+//                      at right as quiet blocks (.btn.btn--quiet) or one
+//                      .segmented control; 12 px to the frame
+//     .viewer-frame    16:10 at the column's width on a 1 px edge frame,
+//                      the media well dark; the fullscreen target
+//       .viewer-status the badge at the bottom left
+//       .viewer-fs     the fullscreen key at the bottom right
+//     figcaption.legend  how to move, then the download in Mono with ↓
+//
+// _gaussian-splat.scss and _spatial-long-exposure.scss hold only what
+// differs. Deliberate literal colors (docs/styleguide.md, Color): the
+// media well is #111 in both themes, and the keys and badges over media are
+// white on black so they read over any picture.
+
+$viewer-well: #111; // deliberate exception: the media well, dark in both themes
+$viewer-badge-ground: rgba(0, 0, 0, 0.55); // deliberate exception: badges over media; 55% keeps white text at 4.5:1 over a white picture
+$viewer-key-ground: rgba(0, 0, 0, 0.5); // deliberate exception: the fullscreen key over media
+$viewer-key-edge: rgba(255, 255, 255, 0.6); // deliberate exception
+$viewer-key-size: 36px;
+$viewer-inset: $space-3; // badges and keys sit 12 px in from the frame
+
+// A badge over media: 14 px white on black. Shared by the viewers' status
+// and the clip's "Clip · loops muted".
+%media-badge {
+  position: absolute;
+  z-index: 3;
+  left: $viewer-inset;
+  bottom: $viewer-inset;
+  max-width: calc(100% - #{$viewer-inset * 2 + $viewer-key-size + $space-2});
+  padding: 2px $space-2; // badge geometry
+  border-radius: $radius;
+  background: $viewer-badge-ground;
+  color: #fff; // deliberate exception: text over media
+  font-family: $font-family-sans;
+  @include type-small;
+  font-weight: $font-weight-regular;
+  pointer-events: none;
+}
+
+.viewer {
   width: 100%;
-  max-width: $max-width-container;
-  margin: $space-5 0 $space-6;
+  max-width: $max-width-column;
+  margin: $rhythm-figure-above 0 $rhythm-figure-below;
+}
 
-  .model-viewer-viewport {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    overflow: hidden;
-    border: 1px solid var(--edge);
-    // Media well: deliberately darker than --surface in dark (sunken, not raised).
-    background: #fafafa;
+// The bar above the frame.
+.viewer-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-3;
+  margin-bottom: $space-3;
+  @include type-meta;
+  color: var(--ink-faint);
+}
 
-    @include dark {
-      background: rgb(28, 28, 28);
-    }
+.viewer-title {
+  min-width: 0;
+}
+
+.viewer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-3;
+  margin-left: auto;
+
+  .btn,
+  .segmented {
+    flex-shrink: 0;
   }
 
-  model-viewer {
+  // Reset stays put until the scan has loaded.
+  .btn:disabled {
+    cursor: default;
+    opacity: 0.45; // state, not a tier
+
+    &:active {
+      transform: none;
+      box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+    }
+
+    &:hover {
+      background: var(--ground);
+    }
+  }
+}
+
+// The frame: the fullscreen target of every viewer.
+.viewer-frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 1px solid var(--edge);
+  border-radius: $radius;
+  background: $viewer-well;
+
+  > canvas,
+  > model-viewer {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
     display: block;
     width: 100%;
     height: 100%;
-    background: #fafafa;
-    --poster-color: #fafafa;
+  }
 
-    @include dark {
-      background: rgb(28, 28, 28);
-      --poster-color: rgb(28, 28, 28);
+  > canvas {
+    cursor: grab;
+    touch-action: none;
+
+    &:active {
+      cursor: grabbing;
     }
   }
 
-  .model-viewer-fullscreen {
+  > canvas,
+  > model-viewer {
+    &:focus-visible {
+      outline: 2px solid var(--signal);
+      outline-offset: -2px;
+    }
+  }
+
+  // Without JavaScript the poster fills the frame.
+  .viewer-poster {
     position: absolute;
-    z-index: 1;
-    top: 0.65rem;
-    right: 0.65rem;
-    display: grid;
-    width: 2.25rem;
-    height: 2.25rem;
-    padding: 0;
-    place-items: center;
-    border: 1px solid rgba($color-light-text, 0.18);
-    border-radius: 50%;
-    color: rgba($color-light-text, 0.72);
-    background: rgba($color-light-bg, 0.78);
-    box-shadow: 0 1px 4px rgba($color-light-text, 0.08);
-    cursor: pointer;
-    opacity: 0.62;
-    backdrop-filter: blur(8px);
-    transition:
-      opacity 120ms ease,
-      background-color 120ms ease;
-
-    &[hidden] {
-      display: none;
-    }
-
-    &:hover,
-    &:focus-visible {
-      opacity: 1;
-      background: rgba($color-light-bg, 0.94);
-    }
-
-    &:focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 2px;
-    }
-
-    @include dark {
-      border-color: rgba($color-dark-text, 0.22);
-      color: rgba($color-dark-text, 0.82);
-      background: rgba($color-dark-bg, 0.76);
-      box-shadow: 0 1px 4px rgba(#000, 0.2);
-
-      &:hover,
-      &:focus-visible {
-        background: rgba($color-dark-bg, 0.94);
-      }
-    }
-
-    @include high-contrast {
-      border-color: currentColor;
-      opacity: 1;
-    }
-
-    @include narrow {
-      width: 2.75rem;
-      height: 2.75rem;
-    }
-
-    svg {
-      width: 1rem;
-      height: 1rem;
-      fill: none;
-      stroke: currentColor;
-      stroke-width: 1.5;
-      stroke-linecap: round;
-      stroke-linejoin: round;
-    }
-
-    .model-viewer-fullscreen__exit {
-      display: none;
-    }
-  }
-
-  .model-viewer-viewport:fullscreen,
-  .model-viewer-viewport.is-fullscreen {
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-    max-width: none;
-    aspect-ratio: auto;
-    border: 0;
-
-    model-viewer {
-      touch-action: none;
-    }
-
-    .model-viewer-fullscreen {
-      top: calc(0.75rem + env(safe-area-inset-top));
-      right: calc(0.75rem + env(safe-area-inset-right));
-    }
-
-    .model-viewer-fullscreen__enter {
-      display: none;
-    }
-
-    .model-viewer-fullscreen__exit {
-      display: block;
-    }
-  }
-
-  .model-viewer-viewport:fullscreen {
-    &::backdrop {
-      background: #fafafa;
-
-      @include dark {
-        background: rgb(28, 28, 28);
-      }
-    }
-  }
-
-  .model-viewer-viewport.is-fullscreen {
-    position: fixed;
-    z-index: $z-overlay;
     inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.viewer-status {
+  @extend %media-badge;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+// The fullscreen key: 36 px, a stroke icon, at the bottom right.
+.viewer-fs {
+  position: absolute;
+  z-index: 4;
+  right: $viewer-inset;
+  bottom: $viewer-inset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: $viewer-key-size;
+  height: $viewer-key-size;
+  padding: 0;
+  border: 1px solid $viewer-key-edge;
+  border-radius: $radius;
+  background: $viewer-key-ground;
+  color: #fff; // deliberate exception: a key over media
+  cursor: pointer;
+  transition: background-color $t-fast;
+
+  &[hidden] {
+    display: none;
   }
 
-  figcaption,
-  .model-viewer-noscript {
-    @include type-meta;
-    max-width: $max-width-readable;
-    margin-top: $space-2;
-    color: var(--ink-muted);
+  &:hover {
+    background: rgba(0, 0, 0, 0.75); // deliberate exception: hover over media
   }
 
-  .model-viewer-static-poster {
+  @include focus-ring;
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .viewer-fs-exit {
+    display: none;
+  }
+}
+
+// Full screen: the frame fills the viewport, the keys clear the safe area.
+.viewer-frame:fullscreen,
+.viewer-frame.is-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  max-width: none;
+  aspect-ratio: auto;
+  border: 0;
+  border-radius: 0;
+
+  > canvas,
+  > model-viewer {
+    touch-action: none;
+  }
+
+  .viewer-fs {
+    right: calc(#{$viewer-inset} + env(safe-area-inset-right));
+    bottom: calc(#{$viewer-inset} + env(safe-area-inset-bottom));
+  }
+
+  .viewer-status {
+    left: calc(#{$viewer-inset} + env(safe-area-inset-left));
+    bottom: calc(#{$viewer-inset} + env(safe-area-inset-bottom));
+  }
+
+  .viewer-fs-enter {
+    display: none;
+  }
+
+  .viewer-fs-exit {
+    display: block;
+  }
+}
+
+.viewer-frame:fullscreen::backdrop {
+  background: $viewer-well;
+}
+
+// The fallback when the browser refuses the Fullscreen API.
+.viewer-frame.is-fullscreen {
+  position: fixed;
+  z-index: $z-overlay;
+  inset: 0;
+}
+
+html.model-viewer-fullscreen-active,
+html.gaussian-splat-fullscreen-active,
+html.spatial-long-exposure-fullscreen-active {
+  overflow: hidden;
+}
+
+// The legend under the frame: how to move, then the download.
+.viewer > .legend,
+.viewer > noscript > .legend {
+  margin: $rhythm-legend 0 0;
+
+  a {
+    color: var(--ink);
+    font-weight: $link-weight-quiet;
+    text-decoration: underline;
+  }
+
+  // The prose marks file links by extension; here the sentence already
+  // names the file.
+  a::before,
+  a::after {
+    content: none;
+  }
+}
+
+// model-viewer: the well shows through until the model paints.
+.model-viewer-frame model-viewer {
+  background: $viewer-well;
+  --poster-color: #{$viewer-well};
+}
+
+// The clip: a short silent loop in the figure frame, the badge at the
+// bottom left. Readers who prefer reduced motion get the poster and the
+// browser's controls, so the badge moves to the top to clear them.
+.clip-frame {
+  position: relative;
+
+  > video {
     display: block;
     width: 100%;
     height: auto;
+    background: var(--surface);
     border: 1px solid var(--edge);
+    border-radius: $radius;
   }
-}
 
-.model-viewer-comparison {
-  .model-viewer-comparison__controls button {
-    padding: 0 0 2px;
-    border: 0;
-    border-bottom: 1px solid transparent;
-    color: var(--ink-faint);
-    background: transparent;
-    font: inherit;
-    line-height: inherit;
-    cursor: pointer;
+  &::after {
+    content: attr(data-badge);
+    @extend %media-badge;
+  }
 
-    &:hover,
-    &[aria-pressed="true"] {
-      border-bottom-color: currentColor;
-      color: var(--ink);
-    }
-
-    &:focus-visible {
-      outline: 2px solid currentColor;
-      outline-offset: 3px;
+  @media (prefers-reduced-motion: reduce) {
+    &::after {
+      top: $viewer-inset;
+      bottom: auto;
     }
   }
 }
 
-.model-viewer-comparison__controls {
-  display: flex;
-  align-items: baseline;
-  max-width: $max-width-readable;
-  margin-bottom: $space-3;
+// The pronunciation control: a 24 px block on a 1 px ink shadow, inline in
+// the sentence, with a stroke icon.
+.pronunciation-name {
+  white-space: nowrap;
 }
 
-.model-viewer-comparison__modes {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 18px;
+.pronunciation-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  vertical-align: -5px; // sits on the body text's baseline
+  border: 1px solid var(--ink);
+  border-radius: $radius;
+  background: var(--ground);
+  color: var(--ink);
+  cursor: pointer;
+  @include key(1px);
+  margin-left: $space-1; // after key(), which sets the right and bottom
+  @include focus-ring;
+
+  &:hover {
+    background: var(--surface);
+  }
+
+  &.is-playing {
+    background: var(--ink);
+    color: var(--ground);
+  }
 }
 
-html.model-viewer-fullscreen-active {
-  overflow: hidden;
+.pronunciation-button__icon {
+  display: block;
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.pronunciation-button__icon--stop,
+.pronunciation-button.is-playing .pronunciation-button__icon--play {
+  display: none;
+}
+
+.pronunciation-button.is-playing .pronunciation-button__icon--stop {
+  display: block;
 }

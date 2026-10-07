@@ -6,6 +6,11 @@ image: /visuals/trace-thumbs/trace_wirescapes_mutant_radio.jpg
 image_alt: "A three-dimensional scan of the Wirescapes installation at Mutant Radio in Tbilisi"
 gaussian_splat: true
 lightbox: true
+resources:
+  - title: SPZ scan
+    url: /traces/wirescapes-mutant-radio/wirescapes-mutant-radio.spz
+  - title: Wirescapes reprise
+    url: https://toto.photo/exhibitions/wirescapes-reprise/
 trace:
   kind: "3D scan"
 ---

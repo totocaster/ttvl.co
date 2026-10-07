@@ -1,24 +1,36 @@
-<section class="log-archive">
-  {{ $logs := where .page.Site.RegularPages "Section" "log" }}
-  {{ $years := $logs.GroupByDate "2006" }}
-  {{ $title := .title | default "Archive" }}
-  {{ $current := .page.RelPermalink }}
-  <h2 class="section-head">{{ $title }}</h2>
-  <ul class="log-grid">
-    {{ range $years }}
-    <li>
-      <span class="log-year">{{ .Key }}</span>
-      {{ $pages := .Pages }}
-      {{ range $m := seq 1 12 }}
-        {{ $match := "" }}
-        {{ range $pages }}{{ if eq (int (.Date.Format "1")) $m }}{{ $match = . }}{{ end }}{{ end }}
-        {{ with $match }}
-          <a href="{{ .RelPermalink }}" class="log-month"{{ if eq .RelPermalink $current }} aria-current="page"{{ end }}>{{ printf "%02d" $m }}</a>
-        {{ else }}
-          <span class="log-void" aria-hidden="true">&middot;&middot;</span>
-        {{ end }}
-      {{ end }}
-    </li>
-    {{ end }}
-  </ul>
+{{- /* The Log's year-by-month grid as a block: the title in the rail with
+     the month count and the first month, then one line per year, twelve
+     cells, voids as ··. On a month page that month is aria-current and
+     carries the signal underline. Pass a dict: "page" (required), "title"
+     (default "Archive"), "class" (extra block classes, e.g. "end").
+     docs/styleguide.md, Page by Page: Log hub, Log month, Index. */ -}}
+{{- $logs := (where site.RegularPages "Section" "log").ByDate -}}
+{{- $current := .page.RelPermalink -}}
+{{- with $logs }}
+{{- $first := index . 0 }}
+<section class="block log-archive{{ with $.class }} {{ . }}{{ end }}">
+  <div class="rail">
+    <h2>{{ $.title | default "Archive" }}</h2>
+    <p class="meta">{{ partial "count.html" (dict "n" (len .) "one" "month" "many" "months") }} · since <time datetime="{{ $first.Date.Format "2006-01" }}">{{ $first.Date.Format "2006-01" }}</time></p>
+  </div>
+  <div class="main">
+    <ul class="log-grid">
+      {{- range .Reverse.GroupByDate "2006" }}
+      {{- $pages := .Pages }}
+      <li>
+        <span class="log-year">{{ .Key }}</span>
+        {{- range $m := seq 1 12 }}
+        {{- $match := "" }}
+        {{- range $pages }}{{ if eq (int (.Date.Format "1")) $m }}{{ $match = . }}{{ end }}{{ end }}
+        {{- with $match }}
+        <a href="{{ .RelPermalink }}" class="log-month" aria-label="{{ .Date.Format "2006-01" }}"{{ if eq .RelPermalink $current }} aria-current="page"{{ end }}>{{ printf "%02d" $m }}</a>
+        {{- else }}
+        <span class="log-void" aria-hidden="true">··</span>
+        {{- end }}
+        {{- end }}
+      </li>
+      {{- end }}
+    </ul>
+  </div>
 </section>
+{{- end }}

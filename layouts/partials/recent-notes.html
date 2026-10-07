@@ -1,15 +1,21 @@
-{{ $notes := first 5 (sort (where .Site.RegularPages "Section" "notes") "Date" "desc") }}
-{{ if gt (len $notes) 0 }}
-  <section class="recent-notes">
-    <h1>Notes</h1>
+{{- /* Home: the Notes block. The five newest notes as rows without tails. */ -}}
+{{- $notes := sort (where site.RegularPages "Section" "notes") "Date" "desc" -}}
+{{- with $notes }}
+<section class="block">
+  <div class="rail">
+    <h2>Notes</h2>
+    <p class="meta">{{ partial "count.html" (dict "n" (len .) "one" "note" "many" "notes") }} · <a href="/notes/">all →</a></p>
+  </div>
+  <div class="main">
     <ul class="rows">
-      {{ range $notes }}
-        {{ partial "row.html" (dict
-          "meta" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02") | safeHTML)
-          "url" .RelPermalink
-          "title" .Title
-        ) }}
-      {{ end }}
+      {{- range first 5 . }}
+      {{ partial "row.html" (dict
+        "meta" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02") | safeHTML)
+        "url" .RelPermalink
+        "title" .Title
+      ) }}
+      {{- end }}
     </ul>
-  </section>
-{{ end }}
+  </div>
+</section>
+{{- end }}

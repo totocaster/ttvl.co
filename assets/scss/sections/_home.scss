@@ -1,48 +1,28 @@
-// Home page composition: the intro, then sections titled with h1 (the home
-// page's sections are top level). Sections open at 64/16 like every hub
-// section; text holds the measure like every other page.
+// Home: the head carries the intro (its first paragraph as the title, the
+// second as the dek), then six blocks from the home partials, each with a
+// count and "all →" in its rail. Blocks, rows, cards, and the form are the
+// shared patterns; only the home's own seams live here.
+// docs/styleguide.md, Page by Page: Home.
 
-div.home {
-  p {
-    margin: 0 0 $rhythm-paragraph;
-    @include readable-width;
-
-    img {
-      max-width: 100%;
-      height: auto;
-    }
+.home {
+  // The intro's links stay visible inside the title: the page head drops
+  // the underline from a title that is itself a link, but these sit in a
+  // sentence.
+  .page-head h1 a {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 5px; // the title's underline, clear of descenders
   }
 
-  > section {
-    margin-top: $rhythm-section-above;
-  }
-
-  h1 {
-    margin: 0 0 $rhythm-section-below;
-  }
-
-  .flaneur-inpage-box {
-    div.email-subscribe {
-      padding: 0;
+  // The Flâneur: the sentence, then the form, then the dispatches 24 px
+  // under the legend.
+  .home-flaneur .main {
+    > .prose {
+      margin-bottom: $rhythm-paragraph;
     }
 
-    // The recent dispatches follow the promise line like a paragraph.
-    .rows {
-      margin-top: $rhythm-paragraph;
-    }
-  }
-}
-
-// Socials: the follow links in Get in Touch.
-.socials {
-  a {
-    display: inline-block;
-    color: var(--ink-muted);
-    text-decoration: $link-decoration-default;
-    transition: color $t-fast;
-
-    &:hover {
-      color: var(--ink);
+    > .rows {
+      margin-top: $space-5;
     }
   }
 }

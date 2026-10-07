@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ .Site.Language.Locale }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,44 +9,53 @@
   {{ $style := resources.Get "scss/style.scss" | toCSS | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
 </head>
+{{- /* /links/: the link-in-bio page. No masthead: the avatar, the logo,
+     the description, then pills on hard shadows with the kind at the
+     right, then the form and its legend. docs/styleguide.md, Page by Page
+     (/links/ and /found/). */}}
 <body class="links-page">
-  <div class="links-container">
-    <div class="avatar">
-      <img src="/ui/2023_social_avatar.jpeg" alt="{{ .Site.Title }} avatar">
-    </div>
-    <div class="site-logo">
-      <a href="/" aria-label="{{ .Site.Title }} — home">
-        <img src="/ui/ttvl_logo.png"
-             srcset="/ui/ttvl_logo.png 1x, /ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x"
-             alt="{{ .Site.Title }} logo">
-      </a>
-    </div>
-    <div class="description">
-      <p>{{ .Description }}</p>
-    </div>
-    <ul>
-      <li><a href="https://toto.photo/">Photography Website</a></li>
-      {{ range first 1 (sort (where site.RegularPages "Params.project" "!=" nil) "Date" "desc") }}
-      <li><a href="{{ .RelPermalink }}"><span class="link-kicker">Project&nbsp;&middot;</span> {{ .Title }}</a></li>
-      {{ end }}
-      {{ range first 1 (sort (where site.RegularPages "Section" "flaneur") "Date" "desc") }}
-      <li><a href="{{ .RelPermalink }}"><span class="link-kicker">Dispatch {{ .File.BaseFileName }}&nbsp;&middot;</span> {{ .Title }}</a></li>
-      {{ end }}
-      {{ range first 1 (sort (where site.RegularPages "Section" "notes") "Date" "desc") }}
-      <li><a href="{{ .RelPermalink }}"><span class="link-kicker">Note&nbsp;&middot;</span> {{ .Title }}</a></li>
-      {{ end }}
-      {{ range .Params.links }}
-      <li><a href="{{ .url }}">{{ .title }}</a></li>
-      {{ end }}
+  <main class="links">
+    <header class="links-head">
+      <img class="avatar" src="/ui/2023_social_avatar.jpeg" width="96" height="96" alt="">
+      <a class="links-logo" href="/"><img src="/ui/ttvl_logo.png" srcset="/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x" width="82" height="32" alt="{{ .Site.Title }}"></a>
+      <p class="links-dek">{{ .Description }}</p>
+    </header>
+    <ul class="pills">
+      <li><a href="https://toto.photo/"><span>Photography Website</span><span class="pill-kind">toto.photo ↗</span></a></li>
+      {{- range first 1 (sort (where site.RegularPages "Params.project" "!=" nil) "Date" "desc") }}
+      <li><a href="{{ .RelPermalink }}"><span>{{ .Title }}</span><span class="pill-kind">Project</span></a></li>
+      {{- end }}
+      {{- range first 1 (sort (where site.RegularPages "Section" "flaneur") "Date" "desc") }}
+      <li><a href="{{ .RelPermalink }}"><span>{{ .Title }}</span><span class="pill-kind">Dispatch <span class="n">{{ .File.BaseFileName }}</span></span></a></li>
+      {{- end }}
+      {{- range first 1 (sort (where site.RegularPages "Section" "notes") "Date" "desc") }}
+      <li><a href="{{ .RelPermalink }}"><span>{{ .Title }}</span><span class="pill-kind">Note</span></a></li>
+      {{- end }}
+      {{- range .Params.links }}
+      {{- /* The kind: a page's own (Project, Note, Dispatch, or its hub), or
+           an external link's host. An explicit `kind` wins. */}}
+      {{- $kind := .kind -}}
+      {{- if not $kind -}}
+        {{- if strings.HasPrefix .url "/" -}}
+          {{- range first 1 (where site.Pages "RelPermalink" .url) -}}
+            {{- if .Params.project }}{{ $kind = "Project" }}{{ else if eq .Section "notes" }}{{ $kind = "Note" }}{{ else if eq .Section "flaneur" }}{{ $kind = "Dispatch" }}{{ else if .IsSection }}{{ $kind = "Hub" }}{{ else }}{{ $kind = .CurrentSection.Title }}{{ end -}}
+          {{- end -}}
+        {{- else -}}
+          {{- $kind = printf "%s ↗" (strings.TrimPrefix "www." (urls.Parse .url).Host) -}}
+        {{- end -}}
+      {{- end }}
+      <li><a href="{{ .url }}"><span>{{ .title }}</span>{{ with $kind }}<span class="pill-kind">{{ . }}</span>{{ end }}</a></li>
+      {{- end }}
     </ul>
-    {{ .Content }}
-    <hr>
-    <section class="flaneur-inpage-box">
-      <div class="email-subscribe">
-        {{ partial "subscribe-form.html" (dict "id" "links" "placeholder" "Subscribe to The Flâneur via email") }}
-      </div>
+    {{- with .Content }}
+    <div class="links-body">{{ . }}</div>
+    {{- end }}
+    <p class="legend links-more">More at <a href="/">ttvl.co</a></p>
+    <section class="links-subscribe" aria-label="Subscribe to The Flâneur">
+      {{ partial "subscribe-form.html" (dict "id" "links" "placeholder" "Subscribe to The Flâneur via email") }}
+      {{ partial "subscribe-legend.html" . }}
       {{ partial "campaign-monitor-script.html" . }}
     </section>
-  </div>
+  </main>
 </body>
 </html>

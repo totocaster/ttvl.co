@@ -3,6 +3,8 @@ title: 'The Flâneur'
 description: "Experimental newsletter on my projects, photography, and walking."
 project:
   year: ongoing
+  since: 2021
+  kind: "Newsletter"
   image: /visuals/project-thumbs/proj_flaneur.png
 filter_dek: "Experimental newsletter on my projects, photography, and walking."
 show_start_here: true

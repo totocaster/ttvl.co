@@ -1,22 +1,17 @@
-{{- /* One index row for a research entry: date, title, and a meta tail.
-     Takes dict "page" plus booleans "stream", "number", "category" choosing
-     what the tail names. data-category is the stream's folder name, for
-     the hub's stream filter; the stream name carries data-filter-show="all"
-     so the filter hides it once every row shares the same stream. */ -}}
+{{- /* One row for a research entry: the date as the meta, the title, and a
+     tail naming the entry's number and kind ("024 · Question"). Takes dict
+     "page" plus booleans "stream", "number", "category" choosing what the
+     tail names; with none of them the row has no tail (home lists).
+     docs/styleguide.md, Rows. */ -}}
 {{- $p := .page -}}
-{{- $rest := slice -}}
-{{- if .number }}{{ $rest = $rest | append (partialCached "research-number.html" $p $p.Path) }}{{ end -}}
-{{- if .category }}{{ with partial "research-category.html" $p }}{{ $rest = $rest | append . }}{{ end }}{{ end -}}
-{{- $tail := "" -}}
-{{- if or .stream $rest -}}
-  {{- $html := "" -}}
-  {{- if .stream }}{{ $html = printf `<span data-filter-show="all">%s%s</span>` (htmlEscape $p.CurrentSection.Title) (cond (gt (len $rest) 0) " · " "") }}{{ end -}}
-  {{- $tail = printf "%s%s" $html (delimit $rest " · ") | safeHTML -}}
-{{- end -}}
+{{- $parts := slice -}}
+{{- if .stream }}{{ $parts = $parts | append (htmlEscape $p.CurrentSection.Title) }}{{ end -}}
+{{- if .number }}{{ $parts = $parts | append (printf `<span class="n">%s</span>` (partialCached "research-number.html" $p $p.Path)) }}{{ end -}}
+{{- if .category }}{{ with partial "research-category.html" $p }}{{ $parts = $parts | append (htmlEscape .) }}{{ end }}{{ end -}}
+{{- $d := $p.Date.Format "2006-01-02" -}}
 {{ partial "row.html" (dict
-  "meta" (printf `<time datetime="%s">%s</time>` ($p.Date.Format "2006-01-02") ($p.Date.Format "2006-01-02") | safeHTML)
+  "meta" (printf `<time datetime="%s">%s</time>` $d $d | safeHTML)
   "url" $p.RelPermalink
   "title" $p.Title
-  "tail" $tail
-  "category" $p.CurrentSection.File.ContentBaseName
+  "tail" (delimit $parts " · " | safeHTML)
 ) }}

@@ -7,6 +7,11 @@ image: /visuals/trace-thumbs/trace_daikyocho.png
 image_alt: "A three-dimensional scan of the Daikyocho apartment as a living space in 2026"
 model_viewer: true
 model_viewer_comparison: true
+resources:
+  - title: GLB before Kyojima
+    url: /traces/daikyocho-home/daikyocho-2023-02-28.glb
+  - title: GLB after Kyojima
+    url: /traces/daikyocho-home/daikyocho-2026-08-03.glb
 trace:
   kind: "3D scans"
 ---

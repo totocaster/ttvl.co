@@ -1,23 +1,29 @@
-<section class="flaneur-inpage-box">
-  <h1>Newsletter</h1>
-  <p><em>The Flâneur</em> is an even more meandering version of this website and perhaps the best way to follow me &mdash; <a href="https://www.instagram.com/totocaster/">Instagram</a> is also a-okay too.</p>
-  <div class="email-subscribe">
-    {{ partial "subscribe-form.html" (dict "id" "home") }}
-    <div class="promise">
-      <p>Seasonal, not monthly. One click to unsubscribe. Or, browse the <a href="/newsletter/">archive</a> first:</p>
-    </div>
+{{- /* Home: The Flâneur block. A sentence, the form and its legend, then
+     the five latest dispatches as rows (#016 · 2026-09 | title). */ -}}
+{{- $issues := sort (where site.RegularPages "Section" "flaneur") "Date" "desc" -}}
+{{- $archive := site.GetPage "/newsletter" -}}
+<section class="block home-flaneur" id="newsletter">
+  <div class="rail">
+    <h2>The Flâneur</h2>
+    <p class="meta">{{ partial "count.html" (dict "n" (len $issues) "one" "dispatch" "many" "dispatches") }} · <a href="{{ with $archive }}{{ .RelPermalink }}{{ else }}/newsletter/{{ end }}">all →</a></p>
   </div>
-  {{ $issues := first 5 (sort (where .Site.RegularPages "Section" "flaneur") "Date" "desc") }}
-  {{ if gt (len $issues) 0 }}
+  <div class="main">
+    <div class="prose">
+      <p><em>The Flâneur</em> is an even more meandering version of this website and perhaps the best way to follow me. <a href="https://www.instagram.com/totocaster/">Instagram</a> is a-okay too.</p>
+    </div>
+    {{ partial "subscribe-form.html" (dict "id" "home") }}
+    {{ partial "subscribe-legend.html" . }}
+    {{- with first 5 $issues }}
     <ul class="rows">
-      {{ range $issues }}
-        {{ partial "row.html" (dict
-          "meta" (printf `#%03s · <time datetime="%s">%s</time>` .File.BaseFileName (.Date.Format "2006-01-02") (.Date.Format "2006-01") | safeHTML)
-          "url" .RelPermalink
-          "title" .Title
-        ) }}
-      {{ end }}
+      {{- range . }}
+      {{ partial "row.html" (dict
+        "meta" (printf `<span class="n">#%03s</span> · <time datetime="%s">%s</time>` .File.BaseFileName (.Date.Format "2006-01-02") (.Date.Format "2006-01") | safeHTML)
+        "url" .RelPermalink
+        "title" .Title
+      ) }}
+      {{- end }}
     </ul>
-  {{ end }}
-  {{ partial "campaign-monitor-script.html" . }}
+    {{- end }}
+    {{ partial "campaign-monitor-script.html" . }}
+  </div>
 </section>

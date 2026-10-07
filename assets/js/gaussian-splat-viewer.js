@@ -54,10 +54,8 @@ const gaussianSplatViewer = {
           : null;
       };
 
-      const updateBackground = () => {
-        const dark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        renderer.setClearColor(dark ? 0x1c1c1c : 0xfafafa, 1);
-      };
+      // The media well is dark in both themes (components/_model-viewer.scss).
+      renderer.setClearColor(0x111111, 1);
 
       const resize = () => {
         const width = Math.max(frame.clientWidth, 1);
@@ -219,10 +217,6 @@ const gaussianSplatViewer = {
           requestAnimationFrame(resize);
         }
       });
-
-      const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
-      colorScheme.addEventListener("change", updateBackground);
-      updateBackground();
 
       if ("ResizeObserver" in window) {
         const resizeObserver = new ResizeObserver(resize);

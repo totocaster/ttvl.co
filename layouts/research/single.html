@@ -1,88 +1,57 @@
+{{- /* A research entry: the head (date · number / Stream · Kind, with
+     "answers 003" when it closes a question), the body, Mentioned in, and
+     In this stream with the neighbouring entries by date. The Left and
+     Right arrow keys follow those rows (assets/js/research-pager.js).
+     docs/styleguide.md, End Matter. */ -}}
 {{ define "main" }}
-{{ $stream := .CurrentSection }}
-{{ $rel := .RelPermalink }}
-{{ $relNoSlash := strings.TrimSuffix "/" $rel }}
-
-{{/* Relations: the questions this entry answers, the entries that answer
-     it, then every other page whose text links here. */}}
-{{ $rows := slice }}
-{{ $seen := slice .Path }}
-{{ range partial "research-answers.html" . }}
-  {{ $rows = $rows | append (dict "label" "Answers" "page" .) }}
-  {{ $seen = $seen | append .Path }}
-{{ end }}
-{{ range partial "research-answered-by.html" . }}
-  {{ $rows = $rows | append (dict "label" "Answered in" "page" .) }}
-  {{ $seen = $seen | append .Path }}
-{{ end }}
-{{ range site.RegularPages.ByDate }}
-  {{ if and (not (in $seen .Path)) (or (in .RawContent $rel) (in .RawContent $relNoSlash)) }}
-    {{ $rows = $rows | append (dict "label" "Referenced by" "page" .) }}
-  {{ end }}
-{{ end }}
-
-{{/* Neighbours within the stream, by date. Left and Right arrow keys
-     follow them (assets/js/research-pager.js). */}}
-{{ $prev := false }}
-{{ $next := false }}
-{{ $found := false }}
-{{ range $stream.RegularPages.ByDate }}
-  {{ if $found }}
-    {{ if not $next }}{{ $next = . }}{{ end }}
-  {{ else if eq .Path $.Path }}
-    {{ $found = true }}
-  {{ else }}
-    {{ $prev = . }}
-  {{ end }}
-{{ end }}
-
+{{- $stream := .CurrentSection -}}
+{{- $prev := false -}}
+{{- $next := false -}}
+{{- $found := false -}}
+{{- range $stream.RegularPages.ByDate -}}
+  {{- if $found -}}
+    {{- if not $next }}{{ $next = . }}{{ end -}}
+  {{- else if eq .Path $.Path -}}
+    {{- $found = true -}}
+  {{- else -}}
+    {{- $prev = . -}}
+  {{- end -}}
+{{- end }}
 <div class="research">
-<article class="research-single">
+<article>
   {{ partial "page-head.html" . }}
-
-  {{ .Content }}
+  {{ partial "block-body.html" .Content }}
 </article>
-
-  {{ with $rows }}
-  <section class="end-matter">
-  <h2 class="group-head">Related</h2>
-  <ul class="rows">
-    {{ range . }}
-    {{ $p := .page }}
-    {{ $tail := "" }}
-    {{ if eq $p.Section "research" }}
-      {{ $tail = partialCached "research-number.html" $p $p.Path }}
-      {{ if ne $p.CurrentSection.Path $stream.Path }}{{ $tail = printf "%s · %s" $p.CurrentSection.Title $tail }}{{ end }}
-    {{ else if eq $p.Section "notes" }}
-      {{ $tail = "Note" }}
-    {{ else if eq $p.Section "log" }}
-      {{ $tail = "Log" }}
-    {{ else }}
-      {{ $tail = $p.CurrentSection.Title }}
-    {{ end }}
-    {{ partial "row.html" (dict "meta" .label "url" $p.RelPermalink "title" $p.Title "tail" $tail) }}
-    {{ end }}
-  </ul>
-  </section>
-  {{ end }}
-
-  {{ if or $prev $next }}
-  <nav class="research-pager" aria-label="Entries in {{ $stream.Title }}">
-    {{ with $prev }}
-    <a class="research-pager__prev" href="{{ .RelPermalink }}" rel="prev" aria-keyshortcuts="ArrowLeft">
-      <span class="research-pager__label">&larr; {{ partialCached "research-number.html" . .Path }}</span>
-      <span class="research-pager__title">{{ .Title }}</span>
-    </a>
-    {{ end }}
-    {{ with $next }}
-    <a class="research-pager__next" href="{{ .RelPermalink }}" rel="next" aria-keyshortcuts="ArrowRight">
-      <span class="research-pager__label">{{ partialCached "research-number.html" . .Path }} &rarr;</span>
-      <span class="research-pager__title">{{ .Title }}</span>
-    </a>
-    {{ end }}
-  </nav>
-  {{ $pager := resources.Get "js/research-pager.js" | resources.Minify | resources.Fingerprint }}
-  <script src="{{ $pager.RelPermalink }}" integrity="{{ $pager.Data.Integrity }}" defer></script>
-  {{ end }}
+{{ partialCached "mentioned-in.html" . .Path }}
+{{- if or $prev $next }}
+<nav class="block end research-pager" aria-labelledby="research-pager-title">
+  <div class="rail"><h2 id="research-pager-title">In this stream</h2><p class="meta"><a href="{{ $stream.RelPermalink }}">{{ $stream.Title }}</a></p></div>
+  <div class="main">
+    <ul class="rows">
+      {{- /* row.html markup, written out so the links carry rel and
+           aria-keyshortcuts for the pager script. */}}
+      {{- with $prev }}
+      {{- $d := .Date.Format "2006-01-02" }}
+      <li class="row">
+        <span class="row-meta">← <span class="n">{{ partialCached "research-number.html" . .Path }}</span></span>
+        <span class="row-main"><a class="row-title" href="{{ .RelPermalink }}" rel="prev" aria-keyshortcuts="ArrowLeft">{{ .Title }}</a></span>
+        <span class="row-tail"><time datetime="{{ $d }}">{{ $d }}</time></span>
+      </li>
+      {{- end }}
+      {{- with $next }}
+      {{- $d := .Date.Format "2006-01-02" }}
+      <li class="row">
+        <span class="row-meta"><span class="n">{{ partialCached "research-number.html" . .Path }}</span> →</span>
+        <span class="row-main"><a class="row-title" href="{{ .RelPermalink }}" rel="next" aria-keyshortcuts="ArrowRight">{{ .Title }}</a></span>
+        <span class="row-tail"><time datetime="{{ $d }}">{{ $d }}</time></span>
+      </li>
+      {{- end }}
+    </ul>
+    <p class="legend"><kbd>←</kbd> <kbd>→</kbd> move between entries</p>
+  </div>
+</nav>
+{{- $pager := resources.Get "js/research-pager.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $pager.RelPermalink }}" integrity="{{ $pager.Data.Integrity }}" defer></script>
+{{- end }}
 </div>
 {{ end }}

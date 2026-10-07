@@ -1,2 +1,6 @@
+{{- /* The lightbox for [data-lightbox-gallery] galleries and Loose Leaves'
+     .leaves-grid. Load once on a page that has one (lightbox: true, or the
+     Leaves list). Built by assets/js/lightbox.js, styled by
+     components/_lightbox.scss. docs/styleguide.md, Media Chrome. */ -}}
 {{ $lightbox := resources.Get "js/lightbox.js" | js.Build (dict "minify" true) | fingerprint }}
 <script src="{{ $lightbox.RelPermalink }}" integrity="{{ $lightbox.Data.Integrity }}" defer></script>

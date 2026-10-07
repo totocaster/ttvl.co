@@ -13,6 +13,7 @@ const lightbox = {
           .filter((image) => image.parentElement.href === image.src)
           .map((image) => ({
             alt: image.alt,
+            date: this.dateOf(image.parentElement),
             link: image.parentElement,
             src: image.parentElement.href,
           }));
@@ -24,6 +25,22 @@ const lightbox = {
           });
         });
       });
+  },
+
+  // The date an item carries, for the counter: a data-date on the link,
+  // a <time datetime> beside it in its tile (Loose Leaves), or a
+  // YYYY-MM-DD at the start of the file's name. Empty when it has none.
+  dateOf(link) {
+    const iso = /^\d{4}-\d{2}-\d{2}$/;
+    if (iso.test(link.dataset.date || "")) return link.dataset.date;
+    const tile = link.closest("li, figure, .leaf");
+    const time = tile && tile.querySelector("time[datetime]");
+    if (time && iso.test(time.getAttribute("datetime"))) {
+      return time.getAttribute("datetime");
+    }
+    const name = decodeURIComponent(link.pathname.split("/").pop() || "");
+    const match = name.match(/^(\d{4}-\d{2}-\d{2})/);
+    return match ? match[1] : "";
   },
 
   open(items, index, trigger) {
@@ -62,9 +79,27 @@ const lightbox = {
       "→",
     );
 
+    // The bar along the bottom: the counter at left, the keys at right.
+    const bar = document.createElement("div");
+    bar.className = "lightbox__bar";
+
     const counter = document.createElement("p");
     counter.className = "lightbox__counter";
     counter.setAttribute("aria-live", "polite");
+
+    const legend = document.createElement("p");
+    legend.className = "lightbox__legend";
+    legend.setAttribute("aria-hidden", "true");
+    legend.append("esc closes");
+    if (items.length > 1) {
+      ["←", "→"].forEach((key) => {
+        const kbd = document.createElement("kbd");
+        kbd.textContent = key;
+        legend.append(" ", kbd);
+      });
+    }
+
+    bar.append(counter, legend);
 
     closeButton.addEventListener("click", () => this.close());
     previousButton.addEventListener("click", () => this.previous());
@@ -74,7 +109,7 @@ const lightbox = {
     });
 
     figure.appendChild(image);
-    overlay.append(figure, closeButton, previousButton, nextButton, counter);
+    overlay.append(figure, bar, closeButton, previousButton, nextButton);
     document.body.appendChild(overlay);
     document.body.style.overflow = "hidden";
 
@@ -103,7 +138,17 @@ const lightbox = {
     const item = this.items[this.index];
     this.image.src = item.src;
     this.image.alt = item.alt;
-    this.counter.textContent = `${this.index + 1} / ${this.items.length}`;
+    // "2 / 57 · 2025-04-19", the numbers in Mono.
+    const numbers = document.createElement("span");
+    numbers.className = "n";
+    numbers.textContent = `${this.index + 1} / ${this.items.length}`;
+    this.counter.replaceChildren(numbers);
+    if (item.date) {
+      const time = document.createElement("time");
+      time.dateTime = item.date;
+      time.textContent = item.date;
+      this.counter.append(" · ", time);
+    }
 
     const hasMultipleImages = this.items.length > 1;
     this.previousButton.hidden = !hasMultipleImages;

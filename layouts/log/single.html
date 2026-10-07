@@ -1,6 +1,11 @@
 {{ define "main" }}
-<article>
-  {{ partial "page-head.html" . }}
-  {{ .Content }}
+{{- /* A Log month: the head (Month 93 / Log, the Log's own line as the
+     dek), the body block, then the Archive grid as end matter with this
+     month marked. docs/styleguide.md, Page by Page: Log month. */ -}}
+{{- $hub := site.GetPage "/log" -}}
+<article class="log-month{{ with .Params.content_css }} {{ . }}{{ end }}">
+  {{ partial "page-head.html" (dict "page" . "dek" (.Params.description | default (and $hub $hub.Params.filter_dek))) }}
+  {{ partial "block-body.html" .Content }}
 </article>
-{{ partial "log-archive.html" (dict "page" .) }} {{ end }}
+{{ partial "log-archive.html" (dict "page" . "class" "end") }}
+{{ end }}

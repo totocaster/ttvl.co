@@ -1,12 +1,17 @@
-{{- /* End matter on dispatch pages: an invitation, the form, and the same
-     honest legend as /newsletter/. Space alone separates it from the letter. */ -}}
-<section class="end-matter flaneur-box">
-  <h2 class="group-head">The Flâneur</h2>
-  <p>Not subscribed to <a href="/newsletter/">The Flâneur</a>? Subscribe to get the next dispatch in your inbox.</p>
-  <p>The Flâneur is a newsletter about my work, photography, books, making, and walking.</p>
-  <div class="email-subscribe">
-    {{ partial "subscribe-form.html" (dict "id" "article") }}
-    <p class="dispatch-legend">Seasonal, not monthly &middot; one click to leave &middot; <a href="/newsletter/">the archive</a></p>
+{{- /* End matter on dispatch pages: one block, The Flâneur, with the count
+     and a way to the archive in the rail; a sentence, the form, and the
+     legend in the column. docs/styleguide.md, Page by Page (Dispatch). */ -}}
+{{- $archive := site.GetPage "/newsletter" -}}
+{{- $n := len (where (where site.Pages "Section" "flaneur") "Kind" "page") -}}
+<section class="block end">
+  <div class="rail">
+    <h2>The Flâneur</h2>
+    <p class="meta">{{ partial "count.html" (dict "n" $n "one" "dispatch" "many" "dispatches") }} · <a href="{{ $archive.RelPermalink }}">all →</a></p>
   </div>
-  {{ partial "campaign-monitor-script.html" . }}
+  <div class="main">
+    <p>The Flâneur is a newsletter about my work, photography, books, making, and walking; subscribe to get the next dispatch in your inbox.</p>
+    {{ partial "subscribe-form.html" (dict "id" "article") }}
+    {{ partial "subscribe-legend.html" . }}
+    {{ partial "campaign-monitor-script.html" . }}
+  </div>
 </section>

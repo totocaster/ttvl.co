@@ -1,33 +1,54 @@
-// Loose Leaves grid: scans as tiles, each with its date in the meta voice.
+// Loose Leaves: tight year blocks of 3:4 tiles on edge frames, four
+// columns (two on phones), the date in Mono under each. The year blocks
+// share one .leaves-grid wrapper, which the lightbox reads as a single
+// gallery. docs/styleguide.md, Page by Page: Loose Leaves.
 
 .leaves-grid {
+  // The wrapper stands where the first block would: the first year sits
+  // on the head like any first block.
+  .page-head + & > .block:first-child {
+    margin-top: 0;
+  }
+}
+
+.leaves {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: $space-5 $space-4;
+  list-style: none;
   margin: 0;
+  padding: 0;
+  max-width: $max-width-column;
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: $space-5;
+  @include narrow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-4 $space-3;
+  }
+}
 
-    @include narrow {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: $space-3;
-    }
+.leaf {
+  min-width: 0;
 
-    .leaf {
-      img {
-        width: 100%;
-        height: auto;
-        display: block;
-        margin-bottom: $space-2;
-        // A tile like every other: an edge frame in both themes.
-        border: 1px solid var(--edge);
-      }
+  a {
+    display: block;
+    line-height: 0;
+  }
 
-      time {
-        display: block;
-        @include type-meta;
-        color: var(--ink-faint);
-      }
-    }
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    border: 1px solid var(--edge);
+    border-radius: $radius;
+    background: var(--surface);
+  }
+
+  time {
+    display: block;
+    @include type-small;
+    color: var(--ink-faint);
+    margin-top: 6px; // tile geometry: the date under its leaf
   }
 }

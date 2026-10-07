@@ -1,9 +1,17 @@
-// Notes: the index uses the shared rows and group heads, and backlinks are
-// the shared end matter (partials/mentioned-in.html). Only the filter's
-// year hiding lives here.
+// Notes: the hub is the shared head, filter, blocks, and rows; a note is
+// the shared head, body block, and end matter. Only the filter's year
+// hiding lives here, for the Notes hub and, since it has no stylesheet of
+// its own, the Projects hub (layouts/projects/list.html).
 
-// Category filtering hides whole years; !important beats the section's
-// own display.
-main .notes-year[hidden] {
+// Category filtering hides whole year blocks; !important beats the
+// block's own grid display.
+main :is(.notes-year, .project-year)[hidden] {
   display: none !important;
+}
+
+// The first visible year sits on the head, as the first block does, even
+// when the filter has hidden the years above it.
+main .notes-year:nth-child(1 of .notes-year:not([hidden])),
+main .project-year:nth-child(1 of .project-year:not([hidden])) {
+  margin-top: 0;
 }

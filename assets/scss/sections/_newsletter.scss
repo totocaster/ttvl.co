@@ -1,163 +1,132 @@
-// Newsletter landing (intro, Start Here doors, contact sheet, archive) and
-// Flâneur issue pages. The archive uses the shared rows and group heads;
-// sections open on the shared section rhythm.
+// The Flâneur: the newsletter page (/newsletter/) and the dispatch pages.
+// Heads, blocks, rows, group heads, the form, and legends are shared
+// components; this file holds what only these pages draw.
+// docs/styleguide.md, Page by Page (Newsletter, Dispatch).
 
-main {
-  .newsletter-intro {
-    div.email-subscribe {
-      padding-bottom: 0;
-    }
+// The form sits in the head's column, under the dek.
+.newsletter .page-head .subscribe {
+  margin-top: $space-5;
+}
+
+// The Contact Sheet: one 150 × 110 frame per dispatch with a cover, the
+// number and month under each. Scrolls sideways without a scrollbar; the
+// clipped frame at the edge is the affordance.
+.sheet-strip {
+  display: flex;
+  gap: $space-3;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 $space-1;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
   }
 
-  // Honest promise under the form: start year, cadence, exit.
-  .dispatch-legend {
+  li {
+    flex: 0 0 150px;
+  }
+
+  a {
+    display: block;
+    text-decoration: none;
+  }
+
+  img {
+    display: block;
+    width: 150px;
+    height: 110px;
+    object-fit: cover;
+    border: 1px solid var(--edge);
+    border-radius: $radius;
+    background: var(--surface);
+  }
+
+  .sheet-cap {
+    display: block;
     @include type-meta;
     color: var(--ink-faint);
-    margin: $space-3 0 0;
+    margin-top: $space-1;
+    white-space: nowrap;
+    transition: color $t-fast;
   }
 
-  // Start Here — three curated doors from _index.md frontmatter.
-  .newsletter-doors {
-    .door-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 0 $space-5;
+  a:hover .sheet-cap {
+    color: var(--ink);
+  }
 
-      @include narrow {
-        grid-template-columns: 1fr;
-        gap: $space-4;
-      }
-    }
+  & + .legend {
+    margin-top: $space-3;
+  }
+}
 
-    // Label, number, and month in the meta voice, sentence case.
-    .door-label {
-      @include type-meta;
-      color: var(--ink-faint);
-      margin: 0 0 $space-1;
-    }
+// Dispatch pages: the engraving in place of the masthead, centered and
+// 120 px tall. The signature is black ink; it inverts on the dark ground.
+.engraving {
+  display: flex;
+  justify-content: center;
+  padding-top: $space-6;
 
-    .door h3 {
-      margin: 0 0 $space-1;
-    }
+  a {
+    display: block;
+    line-height: 0;
+  }
 
-    .door-dek {
-      line-height: $line-height-tight;
-      margin: 0;
+  img {
+    display: block;
+    height: 120px;
+    width: auto;
+  }
+
+  @include dark {
+    img {
+      filter: grayscale(1) invert(0.9);
     }
   }
 
-  // Contact sheet — one frame per dispatch that carries a cover.
-  .newsletter-sheet {
-    // Explanation below the strip is content: full ink, body size.
-    .sheet-note {
-      @include readable-width;
-      margin: $space-3 0 0;
-    }
-
-    ul.sheet-strip {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: $space-3;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-
-      // Scrolls without a scrollbar; the clipped frame at the edge is
-      // the affordance.
-      scrollbar-width: none;
-
-      &::-webkit-scrollbar {
-        display: none;
-      }
-    }
-
-    li {
-      flex: none;
-      width: 150px;
-    }
-
-    a {
-      display: block;
-      text-decoration: $link-decoration-plain;
-      font-weight: $link-weight-quiet;
-    }
+  @include narrow {
+    padding-top: $space-5;
 
     img {
-      width: 150px;
-      height: 110px;
-      object-fit: cover;
-      display: block;
-      border: 1px solid var(--edge);
-      background: var(--surface);
-      box-sizing: border-box;
-    }
-
-    .sheet-cap {
-      display: block;
-      @include type-meta;
-      color: var(--ink-faint);
-      margin-top: $space-1;
-      transition: color $t-fast;
-    }
-
-    a:hover .sheet-cap {
-      color: var(--ink);
-    }
-  }
-
-  // Archive — year groups under the Archive section, rows with optional
-  // deks (show_deks in _index.md). Deks are muted per Toto's call for this
-  // page (2026-08-30), which is now the row standard everywhere.
-  .newsletter-archive {
-    @include readable-width;
-  }
-
-  // Dispatch pages: the letter uses the shared page head (title, meta line,
-  // subtitle as its dek); only the gallery is the dispatch's own.
-  article.flaneur {
-    // Flaneur gallery for multiple images
-    .flaneur-gallery {
-      @include readable-width;
-      margin: $space-5 0 $space-6;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: $space-3;
-
-      @include narrow {
-        grid-template-columns: 1fr;
-        gap: $space-2;
-      }
-    }
-
-    // Gallery images are direct children (no p wrappers), so the article
-    // bleed width never applies to them.
-    .flaneur-gallery img {
-      width: 100%;
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-  }
-
-  // The invitation at the end of a dispatch: end matter like any other,
-  // separated by space alone.
-  .flaneur-box {
-    @include readable-width;
-
-    > p {
-      margin: 0 0 $rhythm-paragraph;
-    }
-
-    div.email-subscribe {
-      padding: $space-2 0 0;
+      height: 96px; // the engraving on phones
     }
   }
 }
 
-// The engraving in a dispatch's header, where the site logo would be.
-.flaneur-logo {
-  display: block;
-  width: 120px;
-  height: auto;
+// The letter: photographs go unframed, Markdown images included.
+.dispatch .prose p > img:only-child {
+  border: 0;
+  border-radius: 0;
+}
+
+// Galleries: two columns at the bleed width, unframed photographs.
+.flaneur-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $space-3;
+  max-width: $max-width-bleed;
+  margin: $rhythm-figure-above 0 $rhythm-figure-below;
+
+  align-items: start;
+
+  // Each photograph keeps its own proportions; nothing is cropped.
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  // markdownify keeps a wrapper when the gallery holds more than one
+  // paragraph; let its images join the grid.
+  p {
+    display: contents;
+  }
+}
+
+// The end block: the sentence, then the form and its legend.
+.dispatch .block.end .main > p:first-child {
+  @include readable-width;
+  margin: 0 0 $space-4;
 }

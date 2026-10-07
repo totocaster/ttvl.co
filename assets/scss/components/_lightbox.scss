@@ -1,34 +1,79 @@
+// The lightbox: black at 94%, the image contained, a bar along the bottom
+// with the counter (`2 / 57 · 2025-04-19`, numbers in Mono) at left and
+// the keys at right, and the × ← → keys as 44 px squares on a 1 px white
+// frame. Built by assets/js/lightbox.js for [data-lightbox-gallery] and
+// .leaves-grid. docs/styleguide.md, Media Chrome.
+//
+// Deliberate exception: controls over photographs keep literal colors in
+// both themes (black wells, white chrome), so nothing here uses the tokens
+// except the focus ring's signal.
+
 .lightbox {
   position: fixed;
   inset: 0;
   z-index: $z-overlay;
   display: grid;
-  place-items: center;
-  background: rgba(0, 0, 0, 0.94);
-  color: #fff;
+  grid-template-rows: minmax(0, 1fr) auto;
+  background: rgba(0, 0, 0, 0.94); // over-photo chrome
+  color: #fff; // over-photo chrome
 }
 
 .lightbox__figure {
   display: grid;
   place-items: center;
-  width: 100%;
-  height: 100%;
+  min-height: 0;
+  max-width: none;
   margin: 0;
-  padding: 48px 64px;
-  box-sizing: border-box;
+  padding: $space-7 $space-8 0;
   pointer-events: none;
 
   @include narrow {
-    padding: 52px 20px;
+    padding: $space-8 $page-padding-narrow 0;
   }
 }
 
 .lightbox__image {
   display: block;
   max-width: 100%;
-  max-height: calc(100vh - 96px);
+  max-height: 100%;
   object-fit: contain;
   pointer-events: auto;
+}
+
+.lightbox__bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $space-4;
+  padding: $space-4 $space-7 $space-5;
+  pointer-events: none;
+
+  @include narrow {
+    padding: $space-3 $page-padding-narrow $space-4;
+  }
+
+  p {
+    margin: 0;
+    @include type-meta;
+    color: rgba(255, 255, 255, 0.72); // over-photo chrome, 13:1 on the well
+  }
+}
+
+.lightbox__legend {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+
+  // Keycaps over the photograph: the same cap, outlined in white.
+  kbd {
+    background: none;
+    border-color: rgba(255, 255, 255, 0.5); // over-photo chrome
+    color: #fff; // over-photo chrome
+  }
+
+  @include narrow {
+    display: none;
+  }
 }
 
 .lightbox__button {
@@ -39,21 +84,23 @@
   width: 44px;
   height: 44px;
   padding: 0;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(0, 0, 0, 0.42);
-  color: #fff;
-  font: inherit;
-  font-size: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.5); // over-photo chrome
+  border-radius: $radius;
+  background: rgba(0, 0, 0, 0.42); // over-photo chrome
+  color: #fff; // over-photo chrome
+  font-family: $font-family-sans;
+  font-size: 20px; // the key's glyph
   line-height: 1;
   cursor: pointer;
+  transition: background-color $t-fast, border-color $t-fast;
 
   &:hover {
-    background: rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.16); // over-photo chrome
+    border-color: #fff; // over-photo chrome
   }
 
   &:focus-visible {
-    outline: 2px solid #fff;
+    outline: 2px solid var(--signal);
     outline-offset: 2px;
   }
 
@@ -63,8 +110,8 @@
 }
 
 .lightbox__close {
-  top: 12px;
-  right: 12px;
+  top: 20px; // over-photo key inset
+  right: 20px;
 }
 
 .lightbox__previous,
@@ -74,18 +121,24 @@
 }
 
 .lightbox__previous {
-  left: 12px;
+  left: 20px; // over-photo key inset
 }
 
 .lightbox__next {
-  right: 12px;
+  right: 20px; // over-photo key inset
 }
 
-.lightbox__counter {
-  position: absolute;
-  left: 16px;
-  bottom: 14px;
-  margin: 0;
-  @include type-meta;
-  color: rgba(255, 255, 255, 0.72);
+@include narrow {
+  .lightbox__close {
+    top: $space-3;
+    right: $space-3;
+  }
+
+  .lightbox__previous {
+    left: $space-2;
+  }
+
+  .lightbox__next {
+    right: $space-2;
+  }
 }

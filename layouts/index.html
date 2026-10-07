@@ -1,7 +1,25 @@
 {{ define "main" }}
-<div class="home">
-  {{ .Content }} {{ partial "flaneur-in-page.html" . }} {{ partial
-  "featured-projects.html" . }} {{ partial "recent-notes.html" . }} {{ partial
-  "recent-research.html" . }} {{ partial "log.html" . }} {{ partial "get-in-touch.html" . }}
-</div>
+{{- /* Home: the intro's first paragraph is the title, the second the dek,
+     the rail reads "Public notebook · since 2008". Then six blocks, each
+     with its count and "all →" in the rail: The Flâneur, Projects, Notes,
+     Research, the latest Log month, Get in touch.
+     docs/styleguide.md, Page by Page: Home. */ -}}
+{{- $content := string .Content -}}
+{{- $paras := findRESubmatch `<p>((?s:.*?))</p>` $content 2 -}}
+{{- $title := .Title -}}
+{{- $dek := "" -}}
+{{- with index $paras 0 }}{{ $title = index . 1 | safeHTML }}{{ end -}}
+{{- if gt (len $paras) 1 }}{{ $dek = index (index $paras 1) 1 | safeHTML }}{{ end -}}
+{{- $rest := replaceRE `^\s*<p>(?s:.*?)</p>` "" $content 1 -}}
+{{- if $dek }}{{ $rest = replaceRE `^\s*<p>(?s:.*?)</p>` "" $rest 1 }}{{ end -}}
+<article class="home">
+  {{ partial "page-head.html" (dict "page" . "title" $title "dek" $dek) }}
+  {{- with trim $rest " \n\t" }}{{ partial "block-body.html" . }}{{ end }}
+  {{ partial "flaneur-in-page.html" . }}
+  {{ partial "featured-projects.html" . }}
+  {{ partial "recent-notes.html" . }}
+  {{ partial "recent-research.html" . }}
+  {{ partial "log.html" . }}
+  {{ partial "get-in-touch.html" . }}
+</article>
 {{ end }}

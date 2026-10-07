@@ -1,154 +1,153 @@
-// The link pages (/links/ and /found/): a centered column of large tap
-// targets for phones, on the site's tokens, type, and spacing scale. Their
-// own layouts (_default/links.html, found.html) skip the site header.
+// The link pages (/links/ and /found/): no masthead, one narrow centered
+// column for phones. The avatar, the logo, the description, then pills:
+// keys on 2 px ink shadows, 12 px apart, the kind in the label voice at
+// the right; the form and its legend under them. Their own layouts
+// (_default/links.html, found.html) skip the site shell.
+// docs/styleguide.md, Buttons and Forms and Page by Page.
 
 .links-page {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
   margin: 0;
-  padding: $space-4 $page-gutter;
-  box-sizing: border-box;
+}
 
-  // On phones, start at the top so the first screen carries more content.
-  @include narrow {
-    align-items: flex-start;
+.links {
+  max-width: $max-width-panel;
+  margin: 0 auto;
+  padding: $space-7 $page-padding-narrow $space-7;
+}
+
+.links-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $space-4;
+  text-align: center;
+
+  .avatar {
+    display: block;
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 1px solid var(--edge);
   }
 
-  .links-container {
-    width: 100%;
-    max-width: $max-width-panel;
-    margin: 0 auto;
-    text-align: center;
+  .links-logo {
+    display: block;
+    line-height: 0;
 
-    .avatar {
-      margin-bottom: $space-3;
+    img {
+      display: block;
+      height: 32px;
+      width: auto;
+    }
 
+    // The signature is black ink; it inverts on the dark ground.
+    @include dark {
       img {
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: none;
-      }
-    }
-
-    .site-logo {
-      margin-bottom: $space-3;
-
-      img {
-        width: 140px;
-        height: auto;
-      }
-    }
-
-    .description {
-      margin-bottom: $space-4;
-      @include type-body;
-    }
-
-    p {
-      margin: 0 0 $rhythm-paragraph;
-    }
-
-    // The subscribe form at the foot of /links/.
-    .flaneur-inpage-box {
-      margin: 0 0 $space-4;
-      padding: 0;
-      border: none;
-      background: none;
-
-      .email-subscribe {
-        form {
-          display: flex;
-          flex-direction: column;
-          gap: $space-2;
-          margin-bottom: 0;
-          align-items: stretch;
-
-          input {
-            width: 100%;
-            height: $control-height;
-            padding: 0 $space-4;
-            border: 1px solid var(--ink);
-            border-radius: $radius;
-            @include type-body;
-            box-sizing: border-box;
-            background: var(--surface-input);
-            color: var(--ink);
-            margin: 0;
-
-            // Dark fields use a subtle edge instead of the strong ink border.
-            @include dark {
-              border-color: var(--rule);
-            }
-          }
-
-          button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: $control-height;
-            padding: 0 $space-4;
-            background: var(--ink);
-            color: var(--ground);
-            text-decoration: $link-decoration-plain;
-            border-radius: $radius;
-            font-weight: $font-weight-bold;
-            @include type-body;
-            border: 0;
-          }
-        }
-      }
-    }
-
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0 0 $rhythm-paragraph;
-
-      li {
-        margin: 0 0 $space-2;
-
-        a {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-wrap: wrap;
-          min-height: $control-height;
-          padding: $space-2 $space-4;
-          box-sizing: border-box;
-          background: var(--ink);
-          color: var(--ground);
-          text-decoration: $link-decoration-plain;
-          border-radius: $radius;
-          font-weight: $font-weight-bold;
-          @include type-body;
-
-          // In dark the pills dissolve into the ground and read as a
-          // plain text list — structural, preserved from the pre-token design.
-          @include dark {
-            background: var(--ground);
-            color: var(--ink);
-          }
-        }
-
-        // Context label on the auto-filled pills (Project, Dispatch, Note):
-        // set apart by weight, not by fading the text.
-        .link-kicker {
-          font-weight: $font-weight-regular;
-          margin-right: $space-1;
-          white-space: nowrap;
-        }
+        filter: invert(1);
       }
     }
   }
 
-  // A --- in these pages separates groups by space alone.
+  .links-dek {
+    margin: 0;
+    @include type-dek;
+    color: var(--ink-muted);
+  }
+}
+
+// Pills: a block per link on a 2 px ink shadow. Pressing moves it into
+// the shadow.
+.pills {
+  list-style: none;
+  margin: $space-6 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: $space-3;
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: $space-3;
+    min-height: $control-height;
+    padding: $space-2 $space-4;
+    border: 1px solid var(--ink);
+    border-radius: $radius;
+    background: var(--ground);
+    color: var(--ink);
+    font-size: $font-size-base;
+    line-height: $line-height-dek;
+    font-weight: $font-weight-medium;
+    text-decoration: none;
+    @include key($shadow-quiet);
+    @include focus-ring;
+
+    &:hover {
+      background: var(--surface);
+    }
+  }
+
+  .pill-kind {
+    flex: none;
+    @include type-meta;
+    font-weight: $font-weight-regular;
+    color: var(--ink-faint);
+    white-space: nowrap;
+  }
+}
+
+// Text the page writes (/found/'s note, anything under /links/'s pills).
+.links-body {
+  margin-top: $space-6;
+  @include type-body;
+
+  > :first-child {
+    margin-top: 0;
+  }
+
+  > :last-child {
+    margin-bottom: 0;
+  }
+
+  p {
+    margin: 0 0 $rhythm-paragraph;
+  }
+
+  // A --- separates groups by space alone.
   hr {
     height: 0;
-    margin: $space-5 0;
+    margin: $space-6 0;
     border: 0;
+  }
+
+  .pills {
+    margin: 0 0 $rhythm-paragraph;
+  }
+}
+
+.links-more {
+  margin-top: $space-6;
+  text-align: center;
+  max-width: none;
+}
+
+// The form stacks: the field, then the key, full width.
+.links-subscribe {
+  margin-top: $space-6;
+
+  .subscribe {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .legend {
+    text-align: center;
+    max-width: none;
   }
 }

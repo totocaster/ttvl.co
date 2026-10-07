@@ -1,6 +1,11 @@
+{{- /* A dispatch: the head (date · number / The Flâneur · Dispatch, the
+     subtitle as the dek), the letter, and the invitation as end matter.
+     docs/styleguide.md, Page by Page (Dispatch). The email output is
+     single.email.html. */ -}}
 {{ define "main" }}
-<article class="flaneur">
+<article class="dispatch">
   {{ partial "page-head.html" (dict "page" . "dek" .Params.description) }}
-  {{ .Content }}
+  {{ partial "block-body.html" .Content }}
+  {{ partial "flaneur-subscribe.html" . }}
 </article>
-{{ partial "flaneur-subscribe.html" . }} {{ end }}
+{{ end }}

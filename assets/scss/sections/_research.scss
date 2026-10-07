@@ -1,164 +1,54 @@
-// Research journal: the hub's stream list with activity pulses, legends,
-// entries in full on a stream page, the two-line entry rows on the hub,
-// and the in-stream pager. Heads, rows, group heads, figures, and the
-// Related end matter are shared components.
+// Research journal: what the shared grammar doesn't already draw. The
+// hub's Streams rows carry the activity pulse inline after the name;
+// entries in full sit in .block.entry (components/_block.scss). Heads,
+// blocks, rows, group heads, legends, and the In this stream end block are
+// shared components. docs/styleguide.md, Page by Page.
 
-// Record-keeping lines: entry meta on stream pages, legends, feeds.
-.research {
-  .research-meta,
-  .research-legend {
-    @include type-meta;
-    color: var(--ink-faint);
-    @include meta-links;
-  }
-
-  // A status part ("updated 2026-10-05") never breaks at its hyphens.
-  .research-part {
-    white-space: nowrap;
-  }
-
-  .research-legend {
-    @include readable-width;
-    margin: $space-3 0 0;
-  }
-}
-
-// Hub: one stream per item, name and pulse on the first line, the dek,
-// then the status line. Space separates them; there are no hairlines.
-.stream-ledger {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  @include readable-width;
-
-  > li {
-    margin: 0 0 $space-4;
-  }
-}
-
-.stream-ledger__top {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: $space-2 $space-3;
-}
-
-a.stream-ledger__name {
-  font-weight: $link-weight-title;
-  text-decoration: $link-decoration-default;
-}
-
-.stream-ledger__dek {
-  margin: 0;
-  color: var(--ink-muted);
-  line-height: $line-height-tight;
-}
-
-.stream-ledger__meta {
-  @include type-meta;
-  color: var(--ink-faint);
-  margin: $space-1 0 0;
-}
-
-// Activity pulse: a week per mark, height by entry count. Empty weeks keep
-// a low edge-colored stub so the strip reads as a timeline. Data display
-// geometry, not rhythm.
+// The activity pulse: one mark per week, height and tier by entry count.
+// Empty weeks keep a low edge-colored stub so the strip reads as a
+// timeline; the current week, when it holds an entry, is the signal.
+// Data display geometry, not rhythm.
 .research-pulse {
-  display: flex;
+  display: inline-flex;
   align-items: flex-end;
-  gap: 3px;
-  height: 18px;
-  padding-bottom: $space-1;
+  gap: 2px;
+  height: 14px;
+  margin-left: $space-3;
+  vertical-align: -1px;
 }
 
 .research-pulse__cell {
   display: block;
-  width: 6px;
+  width: 4px;
   height: 3px;
   border-radius: 1px;
   background: var(--edge);
 
-  &--1,
-  &--2,
-  &--3 {
-    background: var(--ink);
-  }
-
   &--1 {
-    height: 8px;
+    height: 6px;
+    background: var(--ink-faint);
   }
 
   &--2 {
-    height: 13px;
+    height: 10px;
+    background: var(--ink-muted);
   }
 
   &--3 {
-    height: 18px;
+    height: 14px;
+    background: var(--ink);
+  }
+
+  &--now {
+    background: var(--signal);
   }
 }
 
-// An answered question: still linked, set back a tier.
-main .rows .row-title.is-closed {
-  color: var(--ink-muted);
-}
+// An answered question's date is struck through by its own <s> element
+// in the meta column (partials/research-stream.html); no style needed.
 
-// Entries in full on a stream page: the title, then its meta line.
-main article.research-entry {
-  margin-top: $rhythm-h2-above;
-
-  > h3 {
-    margin: 0;
-
-    > a {
-      text-decoration: $link-decoration-plain;
-      font-weight: $link-weight-title;
-
-      &:hover {
-        text-decoration: $link-decoration-default;
-      }
-    }
-  }
-
-  > .research-meta {
-    margin: $space-1 0 $space-3;
-  }
-}
-
-main .research-entries > h2 + article.research-entry {
-  margin-top: 0;
-}
-
-// Previous and next entry within the stream.
-main .research-pager {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: $space-4;
-  @include readable-width;
-  margin-top: $space-6;
-
-  a {
-    display: block;
-    font-weight: $link-weight-quiet;
-    text-decoration: $link-decoration-plain;
-
-    &:hover .research-pager__title {
-      text-decoration: $link-decoration-default;
-    }
-  }
-
-  .research-pager__next {
-    grid-column: 2;
-    text-align: right;
-  }
-
-  .research-pager__label {
-    display: block;
-    @include type-meta;
-    color: var(--ink-faint);
-  }
-
-  .research-pager__title {
-    display: block;
-  }
+// Entries in full: the rail holds the entry's own lines, so a prose h2
+// inside an entry carries no numeral there.
+.block.entry .prose > h2::before {
+  content: none;
 }

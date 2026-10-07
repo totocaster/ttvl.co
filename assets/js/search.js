@@ -5,6 +5,7 @@
   let searchOverlay = null;
   let searchInput = null;
   let searchResults = null;
+  let searchStatus = null;
   let selectedIndex = -1;
   let focusTrapHandler = null;
   let previousActiveElement = null;
@@ -16,9 +17,10 @@
     bindEvents();
   }
 
-  // Create search overlay elements
+  // Create the overlay: the hint with keycaps, the input with one rule
+  // under it, the results as rows, and the count or state under them.
+  // docs/styleguide.md, Search Overlay.
   function createSearchOverlay() {
-    // Create overlay container
     searchOverlay = document.createElement('div');
     searchOverlay.id = 'search-overlay';
     searchOverlay.className = 'search-overlay';
@@ -27,44 +29,36 @@
     searchOverlay.setAttribute('aria-modal', 'true');
     searchOverlay.setAttribute('aria-label', 'Site search');
 
-    // Create search container
     const searchContainer = document.createElement('div');
     searchContainer.className = 'search-container';
 
-    // Create logo element
-    const logoContainer = document.createElement('div');
-    logoContainer.className = 'search-logo';
-    const logoImg = document.createElement('img');
-    logoImg.src = '/ui/ttvl_logo.png';
-    logoImg.srcset = '/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x';
-    logoImg.alt = 'TTVL';
-    logoContainer.appendChild(logoImg);
-
-    // Search instructions
-    const searchInstructions = document.createElement('p');
-    searchInstructions.className = 'search-instructions';
     // Static markup only — never interpolate query text here.
-    searchInstructions.innerHTML =
-      'Type to search. Navigate with <kbd>↑</kbd> <kbd>↓</kbd>, open with <kbd>Enter</kbd>, close with <kbd>Esc</kbd>.';
+    const hint = document.createElement('p');
+    hint.className = 'search-hint';
+    hint.innerHTML =
+      'Type to search · <kbd>↑</kbd> <kbd>↓</kbd> select · <kbd>↩</kbd> open · <kbd>esc</kbd> close';
 
-    // Create search input
+    const field = document.createElement('div');
+    field.className = 'search-field';
     searchInput = document.createElement('input');
-    searchInput.type = 'text';
+    searchInput.type = 'search';
     searchInput.className = 'search-input';
-    searchInput.placeholder = 'Search...';
     searchInput.setAttribute('aria-label', 'Search');
+    searchInput.setAttribute('aria-controls', 'search-results');
     searchInput.setAttribute('autocomplete', 'off');
+    searchInput.setAttribute('spellcheck', 'false');
+    field.appendChild(searchInput);
 
-    // Create results container
-    searchResults = document.createElement('div');
-    searchResults.className = 'search-results';
-    searchResults.setAttribute('role', 'listbox');
+    searchResults = document.createElement('ul');
+    searchResults.id = 'search-results';
+    searchResults.className = 'rows with-deks search-results';
 
-    // Assemble elements
-    searchContainer.appendChild(logoContainer);
-    searchContainer.appendChild(searchInstructions);
-    searchContainer.appendChild(searchInput);
-    searchContainer.appendChild(searchResults);
+    searchStatus = document.createElement('p');
+    searchStatus.className = 'legend search-status';
+    searchStatus.setAttribute('aria-live', 'polite');
+    searchStatus.hidden = true;
+
+    searchContainer.append(hint, field, searchResults, searchStatus);
     searchOverlay.appendChild(searchContainer);
     document.body.appendChild(searchOverlay);
   }
@@ -103,7 +97,7 @@
         navigateResults(-1);
       } else if (e.key === 'Enter' && selectedIndex >= 0) {
         e.preventDefault();
-        const links = searchResults.querySelectorAll('.search-result-link');
+        const links = searchResults.querySelectorAll('.row-title');
         if (links[selectedIndex]) {
           window.location.href = links[selectedIndex].href;
         }
@@ -132,7 +126,7 @@
     if (!searchIndex) {
       fetchSearchIndex().catch((error) => {
         console.error('Failed to load search index:', error);
-        searchResults.innerHTML = '<div class="search-error">Failed to load search index</div>';
+        setStatus('Search failed to load. Close it and try again.', 'is-error');
       });
     }
   }
@@ -142,6 +136,7 @@
     searchOverlay.style.display = 'none';
     searchInput.value = '';
     searchResults.innerHTML = '';
+    setStatus('');
     selectedIndex = -1;
     document.body.style.overflow = '';
     if (focusTrapHandler) {
@@ -186,14 +181,17 @@
   // Handle search input
   async function handleSearch() {
     const query = searchInput.value.trim().toLowerCase();
-    
+
     if (!query) {
       searchResults.innerHTML = '';
+      setStatus('');
       selectedIndex = -1;
       return;
     }
 
-    searchResults.innerHTML = '<div class="search-loading">Searching…</div>';
+    searchResults.innerHTML = '';
+    selectedIndex = -1;
+    setStatus('Searching…');
 
     try {
       const index = await fetchSearchIndex();
@@ -207,80 +205,129 @@
       displayResults(results, query);
     } catch (error) {
       console.error('Failed to load search index:', error);
-      searchResults.innerHTML = '<div class="search-error">Failed to load search index</div>';
+      setStatus('Search failed to load. Close it and try again.', 'is-error');
     }
   }
 
-  // Display search results
+  // The line under the results: the count, or the state.
+  function setStatus(text, state) {
+    searchStatus.textContent = text;
+    searchStatus.classList.toggle('is-error', state === 'is-error');
+    searchStatus.hidden = !text;
+  }
+
+  // Section names as the site shows them; anything else reads its folder
+  // name in sentence case.
+  const sectionNames = {
+    bookbinding: 'Bookbinding',
+    darkroom: 'Darkroom',
+    flaneur: 'Dispatch',
+    leaves: 'Loose Leaves',
+    log: 'Log',
+    'notebook-system': 'Notebook System',
+    notes: 'Notes',
+    obsidian: 'Obsidian',
+    'project-humane': 'Project Humane',
+    projects: 'Projects',
+    research: 'Research',
+    traces: 'Traces'
+  };
+
+  function sectionName(section) {
+    if (!section) return '';
+    if (sectionNames[section]) return sectionNames[section];
+    const words = section.replace(/[-_]+/g, ' ');
+    return words.charAt(0).toUpperCase() + words.slice(1);
+  }
+
+  // Display search results as rows: the section as the meta, the title
+  // with the match marked, the summary as the dek, the date as the tail.
   function displayResults(results, query) {
     selectedIndex = -1;
-    
+
     if (results.length === 0) {
-      searchResults.innerHTML = '<div class="search-no-results">No results found</div>';
+      searchResults.innerHTML = '';
+      setStatus('No results');
       return;
     }
 
-    const html = results.slice(0, 10).map((result, index) => {
-      const highlightedTitle = highlightText(result.title, query);
-      const highlightedContent = highlightText(result.summary || result.content, query);
-      
-      return `
-        <a href="${result.permalink}" class="search-result-link" data-index="${index}">
-          <div class="search-result">
-            <div class="search-result-title">${highlightedTitle}</div>
-            <div class="search-result-meta">
-              <span class="search-result-section">${result.section}</span>
-              <span class="search-result-date">${result.date}</span>
-            </div>
-            <div class="search-result-content">${highlightedContent}</div>
-          </div>
-        </a>
-      `;
+    const shown = results.slice(0, 10);
+    searchResults.innerHTML = shown.map((result, index) => {
+      const date = /^\d{4}-\d{2}-\d{2}$/.test(result.date) && result.date !== '0001-01-01'
+        ? `<time datetime="${result.date}">${result.date}</time>`
+        : '';
+      const dek = highlightText(result.summary || result.content, query);
+      return `<li class="row" data-index="${index}">` +
+        `<span class="row-meta">${escapeHTML(sectionName(result.section))}</span>` +
+        `<span class="row-main"><a class="row-title" href="${escapeHTML(result.permalink)}">${highlightText(result.title, query)}</a>` +
+        (dek ? `<span class="row-dek">${dek}</span>` : '') +
+        `</span>` +
+        (date ? `<span class="row-tail">${date}</span>` : '') +
+        `</li>`;
     }).join('');
 
-    searchResults.innerHTML = html;
+    const n = results.length;
+    let status = `${n} ${n === 1 ? 'result' : 'results'}`;
+    if (n > shown.length) status += ` · showing the first ${shown.length}`;
+    setStatus(status);
+    // Numbers in the chrome are Mono.
+    searchStatus.innerHTML = escapeHTML(status).replace(/\d+/g, '<span class="n">$&</span>');
 
-    // Add hover events
-    const links = searchResults.querySelectorAll('.search-result-link');
-    links.forEach((link, index) => {
-      link.addEventListener('mouseenter', () => {
+    // Hovering a row selects it, as the arrow keys do.
+    searchResults.querySelectorAll('.row').forEach((row, index) => {
+      row.addEventListener('mouseenter', () => {
         selectedIndex = index;
-        updateSelection();
+        updateSelection(false);
       });
     });
   }
 
-  // Highlight matching text
+  // The index holds plain text that may still carry entities; read it as
+  // text, escape it, then mark every match.
   function highlightText(text, query) {
-    if (!query) return text;
-    
+    const plain = toText(text || '');
+    if (!query) return escapeHTML(plain);
     const regex = new RegExp(`(${escapeRegExp(query)})`, 'gi');
-    return text.replace(regex, '<mark>$1</mark>');
+    // split with a capture group puts the matches at the odd indexes.
+    return plain.split(regex).map((part, i) =>
+      i % 2 ? `<mark>${escapeHTML(part)}</mark>` : escapeHTML(part)
+    ).join('');
+  }
+
+  const decoder = document.createElement('textarea');
+  function toText(value) {
+    decoder.innerHTML = value;
+    return decoder.value;
+  }
+
+  function escapeHTML(value) {
+    return String(value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
   }
 
   // Navigate through results with keyboard
   function navigateResults(direction) {
-    const links = searchResults.querySelectorAll('.search-result-link');
-    if (links.length === 0) return;
+    const rows = searchResults.querySelectorAll('.row');
+    if (rows.length === 0) return;
 
     selectedIndex += direction;
-    
-    if (selectedIndex < 0) selectedIndex = links.length - 1;
-    if (selectedIndex >= links.length) selectedIndex = 0;
-    
-    updateSelection();
+
+    if (selectedIndex < 0) selectedIndex = rows.length - 1;
+    if (selectedIndex >= rows.length) selectedIndex = 0;
+
+    updateSelection(true);
   }
 
-  // Update visual selection
-  function updateSelection() {
-    const links = searchResults.querySelectorAll('.search-result-link');
-    links.forEach((link, index) => {
-      if (index === selectedIndex) {
-        link.classList.add('selected');
-        link.scrollIntoView({ block: 'nearest' });
-      } else {
-        link.classList.remove('selected');
-      }
+  // The selected row takes a surface wash.
+  function updateSelection(scroll) {
+    const rows = searchResults.querySelectorAll('.row');
+    rows.forEach((row, index) => {
+      const selected = index === selectedIndex;
+      row.classList.toggle('is-selected', selected);
+      if (selected && scroll) row.scrollIntoView({ block: 'nearest' });
     });
   }
 

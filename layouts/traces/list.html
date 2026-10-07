@@ -1,15 +1,25 @@
 {{ define "main" }}
+{{- /* The Traces hub: the head (the opening paragraph becomes the dek, as on
+     every section hub), then the Archive block of trace cards, newest
+     first, each labelled date · kind. docs/styleguide.md, Page by Page. */ -}}
+{{ $content := string .Content }}
+{{ $dek := .Params.description }}
+{{ with findRESubmatch `^\s*<p>((?s:.*?))</p>` $content 1 }}
+  {{ $dek = index (index . 0) 1 | safeHTML }}
+  {{ $content = replaceRE `^\s*<p>(?s:.*?)</p>` "" $content 1 }}
+{{ end }}
 <article class="hub">
-  {{ partial "page-head.html" . }}
-  {{ .Content }}
-
+  {{ partial "page-head.html" (dict "page" . "dek" $dek) }}
+  {{ partial "block-body.html" $content }}
   {{ with .RegularPages }}
-  <section class="trace-archive" aria-labelledby="trace-archive-title">
-    <h2 id="trace-archive-title">Archive</h2>
-    <div class="projects-grid">
-      {{ range sort . "Date" "desc" }}
+  <section class="block" id="archive">
+    <div class="rail"><h2>Archive</h2></div>
+    <div class="main">
+      <div class="cards">
+        {{- range sort . "Date" "desc" }}
         {{ partial "card.html" (dict "page" . "variant" "trace") }}
-      {{ end }}
+        {{- end }}
+      </div>
     </div>
   </section>
   {{ end }}

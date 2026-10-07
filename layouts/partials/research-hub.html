@@ -1,68 +1,61 @@
-{{- /* The journal hub: intro, the stream ledger with activity pulses, and
-     every entry as a dated row, filterable by stream. */ -}}
-{{ $streams := .Sections.ByWeight }}
-{{ $entries := .RegularPagesRecursive.ByDate.Reverse }}
+{{- /* The journal hub: the head with the intro as its dek, the Streams
+     ledger as rows with each stream's activity pulse and the pulse legend,
+     then every entry grouped by stream. docs/styleguide.md, Page by Page
+     (Research hub). */ -}}
+{{- $streams := .Sections.ByWeight -}}
+{{- $entries := .RegularPagesRecursive -}}
 
-<article class="hub">
-  {{ partial "page-head.html" . }}
-  {{ .Content }}
-  {{ with .OutputFormats.Get "rss" }}
-  <p class="research-meta">
-    Follow by RSS: <a href="{{ .RelPermalink }}">all streams</a>
-    {{- range $streams }}{{ $stream := . }}{{ with .OutputFormats.Get "rss" }} · <a href="{{ .RelPermalink }}">{{ $stream.Title }}</a>{{ end }}{{ end }}
-  </p>
-  {{ end }}
-</article>
+{{- /* The intro is one paragraph; it stands as the head's dek. A longer
+     intro falls back to the description as the dek and the body block. */ -}}
+{{- $intro := strings.TrimSpace (string .Content) -}}
+{{- $single := and (strings.HasPrefix $intro "<p>") (eq (strings.Count "<p>" $intro) 1) -}}
+{{- if $single }}
+{{ partial "page-head.html" (dict "page" . "dek" (strings.TrimSuffix "</p>" (strings.TrimPrefix "<p>" $intro) | safeHTML)) }}
+{{- else }}
+{{ partial "page-head.html" . }}
+{{ partial "block-body.html" .Content }}
+{{- end }}
+
+{{- $feed := "" -}}
+{{- with .OutputFormats.Get "rss" }}{{ $feed = printf ` · <a href="%s">RSS</a>` .RelPermalink }}{{ end -}}
 
 {{ with $streams }}
-<section class="research-streams" aria-labelledby="research-streams-title">
-  <h2 class="section-head" id="research-streams-title">Streams</h2>
-  <ul class="stream-ledger">
-    {{ range . }}
-    <li>
-      <div class="stream-ledger__top">
-        <a class="stream-ledger__name" href="{{ .RelPermalink }}">{{ .Title }}</a>
-        {{ partial "research-pulse.html" . }}
-      </div>
-      {{ with .Description }}<p class="stream-ledger__dek">{{ . }}</p>{{ end }}
-      <p class="stream-ledger__meta">{{ partial "research-stream-meta.html" . }}</p>
-    </li>
-    {{ end }}
-  </ul>
-  <p class="research-legend">Each mark is one week, the last 26 of them, newest at right. Taller marks mean more entries.</p>
+<section class="block">
+  <div class="rail"><h2>Streams</h2><p class="meta">{{ partial "count.html" (dict "n" (len .) "one" "stream" "many" "streams") }}</p></div>
+  <div class="main">
+    <ul class="rows with-deks">
+      {{- range . }}
+      {{ partial "row.html" (dict
+        "meta" (title (.Params.status | default "active"))
+        "value" (printf `<a class="row-title" href="%s">%s</a>%s` .RelPermalink (htmlEscape .Title) (partial "research-pulse.html" .) | safeHTML)
+        "dek" .Description
+        "tail" (partial "research-stream-meta.html" .)
+      ) }}
+      {{- end }}
+    </ul>
+    <p class="legend">Each mark is one week, the last <span class="n">26</span>, newest at right. Taller marks mean more entries.</p>
+  </div>
 </section>
 {{ end }}
 
-<section class="research-entries" aria-labelledby="research-entries-title">
-  <h2 class="section-head" id="research-entries-title">Entries</h2>
-  {{ with $entries }}
-    {{ if gt (len $streams) 1 }}
-    <nav class="category-filter" aria-label="Filter entries by stream">
-      <ul>
-        <li><a href="?category=all" data-category="all" class="is-active">All</a></li>
-        {{ range $streams }}
-        <li><a href="?category={{ .File.ContentBaseName }}" data-category="{{ .File.ContentBaseName }}">{{ .Title }}</a></li>
-        {{ end }}
-        {{ range $streams }}
-        <li><a class="hub-ref" href="{{ .RelPermalink }}" data-filter-show="{{ .File.ContentBaseName }}" hidden>&rarr;&nbsp;{{ .Title }}</a></li>
-        {{ end }}
+<section class="block">
+  <div class="rail"><h2>Entries</h2><p class="meta">{{ partial "count.html" (dict "n" (len $entries) "one" "entry" "many" "entries") }}{{ $feed | safeHTML }}</p></div>
+  <div class="main">
+    {{- range $streams }}
+    {{- $stream := . }}
+    {{- with .RegularPages.ByDate.Reverse }}
+    <div class="group">
+      <h3 class="group-head"><a href="{{ $stream.RelPermalink }}">{{ $stream.Title }}</a> <span class="count">{{ partial "count.html" (dict "n" (len .) "one" "entry" "many" "entries") }}</span></h3>
+      <ul class="rows">
+        {{- range . }}
+        {{ partial "research-row.html" (dict "page" . "number" true "category" true) }}
+        {{- end }}
       </ul>
-    </nav>
-    {{ end }}
-
-    {{ range .GroupByDate "2006" }}
-    {{ $n := len .Pages }}
-    <section class="research-year" data-filter-group>
-      <h3 class="group-head">{{ .Key }} <span class="count" data-singular="entry" data-plural="entries">{{ $n }} {{ cond (eq $n 1) "entry" "entries" }}</span></h3>
-      <ul class="rows stacked">
-        {{ range .Pages }}{{ partial "research-row.html" (dict "page" . "stream" true "number" true "category" true) }}{{ end }}
-      </ul>
-    </section>
-    {{ end }}
-
-    {{ $categoryFilter := resources.Get "js/category-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
-    <script src="{{ $categoryFilter.RelPermalink }}" defer></script>
-  {{ else }}
-    <p>No entries yet.</p>
-  {{ end }}
+    </div>
+    {{- end }}
+    {{- end }}
+    {{- if not $entries }}
+    <p class="legend">No entries yet.</p>
+    {{- end }}
+  </div>
 </section>

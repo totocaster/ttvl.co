@@ -1,26 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html lang="{{ .Site.Language.Locale }}">
   <head>
+    {{- /* Deliberately bare: a dispatch page is the source the mailing
+         system ingests, not a page to share. No metadata, no search. */}}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <!-- Title tags -->
     <title itemprop="name">{{ with .Title }}{{ . }} — {{ end }}{{ .Site.Title }}</title>
-    <!-- CSS and Styles -->
     {{ $style := resources.Get "scss/style.scss" | toCSS | minify }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
-    <!-- Generator w/ version number. -->
     {{ hugo.Generator }}
   </head>
   <body>
-    {{- /* No site navigation: a dispatch is a letter. The engraving sits where
-         the site logo would, in the same header geometry. */}}
-    <header>
-      <p class="site-title">
-        <a href="/newsletter/"><img class="flaneur-logo" src="/ui/flaneur_logo.png" srcset="/ui/flaneur_logo@2x.png 2x, /ui/flaneur_logo@3x.png 3x" alt="The Flâneur" /></a>
-      </p>
+    {{- /* No masthead: a dispatch is a letter. The engraving stands in its
+         place, centered, and leads to the archive. */}}
+    <header class="engraving wrap">
+      <a href="/newsletter/"><img src="/ui/flaneur_logo.png" srcset="/ui/flaneur_logo@2x.png 2x, /ui/flaneur_logo@3x.png 3x" alt="The Flâneur" /></a>
     </header>
     <div class="layout">
       <main>{{ block "main" . }}{{ end }}</main>
     </div>
+    <footer class="foot wrap">
+      <p>&copy; <span class="n">2008–{{ now.Year }}</span> {{ .Site.Title }}</p>
+      <p><a href="/">ttvl.co</a> · <a href="/newsletter/">Archive</a></p>
+    </footer>
   </body>
 </html>

@@ -1,14 +1,27 @@
 {{ define "main" }}
-<article class="hub log-content {{ with .Params.content_css }}{{ . }}{{ end }}">
-  {{ partial "page-head.html" . }}
-  {{ .Content }}
+{{- /* Log hub: the head with the intro as its dek, then one block per
+     month, newest first (the month as the linked rail heading, its content
+     in the column), then the Archive grid.
+     docs/styleguide.md, Page by Page: Log hub. */ -}}
+{{- $content := string .Content -}}
+{{- $dek := .Params.description -}}
+{{- with findRESubmatch `^\s*<p>((?s:.*?))</p>` $content 1 -}}
+  {{- $dek = index (index . 0) 1 | safeHTML -}}
+  {{- $content = replaceRE `^\s*<p>(?s:.*?)</p>` "" $content 1 -}}
+{{- end }}
+<article class="hub log-hub{{ with .Params.content_css }} {{ . }}{{ end }}">
+  {{ partial "page-head.html" (dict "page" . "dek" $dek) }}
+  {{- with trim $content " \n\t" }}{{ partial "block-body.html" . }}{{ end }}
+  {{- range .Pages.ByDate.Reverse }}
+  <section class="block log-entry">
+    <div class="rail">
+      <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    </div>
+    <div class="main prose">
+      {{ .Content }}
+    </div>
+  </section>
+  {{- end }}
+  {{ partial "log-archive.html" (dict "page" .) }}
 </article>
-
-{{ range .Pages.ByDate.Reverse }}
-<article class="log-list {{ with .Params.content_css }}{{ . }}{{ end }}">
-  <h2 class="section-head log">
-    <a href="{{ .RelPermalink }}">{{ .Date.Format "2006-01" }}</a>
-  </h2>
-  {{ .Content }}
-</article>
-{{ end }} {{ partial "log-archive.html" (dict "page" .) }} {{ end }}
+{{ end }}

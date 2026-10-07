@@ -5,13 +5,13 @@ date: 2025-01-28
 
 The design and structure of this website were heavily inspired by [100r.co](https://100r.co) (before their redesign) and [Szymon Kaliski](https://szymonkaliski.com/). It is simple, fast, easy to maintain, and perfect for elevating content above design trends. This allows me to focus on what's most important — producing useful material without any friction.
 
-There are no custom fonts or heavy graphics because fast software matters.
+The type is [IBM Plex](https://www.ibm.com/plex/), served from this site as subset files: Plex Sans for words and Plex Mono for numbers and code.
 
 This website is generated using [Hugo](https://gohugo.io/). The content is managed in a private Git repository. DigitalOcean App Platform builds and publishes the site whenever the main branch changes.
 
 The generated website is hosted on DigitalOcean App Platform. If you sign up with DigitalOcean through [this link][doref], we'll both receive generous credits.
 
-This iteration of the website was designed in [2025-11](/log/2025/11/).
+This iteration of the website was designed in [2026-10](/log/2026/10/).
 
 <!-- ## Membership Payments
 
@@ -24,6 +24,7 @@ I don't see or get any of your payment information. -->
 * Press <kbd>?</kbd> to activate site-wide search. Navigate results with <kbd>↑</kbd> <kbd>↓</kbd>.
 * Select any text to automatically update the URL with a _text fragment_. Share the link to highlight that exact passage.
 * Click the `$` prompt next to any shell command to copy that command.
+* On a research entry, press <kbd>←</kbd> and <kbd>→</kbd> to move to the previous and next entries in its stream.
 
 ## AI Usage
 

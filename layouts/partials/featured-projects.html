@@ -1,16 +1,20 @@
-{{ $allProjects := where .Site.Pages "Params.project" "!=" nil }} {{
-$featuredPages := where .Site.Pages "Params.featured" true }} {{ $projects :=
-first 6 (sort (where $featuredPages "Kind" "in" (slice "page" "section")) "Date"
-"desc") }} {{ if gt (len $projects) 0 }}
-<section class="project-year">
-  <h1>Projects</h1>
-  <p>
-    A few projects I’m proud of and focused on. See all
-    <a href="/projects">{{ len $allProjects }} projects</a>.
-  </p>
-  <div class="projects-grid">
-    {{ range $projects }} {{ partial "card.html" (dict "page" .) }} {{
-    end }}
+{{- /* Home: the Projects block. The six newest featured pages as cards,
+     with every project counted in the rail. */ -}}
+{{- $all := where site.Pages "Params.project" "!=" nil -}}
+{{- $featured := where (where site.Pages "Params.featured" true) "Kind" "in" (slice "page" "section") -}}
+{{- $projects := first 6 (sort $featured "Date" "desc") -}}
+{{- with $projects }}
+<section class="block">
+  <div class="rail">
+    <h2>Projects</h2>
+    <p class="meta">{{ partial "count.html" (dict "n" (len (uniq $all)) "one" "project" "many" "projects") }} · <a href="/projects/">all →</a></p>
+  </div>
+  <div class="main">
+    <div class="projects-grid">
+      {{- range . }}
+      {{ partial "card.html" (dict "page" .) }}
+      {{- end }}
+    </div>
   </div>
 </section>
-{{ end }}
+{{- end }}

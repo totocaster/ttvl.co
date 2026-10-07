@@ -1,12 +1,18 @@
-{{- /* A research entry in full, as the stream page lists it: the title, then
-     its meta line, like every page head. */ -}}
+{{- /* A research entry in full, as the stream page lists it: one
+     .block.entry with date · number, then the kind, in the rail, and the
+     title at 22/30 over the entry in the column. docs/styleguide.md,
+     Block and Page by Page (Research stream). */ -}}
 {{- $no := partialCached "research-number.html" . .Path -}}
-<article class="research-entry">
-  <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
-  <p class="research-meta">
-    <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006-01-02" }}</time>
-    · <a href="{{ .RelPermalink }}">{{ $no }}</a>
-    {{- with partial "research-category.html" . }} · {{ . }}{{ end }}
-  </p>
-  {{ .Content }}
+{{- $d := .Date.Format "2006-01-02" -}}
+<article class="block entry">
+  <div class="rail">
+    <p class="meta"><time datetime="{{ $d }}">{{ $d }}</time> · <span class="n">{{ $no }}</span></p>
+    {{- with partial "research-category.html" . }}
+    <p class="meta">{{ . }}</p>
+    {{- end }}
+  </div>
+  <div class="main prose">
+    <h3 class="entry-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{ .Content }}
+  </div>
 </article>

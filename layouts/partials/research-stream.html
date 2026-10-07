@@ -1,66 +1,78 @@
-{{- /* A stream: its brief, the optional bench, open questions collected
-     from entries, then every entry in full, newest first, so the stream
-     reads as one page. */ -}}
-{{ $entries := .RegularPages.ByDate.Reverse }}
+{{- /* A stream: the head, its brief as the body block, the Bench, the Open
+     Questions collected from entries, then the Entries heading with every
+     entry in full under it, newest first, so the stream reads as one page.
+     docs/styleguide.md, Page by Page (Research stream). */ -}}
+{{- $entries := .RegularPages.ByDate.Reverse -}}
 
-<article class="research-stream hub">
-  {{ partial "page-head.html" . }}
-  {{ .Content }}
-</article>
+{{ partial "page-head.html" . }}
+{{ partial "block-body.html" .Content }}
 
 {{ with .Params.bench }}
-<section class="research-bench" aria-labelledby="research-bench-title">
-  <h2 class="section-head" id="research-bench-title">Bench</h2>
-  <ul class="rows">
-    {{ range . }}
-    {{ partial "row.html" (dict "meta" (index . 0) "value" (index . 1 | markdownify)) }}
-    {{ end }}
-  </ul>
+<section class="block">
+  <div class="rail"><h2>Bench</h2></div>
+  <div class="main">
+    <ul class="rows">
+      {{- range . }}
+      {{ partial "row.html" (dict "meta" (index . 0) "value" (index . 1 | markdownify)) }}
+      {{- end }}
+    </ul>
+  </div>
 </section>
 {{ end }}
 
-{{ $open := slice }}
-{{ $closed := slice }}
-{{ range $entries }}
-  {{ $e := . }}
-  {{ if eq (lower (.Params.category | default "")) "question" }}
-    {{ with partial "research-answered-by.html" . }}
-      {{ $closed = $closed | append (dict "page" $e "by" .) }}
-    {{ else }}
-      {{ $open = $open | append . }}
-    {{ end }}
-  {{ end }}
-{{ end }}
+{{- /* Questions: open ones first, newest first; an answered question stays
+     listed with its date struck through and the entry that answered it. */ -}}
+{{- $open := slice -}}
+{{- $closed := slice -}}
+{{- range $entries -}}
+  {{- $e := . -}}
+  {{- if eq (lower (.Params.category | default "")) "question" -}}
+    {{- with partial "research-answered-by.html" . -}}
+      {{- $closed = $closed | append (dict "page" $e "by" .) -}}
+    {{- else -}}
+      {{- $open = $open | append . -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 {{ if or $open $closed }}
-<section class="research-questions" aria-labelledby="research-questions-title">
-  <h2 class="section-head" id="research-questions-title">Open Questions</h2>
-  <ul class="rows">
-    {{ range $open }}
-    {{ partial "row.html" (dict
-      "meta" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02") | safeHTML)
-      "url" .RelPermalink "title" .Title
-      "tail" (partialCached "research-number.html" . .Path)
-    ) }}
-    {{ end }}
-    {{ range $closed }}
-    {{ $q := .page }}
-    {{ $by := index .by 0 }}
-    {{ partial "row.html" (dict
-      "meta" (printf `<time datetime="%s">%s</time>` ($q.Date.Format "2006-01-02") ($q.Date.Format "2006-01-02") | safeHTML)
-      "url" $q.RelPermalink "title" $q.Title "linkClass" "is-closed"
-      "tail" (printf `%s · answered in <a href="%s">%s</a>` (partialCached "research-number.html" $q $q.Path) $by.RelPermalink (partialCached "research-number.html" $by $by.Path) | safeHTML)
-    ) }}
-    {{ end }}
-  </ul>
-  <p class="research-legend">Collected from entries marked as questions. An entry that answers one closes it.</p>
+<section class="block">
+  <div class="rail">
+    <h2>Open Questions</h2>
+    <p class="meta"><span class="n">{{ len $open }}</span> open{{ with $closed }} · <span class="n">{{ len . }}</span> answered{{ end }}</p>
+  </div>
+  <div class="main">
+    <ul class="rows">
+      {{- range $open }}
+      {{- $d := .Date.Format "2006-01-02" }}
+      {{ partial "row.html" (dict
+        "meta" (printf `<time datetime="%s">%s</time>` $d $d | safeHTML)
+        "url" .RelPermalink
+        "title" .Title
+        "tail" (printf `<span class="n">%s</span>` (partialCached "research-number.html" . .Path) | safeHTML)
+      ) }}
+      {{- end }}
+      {{- range $closed }}
+      {{- $q := .page }}
+      {{- $by := index .by 0 }}
+      {{- $d := $q.Date.Format "2006-01-02" }}
+      {{ partial "row.html" (dict
+        "meta" (printf `<s><time datetime="%s">%s</time></s>` $d $d | safeHTML)
+        "url" $q.RelPermalink
+        "title" $q.Title
+        "class" "closed"
+        "tail" (printf `<span class="n">%s</span> · answered in <a href="%s"><span class="n">%s</span></a>` (partialCached "research-number.html" $q $q.Path) $by.RelPermalink (partialCached "research-number.html" $by $by.Path) | safeHTML)
+      ) }}
+      {{- end }}
+    </ul>
+    <p class="legend">Collected from entries marked as questions. An entry that answers one closes it.</p>
+  </div>
 </section>
 {{ end }}
 
-<section class="research-entries" aria-labelledby="research-entries-title">
-  <h2 class="section-head" id="research-entries-title">Entries</h2>
-  {{ with $entries }}
-    {{ range . }}{{ partial "research-entry.html" . }}{{ end }}
-  {{ else }}
-    <p>No entries yet.</p>
-  {{ end }}
+{{- $feed := "" -}}
+{{- with .OutputFormats.Get "rss" }}{{ $feed = printf ` · <a href="%s">RSS</a>` .RelPermalink }}{{ end }}
+<section class="block">
+  <div class="rail"><h2>Entries</h2><p class="meta">{{ partial "count.html" (dict "n" (len $entries) "one" "entry" "many" "entries") }}{{ $feed | safeHTML }}</p></div>
+  <div class="main">{{ if not $entries }}<p class="legend">No entries yet.</p>{{ end }}</div>
 </section>
+{{ range $entries }}{{ partial "research-entry.html" . }}{{ end }}

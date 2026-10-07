@@ -1,21 +1,32 @@
+{{- /* The spatial long exposure map in the shared media chrome
+     (docs/styleguide.md, Media Chrome; components/_model-viewer.scss):
+     the Places · Connections · Both modes are one segmented control in the
+     bar. Optional "title" (the bar's label; defaults to the page's trace
+     kind). The page must set spatial_long_exposure: true.
+     assets/js/spatial-long-exposure.js reads the data-map-* hooks and
+     .spatial-long-exposure__frame. */ -}}
 {{- $mapID := printf "spatial-long-exposure-map-%d" .Ordinal -}}
 {{- $dataRevision := .Page.Params.trace_data_revision | default "1" -}}
+{{- $kind := "Map" }}{{ with .Page.Params.trace }}{{ with .kind }}{{ $kind = . }}{{ end }}{{ end -}}
+{{- $title := .Get "title" | default $kind }}
 <figure
-  class="spatial-long-exposure"
+  class="viewer spatial-long-exposure"
   data-spatial-long-exposure
   data-trace-url="/traces/spatial-long-exposure.json?v={{ $dataRevision }}"
   data-tile-template="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
 >
-  <div class="spatial-long-exposure__controls">
-    <div class="spatial-long-exposure__modes" role="group" aria-label="Map layers">
-      <button type="button" data-map-mode="places" aria-pressed="false">Places</button>
-      <button type="button" data-map-mode="connections" aria-pressed="false">Connections</button>
-      <button type="button" data-map-mode="both" aria-pressed="true">Both</button>
+  <div class="viewer-bar">
+    <span class="viewer-title">{{ $title }}</span>
+    <div class="viewer-controls">
+      <div class="segmented" role="group" aria-label="Map layers">
+        <button type="button" data-map-mode="places" aria-pressed="false">Places</button>
+        <button type="button" data-map-mode="connections" aria-pressed="false">Connections</button>
+        <button type="button" data-map-mode="both" aria-pressed="true">Both</button>
+      </div>
+      <button class="btn btn--quiet" type="button" data-map-reset>Reset view</button>
     </div>
-    <button type="button" data-map-reset>Reset view</button>
   </div>
-
-  <div class="spatial-long-exposure__frame">
+  <div class="viewer-frame spatial-long-exposure__frame">
     <div class="spatial-long-exposure__tiles" data-map-tiles aria-hidden="true"></div>
     <canvas
       id="{{ $mapID }}"
@@ -24,8 +35,10 @@
       role="img"
       aria-label="An interactive, undated map of location history, geotagged photographs, and the connections between recorded visits"
     ></canvas>
+    <a class="spatial-long-exposure__attribution" href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>
+    <span class="viewer-status" data-map-loading role="status">Developing map…</span>
     <button
-      class="spatial-long-exposure__fullscreen"
+      class="viewer-fs"
       type="button"
       aria-controls="{{ $mapID }}"
       aria-label="View map full screen"
@@ -33,26 +46,15 @@
       data-map-fullscreen
       hidden
     >
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path class="spatial-long-exposure__fullscreen-enter" d="M8 3H3v5M16 3h5v5M8 21H3v-5M16 21h5v-5" />
-        <path class="spatial-long-exposure__fullscreen-exit" d="M3 8h5V3M21 8h-5V3M3 16h5v5M21 16h-5v5" />
+      <svg viewBox="0 0 16 16" aria-hidden="true">
+        <path class="viewer-fs-enter" d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4" />
+        <path class="viewer-fs-exit" d="M6 2v4H2M10 2v4h4M6 14v-4H2M10 14v-4h4" />
       </svg>
     </button>
-    <a
-      class="spatial-long-exposure__attribution"
-      href="https://www.openstreetmap.org/copyright"
-    >© OpenStreetMap contributors</a>
-    <div class="spatial-long-exposure__loading" data-map-loading role="status">
-      Developing map…
-    </div>
   </div>
-
-  <figcaption>
-    <span>Location history and geotagged photographs, shown without individual dates.</span>
-    <span class="spatial-long-exposure__instructions">Drag to move · Scroll or pinch to zoom</span>
-  </figcaption>
-
+  <figcaption class="legend">Location history and geotagged photographs, shown without individual dates · drag to move · scroll or pinch to zoom</figcaption>
   <noscript>
-    This map needs JavaScript to draw its undated places and connections.
+    <style>#{{ $mapID | safeCSS }} ~ .viewer-status { display: none; }</style>
+    <p class="legend">This map needs JavaScript to draw its undated places and connections.</p>
   </noscript>
 </figure>

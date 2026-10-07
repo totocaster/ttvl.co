@@ -33,13 +33,18 @@
 {{- else if eq $p.Section "research" -}}
   {{- $hub := site.GetPage "/research" -}}
   {{- if $p.IsPage -}}
-    {{- /* Entry: date · number / Stream · Kind · answers 003 */ -}}
+    {{- /* Entry: date · number / Stream · Kind · answers 003 (or, on a
+         question, answered in 012) */ -}}
     {{- $stream := $p.CurrentSection -}}
     {{- $one = slice $day (printf `<span class="n">%s</span>` (partialCached "research-number.html" $p $p.Path)) -}}
     {{- $two = slice (printf $link $stream.RelPermalink (htmlEscape $stream.Title)) -}}
     {{- with partial "research-category.html" $p }}{{ $two = $two | append . }}{{ end -}}
     {{- range partial "research-answers.html" $p -}}
       {{- $two = $two | append (printf `answers <a href="%s"><span class="n">%s</span></a>` .RelPermalink (partialCached "research-number.html" . .Path)) -}}
+    {{- end -}}
+    {{- /* A question that an entry has answered says where. */ -}}
+    {{- range partial "research-answered-by.html" $p -}}
+      {{- $two = $two | append (printf `answered in <a href="%s"><span class="n">%s</span></a>` .RelPermalink (partialCached "research-number.html" . .Path)) -}}
     {{- end -}}
   {{- else if ne $p.Path $hub.Path -}}
     {{- /* Stream: count · updated / Research · Status */ -}}

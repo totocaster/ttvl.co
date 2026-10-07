@@ -1,142 +1,83 @@
-// About page: lede, sections separated by space, the floated portrait,
-// numbered principles, press rows (shared rows), and the pronunciation
-// control. Figures and the quotation voice live in _base.scss.
+// About: the head (written in content/about.md, since its title is the
+// opening sentence) with the on-page nav in the column, the body block,
+// then one block per section through the section shortcode. Record's
+// subheads are group heads over shared rows; the principles carry Mono
+// numerals in the rail like prose h2s. The pronunciation control is styled
+// with the viewers' chrome (components/_model-viewer.scss).
+// docs/styleguide.md, Page by Page: About.
 
 main article.about {
   counter-reset: principle;
 
-  // Quiet wayfinding line under the intro.
+  // The on-page nav: the label voice, links in ink.
   .on-page {
     @include type-meta;
+    line-height: $line-height-code;
     color: var(--ink-faint);
+    margin: 20px 0 0; // head geometry: under the title
+    @include readable-width;
 
     a {
-      color: inherit;
+      color: var(--ink);
       font-weight: $link-weight-quiet;
-      transition: color $t-fast;
+      text-decoration: none;
 
       &:hover {
-        color: var(--ink);
+        text-decoration: underline;
       }
     }
   }
 
-  // Each --- marks a section start. Air draws no dividing rules: the
-  // --- becomes space, 16px here plus the heading's 48px, the 64px of a
-  // section.
-  hr {
-    width: auto;
-    height: 0;
-    margin: $space-3 0 0;
-    border: 0;
-  }
+  // Record rows sit in prose: venue tails may wrap rather than push the
+  // title, and the archival download link names itself in words, so it
+  // carries no ↓ or file-type mark (components/_resources.scss).
+  .rows.record {
+    .row-tail {
+      white-space: normal;
+      max-width: 320px; // record geometry: a venue wraps before it crowds the title
 
-  // The portrait sits to the right of the opening paragraphs; the prose
-  // measure is narrower than the container, so wide screens keep the two
-  // apart and narrow ones wrap the text around it.
-  figure.portrait {
-    float: right;
-    width: 240px;
-    max-width: none;
-    margin: $space-1 0 $space-4 $space-6;
+      a {
+        font-weight: $link-weight-quiet;
+        text-decoration: none;
 
-    @include narrow {
-      width: 132px;
-      margin: $space-1 0 $space-3 $space-4;
+        &:hover {
+          color: var(--ink);
+          text-decoration: underline;
+        }
+
+        &::before,
+        &::after {
+          content: none;
+        }
+      }
     }
   }
 
-  // Section rules also clear the floated portrait.
-  hr {
-    clear: both;
-  }
-
-  // Record-keeping line under a section heading ("Updated 2026-09").
-  .section-meta {
-    @include type-meta;
-    color: var(--ink-faint);
-    margin: (-$space-2) 0 $space-4; // hugs the heading above it
-  }
-
-  // The form ends its section; the divider supplies the bottom spacing.
-  div.email-subscribe {
-    padding: $space-2 0 0;
-  }
-
-  // Record rows name their archive in words, so a download link in them
-  // carries no ↓ or file-type mark (see components/_resources.scss).
-  ul.issue-list a::before,
-  ul.issue-list a::after {
-    content: none;
-  }
-
-  // Principles carry catalog numbers in the TOC's counter voice.
+  // The principles: Mono numerals in the rail, as prose h2s carry them.
   h3.principle {
+    position: relative;
     counter-increment: principle;
 
     &::before {
-      content: counter(principle, decimal-leading-zero) ".";
-      @include type-meta;
+      content: counter(principle, decimal-leading-zero);
+      position: absolute;
+      top: 4px; // the numeral's 20 px line on the heading's 28 px line
+      left: -($rail-width + $rail-gap);
+      width: $rail-width;
+      font-family: $font-family-mono;
       font-weight: $font-weight-regular;
+      @include type-small;
+      @include tabular-numbers;
       color: var(--ink-faint);
-      margin-right: $space-2;
-    }
-  }
-
-  // Press rows reuse the shared index-row grammar (_index-row.scss);
-  // .press-work wraps title and venue so the tail stays inline.
-  ul.issue-list {
-    .press-work {
-      flex: 1;
     }
 
-    .press-venue {
-      color: var(--ink-muted);
+    @include narrow {
+      &::before {
+        position: static;
+        display: inline-block;
+        width: auto;
+        margin-right: $space-3;
+      }
     }
-  }
-
-  .pronunciation-name {
-    display: inline;
-    white-space: nowrap;
-  }
-
-  .pronunciation-button {
-    width: 1.05em;
-    height: 1.05em;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 0;
-    border-radius: $radius-tight;
-    padding: 0;
-    margin: 0 0 0 0.15rem; // control geometry: hugs the name
-    background: transparent;
-    color: inherit;
-    font: inherit;
-    line-height: $line-height-solid;
-    cursor: pointer;
-    vertical-align: -0.14em;
-    transition: opacity $t-fast;
-
-    &:hover {
-      opacity: 0.7;
-    }
-  }
-
-  .pronunciation-button__icon {
-    width: 1em;
-    height: 1em;
-    display: block;
-    flex: 0 0 auto;
-    stroke-width: 2.15;
-  }
-
-  .pronunciation-button__icon--stop,
-  .pronunciation-button.is-playing .pronunciation-button__icon--play {
-    display: none;
-  }
-
-  .pronunciation-button.is-playing .pronunciation-button__icon--stop {
-    display: block;
   }
 }

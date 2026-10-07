@@ -1,47 +1,53 @@
 {{ define "main" }}
-<article class="hub">
-  {{ partial "page-head.html" . }}
-  {{ .Content }}
-  {{ $categories := slice
-    (dict "slug" "all" "label" "All")
-    (dict "slug" "collected" "label" "Collected Matter")
-    (dict "slug" "thinking" "label" "Thinking Notes")
-    (dict "slug" "longform" "label" "Longform")
-  }}
-
-  <nav class="category-filter" aria-label="Filter notes by category">
-    <ul>
-      {{ range $categories }}
-        <li>
-          <a href="?category={{ .slug }}" data-category="{{ .slug }}" class="{{ if eq .slug "all" }}is-active{{ end }}">{{ .label }}</a>
-        </li>
-      {{ end }}
-    </ul>
-  </nav>
-
-  {{ $notes := .Pages.ByDate.Reverse }}
-  {{ $grouped := $notes.GroupByDate "2006" }}
-
-  <div class="notes-groups">
-    {{ range $grouped }}
-      {{ $n := len .Pages }}
-      <section class="notes-year" data-year="{{ .Key }}" data-filter-group>
-        <h2 class="group-head">{{ .Key }} <span class="count" data-singular="note" data-plural="notes">{{ $n }} {{ cond (eq $n 1) "note" "notes" }}</span></h2>
-        <ul class="rows">
-          {{ range .Pages.ByDate.Reverse }}
-            {{ partial "row.html" (dict
-              "meta" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02") | safeHTML)
-              "url" .RelPermalink
-              "title" .Title
-              "category" (.Params.category | default "thinking")
-            ) }}
-          {{ end }}
-        </ul>
-      </section>
-    {{ end }}
-  </div>
+{{- /* Notes hub: the head with the filter in its column, then one tight
+     year block per year, rows date | title | category. The filter is
+     assets/js/category-filter.js: each year block is a [data-filter-group],
+     each row carries data-category, and the rail's .count follows the
+     filter. docs/styleguide.md, Page by Page: Notes hub. */ -}}
+{{- $categories := slice
+  (dict "slug" "all" "label" "All")
+  (dict "slug" "collected" "label" "Collected matter")
+  (dict "slug" "thinking" "label" "Thinking notes")
+  (dict "slug" "longform" "label" "Longform")
+-}}
+{{- $tails := dict "collected" "Collected" "thinking" "Thinking" "longform" "Longform" -}}
+{{- $filter := "" -}}
+{{- $filter = printf `<nav class="category-filter" aria-label="Filter notes by category"><ul>` -}}
+{{- range $categories -}}
+  {{- $filter = printf `%s<li><a href="?category=%s" data-category="%s"%s>%s</a></li>` $filter .slug .slug (cond (eq .slug "all") ` class="is-active"` "") .label -}}
+{{- end -}}
+{{- $filter = printf "%s</ul></nav>" $filter -}}
+<article class="hub notes-hub">
+  {{ partial "page-head.html" (dict
+    "page" .
+    "dek" (.Params.description | default .Params.filter_dek)
+    "extra" ($filter | safeHTML)
+  ) }}
+  {{- with trim (string .Content) " \n\t" }}{{ partial "block-body.html" . }}{{ end }}
+  {{- range .Pages.ByDate.Reverse.GroupByDate "2006" }}
+  {{- $n := len .Pages }}
+  <section class="block year notes-year" data-year="{{ .Key }}" data-filter-group>
+    <div class="rail">
+      <h2>{{ .Key }}</h2>
+      <p class="meta"><span class="count" data-singular="note" data-plural="notes">{{ $n }} {{ cond (eq $n 1) "note" "notes" }}</span></p>
+    </div>
+    <div class="main">
+      <ul class="rows">
+        {{- range .Pages.ByDate.Reverse }}
+        {{- $cat := .Params.category | default "thinking" }}
+        {{ partial "row.html" (dict
+          "meta" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02") | safeHTML)
+          "url" .RelPermalink
+          "title" .Title
+          "tail" (index $tails $cat | default (title $cat))
+          "category" $cat
+        ) }}
+        {{- end }}
+      </ul>
+    </div>
+  </section>
+  {{- end }}
 </article>
-
-  {{ $categoryFilter := resources.Get "js/category-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
-  <script src="{{ $categoryFilter.RelPermalink }}" defer></script>
+{{ $categoryFilter := resources.Get "js/category-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
+<script src="{{ $categoryFilter.RelPermalink }}" defer></script>
 {{ end }}

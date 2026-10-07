@@ -1,6 +1,16 @@
-{{ $label := .Get "label" | default "Photo gallery" }}
-{{ $content := .Inner | markdownify }}
-{{ $content = replace $content "<img " "<img loading=\"lazy\" decoding=\"async\" " }}
-<div class="photo-gallery" data-lightbox-gallery aria-label="{{ $label }}">
+{{- /* A gallery of linked photographs for the lightbox
+     (docs/styleguide.md, Media Chrome; components/_photo-gallery.scss):
+       {{< photo-gallery label="Photographs of …" >}}
+       [![Alt text](/visuals/…/01.jpeg)](/visuals/…/01.jpeg)
+       {{< /photo-gallery >}}
+     Three columns of 4:3 tiles, two on phones. A gallery of one image is a
+     figure at bleed width in the image's own proportions. The page must set
+     lightbox: true; assets/js/lightbox.js reads [data-lightbox-gallery] and
+     each `a > img`. */ -}}
+{{- $label := .Get "label" | default "Photo gallery" -}}
+{{- $content := .Inner | markdownify -}}
+{{- $count := len (findRE `<img ` $content) -}}
+{{- $content = replace $content "<img " "<img loading=\"lazy\" decoding=\"async\" " }}
+<div class="photo-gallery{{ if eq $count 1 }} photo-gallery--single{{ end }}" data-lightbox-gallery role="group" aria-label="{{ $label }}">
   {{ $content | safeHTML }}
 </div>

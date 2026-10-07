@@ -1,24 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ .Site.Language.Locale }}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ .Title }} - {{ .Site.Title }}</title>
   <meta name="description" content="{{ .Description }}">
-  {{ $style := resources.Get "scss/style.scss" | toCSS | minify }}
-  <link rel="stylesheet" href="{{ $style.RelPermalink }}">
+  {{ with .Params.robots }}<meta name="robots" content="{{ . }}">{{ end }}
+  {{ $style := resources.Get "scss/style.scss" | toCSS | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
 </head>
+{{- /* /found/: for whoever finds something of mine with a QR code on it.
+     The avatar, the logo, then the page's text; its lists of links render
+     as pills, each with its destination at the right in the label voice:
+     the address for mail, the number for calls and messages, the host for
+     the web.
+     docs/styleguide.md, Page by Page (/links/ and /found/). */}}
 <body class="links-page">
-  <div class="links-container">
-    <div class="avatar">
-      <img src="/ui/2023_social_avatar.jpeg" alt="{{ .Site.Title }} avatar">
-    </div>
-    <div class="site-logo">
-      <img src="/ui/ttvl_logo.png"
-           srcset="/ui/ttvl_logo.png 1x, /ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x"
-           alt="{{ .Site.Title }} logo">
-    </div>
-    {{ .Content }}
-  </div>
+  <main class="links">
+    <header class="links-head">
+      <img class="avatar" src="/ui/2023_social_avatar.jpeg" width="96" height="96" alt="">
+      <span class="links-logo"><img src="/ui/ttvl_logo.png" srcset="/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x" width="82" height="32" alt="{{ .Site.Title }}"></span>
+    </header>
+    {{- $html := string .Content -}}
+    {{- range findRESubmatch `<li><a href="([^"]+)"([^>]*)>([^<]+)</a></li>` $html -}}
+      {{- $url := index . 1 -}}
+      {{- $kind := "" -}}
+      {{- if strings.HasPrefix $url "mailto:" }}{{ $kind = htmlEscape (strings.TrimPrefix "mailto:" $url) -}}
+      {{- else if or (strings.HasPrefix $url "tel:") (strings.HasPrefix $url "sms:") }}{{ $kind = printf `<span class="n">%s</span>` (htmlEscape (index (split $url ":") 1)) -}}
+      {{- else if strings.HasPrefix $url "http" }}{{ $kind = printf "%s ↗" (strings.TrimPrefix "www." (urls.Parse (htmlUnescape $url)).Host) -}}
+      {{- end -}}
+      {{- $pill := printf `<li><a href="%s"%s><span>%s</span>%s</a></li>` $url (index . 2) (index . 3) (cond (ne $kind "") (printf `<span class="pill-kind">%s</span>` $kind) "") -}}
+      {{- $html = replace $html (index . 0) $pill -}}
+    {{- end -}}
+    {{- $html = replaceRE `<ul>(\s*<li><a )` `<ul class="pills">$1` $html }}
+    <div class="links-body">{{ $html | safeHTML }}</div>
+  </main>
 </body>
 </html>

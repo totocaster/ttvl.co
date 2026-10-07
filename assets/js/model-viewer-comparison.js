@@ -18,8 +18,18 @@ const modelViewerComparison = {
     const download = comparison.querySelector(
       "[data-model-comparison-download]",
     );
+    const size = comparison.querySelector("[data-model-comparison-size]");
 
-    if (!viewer || !buttons.length || !status || !download) return;
+    if (!viewer || !buttons.length || !status || !download || !size) return;
+
+    // Dates and sizes are numbers: <time> and .n set them in Mono.
+    const numeral = (tag, text) => {
+      const element = document.createElement(tag);
+      if (tag === "time") element.dateTime = text;
+      else element.className = "n";
+      element.textContent = text;
+      return element;
+    };
 
     buttons.forEach((button) => {
       button.addEventListener("click", () => {
@@ -36,11 +46,14 @@ const modelViewerComparison = {
             String(candidate === button),
           );
         });
-        status.textContent = `Showing ${modelLabel} · ${modelDate}.`;
+        status.replaceChildren(
+          `Showing ${modelLabel} · `,
+          numeral("time", modelDate),
+        );
         download.href = modelSrc;
-        download.textContent = `Download the selected GLB model${
-          modelSize ? ` (${modelSize})` : ""
-        }`;
+        size.replaceChildren(
+          ...(modelSize ? [" (", numeral("span", modelSize), ")"] : []),
+        );
       });
     });
 

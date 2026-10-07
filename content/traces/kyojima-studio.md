@@ -6,6 +6,9 @@ image: /visuals/trace-thumbs/trace_kyojima.png
 image_alt: "A three-dimensional scan of the interior of Kyojima Studio"
 model_viewer: true
 lightbox: true
+resources:
+  - title: GLB model
+    url: /traces/kyojima-studio/kyojima-studio-2024-2026.glb
 trace:
   kind: "3D scan"
 ---
