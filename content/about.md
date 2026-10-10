@@ -12,8 +12,7 @@ aliases:
   - /press/
 ---
 
-On this page: [Newsletter](#newsletter) · [Books](#books) · [Exhibitions](#exhibitions) · [Curation](#curation) · [Programs and Training](#programs-and-training) · [Speaking](#speaking) · [Video](#video) · [Print](#print) · [Tools I Made](#tools-i-made) · [Philosophy](#philosophy) · [Extended About](#extended-about) · [Tools I Use](#tools-i-use) · [AI](#how-i-use-ai) · [Get in Touch](#get-in-touch)
-{.on-page}
+{{< toc >}}
 
 
 <figure class="portrait">

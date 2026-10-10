@@ -7,10 +7,13 @@ Parameters: "title" (the rail heading), "meta" (one line; numbers are set in
 Mono and [text](url) links work), "id" (the anchor; defaults to the title's),
 "lead" (a sentence under the meta line, Markdown), "class" (extra block
 classes). Inside, a `---` renders as space. Closes the article's body block before itself and reopens it after
-(partials/block-seams.html). docs/styleguide.md, Block. */ -}}
+(partials/block-seams.html). Each titled section registers itself in
+.Store "sections", so a page that calls the toc shortcode lists them in
+its contents rail (partials/block-body.html). docs/styleguide.md, Block. */ -}}
 {{- $seams := partialCached "block-seams.html" "seams" -}}
 {{- $title := .Get "title" -}}
 {{- $id := .Get "id" | default (cond (ne $title "") (anchorize $title) "") -}}
+{{- if and $title $id }}{{ .Page.Store.Add "sections" (slice (dict "title" $title "id" $id)) }}{{ end -}}
 {{- $seams.close | safeHTML }}
 <section class="block section{{ with .Get "class" }} {{ . }}{{ end }}"{{ with $id }} id="{{ . }}"{{ end }}>
   <div class="rail">

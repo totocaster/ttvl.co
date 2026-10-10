@@ -1,5 +1,5 @@
 // About: the head (written in content/about.md, since its title is the
-// opening sentence) with the on-page nav in the column, the body block,
+// opening sentence), the contents in the body block's rail, the body,
 // then one block per section through the section shortcode. The record's
 // kinds are blocks of their own over shared rows; the principles carry Mono
 // numerals in the rail like prose h2s. The pronunciation control is styled
@@ -9,24 +9,6 @@
 main article.about {
   counter-reset: principle;
 
-  // The on-page nav: the label voice, links in ink.
-  .on-page {
-    @include type-meta;
-    line-height: $line-height-code;
-    color: var(--ink-faint);
-    margin: 20px 0 0; // head geometry: under the title
-    @include readable-width;
-
-    a {
-      color: var(--ink);
-      font-weight: $link-weight-quiet;
-      text-decoration: none;
-
-      &:hover {
-        text-decoration: underline;
-      }
-    }
-  }
 
   // Record rows sit in prose: venue tails may wrap rather than push the
   // title, and the archival download link names itself in words, so it
