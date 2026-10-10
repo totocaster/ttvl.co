@@ -1,7 +1,10 @@
-// Loose Leaves: tight year blocks of 3:4 tiles on edge frames, four
-// columns (two on phones), the date in Mono under each. The year blocks
-// share one .leaves-grid wrapper, which the lightbox reads as a single
-// gallery. docs/styleguide.md, Page by Page: Loose Leaves.
+// Loose Leaves: tight year blocks of tiles at the notebook's own page
+// proportion (Bible size, 95 × 171 mm) on edge frames with the 2 px ink
+// shadow of every key, four columns (two on phones), the date in Mono
+// under each. Under the hand the frame turns ink; pressing drops the leaf
+// into its shadow. The year blocks share one .leaves-grid wrapper, which
+// the lightbox reads as a single gallery.
+// docs/styleguide.md, Page by Page: Loose Leaves.
 
 .leaves-grid {
   // The wrapper stands where the first block would: the first year sits
@@ -32,17 +35,35 @@
   a {
     display: block;
     line-height: 0;
+    margin: 0 $shadow-quiet $shadow-quiet 0; // room for the shadow
+    border: 1px solid var(--edge);
+    border-radius: $radius;
+    background: var(--surface);
+    box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+    transition:
+      border-color $t-fast,
+      box-shadow $t-press,
+      transform $t-press;
+    @include focus-ring;
+
+    &:hover,
+    &:focus-visible {
+      border-color: var(--ink);
+    }
+
+    &:active {
+      transform: translate($shadow-quiet, $shadow-quiet);
+      box-shadow: none;
+    }
   }
 
   img {
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 95 / 171; // Bible-size pages; the scans sit within 2% of it
     object-fit: cover;
-    border: 1px solid var(--edge);
     border-radius: $radius;
-    background: var(--surface);
   }
 
   time {
