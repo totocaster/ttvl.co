@@ -1,6 +1,6 @@
 // Loose Leaves: tight year blocks of tiles at the notebook's own page
 // proportion (Bible size, 95 × 171 mm) on edge frames with the 2 px ink
-// shadow of every key, four columns (two on phones), the date in Mono
+// shadow of every key, six columns (three on phones), the date in Mono
 // under each. Under the hand the frame turns ink; pressing drops the leaf
 // into its shadow. The year blocks share one .leaves-grid wrapper, which
 // the lightbox reads as a single gallery.
@@ -16,16 +16,16 @@
 
 .leaves {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: $space-5 $space-4;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: $space-5 $space-3;
   list-style: none;
   margin: 0;
   padding: 0;
   max-width: $max-width-column;
 
   @include narrow {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: $space-4 $space-3;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: $space-4 $space-2;
   }
 }
 
