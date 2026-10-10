@@ -200,9 +200,10 @@
 }
 
 .rail-toc {
-  .toc-title {
+  // .block > .rail p zeroes every rail paragraph; this one keeps its gap.
+  .block > & .toc-title {
     @include type-heading;
-    margin: 0 0 $space-2;
+    margin: 0 0 $space-4; // the list stands clear of its heading
   }
 
   .toc {
