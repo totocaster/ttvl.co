@@ -1,19 +1,20 @@
-{{- /* Resources manifest: files and external destinations in one row grammar.
-Inner syntax is a markdown-style list; trailing text after a link becomes a note:
+{{- /* Resources manifest: files and external sources as plates. Inner
+syntax is a markdown-style list; trailing text after a link becomes a note:
   - [Title](/downloads/file.pdf) optional note
   - [Title](https://example.com/...)
-Renders as rows (partials/row.html): the type (PDF, STL) or the destination
-(GitHub, Thangs, ...) as the meta column, the title with the note as its dek,
-and the tail: a file's size in Mono with ↓, or ↗ for a page elsewhere. File
-rows read type and size from static/ at build time.
-docs/styleguide.md, Page by Page: project page. */ -}}
+Each entry is one plate (a.file, three across): the type (PDF, STL) or the
+destination (GitHub, Thangs, ...) in Mono at the top, the title, the note
+muted under it, then the size in Mono with Download ↓ for a file, or the
+host with ↗ for a page elsewhere. File plates read type and size from
+static/ at build time. Styled in components/_resources.scss.
+docs/styleguide.md, Doors, Chips, and the Strip; Page by Page: project page. */ -}}
 {{- $destinations := dict
   "github.com" "GitHub"
   "community.obsidian.md" "Obsidian Community"
   "thangs.com" "Thangs"
   "printables.com" "Printables"
 -}}
-<ul class="rows resources{{ if findRE `\]\([^)]*\)[^\n]*\S` (string .Inner) }} with-deks{{ end }}">
+<div class="files">
 {{- range split (trim .Inner "\n\r\t ") "\n" }}
   {{- $m := findRE `^\s*[-*]\s*\[[^\]]+\]\([^)]+\).*$` . 1 }}
   {{- if $m }}
@@ -21,23 +22,19 @@ docs/styleguide.md, Page by Page: project page. */ -}}
     {{- $title := replaceRE `^\s*[-*]\s*\[([^\]]+)\].*$` "$1" $line }}
     {{- $url := replaceRE `^\s*[-*]\s*\[[^\]]+\]\(([^)]+)\).*$` "$1" $line }}
     {{- $note := replaceRE `^\s*[-*]\s*\[[^\]]+\]\([^)]+\)\s*[-–:,]*\s*(.*)$` "$1" $line }}
-    {{- $dek := "" }}
-    {{- with $note }}{{ $dek = . | markdownify }}{{ end }}
     {{- if hasPrefix $url "/" }}
       {{- $ext := strings.TrimPrefix "." (path.Ext $url) | upper }}
-      {{- $tail := "↓" }}
+      {{- $size := "" }}
       {{- $fsPath := printf "static%s" $url }}
       {{- if os.FileExists $fsPath }}
         {{- $bytes := (os.Stat $fsPath).Size }}
-        {{- $size := "" }}
-        {{- if ge $bytes 1048576 }}{{ $size = printf `<span class="n">%.1f</span> MB` (div (float $bytes) 1048576) }}{{ else }}{{ $size = printf `<span class="n">%.0f</span> KB` (div (float $bytes) 1024) }}{{ end }}
-        {{- $tail = printf `%s ↓` $size }}
+        {{- if ge $bytes 1048576 }}{{ $size = printf `<span class="n">%.1f</span> MB · ` (div (float $bytes) 1048576) }}{{ else }}{{ $size = printf `<span class="n">%.0f</span> KB · ` (div (float $bytes) 1024) }}{{ end }}
       {{- end }}
-  {{ partial "row.html" (dict "meta" $ext "url" $url "title" $title "dek" $dek "tail" ($tail | safeHTML) "download" true "class" "resource-row--file") }}
+  <a class="file" href="{{ $url }}" download><span class="file-type">{{ $ext }}</span><span class="file-name">{{ $title }}</span>{{ with $note }}<span class="file-note">{{ . | markdownify }}</span>{{ end }}<span class="file-action">{{ $size | safeHTML }}Download ↓</span></a>
     {{- else }}
       {{- $host := strings.TrimPrefix "www." (urls.Parse $url).Host }}
-  {{ partial "row.html" (dict "meta" (index $destinations $host | default $host) "url" $url "title" $title "dek" $dek "tail" "↗" "class" "resource-row--external") }}
+  <a class="file file--external" href="{{ $url }}"><span class="file-type">{{ index $destinations $host | default $host }}</span><span class="file-name">{{ $title }}</span>{{ with $note }}<span class="file-note">{{ . | markdownify }}</span>{{ end }}<span class="file-action">{{ $host }} ↗</span></a>
     {{- end }}
   {{- end }}
 {{- end }}
-</ul>
+</div>

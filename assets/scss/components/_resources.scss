@@ -2,7 +2,7 @@
 // ↓ means "saves a file"; ↗ means "leaves the site".
 // The strip (front matter `resources:`) holds a page's canonical doors as
 // one joined row of keys on one 2 px ink shadow; the manifest (shortcode
-// `resources`) lists sets in context as rows.
+// `resources`) lists sets in context as plates.
 // docs/styleguide.md, Doors, Chips, and the Strip.
 
 // The strip: chips share edges, the first and last carry the outer radius,
@@ -114,50 +114,128 @@
   }
 }
 
-// The manifest: rows with the type or destination as the meta column, the
-// title (and a muted note as its dek), the size in Mono as the tail.
-.prose .resources {
+// The manifest: one plate per file or source, the switch tile (surface,
+// a 1 px edge frame, radius 2), three across (two on phones). The type or
+// destination in Mono at the top, the title at 500, a muted note, then the
+// size in Mono with Download ↓, or the host with ↗. The whole plate is a
+// door: under the hand it stands up on an ink frame and the 2 px shadow,
+// and pressing drops it.
+.files {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: $space-3;
+  max-width: $max-width-column;
+
+  @include narrow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.prose .files {
   margin: 0 0 $rhythm-paragraph;
 }
 
-// Stray download links in prose mark themselves.
-.prose a[href^="/downloads/"]::before {
-  content: "↓ ";
-}
-
-.prose a[href$=".pdf"]::after {
-  content: " PDF";
-}
-
-.prose a[href$=".stl"]::after {
-  content: " STL";
-}
-
-.prose a[href$=".zip"]::after {
-  content: " ZIP";
-}
-
-.prose a[href$=".glb"]::after {
-  content: " GLB";
-}
-
-.prose a[href$=".3mf"]::after {
-  content: " 3MF";
-}
-
-.prose a[href$=".pdf"]::after,
-.prose a[href$=".stl"]::after,
-.prose a[href$=".zip"]::after,
-.prose a[href$=".glb"]::after,
-.prose a[href$=".3mf"]::after {
-  @include type-meta;
+.file {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding: $space-3 14px 14px; // plate geometry, as the switch
+  margin: 0 $shadow-quiet $shadow-quiet 0; // room for the shadow
+  border: 1px solid var(--edge);
+  border-radius: $radius;
+  background: var(--surface);
+  color: inherit;
   font-weight: $font-weight-regular;
+  text-decoration: none;
+  transition:
+    border-color $t-fast,
+    background-color $t-fast,
+    box-shadow $t-press,
+    transform $t-press;
+  @include focus-ring;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--ink);
+    background: var(--ground);
+    box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+    text-decoration: none;
+  }
+
+  &:active {
+    transform: translate($shadow-quiet, $shadow-quiet);
+    box-shadow: none;
+  }
+
+  @include touch-controls {
+    min-height: $control-height-touch;
+  }
+}
+
+// A format (PDF, STL) is a token and sits in Mono; a destination
+// (Printables, GitHub) is a name and sits in Sans, like every label.
+.file-type {
+  display: block;
+  font-family: $font-family-mono;
+  @include type-small;
+  @include tabular-numbers;
   color: var(--ink-faint);
 }
 
-// Inside the manifest the meta column already names the type.
-.resources a::before,
-.resources a::after,
-.chip::before {
-  content: none !important;
+.file--external .file-type {
+  font-family: $font-family-sans;
+}
+
+.file-name {
+  display: block;
+  margin-top: 2px; // plate geometry
+  @include type-control;
+}
+
+.file-note {
+  display: block;
+  margin-top: 2px; // plate geometry
+  @include type-meta;
+  color: var(--ink-muted);
+}
+
+.file-action {
+  display: block;
+  margin-top: 6px; // plate geometry
+  @include type-meta;
+  color: var(--ink-faint);
+}
+
+// A file link inside a paragraph is a small inline key on a 1 px shadow,
+// with its type and ↓ after the words in the label voice.
+.prose a[href^="/downloads/"]:not(.file) {
+  display: inline-block;
+  padding: 0 $space-2;
+  margin: 0 1px 1px 0; // room for the 1 px shadow
+  border: 1px solid var(--ink);
+  border-radius: $radius;
+  background: var(--ground);
+  color: var(--ink);
+  @include type-control;
+  text-decoration: none;
+  @include key(1px);
+  @include focus-ring;
+
+  &:hover {
+    background: var(--surface);
+  }
+
+  &::after {
+    content: " ↓";
+    @include type-meta;
+    font-weight: $font-weight-regular;
+    color: var(--ink-faint);
+  }
+
+  &[href$=".pdf"]::after { content: " PDF ↓"; }
+  &[href$=".stl"]::after { content: " STL ↓"; }
+  &[href$=".zip"]::after { content: " ZIP ↓"; }
+  &[href$=".glb"]::after { content: " GLB ↓"; }
+  &[href$=".3mf"]::after { content: " 3MF ↓"; }
 }
