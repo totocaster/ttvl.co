@@ -12,7 +12,7 @@ aliases:
   - /press/
 ---
 
-{{< toc title="On this page" >}}
+{{< toc title="On this page" intro="About" >}}
 
 
 <figure class="portrait">
@@ -135,15 +135,15 @@ Three principles I try to live by and build into everything I make.
 
 ### Follow Irrational Thoughts {.principle}
 
-<figure>
-  <img src="/visuals/2024.12_irrational_thoughts.png" alt="Desert landscape with scattered rocks and handwritten text reading IRRATIONAL THOUGHTS MUST BE FOLLOWED ABSOLUTELY AND LOGICALLY, quote by Sol LeWitt" loading="lazy" />
-  <figcaption>Sol LeWitt. Still from Tom Sachs’s <em>Paradox Bullets</em>.</figcaption>
-</figure>
-
 > We are mystics, not rationalists. Art, like marathon running, is an irrational, useless endeavor. But we expend the enormous energy art demands anyway. Because through our efforts, we expand our threshold for the human spirit. This is what distinguishes us from the cows in the field.
 
 — Tom Sachs, [_Paradox Bullets_](https://youtu.be/-Evrm03Y5hI), on Sol LeWitt's quote
 {.quote-attribution}
+
+<figure>
+  <img src="/visuals/2024.12_irrational_thoughts.png" alt="Desert landscape with scattered rocks and handwritten text reading IRRATIONAL THOUGHTS MUST BE FOLLOWED ABSOLUTELY AND LOGICALLY, quote by Sol LeWitt" loading="lazy" />
+  <figcaption>Sol LeWitt. Still from Tom Sachs’s <em>Paradox Bullets</em>.</figcaption>
+</figure>
 
 ### Made for Humans {.principle}
 

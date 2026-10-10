@@ -9,6 +9,31 @@
 main article.about {
   counter-reset: principle;
 
+  // The portrait stands beside the introduction, at the right of the
+  // column past the measure, top-aligned with the first paragraph; when
+  // the rail stacks it floats right and the text wraps around it.
+  .block.body > .main {
+    position: relative;
+  }
+
+  .block.body .portrait {
+    margin: 0;
+
+    @include rail-wide {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 216px; // the column past the measure, less a 24 px gap
+    }
+
+    @include rail-stacked {
+      float: right;
+      width: 40%;
+      max-width: 216px;
+      margin: 0 0 $space-3 $space-4;
+    }
+  }
+
 
   // Record rows sit in prose: venue tails may wrap rather than push the
   // title, and the archival download link names itself in words, so it

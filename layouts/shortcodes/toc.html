@@ -2,7 +2,10 @@
      rendered by partials/block-body.html in the body block's rail, where
      it stays in view while the page scrolls; the shortcode's position in
      the Markdown no longer matters. An optional "title" names the rail's
-     heading (About says "On this page"); the default is "Contents".
+     heading (About says "On this page"); the default is "Contents". An
+     optional "intro" names the body block itself as the first entry
+     (About's short introduction), and gives the block that anchor.
      docs/styleguide.md, Prose. */ -}}
 {{- .Page.Store.Set "toc" true -}}
 {{- with .Get "title" }}{{ $.Page.Store.Set "tocTitle" . }}{{ end -}}
+{{- with .Get "intro" }}{{ $.Page.Store.Set "tocIntro" . }}{{ end -}}

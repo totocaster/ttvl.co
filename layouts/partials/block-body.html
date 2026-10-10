@@ -20,8 +20,14 @@
     {{- $toc = string $p.TableOfContents -}}
   {{- end -}}
 {{- end -}}
+{{- /* The body itself as the first entry, when the toc shortcode names it. */ -}}
+{{- $bodyID := "" -}}
+{{- with $p.Store.Get "tocIntro" -}}
+  {{- $bodyID = anchorize . -}}
+  {{- $toc = replaceRE `<ul>` (printf `<ul><li><a href="#%s">%s</a></li>` $bodyID (htmlEscape .)) $toc 1 -}}
+{{- end -}}
 {{- with $toc -}}
-  {{- $open = printf `<section class="block body has-toc"><div class="rail rail-toc"><p class="toc-title">%s</p><div class="toc">%s</div></div><div class="main prose">` (htmlEscape ($p.Store.Get "tocTitle" | default "Contents")) . -}}
+  {{- $open = printf `<section class="block body has-toc"%s><div class="rail rail-toc"><p class="toc-title">%s</p><div class="toc">%s</div></div><div class="main prose">` (cond (ne $bodyID "") (printf ` id="%s"` $bodyID) "") (htmlEscape ($p.Store.Get "tocTitle" | default "Contents")) . -}}
 {{- end -}}
 {{- $html := printf "%s%s%s" $open (string .) $seams.close -}}
 {{- /* The lamp that follows the reader down the contents (toc-spy.js). */ -}}
