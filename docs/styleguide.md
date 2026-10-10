@@ -257,7 +257,7 @@ A block whose column starts with a list is a ledger: on wide screens its rail he
 </div>
 ```
 
-A 16:9 tile on a 1 px `--edge` frame with radius 2 over `--surface`, grayscale until hover or focus; one label line (`date · hub` for projects, `date · kind` for traces, `Since 2023 · Gallery` for ongoing work); the title at 500; the dek. Up to three columns in the 880 px column, each at least 240 px wide; two at intermediate widths and one on small phones. Gaps are 32 × 24 px, or 24 × 12 px on phones. Rendered by `partials/card.html`.
+A 16:9 tile on a 1 px `--edge` frame with radius 2 over `--surface`, grayscale at rest; one label line (`date · hub` for projects, `date · kind` for traces, `Since 2023 · Gallery` for ongoing work); the title at 500; the dek. Nothing changes at rest. Under the hand, anywhere on the card, the tile alone becomes a key: the frame turns ink, the 2 px ink shadow appears, the poster colors, the title underlines; pressing drops the tile into its shadow, like every other key. The tile keeps a 2 px margin at right and below for the shadow. Up to three columns in the 880 px column, each at least 240 px wide; two at intermediate widths and one on small phones. Gaps are 32 × 24 px, or 24 × 12 px on phones. Rendered by `partials/card.html`.
 
 ### Doors, Chips, and the Strip
 
@@ -382,6 +382,7 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 ## Changelog
 
+- **2026-10-10, v8.0, the card as a key.** A project or trace card stays quiet at rest; under the hand its tile becomes a key (ink frame, shadow, color, the title underlined) and pressing drops it.
 - **2026-10-10, v8.0, switches and the phone menu.** The Projects hub filters with one switch per hub, each a face that filters and a door that opens the hub; the Hubs end block is gone. On phones the nav is one line that scrolls with a fade. Hairlines fainter; the newsletter's 2021 qualifier beside its year; phone rows give long keys room; Log months get a pager; the pulse on its own line on phones.
 - **2026-10-10, v8.0, flat sections.** Nothing nests inside a block: About's record kinds, the streams on the Research hub, and the newsletter's years are blocks of their own, and the group-head grammar is retired.
 - **2026-10-07, v8.0, responsive refinement.** Rails stack at 1024 px; cards keep a 240 px minimum; mobile navigation wraps. Controls share 16/24 labels and 44 px touch targets. Search has a visible Close action, full-width mobile results, and short excerpts. Prose section headings use 22/30. Project Humane has the same name in filters, cards, and page metadata; Note titles use sentence case, preserving proper names. Grayscale tiles and hard shadows remain.

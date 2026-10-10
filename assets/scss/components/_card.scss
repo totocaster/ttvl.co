@@ -1,8 +1,11 @@
 // Cards: for things with a poster. A 16:9 tile on an edge frame over the
-// surface, grayscale until hover or focus; one label line (date · hub,
-// date · kind, or Since YYYY · hub); the title at 500; the dek.
-// Up to three columns, each at least 240 px; one on small phones. Rendered by
-// layouts/partials/card.html. docs/styleguide.md, Cards.
+// surface, grayscale at rest; one label line (date · hub, date · kind, or
+// Since YYYY · hub); the title at 500; the dek. Under the hand the tile
+// alone becomes a key: the frame turns ink, the 2 px shadow appears, the
+// poster colors, the title underlines; pressing drops the tile into its
+// shadow. Nothing changes at rest. Up to three columns, each at least
+// 240 px; one on small phones. Rendered by layouts/partials/card.html.
+// docs/styleguide.md, Cards.
 
 .projects-grid,
 .cards {
@@ -30,6 +33,11 @@
     border: 1px solid var(--edge);
     border-radius: $radius;
     background: var(--surface);
+    margin: 0 $shadow-quiet $shadow-quiet 0; // room for the key's shadow
+    transition:
+      border-color $t-fast,
+      box-shadow $t-press,
+      transform $t-press;
 
     img {
       display: block;
@@ -41,9 +49,27 @@
     }
   }
 
+  // Under the hand (anywhere on the card) the tile is a key.
+  &:hover .tile,
+  &:focus-within .tile {
+    border-color: var(--ink);
+    box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+  }
+
   &:hover .tile img,
   &:focus-within .tile img {
     filter: none;
+  }
+
+  &:hover .card-title,
+  &:focus-within .card-title {
+    text-decoration: underline;
+  }
+
+  // Pressing either link drops the tile into its shadow.
+  &:active .tile {
+    transform: translate($shadow-quiet, $shadow-quiet);
+    box-shadow: none;
   }
 }
 
