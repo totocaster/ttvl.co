@@ -125,14 +125,28 @@ header.site {
       height: 32px;
     }
 
-    // Every destination stays visible; no hidden horizontal menu.
+    // One line that scrolls sideways. A 48 px fade at the right edge is
+    // the affordance; the strip pads itself by the same amount so the last
+    // name can scroll clear of it. header.html scrolls the current section
+    // into view.
     .nav {
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       gap: 0 $space-5;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      padding-right: $space-7;
+      mask-image: linear-gradient(90deg, #000 calc(100% - #{$space-7}), transparent);
+      -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - #{$space-7}), transparent);
+
+      &::-webkit-scrollbar {
+        display: none;
+      }
 
       a {
         display: inline-flex;
         align-items: center;
+        flex: none;
         min-height: $control-height-touch;
         min-width: $control-height-touch;
       }

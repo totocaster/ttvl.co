@@ -1,0 +1,108 @@
+// The Projects hub's switches: one labelled switch per hub under the
+// head's dek, a tile on the surface whose face (a button) carries the
+// hub's name, count, and dek and filters the cards below; the door under
+// the face opens the hub. The pressed switch stands on the ground with an
+// ink frame, a 2 px shadow, and the lamp before its name. As many as there
+// are hubs: 136 px wide at least, wrapping into more rows (two across on
+// phones). docs/styleguide.md, Filter Rail and Switches.
+
+.switches {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(136px, 1fr)); // switch geometry
+  gap: $space-3;
+  margin-top: $space-5;
+  max-width: $max-width-column;
+}
+
+.switch {
+  display: flex;
+  flex-direction: column;
+  margin: 0 $shadow-quiet $shadow-quiet 0; // room for the pressed shadow
+  border: 1px solid var(--edge);
+  border-radius: $radius;
+  background: var(--surface);
+  transition:
+    border-color $t-fast,
+    background-color $t-fast,
+    box-shadow $t-fast;
+
+  &:hover {
+    border-color: var(--ink-faint);
+  }
+
+  &:has(.switch-key[aria-pressed="true"]) {
+    border-color: var(--ink);
+    background: var(--ground);
+    box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+  }
+}
+
+.switch-key {
+  flex: 1;
+  display: flex; // a button centers its content; the face starts at the top
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  padding: $space-3 14px; // switch geometry
+  border: 0;
+  border-radius: $radius;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  @include focus-ring;
+
+  @include touch-controls {
+    min-height: $control-height-touch;
+  }
+}
+
+.switch-name {
+  display: block;
+  @include type-control;
+}
+
+// The lamp: the pressed switch's name carries the signal.
+.switch-key[aria-pressed="true"] .switch-name::before {
+  content: "";
+  display: inline-block;
+  width: 6px; // lamp geometry
+  height: 6px;
+  margin-right: $space-2;
+  border-radius: 50%;
+  background: var(--signal);
+  vertical-align: middle;
+}
+
+.switch-count {
+  display: block;
+  margin-top: 2px; // switch geometry
+  @include type-meta;
+  color: var(--ink-faint);
+}
+
+.switch-dek {
+  display: block;
+  margin-top: 6px; // switch geometry
+  @include type-meta;
+  color: var(--ink-muted);
+}
+
+.switch-door {
+  display: block;
+  padding: 0 14px $space-3; // switch geometry
+  @include type-meta;
+  color: var(--ink-faint);
+  text-decoration: none;
+
+  &:hover {
+    color: var(--ink);
+    text-decoration: underline;
+  }
+}
+
+.switches + .legend {
+  max-width: $max-width-measure;
+}

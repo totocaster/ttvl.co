@@ -1,12 +1,11 @@
 {{ define "main" }}
-{{- /* Projects hub: the head with the intro as its dek and the filter
-     chips in the column, then year blocks (Ongoing, 2026, …) of cards, and
-     Hubs as end matter: one row per hub the projects come from, its title
-     and filter_dek, the door to the pages the chips only filter. The filter
-     is assets/js/category-filter.js: each year block and the Hubs block are
-     [data-filter-group]s, every card and hub row carries data-category, and
-     the head rail's count follows the filter (the Hubs block is
-     data-filter-uncounted). docs/styleguide.md, Page by Page: Projects hub. */ -}}
+{{- /* Projects hub: the head with the intro as its dek and one switch per
+     hub in the column (the face filters, the door under it opens the hub),
+     then year blocks (Ongoing, 2026, …) of cards. The filter is
+     assets/js/category-filter.js: each year block is a [data-filter-group],
+     every card carries data-category, each switch face is a
+     [data-filter-control] button, and the head rail's count follows the
+     filter. docs/styleguide.md, Page by Page: Projects hub. */ -}}
 {{- $projects := sort (uniq (where site.Pages "Params.project" "!=" nil)) "Date" "desc" -}}
 
 {{- /* The intro paragraph is the head's dek. */ -}}
@@ -44,11 +43,15 @@
 {{- range where $categories "weight" 99 }}{{ $ordered = $ordered | append . }}{{ end -}}
 {{- $categories = $ordered -}}
 
-{{- $filter := `<nav class="category-filter" aria-label="Filter projects by category"><ul><li><a href="?category=all" data-category="all" class="is-active">All</a></li>` -}}
+{{- /* One switch per hub: the face (a button) filters, the door opens the hub. */ -}}
+{{- $counts := dict -}}
+{{- range $projects }}{{ with .Params.project.category }}{{ $cat := trim . "/" }}{{ $counts = merge $counts (dict $cat (add (index $counts $cat | default 0) 1)) }}{{ end }}{{ end -}}
+{{- $switches := `<div class="switches" role="group" aria-label="Hubs">` -}}
 {{- range $categories -}}
-  {{- $filter = printf `%s<li><a href="?category=%s" data-category="%s">%s</a></li>` $filter .slug .slug (htmlEscape .label) -}}
+  {{- $n := index $counts .slug | default 0 -}}
+  {{- $switches = printf `%s<div class="switch"><button type="button" class="switch-key" data-filter-control data-category="%s" aria-pressed="false"><span class="switch-name">%s</span><span class="switch-count">%s</span>%s</button>%s</div>` $switches .slug (htmlEscape .label) (partial "count.html" (dict "n" $n "one" "project" "many" "projects")) (cond (ne .dek "") (printf `<span class="switch-dek">%s</span>` (htmlEscape .dek)) "") (cond (ne .url "") (printf `<a class="switch-door" href="%s">Open the hub ↗</a>` .url) "") -}}
 {{- end -}}
-{{- $filter = printf "%s</ul></nav>" $filter -}}
+{{- $switches = printf `%s</div><p class="legend">Press a hub to show only its projects, again for everything · the door opens the hub.</p>` $switches -}}
 
 {{- $ongoing := slice -}}
 {{- $dated := slice -}}
@@ -66,7 +69,7 @@
   {{- $groups = $groups | append (dict "key" $year "pages" $in) -}}
 {{- end }}
 <article class="hub projects-hub">
-  {{ partial "page-head.html" (dict "page" . "dek" $dek "extra" ($filter | safeHTML)) }}
+  {{ partial "page-head.html" (dict "page" . "dek" $dek "extra" ($switches | safeHTML)) }}
   {{- with trim $content " \n\t" }}{{ partial "block-body.html" . }}{{ end }}
   {{- range $groups }}
   <section class="block year project-year" data-filter-group>
@@ -81,20 +84,6 @@
   </section>
   {{- else }}
   <section class="block body"><div class="rail"></div><div class="main prose"><p>No projects yet.</p></div></section>
-  {{- end }}
-  {{- with $categories }}
-  <section class="block end ledger" id="hubs" data-filter-group data-filter-uncounted>
-    <div class="rail"><h2>Hubs</h2></div>
-    <div class="main">
-      <ul class="rows with-deks">
-        {{- range . }}
-        {{- if .url }}
-        {{ partial "row.html" (dict "meta" "" "url" .url "title" .title "dek" .dek "category" .slug) }}
-        {{- end }}
-        {{- end }}
-      </ul>
-    </div>
-  </section>
   {{- end }}
 </article>
 {{ $categoryFilter := resources.Get "js/category-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}

@@ -140,7 +140,7 @@ Each pattern below is one partial or shortcode and one stylesheet. Use them; don
 </header>
 ```
 
-Two lines: the signature logo 44 px tall at left (large enough to stay crisp on 1x screens) with the search key at right in faint ink, then the nav on its own line in 16 px Sans with 32 px gaps, the current section in ink and underlined 6 px below the baseline. Padding 36 above, 16 below, then one `--rule` hairline. The logo is a `p` on every page; the page head owns the `h1`. The search key is a button that opens the overlay like the `?` shortcut does. On phones the logo is 32 px and the nav wraps, with 44 px link targets so every destination stays visible.
+Two lines: the signature logo 44 px tall at left (large enough to stay crisp on 1x screens) with the search key at right in faint ink, then the nav on its own line in 16 px Sans with 32 px gaps, the current section in ink and underlined 6 px below the baseline. Padding 36 above, 16 below, then one `--rule` hairline. The logo is a `p` on every page; the page head owns the `h1`. The search key is a button that opens the overlay like the `?` shortcut does. On phones the logo is 32 px and the nav is one line that scrolls sideways: 44 px link targets, a 48 px fade at the right edge as the affordance, and the current section scrolled into view on load.
 
 Rendered by `partials/header.html` and `partials/nav.html`, styled in `_layout.scss`.
 
@@ -292,9 +292,13 @@ Every article ends with one block, `Mentioned in`, 64 px after the body: nothing
 
 Rendered by `partials/mentioned-in.html` and `research/single.html`.
 
-### Filter Rail
+### Filter Rail and Switches
 
-`nav.category-filter` under a hub's dek: chips in the control voice, faint, 20 px apart, the active one in ink and underlined 5 px below the baseline. Notes and Projects use the same rail, chips only: no arrow to the hub, no dek that changes with the filter. The head rail's count follows the filter (`12 projects`): `count.html` with `live` wraps it as `.count[data-singular][data-plural]`, and `category-filter.js` sums the visible `[data-category]` items of every `[data-filter-group]` not marked `data-filter-uncounted`. Groups carry no count of their own.
+Notes: `nav.category-filter` under the hub's dek, chips in the control voice, faint, 20 px apart, the active one in ink and underlined 5 px below the baseline. No arrow to a hub, no dek that changes with the filter.
+
+Projects: one switch per hub under the dek (`.switches`), a tile on `--surface` with a 1 px `--edge` frame and radius 2, at least 136 px wide, as many across as fit (two on phones). Its face is a button in the control voice: the hub's name, its count in the label voice, its `filter_dek` muted; under the face, `Open the hub ↗` in the label voice is the door. Pressing a face filters the cards and presses the switch: it stands on `--ground` with an ink frame, a 2 px ink shadow, and the lamp (a 6 px `--signal` dot) before its name. Pressing it again releases the filter; there is no All switch. A legend under the switches says so. New hubs join by having projects and a `filter_dek`.
+
+Both hubs: the head rail's count follows the filter (`12 projects`): `count.html` with `live` wraps it as `.count[data-singular][data-plural]`, and `category-filter.js` reads every `[data-filter-control]` button and `.category-filter` chip, shows and hides the `[data-category]` items of every `[data-filter-group]`, and keeps the state in `?category=`. Groups carry no count of their own.
 
 ### Search Overlay
 
@@ -305,7 +309,7 @@ Full ground. Centered, 96 px down: a “Search site” label and a Close button,
 - **Home.** Head: the intro sentence as the title, the second sentence as the dek, rail `Public notebook · since 2008`. Then six blocks: The Flâneur (`All dispatches →`; a sentence, the form and legend, the five latest dispatches as rows), Projects (`All projects →`; the featured cards), Notes (`All notes →`; five rows without tails), Research (`All entries →`; five rows without tails), the latest month (its title as the rail heading, `Log · all months →`; the month's content), Get in touch (`toto@ttvl.co`).
 - **Notes hub.** Head with the filter and the only count. One tight year block per year: `2026`, rows `date | title | category`.
 - **Note.** Head, the body block, Mentioned in.
-- **Projects hub.** Head with the chips; the head's count follows the filter. Year blocks (`Ongoing`, `2026`, …) with card grids and nothing in their rails but the year. Then Hubs, as end matter (`.block.end`): one row per hub the projects come from, its title linked and its `filter_dek` as the dek, nothing in the meta column. The block follows the filter, so a page filtered to Obsidian ends with the one door to Obsidian: the chips only filter, the end block leads on.
+- **Projects hub.** Head with the switches, one per hub, and the legend; the head's count follows the filter. Year blocks (`Ongoing`, `2026`, …) with card grids and nothing in their rails but the year. No end matter: the doors are on the switches.
 - **Long articles** (the notebook system and its guides, Walking) call the `toc` shortcode and get the table of contents in the body block's rail.
 - **Project page.** Head with the strip. The body block. Mentioned in. The `resources` manifest, where a page writes one, stays in the body under its own heading and renders as rows: the type as the meta column (`STL`, `PDF`, `GitHub`), the title, the size in Mono as the tail.
 - **Section hubs (Darkroom, Bookbinding, Project Humane, Obsidian, the notebook system).** Head with the intro as the dek. One block per `page-list` or `project-grid`, titled from the shortcode, with the lead (where one is written) in its rail.
@@ -378,6 +382,7 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 ## Changelog
 
+- **2026-10-10, v8.0, switches and the phone menu.** The Projects hub filters with one switch per hub, each a face that filters and a door that opens the hub; the Hubs end block is gone. On phones the nav is one line that scrolls with a fade. Hairlines fainter; the newsletter's 2021 qualifier beside its year; phone rows give long keys room; Log months get a pager; the pulse on its own line on phones.
 - **2026-10-10, v8.0, flat sections.** Nothing nests inside a block: About's record kinds, the streams on the Research hub, and the newsletter's years are blocks of their own, and the group-head grammar is retired.
 - **2026-10-07, v8.0, responsive refinement.** Rails stack at 1024 px; cards keep a 240 px minimum; mobile navigation wraps. Controls share 16/24 labels and 44 px touch targets. Search has a visible Close action, full-width mobile results, and short excerpts. Prose section headings use 22/30. Project Humane has the same name in filters, cards, and page metadata; Note titles use sentence case, preserving proper names. Grayscale tiles and hard shadows remain.
 
