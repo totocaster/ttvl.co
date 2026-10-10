@@ -2,7 +2,7 @@
 {{- /* Home: the intro's first paragraph is the title, the second the dek,
      the rail reads "Public notebook · since 2008". Then six blocks, each
      with one door ("All notes →") in the rail: The Flâneur, Projects, Notes,
-     Research, the latest Log month, Get in touch.
+     Research, the latest Log month, Get in Touch.
      docs/styleguide.md, Page by Page: Home. */ -}}
 {{- $content := string .Content -}}
 {{- $paras := findRESubmatch `<p>((?s:.*?))</p>` $content 2 -}}

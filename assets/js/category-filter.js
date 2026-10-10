@@ -39,10 +39,8 @@
       total += visibleCount;
     });
 
-    // The page head's count follows the filter ("12 projects"). It is the
-    // only count on the page; a group carries none.
+    // The page head's count follows the filter ("12 projects").
     document.querySelectorAll(".count[data-singular]").forEach((count) => {
-      if (count.closest("[data-filter-group]")) return;
       const noun = total === 1 ? count.dataset.singular : count.dataset.plural;
       count.innerHTML = `<span class="n">${total}</span> ${noun}`;
     });

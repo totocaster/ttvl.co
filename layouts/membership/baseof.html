@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title itemprop="name">
-      {{ with .Title }}{{ . }} — {{ end }}{{ .Site.Title }}
+      {{ with .Title }}{{ . }} · {{ end }}{{ .Site.Title }}
     </title>
 
     <!-- Styles -->
@@ -147,6 +147,7 @@
         <div class="col-3"></div>
         <div class="col-12">
           <main>
+            <h1 class="visually-hidden">{{ .Title }}</h1>
             <!-- About Section -->
             <section class="about">
               <h2>Why Join / What You Get</h2>

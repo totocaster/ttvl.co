@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{- /* A Log month: the head (Month 93 / Log, the Log's own line as the
-     dek), the body block, then In the log with the neighbouring months
+     dek), the body block, then In the Log with the neighbouring months
      (the Left and Right arrow keys follow those rows, assets/js/pager.js),
      then the Archive grid with this month marked.
      docs/styleguide.md, Page by Page: Log month. */ -}}
@@ -22,22 +22,20 @@
 </article>
 {{- if or $prev $next }}
 <nav class="block end pager" aria-labelledby="log-pager-title">
-  <div class="rail"><h2 id="log-pager-title">In the log</h2>{{ with $hub }}<p class="meta"><a href="{{ .RelPermalink }}">All months →</a></p>{{ end }}</div>
+  <div class="rail"><h2 id="log-pager-title">In the Log</h2>{{ with $hub }}<p class="meta"><a href="{{ .RelPermalink }}">All months →</a></p>{{ end }}</div>
   <div class="main">
     <ul class="rows">
-      {{- /* row.html markup, written out so the links carry rel and
-           aria-keyshortcuts for the pager script. */}}
       {{- with $prev }}
-      <li class="row">
-        <span class="row-meta">← <span class="n">{{ printf "%03d" $prevN }}</span></span>
-        <span class="row-main"><a class="row-title" href="{{ .RelPermalink }}" rel="prev" aria-keyshortcuts="ArrowLeft">{{ .Title }}</a></span>
-      </li>
+      {{ partial "row.html" (dict
+        "meta" (printf `← <span class="n">%03d</span>` $prevN | safeHTML)
+        "url" .RelPermalink "title" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01") .Title | safeHTML) "rel" "prev"
+      ) }}
       {{- end }}
       {{- with $next }}
-      <li class="row">
-        <span class="row-meta"><span class="n">{{ printf "%03d" $nextN }}</span> →</span>
-        <span class="row-main"><a class="row-title" href="{{ .RelPermalink }}" rel="next" aria-keyshortcuts="ArrowRight">{{ .Title }}</a></span>
-      </li>
+      {{ partial "row.html" (dict
+        "meta" (printf `<span class="n">%03d</span> →` $nextN | safeHTML)
+        "url" .RelPermalink "title" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01") .Title | safeHTML) "rel" "next"
+      ) }}
       {{- end }}
     </ul>
     <p class="legend"><kbd>←</kbd> <kbd>→</kbd> move between months</p>

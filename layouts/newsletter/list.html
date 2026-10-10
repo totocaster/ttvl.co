@@ -2,7 +2,8 @@
      as its dek and the form with its legend in the column; then Start Here
      (front matter start_here, when show_start_here), the Contact Sheet
      (one frame per dispatch with a cover, when show_contact_sheet), and one
-     block per year (deks when show_deks). docs/styleguide.md, Page by Page
+     tight block per year (deks when show_deks; a year_qualifiers entry in
+     front matter puts a note beside the year). docs/styleguide.md, Page by Page
      (Newsletter). */ -}}
 {{ define "main" }}
 {{- $dispatches := (where (where site.Pages "Section" "flaneur") "Kind" "page").ByDate.Reverse -}}
@@ -72,8 +73,8 @@
   {{- end }}
 
   {{- range $dispatches.GroupByDate "2006" }}
-  <section class="block">
-    <div class="rail"><h2>{{ .Key }}{{ if eq .Key "2021" }} <span class="qualifier">as Dreaming with One Eye Open</span>{{ end }}</h2></div>
+  <section class="block year">
+    <div class="rail"><h2>{{ .Key }}{{ with index ($.Params.year_qualifiers | default dict) .Key }} <span class="qualifier">{{ . }}</span>{{ end }}</h2></div>
     <div class="main">
       <ul class="rows{{ if $.Params.show_deks }} with-deks{{ end }}">
         {{- range .Pages.ByDate.Reverse }}

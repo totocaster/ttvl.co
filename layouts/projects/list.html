@@ -49,7 +49,7 @@
 {{- $switches := `<div class="switches" role="group" aria-label="Hubs">` -}}
 {{- range $categories -}}
   {{- $n := index $counts .slug | default 0 -}}
-  {{- $switches = printf `%s<div class="switch"><button type="button" class="switch-key" data-filter-control data-category="%s" aria-pressed="false"><span class="switch-name">%s</span><span class="switch-count">%s</span>%s</button>%s</div>` $switches .slug (htmlEscape .label) (partial "count.html" (dict "n" $n "one" "project" "many" "projects")) (cond (ne .dek "") (printf `<span class="switch-dek">%s</span>` (htmlEscape .dek)) "") (cond (ne .url "") (printf `<a class="switch-door" href="%s">Open the hub ↗</a>` .url) "") -}}
+  {{- $switches = printf `%s<div class="switch"><button type="button" class="switch-key" data-filter-control data-category="%s" aria-pressed="false"><span class="switch-name">%s</span><span class="switch-count">%s</span>%s</button>%s</div>` $switches .slug (htmlEscape .label) (partial "count.html" (dict "n" $n "one" "project" "many" "projects")) (cond (ne .dek "") (printf `<span class="switch-dek">%s</span>` (htmlEscape .dek)) "") (cond (ne .url "") (printf `<a class="switch-door" href="%s">Open the hub →</a>` .url) "") -}}
 {{- end -}}
 {{- $switches = printf `%s</div><p class="legend">Press a hub to show only its projects, again for everything · the door opens the hub.</p>` $switches -}}
 

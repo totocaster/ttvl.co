@@ -105,6 +105,11 @@ code {
 }
 
 // Keycaps: Mono 14 on an edge frame with a 2 px bottom edge.
+// A heading or label for assistive tech only (the hidden h1 on /links/).
+.visually-hidden {
+  @include visually-hidden;
+}
+
 kbd {
   font-family: $font-family-mono;
   font-size: $font-size-small;
@@ -228,7 +233,7 @@ kbd {
     }
 
     > p {
-      margin-bottom: 6px;
+      margin-bottom: 6px; // list item geometry
     }
   }
 

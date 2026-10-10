@@ -81,7 +81,7 @@
   function bindEvents() {
     // Show search on '?' key press
     document.addEventListener('keydown', function(e) {
-      if (e.key === '?' && !isInputFocused()) {
+      if (e.key === '?' && !e.metaKey && !e.ctrlKey && !e.altKey && !isInputFocused()) {
         e.preventDefault();
         showSearch();
       } else if (e.key === 'Escape' && searchOverlay.style.display !== 'none') {

@@ -10,12 +10,14 @@
      "class"     optional extra class on the li
      "linkClass" optional extra class on the title link
      "download"  true to mark the title link as a download
+     "rel"       "prev" or "next" on a pager row: sets rel and the arrow-key
+                 shortcut (ArrowLeft, ArrowRight) for assets/js/pager.js
      Numbers in either column are wrapped by the caller: <time> for dates,
      <span class="n"> for everything else. docs/styleguide.md, Rows. */ -}}
 <li class="row{{ with .class }} {{ . }}{{ end }}"{{ with .category }} data-category="{{ . }}"{{ end }}>
   <span class="row-meta">{{ .meta }}</span>
   <span class="row-main">
-    {{- if .url }}<a class="row-title{{ with .linkClass }} {{ . }}{{ end }}" href="{{ .url }}"{{ if .download }} download{{ end }}>{{ .title }}</a>{{ else }}<span class="row-value">{{ .value }}</span>{{ end }}
+    {{- if .url }}<a class="row-title{{ with .linkClass }} {{ . }}{{ end }}" href="{{ .url }}"{{ if .download }} download{{ end }}{{ with .rel }} rel="{{ . }}" aria-keyshortcuts="{{ if eq . "prev" }}ArrowLeft{{ else }}ArrowRight{{ end }}"{{ end }}>{{ .title }}</a>{{ else }}<span class="row-value">{{ .value }}</span>{{ end }}
     {{- with .dek }}<span class="row-dek">{{ . }}</span>{{ end -}}
   </span>
   {{- with .tail }}

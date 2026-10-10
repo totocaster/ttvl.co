@@ -24,7 +24,7 @@ I don't see or get any of your payment information. -->
 * Press <kbd>?</kbd> to activate site-wide search. Navigate results with <kbd>↑</kbd> <kbd>↓</kbd>.
 * Select any text to automatically update the URL with a _text fragment_. Share the link to highlight that exact passage.
 * Click the `$` prompt next to any shell command to copy that command.
-* On a research entry, press <kbd>←</kbd> and <kbd>→</kbd> to move to the previous and next entries in its stream.
+* On a research entry or a Log month, press <kbd>←</kbd> and <kbd>→</kbd> to move to the previous and next one.
 
 ## AI Usage
 

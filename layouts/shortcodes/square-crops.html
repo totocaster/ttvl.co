@@ -43,6 +43,7 @@
   </fieldset>
   <figcaption id="{{ $id }}-caption">This example uses a point of interest, marked by the dot. Change the screen ratio to see a crop calculated around it. The square recording stays intact.</figcaption>
 </figure>
+{{/* The inline style keeps the fallback image fluid in feed readers, which load no stylesheet. */}}
 <figure class="square-crops-fallback">
   <img src="{{ "/visuals/notes/square-sensors-crops.png" | absURL }}" width="1120" height="640" style="max-width: 100%; height: auto;" alt="Two identical square recordings with a point of interest 70% across and 40% down. A tall 9:16 crop sits toward the right; a wide 16:9 crop spans the square. Both keep the marked point in view.">
   <figcaption>Portrait (9:16) and landscape (16:9) crops around the same point of interest. The square recording stays intact. <a href="{{ .Page.Permalink }}">Explore the interactive diagram.</a></figcaption>

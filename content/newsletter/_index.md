@@ -10,6 +10,8 @@ filter_dek: "Experimental newsletter on my projects, photography, and walking."
 show_start_here: true
 show_contact_sheet: true
 show_deks: false
+year_qualifiers:
+  "2021": "as Dreaming with One Eye Open"
 start_here:
   - ref: /flaneur/008
     label: "The essay"

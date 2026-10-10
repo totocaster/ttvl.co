@@ -1,6 +1,6 @@
 // The pager: on a research entry and on a Log month, the Left and Right
 // arrow keys follow the end block's rows to the previous and next page.
-// Keys typed into a field or a media player, keys with modifiers, keys
+// Keys typed into a field, a media player, or a viewer, keys with modifiers, keys
 // another handler already took, and keys pressed while text is selected
 // are left alone.
 (() => {
@@ -14,7 +14,7 @@
     if (!link) return;
 
     const active = document.activeElement;
-    if (active && (active.isContentEditable || active.matches("input, textarea, select, video, audio"))) return;
+    if (active && (active.isContentEditable || active.matches("input, textarea, select, video, audio, canvas, model-viewer") || active.closest(".viewer"))) return;
     if (!window.getSelection().isCollapsed) return;
 
     e.preventDefault();

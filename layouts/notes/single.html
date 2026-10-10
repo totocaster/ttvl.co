@@ -1,6 +1,6 @@
 {{ define "main" }}
 {{- /* A note: the head (date / Notes · Category), the body block, then
-     Mentioned in. docs/styleguide.md, Page by Page: Note. */ -}}
+     Mentioned In. docs/styleguide.md, Page by Page: Note. */ -}}
 <article class="note{{ with .Params.content_css }} {{ . }}{{ end }}">
   {{ partial "page-head.html" . }}
   {{ partial "block-body.html" .Content }}

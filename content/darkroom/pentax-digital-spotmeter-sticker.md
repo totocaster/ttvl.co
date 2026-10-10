@@ -30,6 +30,6 @@ The only addition I made was to format it in the style of [my own templates](not
 
 Ansel Adams' own Pentax Digital Spotmeter as seen in his _The Negative_ book. See citations below for the exact edition and page.
 
-###  Citations
+## Citations
 
 1. Adams, Ansel. The Negative. Twelfth paperback printing, Little, Brown and Company, 2002, p. 63.

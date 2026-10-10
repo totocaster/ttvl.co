@@ -77,14 +77,9 @@
 
   // The radio itself stays in the tree for the keyboard and screen readers.
   label input {
-    position: absolute;
-    width: 1px;
-    height: 1px;
+    @include visually-hidden;
     margin: 0;
     padding: 0;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    white-space: nowrap;
   }
 
   button,
@@ -155,13 +150,7 @@
   margin: 0;
 
   label {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-    clip: rect(0 0 0 0);
-    clip-path: inset(50%);
-    white-space: nowrap;
+    @include visually-hidden;
   }
 
   input[type="email"] {

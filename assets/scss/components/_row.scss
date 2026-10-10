@@ -114,7 +114,18 @@
 
 }
 
-// Phones: the meta column narrows and the tail drops under the title.
+// When the rail stacks, a row with nothing in its meta column (the Index's
+// Start Here) starts its title at the edge instead of after an empty column.
+@include rail-stacked {
+  .rows > li:has(> .row-meta:empty) {
+    grid-template-columns: minmax(0, 1fr) auto;
+
+    > .row-meta {
+      display: none;
+    }
+  }
+}
+
 // Phones: the meta column grows to its content, 96 to 136 px, so a long
 // key ("#016 · 2026-09") keeps a 16 px gap before the title.
 @include narrow {
@@ -132,7 +143,7 @@
     grid-column: 2;
     text-align: left;
     white-space: normal;
-    margin-top: 2px;
+    margin-top: 2px; // tail geometry under the title
   }
 }
 

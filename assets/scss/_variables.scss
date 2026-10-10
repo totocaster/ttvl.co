@@ -90,7 +90,6 @@ $row-meta-width: 128px;
 $row-meta-width-narrow: 96px; // phones: the meta column's floor
 $row-meta-width-narrow-max: 136px; // and its ceiling
 // Older names, kept for the section and viewer stylesheets.
-$max-width-readable: $max-width-measure;
 $max-width-panel: 428px; // the links column
 
 // Controls: blocks on hard shadows (docs/styleguide.md, Buttons and Forms).
@@ -101,7 +100,6 @@ $control-height-touch: 44px;
 $shadow-primary: 3px;
 $shadow-quiet: 2px;
 $radius: 2px;
-$radius-tight: $radius;
 
 // Motion
 $t-fast: 150ms ease; // hover, opacity
@@ -241,6 +239,16 @@ $z-search: 110;
     transform: translate($shadow, $shadow);
     box-shadow: none;
   }
+}
+
+// Text for assistive tech only: out of the flow, out of sight.
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 
 // The focus ring on every control.

@@ -586,3 +586,13 @@ main, .site-footer {
   margin-bottom: 30px;
   text-align: center;
 }
+
+// The hidden h1 (the page's heading is drawn by its own hero).
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

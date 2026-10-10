@@ -2,7 +2,7 @@
 // head's dek, a tile on the surface whose face (a button) carries the
 // hub's name, count, and dek and filters the cards below; the door under
 // the face opens the hub. The pressed switch stands on the ground with an
-// ink frame, a 2 px shadow, and the lamp before its name. As many as there
+// ink frame, a 2 px shadow, and the lamp after its name. As many as there
 // are hubs: 136 px wide at least, wrapping into more rows (two across on
 // phones). docs/styleguide.md, Filter Rail and Switches.
 
@@ -64,13 +64,14 @@
   @include type-control;
 }
 
-// The lamp: the pressed switch's name carries the signal.
-.switch-key[aria-pressed="true"] .switch-name::before {
+// The lamp: the pressed switch's name carries the signal after it, so
+// the name itself never moves.
+.switch-key[aria-pressed="true"] .switch-name::after {
   content: "";
   display: inline-block;
   width: 6px; // lamp geometry
   height: 6px;
-  margin-right: $space-2;
+  margin-left: $space-2;
   border-radius: 50%;
   background: var(--signal);
   vertical-align: middle;

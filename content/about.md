@@ -12,7 +12,7 @@ aliases:
   - /press/
 ---
 
-On this page: [Newsletter](#newsletter) · [Books](#books) · [Exhibitions](#exhibitions) · [Curation](#curation) · [Programs and training](#programs-and-training) · [Speaking](#speaking) · [Video](#video) · [Print](#print) · [Tools I made](#tools-i-made) · [Philosophy](#philosophy) · [Extended about](#extended-about) · [Tools I use](#tools-i-use) · [AI](#how-i-use-ai) · [Get in touch](#get-in-touch)
+On this page: [Newsletter](#newsletter) · [Books](#books) · [Exhibitions](#exhibitions) · [Curation](#curation) · [Programs and Training](#programs-and-training) · [Speaking](#speaking) · [Video](#video) · [Print](#print) · [Tools I Made](#tools-i-made) · [Philosophy](#philosophy) · [Extended About](#extended-about) · [Tools I Use](#tools-i-use) · [AI](#how-i-use-ai) · [Get in Touch](#get-in-touch)
 {.on-page}
 
 
@@ -81,7 +81,7 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
 
 {{< /section >}}
 
-{{< section title="Programs and training" id="programs-and-training" >}}
+{{< section title="Programs and Training" id="programs-and-training" >}}
 
 <ul class="rows record">
   <li class="row"><span class="row-meta"><time datetime="2025">2025–26</time></span><span class="row-main"><a class="row-title" href="https://fotofilmic.com/fotofilmic-book-program/">FotoFilmic Book Program</a><span class="row-dek">directed by Greg Girard, with Michael Kominek and Gonzalo Sanchez</span></span></li>
@@ -124,7 +124,7 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
 
 {{< /section >}}
 
-{{< section title="Tools I made" id="tools-i-made" >}}
+{{< section title="Tools I Made" id="tools-i-made" >}}
 
 Toolmaking is the software half of the practice: command-line tools and Obsidian plugins for people who keep their notes in plain files, built to work for a person at a keyboard and for an agent alike. All of it lives under [Project Humane](/project-humane/), with [Plaintext Commons](/project-humane/plaintext-commons/) as the stance.
 
@@ -176,7 +176,7 @@ In June 2026, I married Ludo in Rome. We share a studio in Monteverde, called Pr
 
 {{< /section >}}
 
-{{< section title="Tools I use" meta="Updated 2026-09 · Nothing here is sponsored" id="tools-i-use" >}}
+{{< section title="Tools I Use" meta="Updated 2026-09 · Nothing here is sponsored" id="tools-i-use" >}}
 
 People ask, so here is the kit. The rule is two bodies with two lenses over one body with seven: a lens stays mounted, and the pairing is the unit. Nothing here is sponsored.
 
@@ -204,13 +204,13 @@ People ask, so here is the kit. The rule is two bodies with two lenses over one 
 
 {{< /section >}}
 
-{{< section title="How I use AI" id="how-i-use-ai" >}}
+{{< section title="How I Use AI" id="how-i-use-ai" >}}
 
 Freely in private, never across the border. Anything that reaches you, an email, a note, a photograph, is authored by me. [The Human Border](/notes/the-human-border/) is the contract. The [AI page](/ai/) is the transparency report, prompt included.
 
 {{< /section >}}
 
-{{< section title="Get in touch" meta="[toto@ttvl.co](mailto:toto@ttvl.co)" id="get-in-touch" >}}
+{{< section title="Get in Touch" meta="[toto@ttvl.co](mailto:toto@ttvl.co)" id="get-in-touch" >}}
 
 Best way to reach me is via [email](mailto:toto@ttvl.co).
 
