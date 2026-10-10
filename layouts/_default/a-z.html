@@ -43,7 +43,7 @@
     <h2>Start Here</h2>
   </div>
   <div class="main">
-    <div class="switches">
+    <div class="switches doors">
       {{- range . }}
       <a class="switch door" href="{{ .RelPermalink }}"><span class="switch-name">{{ .Title | default .File.Path }}</span>{{ with (.Params.filter_dek | default .Description) }}<span class="switch-dek">{{ . }}</span>{{ end }}</a>
       {{- end }}

@@ -109,8 +109,18 @@
   max-width: $max-width-measure;
 }
 
-// A door switch (the Index's Start Here): the tile is one link. Under the
-// hand it stands up like a pressed switch; pressing drops it.
+// Doors (the Index's Start Here): three across, so each dek reads as a
+// sentence; two on phones, like every switch grid.
+.switches.doors {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  @include narrow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+// A door switch: the tile is one link. Under the hand it stands up like a
+// pressed switch; pressing drops it.
 a.switch.door {
   padding: $space-3 14px; // switch geometry
   color: inherit;
