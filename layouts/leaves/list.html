@@ -1,10 +1,11 @@
 {{ define "main" }}
 {{- /* Loose Leaves: the head with the intro as its dek, then one tight
-     year block per year, a four-column grid of 3:4 tiles
-     with the date in Mono under each. The leaves are the date-prefixed
-     JPEG files in static/leaves/. All years sit in one .leaves-grid so the
-     lightbox (assets/js/lightbox.js) pages through every leaf.
-     docs/styleguide.md, Page by Page: Loose Leaves. */ -}}
+     year block per year, a six-column grid of tiles at the notebook's page
+     proportion with the date in Mono under each; leaves that share a day
+     are tagged /1, /2, … in the order shown. The leaves are the
+     date-prefixed JPEG files in static/leaves/. All years sit in one
+     .leaves-grid so the lightbox (assets/js/lightbox.js) pages through
+     every leaf. docs/styleguide.md, Page by Page: Loose Leaves. */ -}}
 {{- $content := string .Content -}}
 {{- $dek := .Params.description -}}
 {{- with findRESubmatch `^\s*<p>((?s:.*?))</p>` $content 1 -}}
@@ -32,12 +33,22 @@
         <h2>{{ $year }}</h2>
       </div>
       <div class="main">
+        {{- /* How many leaves share each day, so the label can tag them. */}}
+        {{- $perDay := dict }}
+        {{- range $in }}{{ $d := substr . 0 10 }}{{ $perDay = merge $perDay (dict $d (add (index $perDay $d | default 0) 1)) }}{{ end }}
+        {{- $seen := dict }}
         <ul class="leaves">
           {{- range $in }}
           {{- $date := substr . 0 10 }}
+          {{- $label := $date }}
+          {{- if gt (index $perDay $date) 1 }}
+            {{- $n := add (index $seen $date | default 0) 1 }}
+            {{- $seen = merge $seen (dict $date $n) }}
+            {{- $label = printf "%s/%d" $date $n }}
+          {{- end }}
           <li class="leaf">
-            <a href="{{ $path }}{{ . }}"><img src="{{ $path }}{{ . }}" alt="Loose leaf, {{ $date }}" loading="lazy" /></a>
-            <time datetime="{{ $date }}">{{ $date }}</time>
+            <a href="{{ $path }}{{ . }}"><img src="{{ $path }}{{ . }}" alt="Loose leaf, {{ $label }}" loading="lazy" /></a>
+            <time datetime="{{ $date }}">{{ $label }}</time>
           </li>
           {{- end }}
         </ul>

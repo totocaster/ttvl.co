@@ -197,7 +197,7 @@ Every note, project page, article, hub with a `filter_dek`, research stream, and
 
 ### Loose Leaves and Traces
 
-- Loose Leaves images must use `YYYY-MM-DD-description.jpeg`; the list template extracts the date and sorts filenames newest first.
+- Loose Leaves images must use `YYYY-MM-DD-description.jpeg`; the list template extracts the date and sorts filenames newest first, and tags leaves that share a day `/1`, `/2`, … in the order shown.
 - A page using `photo-gallery` must also set `lightbox: true` until script loading is coupled directly to the shortcode.
 - A page using `model-viewer` must set `model_viewer: true` and supply shortcode `src`, `poster`, and accessible `alt` values.
 
