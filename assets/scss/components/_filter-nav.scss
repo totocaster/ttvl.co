@@ -1,6 +1,6 @@
 // The Notes hub's filter rail under its dek: chips in the control voice,
 // faint, 20 px apart; the active one in ink, underlined 5 px below the
-// baseline. (The Projects hub filters with switches, sections/_projects.scss.)
+// baseline. (The Projects hub filters with switches, components/_switch.scss.)
 // Driven by assets/js/category-filter.js via ?category= query strings; the
 // hooks (.category-filter, [data-category], [data-filter-group], the head
 // rail's .count) are documented there. docs/styleguide.md, Filter Rail.

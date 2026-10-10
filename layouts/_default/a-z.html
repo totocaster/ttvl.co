@@ -1,8 +1,8 @@
 {{ define "main" }}
 {{- /* The Index: the head (75 entries · 11 hubs), then three blocks.
-     Start Here: rows, one per hub, its filter_dek as the dek and nothing in
-     the meta column. A–Z: letter groups in three columns (one on phones),
-     each an h3, the ✉ legend under them. Log: the archive grid. The head
+     Start Here: one door switch per hub (components/_switch.scss), its
+     title and filter_dek. A–Z: letter groups in three columns (one on
+     phones), each an h3, the mail-icon legend under them. Log: the archive grid. The head
      rail carries the page's only counts.
      The A–Z files titles without a leading A, An, or The (or by
      sort_title), and leaves out Log months and research entries.
@@ -43,16 +43,11 @@
     <h2>Start Here</h2>
   </div>
   <div class="main">
-    <ul class="rows with-deks">
+    <div class="switches">
       {{- range . }}
-      {{ partial "row.html" (dict
-        "meta" ""
-        "url" .RelPermalink
-        "title" (.Title | default .File.Path)
-        "dek" (.Params.filter_dek | default .Description)
-      ) }}
+      <a class="switch door" href="{{ .RelPermalink }}"><span class="switch-name">{{ .Title | default .File.Path }}</span>{{ with (.Params.filter_dek | default .Description) }}<span class="switch-dek">{{ . }}</span>{{ end }}</a>
       {{- end }}
-    </ul>
+    </div>
   </div>
 </section>
 {{- end }}
@@ -79,14 +74,14 @@
         <ul>
           {{- range . }}
           {{- $page := .page }}
-          <li><a href="{{ $page.RelPermalink }}">{{ $page.Title | default $page.File.Path }}</a>{{ if eq $page.Section "flaneur" }}<span class="env" title="Also went out as a Flâneur dispatch"><span aria-hidden="true">✉</span><span class="visually-hidden"> (Flâneur dispatch)</span></span>{{ end }}</li>
+          <li><a href="{{ $page.RelPermalink }}">{{ $page.Title | default $page.File.Path }}</a>{{ if eq $page.Section "flaneur" }}<span class="env" title="Also went out as a Flâneur dispatch">{{ partial "icons/mail.svg" . }}<span class="visually-hidden"> (Flâneur dispatch)</span></span>{{ end }}</li>
           {{- end }}
         </ul>
       </section>
       {{- end }}
       {{- end }}
     </div>
-    <p class="legend">✉ also went out as a Flâneur dispatch</p>
+    <p class="legend"><span class="env">{{ partial "icons/mail.svg" . }}</span> also went out as a Flâneur dispatch</p>
   </div>
 </section>
 

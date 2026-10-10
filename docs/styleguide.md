@@ -283,7 +283,7 @@ The subscribe form: a 40 px input, 44 px for touch (1 px ink frame, `--surface-i
 
 ### Legends
 
-A `p.legend` in the label voice explains the thing directly above it, in the column, never in the rail: under the subscribe form, under the stream ledger (what the pulse marks mean), under the contact sheet, under a viewer (how to orbit, the download), under the index's letters (what ✉ means), under the pager (which keys move).
+A `p.legend` in the label voice explains the thing directly above it, in the column, never in the rail: under the subscribe form, under the stream ledger (what the pulse marks mean), under the contact sheet, under a viewer (how to orbit, the download), under the index's letters (what the mail icon means), under the pager (which keys move).
 
 ### End Matter
 
@@ -295,7 +295,9 @@ Rendered by `partials/mentioned-in.html` and `research/single.html`.
 
 Notes: `nav.category-filter` under the hub's dek, chips in the control voice, faint, 20 px apart, the active one in ink and underlined 5 px below the baseline. No arrow to a hub, no dek that changes with the filter.
 
-Projects: one switch per hub under the dek (`.switches`), a tile on `--surface` with a 1 px `--edge` frame and radius 2, at least 136 px wide, as many across as fit (two on phones). Its face is a button in the control voice: the hub's name, its count in the label voice, its `filter_dek` muted; under the face, `Open the hub →` in the label voice is the door. Pressing a face filters the cards and presses the switch: it stands on `--ground` with an ink frame, a 2 px ink shadow, and the lamp (a 6 px `--signal` dot) after its name, so the name never moves. Pressing it again releases the filter; there is no All switch. A legend under the switches says so. New hubs join by having projects and a `filter_dek`.
+Projects: one switch per hub under the dek (`.switches`, `components/_switch.scss`), a tile on `--surface` with a 1 px `--edge` frame and radius 2, at least 136 px wide, as many across as fit (two on phones). Its face is a button in the control voice: the hub's name, its count in the label voice, its `filter_dek` muted; under the face, `Open the hub →` in the label voice is the door. Pressing a face filters the cards and presses the switch: it stands on `--ground` with an ink frame, a 2 px ink shadow, and the lamp (a 6 px `--signal` dot) after its name, so the name never moves. Pressing it again releases the filter; there is no All switch. A legend under the switches says so. New hubs join by having projects and a `filter_dek`.
+
+Index: the same tiles as doors (`a.switch.door`), one per hub with its title and `filter_dek`, the whole tile a link. Under the hand it stands up like a pressed switch (ink frame, shadow, ground) and pressing drops it; no lamp, no count, no door line, since the tile is the door.
 
 Both hubs: the head rail's count follows the filter (`12 projects`): `count.html` with `live` wraps it as `.count[data-singular][data-plural]`, and `category-filter.js` reads every `[data-filter-control]` button and `.category-filter` chip, shows and hides the `[data-category]` items of every `[data-filter-group]`, and keeps the state in `?category=`. Groups carry no count of their own.
 
@@ -324,7 +326,7 @@ Full ground. Centered, 96 px down: a “Search site” label and a Close button,
 - **Loose Leaves.** Head. One year block per year, the year alone in its rail; a four-column grid of 3:4 tiles on `--edge` frames with the date in Mono under each; two columns on phones.
 - **About.** Head (`Updated 2026-09-16`) over the opening sentence as the title; the on-page nav in the column in the label voice. Then one block per section through the `section` shortcode: Newsletter (`All dispatches →`), Books (`Not awards. Things that exist.`), Exhibitions, Curation, Programs and training, Speaking, Video, Print, and Tools I made, each a block of its own with the venue as each record row's tail, then Philosophy, Extended About, Tools I use (`Updated 2026-09 · Nothing here is sponsored`), How I use AI, Get in Touch. The principles are `h3.principle` with Mono numerals in the rail.
 - **Colophon.** Head (`v8.0.351`). Body.
-- **Index.** Head (`75 entries · 11 hubs`). Start Here: a ledger of the hubs, each with its `filter_dek` as the dek and nothing in the meta column (when the rail stacks, the empty column goes and the titles start at the edge). A–Z: letter groups in three columns (one on phones), each an `h3` without a count, the ✉ legend under the letters. Log: the archive grid.
+- **Index.** Head (`75 entries · 11 hubs`). Start Here: a grid of door switches, one per hub with its title and `filter_dek`. A–Z: letter groups in three columns (one on phones), each an `h3` without a count; a 14 px mail icon (a stroke icon, since Plex has no envelope) after a title that also went out as a dispatch, and the legend under the letters. Log: the archive grid.
 - **Search.** The overlay above.
 - **404.** `layouts/404.html`: head (`404 · Not found` / the path), one sentence pointing to search, the index, and home.
 - **`/links/` and `/found/`.** Avatar, logo, the description, then pills on 2 px ink shadows 12 px apart with the kind in the label voice at the right, the form and legend under them. No masthead.
@@ -381,6 +383,7 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 ## Changelog
 
+- **2026-10-10, v8.0, doors on the Index.** Start Here is a grid of door switches, the switch a shared component; the dispatch marker is a stroke icon instead of a glyph Plex lacks.
 - **2026-10-10, v8.0, review pass.** The switch lamp sits after the name; empty meta columns drop when the rail stacks; the newsletter's years are tight blocks with their qualifier in front matter; the pagers use `row.html` with a `rel`; end-matter headings in Title Case; the switch door uses `→`.
 - **2026-10-10, v8.0, the card as a key.** A project or trace card stays quiet at rest; under the hand its tile becomes a key (ink frame, shadow, color, the title underlined) and pressing drops it.
 - **2026-10-10, v8.0, switches and the phone menu.** The Projects hub filters with one switch per hub, each a face that filters and a door that opens the hub; the Hubs end block is gone. On phones the nav is one line that scrolls with a fade. Hairlines fainter; the newsletter's 2021 qualifier beside its year; phone rows give long keys room; Log months get a pager; the pulse on its own line on phones.

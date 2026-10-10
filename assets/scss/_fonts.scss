@@ -1,7 +1,7 @@
 // IBM Plex, self-hosted as subset WOFF2 files under static/fonts/plex/.
 // Subset with pyftsubset to Basic Latin, Latin-1, Latin Extended-A,
 // General Punctuation, the arrows, and the few symbols the content uses
-// (docs/styleguide.md, Type). Glyphs Plex lacks (✉, CJK) fall back to the
+// (docs/styleguide.md, Type). Glyphs Plex lacks (CJK) fall back to the
 // system font through the stacks in _variables.scss. Sans Regular and
 // Mono Regular are preloaded from partials/head.html.
 

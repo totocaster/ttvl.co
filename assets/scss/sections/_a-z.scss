@@ -1,7 +1,7 @@
-// The Index: Start Here and the Log grid are the shared rows and the
-// Log's grid (sections/_log.scss); the A–Z is letter groups in three
-// columns (one on phones), each an h3, titles at
-// dek size, ✉ marking pages that also went out as a dispatch.
+// The Index: Start Here is a grid of door switches (components/_switch.scss)
+// and the Log grid is sections/_log.scss; the A–Z is letter groups in
+// three columns (one on phones), each an h3, titles at dek size, a mail
+// icon marking pages that also went out as a dispatch.
 // docs/styleguide.md, Page by Page: Index.
 
 .letters {
@@ -53,12 +53,30 @@
     }
   }
 
-  // ✉: also went out as a Flâneur dispatch (the legend under the letters).
+  // The mail icon: also went out as a Flâneur dispatch (the legend under
+  // the letters repeats it). A 14 px stroke icon on the text's baseline.
   .env {
-    @include type-meta;
-    color: var(--ink-faint);
+    display: inline-block;
     margin-left: 6px; // marker geometry
+    color: var(--ink-faint);
     text-indent: 0;
+    vertical-align: -2px; // icon geometry
+
+    .icon {
+      width: 14px; // icon geometry
+      height: 14px;
+    }
   }
 
+}
+
+.letters + .legend .env {
+  display: inline-block;
+  margin: 0;
+  vertical-align: -2px; // icon geometry
+
+  .icon {
+    width: 14px; // icon geometry
+    height: 14px;
+  }
 }

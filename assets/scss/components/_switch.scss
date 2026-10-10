@@ -1,10 +1,11 @@
-// The Projects hub's switches: one labelled switch per hub under the
-// head's dek, a tile on the surface whose face (a button) carries the
-// hub's name, count, and dek and filters the cards below; the door under
-// the face opens the hub. The pressed switch stands on the ground with an
-// ink frame, a 2 px shadow, and the lamp after its name. As many as there
-// are hubs: 136 px wide at least, wrapping into more rows (two across on
-// phones). docs/styleguide.md, Filter Rail and Switches.
+// Switches: a grid of labelled tiles on the surface, 136 px wide at
+// least, as many across as fit (two on phones). On the Projects hub each
+// switch's face (a button) carries the hub's name, count, and dek and
+// filters the cards below, with the door under the face; the pressed one
+// stands on the ground with an ink frame, a 2 px shadow, and the lamp
+// after its name. On the Index each switch is a door (a link): the hub's
+// name and dek, and the whole tile presses like a key under the hand.
+// docs/styleguide.md, Filter Rail and Switches.
 
 .switches {
   display: grid;
@@ -106,4 +107,34 @@
 
 .switches + .legend {
   max-width: $max-width-measure;
+}
+
+// A door switch (the Index's Start Here): the tile is one link. Under the
+// hand it stands up like a pressed switch; pressing drops it.
+a.switch.door {
+  padding: $space-3 14px; // switch geometry
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color $t-fast,
+    background-color $t-fast,
+    box-shadow $t-press,
+    transform $t-press;
+  @include focus-ring;
+
+  &:hover,
+  &:focus-visible {
+    border-color: var(--ink);
+    background: var(--ground);
+    box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+  }
+
+  &:active {
+    transform: translate($shadow-quiet, $shadow-quiet);
+    box-shadow: none;
+  }
+
+  @include touch-controls {
+    min-height: $control-height-touch;
+  }
 }
