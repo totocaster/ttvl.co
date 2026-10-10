@@ -1,9 +1,9 @@
 {{- /* /newsletter/: the archive of The Flâneur. The head carries the intro
      as its dek and the form with its legend in the column; then Start Here
      (front matter start_here, when show_start_here), the Contact Sheet
-     (one frame per dispatch with a cover, when show_contact_sheet), and the
-     Archive by year (deks when show_deks). docs/styleguide.md, Page by
-     Page (Newsletter). */ -}}
+     (one frame per dispatch with a cover, when show_contact_sheet), and one
+     block per year (deks when show_deks). docs/styleguide.md, Page by Page
+     (Newsletter). */ -}}
 {{ define "main" }}
 {{- $dispatches := (where (where site.Pages "Section" "flaneur") "Kind" "page").ByDate.Reverse -}}
 {{- $no := `<span class="n">#%03s</span> · <time datetime="%s">%s</time>` -}}
@@ -71,26 +71,23 @@
   </section>
   {{- end }}
 
+  {{- range $dispatches.GroupByDate "2006" }}
   <section class="block">
-    <div class="rail"><h2>Archive</h2></div>
+    <div class="rail"><h2>{{ .Key }}</h2>{{ if eq .Key "2021" }}<p class="meta">as Dreaming with One Eye Open</p>{{ end }}</div>
     <div class="main">
-      {{- range $dispatches.GroupByDate "2006" }}
-      <div class="group">
-        <h3 class="group-head">{{ .Key }}{{ if eq .Key "2021" }} <span class="tail">as Dreaming with One Eye Open</span>{{ end }}</h3>
-        <ul class="rows{{ if $.Params.show_deks }} with-deks{{ end }}">
-          {{- range .Pages.ByDate.Reverse }}
-          {{ partial "row.html" (dict
-            "meta" (printf $no .File.BaseFileName (.Date.Format "2006-01-02") (.Date.Format "2006-01") | safeHTML)
-            "url" .RelPermalink
-            "title" .Title
-            "dek" (cond $.Params.show_deks .Description "")
-          ) }}
-          {{- end }}
-        </ul>
-      </div>
-      {{- end }}
+      <ul class="rows{{ if $.Params.show_deks }} with-deks{{ end }}">
+        {{- range .Pages.ByDate.Reverse }}
+        {{ partial "row.html" (dict
+          "meta" (printf $no .File.BaseFileName (.Date.Format "2006-01-02") (.Date.Format "2006-01") | safeHTML)
+          "url" .RelPermalink
+          "title" .Title
+          "dek" (cond $.Params.show_deks .Description "")
+        ) }}
+        {{- end }}
+      </ul>
     </div>
   </section>
+  {{- end }}
 </article>
 {{ partial "campaign-monitor-script.html" . }}
 {{ end }}

@@ -112,26 +112,6 @@
     }
   }
 
-  // A group head is a line of the same ledger: nothing in the rail cell,
-  // its name where the titles start.
-  .block:not(.has-toc):not(.entry) > .main .group-head {
-    display: grid;
-    grid-template-columns: $rail-width minmax(0, 1fr);
-    column-gap: $rail-gap;
-    align-items: baseline;
-    margin-left: -($rail-width + $rail-gap);
-
-    &::before {
-      content: "";
-      grid-column: 1;
-      grid-row: 1;
-    }
-
-    .tail {
-      grid-column: 2;
-      grid-row: 2;
-    }
-  }
 }
 
 // Phones: the meta column narrows and the tail drops under the title.
@@ -149,37 +129,3 @@
   }
 }
 
-// Group heads: a heading that groups rows inside a block, with an optional
-// qualifier 12 px after it in the label voice. The first sits on the block;
-// the rest sit 40 px below the previous group.
-.group-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  column-gap: $space-3;
-  @include type-heading;
-  margin: $rhythm-group-above 0 $rhythm-heading-below;
-
-  a {
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  .tail {
-    @include type-meta;
-    font-weight: $font-weight-regular;
-    color: var(--ink-faint);
-  }
-}
-
-.prose .group-head {
-  margin: $rhythm-group-above 0 $rhythm-heading-below;
-}
-
-.main > .group-head:first-child,
-.main > :first-child > .group-head:first-child {
-  margin-top: 0;
-}

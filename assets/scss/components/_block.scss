@@ -94,14 +94,14 @@
   margin-top: 0;
 }
 
-// Ledger blocks: a block whose column starts with a list or a group head.
+// Ledger blocks: a block whose column starts with a list.
 // The rail heading takes its own line, and the list below it uses the
 // rail as its meta column (components/_row.scss), so the page keeps one
 // column of labels. Set by the content (:has) or by a `ledger` class.
 @include rail-wide {
   .block.ledger,
-  .block:not(.has-toc):has(> .main > :is(.rows, .group, .group-head):first-child),
-  .block:not(.has-toc):has(> .main.prose > :is(.rows, .group-head):first-child) {
+  .block:not(.has-toc):has(> .main > .rows:first-child),
+  .block:not(.has-toc):has(> .main.prose > .rows:first-child) {
     grid-template-rows: auto auto;
 
     > .rail {
