@@ -124,12 +124,10 @@
   {{- $listed = $p.Store.Get "hubPages" | default $p.RegularPagesRecursive -}}
 
 {{- else if eq $p.Layout "a-z" -}}
-  {{- /* Index: every regular page outside Log and Research, and the
-       top-level hubs outside the Flâneur and Log. */ -}}
+  {{- /* Index: every regular page outside Log and Research, which the A–Z
+       files. Start Here is a curated set of doors, not a tally. */ -}}
   {{- $entries := where (where site.RegularPages "Section" "ne" "log") "Section" "ne" "research" -}}
-  {{- $hubs := 0 -}}
-  {{- range where site.Pages "Kind" "section" }}{{ if and .Parent.IsHome (not (in (slice "flaneur" "log") .Section)) }}{{ $hubs = add $hubs 1 }}{{ end }}{{ end -}}
-  {{- $one = slice (partial "count.html" (dict "n" (len $entries) "one" "entry" "many" "entries")) (partial "count.html" (dict "n" $hubs "one" "hub" "many" "hubs")) -}}
+  {{- $one = slice (partial "count.html" (dict "n" (len $entries) "one" "entry" "many" "entries")) -}}
 
 {{- else if eq $p.Path "/colophon" -}}
   {{- $version := site.Params.version -}}

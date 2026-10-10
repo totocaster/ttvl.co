@@ -53,7 +53,7 @@ make entry STREAM=ambient-computing SLUG=four-corners
 
 Prefer canonical internal paths with trailing slashes. Do not add aliases unless an intentional short URL or a real historical URL must remain valid. Preserve existing aliases when moving content.
 
-The A–Z index ignores the initial English articles `A`, `An`, and `The` when sorting and grouping titles, while displaying each title unchanged. Set `sort_title` in a page's frontmatter to supply an explicit filing title when the automatic behavior is not appropriate. Research entries stay out of the index, like Log months; the Research hub files under Start Here, and only top-level sections appear there.
+The A–Z index ignores the initial English articles `A`, `An`, and `The` when sorting and grouping titles, while displaying each title unchanged. Set `sort_title` in a page's frontmatter to supply an explicit filing title when the automatic behavior is not appropriate. Research entries stay out of the index, like Log months. Start Here lists only the pages named in `hub_sections` in `content/a-z.md`, in that order: hubs the masthead does not reach, and the Ambient Computing stream.
 
 ### Hugo configuration and output
 

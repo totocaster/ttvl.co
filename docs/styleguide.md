@@ -179,7 +179,7 @@ The rail holds at most two lines; the column holds the title, the dek where the 
 | Home | `Public notebook · since 2008` | |
 | About | `Updated 2026-09-16` | |
 | Colophon | `v8.0.351` | |
-| Index | `75 entries · 11 hubs` | |
+| Index | `78 entries` | |
 | 404 | `404 · Not found` | the path that was asked for |
 
 Counts read as words after the number: `13 pages`, `1 page`. Hubs use their own noun: notes, projects, months, dispatches, leaves, traces, entries. `hide_title: true` suppresses the whole head. Front matter `head_title` replaces the title with another line (About opens with its sentence) and `head_dek` replaces or, when empty, removes the dek.
@@ -326,7 +326,7 @@ Full ground. Centered, 96 px down: a “Search site” label and a Close button,
 - **Loose Leaves.** Head. One year block per year, the year alone in its rail; a four-column grid of 3:4 tiles on `--edge` frames with the date in Mono under each; two columns on phones.
 - **About.** Head (`Updated 2026-09-16`) over the opening sentence as the title; the on-page nav in the column in the label voice. Then one block per section through the `section` shortcode: Newsletter (`All dispatches →`), Books (`Not awards. Things that exist.`), Exhibitions, Curation, Programs and training, Speaking, Video, Print, and Tools I made, each a block of its own with the venue as each record row's tail, then Philosophy, Extended About, Tools I use (`Updated 2026-09 · Nothing here is sponsored`), How I use AI, Get in Touch. The principles are `h3.principle` with Mono numerals in the rail.
 - **Colophon.** Head (`v8.0.351`). Body.
-- **Index.** Head (`75 entries · 11 hubs`). Start Here: a grid of door switches, three across, one per hub with its title and `filter_dek`. A–Z: letter groups in three columns (one on phones), each an `h3` without a count; a 14 px mail icon (a stroke icon, since Plex has no envelope) after a title that also went out as a dispatch, and the legend under the letters. Log: the archive grid.
+- **Index.** Head (`78 entries`). Start Here: a grid of door switches, three across, one per page named in the Index's `hub_sections` front matter (hubs the masthead does not reach, and the Ambient Computing stream), with its title and `filter_dek` or description. A–Z: letter groups in three columns (one on phones), each an `h3` without a count; a 14 px mail icon (a stroke icon, since Plex has no envelope) after a title that also went out as a dispatch, and the legend under the letters. Log: the archive grid.
 - **Search.** The overlay above.
 - **404.** `layouts/404.html`: head (`404 · Not found` / the path), one sentence pointing to search, the index, and home.
 - **`/links/` and `/found/`.** Avatar, logo, the description, then pills on 2 px ink shadows 12 px apart with the kind in the label voice at the right, the form and legend under them. No masthead.

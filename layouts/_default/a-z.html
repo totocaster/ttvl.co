@@ -1,7 +1,7 @@
 {{ define "main" }}
 {{- /* The Index: the head (75 entries · 11 hubs), then three blocks.
-     Start Here: one door switch per hub (components/_switch.scss), its
-     title and filter_dek. A–Z: letter groups in three columns (one on
+     Start Here: one door switch per page named in hub_sections
+     (components/_switch.scss), its title and filter_dek or description. A–Z: letter groups in three columns (one on
      phones), each an h3, the mail-icon legend under them. Log: the archive grid. The head
      rail carries the page's only counts.
      The A–Z files titles without a leading A, An, or The (or by
@@ -12,18 +12,12 @@
 {{- $regularPages = where $regularPages "Section" "ne" "log" -}}
 {{- $regularPages = where $regularPages "Section" "ne" "research" -}}
 
-{{- $excludedHubSections := slice "flaneur" "log" -}}
-{{- $allHubPages := slice -}}
-{{- range where .Site.Pages "Kind" "section" }}{{ if .Parent.IsHome }}{{ $allHubPages = $allHubPages | append . }}{{ end }}{{ end -}}
-{{- range $excludedHubSections }}{{ $allHubPages = where $allHubPages "Section" "ne" . }}{{ end -}}
-
-{{- $orderedHubSections := .Params.hub_sections | default (slice) -}}
+{{- /* Start Here: the pages hub_sections names in content/a-z.md, in that
+     order (a hub or a stream), each a door. Sections the masthead already
+     reaches are left out there. */ -}}
 {{- $hubPages := slice -}}
-{{- range $orderedHubSections -}}
-  {{- if not (in $excludedHubSections .) }}{{ with $site.GetPage . }}{{ $hubPages = $hubPages | append . }}{{ end }}{{ end -}}
-{{- end -}}
-{{- range sort $allHubPages "Title" -}}
-  {{- if not (in $orderedHubSections .Section) }}{{ $hubPages = $hubPages | append . }}{{ end -}}
+{{- range .Params.hub_sections | default (slice) -}}
+  {{- with $site.GetPage . }}{{ $hubPages = $hubPages | append . }}{{ else }}{{ warnf "a-z: hub_sections names %q, which is not a page" . }}{{ end -}}
 {{- end -}}
 
 {{- $pages := slice -}}
