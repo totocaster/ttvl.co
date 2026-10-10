@@ -10,7 +10,7 @@ The standard is called **Panel**. It replaced Air on 2026-10-07 and ships as sit
 2. **The rail carries the metadata.** A page head and every block are two columns: a 192 px rail at left for the label, date, count, or kind, and the column for the content. On wide screens the rail is the page's one column of labels: a list's dates sit in it too, so titles and text start at one edge. Metadata stays in the rail; deks and resource links may sit under a title. A page carries one count at most, in its head rail (`75 notes · updated 2026-09`): how many pages a hub lists. Block rails and end matter carry none; a reader who wants the number has it at the top. The one exception is the Projects switches, which are controls rather than labels and carry each hub's count on their faces.
 3. **Words in Sans, numbers in Mono.** Dates, counts, issue and entry numbers, sizes, and the version are set in Plex Mono with tabular figures. Every other label is Plex Sans in sentence case. No uppercase, no letter-spacing.
 4. **One way to do each thing.** One page head, one block, one row, one card, one button, one legend, one form. Everything that is listed is a row: streams, doors, search results, the index's hubs, the pager.
-5. **Hairlines you have to look for.** Lines sit only between rows and under the masthead. Nothing frames a list, nothing rules the footer. Frames stay on tiles, tables, sheets, and the quotation.
+5. **Hairlines you have to look for.** Lines sit only between rows. Nothing frames a list, nothing rules the footer. Frames stay on tiles, tables, sheets, and the quotation.
 6. **Buttons are blocks.** A control is a flat block on a hard offset shadow. Pressing moves the block into its shadow. No gradients, no glow.
 7. **The look is the stylesheet.** Markup stays semantic and shared; a section never restyles a shared pattern locally.
 
@@ -66,7 +66,7 @@ Themed colors come only from the custom properties in `assets/scss/_tokens.scss`
 | `--ink` | Text, frames, buttons, the masthead rule's pair | `#000` | `#ededed` | 21:1 / 15.8:1 |
 | `--ink-muted` | Deks, captions, the nav at rest | `#555` | `#b5b5b5` | 7.5:1 / 9:1 |
 | `--ink-faint` | Labels, meta, legends, rail lines, the subscribe key's shadow | `#6e6e6e` | `#929292` | 5.1:1 / 6:1 |
-| `--rule` | Hairlines between rows, under the masthead, inside tables | `#f2f2f2` | `rgba(255,255,255,.06)` | barely there: it marks a row's end without competing with the text |
+| `--rule` | Hairlines between rows, inside tables | `#f2f2f2` | `rgba(255,255,255,.06)` | barely there: it marks a row's end without competing with the text |
 | `--edge` | Frames: tiles, sheets, figures, keycaps, the quotation | `#d9d9d9` | `rgba(255,255,255,.2)` | |
 | `--surface` | Raised panels: sheets, hover tints, the selected search row | `#f7f7f7` | `rgba(255,255,255,.05)` | |
 | `--surface-input` | Form fields | `#fff` | `#1e1e1e` | |
@@ -139,7 +139,7 @@ Each pattern below is one partial or shortcode and one stylesheet. Use them; don
 </header>
 ```
 
-Two lines: the signature logo 64 px tall at left (the height of its 1x file, so it stays crisp on every screen) with the search key at right in faint ink, then the nav on its own line in 16 px Sans with 32 px gaps, the current section in ink and underlined 6 px below the baseline. Padding 36 above, 16 below, then one `--rule` hairline. The logo is a `p` on every page; the page head owns the `h1`. The search key is a button that opens the overlay like the `?` shortcut does. On phones the logo is 32 px and the nav is one line that scrolls sideways: 44 px link targets, a 48 px fade at the right edge as the affordance, and the current section scrolled into view on load.
+Two lines: the signature logo 64 px tall at left (the height of its 1x file, so it stays crisp on every screen) with the search key at right in faint ink, then the nav on its own line in 16 px Sans with 32 px gaps, the current section in ink and underlined 6 px below the baseline. Padding 36 above, 16 below, and no rule under it: the page head's 56 px does the work. The logo is a `p` on every page; the page head owns the `h1`. The search key is a button that opens the overlay like the `?` shortcut does. On phones the logo is 32 px and the nav is one line that scrolls sideways: 44 px link targets, a 48 px fade at the right edge as the affordance, and the current section scrolled into view on load.
 
 Rendered by `partials/header.html` and `partials/nav.html`, styled in `_layout.scss`.
 
