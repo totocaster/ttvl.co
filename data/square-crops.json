@@ -1,0 +1,11 @@
+{
+  "point": {"x": 70.0, "y": 40.0},
+  "crops": [
+    {"key": "portrait", "ratio": "9:16", "width": 9.0, "height": 16.0, "description": "Automatic portrait crop"},
+    {"key": "portrait-wide", "ratio": "3:4", "width": 3.0, "height": 4.0, "description": "Automatic portrait crop"},
+    {"key": "square", "ratio": "1:1", "width": 1.0, "height": 1.0, "description": "Full square recording"},
+    {"key": "landscape", "ratio": "4:3", "width": 4.0, "height": 3.0, "description": "Automatic landscape crop"},
+    {"key": "widescreen", "ratio": "16:9", "width": 16.0, "height": 9.0, "description": "Automatic widescreen crop"},
+    {"key": "wide", "ratio": "2:1", "width": 2.0, "height": 1.0, "description": "Automatic wide crop"}
+  ]
+}

@@ -1,0 +1,47 @@
+{{- $id := printf "square-crops-%d" .Ordinal -}}
+{{/* Illustrative metadata, shared with tools/square-crops-image.py.
+     Derive each example crop from that point and the selected screen ratio,
+     centering on the point where possible and clamping to the source edges. */}}
+{{- $diagram := index site.Data "square-crops" -}}
+{{- $pointX := $diagram.point.x -}}
+{{- $pointY := $diagram.point.y -}}
+{{- $crops := $diagram.crops -}}
+{{/* Hidden unless the stylesheet enables the interaction. RSS strips this
+     figure and keeps the plain image below; no output-format state is shared. */}}
+<figure class="square-crops" hidden>
+  <fieldset aria-describedby="{{ $id }}-caption">
+    <legend>Screen aspect ratio</legend>
+    <div class="square-crops__controls">
+      {{- range $index, $crop := $crops }}
+      <label>
+        <input type="radio" name="{{ $id }}" value="{{ .key }}"{{ if eq $index 0 }} checked{{ end }}>
+        <span>{{ .ratio }}</span>
+      </label>
+      {{- end }}
+    </div>
+    <div class="square-crops__frame" aria-hidden="true">
+      <svg viewBox="0 0 100 100" focusable="false">
+        <path class="square-crops__grid" d="M25 0V100M50 0V100M75 0V100M0 25H100M0 50H100M0 75H100" />
+        <rect class="square-crops__source" x="0" y="0" width="100" height="100" />
+        {{- range $crops }}
+        {{- $width := math.Min 100.0 (mul 100.0 (div .width .height)) -}}
+        {{- $height := math.Min 100.0 (mul 100.0 (div .height .width)) -}}
+        {{- $x := math.Max 0.0 (math.Min (sub 100.0 $width) (sub $pointX (div $width 2.0))) -}}
+        {{- $y := math.Max 0.0 (math.Min (sub 100.0 $height) (sub $pointY (div $height 2.0))) }}
+        <rect class="square-crops__crop" data-crop="{{ .key }}" x="{{ $x }}" y="{{ $y }}" width="{{ $width }}" height="{{ $height }}" />
+        {{- end }}
+        <circle class="square-crops__point" cx="{{ $pointX }}" cy="{{ $pointY }}" r="2" />
+      </svg>
+    </div>
+    <div class="square-crops__selection">
+      {{- range $crops }}
+      <span data-crop="{{ .key }}">{{ .ratio }} · {{ .description }}</span>
+      {{- end }}
+    </div>
+  </fieldset>
+  <figcaption id="{{ $id }}-caption">This example uses a point of interest, marked by the dot. Change the screen ratio to see a crop calculated around it. The square recording stays intact.</figcaption>
+</figure>
+<figure class="square-crops-fallback">
+  <img src="{{ "/visuals/notes/square-sensors-crops.png" | absURL }}" width="1120" height="640" style="max-width: 100%; height: auto;" alt="Two identical square recordings with a point of interest 70% across and 40% down. A tall 9:16 crop sits toward the right; a wide 16:9 crop spans the square. Both keep the marked point in view.">
+  <figcaption>Portrait (9:16) and landscape (16:9) crops around the same point of interest. The square recording stays intact. <a href="{{ .Page.Permalink }}">Explore the interactive diagram.</a></figcaption>
+</figure>

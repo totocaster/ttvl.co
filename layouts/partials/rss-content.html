@@ -1,7 +1,10 @@
-{{- /* RSS readers do not load the site's CSS or JavaScript. Convert only the
-shell renderer's known markup to semantic code blocks, preserving escaped
-command text and explicit line breaks without interactive copy controls. */ -}}
+{{- /* RSS readers do not load the site's CSS or JavaScript. Convert only
+known site markup, preserving ordinary content and image fallbacks. */ -}}
 {{- $content := .Content -}}
+{{- /* The square-crops shortcode supplies a sibling PNG figure with an
+absolute URL, alt text, and caption. Remove the interactive figure entirely. */ -}}
+{{- $content = replaceRE `(?s)<figure class="square-crops"[^>]*>.*?</figure>` "" $content -}}
+{{- /* Preserve escaped shell text and line breaks without copy controls. */ -}}
 {{- range findRE `(?s)<div class="shell-block">.*?</div>` $content -}}
   {{- $block := replaceRE `^<div class="shell-block">\s*|</div>$` "" . -}}
   {{- $block = replaceRE `<button class="shell-copy"[^>]*>\$</button>` "$" $block -}}

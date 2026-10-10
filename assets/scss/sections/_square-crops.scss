@@ -1,0 +1,127 @@
+// A diagram for the square-sensors note. Native radio controls switch
+// screen ratios without JavaScript. The shortcode derives the example
+// crops from one point of interest, keeping each within the source;
+// its square stays within the prose measure and carries no scaled text.
+// Without CSS or :has support, readers get the ordinary image instead.
+// Interpolation keeps Hugo's LibSass from parsing the newer selector() syntax.
+@supports #{"selector(:has(input:checked))"} {
+  .square-crops[hidden] {
+    display: block;
+  }
+
+  .square-crops-fallback {
+    display: none;
+  }
+}
+
+.square-crops {
+  fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    min-width: 0;
+    max-width: $max-width-readable;
+  }
+
+  legend {
+    @include type-small;
+    padding: 0;
+    color: var(--ink-muted);
+  }
+
+  &__controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0 $space-4;
+    margin-bottom: $space-3;
+
+    label {
+      display: flex;
+      align-items: center;
+      gap: $space-2;
+      min-height: $control-height;
+      cursor: pointer;
+      @include type-small;
+    }
+
+    input {
+      margin: 0;
+      accent-color: var(--ink);
+    }
+
+    input:checked + span {
+      text-decoration: underline;
+      text-underline-offset: $space-1;
+    }
+  }
+
+  &__frame {
+    // Diagram geometry: a 320px square on wider pages, fluid on phones.
+    max-width: 320px;
+    padding: $space-1; // keeps boundary strokes inside the SVG's wrapper
+
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+      background: var(--surface);
+    }
+
+    path,
+    rect,
+    circle {
+      vector-effect: non-scaling-stroke;
+    }
+  }
+
+  &__grid {
+    fill: none;
+    stroke: var(--edge);
+    stroke-width: 1px;
+  }
+
+  &__source {
+    fill: none;
+    stroke: var(--ink-faint);
+    stroke-width: 1px;
+    stroke-dasharray: 4 4;
+  }
+
+  &__crop {
+    fill: var(--highlight);
+    stroke: var(--ink);
+    stroke-width: 2px;
+  }
+
+  &__point {
+    fill: var(--ink);
+    stroke: var(--ground);
+    stroke-width: 2px;
+  }
+
+  &__selection {
+    @include type-small;
+    margin-top: $space-2;
+  }
+
+  [data-crop] {
+    display: none;
+  }
+
+  @each $crop in portrait, portrait-wide, square, landscape, widescreen, wide {
+    &:has(input[value="#{$crop}"]:checked) [data-crop="#{$crop}"] {
+      display: block;
+    }
+  }
+}
+
+@media print {
+  .square-crops[hidden] {
+    display: none;
+  }
+
+  .square-crops-fallback {
+    display: block;
+  }
+}
