@@ -12,7 +12,7 @@ aliases:
   - /press/
 ---
 
-{{< toc >}}
+{{< toc title="On this page" >}}
 
 
 <figure class="portrait">

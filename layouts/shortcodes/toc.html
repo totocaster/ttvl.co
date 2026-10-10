@@ -1,5 +1,8 @@
 {{- /* Marks the page as wanting a table of contents. The list itself is
      rendered by partials/block-body.html in the body block's rail, where
      it stays in view while the page scrolls; the shortcode's position in
-     the Markdown no longer matters. docs/styleguide.md, Prose. */ -}}
+     the Markdown no longer matters. An optional "title" names the rail's
+     heading (About says "On this page"); the default is "Contents".
+     docs/styleguide.md, Prose. */ -}}
 {{- .Page.Store.Set "toc" true -}}
+{{- with .Get "title" }}{{ $.Page.Store.Set "tocTitle" . }}{{ end -}}

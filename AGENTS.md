@@ -215,7 +215,7 @@ Every note, project page, article, hub with a `filter_dek`, research stream, and
 - `square-crops`: interactive aspect-ratio diagram (the ratios as one segmented control, the frame as a figure tile) with a PNG fallback for RSS, print, and readers without the site's styles. After changing `data/square-crops.json`, run `uv run tools/square-crops-image.py` and include the updated image under `static/visuals/notes/`. `partials/rss-content.html` removes the interactive figure from feeds and retains the image, alt text, and caption.
 - `project-grid`: a block of explicitly ordered project cards from a comma-separated `pages` parameter, with the same `title`, `meta`, `lead`, and `id` parameters as `page-list`; the inner Markdown is the lead. Also counted by the hub's rail.
 - `pronunciation-name`: accessible audio pronunciation control.
-- `toc`: marks the page as wanting a table of contents; `partials/block-body.html` renders it in the body block's rail (sticky on wide screens, two columns on phones) from the page's `section` shortcodes when it has them (About) or from its Markdown headings, and the prose drops its heading numerals. Where the shortcode sits in the Markdown does not matter.
+- `toc`: marks the page as wanting a table of contents (an optional `title` names the rail heading, default `Contents`); `partials/block-body.html` renders it in the body block's rail (sticky on wide screens, two columns on phones) from the page's `section` shortcodes when it has them (About) or from its Markdown headings, and the prose drops its heading numerals. Where the shortcode sits in the Markdown does not matter.
 - `youtube`: lazy-loaded responsive video embed.
 
 ## Site versioning and deployment

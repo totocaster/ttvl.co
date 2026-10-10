@@ -21,7 +21,7 @@
   {{- end -}}
 {{- end -}}
 {{- with $toc -}}
-  {{- $open = printf `<section class="block body has-toc"><div class="rail rail-toc"><p class="toc-title">Contents</p><div class="toc">%s</div></div><div class="main prose">` . -}}
+  {{- $open = printf `<section class="block body has-toc"><div class="rail rail-toc"><p class="toc-title">%s</p><div class="toc">%s</div></div><div class="main prose">` (htmlEscape ($p.Store.Get "tocTitle" | default "Contents")) . -}}
 {{- end -}}
 {{- $html := printf "%s%s%s" $open (string .) $seams.close -}}
 {{- /* The lamp that follows the reader down the contents (toc-spy.js). */ -}}
