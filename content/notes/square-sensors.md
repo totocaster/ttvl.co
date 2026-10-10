@@ -3,7 +3,6 @@ title: Square sensors make sense for online video
 date: 2026-10-10
 description: "Square video could carry suggested crops, points of interest, or both, according to the author's intent."
 category: thinking
-draft: true
 ---
 
 I think square sensors make the most sense for video shared online. We watch so much of it on phones and tablets, turning screens and moving between feeds, full-screen playback, and smaller windows. The same recording needs to work in several shapes.

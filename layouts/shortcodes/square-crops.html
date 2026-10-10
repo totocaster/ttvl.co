@@ -2,7 +2,7 @@
 {{/* Illustrative metadata, shared with tools/square-crops-image.py.
      Derive each example crop from that point and the selected screen ratio,
      centering on the point where possible and clamping to the source edges. */}}
-{{- $diagram := index site.Data "square-crops" -}}
+{{- $diagram := index hugo.Data "square-crops" -}}
 {{- $pointX := $diagram.point.x -}}
 {{- $pointY := $diagram.point.y -}}
 {{- $crops := $diagram.crops -}}
