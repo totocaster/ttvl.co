@@ -3,7 +3,8 @@
      it stand beside it; body blocks left empty by them are dropped.
      A page that calls the toc shortcode gets its table of contents in the
      body block's rail (sticky on wide screens); the prose then carries no
-     heading numerals, since the list numbers the sections.
+     heading numerals, since the list numbers the sections. A lamp after
+     the entry whose section is in view follows the reader (toc-spy.js).
      docs/styleguide.md, Block and Prose. */ -}}
 {{- $seams := partialCached "block-seams.html" "seams" -}}
 {{- $p := page -}}
@@ -12,5 +13,10 @@
   {{- $open = printf `<section class="block body has-toc"><div class="rail rail-toc"><p class="toc-title">Contents</p><div class="toc">%s</div></div><div class="main prose">` $p.TableOfContents -}}
 {{- end -}}
 {{- $html := printf "%s%s%s" $open (string .) $seams.close -}}
+{{- /* The lamp that follows the reader down the contents (toc-spy.js). */ -}}
+{{- if and ($p.Store.Get "toc") $p.TableOfContents -}}
+  {{- $spy := resources.Get "js/toc-spy.js" | resources.Minify | resources.Fingerprint -}}
+  {{- $html = printf `%s<script src="%s" integrity="%s" defer></script>` $html $spy.RelPermalink $spy.Data.Integrity -}}
+{{- end -}}
 {{- $html = replaceRE (printf `%s\s*%s` $seams.open $seams.close) "" $html -}}
 {{- return ($html | safeHTML) -}}

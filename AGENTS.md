@@ -101,6 +101,7 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 - The lightbox is loaded for Loose Leaves and pages with `lightbox: true`; it supports Escape, arrow keys, backdrop close, focus trapping, and focus restoration.
 - Research entry pages and Log months map the Left and Right arrow keys to their end-matter pager (In This Stream, In the Log). The keys are ignored in fields and media players, with modifiers, and while text is selected.
 - Text Fragments are feature-detected through `document.fragmentDirective`. Selecting 6–499 characters updates the URL; `Cmd/Ctrl+Shift+L` updates it from the current selection, and Escape clears a live selection. There is no polyfill.
+- On pages with a contents rail, `assets/js/toc-spy.js` marks the entry whose section is in view with `aria-current` (the lamp), updated on scroll.
 - The pronunciation control is loaded only when `pronunciation_audio` is set.
 - The vendored `model-viewer` `4.3.1` module is loaded only when `model_viewer: true` is set.
 - Gaussian splats use vendored Spark `2.1.0` and Three.js `0.180.0`, loaded only when `gaussian_splat: true` is set.

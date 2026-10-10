@@ -209,6 +209,23 @@
   .toc {
     @include type-meta;
 
+    // The lamp: the entry whose section is in view, in ink with the
+    // signal after it (assets/js/toc-spy.js sets aria-current).
+    a[aria-current="true"] {
+      color: var(--ink);
+
+      &::after {
+        content: "";
+        display: inline-block;
+        width: 6px; // lamp geometry
+        height: 6px;
+        margin-left: $space-2;
+        border-radius: 50%;
+        background: var(--signal);
+        vertical-align: middle;
+      }
+    }
+
     ul {
       list-style: none;
       margin: 0;

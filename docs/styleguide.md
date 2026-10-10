@@ -211,7 +211,7 @@ The article body is one block with an empty rail. Prose holds the measure.
 - Prose links are 500 and underlined.
 - Quotations: a 2 px `--edge` rule at left, 20 px padding, full ink; `.quote-attribution` in the label voice under it.
 - A `---` renders as a 128 px `--edge` rule at the left. Inside a `section` shortcode it renders as space.
-- The table of contents (the `toc` shortcode, wherever it sits in the Markdown) renders in the body block's rail under a `Contents` heading, 16 px above the list: a numbered list in the label voice with Mono numerals, muted links, sticky 24 px from the top while the page scrolls. The prose then carries no heading numerals. At 1024 px and below it stacks above the body in two columns.
+- The table of contents (the `toc` shortcode, wherever it sits in the Markdown) renders in the body block's rail under a `Contents` heading, 16 px above the list: a numbered list in the label voice with Mono numerals, muted links, sticky 24 px from the top while the page scrolls. The entry whose section is in view (the last heading above the top third of the window) is in ink with the lamp after it, a 6 px `--signal` dot, set by `assets/js/toc-spy.js`; above the first heading nothing is lit. The prose then carries no heading numerals. At 1024 px and below it stacks above the body in two columns.
 - Tables: a 1 px ink rule under the header row, `--rule` hairlines between rows, no frame. Headers in the label voice, 500. Cells 16/23. `{.wide}` spans the column.
 - Code: untagged and data fences are sheets, `sh`/`bash`/`shell`/`zsh` fences are terminals, dark in both themes. Radius 2. The sheet's filename kicker is Mono, faint. Comments are the only colored token.
 - Inline code is Mono 16, no background.
