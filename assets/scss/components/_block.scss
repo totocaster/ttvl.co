@@ -209,21 +209,22 @@
   .toc {
     @include type-meta;
 
-    // The lamp: the entry whose section is in view, in ink with the
-    // signal after it (assets/js/toc-spy.js sets aria-current).
+    // The lamp: the entry whose section is in view, in ink, with the
+    // signal hanging in the gutter before its number so a long entry
+    // never rewraps (assets/js/toc-spy.js sets aria-current).
     a[aria-current="true"] {
       color: var(--ink);
+    }
 
-      &::after {
-        content: "";
-        display: inline-block;
-        width: 6px; // lamp geometry
-        height: 6px;
-        margin-left: $space-2;
-        border-radius: 50%;
-        background: var(--signal);
-        vertical-align: middle;
-      }
+    li:has(> a[aria-current="true"])::after {
+      content: "";
+      position: absolute;
+      left: -14px; // lamp geometry: in the gutter, 8 px before the number
+      top: 7px; // centred on the first 20 px line
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--signal);
     }
 
     ul {
