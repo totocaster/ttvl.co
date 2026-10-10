@@ -63,7 +63,7 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 - The `email` output format is declared globally, while every Flaneur dispatch currently opts into `HTML` and `email` in its frontmatter.
 - Goldmark unsafe rendering is enabled because content includes trusted inline HTML.
 - The custom RSS template includes Log, Darkroom, Bookbinding, Notes, Flaneur, Project Humane, and Obsidian content. Research stays out of it and publishes its own feeds through `layouts/research/rss.xml`: `/research/index.xml` for every stream and `/research/<stream>/index.xml` for one. The hub and each stream opt in with `outputs: ["HTML", "RSS"]`.
-- `data/` is currently unused except for `.gitkeep`.
+- `data/square-crops.json` supplies the point of interest and aspect ratios shared by the square-crops diagram and its static image renderer.
 
 ### Templates and assets
 
@@ -211,6 +211,7 @@ Every note, project page, article, hub with a `filter_dek`, research stream, and
 - `model-viewer`: interactive GLB viewer with poster, caption, download, and no-JavaScript fallback.
 - `gaussian-splat`: interactive SPZ viewer with poster, download, and no-JavaScript fallback; requires `gaussian_splat: true`. Optional `camera-position` and `camera-target` values are space-separated x/y/z coordinates in the scan's coordinate system; use them when automatic framing puts the camera outside the scanned space.
 - `photo-gallery`: linked-image gallery prepared for the lightbox.
+- `square-crops`: interactive aspect-ratio diagram (the ratios as one segmented control, the frame as a figure tile) with a PNG fallback for RSS, print, and readers without the site's styles. After changing `data/square-crops.json`, run `uv run tools/square-crops-image.py` and include the updated image under `static/visuals/notes/`. `partials/rss-content.html` removes the interactive figure from feeds and retains the image, alt text, and caption.
 - `project-grid`: a block of explicitly ordered project cards from a comma-separated `pages` parameter, with the same `title`, `meta`, `lead`, and `id` parameters as `page-list`; the inner Markdown is the lead. Also counted by the hub's rail.
 - `pronunciation-name`: accessible audio pronunciation control.
 - `toc`: marks the page as wanting a table of contents; `partials/block-body.html` renders it in the body block's rail (sticky on wide screens, two columns on phones) and the prose drops its heading numerals. Where the shortcode sits in the Markdown does not matter.

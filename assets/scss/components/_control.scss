@@ -59,7 +59,9 @@
 }
 
 // A segmented control: joined keys like the strip on one 2 px ink shadow;
-// the pressed key is ink.
+// the pressed key is ink. The keys are buttons (the viewers) or labels
+// around radio inputs (the square-crops ratios); a checked radio presses
+// its label.
 .segmented {
   display: inline-flex;
   border-radius: $radius;
@@ -67,12 +69,26 @@
   margin: 0 $shadow-quiet $shadow-quiet 0;
   transition: transform $t-press, box-shadow $t-press;
 
-  &:has(button:active:not(:disabled)) {
+  &:has(button:active:not(:disabled)),
+  &:has(label:active) {
     transform: translate($shadow-quiet, $shadow-quiet);
     box-shadow: none;
   }
 
-  button {
+  // The radio itself stays in the tree for the keyboard and screen readers.
+  label input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  button,
+  label {
     min-height: $control-height-quiet;
     padding: 3px $space-3;
     margin: 0 0 0 -1px;
@@ -99,9 +115,18 @@
     }
 
     &[aria-pressed="true"],
-    &[aria-pressed="true"]:hover:not(:disabled) {
+    &[aria-pressed="true"]:hover:not(:disabled),
+    &:has(input:checked),
+    &:has(input:checked):hover {
       background: var(--ink);
       color: var(--ground);
+    }
+
+    &:has(input:focus-visible) {
+      position: relative;
+      z-index: 1;
+      outline: 2px solid var(--signal);
+      outline-offset: 2px;
     }
 
     &:disabled {

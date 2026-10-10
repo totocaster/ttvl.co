@@ -7,11 +7,13 @@
 {{- $pointY := $diagram.point.y -}}
 {{- $crops := $diagram.crops -}}
 {{/* Hidden unless the stylesheet enables the interaction. RSS strips this
-     figure and keeps the plain image below; no output-format state is shared. */}}
+     figure and keeps the plain image below; no output-format state is shared.
+     The ratios are one segmented control of radio keys; the frame is a
+     figure tile. assets/scss/sections/_square-crops.scss. */}}
 <figure class="square-crops" hidden>
   <fieldset aria-describedby="{{ $id }}-caption">
     <legend>Screen aspect ratio</legend>
-    <div class="square-crops__controls">
+    <div class="square-crops__controls segmented">
       {{- range $index, $crop := $crops }}
       <label>
         <input type="radio" name="{{ $id }}" value="{{ .key }}"{{ if eq $index 0 }} checked{{ end }}>
