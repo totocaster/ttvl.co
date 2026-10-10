@@ -71,7 +71,7 @@ main article.about {
       color: var(--ink-faint);
     }
 
-    @include narrow {
+    @include rail-stacked {
       &::before {
         position: static;
         display: inline-block;

@@ -176,13 +176,12 @@ kbd {
   // h2 carries a Mono numeral in the rail; h3 carries none.
   > h2 {
     position: relative;
-    margin: $rhythm-h2-above 0 $rhythm-heading-below;
 
     &::before {
       counter-increment: prose-h2;
       content: counter(prose-h2, decimal-leading-zero);
       position: absolute;
-      top: 4px; // the numeral's 20 px line on the heading's 28 px line
+      top: 5px; // the numeral's 20 px line on the heading's 30 px line
       left: -($rail-width + $rail-gap);
       width: $rail-width;
       font-family: $font-family-mono;
@@ -194,6 +193,8 @@ kbd {
   }
 
   h2 {
+    font-size: $font-size-entry;
+    line-height: $line-height-entry;
     margin: $rhythm-h2-above 0 $rhythm-heading-below;
   }
 
@@ -302,55 +303,7 @@ kbd {
     }
   }
 
-  // The table of contents: a numbered list in the label voice.
-  .table-of-contents {
-    margin: 0 0 $rhythm-paragraph;
-    @include readable-width;
-
-    h2 {
-      margin: 0 0 $rhythm-heading-below;
-    }
-
-    nav#TableOfContents {
-      @include type-meta;
-      line-height: $line-height-code;
-
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        counter-reset: toc;
-      }
-
-      li {
-        counter-increment: toc;
-        margin: 0;
-
-        &::before {
-          content: counter(toc, decimal-leading-zero) "  ";
-          white-space: pre;
-          font-family: $font-family-mono;
-          @include tabular-numbers;
-          color: var(--ink-faint);
-        }
-
-        ul {
-          margin: 0 0 0 $space-5;
-        }
-      }
-
-      a {
-        font-weight: $link-weight-quiet;
-        text-decoration: none;
-
-        &:hover {
-          text-decoration: underline;
-        }
-      }
-    }
-  }
-
-  @include narrow {
+  @include rail-stacked {
     > h2::before {
       position: static;
       display: inline-block;

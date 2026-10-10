@@ -3,8 +3,8 @@ and description as the dek. Titles can't drift from the pages they name.
 Curate order in the pages parameter:
   {{< page-list title="Process and Techniques" pages="darkroom/roll-id, darkroom/travel-dev-kit" >}}
 Parameters: "pages" (content paths, comma-separated), "title" (the rail
-heading), "meta" (replaces the count line; numbers are set in Mono),
-"lead" (a sentence under the count, Markdown), "id" (the anchor; defaults
+heading), "meta" (one line under the heading; numbers are set in Mono),
+"lead" (a sentence under the meta line, Markdown), "id" (the anchor; defaults
 to the title's). Emits a whole block: closes the article's body block
 before itself and reopens it after (partials/block-seams.html).
 Records the pages in .Page.Store "hubPages" for the hub's rail.

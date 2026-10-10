@@ -68,7 +68,7 @@
      should dispatch pages ever need to unfurl. */ -}}
 
 {{- /* Projects: every regular page with project frontmatter, wherever it lives.
-     The category label is the hub's filter_label (Tools) or its title. */ -}}
+     The category label is the hub's filter_label or its title. */ -}}
 {{- range where site.RegularPages ".Params.project" "!=" nil -}}
   {{- $p := .Params.project -}}
   {{- $cat := "" -}}

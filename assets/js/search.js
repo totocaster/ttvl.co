@@ -10,6 +10,7 @@
   let focusTrapHandler = null;
   let previousActiveElement = null;
   let searchIndexPromise = null;
+  let searchRequest = 0;
 
   // Initialize search functionality
   function initSearch() {
@@ -32,18 +33,32 @@
     const searchContainer = document.createElement('div');
     searchContainer.className = 'search-container';
 
+    const toolbar = document.createElement('div');
+    toolbar.className = 'search-toolbar';
+    const label = document.createElement('label');
+    label.htmlFor = 'site-search-input';
+    label.textContent = 'Search site';
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'btn btn--quiet search-close';
+    close.textContent = 'Close';
+    close.setAttribute('aria-label', 'Close search');
+    close.addEventListener('click', hideSearch);
+    toolbar.append(label, close);
+
     // Static markup only — never interpolate query text here.
     const hint = document.createElement('p');
     hint.className = 'search-hint';
     hint.innerHTML =
-      'Type to search · <kbd>↑</kbd> <kbd>↓</kbd> select · <kbd>↩</kbd> open · <kbd>esc</kbd> close';
+      '<kbd>↑</kbd> <kbd>↓</kbd> select · <kbd>↩</kbd> open · <kbd>esc</kbd> close';
 
     const field = document.createElement('div');
     field.className = 'search-field';
     searchInput = document.createElement('input');
     searchInput.type = 'search';
+    searchInput.id = 'site-search-input';
     searchInput.className = 'search-input';
-    searchInput.setAttribute('aria-label', 'Search');
+    searchInput.placeholder = 'Search notes, projects, and more';
     searchInput.setAttribute('aria-controls', 'search-results');
     searchInput.setAttribute('autocomplete', 'off');
     searchInput.setAttribute('spellcheck', 'false');
@@ -56,9 +71,8 @@
     searchStatus = document.createElement('p');
     searchStatus.className = 'legend search-status';
     searchStatus.setAttribute('aria-live', 'polite');
-    searchStatus.hidden = true;
 
-    searchContainer.append(hint, field, searchResults, searchStatus);
+    searchContainer.append(toolbar, field, hint, searchResults, searchStatus);
     searchOverlay.appendChild(searchContainer);
     document.body.appendChild(searchOverlay);
   }
@@ -77,7 +91,7 @@
 
     // The masthead's search key opens the overlay like '?' does.
     document.addEventListener('click', function(e) {
-      const key = e.target.closest && e.target.closest('a.search-key');
+      const key = e.target.closest && e.target.closest('.search-key');
       if (key) {
         e.preventDefault();
         showSearch();
@@ -85,7 +99,8 @@
     });
 
     // Handle search input
-    searchInput.addEventListener('input', debounce(handleSearch, 300));
+    const queueSearch = debounce(handleSearch, 300);
+    searchInput.addEventListener('input', () => queueSearch(++searchRequest));
 
     // Handle keyboard navigation
     searchInput.addEventListener('keydown', function(e) {
@@ -133,6 +148,7 @@
 
   // Hide search overlay
   function hideSearch() {
+    searchRequest += 1;
     searchOverlay.style.display = 'none';
     searchInput.value = '';
     searchResults.innerHTML = '';
@@ -179,7 +195,8 @@
   }
 
   // Handle search input
-  async function handleSearch() {
+  async function handleSearch(request) {
+    if (request !== searchRequest) return;
     const query = searchInput.value.trim().toLowerCase();
 
     if (!query) {
@@ -195,6 +212,7 @@
 
     try {
       const index = await fetchSearchIndex();
+      if (request !== searchRequest) return;
       const results = index.filter(item => {
         return item.title.toLowerCase().includes(query) ||
                item.content.toLowerCase().includes(query) ||
@@ -204,6 +222,7 @@
 
       displayResults(results, query);
     } catch (error) {
+      if (request !== searchRequest) return;
       console.error('Failed to load search index:', error);
       setStatus('Search failed to load. Close it and try again.', 'is-error');
     }
@@ -211,9 +230,10 @@
 
   // The line under the results: the count, or the state.
   function setStatus(text, state) {
+    // The live region stays in the DOM, empty when there is nothing to say,
+    // so assistive tech hears each change.
     searchStatus.textContent = text;
     searchStatus.classList.toggle('is-error', state === 'is-error');
-    searchStatus.hidden = !text;
   }
 
   // Section names as the site shows them; anything else reads its folder
@@ -256,7 +276,7 @@
       const date = /^\d{4}-\d{2}-\d{2}$/.test(result.date) && result.date !== '0001-01-01'
         ? `<time datetime="${result.date}">${result.date}</time>`
         : '';
-      const dek = highlightText(result.summary || result.content, query);
+      const dek = highlightText(searchExcerpt(result, query), query);
       return `<li class="row" data-index="${index}">` +
         `<span class="row-meta">${escapeHTML(sectionName(result.section))}</span>` +
         `<span class="row-main"><a class="row-title" href="${escapeHTML(result.permalink)}">${highlightText(result.title, query)}</a>` +
@@ -280,6 +300,25 @@
         updateSelection(false);
       });
     });
+  }
+
+  // A short excerpt around a match, so a phone result stays scannable.
+  function searchExcerpt(result, query) {
+    const summary = toText(result.summary || '').replace(/\s+/g, ' ').trim();
+    const content = toText(result.content || '').replace(/\s+/g, ' ').trim();
+    const text = summary.toLowerCase().includes(query) ? summary : content || summary;
+    const match = text.toLowerCase().indexOf(query);
+    let start = Math.max(0, match - 40);
+    if (start) {
+      const boundary = text.indexOf(' ', start);
+      start = boundary >= 0 && boundary < match ? boundary + 1 : start;
+    }
+    let end = Math.min(text.length, start + 160);
+    if (end < text.length) {
+      const boundary = text.lastIndexOf(' ', end);
+      if (boundary > start) end = boundary;
+    }
+    return (start ? '…' : '') + text.slice(start, end) + (end < text.length ? '…' : '');
   }
 
   // The index holds plain text that may still carry entities; read it as
@@ -336,6 +375,7 @@
     const activeElement = document.activeElement;
     return activeElement && (
       activeElement.tagName === 'INPUT' ||
+      activeElement.tagName === 'SELECT' ||
       activeElement.tagName === 'TEXTAREA' ||
       activeElement.isContentEditable
     );

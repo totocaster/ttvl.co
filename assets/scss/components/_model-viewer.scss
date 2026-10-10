@@ -12,6 +12,7 @@
 //       .viewer-status the badge at the bottom left
 //       .viewer-fs     the fullscreen key at the bottom right
 //     figcaption.legend  how to move, then the download in Mono with ↓
+//                      (the download link stays on one line)
 //
 // _gaussian-splat.scss and _spatial-long-exposure.scss hold only what
 // differs. Deliberate literal colors (docs/styleguide.md, Color): the
@@ -22,7 +23,7 @@ $viewer-well: #111; // deliberate exception: the media well, dark in both themes
 $viewer-badge-ground: rgba(0, 0, 0, 0.55); // deliberate exception: badges over media; 55% keeps white text at 4.5:1 over a white picture
 $viewer-key-ground: rgba(0, 0, 0, 0.5); // deliberate exception: the fullscreen key over media
 $viewer-key-edge: rgba(255, 255, 255, 0.6); // deliberate exception
-$viewer-key-size: 36px;
+$viewer-key-size: $control-height-quiet;
 $viewer-inset: $space-3; // badges and keys sit 12 px in from the frame
 
 // A badge over media: 14 px white on black. Shared by the viewers' status
@@ -41,6 +42,10 @@ $viewer-inset: $space-3; // badges and keys sit 12 px in from the frame
   @include type-small;
   font-weight: $font-weight-regular;
   pointer-events: none;
+
+  @include touch-controls {
+    max-width: calc(100% - #{$viewer-inset * 2 + $control-height-touch + $space-2});
+  }
 }
 
 .viewer {
@@ -75,21 +80,6 @@ $viewer-inset: $space-3; // badges and keys sit 12 px in from the frame
   .btn,
   .segmented {
     flex-shrink: 0;
-  }
-
-  // Reset stays put until the scan has loaded.
-  .btn:disabled {
-    cursor: default;
-    opacity: 0.45; // state, not a tier
-
-    &:active {
-      transform: none;
-      box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
-    }
-
-    &:hover {
-      background: var(--ground);
-    }
   }
 }
 
@@ -149,7 +139,7 @@ $viewer-inset: $space-3; // badges and keys sit 12 px in from the frame
   }
 }
 
-// The fullscreen key: 36 px, a stroke icon, at the bottom right.
+// Fullscreen uses the compact control size, enlarged for touch.
 .viewer-fs {
   position: absolute;
   z-index: 4;
@@ -177,6 +167,15 @@ $viewer-inset: $space-3; // badges and keys sit 12 px in from the frame
   }
 
   @include focus-ring;
+
+  &:active {
+    background: #000; // deliberate exception: pressed key over media
+  }
+
+  @include touch-controls {
+    width: $control-height-touch;
+    height: $control-height-touch;
+  }
 
   svg {
     width: 16px;
@@ -246,6 +245,10 @@ html.spatial-long-exposure-fullscreen-active {
 }
 
 // The legend under the frame: how to move, then the download.
+.viewer > .legend a[download] {
+  white-space: nowrap; // "download the GLB model (8.3 MB) ↓" on one line
+}
+
 .viewer > .legend,
 .viewer > noscript > .legend {
   margin: $rhythm-legend 0 0;
@@ -298,8 +301,8 @@ html.spatial-long-exposure-fullscreen-active {
   }
 }
 
-// The pronunciation control: a 24 px block on a 1 px ink shadow, inline in
-// the sentence, with a stroke icon.
+// The pronunciation control: a compact block on a 1 px ink shadow, inline in
+// the sentence, with a stroke icon. Its touch target grows without the face.
 .pronunciation-name {
   white-space: nowrap;
 }
@@ -308,8 +311,8 @@ html.spatial-long-exposure-fullscreen-active {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: $control-height-quiet;
+  height: $control-height-quiet;
   padding: 0;
   vertical-align: middle; // centred on the x-height of the word beside it
   border: 1px solid var(--ink);
@@ -320,6 +323,18 @@ html.spatial-long-exposure-fullscreen-active {
   @include key(1px);
   margin-left: $space-1; // after key(), which sets the right and bottom
   @include focus-ring;
+
+  // On touch the key keeps its 32 px face, so the line of prose keeps its
+  // rhythm, and grows an invisible 44 px target around it.
+  @include touch-controls {
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: -(($control-height-touch - $control-height-quiet) / 2);
+    }
+  }
 
   &:hover {
     background: var(--surface);

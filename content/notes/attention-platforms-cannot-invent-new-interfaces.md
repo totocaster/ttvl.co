@@ -1,5 +1,5 @@
 ---
-title: "Attention Platforms Cannot Invent New Interfaces"
+title: "Attention platforms cannot invent new interfaces"
 date: 2026-06-28
 category: thinking
 ---

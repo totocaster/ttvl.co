@@ -1,5 +1,5 @@
 ---
-title: "The Preservation of Fire"
+title: "The preservation of fire"
 date: 2026-05-26
 category: collected
 ---

@@ -11,8 +11,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: $control-height-primary;
-  padding: 0 $space-4;
+  min-height: $control-height-primary;
+  padding: $space-1 $space-4;
   border: 1px solid var(--ink);
   border-radius: $radius;
   background: var(--ink);
@@ -23,22 +23,38 @@
   cursor: pointer;
   @include key($shadow-primary, var(--ink-faint));
   @include focus-ring;
+
+  &:hover:not(:disabled) {
+    background: var(--ink-muted);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @include touch-controls {
+    min-height: $control-height-touch;
+  }
 }
 
 // The quiet key: ground face, ink text, on a 2 px ink shadow. Viewer bar
 // buttons take the same block.
 .btn--quiet,
 .btn.quiet {
-  height: $control-height-quiet;
-  padding: 0 $space-3;
+  min-height: $control-height-quiet;
+  padding: 3px $space-3; // 24 px label + padding + border = 32 px
   background: var(--ground);
   color: var(--ink);
-  @include type-small;
-  font-weight: $font-weight-regular;
+  @include type-control;
   @include key($shadow-quiet);
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: var(--surface);
+  }
+
+  @include touch-controls {
+    min-height: $control-height-touch;
   }
 }
 
@@ -49,17 +65,22 @@
   border-radius: $radius;
   box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
   margin: 0 $shadow-quiet $shadow-quiet 0;
+  transition: transform $t-press, box-shadow $t-press;
+
+  &:has(button:active:not(:disabled)) {
+    transform: translate($shadow-quiet, $shadow-quiet);
+    box-shadow: none;
+  }
 
   button {
-    height: $control-height-quiet;
-    padding: 0 $space-3;
+    min-height: $control-height-quiet;
+    padding: 3px $space-3;
     margin: 0 0 0 -1px;
     border: 1px solid var(--ink);
     border-radius: 0;
     background: var(--ground);
     color: var(--ink);
-    font-family: $font-family-sans;
-    @include type-small;
+    @include type-control;
     cursor: pointer;
     transition: background-color $t-fast;
     @include focus-ring;
@@ -73,13 +94,23 @@
       border-radius: 0 $radius $radius 0;
     }
 
-    &:hover {
+    &:hover:not(:disabled) {
       background: var(--surface);
     }
 
-    &[aria-pressed="true"] {
+    &[aria-pressed="true"],
+    &[aria-pressed="true"]:hover:not(:disabled) {
       background: var(--ink);
       color: var(--ground);
+    }
+
+    &:disabled {
+      color: var(--ink-faint);
+      cursor: not-allowed;
+    }
+
+    @include touch-controls {
+      min-height: $control-height-touch;
     }
 
     &:focus-visible {
@@ -109,14 +140,14 @@
   }
 
   input[type="email"] {
-    flex: 1;
+    flex: 1 1 auto;
     min-width: 0;
     width: 100%;
     box-sizing: border-box;
     -webkit-appearance: none;
     appearance: none;
+    min-height: $control-height-primary;
     height: $control-height-primary;
-    line-height: $control-height-primary; // the same box as the key beside it
     padding: 0 $space-3;
     border: 1px solid var(--ink);
     border-radius: $radius;
@@ -125,6 +156,11 @@
     font-family: $font-family-sans;
     font-size: $font-size-dek;
     line-height: $line-height-dek;
+
+    @include touch-controls {
+      min-height: $control-height-touch;
+      height: $control-height-touch;
+    }
 
     &::placeholder {
       color: var(--ink-faint);
@@ -144,5 +180,9 @@
   @include narrow {
     flex-direction: column;
     align-items: stretch;
+
+    input[type="email"] {
+      flex: none;
+    }
   }
 }

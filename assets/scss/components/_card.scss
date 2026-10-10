@@ -1,18 +1,17 @@
 // Cards: for things with a poster. A 16:9 tile on an edge frame over the
 // surface, grayscale until hover or focus; one label line (date · hub,
 // date · kind, or Since YYYY · hub); the title at 500; the dek.
-// Three columns in the column, two on phones. Rendered by
+// Up to three columns, each at least 240 px; one on small phones. Rendered by
 // layouts/partials/card.html. docs/styleguide.md, Cards.
 
 .projects-grid,
 .cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(unquote("min(100%, #{$card-min-width})"), 1fr));
   gap: $space-6 $space-5;
   max-width: $max-width-column;
 
   @include narrow {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: $space-5 $space-3;
   }
 }
@@ -76,9 +75,7 @@
   margin-top: 2px; // sits under the title's descenders
 }
 
-// Category filtering hides cards and their groups; !important beats the
-// card's own display.
-.card[hidden],
-.project-year[hidden] {
+// Category filtering hides cards; !important beats the card's own display.
+.card[hidden] {
   display: none !important;
 }

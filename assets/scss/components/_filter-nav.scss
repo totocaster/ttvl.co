@@ -5,6 +5,11 @@
 // hooks (.category-filter, [data-category], [data-filter-group], the head
 // rail's .count) are documented there. docs/styleguide.md, Filter Rail.
 
+// A group the filter empties is gone; !important beats the block's grid.
+[data-filter-group][hidden] {
+  display: none !important;
+}
+
 .category-filter {
   @include type-control;
   max-width: $max-width-column;
@@ -28,6 +33,9 @@
   }
 
   a {
+    display: inline-flex;
+    align-items: center;
+    min-height: $control-height-quiet;
     color: var(--ink-faint);
     text-decoration: none;
     transition: color $t-fast;
@@ -41,6 +49,11 @@
       text-decoration: underline;
       text-decoration-thickness: 1px;
       text-underline-offset: 5px;
+    }
+
+    @include touch-controls {
+      min-height: $control-height-touch;
+      min-width: $control-height-touch;
     }
   }
 }

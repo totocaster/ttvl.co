@@ -5,7 +5,7 @@
 {{ $ogTitle := printf "%s | %s" .Title .Site.Title }}
 
 <!-- Title tags -->
-<title itemprop="name">{{ with .Title }}{{ . }} — {{ end }}{{ .Site.Title }}</title>
+<title itemprop="name">{{ with .Title }}{{ . }} · {{ end }}{{ .Site.Title }}</title>
 <meta property="og:title" content="{{ $ogTitle }}" />
 <meta name="twitter:title" content="{{ $ogTitle }}" />
 <meta itemprop="name" content="{{ $ogTitle }}" />

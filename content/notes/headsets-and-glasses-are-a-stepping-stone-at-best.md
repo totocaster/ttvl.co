@@ -1,5 +1,5 @@
 ---
-title: "Headsets and Glasses Are a Stepping Stone at Best"
+title: "Headsets and glasses are a stepping stone at best"
 date: 2026-06-28
 category: thinking
 ---

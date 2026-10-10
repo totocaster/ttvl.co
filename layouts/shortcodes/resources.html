@@ -13,7 +13,7 @@ docs/styleguide.md, Page by Page: project page. */ -}}
   "thangs.com" "Thangs"
   "printables.com" "Printables"
 -}}
-<ul class="rows resources">
+<ul class="rows resources{{ if findRE `\]\([^)]*\)[^\n]*\S` (string .Inner) }} with-deks{{ end }}">
 {{- range split (trim .Inner "\n\r\t ") "\n" }}
   {{- $m := findRE `^\s*[-*]\s*\[[^\]]+\]\([^)]+\).*$` . 1 }}
   {{- if $m }}
@@ -30,8 +30,8 @@ docs/styleguide.md, Page by Page: project page. */ -}}
       {{- if os.FileExists $fsPath }}
         {{- $bytes := (os.Stat $fsPath).Size }}
         {{- $size := "" }}
-        {{- if ge $bytes 1048576 }}{{ $size = printf "%.1f MB" (div (float $bytes) 1048576) }}{{ else }}{{ $size = printf "%.0f KB" (div (float $bytes) 1024) }}{{ end }}
-        {{- $tail = printf `<span class="n">%s</span> ↓` $size }}
+        {{- if ge $bytes 1048576 }}{{ $size = printf `<span class="n">%.1f</span> MB` (div (float $bytes) 1048576) }}{{ else }}{{ $size = printf `<span class="n">%.0f</span> KB` (div (float $bytes) 1024) }}{{ end }}
+        {{- $tail = printf `%s ↓` $size }}
       {{- end }}
   {{ partial "row.html" (dict "meta" $ext "url" $url "title" $title "dek" $dek "tail" ($tail | safeHTML) "download" true "class" "resource-row--file") }}
     {{- else }}

@@ -1,6 +1,5 @@
 {{- /* Home: the Projects block. The six newest featured pages as cards,
      with the door to the archive in the rail. */ -}}
-{{- $all := where site.Pages "Params.project" "!=" nil -}}
 {{- $featured := where (where site.Pages "Params.featured" true) "Kind" "in" (slice "page" "section") -}}
 {{- $projects := first 6 (sort $featured "Date" "desc") -}}
 {{- with $projects }}

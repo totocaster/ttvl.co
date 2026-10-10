@@ -81,8 +81,8 @@
   z-index: 1;
   display: grid;
   place-items: center;
-  width: 44px;
-  height: 44px;
+  width: $control-height-touch;
+  height: $control-height-touch;
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.5); // over-photo chrome
   border-radius: $radius;
@@ -97,6 +97,11 @@
   &:hover {
     background: rgba(255, 255, 255, 0.16); // over-photo chrome
     border-color: #fff; // over-photo chrome
+  }
+
+  &:active {
+    background: #000; // deliberate exception: pressed key over media
+    border-color: #fff;
   }
 
   &:focus-visible {

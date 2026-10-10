@@ -4,25 +4,21 @@
 
 // Breakpoints
 $breakpoint-narrow: 768px;
-
-// Literal colors for the deliberate exceptions only (viewer chrome over
-// media, print). Everything else styles against the tokens in _tokens.scss.
-$color-light-bg: #fff;
-$color-light-text: #000;
-$color-dark-bg: #141414;
-$color-dark-text: #ededed;
+$breakpoint-rail: 1024px;
 
 // Typography: Plex Sans for words, Plex Mono for numbers and code.
 // The faces are declared in _fonts.scss.
 $font-family-sans: "IBM Plex Sans", system-ui, "Helvetica Neue", Arial, sans-serif;
 $font-family-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
-$font-family-base: $font-family-sans;
-$font-family-monospace: $font-family-mono;
 
-// Six sizes, each with its own line. Nothing is smaller than 14 px.
+// Five core sizes, each with its own line. Nothing is smaller than 14 px.
 $font-size-title: 34px; // the page title (h1)
 $line-height-title: 40px;
-$font-size-entry: 22px; // research entry titles on a stream page
+$font-size-title-narrow: 28px; // the page title on phones
+$line-height-title-narrow: 34px;
+$font-size-search: 26px; // the search field
+$line-height-search: 34px;
+$font-size-entry: 22px; // prose section headings and research entry titles
 $line-height-entry: 30px;
 $font-size-base: 18px; // body, headings below the title, row and card titles
 $line-height-base: 28px;
@@ -31,27 +27,21 @@ $font-size-dek: 16px; // deks under rows and cards, table cells, the nav
 $line-height-dek: 24px;
 $line-height-nav: 25px;
 $line-height-cell: 23px;
-$font-size-control: 15px; // filter chips, buttons, the search key
-$line-height-control: 22px;
+$font-size-control: $font-size-dek; // controls share the 16/24 tier
+$line-height-control: $line-height-dek;
 $font-size-small: 14px; // labels, meta, captions, legends, chips, footer
 $line-height-small: 20px;
 $font-size-code: 16px; // inline code
 $font-size-code-block: 14px; // sheets and terminals
 $line-height-code: 22px;
-$line-height-tight: $line-height-dek; // older name for dek leading
-$line-height-solid: 1;
 
 // Three weights. 700 is retired; strong is 600.
 $font-weight-regular: 400;
 $font-weight-medium: 500;
 $font-weight-semibold: 600;
-$font-weight-bold: $font-weight-semibold; // older name: "bold" is 600 now
 
 $link-weight-default: $font-weight-medium; // links in running text
 $link-weight-quiet: $font-weight-regular; // rows, cards, rails, footer
-$link-weight-title: $font-weight-medium; // titles that are links
-$link-decoration-default: underline;
-$link-decoration-plain: none;
 $link-underline-offset: 3px;
 
 // Spacing scale: nine steps. Every margin, padding, and gap uses a step
@@ -85,9 +75,6 @@ $rhythm-figure-below: $space-7;
 $rhythm-caption: $space-2;
 $rhythm-legend: $space-3; // a form and its legend
 $rhythm-footer: $space-9; // the last block and the footer
-// Older names, kept for the section stylesheets.
-$rhythm-section-above: $rhythm-block;
-$rhythm-section-below: $space-4;
 
 // Layout
 $max-width-page: 1200px; // masthead, main, footer
@@ -96,27 +83,24 @@ $page-padding-narrow: 20px;
 $rail-width: 192px;
 $rail-gap: $space-7;
 $rail-offset: 11px; // a head's first rail line sits on the title's x-height
-$max-width-column: 960px; // the rest of the page beside the rail: rows, cards, media
+$max-width-column: $max-width-page - 2 * $page-padding - $rail-width - $rail-gap; // 880 px
+$card-min-width: 240px;
 $max-width-measure: 640px; // running text, deks, forms, legends
 $max-width-bleed: 760px; // figures, sheets, terminals, tables
 $row-meta-width: 128px;
 $row-meta-width-narrow: 96px;
 // Older names, kept for the section and viewer stylesheets.
-$max-width-container: $max-width-column;
 $max-width-readable: $max-width-measure;
-$max-width-readable-list: $max-width-measure - 24px; // inside the list indent
 $max-width-panel: 428px; // the links column
-$page-gutter: $page-padding-narrow;
-$header-height: 160px; // the search overlay's top offset until it is restyled
 
 // Controls: blocks on hard shadows (docs/styleguide.md, Buttons and Forms).
 $control-height: 44px; // pills on /links/ and /found/
 $control-height-primary: 40px; // the subscribe key, primary .btn, inputs
 $control-height-quiet: 32px; // quiet .btn, viewer bar buttons, chips
+$control-height-touch: 44px;
 $shadow-primary: 3px;
 $shadow-quiet: 2px;
 $radius: 2px;
-$radius-key: $radius;
 $radius-tight: $radius;
 
 // Motion
@@ -135,8 +119,20 @@ $z-search: 110;
   }
 }
 
-@mixin wide {
-  @media screen and (min-width: $breakpoint-narrow + 1px) {
+@mixin rail-wide {
+  @media screen and (min-width: $breakpoint-rail + 1px) {
+    @content;
+  }
+}
+
+@mixin rail-stacked {
+  @media screen and (max-width: $breakpoint-rail) {
+    @content;
+  }
+}
+
+@mixin touch-controls {
+  @media screen and (max-width: $breakpoint-narrow), screen and (pointer: coarse) {
     @content;
   }
 }
@@ -155,14 +151,6 @@ $z-search: 110;
 
 @mixin readable-width {
   max-width: $max-width-measure;
-}
-
-@mixin readable-list-width {
-  max-width: $max-width-readable-list;
-}
-
-@mixin monospace {
-  font-family: $font-family-mono;
 }
 
 @mixin tabular-numbers {
@@ -249,7 +237,7 @@ $z-search: 110;
     box-shadow $t-press,
     background-color $t-fast;
 
-  &:active {
+  &:active:not(:disabled):not([aria-disabled="true"]) {
     transform: translate($shadow, $shadow);
     box-shadow: none;
   }

@@ -1,5 +1,5 @@
 ---
-title: "AI Coding Took Off Because the Tooling Was Already There" 
+title: "AI coding took off because the tooling was already there"
 date: 2026-02-28
 category: thinking
 ---

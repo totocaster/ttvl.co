@@ -3,15 +3,12 @@
 // under it, and a right-aligned tail with one qualifier. A rule hairline
 // between rows, none above the first or under the last.
 // On wide screens a list inside a block reaches left across the gap so its
-// meta column IS the rail: dates, kinds, and counts share one column with
-// every other label on the page, and titles start where content starts.
+// meta column IS the rail: dates and kinds share one column with every
+// other label on the page, and titles start where content starts.
 // The search overlay's rows are not in a block and keep the 128 px column.
 // Rendered by layouts/partials/row.html. docs/styleguide.md, Rows.
-// About's record is still written as HTML with the older .issue-list
-// names; they are styled here as aliases until that page is converted.
 
-.rows,
-.issue-list {
+.rows {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -45,38 +42,28 @@
 
 // Rows inside prose (the resources manifest, About's record) keep the
 // paragraph rhythm after them and none of the prose list styling.
-.prose .rows,
-.prose .issue-list {
+.prose .rows {
   padding: 0;
   margin: 0 0 $rhythm-paragraph;
   max-width: $max-width-column;
 
-  .row-title,
-  .issue-title {
+  .row-title {
     font-weight: $link-weight-quiet;
   }
 }
 
-.row-meta,
-.issue-list .issue-number {
+.row-meta {
   @include type-meta;
   color: var(--ink-faint);
   white-space: nowrap;
   @include meta-links;
-
-  // A closed question.
-  &.closed {
-    text-decoration: line-through;
-  }
 }
 
-.row-main,
-.issue-list .press-work {
+.row-main {
   min-width: 0;
 }
 
-.row-title,
-.issue-list .issue-title {
+.row-title {
   font-weight: $link-weight-quiet;
   text-decoration: none;
 
@@ -110,10 +97,11 @@
   }
 }
 
-// Wide screens: the meta column is the rail.
-@include wide {
-  .block > .main .rows,
-  .block > .main .issue-list {
+// Wide screens: the meta column is the rail, where the rail is free. A
+// body block with the table of contents and a stream entry keep theirs,
+// so their lists stay in the column with the 128 px meta column.
+@include rail-wide {
+  .block:not(.has-toc):not(.entry) > .main .rows {
     margin-left: -($rail-width + $rail-gap);
     width: calc(100% + #{$rail-width + $rail-gap});
     max-width: none;
@@ -124,9 +112,9 @@
     }
   }
 
-  // A group head is a line of the same ledger: its count in the rail
-  // cell, its name where the titles start.
-  .block > .main .group-head {
+  // A group head is a line of the same ledger: nothing in the rail cell,
+  // its name where the titles start.
+  .block:not(.has-toc):not(.entry) > .main .group-head {
     display: grid;
     grid-template-columns: $rail-width minmax(0, 1fr);
     column-gap: $rail-gap;
@@ -148,8 +136,7 @@
 
 // Phones: the meta column narrows and the tail drops under the title.
 @include narrow {
-  .rows > li,
-  .issue-list > li {
+  .rows > li {
     grid-template-columns: $row-meta-width-narrow minmax(0, 1fr);
     column-gap: $space-3;
   }
@@ -162,9 +149,9 @@
   }
 }
 
-// Group heads: a heading that groups rows inside a block, with its count
-// 12 px after it in the label voice. The first sits on the block; the rest
-// sit 40 px below the previous group.
+// Group heads: a heading that groups rows inside a block, with an optional
+// qualifier 12 px after it in the label voice. The first sits on the block;
+// the rest sit 40 px below the previous group.
 .group-head {
   display: flex;
   flex-wrap: wrap;

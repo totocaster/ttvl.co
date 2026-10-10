@@ -1,13 +1,10 @@
 {{- /* The masthead: the signature and the search key, then the nav, then
-     one rule hairline. The logo is the h1 on home only.
-     docs/styleguide.md, Masthead. */ -}}
+     one rule hairline. The logo is a p on every page; the page head owns
+     the h1. The search key is a button that opens the overlay, like the ?
+     shortcut. docs/styleguide.md, Masthead. */ -}}
 <header class="site wrap">
   {{- $logo := printf `<a href="/"><img src="/ui/ttvl_logo.png" srcset="/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x" width="92" height="36" alt="%s" /></a>` (htmlEscape .Site.Title) | safeHTML }}
-  {{- if .IsHome }}
-  <h1 class="logo">{{ $logo }}</h1>
-  {{- else }}
   <p class="logo">{{ $logo }}</p>
-  {{- end }}
-  <a class="search-key" href="#search">Search <kbd>?</kbd></a>
+  <button type="button" class="search-key" aria-haspopup="dialog" aria-keyshortcuts="?">Search <kbd>?</kbd></button>
   {{ partial "nav.html" . }}
 </header>

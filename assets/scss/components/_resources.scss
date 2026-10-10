@@ -16,21 +16,26 @@
   margin: 0 $shadow-quiet $rhythm-paragraph 0;
   border-radius: $radius;
   box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+  transition: transform $t-press, box-shadow $t-press;
+
+  &:has(.chip:active) {
+    transform: translate($shadow-quiet, $shadow-quiet);
+    box-shadow: none;
+  }
 }
 
 .chip {
   display: inline-flex;
-  align-items: baseline;
+  align-items: center;
   gap: 6px; // chip geometry
-  padding: 6px 12px; // chip geometry
+  min-height: $control-height-quiet;
+  padding: 3px $space-3;
   margin-left: -1px;
   border: 1px solid var(--ink);
   border-radius: 0;
   background: var(--ground);
   color: var(--ink);
-  font-family: $font-family-sans;
-  @include type-small;
-  font-weight: $link-weight-quiet;
+  @include type-control;
   text-decoration: none;
   white-space: nowrap;
   transition: background-color $t-fast;
@@ -64,6 +69,10 @@
     position: relative; // the ring draws over the neighbouring key
     z-index: 1;
   }
+
+  @include touch-controls {
+    min-height: $control-height-touch;
+  }
 }
 
 .chip--external::after {
@@ -80,13 +89,17 @@
   color: var(--ink-faint);
 }
 
-// Phones: the row falls apart into single keys, each on its own shadow.
-@include narrow {
+// Stacked layout: single keys, each on its own shadow.
+@include rail-stacked {
   .resource-strip,
   .strip {
     display: flex;
     gap: $space-3;
     box-shadow: none;
+
+    &:has(.chip:active) {
+      transform: none;
+    }
   }
 
   .chip,
@@ -95,6 +108,9 @@
     margin-left: 0;
     border-radius: $radius;
     @include key($shadow-quiet);
+    max-width: calc(100% - #{$shadow-quiet});
+    flex-wrap: wrap;
+    white-space: normal;
   }
 }
 

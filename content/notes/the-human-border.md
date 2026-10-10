@@ -1,5 +1,5 @@
 ---
-title: "The Human Border"
+title: "The human border"
 date: 2026-05-07
 category: thinking
 ---

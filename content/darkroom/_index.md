@@ -10,9 +10,9 @@ Technical and process-oriented resources focused on photography, darkroom techni
 
 {{< page-list title="DIY Projects" lead="For enhancing the shooting process and overall experience." pages="darkroom/valoi-easy120-with-negative-supply-99cri-light, darkroom/pentax-digital-spotmeter-sticker, darkroom/rugged-40-roll-film-storage, darkroom/canister-stickers, darkroom/foldable-film-reminder" >}}
 
-{{< page-list lead="Improve, fix, and modify camera equipment." pages="darkroom/rz67-focus-gear-stl, darkroom/horseman-lensboards" >}}
+{{< page-list title="Camera Modifications" lead="Improve, fix, and modify camera equipment." pages="darkroom/rz67-focus-gear-stl, darkroom/horseman-lensboards" >}}
 
-{{< page-list lead="Accessories and improvements for the JOBO system." pages="darkroom/thermometer-panel-for-jobo-systems" >}}
+{{< page-list title="JOBO Accessories" lead="Accessories and improvements for the JOBO system." pages="darkroom/thermometer-panel-for-jobo-systems" >}}
 
 {{< page-list title="Tools and Manuals" lead="Guides and manuals for specialized tools and workflows." pages="darkroom/lucky-cp32-manual" >}}
 

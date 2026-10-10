@@ -1,5 +1,5 @@
 ---
-title: 'Corita Kent: 10 Rules for Students and Teachers'
+title: 'Corita Kent: 10 rules for students and teachers'
 date: 2025-01-13
 aliases:
   - "/essays/ten-rules-for-students-and-teachers/"

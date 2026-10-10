@@ -5,7 +5,7 @@
          system ingests, not a page to share. No metadata, no search. */}}
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title itemprop="name">{{ with .Title }}{{ . }} — {{ end }}{{ .Site.Title }}</title>
+    <title itemprop="name">{{ with .Title }}{{ . }} · {{ end }}{{ .Site.Title }}</title>
     {{ $style := resources.Get "scss/style.scss" | toCSS | minify }}
     <link rel="stylesheet" href="{{ $style.RelPermalink }}" />
     {{ hugo.Generator }}

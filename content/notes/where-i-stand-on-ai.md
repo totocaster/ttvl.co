@@ -1,5 +1,5 @@
 ---
-title: Where I Stand on AI—For Now
+title: Where I stand on AI—for now
 date: 2025-06-06
 description: From productivity and translation to image generation and video, this is my current stance on how AI is shaping tools, work, and attention in 2025.
 category: thinking

@@ -1,40 +1,8 @@
-// Text Fragments API Styles (Native Support Only)
+// Text Fragments: the browser's own highlight of the linked passage, in the
+// highlight token in both themes. Highlight pseudo-elements take only
+// color and background, so there is nothing else to style.
 
-// Native browser highlight
 ::target-text {
   background-color: var(--highlight);
-  color: black;
-  border-radius: $radius-tight;
-  padding: 2px 0;
-  animation: highlight-fade 0.6s ease-out;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
-
-// Highlight animation
-@keyframes highlight-fade {
-  0% {
-    background-color: rgba(255, 235, 59, 1);
-    transform: scale(1.02);
-  }
-  100% {
-    background-color: rgba(255, 235, 59, 0.8);
-    transform: scale(1);
-  }
-}
-
-// Dark mode: the wash is translucent, so text keeps its own color.
-@include dark {
-  ::target-text {
-    color: inherit;
-  }
-}
-
-// High contrast mode support
-@include high-contrast {
-  ::target-text {
-    background-color: yellow;
-    color: black;
-    outline: 2px solid black;
-  }
+  color: inherit;
 }

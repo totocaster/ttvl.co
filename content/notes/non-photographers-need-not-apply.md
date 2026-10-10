@@ -1,5 +1,5 @@
 ---
-title: The Silo Problem in Photography
+title: The silo problem in photography
 date: 2024-01-10
 description: Exploring the contrast between written and photographic books.
 category: longform

@@ -81,9 +81,7 @@
     border-radius: $radius;
     background: var(--ground);
     color: var(--ink);
-    font-size: $font-size-base;
-    line-height: $line-height-dek;
-    font-weight: $font-weight-medium;
+    @include type-control;
     text-decoration: none;
     @include key($shadow-quiet);
     @include focus-ring;

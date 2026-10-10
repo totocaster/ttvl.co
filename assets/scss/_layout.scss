@@ -65,6 +65,12 @@ header.site {
     display: flex;
     align-items: center;
     gap: $space-2;
+    min-height: $control-height-quiet;
+    padding: 0;
+    border: 0;
+    background: none;
+    appearance: none;
+    cursor: pointer;
     @include type-control;
     color: var(--ink-faint); // faded: a utility, not a destination
     text-decoration: none;
@@ -119,18 +125,23 @@ header.site {
       height: 32px;
     }
 
-    // The nav scrolls sideways without a visible scrollbar; the clipped
-    // item at the edge is the affordance.
+    // Every destination stays visible; no hidden horizontal menu.
     .nav {
-      gap: $space-5;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scrollbar-width: none;
-      padding: $space-1 0 2px; // room for the underline and focus ring
+      flex-wrap: wrap;
+      gap: 0 $space-5;
 
-      &::-webkit-scrollbar {
-        display: none;
+      a {
+        display: inline-flex;
+        align-items: center;
+        min-height: $control-height-touch;
+        min-width: $control-height-touch;
       }
+    }
+  }
+
+  @include touch-controls {
+    .search-key {
+      min-height: $control-height-touch;
     }
   }
 }

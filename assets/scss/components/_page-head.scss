@@ -54,15 +54,16 @@
   .resource-strip,
   .strip {
     margin-top: $space-5;
+    margin-bottom: $shadow-quiet; // the head's margin sets the rhythm below
   }
 
   .category-filter {
     margin-top: $space-5;
   }
 
-  @include narrow {
+  @include rail-stacked {
     display: block;
-    margin-bottom: 40px; // phone rhythm
+    margin-bottom: $rhythm-block-tight; // stacked rhythm
 
     > .rail {
       display: flex;
@@ -75,10 +76,12 @@
         display: none;
       }
     }
+  }
 
+  @include narrow {
     h1 {
-      font-size: 28px; // the title on phones
-      line-height: 34px;
+      font-size: $font-size-title-narrow;
+      line-height: $line-height-title-narrow;
     }
   }
 }

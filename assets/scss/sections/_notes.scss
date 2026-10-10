@@ -1,13 +1,6 @@
 // Notes: the hub is the shared head, filter, blocks, and rows; a note is
-// the shared head, body block, and end matter. Only the filter's year
-// hiding lives here, for the Notes hub and, since it has no stylesheet of
-// its own, the Projects hub (layouts/projects/list.html).
-
-// Category filtering hides whole year blocks; !important beats the
-// block's own grid display.
-main :is(.notes-year, .project-year)[hidden] {
-  display: none !important;
-}
+// the shared head, body block, and end matter. The filter's hiding lives
+// in components/_filter-nav.scss.
 
 // The first visible year sits on the head, as the first block does, even
 // when the filter has hidden the years above it.

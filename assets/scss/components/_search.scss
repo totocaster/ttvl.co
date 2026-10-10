@@ -1,7 +1,6 @@
-// The search overlay: full ground. Centered, 96 px down: the hint with
-// keycaps, a 26/34 input with one ink rule under it, the results as rows
-// (the section as the meta, the title with the match marked, the summary
-// as the dek, the date as the tail), and the count or state under them.
+// The search overlay: full ground, a visible label and Close action, a
+// 26/34 field, desktop keyboard hints, and results with short excerpts.
+// On phones, section and date sit above a full-width title and excerpt.
 // The selected row takes a surface wash 12 px wider than itself.
 // Built by assets/js/search.js. docs/styleguide.md, Search Overlay.
 
@@ -27,16 +26,31 @@
   max-width: $max-width-measure;
 }
 
+.search-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $space-4;
+  margin-bottom: $space-3;
+
+  label {
+    @include type-heading;
+  }
+}
+
 .search-hint {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: $space-1 $space-2;
-  margin: 0 0 $space-5;
+  margin: $space-3 0 $space-5;
   @include type-meta;
   color: var(--ink-faint);
-  text-align: center;
+
+  @include touch-controls {
+    display: none;
+  }
 }
 
 .search-input {
@@ -50,8 +64,8 @@
   background: none;
   color: var(--ink);
   font-family: $font-family-sans;
-  font-size: 26px; // the search input
-  line-height: 34px;
+  font-size: $font-size-search;
+  line-height: $line-height-search;
   -webkit-appearance: none;
   appearance: none;
   outline: none;
@@ -61,10 +75,15 @@
     -webkit-appearance: none;
   }
 
-  // The rule under the field and the caret are the focus state: the field
-  // is the only thing focused when the overlay opens, so no ring.
+  &::placeholder {
+    color: var(--ink-faint);
+    opacity: 1;
+    font-size: $font-size-base;
+  }
+
   &:focus-visible {
-    outline: none;
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
   }
 }
 
@@ -92,10 +111,43 @@
     background: var(--highlight);
     color: inherit;
   }
+
+  @include narrow {
+    > .row {
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: $space-1 $space-3;
+    }
+
+    .row-meta {
+      grid-column: 1;
+      grid-row: 1;
+      white-space: normal;
+    }
+
+    .row-tail {
+      grid-column: 2;
+      grid-row: 1;
+      margin-top: 0;
+      text-align: right;
+    }
+
+    .row-main {
+      grid-column: 1 / -1;
+      grid-row: 2;
+    }
+
+    .row-dek {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 3;
+      overflow: hidden;
+    }
+  }
 }
 
 // The count, or the state: Searching…, No results, a failure.
 .search-status {
+  min-height: $line-height-small; // always present for the live region
   margin-top: $space-5;
 
   &.is-error {

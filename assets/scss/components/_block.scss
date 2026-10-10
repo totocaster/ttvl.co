@@ -1,5 +1,5 @@
 // Blocks: the unit of every page below the head. Two columns, a 192 px
-// rail for the label, date, count, or kind, and the column for the
+// rail for the label, date, or kind, and the column for the
 // content. A block whose rail is empty (an article's body) keeps the grid,
 // so prose aligns with every other column on the site.
 // docs/styleguide.md, Block. Rendered by _default/single.html and
@@ -65,7 +65,7 @@
     }
   }
 
-  // A sentence that introduces the block's list, under the count.
+  // A sentence that introduces the block's list, under the meta line.
   .lead {
     @include type-dek;
     color: var(--ink-muted);
@@ -98,10 +98,10 @@
 // The rail heading takes its own line, and the list below it uses the
 // rail as its meta column (components/_row.scss), so the page keeps one
 // column of labels. Set by the content (:has) or by a `ledger` class.
-@include wide {
+@include rail-wide {
   .block.ledger,
-  .block:has(> .main > :is(.rows, .issue-list, .group, .group-head, .resources):first-child),
-  .block:has(> .main.prose > :is(.rows, .issue-list, .group-head):first-child) {
+  .block:not(.has-toc):has(> .main > :is(.rows, .group, .group-head):first-child),
+  .block:not(.has-toc):has(> .main.prose > :is(.rows, .group-head):first-child) {
     grid-template-rows: auto auto;
 
     > .rail {
@@ -129,14 +129,18 @@
 
 // Tight blocks: year and letter groups under a hub's head, end matter.
 .block.year + .block.year,
-.block.tight + .block.tight,
 .block.end + .block.end {
   margin-top: $rhythm-block-tight;
 }
 
-// End matter sits 64 px after the body.
+// End matter sits 64 px after the body (48 when the rail stacks, like
+// every other block).
 .block.end {
   margin-top: $rhythm-block;
+
+  @include rail-stacked {
+    margin-top: $space-7;
+  }
 }
 
 // A research entry on a stream page: the rail holds date · number, then
@@ -246,8 +250,8 @@
   }
 }
 
-// Phones: the rail stacks above its column; its lines join with 12 px gaps.
-@include narrow {
+// Tablet and phone: the rail stacks above its column.
+@include rail-stacked {
   // The table of contents stacks above the body in two columns.
   .block.body.has-toc > .rail {
     position: static;
@@ -294,9 +298,5 @@
   .block.entry > .rail {
     padding-top: 0;
     margin-bottom: $space-2;
-  }
-
-  .block:not(.entry) + .block.entry {
-    margin-top: $space-4;
   }
 }

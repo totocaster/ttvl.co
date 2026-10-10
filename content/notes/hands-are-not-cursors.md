@@ -1,5 +1,5 @@
 ---
-title: "Hands Are Not Cursors"
+title: "Hands are not cursors"
 date: 2026-06-28
 category: thinking
 ---

@@ -6,8 +6,8 @@ The standard is called **Panel**. It replaced Air on 2026-10-07 and ships as sit
 
 ## Principles
 
-1. **Content over chrome.** Body text is full ink at 18/28. Everything that is not content is 14 px, faint, and off to the side. Nothing is smaller than 14 px, and every text tier passes 4.5:1 in both themes.
-2. **The rail carries the metadata.** A page head and every block are two columns: a 192 px rail at left for the label, date, count, or kind, and the column for the content. On wide screens the rail is the page's one column of labels: a list's dates sit in it too, so titles and text start at one edge. Nothing sits under a title, and no statistic sits in the column. A page carries one count at most, in its head rail (`75 notes · updated 2026-09`): how many pages a hub lists. Block rails, group heads, and end matter carry none; a reader who wants the number has it at the top.
+1. **Content over chrome.** Body text is full ink at 18/28. Metadata is 14 px and faint; controls use 16 px labels. Nothing is smaller than 14 px, and every text tier passes 4.5:1 in both themes.
+2. **The rail carries the metadata.** A page head and every block are two columns: a 192 px rail at left for the label, date, count, or kind, and the column for the content. On wide screens the rail is the page's one column of labels: a list's dates sit in it too, so titles and text start at one edge. Metadata stays in the rail; deks and resource links may sit under a title. A page carries one count at most, in its head rail (`75 notes · updated 2026-09`): how many pages a hub lists. Block rails, group heads, and end matter carry none; a reader who wants the number has it at the top.
 3. **Words in Sans, numbers in Mono.** Dates, counts, issue and entry numbers, sizes, and the version are set in Plex Mono with tabular figures. Every other label is Plex Sans in sentence case. No uppercase, no letter-spacing.
 4. **One way to do each thing.** One page head, one block, one row, one card, one button, one legend, one form. Everything that is listed is a row: streams, doors, search results, the index's hubs, the pager.
 5. **Hairlines you have to look for.** Lines sit only between rows and under the masthead. Nothing frames a list, nothing rules the footer. Frames stay on tiles, tables, sheets, and the quotation.
@@ -28,10 +28,11 @@ Weights are 400, 500, and 600. `strong` is 600. Weight 700 is retired.
 | Size | Line | Used for | Variable |
 |---|---|---|---|
 | 34 px | 40 px | The page title (`h1`) | `$font-size-title` |
-| 22 px | 30 px | Research entry titles on a stream page | `$font-size-entry` |
-| 18 px | 28 px | Body text, headings below the title, row and card titles | `$font-size-base` |
-| 16 px | 24 px | Deks under rows and cards, table cells, the nav | `$font-size-dek` |
-| 15 px | 22 px | Filter chips, buttons, the search key | `$font-size-control` |
+| 28 px | 34 px | The page title on phones | `$font-size-title-narrow` |
+| 26 px | 34 px | The search field | `$font-size-search` |
+| 22 px | 30 px | Prose section headings and research entry titles | `$font-size-entry` |
+| 18 px | 28 px | Body text, prose subheadings, rail headings, row and card titles | `$font-size-base` |
+| 16 px | 24 px | Deks, table cells, navigation, and control labels | `$font-size-dek` |
 | 14 px | 20 px | Labels, meta, captions, legends, chips, the footer, code blocks | `$font-size-small` |
 
 ### Voices
@@ -39,7 +40,8 @@ Weights are 400, 500, and 600. `strong` is 600. Weight 700 is retired.
 | Voice | Spec | Where |
 |---|---|---|
 | Title | Sans 34/40, 500, ink | `h1` |
-| Heading | Sans 18/28, 600, ink | `h2` in prose and in rails |
+| Section heading | Sans 22/30, 600, ink | `h2` in prose |
+| Rail heading | Sans 18/28, 600, ink | Block labels and group heads |
 | Subheading | Sans 18/28, 500, ink | `h3` in prose; group heads inside a block are 600 |
 | Body | Sans 18/28, 400, ink | Prose, row titles, card titles (500) |
 | Prose link | Body, 500, underlined | Links inside running text |
@@ -49,7 +51,7 @@ Weights are 400, 500, and 600. `strong` is 600. Weight 700 is retired.
 | Label | Sans 14/20, faint, sentence case | Rail lines, tails, legends, chips, captions (muted), footer |
 | Number | Mono 14/20, tabular, inherits color | Dates, counts, issue and entry numbers, sizes, the version; `time` and `.n` |
 | Nav | Sans 16/25, muted; current in ink, underlined | The masthead |
-| Control | Sans 15/22, 500 | Buttons, filter chips, the search key |
+| Control | Sans 16/24, 500 | Buttons, resource links, filters, the search key |
 | Code | Mono 16 inline; Mono 14/22 in sheets and terminals | |
 
 Headings follow the house rule in `AGENTS.md`: sentence case for Note and research entry titles, Chicago Title Case for everything else.
@@ -115,14 +117,14 @@ A heading directly under a heading sits 8 px below it. Media directly under a he
 
 | Width | Value | For |
 |---|---:|---|
-| Page | 1200 px, in 40 px side padding (20 on phones) | Masthead, main, footer |
+| Outer page | 1200 px including 40 px side padding (20 on phones) | Masthead, main, footer |
 | Rail | 192 px, then a 48 px gap | Labels, dates, counts, kinds, headings of blocks |
-| Column | 960 px, the rest of the page | Rows, cards, prose blocks |
+| Column | 880 px after padding, rail, and gap | Rows, cards, prose blocks |
 | Measure | 640 px | Running text, deks, forms, legends |
 | Bleed | 760 px | Figures, sheets, terminals, tables |
-| Page | 1200 px | Viewers, galleries, and wide tables, which reach back across the rail |
+| Inner page | 1120 px | Viewers, galleries, and wide tables, which reach back across the rail |
 
-The narrow breakpoint is 768 px. Under it the rail stacks above its column (its lines join with 12 px gaps), the nav scrolls sideways without a visible scrollbar, cards go to two columns, the index to one, and the row's tail drops under the title.
+The rail stacks at 1024 px, with its lines joining at 12 px gaps. The phone breakpoint remains 768 px: navigation wraps into visible rows, the index becomes one column, and row tails drop below their titles. Card grids adapt independently: each card needs 240 px, giving three columns at full desktop width, two at intermediate widths, and one on small phones.
 
 ## The Grammar
 
@@ -138,7 +140,7 @@ Each pattern below is one partial or shortcode and one stylesheet. Use them; don
 </header>
 ```
 
-Two lines: the signature logo 44 px tall at left (large enough to stay crisp on 1x screens) with the search key at right in faint ink, then the nav on its own line in 16 px Sans with 32 px gaps, the current section in ink and underlined 6 px below the baseline. Padding 36 above, 16 below, then one `--rule` hairline. The logo is an `h1` on the home page and a `p` elsewhere, as now. The search key opens the overlay like the `?` shortcut does. On phones the logo is 32 px and the nav scrolls.
+Two lines: the signature logo 44 px tall at left (large enough to stay crisp on 1x screens) with the search key at right in faint ink, then the nav on its own line in 16 px Sans with 32 px gaps, the current section in ink and underlined 6 px below the baseline. Padding 36 above, 16 below, then one `--rule` hairline. The logo is a `p` on every page; the page head owns the `h1`. The search key is a button that opens the overlay like the `?` shortcut does. On phones the logo is 32 px and the nav wraps, with 44 px link targets so every destination stays visible.
 
 Rendered by `partials/header.html` and `partials/nav.html`, styled in `_layout.scss`.
 
@@ -210,7 +212,7 @@ The article body is one block with an empty rail. Prose holds the measure.
 - Prose links are 500 and underlined.
 - Quotations: a 2 px `--edge` rule at left, 20 px padding, full ink; `.quote-attribution` in the label voice under it.
 - A `---` renders as a 128 px `--edge` rule at the left. Inside a `section` shortcode it renders as space.
-- The table of contents (the `toc` shortcode, wherever it sits in the Markdown) renders in the body block's rail under a `Contents` label: a numbered list in the label voice with Mono numerals, muted links, sticky 24 px from the top while the page scrolls. The prose then carries no heading numerals. On phones it stacks above the body in two columns.
+- The table of contents (the `toc` shortcode, wherever it sits in the Markdown) renders in the body block's rail under a `Contents` label: a numbered list in the label voice with Mono numerals, muted links, sticky 24 px from the top while the page scrolls. The prose then carries no heading numerals. At 1024 px and below it stacks above the body in two columns.
 - Tables: a 1 px ink rule under the header row, `--rule` hairlines between rows, no frame. Headers in the label voice, 500. Cells 16/23. `{.wide}` spans the column.
 - Code: untagged and data fences are sheets, `sh`/`bash`/`shell`/`zsh` fences are terminals, dark in both themes. Radius 2. The sheet's filename kicker is Mono, faint. Comments are the only colored token.
 - Inline code is Mono 16, no background.
@@ -229,7 +231,7 @@ The article body is one block with an empty rail. Prose holds the measure.
 <li class="row"><span class="row-meta"><time>2026-06-28</time></span><span class="row-main"><a class="row-title" href="…">Hands Are Not Cursors</a><span class="row-dek">…</span></span><span class="row-tail">Thinking</span></li>
 ```
 
-The one grammar for anything listed. Three columns: the meta column, the title (with an optional dek under it), and a right-aligned tail. On wide screens a list inside a block reaches left across the gap so its meta column is the rail itself (192 px, then the 48 px gap): dates and kinds line up with every other label on the page, and titles start where content starts. The search overlay's rows are not in a block and keep a 128 px column. A `--rule` hairline between rows, none above the first or under the last. Rows carry 10 px padding, 12 with deks.
+The one grammar for anything listed. Three columns: the meta column, the title (with an optional dek under it), and a right-aligned tail. On wide screens a list inside a block reaches left across the gap so its meta column is the rail itself (192 px, then the 48 px gap): dates and kinds line up with every other label on the page, and titles start where content starts. The search overlay's rows are not in a block and keep a 128 px column, as do lists inside a body whose rail holds the table of contents and inside a stream entry, whose rails are taken. A `--rule` hairline between rows, none above the first or under the last. Rows carry 10 px padding, 12 with deks.
 
 - The meta column holds the ordering key or the kind: a date, `#016 · 2026-09` for dispatches, `Hub` / `Note` / `Project` / `Log` / `Research` / `Dispatch` / `About` in end matter, `Active` in the stream ledger, `The essay` on the newsletter's doors, `Model` / `Lights` on the bench, `← 018` / `020 →` in the pager. A list with nothing to order by (the Index's Start Here) drops the column (`rows no-meta`).
 - The tail holds one qualifier, the same kind in every row of a list: the category on Notes (`Thinking`), `024 · Question` on research lists, the venue on About's record, the date in end matter, `#008 · 2024-01` on the newsletter's doors. Home lists and the stream ledger carry none; a count never rides in a tail.
@@ -242,7 +244,7 @@ Rendered by `partials/row.html`, styled by `components/_row.scss`.
 
 ### Ledger Blocks and Group Heads
 
-A block whose column starts with a list or a group head is a ledger: on wide screens its rail heading takes its own line, and the list below uses the rail as its meta column, so the page keeps one column of labels. A group head inside the list (a year, a stream, Books inside the record) is a line of the same ledger: an `h3.group-head` with its name where the titles start and nothing in the rail cell, 40 px below the previous group. A qualifier (the newsletter's `as Dreaming with One Eye Open`) sits under the name as a `.tail` in the label voice. Ledger mode is set by the content (`:has()`) or by a `ledger` class on the block. On phones the rail stacks and the rows keep a 96 px column.
+A block whose column starts with a list or a group head is a ledger: on wide screens its rail heading takes its own line, and the list below uses the rail as its meta column, so the page keeps one column of labels. A group head inside the list (a year, a stream, Books inside the record) is a line of the same ledger: an `h3.group-head` with its name where the titles start and nothing in the rail cell, 40 px below the previous group. A qualifier (the newsletter's `as Dreaming with One Eye Open`) sits under the name as a `.tail` in the label voice. Ledger mode is set by the content (`:has()`) or by a `ledger` class on the block. At 1024 px the rail stacks; rows keep a 128 px meta column until the phone breakpoint, where it becomes 96 px.
 
 ### Cards
 
@@ -255,11 +257,11 @@ A block whose column starts with a list or a group head is a ledger: on wide scr
 </div>
 ```
 
-A 16:9 tile on a 1 px `--edge` frame with radius 2 over `--surface`, grayscale until hover or focus; one label line (`date · hub` for projects, `date · kind` for traces, `Since 2023 · Gallery` for ongoing work); the title at 500; the dek. Three columns in the 880 px column, two on phones, 32 × 24 px gaps. Rendered by `partials/card.html`.
+A 16:9 tile on a 1 px `--edge` frame with radius 2 over `--surface`, grayscale until hover or focus; one label line (`date · hub` for projects, `date · kind` for traces, `Since 2023 · Gallery` for ongoing work); the title at 500; the dek. Up to three columns in the 880 px column, each at least 240 px wide; two at intermediate widths and one on small phones. Gaps are 32 × 24 px, or 24 × 12 px on phones. Rendered by `partials/card.html`.
 
 ### Doors, Chips, and the Strip
 
-The strip under a page title is one row of keys: chips share edges (`margin-left: -1px`), the first and last carry the 2 px outer radius, and the whole row sits on one 2 px ink shadow. Each chip is label voice, 1 px ink frame, 6 × 12 px padding, `--ground` face; `↗` after an external door and `↓` after a file, with the size in Mono after a file. Hover tints the face `--surface`; pressing fills it ink. On phones the row falls apart into single keys, each on its own shadow, 12 px apart. Rendered by `partials/resource-strip.html`.
+The strip under a page title is one row of keys: chips share edges (`margin-left: -1px`), the first and last carry the 2 px outer radius, and the whole row sits on one 2 px ink shadow. Each chip uses the 16/24 control voice, a 1 px ink frame, 3 × 12 px padding, `--ground` face; `↗` after an external door and `↓` after a file, with the size in Mono after a file. Hover tints the face `--surface`; pressing fills it ink. When the rail stacks, the row falls apart into single keys, each on its own shadow, 12 px apart. Keys are at least 32 px high, or 44 px on phones and coarse pointers. Rendered by `partials/resource-strip.html`.
 
 ### Buttons and Forms
 
@@ -267,16 +269,18 @@ Every button is a block on a hard shadow. Pressing (`:active`) moves it into the
 
 | Control | Face | Shadow | Height |
 |---|---|---|---|
-| Subscribe key, primary `.btn` | ink, ground text, 15/22 500 | 3 px `--ink-faint` | 40 |
-| Quiet `.btn`, viewer bar buttons | ground, ink text, 14/20 | 2 px ink | 32 |
-| Chips | ground, ink text, 14/20 | one 2 px ink shadow under the joined row | 32 |
-| Pills on `/links/` and `/found/` | ground, ink text, 500 | 2 px ink | 44 |
-| The pronunciation control | ground | 1 px ink | 24 |
-| A segmented control (the comparison viewer's dates) | joined keys like the strip; the pressed key is ink | one 2 px ink shadow | 32 |
+| Primary action: subscribe key, `.btn` | ink, ground text, 16/24 500 | 3 px `--ink-faint` | 40 |
+| Secondary action: quiet `.btn`, viewer bar buttons | ground, ink text, 16/24 500 | 2 px ink | 32 |
+| Resource links: chips | ground, ink text, 16/24 500 | one 2 px ink shadow under the joined row | 32 |
+| Pills on `/links/` and `/found/` | ground, ink text, 16/24 500 | 2 px ink | 44 |
+| Inline pronunciation action | ground | 1 px ink | 32 |
+| Selection: segmented control | joined 16/24 keys; the selected key is ink | one 2 px ink shadow | 32 |
+
+All action and selection controls have at least 44 px targets on phones or coarse pointers. Compact controls use 32 px on desktop; primary actions and fields use 40 px. Primary hover uses muted ink, secondary hover uses surface, and selected segments use ink. Pressing an action moves its key into the shadow; joined keys move as one group. Disabled buttons keep their geometry and do not press. Focus uses the signal ring.
 
 Every block carries a right and bottom margin equal to its shadow, so nothing clips at a column edge.
 
-The subscribe form: a 40 px input (1 px ink frame, `--surface-input`, radius 2, the same box as the key beside it in every browser), a 12 px gap, the key. The legend sits 12 px under it and reads `Seasonal, not monthly · one click to leave` wherever the form appears (home, newsletter, About, dispatch end, `/links/`). No boxes around forms.
+The subscribe form: a 40 px input, 44 px for touch (1 px ink frame, `--surface-input`, radius 2, the same box as the key beside it in every browser), a 12 px gap, the key. The legend sits 12 px under it and reads `Seasonal, not monthly · one click to leave` wherever the form appears (home, newsletter, About, dispatch end, `/links/`). No boxes around forms.
 
 ### Legends
 
@@ -294,12 +298,12 @@ Rendered by `partials/mentioned-in.html` and `research/single.html`.
 
 ### Search Overlay
 
-Full ground. Centered, 96 px down: the hint in the label voice with keycaps (`Type to search · ↑ ↓ select · ↩ open · esc close`), a 26/34 input with only a 1 px ink rule under it, then rows: the section as the meta, the title with the match marked, the summary as the dek, the date as the tail. The selected row takes a `--surface` wash. The count under it: `4 results`. Built by `assets/js/search.js`, styled by `components/_search.scss`.
+Full ground. Centered, 96 px down: a “Search site” label and a Close button, a 26/34 input with a visible prompt and focus ring, then desktop keyboard hints (`↑ ↓ select · ↩ open · esc close`). Results use rows: section as meta, title with matches marked, a short excerpt around a match, and date as the tail. On phones the section and date share a line above the full-width title, and excerpts take at most three lines. Keyboard hints hide for touch. Close, Escape, and the backdrop restore focus to the opener. The selected row takes a `--surface` wash. The count under it: `4 results`. Built by `assets/js/search.js`, styled by `components/_search.scss`.
 
 ## Page by Page
 
 - **Home.** Head: the intro sentence as the title, the second sentence as the dek, rail `Public notebook · since 2008`. Then six blocks: The Flâneur (`All dispatches →`; a sentence, the form and legend, the five latest dispatches as rows), Projects (`All projects →`; the featured cards), Notes (`All notes →`; five rows without tails), Research (`All entries →`; five rows without tails), the latest month (its title as the rail heading, `Log · all months →`; the month's content), Get in touch (`toto@ttvl.co`).
-- **Notes hub.** Head with the filter. One tight year block per year: `2026` with `9 notes`, rows `date | title | category`.
+- **Notes hub.** Head with the filter and the only count. One tight year block per year: `2026`, rows `date | title | category`.
 - **Note.** Head, the body block, Mentioned in.
 - **Projects hub.** Head with the chips; the head's count follows the filter. Year blocks (`Ongoing`, `2026`, …) with card grids and nothing in their rails but the year. Then Hubs, as end matter (`.block.end`): one row per hub the projects come from, its title linked and its `filter_dek` as the dek, nothing in the meta column. The block follows the filter, so a page filtered to Obsidian ends with the one door to Obsidian: the chips only filter, the end block leads on.
 - **Long articles** (the notebook system and its guides, Walking) call the `toc` shortcode and get the table of contents in the body block's rail.
@@ -327,12 +331,12 @@ Full ground. Centered, 96 px down: the hint in the label voice with keycaps (`Ty
 
 The viewers (`model-viewer`, `model-viewer-comparison`, `gaussian-splat`, `spatial-long-exposure`) share one geometry:
 
-- The viewers and galleries span the page (1200 px) on an article whose rail is empty beside the body; on a page with the table of contents in the rail they stay in the column.
+- The viewers and galleries span the inner page (1120 px) on an article whose rail is empty beside the body; on a page with the table of contents in the rail they stay in the column.
 - A bar above the frame in the label voice: the title at left, the controls at right as quiet blocks; the comparison viewer's two dates and the map's `Places · Connections · Both` modes are one segmented control, the pressed key in ink. 12 px between the bar and the frame.
-- The frame: 16:10, the column's width, a 1 px `--edge` frame with radius 2, the media well dark (`#111`, a deliberate exception). The fullscreen key at the bottom right: 36 px, 1 px white at 60%, black at 50% behind, a stroke icon. A status badge at the bottom left (`Loading scan…`, `Showing after Kyojima · 2026-08-03`) in 14 px white on black at 55%, which keeps white text at 4.5:1 over a light poster; the map's OpenStreetMap credit is the same badge at the top right.
+- The frame: 16:10, the column's width, a 1 px `--edge` frame with radius 2, the media well dark (`#111`, a deliberate exception). The fullscreen key at the bottom right: 32 px (44 px for touch), 1 px white at 60%, black at 50% behind, a stroke icon. A status badge at the bottom left (`Loading scan…`, `Showing after Kyojima · 2026-08-03`) in 14 px white on black at 55%, which keeps white text at 4.5:1 over a light poster; the map's OpenStreetMap credit is the same badge at the top right.
 - A legend under the frame: how to move, and the download with its size in Mono and `↓`.
 - Galleries (`photo-gallery`, the trace photographs): three columns of 4:3 tiles on `--edge` frames, 16 px gaps, two columns on phones. The lightbox: black at 94%, the image contained, a counter `2 / 57 · 2025-04-19` in white at 72% at the bottom left with the numbers in Mono, `× ← →` keys as 44 px squares with a 1 px white frame at 50% and radius 2. Escape, the arrow keys, and the focus trap are unchanged.
-- The pronunciation control: a 24 px block on a 1 px shadow with the stroke icon; it stays inline in the sentence, centred on the x-height of the word beside it. Its styles and the clip's live in `components/_model-viewer.scss` with the rest of the media chrome.
+- The pronunciation control: a 32 px block on a 1 px shadow with the stroke icon, whose touch target grows to 44 px around the same face so the line keeps its rhythm; it stays inline in the sentence, centred on the x-height of the word beside it. Its styles and the clip's live in `components/_model-viewer.scss` with the rest of the media chrome.
 - YouTube embeds take the figure frame.
 
 ## Dark Mode and High Contrast
@@ -373,6 +377,8 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 ## Changelog
 
-- **2026-10-07, v8.0, second pass.** One column of labels: lists use the rail as their meta column and group heads put their counts there (ledger blocks); viewers and galleries span the page; the table of contents in the body rail; the logo at 44 px; the search key faded; the Projects filter is chips only, like Notes, and the page ends with Hubs; counts only in the head rail, which follows the filter.
+- **2026-10-07, v8.0, responsive refinement.** Rails stack at 1024 px; cards keep a 240 px minimum; mobile navigation wraps. Controls share 16/24 labels and 44 px touch targets. Search has a visible Close action, full-width mobile results, and short excerpts. Prose section headings use 22/30. Project Humane has the same name in filters, cards, and page metadata; Note titles use sentence case, preserving proper names. Grayscale tiles and hard shadows remain.
+
+- **2026-10-07, v8.0, second pass.** One column of labels: lists use the rail as their meta column and group heads align with the content column (ledger blocks); viewers and galleries span the page; the table of contents in the body rail; the logo at 44 px; the search key faded; the Projects filter is chips only, like Notes, and the page ends with Hubs; counts only in the head rail, which follows the filter.
 - **2026-10-07, v8.0.** Panel replaces Air: IBM Plex Sans and Mono self-hosted; body 18/28 in full ink and titles 34/40; a 192 px rail beside every head and block; words in Sans and numbers in Mono; hairlines only between rows; one row grammar for everything listed; buttons as blocks on hard shadows with the project doors joined into one row; a two-line masthead; research entries with their metadata in the rail; the social cards reset in Plex.
 - **2026-10-06, v7.11.** Air: contrast floor, three sizes, one page head, one row, inline group counts. Superseded.
