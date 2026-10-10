@@ -207,9 +207,10 @@
   color: var(--ink-faint);
 }
 
-// A file link inside a paragraph is a small inline key on a 1 px shadow,
-// with its type and ↓ after the words in the label voice.
-.prose a[href^="/downloads/"]:not(.file) {
+// A file link inside running text (a paragraph or a plain list item, not
+// a row's tail) is a small inline key on a 1 px shadow, with its type and
+// ↓ after the words in the label voice.
+.prose :is(p, li:not(.row), blockquote) > a[href^="/downloads/"]:not(.file) {
   display: inline-block;
   padding: 0 $space-2;
   margin: 0 1px 1px 0; // room for the 1 px shadow
