@@ -1,7 +1,7 @@
 {{- /* A research entry: the head (date · number / Stream · Kind, with
      "answers 003" when it closes a question), the body, Mentioned in, and
      In this stream with the neighbouring entries by date. The Left and
-     Right arrow keys follow those rows (assets/js/research-pager.js).
+     Right arrow keys follow those rows (assets/js/pager.js).
      docs/styleguide.md, End Matter. */ -}}
 {{ define "main" }}
 {{- $stream := .CurrentSection -}}
@@ -24,7 +24,7 @@
 </article>
 {{ partialCached "mentioned-in.html" . .Path }}
 {{- if or $prev $next }}
-<nav class="block end research-pager" aria-labelledby="research-pager-title">
+<nav class="block end pager" aria-labelledby="research-pager-title">
   <div class="rail"><h2 id="research-pager-title">In this stream</h2><p class="meta"><a href="{{ $stream.RelPermalink }}">{{ $stream.Title }}</a></p></div>
   <div class="main">
     <ul class="rows">
@@ -50,7 +50,7 @@
     <p class="legend"><kbd>←</kbd> <kbd>→</kbd> move between entries</p>
   </div>
 </nav>
-{{- $pager := resources.Get "js/research-pager.js" | resources.Minify | resources.Fingerprint }}
+{{- $pager := resources.Get "js/pager.js" | resources.Minify | resources.Fingerprint }}
 <script src="{{ $pager.RelPermalink }}" integrity="{{ $pager.Data.Integrity }}" defer></script>
 {{- end }}
 </div>

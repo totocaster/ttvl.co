@@ -115,10 +115,17 @@
 }
 
 // Phones: the meta column narrows and the tail drops under the title.
+// Phones: the meta column grows to its content, 96 to 136 px, so a long
+// key ("#016 · 2026-09") keeps a 16 px gap before the title.
 @include narrow {
   .rows > li {
-    grid-template-columns: $row-meta-width-narrow minmax(0, 1fr);
-    column-gap: $space-3;
+    grid-template-columns: max-content minmax(0, 1fr);
+    column-gap: $space-4;
+  }
+
+  .row-meta {
+    min-width: $row-meta-width-narrow;
+    max-width: $row-meta-width-narrow-max;
   }
 
   .row-tail {

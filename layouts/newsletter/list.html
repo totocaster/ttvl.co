@@ -73,7 +73,7 @@
 
   {{- range $dispatches.GroupByDate "2006" }}
   <section class="block">
-    <div class="rail"><h2>{{ .Key }}</h2>{{ if eq .Key "2021" }}<p class="meta">as Dreaming with One Eye Open</p>{{ end }}</div>
+    <div class="rail"><h2>{{ .Key }}{{ if eq .Key "2021" }} <span class="qualifier">as Dreaming with One Eye Open</span>{{ end }}</h2></div>
     <div class="main">
       <ul class="rows{{ if $.Params.show_deks }} with-deks{{ end }}">
         {{- range .Pages.ByDate.Reverse }}

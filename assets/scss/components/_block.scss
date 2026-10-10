@@ -29,6 +29,14 @@
 }
 
 // The rail's voices: a heading, one meta line, an optional lead.
+// A qualifier beside a rail heading (the newsletter's 2021: "as Dreaming
+// with One Eye Open"), in the label voice; it wraps inside the rail.
+.block > .rail h2 .qualifier {
+  @include type-meta;
+  font-weight: $font-weight-regular;
+  color: var(--ink-faint);
+}
+
 .block > .rail {
   min-width: 0;
 

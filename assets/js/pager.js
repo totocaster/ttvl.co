@@ -1,10 +1,11 @@
-// Research entries: the Left and Right arrow keys follow the in-stream
-// pager to the previous and next entry. Keys typed into a field or a media
-// player, keys with modifiers, keys another handler already took, and keys
-// pressed while text is selected are left alone.
+// The pager: on a research entry and on a Log month, the Left and Right
+// arrow keys follow the end block's rows to the previous and next page.
+// Keys typed into a field or a media player, keys with modifiers, keys
+// another handler already took, and keys pressed while text is selected
+// are left alone.
 (() => {
-  const prev = document.querySelector('.research-pager a[rel="prev"]');
-  const next = document.querySelector('.research-pager a[rel="next"]');
+  const prev = document.querySelector('.pager a[rel="prev"]');
+  const next = document.querySelector('.pager a[rel="next"]');
   if (!prev && !next) return;
 
   document.addEventListener("keydown", (e) => {

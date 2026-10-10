@@ -15,6 +15,12 @@
   height: 14px;
   margin-left: $space-3;
   vertical-align: -1px;
+
+  // Phones: the title wraps, so the pulse takes its own line under it.
+  @include narrow {
+    display: flex;
+    margin: $space-2 0 0;
+  }
 }
 
 .research-pulse__cell {

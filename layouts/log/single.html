@@ -1,11 +1,50 @@
 {{ define "main" }}
 {{- /* A Log month: the head (Month 93 / Log, the Log's own line as the
-     dek), the body block, then the Archive grid as end matter with this
-     month marked. docs/styleguide.md, Page by Page: Log month. */ -}}
+     dek), the body block, then In the log with the neighbouring months
+     (the Left and Right arrow keys follow those rows, assets/js/pager.js),
+     then the Archive grid with this month marked.
+     docs/styleguide.md, Page by Page: Log month. */ -}}
 {{- $hub := site.GetPage "/log" -}}
+{{- $months := .CurrentSection.RegularPages.ByDate -}}
+{{- $prev := false -}}
+{{- $next := false -}}
+{{- $prevN := 0 -}}
+{{- $nextN := 0 -}}
+{{- range $i, $m := $months -}}
+  {{- if eq $m.Path $.Path -}}
+    {{- if gt $i 0 }}{{ $prev = index $months (sub $i 1) }}{{ $prevN = $i }}{{ end -}}
+    {{- if lt (add $i 1) (len $months) }}{{ $next = index $months (add $i 1) }}{{ $nextN = add $i 2 }}{{ end -}}
+  {{- end -}}
+{{- end }}
 <article class="log-month{{ with .Params.content_css }} {{ . }}{{ end }}">
   {{ partial "page-head.html" (dict "page" . "dek" (.Params.description | default (and $hub $hub.Params.filter_dek))) }}
   {{ partial "block-body.html" .Content }}
 </article>
+{{- if or $prev $next }}
+<nav class="block end pager" aria-labelledby="log-pager-title">
+  <div class="rail"><h2 id="log-pager-title">In the log</h2>{{ with $hub }}<p class="meta"><a href="{{ .RelPermalink }}">All months →</a></p>{{ end }}</div>
+  <div class="main">
+    <ul class="rows">
+      {{- /* row.html markup, written out so the links carry rel and
+           aria-keyshortcuts for the pager script. */}}
+      {{- with $prev }}
+      <li class="row">
+        <span class="row-meta">← <span class="n">{{ printf "%03d" $prevN }}</span></span>
+        <span class="row-main"><a class="row-title" href="{{ .RelPermalink }}" rel="prev" aria-keyshortcuts="ArrowLeft">{{ .Title }}</a></span>
+      </li>
+      {{- end }}
+      {{- with $next }}
+      <li class="row">
+        <span class="row-meta"><span class="n">{{ printf "%03d" $nextN }}</span> →</span>
+        <span class="row-main"><a class="row-title" href="{{ .RelPermalink }}" rel="next" aria-keyshortcuts="ArrowRight">{{ .Title }}</a></span>
+      </li>
+      {{- end }}
+    </ul>
+    <p class="legend"><kbd>←</kbd> <kbd>→</kbd> move between months</p>
+  </div>
+</nav>
+{{- $pager := resources.Get "js/pager.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $pager.RelPermalink }}" integrity="{{ $pager.Data.Integrity }}" defer></script>
+{{- end }}
 {{ partial "log-archive.html" (dict "page" . "class" "end") }}
 {{ end }}

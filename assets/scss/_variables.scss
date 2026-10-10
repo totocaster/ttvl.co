@@ -87,7 +87,8 @@ $card-min-width: 240px;
 $max-width-measure: 640px; // running text, deks, forms, legends
 $max-width-bleed: 760px; // figures, sheets, terminals, tables
 $row-meta-width: 128px;
-$row-meta-width-narrow: 96px;
+$row-meta-width-narrow: 96px; // phones: the meta column's floor
+$row-meta-width-narrow-max: 136px; // and its ceiling
 // Older names, kept for the section and viewer stylesheets.
 $max-width-readable: $max-width-measure;
 $max-width-panel: 428px; // the links column
