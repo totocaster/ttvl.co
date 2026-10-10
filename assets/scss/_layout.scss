@@ -24,7 +24,7 @@
 }
 
 // The masthead: two lines. The logo with the search key at right, then
-// the nav on its own line. No rule under it: the space does the work.
+// the nav on its own line, then one rule hairline.
 header.site {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
@@ -32,6 +32,7 @@ header.site {
   row-gap: 20px; // masthead geometry
   padding-top: 36px; // masthead geometry
   padding-bottom: $space-4;
+  border-bottom: 1px solid var(--rule);
 
   .logo {
     grid-column: 1;
