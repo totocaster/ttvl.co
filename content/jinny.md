@@ -53,12 +53,14 @@ In 2026, I designed and built a new website for the gallery, with a 3D neighborh
 
 ## Jinny Lemon Sour
 
+Jinny Lemon Sour is no longer made. We stopped producing it in January 2027.
+
 - Website: [jinnystreetgallery.com/lemon-sour](https://www.jinnystreetgallery.com/lemon-sour)
 - Instagram: [@jinny.sour](https://www.instagram.com/jinny.sour)
 
-Jinny Lemon Sour is a collaboration between Jinny Street Gallery and [Open Book][ob], a renowned bar and beverage-maker in Shinjuku’s legendary Golden Gai district. Open Book produces craft lemon sours, while Jinny Street Gallery curates artworks from our featured artists for the drink’s labels.
+Jinny Lemon Sour was a collaboration between Jinny Street Gallery and [Open Book][ob], a renowned bar and beverage-maker in Shinjuku’s legendary Golden Gai district. Open Book made the craft lemon sours, while Jinny Street Gallery curated artworks from our featured artists for the drink’s labels.
 
-Jinny Lemon Sour is exclusively available in the gallery’s neighborhood. A complete list of locations can be found on the [map][jlsmap].
+It was sold only in the gallery’s neighborhood; the [map of the shops that carried it][jlsmap] stays here for the record.
 
 [lorenzo]: https://www.instagram.com/_lorenzomenghi/
 [jlsmap]: https://www.google.com/maps/d/viewer?mid=1yQDW56n3qqUG7OT3BdBVzTzLt_XSEsQ&femb=1&ll=35.67485764151779%2C139.7108005&z=18
