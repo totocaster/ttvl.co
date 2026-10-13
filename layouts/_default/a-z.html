@@ -68,7 +68,17 @@
         <ul>
           {{- range . }}
           {{- $page := .page }}
-          <li><a href="{{ $page.RelPermalink }}">{{ $page.Title | default $page.File.Path }}</a>{{ if eq $page.Section "flaneur" }}<span class="env" title="Also went out as a Flâneur dispatch">{{ partial "icons/mail.svg" . }}<span class="visually-hidden"> (Flâneur dispatch)</span></span>{{ end }}</li>
+          {{- $t := $page.Title | default $page.File.Path }}
+          {{- if eq $page.Section "flaneur" }}
+          {{- /* The mail icon rides on the title's last word, so it never
+               wraps to a line of its own. */}}
+          {{- $words := split $t " " }}
+          {{- $last := index $words (sub (len $words) 1) }}
+          {{- $head := delimit (first (sub (len $words) 1) $words) " " }}
+          <li><a href="{{ $page.RelPermalink }}">{{ with $head }}{{ . }} {{ end }}<span class="nobr">{{ $last }}<span class="env" title="Also went out as a Flâneur dispatch">{{ partial "icons/mail.svg" . }}<span class="visually-hidden"> (Flâneur dispatch)</span></span></span></a></li>
+          {{- else }}
+          <li><a href="{{ $page.RelPermalink }}">{{ $t }}</a></li>
+          {{- end }}
           {{- end }}
         </ul>
       </section>

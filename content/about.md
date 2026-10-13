@@ -40,9 +40,9 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
 
 {{< section title="Books" meta="Not awards. Things that exist." id="books" >}}
 
-<ul class="rows record">
-  <li class="row"><span class="row-meta"><time datetime="2026">2026</time></span><span class="row-main"><a class="row-title" href="/flaneur/014/">Scent of Time</a><span class="row-dek">photobook maquette about how we perceive time, developed in the FotoFilmic Book Program with Greg Girard. Shown at FotoFilmic Paris during Paris Photo week, November 2026.</span></span></li>
-  <li class="row"><span class="row-meta"><time datetime="2019">2019–</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/out-of-memory">Out of Memory, Vol. 1–11</a><span class="row-dek">a 200-page volume every six to eight months, hopefully until my last day</span></span></li>
+<ul class="rows record with-deks">
+  <li class="row"><span class="row-meta"><time datetime="2026">2026</time></span><span class="row-main"><a class="row-title" href="/flaneur/014/">Scent of Time</a><span class="row-dek">Photobook maquette about how we perceive time, developed in the FotoFilmic Book Program with Greg Girard. Shown at FotoFilmic Paris during Paris Photo week, November 2026.</span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2019">2019–</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/out-of-memory">Out of Memory, Vol. 1–11</a><span class="row-dek">A 200-page volume every six to eight months, hopefully until my last day</span></span></li>
   <li class="row"><span class="row-meta"><time datetime="2021">2021–25</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/maquettes/">Seven maquettes</a><span class="row-dek">Catch-32, Someone at the Door, Synesthesia, A Chair in the Sky, and others</span></span></li>
 </ul>
 
@@ -63,7 +63,7 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
   <li class="row"><span class="row-meta"><time datetime="2023-01">2023-01</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/flaneur/">Tokyo Flâneur: Through the Eyes of a Stroller</a> <span class="row-tail">Jinny Street Gallery, group</span></span></li>
   <li class="row"><span class="row-meta"><time datetime="2022-11">2022-11</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/wirescapes/">Wirescapes: Connected With the Urban Fabric</a> <span class="row-tail">UNTITLED SPACE, Tokyo, duo</span></span></li>
   <li class="row"><span class="row-meta"><time datetime="2022-06">2022-06</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/the-line-synesthesia/">Synesthesia</a> <span class="row-tail">Verinuqué Aoyama, Tokyo, solo event</span></span></li>
-  <li class="row"><span class="row-meta"><time datetime="2022-05">2022-05</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/walk-with-me/">Walk With Me</a><span class="row-dek">the streetlamps of Jingumae 2-chome, Tokyo, solo. The show that became the gallery.</span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2022-05">2022-05</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/walk-with-me/">Walk With Me</a><span class="row-dek">The streetlamps of Jingumae 2-chome, Tokyo, solo. The show that became the gallery.</span></span></li>
   <li class="row"><span class="row-meta"><time datetime="2021-12">2021-12</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/perspectives/">Perspectives</a> <span class="row-tail">Gallery Ether, Tokyo, group</span></span></li>
 </ul>
 
@@ -83,10 +83,10 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
 
 {{< section title="Programs and Training" id="programs-and-training" >}}
 
-<ul class="rows record">
-  <li class="row"><span class="row-meta"><time datetime="2025">2025–26</time></span><span class="row-main"><a class="row-title" href="https://fotofilmic.com/fotofilmic-book-program/">FotoFilmic Book Program</a><span class="row-dek">directed by Greg Girard, with Michael Kominek and Gonzalo Sanchez</span></span></li>
+<ul class="rows record with-deks">
+  <li class="row"><span class="row-meta"><time datetime="2025">2025–26</time></span><span class="row-main"><a class="row-title" href="https://fotofilmic.com/fotofilmic-book-program/">FotoFilmic Book Program</a><span class="row-dek">Directed by Greg Girard, with Michael Kominek and Gonzalo Sanchez</span></span></li>
   <li class="row"><span class="row-meta"><time datetime="2025">2025–26</time></span><span class="row-main"><a class="row-title" href="https://en.marumizu.net/">Year-long bookbinding course</a><span class="row-dek">Marumizu-gumi, Tokyo. <em>A Chair in the Sky</em> was in the 2025 exhibition.</span></span></li>
-  <li class="row"><span class="row-meta"></span><span class="row-main"><span class="row-value">Everything else, self-taught</span><span class="row-dek">software and photography alike</span></span></li>
+  <li class="row"><span class="row-meta"></span><span class="row-main"><span class="row-value">Everything else, self-taught</span><span class="row-dek">Software and photography alike</span></span></li>
 </ul>
 
 {{< /section >}}
@@ -107,7 +107,7 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
 {{< section title="Video" id="video" >}}
 
 <ul class="rows record">
-  <li class="row"><span class="row-meta"><time datetime="2023-06">2023-06</time></span><span class="row-main"><span class="row-value">Creative Curation: Breathing New Life into Tokyo’s Streets</span> <span class="row-tail">NHK World · <a class="row-link" href="https://vimeo.com/1187645245/3d183a475f?share=copy&amp;fl=sv&amp;fe=ci">archival link</a></span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2023-06">2023-06</time></span><span class="row-main"><a class="row-title" href="https://vimeo.com/1187645245/3d183a475f?share=copy&amp;fl=sv&amp;fe=ci">Creative Curation: Breathing New Life into Tokyo’s Streets</a> <span class="row-tail">NHK World</span></span></li>
   <li class="row"><span class="row-meta"><time datetime="2023-03">2023-03</time></span><span class="row-main"><a class="row-title" href="https://youtu.be/FtVC0lzo6Ww">Voice of Tokyo, Episode 5: Jinny Street Gallery</a> <span class="row-tail">Tokyo Weekender</span></span></li>
 </ul>
 
@@ -117,7 +117,7 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
 
 <ul class="rows record">
   <li class="row"><span class="row-meta"><time datetime="2025">2025</time></span><span class="row-main"><a class="row-title" href="https://www.reuseitaly.com/books/atlas-of-ruins/">Three Photographs from Tskaltubo, Georgia</a> <span class="row-tail">Atlas of Ruins, Vol. <span class="n">1</span>, STH Press, Italy</span></span></li>
-  <li class="row"><span class="row-meta"><time datetime="2025-03">2025-03</time></span><span class="row-main"><span class="row-value">Cover and interview on Jinny Street Gallery, with Lorenzo Menghi</span> <span class="row-tail">andJ, Jingumae neighborhood magazine · <a class="row-link" href="/downloads/andJ06_interview.pdf">archival link</a></span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2025-03">2025-03</time></span><span class="row-main"><a class="row-title" href="/downloads/andJ06_interview.pdf">Cover and interview on Jinny Street Gallery, with Lorenzo Menghi</a> <span class="row-tail">andJ, Jingumae neighborhood magazine</span></span></li>
   <li class="row"><span class="row-meta"><time datetime="2022-11">2022-11</time></span><span class="row-main"><a class="row-title" href="https://www.adfwebmagazine.jp/en/art/wirescapes-connected-with-the-urban-fabric/">Wirescapes: connected with the urban fabric</a> <span class="row-tail">ADF Magazine, exhibition report by Matteo Belfiore</span></span></li>
   <li class="row"><span class="row-meta"><time datetime="2022-03">2022-03</time></span><span class="row-main"><a class="row-title" href="https://www.amazon.co.jp/-/en/生活の友社/dp/B09PMKBZY9">Lone Man, 2019</a> <span class="row-tail">ARTcollectors’ アートコレクターズ Magazine, Issue <span class="n">156</span></span></span></li>
 </ul>

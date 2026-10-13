@@ -13,20 +13,26 @@
   }
 }
 
+// The map sits on a pale ground, not the viewers' dark well, as it did
+// before Panel (deliberate exception: a map's own paper).
+.spatial-long-exposure .viewer-frame {
+  background: #fafafa;
+
+  @include dark {
+    background: #1c1c1c;
+  }
+}
+
+// The tiles are faded as one layer: per-tile opacity doubled up where
+// neighbors overlap by half a pixel and drew seams, and one filter on the
+// layer is far cheaper to composite while panning than one per tile.
 .spatial-long-exposure__tiles {
   position: absolute;
   inset: 0;
   overflow: hidden;
   pointer-events: none;
-}
-
-.spatial-long-exposure__tile {
-  position: absolute;
-  display: block;
-  max-width: none;
   filter: grayscale(1) contrast(0.72) brightness(1.08);
   opacity: 0.72;
-  user-select: none;
 
   @include dark {
     filter: grayscale(1) invert(0.88) contrast(0.72) brightness(0.58);
@@ -37,6 +43,13 @@
     filter: grayscale(1);
     opacity: 1;
   }
+}
+
+.spatial-long-exposure__tile {
+  position: absolute;
+  display: block;
+  max-width: none;
+  user-select: none;
 }
 
 // OpenStreetMap's attribution stays on the map, at the top right, as a

@@ -122,7 +122,7 @@ A heading directly under a heading sits 8 px below it. Media directly under a he
 | Column | 880 px after padding, rail, and gap | Rows, cards, prose blocks |
 | Measure | 640 px | Running text, deks, forms, legends |
 | Bleed | 760 px | Figures, sheets, terminals, tables |
-| Inner page | 1120 px | Viewers, galleries, and wide tables, which reach back across the rail |
+| Inner page | 1120 px | Viewers and wide tables, which reach back across the rail (galleries stay in the column) |
 
 The rail stacks at 1024 px, with its lines joining at 12 px gaps. The phone breakpoint remains 768 px: the masthead nav becomes one line that scrolls with a fade, the index becomes one column, and row tails drop below their titles. Card grids adapt independently: each card needs 240 px, giving three columns at full desktop width, two at intermediate widths, and one on small phones.
 
@@ -338,7 +338,7 @@ Full ground. Centered, 96 px down: a “Search site” label and a Close button,
 
 The viewers (`model-viewer`, `model-viewer-comparison`, `gaussian-splat`, `spatial-long-exposure`) share one geometry:
 
-- The viewers and galleries span the inner page (1120 px) on an article whose rail is empty beside the body; on a page with the table of contents in the rail they stay in the column.
+- The viewers span the inner page (1120 px) on an article whose rail is empty beside the body; on a page with the table of contents in the rail they stay in the column. Galleries always stay in the column, starting where the text starts.
 - A bar above the frame in the label voice: the title at left, the controls at right as quiet blocks; the comparison viewer's two dates and the map's `Places · Connections · Both` modes are one segmented control, the pressed key in ink. 12 px between the bar and the frame.
 - The frame: 16:10, the column's width, a 1 px `--edge` frame with radius 2, the media well dark (`#111`, a deliberate exception). The fullscreen key at the bottom right: 32 px (44 px for touch), 1 px white at 60%, black at 50% behind, a stroke icon. A status badge at the bottom left (`Loading scan…`, `Showing after Kyojima · 2026-08-03`) in 14 px white on black at 55%, which keeps white text at 4.5:1 over a light poster; the map's OpenStreetMap credit is the same badge at the top right.
 - A legend under the frame: how to move, and the download with its size in Mono and `↓`.
@@ -386,6 +386,7 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 ## Changelog
 
+- **2026-10-13, v8.0, galleries in the column.** Photo galleries start where the text starts and fill the column; viewers still span the page. Contact sheet frames press like card tiles. The map's tiles fade as one layer on a pale ground.
 - **2026-10-13, v8.0, masthead and footer on the grid.** The signature and the nav stand on the column's edge above the title; search is a lone loupe flush right in the rail, opening the overlay on click. The footer mirrors it: a rule above, the version flush right in the rail, the copyright and links in the column.
 - **2026-10-13, v8.0, flush right.** Everything in the first column sits flush right against the gap on wide screens: head rail, block headings and meta, numerals, list keys, and the contents with its numerals and lamp at the gap.
 - **2026-10-13, v8.0, light lists.** Rows lose their hairlines and sit 4 px apart (16 with deks) with 16/24 titles and the tail inline after the title, as in Air; on wide screens the key sits flush right in the rail, next to its title.

@@ -34,6 +34,27 @@
     text-decoration: none;
   }
 
+  // Under the hand a frame becomes a key, as a project card's tile does:
+  // the frame turns ink, the shadow appears, pressing drops it.
+  img {
+    margin: 0 $shadow-quiet $shadow-quiet 0; // room for the shadow
+    transition:
+      border-color $t-fast,
+      box-shadow $t-press,
+      transform $t-press;
+  }
+
+  a:hover img,
+  a:focus-visible img {
+    border-color: var(--ink);
+    box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+  }
+
+  a:active img {
+    transform: translate($shadow-quiet, $shadow-quiet);
+    box-shadow: none;
+  }
+
   img {
     display: block;
     width: 150px;
