@@ -327,3 +327,45 @@
     margin-bottom: $space-2;
   }
 }
+
+// Wide screens: everything in the first column sits flush right against
+// the gap, so every label points at what it describes: the page head's
+// rail lines, block headings and their meta lines and leads, the prose and
+// principle numerals, list keys (components/_row.scss), and the contents.
+// When the rail stacks, everything returns to the left edge.
+@include rail-wide {
+  .page-head > .rail,
+  .block > .rail {
+    text-align: right;
+  }
+
+  .prose > h2::before,
+  .about h3.principle::before {
+    text-align: right;
+  }
+
+  // The contents: the entries flush right, the numerals in a column of
+  // their own against the gap, and the lamp in the gap itself, so neither
+  // the entry nor its number moves when it lights.
+  .rail-toc .toc {
+    li {
+      padding-left: 0;
+      padding-right: $space-6;
+
+      &::before {
+        left: auto;
+        right: 0;
+      }
+
+      // Subsections sit flush right under their section, unnumbered.
+      li {
+        padding-right: 0;
+      }
+    }
+
+    li:has(> a[aria-current="true"])::after {
+      left: auto;
+      right: -14px; // lamp geometry: in the gap, 8 px past the number
+    }
+  }
+}
