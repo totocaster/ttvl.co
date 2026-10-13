@@ -73,11 +73,12 @@
   }
 }
 
-// The tail: one qualifier, inline after the title, wrapping as a unit.
+// The tail: one qualifier, inline after the title, wrapping as a unit,
+// quieter than the title and set 8 px off it so it never cuts into it.
 .row-tail {
   @include type-meta;
-  color: var(--ink-faint);
-  margin-left: $space-1;
+  color: var(--ink-quiet);
+  margin-left: $space-2;
   white-space: nowrap;
   @include meta-links;
 }

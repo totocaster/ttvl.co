@@ -7,6 +7,9 @@
 //   --ink            text, frames, buttons
 //   --ink-muted      deks, captions, the nav at rest
 //   --ink-faint      labels, meta, legends, rail lines, the subscribe key's shadow
+//   --ink-quiet      the qualifier after a row's title: present, never cutting
+//                    into the title (3.45:1 light, 3.8:1 dark; below the
+//                    4.5:1 floor by choice; high contrast lifts it to muted)
 //   --rule           the hairline under the masthead, inside tables
 //   --edge           frames: tiles, sheets, figures, keycaps, the quotation
 //   --surface        raised panels: sheets, hover tints, the selected search row
@@ -25,6 +28,7 @@
   --ink: #000;
   --ink-muted: #555;
   --ink-faint: #6e6e6e;
+  --ink-quiet: #8a8a8a;
   --rule: #f2f2f2;
   --edge: #d9d9d9;
   --surface: #f7f7f7;
@@ -42,6 +46,7 @@
     --ink: #ededed;
     --ink-muted: #b5b5b5;
     --ink-faint: #929292;
+    --ink-quiet: #727272;
     --rule: rgba(255, 255, 255, 0.06);
     --edge: rgba(255, 255, 255, 0.2);
     --surface: rgba(255, 255, 255, 0.05);
@@ -54,6 +59,7 @@
 @media screen and (prefers-contrast: more) {
   :root {
     --ink-faint: var(--ink-muted);
+    --ink-quiet: var(--ink-muted);
     --rule: var(--ink);
     --edge: var(--ink);
     --surface: var(--ground);

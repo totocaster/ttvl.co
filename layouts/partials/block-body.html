@@ -13,8 +13,12 @@
 {{- $toc := "" -}}
 {{- if $p.Store.Get "toc" -}}
   {{- with $p.Store.Get "sections" -}}
+    {{- /* The content can render more than once per build (the summary, the
+         search index, a dev server rebuild), and each render registers its
+         sections again, so list each anchor once. */ -}}
     {{- $items := "" -}}
-    {{- range . }}{{ $items = printf `%s<li><a href="#%s">%s</a></li>` $items .id (htmlEscape .title) }}{{ end -}}
+    {{- $seen := slice -}}
+    {{- range . }}{{ if not (in $seen .id) }}{{ $seen = $seen | append .id }}{{ $items = printf `%s<li><a href="#%s">%s</a></li>` $items .id (htmlEscape .title) }}{{ end }}{{ end -}}
     {{- $toc = printf `<nav><ul>%s</ul></nav>` $items -}}
   {{- else -}}
     {{- $toc = string $p.TableOfContents -}}

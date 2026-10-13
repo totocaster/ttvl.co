@@ -62,6 +62,16 @@ Jinny Lemon Sour was a collaboration between Jinny Street Gallery and [Open Book
 
 It was sold only in the gallery’s neighborhood; the [map of the shops that carried it][jlsmap] stays here for the record.
 
+{{< photo-gallery label="Photographs of Jinny Lemon Sour" >}}
+[![Two cans and two glasses of Jinny Lemon Sour on white steps, each with a different artist's label](/visuals/jinny/lemon-sour-steps.jpg)](/visuals/jinny/lemon-sour-steps.jpg)
+
+[![A can of Jinny Lemon Sour with a yellow label on a white plinth](/visuals/jinny/lemon-sour-can.jpg)](/visuals/jinny/lemon-sour-can.jpg)
+
+[![A can of Jinny Lemon Sour on a wooden counter at Bocchiriya, beside bowls of food](/visuals/jinny/lemon-sour-counter.jpg)](/visuals/jinny/lemon-sour-counter.jpg)
+
+[![A can of Jinny Lemon Sour being poured into a glass of ice at Bocchiriya](/visuals/jinny/lemon-sour-pour.jpg)](/visuals/jinny/lemon-sour-pour.jpg)
+{{< /photo-gallery >}}
+
 [lorenzo]: https://www.instagram.com/_lorenzomenghi/
 [jlsmap]: https://www.google.com/maps/d/viewer?mid=1yQDW56n3qqUG7OT3BdBVzTzLt_XSEsQ&femb=1&ll=35.67485764151779%2C139.7108005&z=18
 [jsgmap]: https://www.google.com/maps/@35.6746039,139.7093185,17z/data=!4m2!6m1!1s1F5rSZIohyvIfl83dL3wI3fvHyFmYSSM
