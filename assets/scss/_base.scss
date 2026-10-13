@@ -358,6 +358,20 @@ kbd {
   &.portrait {
     max-width: 360px;
   }
+
+  // Two tall photographs side by side at bleed width, one caption under
+  // both; they keep their own proportions.
+  &.pair {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: $space-3;
+    align-items: start;
+
+    > figcaption {
+      grid-column: 1 / -1;
+      margin-top: 0;
+    }
+  }
 }
 
 :where(main) figcaption {
