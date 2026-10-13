@@ -225,6 +225,15 @@ kbd {
     }
   }
 
+  // Wide screens: a list's text stands on the paragraph's edge and its
+  // markers hang outside it, in the gap, so the column keeps one left edge.
+  @include rail-wide {
+    > ul,
+    > ol {
+      padding-left: 0;
+    }
+  }
+
   li {
     margin: 0 0 6px; // list item geometry
 

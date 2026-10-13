@@ -1,8 +1,12 @@
-{{- /* The footer: no rule. Copyright and version at left, numbers in Mono;
-     Colophon, Index, and RSS at right. docs/styleguide.md, Footer. */ -}}
+{{- /* The footer, on the page's grid like the masthead: one rule hairline
+     above it; on wide screens the version sits flush right in the rail, the
+     copyright at the column's edge, and Colophon, Index, and RSS at the
+     right. On phones the copyright and version share a line and the links
+     follow. Numbers in Mono. docs/styleguide.md, Footer. */ -}}
 {{- $version := .Site.Params.version }}
 {{- $update := or (os.Getenv "HUGO_SITE_UPDATE") $version.update }}
 <footer class="foot wrap">
-  <p>&copy; <span class="n">2008–{{ now.Year }}</span> {{ .Site.Title }} · <span class="n">v{{ $version.major }}.{{ $version.minor }}.{{ $update }}</span></p>
-  <p><a href="/colophon/">Colophon</a> · <a href="/a-z/">Index</a> · <a href="/index.xml">RSS</a></p>
+  <p class="foot-version"><span class="n">v{{ $version.major }}.{{ $version.minor }}.{{ $update }}</span></p>
+  <p class="foot-copy">&copy; <span class="n">2008–{{ now.Year }}</span> {{ .Site.Title }}</p>
+  <p class="foot-links"><a href="/colophon/">Colophon</a> · <a href="/a-z/">Index</a> · <a href="/index.xml">RSS</a></p>
 </footer>

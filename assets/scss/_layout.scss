@@ -194,14 +194,19 @@ header.site {
   }
 }
 
-// The footer: no rule. 96 px after the last block, faint 14 px.
+// The footer: 96 px after the last block, one rule hairline above it as
+// the masthead has one under it, faint 14 px. On wide screens it stands on
+// the page's grid: the version flush right in the rail, the copyright at
+// the column's edge, the links at the right.
 footer.foot {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   gap: $space-2 $space-5;
   margin-top: $rhythm-footer;
+  padding-top: $space-4;
   padding-bottom: $space-7;
+  border-top: 1px solid var(--rule);
   @include type-meta;
   color: var(--ink-faint);
   @include meta-links;
@@ -210,7 +215,46 @@ footer.foot {
     margin: 0;
   }
 
+  // Stacked: the copyright, then its version, then the links.
+  .foot-copy {
+    order: 1;
+  }
+
+  .foot-version {
+    order: 2;
+    margin-right: auto;
+
+    &::before {
+      content: "· ";
+    }
+  }
+
+  .foot-links {
+    order: 3;
+  }
+
   @include narrow {
     margin-top: $space-8;
+  }
+
+  @include rail-wide {
+    display: grid;
+    grid-template-columns: $rail-width minmax(0, 1fr) auto;
+    column-gap: $rail-gap;
+
+    .foot-version {
+      order: 0;
+      margin-right: 0;
+      text-align: right;
+
+      &::before {
+        content: none;
+      }
+    }
+
+    .foot-copy,
+    .foot-links {
+      order: 0;
+    }
   }
 }

@@ -10,7 +10,7 @@ The standard is called **Panel**. It replaced Air on 2026-10-07 and ships as sit
 2. **The rail carries the metadata.** A page head and every block are two columns: a 192 px rail at left for the label, date, count, or kind, and the column for the content. On wide screens the rail is the page's one column of labels: a list's dates sit in it too, so titles and text start at one edge. Metadata stays in the rail; deks and resource links may sit under a title. A page carries one count at most, in its head rail (`75 notes · updated 2026-09`): how many pages a hub lists. Block rails and end matter carry none; a reader who wants the number has it at the top. The one exception is the Projects switches, which are controls rather than labels and carry each hub's count on their faces. On wide screens everything in the rail sits flush right against the gap, next to what it labels; when the rail stacks it returns to the left edge.
 3. **Words in Sans, numbers in Mono.** Dates, counts, issue and entry numbers, sizes, and the version are set in Plex Mono with tabular figures. Every other label is Plex Sans in sentence case. No uppercase, no letter-spacing.
 4. **One way to do each thing.** One page head, one block, one row, one card, one button, one legend, one form. Everything that is listed is a row: streams, doors, search results, the index's hubs, the pager.
-5. **Hairlines you have to look for.** A line sits only under the masthead; lists are held by space. Nothing frames a list, nothing rules the footer. Frames stay on tiles, tables, sheets, and the quotation.
+5. **Hairlines you have to look for.** A line sits only under the masthead and over the footer; lists are held by space. Nothing frames a list. Frames stay on tiles, tables, sheets, and the quotation.
 6. **Buttons are blocks.** A control is a flat block on a hard offset shadow. Pressing moves the block into its shadow. No gradients, no glow.
 7. **The look is the stylesheet.** Markup stays semantic and shared; a section never restyles a shared pattern locally.
 
@@ -145,7 +145,7 @@ Rendered by `partials/header.html` and `partials/nav.html`, styled in `_layout.s
 
 ### Footer
 
-No rule. 96 px after the last block, faint 14 px: the copyright and version at left (`© 2008–2026 Toto Tvalavadze · v8.0.351`, numbers in Mono), then `Colophon · Index · RSS` at right. On dispatch pages: `ttvl.co · Archive`.
+96 px after the last block, one `--rule` hairline above it (the masthead's mirror), faint 14 px, numbers in Mono. On wide screens it stands on the page's grid like the masthead: the version (`v8.0.351`) flush right in the rail, `© 2008–2026 Toto Tvalavadze` at the column's edge, `Colophon · Index · RSS` at the right. Stacked, the copyright and version share a line and the links follow. On dispatch pages: `ttvl.co · Archive`.
 
 ### Page Head
 
@@ -209,6 +209,7 @@ The article body is one block with an empty rail. Prose holds the measure.
 - Paragraphs 18 px apart. Lists indent 24 px, markers faint.
 - `h2` carries a Mono numeral (`01`, `02`) in the rail, from a CSS counter; `h3` carries none. On phones the numeral sits inline before the heading.
 - Prose links are 500 and underlined.
+- Lists in prose: on wide screens the text stands on the paragraph's edge and the bullets and numbers hang outside it, in the gap; when the rail stacks they indent 24 px as usual.
 - Quotations: a 2 px `--edge` rule at left, 20 px padding, full ink; `.quote-attribution` in the label voice under it.
 - A `---` renders as a 128 px `--edge` rule at the left. Inside a `section` shortcode it renders as space.
 - The table of contents (the `toc` shortcode, wherever it sits in the Markdown) renders in the body block's rail under a `Contents` heading (a page may name it: About's reads `On this page`, and may list the body itself first, as About's `About`), listing the page's `section` shortcodes where it is built from them (About) and its Markdown headings otherwise, 16 px above the list: a numbered list in the label voice with Mono numerals, muted links, sticky 24 px from the top while the page scrolls. On wide screens the entries sit flush right, their numerals in a column against the gap and the lamp in the gap itself; stacked, they read left to right as before. The entry whose section is in view (the last heading above the top third of the window) is in ink with the lamp, a 6 px `--signal` dot, hanging in the gutter before its number so the entry never rewraps; set by `assets/js/toc-spy.js`. Above the first heading nothing is lit. The prose then carries no heading numerals. At 1024 px and below it stacks above the body in two columns.
@@ -383,7 +384,7 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 ## Changelog
 
-- **2026-10-13, v8.0, masthead on the grid.** The signature and the nav stand on the column's edge above the title; search is a lone loupe flush right in the rail, opening the overlay on click.
+- **2026-10-13, v8.0, masthead and footer on the grid.** The signature and the nav stand on the column's edge above the title; search is a lone loupe flush right in the rail, opening the overlay on click. The footer mirrors it: a rule above, the version flush right in the rail, the copyright and links in the column.
 - **2026-10-13, v8.0, flush right.** Everything in the first column sits flush right against the gap on wide screens: head rail, block headings and meta, numerals, list keys, and the contents with its numerals and lamp at the gap.
 - **2026-10-13, v8.0, light lists.** Rows lose their hairlines and sit 4 px apart (16 with deks) with 16/24 titles and the tail inline after the title, as in Air; on wide screens the key sits flush right in the rail, next to its title.
 - **2026-10-10, v8.0, leaves as keys.** Loose Leaves tiles take the notebook's page proportion and the key's shadow; the lightbox fits a tall scan whole.
