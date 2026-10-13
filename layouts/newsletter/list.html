@@ -3,7 +3,7 @@
      (front matter start_here, when show_start_here), the Contact Sheet
      (one frame per dispatch with a cover, when show_contact_sheet), and one
      tight block per year (deks when show_deks; a year_qualifiers entry in
-     front matter puts a note beside the year). docs/styleguide.md, Page by Page
+     front matter puts a note under the year). docs/styleguide.md, Page by Page
      (Newsletter). */ -}}
 {{ define "main" }}
 {{- $dispatches := (where (where site.Pages "Section" "flaneur") "Kind" "page").ByDate.Reverse -}}
@@ -74,7 +74,7 @@
 
   {{- range $dispatches.GroupByDate "2006" }}
   <section class="block year">
-    <div class="rail"><h2>{{ .Key }}{{ with index ($.Params.year_qualifiers | default dict) .Key }} <span class="qualifier">{{ . }}</span>{{ end }}</h2></div>
+    <div class="rail"><h2>{{ .Key }}</h2>{{ with index ($.Params.year_qualifiers | default dict) .Key }}<p class="meta">{{ . }}</p>{{ end }}</div>
     <div class="main">
       <ul class="rows{{ if $.Params.show_deks }} with-deks{{ end }}">
         {{- range .Pages.ByDate.Reverse }}

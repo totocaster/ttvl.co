@@ -69,3 +69,9 @@
     margin-bottom: 0;
   }
 }
+
+// The hub's Streams list: each stream's name a step bolder than an entry
+// title, so the streams read as the hub's sections.
+.rows.streams .row-title {
+  font-weight: $font-weight-medium;
+}

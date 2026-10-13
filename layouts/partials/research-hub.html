@@ -24,7 +24,7 @@
 <section class="block">
   <div class="rail"><h2>Streams</h2>{{ with $feed }}<p class="meta">{{ . | safeHTML }}</p>{{ end }}</div>
   <div class="main">
-    <ul class="rows with-deks">
+    <ul class="rows with-deks streams">
       {{- range . }}
       {{ partial "row.html" (dict
         "meta" (title (.Params.status | default "active"))

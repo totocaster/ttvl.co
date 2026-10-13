@@ -66,7 +66,7 @@ Themed colors come only from the custom properties in `assets/scss/_tokens.scss`
 | `--ink` | Text, frames, buttons, the masthead rule's pair | `#000` | `#ededed` | 21:1 / 15.8:1 |
 | `--ink-muted` | Deks, captions, the nav at rest | `#555` | `#b5b5b5` | 7.5:1 / 9:1 |
 | `--ink-faint` | Labels, meta, legends, rail lines, the subscribe key's shadow | `#6e6e6e` | `#929292` | 5.1:1 / 6:1 |
-| `--ink-quiet` | The qualifier after a row's title (`Thinking`, `024 · Question`) | `#8a8a8a` | `#727272` | 3.45:1 / 3.8:1, below the floor by choice; high contrast lifts it to muted |
+| `--ink-quiet` | The qualifier after a row's title (`Thinking`, `024 · Question`) | `#a3a3a3` | `#626262` | 2.5:1 / 3:1, below the floor by choice; high contrast lifts it to muted |
 | `--rule` | The hairline under the masthead, inside tables | `#f2f2f2` | `rgba(255,255,255,.06)` | barely there |
 | `--edge` | Frames: tiles, sheets, figures, keycaps, the quotation | `#d9d9d9` | `rgba(255,255,255,.2)` | |
 | `--surface` | Raised panels: sheets, hover tints, the selected search row | `#f7f7f7` | `rgba(255,255,255,.05)` | |
@@ -245,7 +245,7 @@ Rendered by `partials/row.html`, styled by `components/_row.scss`.
 
 ### Ledger Blocks
 
-A block whose column starts with a list is a ledger: on wide screens its rail heading takes its own line, and the list below uses the rail as its meta column, so the page keeps one column of labels. Nothing groups rows inside a block: a year, a stream, or a kind of record is a block of its own, its name in the rail and a qualifier (the newsletter's `as Dreaming with One Eye Open`) beside the name in the label voice, wrapping inside the rail. Ledger mode is set by the content (`:has()`) or by a `ledger` class on the block. The Index's A–Z letters are the one list that keeps headings inside its block: a three-column index, not a ledger. At 1024 px the rail stacks; rows keep a 128 px meta column until the phone breakpoint, where it fits its content between 96 and 136 px.
+A block whose column starts with a list is a ledger: on wide screens its rail heading takes its own line, and the list below uses the rail as its meta column, so the page keeps one column of labels. Nothing groups rows inside a block: a year, a stream, or a kind of record is a block of its own, its name in the rail and a qualifier (the newsletter's `as Dreaming with One Eye Open`) under the name as its meta line. Ledger mode is set by the content (`:has()`) or by a `ledger` class on the block. The Index's A–Z letters are the one list that keeps headings inside its block: a three-column index, not a ledger. At 1024 px the rail stacks; rows keep a 128 px meta column until the phone breakpoint, where it fits its content between 96 and 136 px.
 
 ### Cards
 
@@ -321,7 +321,7 @@ Full ground. Centered, 96 px down: a “Search site” label and a Close button,
 - **Research entry.** Head (`date · number` / `Stream · Kind`). Body. Mentioned In. In This Stream, with the legend. The arrow keys keep working.
 - **Log hub.** Head. One block per month, newest first: the month as the rail heading (linked), its content in the column. Then the Archive block with the year-by-month grid: Mono 14, 64 px year column, twelve cells, hairlines between years, voids as `··`, the current month in 500 with a 2 px `--signal` underline.
 - **Log month.** Head (`Month 93` / `Log`). Body. In the Log (`All months →` in the rail): two rows, `← 092 | 2026-08` and `094 → | 2026-10`, then the keycap legend `← → move between months`; the arrow keys follow them (`assets/js/pager.js`, shared with research entries). Then the Archive block.
-- **Newsletter.** Head with the intro as the dek, the form and legend in the column. Start Here: rows `The essay | title + dek | #008 · 2024-01`. Contact Sheet: the strip of 150 × 110 frames with `#016 · 2026-09` under each, the legend under the strip. Then one block per year, the year in the rail (2021 adds `as Dreaming with One Eye Open` beside it), rows `#016 · 2026-09 | title`.
+- **Newsletter.** Head with the intro as the dek, the form and legend in the column. Start Here: rows `The essay | title + dek | #008 · 2024-01`. Contact Sheet: the strip of 150 × 110 frames with `#016 · 2026-09` under each, the legend under the strip. Then one block per year, the year in the rail (2021 adds `as Dreaming with One Eye Open` under it as its meta line), rows `#016 · 2026-09 | title`.
 - **Dispatch.** No masthead: the engraving centered, 120 px tall. Head (`2026-09-02 · 016` / `The Flâneur · Dispatch`, the subtitle as the dek). The letter, photographs unframed, galleries in two columns. End block `The Flâneur` (`All dispatches →`): one sentence, the form, the legend. Footer `ttvl.co · Archive`. The email output is untouched.
 - **Traces hub.** Head. Archive block with trace cards (`date · kind`).
 - **Trace.** Head with the download chip in the strip. The viewer and the gallery span the full page width, reaching back across the empty rail; the viewer bar's title then sits in the rail column. (`SPZ scan · 16.7 MB ↓`; sizes are read from the file and use binary megabytes, as the strip does). The body block holds the viewer and the prose; Photographs as a prose `h2` over the gallery. Mentioned In.
