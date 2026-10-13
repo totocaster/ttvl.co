@@ -67,8 +67,8 @@ $rhythm-paragraph: 18px; // paragraphs, lists, quotations
 $rhythm-h2-above: $space-7;
 $rhythm-h3-above: $space-6;
 $rhythm-heading-below: $space-2;
-$rhythm-row: 10px; // padding each side of a row's hairline
-$rhythm-row-dek: $space-3; // the same, for rows with deks
+$rhythm-row: $space-1; // between rows
+$rhythm-row-dek: $space-4; // between rows with deks
 $rhythm-figure-above: $space-6;
 $rhythm-figure-below: $space-7;
 $rhythm-caption: $space-2;

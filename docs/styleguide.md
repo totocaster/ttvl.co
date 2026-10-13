@@ -10,7 +10,7 @@ The standard is called **Panel**. It replaced Air on 2026-10-07 and ships as sit
 2. **The rail carries the metadata.** A page head and every block are two columns: a 192 px rail at left for the label, date, count, or kind, and the column for the content. On wide screens the rail is the page's one column of labels: a list's dates sit in it too, so titles and text start at one edge. Metadata stays in the rail; deks and resource links may sit under a title. A page carries one count at most, in its head rail (`75 notes · updated 2026-09`): how many pages a hub lists. Block rails and end matter carry none; a reader who wants the number has it at the top. The one exception is the Projects switches, which are controls rather than labels and carry each hub's count on their faces.
 3. **Words in Sans, numbers in Mono.** Dates, counts, issue and entry numbers, sizes, and the version are set in Plex Mono with tabular figures. Every other label is Plex Sans in sentence case. No uppercase, no letter-spacing.
 4. **One way to do each thing.** One page head, one block, one row, one card, one button, one legend, one form. Everything that is listed is a row: streams, doors, search results, the index's hubs, the pager.
-5. **Hairlines you have to look for.** Lines sit only between rows and under the masthead. Nothing frames a list, nothing rules the footer. Frames stay on tiles, tables, sheets, and the quotation.
+5. **Hairlines you have to look for.** A line sits only under the masthead; lists are held by space. Nothing frames a list, nothing rules the footer. Frames stay on tiles, tables, sheets, and the quotation.
 6. **Buttons are blocks.** A control is a flat block on a hard offset shadow. Pressing moves the block into its shadow. No gradients, no glow.
 7. **The look is the stylesheet.** Markup stays semantic and shared; a section never restyles a shared pattern locally.
 
@@ -66,7 +66,7 @@ Themed colors come only from the custom properties in `assets/scss/_tokens.scss`
 | `--ink` | Text, frames, buttons, the masthead rule's pair | `#000` | `#ededed` | 21:1 / 15.8:1 |
 | `--ink-muted` | Deks, captions, the nav at rest | `#555` | `#b5b5b5` | 7.5:1 / 9:1 |
 | `--ink-faint` | Labels, meta, legends, rail lines, the subscribe key's shadow | `#6e6e6e` | `#929292` | 5.1:1 / 6:1 |
-| `--rule` | Hairlines between rows, under the masthead, inside tables | `#f2f2f2` | `rgba(255,255,255,.06)` | barely there: it marks a row's end without competing with the text |
+| `--rule` | The hairline under the masthead, inside tables | `#f2f2f2` | `rgba(255,255,255,.06)` | barely there |
 | `--edge` | Frames: tiles, sheets, figures, keycaps, the quotation | `#d9d9d9` | `rgba(255,255,255,.2)` | |
 | `--surface` | Raised panels: sheets, hover tints, the selected search row | `#f7f7f7` | `rgba(255,255,255,.05)` | |
 | `--surface-input` | Form fields | `#fff` | `#1e1e1e` | |
@@ -227,10 +227,10 @@ The article body is one block with an empty rail. Prose holds the measure.
 ### Rows
 
 ```html
-<li class="row"><span class="row-meta"><time>2026-06-28</time></span><span class="row-main"><a class="row-title" href="…">Hands Are Not Cursors</a><span class="row-dek">…</span></span><span class="row-tail">Thinking</span></li>
+<li class="row"><span class="row-meta"><time>2026-06-28</time></span><span class="row-main"><a class="row-title" href="…">Hands Are Not Cursors</a> <span class="row-tail">Thinking</span><span class="row-dek">…</span></span></li>
 ```
 
-The one grammar for anything listed. Three columns: the meta column, the title (with an optional dek under it), and a right-aligned tail. On wide screens a list inside a block reaches left across the gap so its meta column is the rail itself (192 px, then the 48 px gap): dates and kinds line up with every other label on the page, and titles start where content starts. The search overlay's rows are not in a block and keep a 128 px column, as do lists inside a body whose rail holds the table of contents and inside a stream entry, whose rails are taken. A `--rule` hairline between rows, none above the first or under the last. Rows carry 10 px padding, 12 with deks.
+The one grammar for anything listed, light and dense as it was in Air. Two columns: the meta column and the title, with the tail inline after the title in the label voice and an optional dek under it. No hairlines: rows sit 4 px apart, 16 px apart with deks; titles at 16/24, deks at 16/23 muted. On wide screens a list inside a block reaches left across the gap so its meta column is the rail itself (192 px, then the 48 px gap), and the key sits flush right against the gap, next to its title; on phones it is left-aligned. Lists inside a body whose rail holds the table of contents and inside a stream entry keep a 128 px column. The search overlay draws its own rows (section, title and excerpt, the date at the right).
 
 - The meta column holds the ordering key or the kind: a date, `#016 · 2026-09` for dispatches, `Hub` / `Note` / `Project` / `Log` / `Research` / `Dispatch` / `About` in end matter, `Active` in the stream ledger, `The essay` on the newsletter's doors, `Model` / `Lights` on the bench, `← 018` / `020 →` in the pager. A list with nothing to order by (the Index's Start Here) leaves the column empty on wide screens, where it is the rail, and drops it when the rail stacks.
 - The tail holds one qualifier, the same kind in every row of a list: the category on Notes (`Thinking`), `024 · Question` on research lists, the venue on About's record, the date in end matter, `#008 · 2024-01` on the newsletter's doors. Home lists and the stream ledger carry none; a count never rides in a tail.
@@ -383,6 +383,7 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 ## Changelog
 
+- **2026-10-13, v8.0, light lists.** Rows lose their hairlines and sit 4 px apart (16 with deks) with 16/24 titles and the tail inline after the title, as in Air; on wide screens the key sits flush right in the rail, next to its title.
 - **2026-10-10, v8.0, leaves as keys.** Loose Leaves tiles take the notebook's page proportion and the key's shadow; the lightbox fits a tall scan whole.
 - **2026-10-10, v8.0, file plates.** The `resources` manifest renders as plates, the switch tile with the type in Mono and Download ↓; file links in paragraphs are inline keys.
 - **2026-10-10, v8.0, doors on the Index.** Start Here is a grid of door switches, the switch a shared component; the dispatch marker is a stroke icon instead of a glyph Plex lacks.

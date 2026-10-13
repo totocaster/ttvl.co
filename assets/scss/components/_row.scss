@@ -1,11 +1,11 @@
-// Rows: the one grammar for anything listed. Three columns: the meta
-// column (the ordering key or the kind), the title with an optional dek
-// under it, and a right-aligned tail with one qualifier. A rule hairline
-// between rows, none above the first or under the last.
+// Rows: the one grammar for anything listed. Two columns: the meta column
+// (the ordering key or the kind) and the title, with one qualifier as the
+// tail inline after it in the label voice and an optional dek under it.
+// No hairlines: rows sit 4 px apart, 16 px with deks; titles at 16/24.
 // On wide screens a list inside a block reaches left across the gap so its
-// meta column IS the rail: dates and kinds share one column with every
-// other label on the page, and titles start where content starts.
-// The search overlay's rows are not in a block and keep the 128 px column.
+// meta column IS the rail, and the key sits flush right against the gap,
+// next to its title; on phones it is left-aligned. The search overlay
+// draws its own rows (components/_search.scss).
 // Rendered by layouts/partials/row.html. docs/styleguide.md, Rows.
 
 .rows {
@@ -16,22 +16,20 @@
 
   > li {
     display: grid;
-    grid-template-columns: $row-meta-width minmax(0, 1fr) auto;
+    grid-template-columns: $row-meta-width minmax(0, 1fr);
     column-gap: $space-5;
     align-items: baseline;
-    margin: 0;
-    padding: $rhythm-row 0;
+    margin: 0 0 $rhythm-row;
+    padding: 0;
     max-width: none;
   }
 
-  // Hairlines between visible rows only, so filtering never leaves a
-  // rule above the first row or under the last.
-  > li:not([hidden]) ~ li:not([hidden]) {
-    border-top: 1px solid var(--rule);
+  > li:last-child {
+    margin-bottom: 0;
   }
 
   &.with-deks > li {
-    padding: $rhythm-row-dek 0;
+    margin-bottom: $rhythm-row-dek;
   }
 
   // Filtering hides rows; !important beats the row's own display.
@@ -40,15 +38,15 @@
   }
 }
 
-// Rows inside prose (the resources manifest, About's record) keep the
-// paragraph rhythm after them and none of the prose list styling.
+// Rows inside prose (About's record) keep the paragraph rhythm after them
+// and none of the prose list styling.
 .prose .rows {
   padding: 0;
   margin: 0 0 $rhythm-paragraph;
   max-width: $max-width-column;
 
-  .row-title {
-    font-weight: $link-weight-quiet;
+  > li {
+    margin-top: 0;
   }
 }
 
@@ -56,11 +54,14 @@
   @include type-meta;
   color: var(--ink-faint);
   white-space: nowrap;
+  text-align: right;
   @include meta-links;
 }
 
 .row-main {
   min-width: 0;
+  font-size: $font-size-dek;
+  line-height: $line-height-dek;
 }
 
 .row-title {
@@ -72,24 +73,25 @@
   }
 }
 
-// The dek: the page's description, muted, under the title.
-.row-dek {
-  display: block;
-  @include type-dek;
-  color: var(--ink-muted);
-  margin-top: 2px; // sits under the title's descenders
-}
-
-// The tail: one qualifier, the same kind in every row of a list.
+// The tail: one qualifier, inline after the title, wrapping as a unit.
 .row-tail {
   @include type-meta;
   color: var(--ink-faint);
-  text-align: right;
+  margin-left: $space-1;
   white-space: nowrap;
   @include meta-links;
 }
 
-// A value that is not a link (a bench entry) reads as body text.
+// The dek: the page's description, muted, under the title.
+.row-dek {
+  display: block;
+  font-size: $font-size-dek;
+  line-height: $line-height-cell;
+  color: var(--ink-muted);
+  margin-top: 2px; // sits under the title's descenders
+}
+
+// A value that is not a link (a bench entry) reads as the title does.
 .row-value {
   p {
     display: inline;
@@ -107,18 +109,17 @@
     max-width: none;
 
     > li {
-      grid-template-columns: $rail-width minmax(0, 1fr) auto;
+      grid-template-columns: $rail-width minmax(0, 1fr);
       column-gap: $rail-gap;
     }
   }
-
 }
 
-// When the rail stacks, a row with nothing in its meta column (the Index's
-// Start Here) starts its title at the edge instead of after an empty column.
+// When the rail stacks, a row with nothing in its meta column starts its
+// title at the edge instead of after an empty column.
 @include rail-stacked {
   .rows > li:has(> .row-meta:empty) {
-    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-columns: minmax(0, 1fr);
 
     > .row-meta {
       display: none;
@@ -127,7 +128,8 @@
 }
 
 // Phones: the meta column grows to its content, 96 to 136 px, so a long
-// key ("#016 · 2026-09") keeps a 16 px gap before the title.
+// key ("#016 · 2026-09") keeps a 16 px gap before the title, and reads
+// left-aligned like the rest of the stacked page.
 @include narrow {
   .rows > li {
     grid-template-columns: max-content minmax(0, 1fr);
@@ -137,13 +139,6 @@
   .row-meta {
     min-width: $row-meta-width-narrow;
     max-width: $row-meta-width-narrow-max;
-  }
-
-  .row-tail {
-    grid-column: 2;
     text-align: left;
-    white-space: normal;
-    margin-top: 2px; // tail geometry under the title
   }
 }
-

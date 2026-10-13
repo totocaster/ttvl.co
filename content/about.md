@@ -56,15 +56,15 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
 {{< section title="Exhibitions" id="exhibitions" >}}
 
 <ul class="rows record">
-  <li class="row"><span class="row-meta"><time datetime="2026-11">2026-11</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/fotofilmic-book-program-paris/">FotoFilmic Book Program 2025–26: Paris</a></span><span class="row-tail">FotoFilmic Paris, Paris Photo week</span></li>
-  <li class="row"><span class="row-meta"><time datetime="2026-09">2026-09</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/wirescapes-reprise/">Wirescapes: Connected With the Urban Fabric (Reprise)</a></span><span class="row-tail">Mutant Radio, Tbilisi, duo</span></li>
-  <li class="row"><span class="row-meta"><time datetime="2026-06">2026-06</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/fotofilmic-book-program-bowen-island/">FotoFilmic Book Program 2025–26: Bowen Island</a></span><span class="row-tail">FotoFilmic Space, British Columbia</span></li>
-  <li class="row"><span class="row-meta"><time datetime="2024-01">2024-01</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/flaneur-vol-2/">Tokyo Flâneur Vol. 2: The Moments I Stood Still</a></span><span class="row-tail">Jinny Street Gallery, group</span></li>
-  <li class="row"><span class="row-meta"><time datetime="2023-01">2023-01</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/flaneur/">Tokyo Flâneur: Through the Eyes of a Stroller</a></span><span class="row-tail">Jinny Street Gallery, group</span></li>
-  <li class="row"><span class="row-meta"><time datetime="2022-11">2022-11</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/wirescapes/">Wirescapes: Connected With the Urban Fabric</a></span><span class="row-tail">UNTITLED SPACE, Tokyo, duo</span></li>
-  <li class="row"><span class="row-meta"><time datetime="2022-06">2022-06</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/the-line-synesthesia/">Synesthesia</a></span><span class="row-tail">Verinuqué Aoyama, Tokyo, solo event</span></li>
+  <li class="row"><span class="row-meta"><time datetime="2026-11">2026-11</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/fotofilmic-book-program-paris/">FotoFilmic Book Program 2025–26: Paris</a> <span class="row-tail">FotoFilmic Paris, Paris Photo week</span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2026-09">2026-09</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/wirescapes-reprise/">Wirescapes: Connected With the Urban Fabric (Reprise)</a> <span class="row-tail">Mutant Radio, Tbilisi, duo</span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2026-06">2026-06</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/fotofilmic-book-program-bowen-island/">FotoFilmic Book Program 2025–26: Bowen Island</a> <span class="row-tail">FotoFilmic Space, British Columbia</span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2024-01">2024-01</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/flaneur-vol-2/">Tokyo Flâneur Vol. 2: The Moments I Stood Still</a> <span class="row-tail">Jinny Street Gallery, group</span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2023-01">2023-01</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/flaneur/">Tokyo Flâneur: Through the Eyes of a Stroller</a> <span class="row-tail">Jinny Street Gallery, group</span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2022-11">2022-11</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/wirescapes/">Wirescapes: Connected With the Urban Fabric</a> <span class="row-tail">UNTITLED SPACE, Tokyo, duo</span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2022-06">2022-06</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/the-line-synesthesia/">Synesthesia</a> <span class="row-tail">Verinuqué Aoyama, Tokyo, solo event</span></span></li>
   <li class="row"><span class="row-meta"><time datetime="2022-05">2022-05</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/walk-with-me/">Walk With Me</a><span class="row-dek">the streetlamps of Jingumae 2-chome, Tokyo, solo. The show that became the gallery.</span></span></li>
-  <li class="row"><span class="row-meta"><time datetime="2021-12">2021-12</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/perspectives/">Perspectives</a></span><span class="row-tail">Gallery Ether, Tokyo, group</span></li>
+  <li class="row"><span class="row-meta"><time datetime="2021-12">2021-12</time></span><span class="row-main"><a class="row-title" href="https://toto.photo/exhibitions/perspectives/">Perspectives</a> <span class="row-tail">Gallery Ether, Tokyo, group</span></span></li>
 </ul>
 
 {{< /section >}}
@@ -93,7 +93,7 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
 {{< section title="Speaking" id="speaking" >}}
 
 <ul class="rows record">
-  <li class="row"><span class="row-meta"><time datetime="2023-12">2023-12</time></span><span class="row-main"><a class="row-title" href="https://www.pechakucha.com/presentations/light-posts-of-jinny-street-gallery">Light Posts of Jinny Street Gallery</a></span><span class="row-tail">PechaKucha Night Tokyo, Vol. <span class="n">186</span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2023-12">2023-12</time></span><span class="row-main"><a class="row-title" href="https://www.pechakucha.com/presentations/light-posts-of-jinny-street-gallery">Light Posts of Jinny Street Gallery</a> <span class="row-tail">PechaKucha Night Tokyo, Vol. <span class="n">186</span></span></span></li>
 </ul>
 
 <figure>
@@ -106,8 +106,8 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
 {{< section title="Video" id="video" >}}
 
 <ul class="rows record">
-  <li class="row"><span class="row-meta"><time datetime="2023-06">2023-06</time></span><span class="row-main"><span class="row-value">Creative Curation: Breathing New Life into Tokyo’s Streets</span></span><span class="row-tail">NHK World · <a class="row-link" href="https://vimeo.com/1187645245/3d183a475f?share=copy&amp;fl=sv&amp;fe=ci">archival link</a></span></li>
-  <li class="row"><span class="row-meta"><time datetime="2023-03">2023-03</time></span><span class="row-main"><a class="row-title" href="https://youtu.be/FtVC0lzo6Ww">Voice of Tokyo, Episode 5: Jinny Street Gallery</a></span><span class="row-tail">Tokyo Weekender</span></li>
+  <li class="row"><span class="row-meta"><time datetime="2023-06">2023-06</time></span><span class="row-main"><span class="row-value">Creative Curation: Breathing New Life into Tokyo’s Streets</span> <span class="row-tail">NHK World · <a class="row-link" href="https://vimeo.com/1187645245/3d183a475f?share=copy&amp;fl=sv&amp;fe=ci">archival link</a></span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2023-03">2023-03</time></span><span class="row-main"><a class="row-title" href="https://youtu.be/FtVC0lzo6Ww">Voice of Tokyo, Episode 5: Jinny Street Gallery</a> <span class="row-tail">Tokyo Weekender</span></span></li>
 </ul>
 
 {{< /section >}}
@@ -115,10 +115,10 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
 {{< section title="Print" id="print" >}}
 
 <ul class="rows record">
-  <li class="row"><span class="row-meta"><time datetime="2025">2025</time></span><span class="row-main"><a class="row-title" href="https://www.reuseitaly.com/books/atlas-of-ruins/">Three Photographs from Tskaltubo, Georgia</a></span><span class="row-tail">Atlas of Ruins, Vol. <span class="n">1</span>, STH Press, Italy</span></li>
-  <li class="row"><span class="row-meta"><time datetime="2025-03">2025-03</time></span><span class="row-main"><span class="row-value">Cover and interview on Jinny Street Gallery, with Lorenzo Menghi</span></span><span class="row-tail">andJ, Jingumae neighborhood magazine · <a class="row-link" href="/downloads/andJ06_interview.pdf">archival link</a></span></li>
-  <li class="row"><span class="row-meta"><time datetime="2022-11">2022-11</time></span><span class="row-main"><a class="row-title" href="https://www.adfwebmagazine.jp/en/art/wirescapes-connected-with-the-urban-fabric/">Wirescapes: connected with the urban fabric</a></span><span class="row-tail">ADF Magazine, exhibition report by Matteo Belfiore</span></li>
-  <li class="row"><span class="row-meta"><time datetime="2022-03">2022-03</time></span><span class="row-main"><a class="row-title" href="https://www.amazon.co.jp/-/en/生活の友社/dp/B09PMKBZY9">Lone Man, 2019</a></span><span class="row-tail">ARTcollectors’ アートコレクターズ Magazine, Issue <span class="n">156</span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2025">2025</time></span><span class="row-main"><a class="row-title" href="https://www.reuseitaly.com/books/atlas-of-ruins/">Three Photographs from Tskaltubo, Georgia</a> <span class="row-tail">Atlas of Ruins, Vol. <span class="n">1</span>, STH Press, Italy</span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2025-03">2025-03</time></span><span class="row-main"><span class="row-value">Cover and interview on Jinny Street Gallery, with Lorenzo Menghi</span> <span class="row-tail">andJ, Jingumae neighborhood magazine · <a class="row-link" href="/downloads/andJ06_interview.pdf">archival link</a></span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2022-11">2022-11</time></span><span class="row-main"><a class="row-title" href="https://www.adfwebmagazine.jp/en/art/wirescapes-connected-with-the-urban-fabric/">Wirescapes: connected with the urban fabric</a> <span class="row-tail">ADF Magazine, exhibition report by Matteo Belfiore</span></span></li>
+  <li class="row"><span class="row-meta"><time datetime="2022-03">2022-03</time></span><span class="row-main"><a class="row-title" href="https://www.amazon.co.jp/-/en/生活の友社/dp/B09PMKBZY9">Lone Man, 2019</a> <span class="row-tail">ARTcollectors’ アートコレクターズ Magazine, Issue <span class="n">156</span></span></span></li>
 </ul>
 
 {{< /section >}}

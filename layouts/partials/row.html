@@ -1,11 +1,12 @@
-{{- /* One row: the one grammar for anything listed. Three columns: the meta
-     column, the title with an optional dek under it, the tail. Pass a dict:
+{{- /* One row: the one grammar for anything listed. Two columns: the meta
+     column (right-aligned on wide screens), the title with the tail inline
+     after it and an optional dek under it. Pass a dict:
      "meta"      HTML for the meta column: the ordering key or the kind
      "url"       the link; with "title", the row's title
      "title"     the title (HTML allowed)
      "value"     HTML instead of a link, for rows that aren't pages (a bench entry)
      "dek"       optional line under the title, muted
-     "tail"      optional HTML for the right-aligned tail: one qualifier
+     "tail"      optional HTML for the tail: one qualifier, inline after the title
      "category"  optional data-category for the filter rail
      "class"     optional extra class on the li
      "linkClass" optional extra class on the title link
@@ -18,9 +19,7 @@
   <span class="row-meta">{{ .meta }}</span>
   <span class="row-main">
     {{- if .url }}<a class="row-title{{ with .linkClass }} {{ . }}{{ end }}" href="{{ .url }}"{{ if .download }} download{{ end }}{{ with .rel }} rel="{{ . }}" aria-keyshortcuts="{{ if eq . "prev" }}ArrowLeft{{ else }}ArrowRight{{ end }}"{{ end }}>{{ .title }}</a>{{ else }}<span class="row-value">{{ .value }}</span>{{ end }}
+    {{- with .tail }} <span class="row-tail">{{ . }}</span>{{ end -}}
     {{- with .dek }}<span class="row-dek">{{ . }}</span>{{ end -}}
   </span>
-  {{- with .tail }}
-  <span class="row-tail">{{ . }}</span>
-  {{- end }}
 </li>

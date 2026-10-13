@@ -94,9 +94,23 @@
     display: none;
   }
 
+  // The overlay draws its own rows: the section, the title with its
+  // excerpt, the date at the right; a little padding for the selection.
   > .row {
     position: relative;
+    grid-template-columns: $row-meta-width minmax(0, 1fr) auto;
+    padding: $space-2 0;
+    margin: 0;
     transition: background-color $t-fast, box-shadow $t-fast;
+
+    > .row-meta {
+      text-align: left;
+    }
+
+    > .row-tail {
+      text-align: right;
+      margin-left: 0;
+    }
 
     &.is-selected {
       background: var(--surface);
