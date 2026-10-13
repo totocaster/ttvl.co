@@ -50,7 +50,7 @@
     const hint = document.createElement('p');
     hint.className = 'search-hint';
     hint.innerHTML =
-      '<kbd>↑</kbd> <kbd>↓</kbd> select · <kbd>↩</kbd> open · <kbd>esc</kbd> close';
+      '<kbd>↑</kbd> <kbd>↓</kbd> select · <kbd>↩</kbd> open · <kbd>esc</kbd> close · <kbd>?</kbd> opens search from any page';
 
     const field = document.createElement('div');
     field.className = 'search-field';

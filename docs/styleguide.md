@@ -303,7 +303,7 @@ Both hubs: the head rail's count follows the filter (`12 projects`): `count.html
 
 ### Search Overlay
 
-Full ground. Centered, 96 px down: a “Search site” label and a Close button, a 26/34 input with a visible prompt and focus ring, then desktop keyboard hints (`↑ ↓ select · ↩ open · esc close`). Results use rows: section as meta, title with matches marked, a short excerpt around a match, and date as the tail. On phones the section and date share a line above the full-width title, and excerpts take at most three lines. Keyboard hints hide for touch. Close, Escape, and the backdrop restore focus to the opener. The selected row takes a `--surface` wash. The count under it: `4 results`. Built by `assets/js/search.js`, styled by `components/_search.scss`.
+Full ground. Centered, 96 px down: a “Search site” label and a Close button, a 26/34 input with a visible prompt and focus ring, then desktop keyboard hints (`↑ ↓ select · ↩ open · esc close · ? opens search from any page`). Results use rows: section as meta, title with matches marked, a short excerpt around a match, and date as the tail. On phones the section and date share a line above the full-width title, and excerpts take at most three lines. Keyboard hints hide for touch. Close, Escape, and the backdrop restore focus to the opener. The selected row takes a `--surface` wash. The count under it: `4 results`. Built by `assets/js/search.js`, styled by `components/_search.scss`.
 
 ## Page by Page
 
