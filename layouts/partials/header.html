@@ -1,11 +1,14 @@
-{{- /* The masthead: the signature and the search key, then the nav, then
-     one rule hairline. The logo is a p on every page; the page head owns
-     the h1. The search key is a button that opens the overlay, like the ?
-     shortcut. docs/styleguide.md, Masthead. */ -}}
+{{- /* The masthead: the signature, then the nav, then one rule hairline. On
+     wide screens the signature and the nav stand on the column's edge,
+     above the title, and the search key, a lone loupe, sits flush right in
+     the rail on the nav's line. When the rail stacks the signature is at
+     left with the loupe at right. The logo is a p on every page; the page
+     head owns the h1. The loupe is a button that opens the overlay, like
+     the ? shortcut. docs/styleguide.md, Masthead. */ -}}
 <header class="site wrap">
   {{- $logo := printf `<a href="/"><img src="/ui/ttvl_logo.png" srcset="/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x" width="92" height="36" alt="%s" /></a>` (htmlEscape .Site.Title) | safeHTML }}
   <p class="logo">{{ $logo }}</p>
-  <button type="button" class="search-key" aria-haspopup="dialog" aria-keyshortcuts="?">Search <kbd>?</kbd></button>
+  <button type="button" class="search-key" aria-haspopup="dialog" aria-keyshortcuts="?" aria-label="Search" title="Search (?)">{{ partial "icons/search.svg" . }}</button>
   {{ partial "nav.html" . }}
   {{- /* On a phone the nav scrolls sideways; start it at the current section. */}}
   <script>(function(){var n=document.querySelector(".site .nav"),a=n&&n.querySelector("[aria-current]");if(a&&n.scrollWidth>n.clientWidth){n.scrollLeft=Math.max(0,a.offsetLeft-n.offsetLeft)}})();</script>

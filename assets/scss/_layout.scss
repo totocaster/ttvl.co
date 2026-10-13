@@ -59,28 +59,28 @@ header.site {
     }
   }
 
+  // The search key: a lone loupe, faint, ink under the hand. A click opens
+  // the overlay exactly as the ? key does.
   .search-key {
     grid-column: 2;
     grid-row: 1;
     display: flex;
     align-items: center;
-    gap: $space-2;
+    justify-content: center;
+    min-width: $control-height-quiet;
     min-height: $control-height-quiet;
     padding: 0;
     border: 0;
     background: none;
     appearance: none;
     cursor: pointer;
-    @include type-control;
     color: var(--ink-faint); // faded: a utility, not a destination
-    text-decoration: none;
-    white-space: nowrap;
     transition: color $t-fast;
+    @include focus-ring;
 
-    kbd {
-      color: inherit;
-      background: transparent;
-      border-color: var(--edge);
+    .icon {
+      width: 18px; // icon geometry
+      height: 18px;
     }
 
     &:hover {
@@ -156,6 +156,31 @@ header.site {
   @include touch-controls {
     .search-key {
       min-height: $control-height-touch;
+    }
+  }
+
+  // Wide screens: the signature and the nav stand on the column's edge,
+  // above the title; the loupe sits flush right in the rail on the nav's
+  // line, the last label of the first column.
+  @include rail-wide {
+    @include block-grid;
+    row-gap: $space-4;
+
+    .logo {
+      grid-column: 2;
+      grid-row: 1;
+    }
+
+    .search-key {
+      grid-column: 1;
+      grid-row: 2;
+      justify-self: end;
+      margin-right: -7px; // the loupe's ink, not its target, meets the gap
+    }
+
+    .nav {
+      grid-column: 2;
+      grid-row: 2;
     }
   }
 }

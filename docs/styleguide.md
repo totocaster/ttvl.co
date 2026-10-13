@@ -139,7 +139,7 @@ Each pattern below is one partial or shortcode and one stylesheet. Use them; don
 </header>
 ```
 
-Two lines: the signature logo 64 px tall at left (the height of its 1x file, so it stays crisp on every screen) with the search key at right in faint ink, then the nav on its own line in 16 px Sans with 32 px gaps, the current section in ink and underlined 6 px below the baseline. Padding 36 above, 16 below, then one `--rule` hairline. The logo is a `p` on every page; the page head owns the `h1`. The search key is a button that opens the overlay like the `?` shortcut does. On phones the logo is 32 px and the nav is one line that scrolls sideways: 44 px link targets, a 48 px fade at the right edge as the affordance, and the current section scrolled into view on load.
+Two lines. On wide screens the signature (64 px) and then the nav stand on the column's edge, exactly above the title, and the search key, a lone 18 px stroke loupe in faint ink, sits flush right in the rail on the nav's line; nothing else is in the rail. When the rail stacks the signature is at left with the loupe at right, and on phones the signature is 32 px and the nav is one line that scrolls with a fade. Padding 36 above, 16 below, then one `--rule` hairline. The logo is a `p` on every page; the page head owns the `h1`. The loupe is a button: a click opens the overlay exactly as the `?` key does, and the overlay itself teaches the keys.
 
 Rendered by `partials/header.html` and `partials/nav.html`, styled in `_layout.scss`.
 
@@ -383,6 +383,7 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 ## Changelog
 
+- **2026-10-13, v8.0, masthead on the grid.** The signature and the nav stand on the column's edge above the title; search is a lone loupe flush right in the rail, opening the overlay on click.
 - **2026-10-13, v8.0, flush right.** Everything in the first column sits flush right against the gap on wide screens: head rail, block headings and meta, numerals, list keys, and the contents with its numerals and lamp at the gap.
 - **2026-10-13, v8.0, light lists.** Rows lose their hairlines and sit 4 px apart (16 with deks) with 16/24 titles and the tail inline after the title, as in Air; on wide screens the key sits flush right in the rail, next to its title.
 - **2026-10-10, v8.0, leaves as keys.** Loose Leaves tiles take the notebook's page proportion and the key's shadow; the lightbox fits a tall scan whole.
