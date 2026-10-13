@@ -73,9 +73,9 @@ My photography-only alter ego has a separate home at [toto.photo](https://toto.p
 
 [Jinny Street Gallery](/jinny/), co-founded with [Lorenzo Menghi](https://www.instagram.com/_lorenzomenghi/) in January 2023: forty-two streetlamps with display cases across Jingumae 2-chome, more than thirty exhibitions so far, a magazine, and artist walks. [NHK World filmed it in 2023](https://vimeo.com/1187645245/3d183a475f?share=copy&fl=sv&fe=ci).
 
-<figure>
-  <img src="/visuals/jinny_setup.jpg" alt="Lorenzo and Toto on ladders installing artwork in a streetlamp display case" loading="lazy" />
-  <figcaption>Lorenzo and me setting up the gallery.</figcaption>
+<figure class="portrait">
+  <img src="/visuals/jinny/2022-11-28-flag-ten.jpg" alt="At night, one person waves from the top of a ladder against streetlamp 10 while another holds the ladder below, under a yellow Jinny Street Gallery flag" loading="lazy" />
+  <figcaption>Hanging the first flags in Jingumae, November 2022.</figcaption>
 </figure>
 
 {{< /section >}}
