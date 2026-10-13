@@ -57,3 +57,10 @@
     }
   }
 }
+
+// While a category is chosen, the qualifier that names it on every row or
+// card says nothing new (category-filter.js sets data-filtered on <html>).
+[data-filtered] .filter-key,
+[data-filtered] .row-tail:has(> .filter-key:only-child) {
+  display: none;
+}

@@ -37,7 +37,7 @@
           "meta" (printf `<time datetime="%s">%s</time>` (.Date.Format "2006-01-02") (.Date.Format "2006-01-02") | safeHTML)
           "url" .RelPermalink
           "title" .Title
-          "tail" (index $tails $cat | default (title $cat))
+          "tail" (printf `<span class="filter-key">%s</span>` (index $tails $cat | default (title $cat)) | safeHTML)
           "category" $cat
         ) }}
         {{- end }}

@@ -300,7 +300,7 @@ Projects: one switch per hub under the dek (`.switches`, `components/_switch.scs
 
 Index: the same tiles as doors (`.switches.doors`, `a.switch.door`), three across (two on phones), one per hub with its title and `filter_dek`, the whole tile a link. Under the hand it stands up like a pressed switch (ink frame, shadow, ground) and pressing drops it; no lamp, no count, no door line, since the tile is the door.
 
-Both hubs: the head rail's count follows the filter (`12 projects`): `count.html` with `live` wraps it as `.count[data-singular][data-plural]`, and `category-filter.js` reads every `[data-filter-control]` button and `.category-filter` chip, shows and hides the `[data-category]` items of every `[data-filter-group]`, and keeps the state in `?category=`. Groups carry no count of their own.
+Both hubs: while a category is chosen, the qualifier that would only repeat it steps aside (a note's category tail, the hub in a card's label, both marked `.filter-key`). The head rail's count follows the filter (`12 projects`): `count.html` with `live` wraps it as `.count[data-singular][data-plural]`, and `category-filter.js` reads every `[data-filter-control]` button and `.category-filter` chip, shows and hides the `[data-category]` items of every `[data-filter-group]`, and keeps the state in `?category=`. Groups carry no count of their own.
 
 ### Search Overlay
 

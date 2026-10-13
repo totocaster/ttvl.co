@@ -28,7 +28,8 @@
         "-D",
         "--port",
         "1315",
-        "--disableFastRender"
+        "--disableFastRender",
+        "--renderToMemory"
       ],
       "port": 1315
     }

@@ -38,7 +38,7 @@
   {{- with $proj.kind -}}
     {{- $label = $label | append (htmlEscape .) -}}
   {{- else -}}
-    {{- with $proj.category }}{{ with site.GetPage . }}{{ $label = $label | append (htmlEscape (.Params.filter_label | default .Title)) }}{{ end }}{{ end -}}
+    {{- with $proj.category }}{{ with site.GetPage . }}{{ $label = $label | append (printf `<span class="filter-key">%s</span>` (htmlEscape (.Params.filter_label | default .Title))) }}{{ end }}{{ end -}}
   {{- end -}}
 {{- end }}
 <div class="card"{{ if eq $variant "trace" }}{{ with $category }} data-category="{{ . }}"{{ end }}{{ else }} data-category="{{ $category }}"{{ end }}>
@@ -46,7 +46,7 @@
     {{- with $img }}<img src="{{ . }}" alt="" loading="lazy" />{{ end -}}
   </a>
   {{- with $label }}
-  <p class="card-label"><span>{{ delimit . " · " | safeHTML }}</span></p>
+  <p class="card-label"><span>{{ delimit . " · " | replaceRE ` · (<span class="filter-key">)` "<span class=\"filter-key\"> · " | replaceRE `(<span class="filter-key"> · )<span class="filter-key">` "$1" | safeHTML }}</span></p>
   {{- end }}
   <a class="card-title" href="{{ $page.RelPermalink }}">{{ $page.Title }}</a>
   {{- with $desc }}

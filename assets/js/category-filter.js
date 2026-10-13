@@ -14,6 +14,9 @@
 
   const applyFilter = (slug) => {
     const activeSlug = slug && slug !== "" ? slug : "all";
+    // While a category is chosen, qualifiers that would only repeat it
+    // (.filter-key: a note's category, a card's hub) step aside.
+    document.documentElement.toggleAttribute("data-filtered", activeSlug !== "all");
 
     controls.forEach((control) => {
       const on = control.dataset.category === activeSlug;

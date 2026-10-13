@@ -58,3 +58,14 @@
 .block.entry .prose > h2::before {
   content: none;
 }
+
+// The bench: each entry runs to two or three lines, so rows stand 16 px
+// apart, as rows with deks do, and the label never reads into the text
+// beside or under it.
+.rows.bench > li {
+  margin-bottom: $rhythm-row-dek;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}

@@ -11,7 +11,7 @@
 <section class="block">
   <div class="rail"><h2>Bench</h2></div>
   <div class="main">
-    <ul class="rows">
+    <ul class="rows bench">
       {{- range . }}
       {{ partial "row.html" (dict "meta" (index . 0) "value" (index . 1 | markdownify)) }}
       {{- end }}
