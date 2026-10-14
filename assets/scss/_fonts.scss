@@ -52,3 +52,22 @@
   font-display: swap;
   src: url("/fonts/plex/IBMPlexMono-Medium.woff2") format("woff2");
 }
+
+// Plex Sans Condensed, for the edge print on the Flâneur's contact sheet
+// only (sections/_newsletter.scss). Subset from IBM's @ibm/plex-sans-condensed
+// package (1.1.0) to the same ranges; not preloaded, since one page uses it.
+@font-face {
+  font-family: "IBM Plex Sans Condensed";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("/fonts/plex/IBMPlexSansCondensed-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "IBM Plex Sans Condensed";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("/fonts/plex/IBMPlexSansCondensed-Bold.woff2") format("woff2");
+}

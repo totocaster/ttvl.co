@@ -90,7 +90,7 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 - Themed colors come exclusively from the custom properties in `assets/scss/_tokens.scss` (`--ground`, `--ink`, `--ink-muted`, `--ink-faint`, `--rule`, `--edge`, `--surface`, `--surface-input`, `--highlight`, `--signal`, and the `--term*` terminal set). Dark mode and high contrast override tokens only, never component rules. Deliberate exceptions are commented in place: controls over photographs, the viewers' media wells, the terminal, and print.
 - Type, spacing (`$space-1` to `$space-9`, 4 to 96 px), widths, and motion values come from `assets/scss/_variables.scss`. Full-viewport layers use `$z-overlay`/`$z-search` instead of literal z-indexes.
 - Put a style in `assets/scss/components/` when two or more sections use it, and in `assets/scss/sections/` when one does. The media chrome (viewers, clip, pronunciation) lives in `components/_model-viewer.scss`.
-- Fonts are self-hosted subsets under `static/fonts/plex/` (six WOFF2 files, about 154 KB), declared in `assets/scss/_fonts.scss` and preloaded from `partials/head.html`. Regenerate them with `pyftsubset` (through `uvx --from fonttools --with brotli pyftsubset`) from the OTFs in `~/Library/Fonts` when a glyph is missing.
+- Fonts are self-hosted subsets under `static/fonts/plex/` (eight WOFF2 files, about 195 KB; the two Plex Sans Condensed files serve only the contact sheet's edge print), declared in `assets/scss/_fonts.scss` and preloaded from `partials/head.html`. Regenerate them with `pyftsubset` (through `uvx --from fonttools --with brotli pyftsubset`) from the OTFs in `~/Library/Fonts` when a glyph is missing.
 
 ### Browser features
 
