@@ -137,7 +137,13 @@ kbd {
 // 640 px measure, figures and sheets bleed to 760 px.
 .prose {
   max-width: $max-width-column;
-  counter-reset: prose-h2;
+  // Section numerals start at 02: the opening under the title is 01. A body
+  // that opens on a heading numbers that heading 01.
+  counter-reset: prose-h2 1;
+
+  > h2:first-child {
+    counter-reset: prose-h2 0;
+  }
 
   > :first-child {
     margin-top: 0;
@@ -178,7 +184,8 @@ kbd {
     }
   }
 
-  // h2 carries a Mono numeral in the rail; h3 carries none.
+  // Headings below the title are body size: h2 in SemiBold with a Mono
+  // numeral in the rail, h3–h5 in italic without one.
   > h2 {
     position: relative;
 
@@ -186,7 +193,7 @@ kbd {
       counter-increment: prose-h2;
       content: counter(prose-h2, decimal-leading-zero);
       position: absolute;
-      top: 5px; // the numeral's 20 px line on the heading's 30 px line
+      top: 4px; // the numeral's 20 px line on the heading's 28 px line
       left: -($rail-width + $rail-gap);
       width: $rail-width;
       font-family: $font-family-mono;
@@ -198,14 +205,14 @@ kbd {
   }
 
   h2 {
-    font-size: $font-size-entry;
-    line-height: $line-height-entry;
     margin: $rhythm-h2-above 0 $rhythm-heading-below;
   }
 
   h3,
   h4,
   h5 {
+    font-weight: $font-weight-regular;
+    font-style: italic;
     margin: $rhythm-h3-above 0 $rhythm-heading-below;
   }
 

@@ -12,13 +12,13 @@ $font-family-sans: "IBM Plex Sans", system-ui, "Helvetica Neue", Arial, sans-ser
 $font-family-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
 // Five core sizes, each with its own line. Nothing is smaller than 14 px.
-$font-size-title: 34px; // the page title (h1)
-$line-height-title: 40px;
+$font-size-title: 28px; // the page title (h1), in Regular
+$line-height-title: 36px;
 $font-size-title-narrow: 28px; // the page title on phones
 $line-height-title-narrow: 34px;
 $font-size-search: 26px; // the search field
 $line-height-search: 34px;
-$font-size-entry: 22px; // prose section headings and research entry titles
+$font-size-entry: 22px; // research entry titles
 $line-height-entry: 30px;
 $font-size-base: 18px; // body, headings below the title, row and card titles
 $line-height-base: 28px;
@@ -64,8 +64,8 @@ $rhythm-block: $space-8; // between blocks
 $rhythm-block-tight: 40px; // between tight blocks: year groups, end matter
 $rhythm-rail-meta: $space-1; // a rail heading and its meta line
 $rhythm-paragraph: 18px; // paragraphs, lists, quotations
-$rhythm-h2-above: $space-7;
-$rhythm-h3-above: $space-6;
+$rhythm-h2-above: 40px; // body-size section headings: 48 px scaled from 22 px to 18 px
+$rhythm-h3-above: $space-5; // italic subheadings: three times the space below
 $rhythm-heading-below: $space-2;
 $rhythm-row: $space-1; // between rows
 $rhythm-row-dek: $space-4; // between rows with deks
@@ -81,7 +81,7 @@ $page-padding: 40px;
 $page-padding-narrow: 20px;
 $rail-width: 192px;
 $rail-gap: $space-7;
-$rail-offset: 11px; // a head's first rail line sits on the title's x-height
+$rail-offset: 7px; // a head's first rail line sits on the title's x-height
 $max-width-column: $max-width-page - 2 * $page-padding - $rail-width - $rail-gap; // 880 px
 $card-min-width: 240px;
 $max-width-measure: 640px; // running text, deks, forms, legends
@@ -159,7 +159,7 @@ $z-search: 110;
 @mixin type-title {
   font-size: $font-size-title;
   line-height: $line-height-title;
-  font-weight: $font-weight-medium;
+  font-weight: $font-weight-regular;
 }
 
 @mixin type-body {

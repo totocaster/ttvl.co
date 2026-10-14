@@ -27,11 +27,11 @@ Weights are 400, 500, and 600. `strong` is 600. Weight 700 is retired.
 
 | Size | Line | Used for | Variable |
 |---|---|---|---|
-| 34 px | 40 px | The page title (`h1`) | `$font-size-title` |
+| 28 px | 36 px | The page title (`h1`) | `$font-size-title` |
 | 28 px | 34 px | The page title on phones | `$font-size-title-narrow` |
 | 26 px | 34 px | The search field | `$font-size-search` |
-| 22 px | 30 px | Prose section headings and research entry titles | `$font-size-entry` |
-| 18 px | 28 px | Body text, prose subheadings, rail headings, row and card titles | `$font-size-base` |
+| 22 px | 30 px | Research entry titles | `$font-size-entry` |
+| 18 px | 28 px | Body text, every heading below the title, rail headings, row and card titles | `$font-size-base` |
 | 16 px | 24 px | Deks, table cells, navigation, and control labels | `$font-size-dek` |
 | 14 px | 20 px | Labels, meta, captions, legends, chips, the footer, code blocks | `$font-size-small` |
 
@@ -39,10 +39,10 @@ Weights are 400, 500, and 600. `strong` is 600. Weight 700 is retired.
 
 | Voice | Spec | Where |
 |---|---|---|
-| Title | Sans 34/40, 500, ink | `h1` |
-| Section heading | Sans 22/30, 600, ink | `h2` in prose |
+| Title | Sans 28/36, 400, ink | `h1` |
+| Section heading | Sans 18/28, 600, ink, a Mono numeral in the rail from 02 (01 is the opening under the title) | `h2` in prose, About's principles |
 | Rail heading | Sans 18/28, 600, ink | Block labels |
-| Subheading | Sans 18/28, 500, ink | `h3` in prose |
+| Subheading | Sans 18/28, 400 italic, ink | `h3`–`h5` in prose |
 | Body | Sans 18/28, 400, ink | Prose, row titles, card titles (500) |
 | Prose link | Body, 500, underlined | Links inside running text |
 | Quiet link | 400, no underline until hover | Row and card titles, rail links, footer |
@@ -104,8 +104,8 @@ Every margin, padding, and gap uses a step. Spacing never uses rem or em.
 | Blocks | 64 (40 between tight blocks: year groups, end matter) |
 | A rail heading and its meta line | 4 |
 | Paragraphs, lists, quotations | 18 |
-| Prose `h2`: above / below | 48 / 8 |
-| Prose `h3`: above / below | 32 / 8 |
+| Prose `h2`: above / below | 40 / 8 |
+| Prose `h3`: above / below | 24 / 8 |
 | Rows | 10 px padding each side of the hairline; 12 with deks |
 | Figure: above / below / caption | 32 / 48 / 8 |
 | A form and its legend | 12 |
@@ -386,6 +386,7 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 ## Changelog
 
+- **2026-10-14, v8.0, quiet headings.** Every heading below the title is body size: sections in SemiBold with their numeral in the rail, now counted from 02 since the opening is 01; subheadings in italic. The title drops to 28/36 Regular. The space above headings scales down with them (40 and 24).
 - **2026-10-14, v8.0, doors hang their arrows.** A rail's `All notes →` keeps its words flush with the heading and hangs the arrow in the gap; the arrow lights in the signal color under the hand.
 - **2026-10-13, v8.0, galleries in the column.** Photo galleries start where the text starts and fill the column; viewers still span the page. Contact sheet frames press like card tiles. The map's tiles fade as one layer on a pale ground.
 - **2026-10-13, v8.0, masthead and footer on the grid.** The signature and the nav stand on the column's edge above the title; search is a lone loupe flush right in the rail, opening the overlay on click. The footer mirrors it: a rule above, the version flush right in the rail, the copyright and links in the column.

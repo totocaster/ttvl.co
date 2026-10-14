@@ -60,9 +60,12 @@ main article.about {
     }
   }
 
-  // The principles: Mono numerals in the rail, as prose h2s carry them.
+  // The principles: Mono numerals in the rail, as prose h2s carry them,
+  // and set like them: SemiBold, upright.
   h3.principle {
     position: relative;
+    font-weight: $font-weight-semibold;
+    font-style: normal;
     counter-increment: principle;
 
     &::before {
