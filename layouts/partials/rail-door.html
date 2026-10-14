@@ -1,0 +1,6 @@
+{{- /* A door in a rail: the link to the rest of a block's list
+     ("All notes →"). The words end flush with the heading and the arrow
+     hangs in the gap, pointing at the column (components/_block.scss).
+     Takes "url" and "label"; returns HTML. numerals.html makes the same
+     markup from a Markdown link whose text ends in " →". */ -}}
+{{- return (printf `<a class="door" href="%s">%s<span class="door-arrow" aria-hidden="true">→</span></a>` .url (htmlEscape .label) | safeHTML) -}}

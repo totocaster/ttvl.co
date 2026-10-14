@@ -22,7 +22,7 @@
 </article>
 {{- if or $prev $next }}
 <nav class="block end pager" aria-labelledby="log-pager-title">
-  <div class="rail"><h2 id="log-pager-title">In the Log</h2>{{ with $hub }}<p class="meta"><a href="{{ .RelPermalink }}">All months →</a></p>{{ end }}</div>
+  <div class="rail"><h2 id="log-pager-title">In the Log</h2>{{ with $hub }}<p class="meta">{{ partial "rail-door.html" (dict "url" .RelPermalink "label" "All months") }}</p>{{ end }}</div>
   <div class="main">
     <ul class="rows">
       {{- with $prev }}

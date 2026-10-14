@@ -2,10 +2,11 @@
      the five latest dispatches as rows (#016 · 2026-09 | title). */ -}}
 {{- $issues := sort (where site.RegularPages "Section" "flaneur") "Date" "desc" -}}
 {{- $archive := site.GetPage "/newsletter" -}}
+{{- $archiveURL := "/newsletter/" }}{{ with $archive }}{{ $archiveURL = .RelPermalink }}{{ end -}}
 <section class="block home-flaneur" id="newsletter">
   <div class="rail">
     <h2>The Flâneur</h2>
-    <p class="meta"><a href="{{ with $archive }}{{ .RelPermalink }}{{ else }}/newsletter/{{ end }}">All dispatches →</a></p>
+    <p class="meta">{{ partial "rail-door.html" (dict "url" $archiveURL "label" "All dispatches") }}</p>
   </div>
   <div class="main">
     <div class="prose">

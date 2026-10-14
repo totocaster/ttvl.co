@@ -6,7 +6,7 @@
 <section class="block home-log">
   <div class="rail">
     <h2><a href="{{ $m.RelPermalink }}">{{ $m.Title }}</a></h2>
-    <p class="meta">Log · <a href="/log/">all months →</a></p>
+    <p class="meta">Log · {{ partial "rail-door.html" (dict "url" "/log/" "label" "all months") }}</p>
   </div>
   <div class="main prose">
     {{ $m.Content }}

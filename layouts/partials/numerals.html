@@ -5,5 +5,7 @@
      Returns HTML. */ -}}
 {{- $s := htmlEscape (string .) -}}
 {{- $s = replaceRE `(^|[\s(])(\d(?:[\d\-–.:,/]*\d)?)` `${1}<span class="n">${2}</span>` $s -}}
+{{- /* A link whose text ends in " →" is a door (partials/rail-door.html). */ -}}
+{{- $s = replaceRE `\[([^\]]+?) →\]\(([^)\s]+)\)` `<a class="door" href="${2}">${1}<span class="door-arrow" aria-hidden="true">→</span></a>` $s -}}
 {{- $s = replaceRE `\[([^\]]+)\]\(([^)\s]+)\)` `<a href="${2}">${1}</a>` $s -}}
 {{- return ($s | safeHTML) -}}

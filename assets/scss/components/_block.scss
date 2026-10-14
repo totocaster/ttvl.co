@@ -65,6 +65,19 @@
     }
   }
 
+  // A door (partials/rail-door.html): the link to the rest of the block's
+  // list. The arrow is inline-block so the hover underline stays under the
+  // words; under the hand it lights in the signal color.
+  .door-arrow {
+    display: inline-block;
+    margin-left: 0.3em;
+    transition: color $t-fast;
+  }
+
+  .door:hover .door-arrow {
+    color: var(--signal);
+  }
+
   // A sentence that introduces the block's list, under the meta line.
   .lead {
     @include type-dek;
@@ -334,6 +347,18 @@
   .prose > h2::before,
   .about h3.principle::before {
     text-align: right;
+  }
+
+  // A door's words end flush with the heading above them; its arrow hangs
+  // in the gap, pointing at the column, like the contents lamp.
+  .block > .rail .door {
+    position: relative;
+
+    .door-arrow {
+      position: absolute;
+      left: 100%;
+      margin-left: $space-2 + 2px; // 10 px past the words, as on the canvas
+    }
   }
 
   // The contents: the entries flush right, the numerals in a column of

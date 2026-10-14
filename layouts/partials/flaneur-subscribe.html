@@ -6,7 +6,7 @@
 <section class="block end">
   <div class="rail">
     <h2>The Flâneur</h2>
-    <p class="meta"><a href="{{ $archive.RelPermalink }}">All dispatches →</a></p>
+    <p class="meta">{{ partial "rail-door.html" (dict "url" $archive.RelPermalink "label" "All dispatches") }}</p>
   </div>
   <div class="main">
     <p>The Flâneur is a newsletter about my work, photography, books, making, and walking; subscribe to get the next dispatch in your inbox.</p>

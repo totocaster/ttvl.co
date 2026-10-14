@@ -191,12 +191,12 @@ Rendered by `partials/page-head.html`; the rail lines come from `partials/page-m
 
 ```html
 <section class="block">
-  <div class="rail"><h2>Projects</h2><p class="meta"><a href="/projects/">All projects →</a></p></div>
+  <div class="rail"><h2>Projects</h2><p class="meta"><a class="door" href="/projects/">All projects<span class="door-arrow" aria-hidden="true">→</span></a></p></div>
   <div class="main">…</div>
 </section>
 ```
 
-The unit of every page below the head. The rail holds a heading and, where there is something to say, one meta line: `All notes →` where the home page lists a few of many, `RSS` on the research ledgers, `Updated 2026-09` on About's record. Never a count: the head rail already says how many the page lists. A block whose rail is empty (an article's body) still keeps the grid, so prose and figures align with every other column on the site.
+The unit of every page below the head. The rail holds a heading and, where there is something to say, one meta line: `All notes →` where the home page lists a few of many, `RSS` on the research ledgers, `Updated 2026-09` on About's record. Never a count: the head rail already says how many the page lists. A link to the rest of a block's list is a door (`partials/rail-door.html`): on wide screens its words end flush with the heading and the `→` hangs in the gap, 10 px past them, pointing at the column like the contents lamp; under the hand the words go ink and underline and the arrow lights in `--signal`. When the rail stacks, the arrow follows the words. In a shortcode's `meta`, a Markdown link whose text ends in ` →` becomes a door. A block whose rail is empty (an article's body) still keeps the grid, so prose and figures align with every other column on the site.
 
 - `.block.year`: a year or letter group directly under a hub's head; tight blocks sit 40 px apart.
 - `.block.entry`: a research entry on a stream page; the rail holds `date · number`, then the kind.
@@ -386,6 +386,7 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 ## Changelog
 
+- **2026-10-14, v8.0, doors hang their arrows.** A rail's `All notes →` keeps its words flush with the heading and hangs the arrow in the gap; the arrow lights in the signal color under the hand.
 - **2026-10-13, v8.0, galleries in the column.** Photo galleries start where the text starts and fill the column; viewers still span the page. Contact sheet frames press like card tiles. The map's tiles fade as one layer on a pale ground.
 - **2026-10-13, v8.0, masthead and footer on the grid.** The signature and the nav stand on the column's edge above the title; search is a lone loupe flush right in the rail, opening the overlay on click. The footer mirrors it: a rule above, the version flush right in the rail, the copyright and links in the column.
 - **2026-10-13, v8.0, flush right.** Everything in the first column sits flush right against the gap on wide screens: head rail, block headings and meta, numerals, list keys, and the contents with its numerals and lamp at the gap.
