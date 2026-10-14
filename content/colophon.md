@@ -3,7 +3,7 @@ title: 'Colophon'
 date: 2025-01-28
 ---
 
-The design and structure of this website were heavily inspired by [100r.co](https://100r.co) (before their redesign) and [Szymon Kaliski](https://szymonkaliski.com/). It is simple, fast, easy to maintain, and perfect for elevating content above design trends. This allows me to focus on what's most important — producing useful material without any friction.
+The first version of this website owed its design and structure to [100r.co](https://100r.co) (before their redesign) and [Szymon Kaliski](https://szymonkaliski.com/). It has since grown into its own thing, but the values I took from them remain: simple, fast, easy to maintain, and content above design trends. That leaves me free to focus on what matters most, producing useful material without friction.
 
 The type is [IBM Plex](https://www.ibm.com/plex/), served from this site as subset files: Plex Sans for words and Plex Mono for numbers and code.
 
