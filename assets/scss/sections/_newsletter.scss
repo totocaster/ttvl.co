@@ -19,6 +19,8 @@
 // the one place type drops under 14 px, in Plex Sans Condensed as film
 // edges are. The strip scrolls sideways without a scrollbar; an edge with
 // more frames beyond it fades (data-more, set by assets/js/film-strip.js).
+// Under the hand only the frame's edge print darkens; the photograph is
+// left alone.
 $film-frame-w: 192px; // 36 mm
 $film-frame-h: 128px; // 24 mm
 $film-gap: 11px; // 2 mm between frames
@@ -108,13 +110,6 @@ $film-hole: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' wi
     height: 100%;
     object-fit: cover; // 3:2, like the negative
     border-radius: $radius;
-    outline: 1.5px solid transparent;
-    outline-offset: 1px;
-    transition: outline-color $t-fast;
-  }
-
-  a:hover img {
-    outline-color: var(--ink);
   }
 }
 
