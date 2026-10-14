@@ -65,12 +65,13 @@ It was sold only in the gallery’s neighborhood; the [map of the shops that car
 {{< photo-gallery label="Photographs of Jinny Lemon Sour" >}}
 [![Two cans and two glasses of Jinny Lemon Sour on white steps, each with a different artist's label](/visuals/jinny/lemon-sour-steps.jpg)](/visuals/jinny/lemon-sour-steps.jpg)
 
-[![A can of Jinny Lemon Sour with a yellow label on a white plinth](/visuals/jinny/lemon-sour-can.jpg)](/visuals/jinny/lemon-sour-can.jpg)
-
 [![A can of Jinny Lemon Sour on a wooden counter at Bocchiriya, beside bowls of food](/visuals/jinny/lemon-sour-counter.jpg)](/visuals/jinny/lemon-sour-counter.jpg)
 
 [![A can of Jinny Lemon Sour being poured into a glass of ice at Bocchiriya](/visuals/jinny/lemon-sour-pour.jpg)](/visuals/jinny/lemon-sour-pour.jpg)
 {{< /photo-gallery >}}
+
+Photographs by [Lorenzo Menghi][lorenzo].
+{.legend}
 
 [lorenzo]: https://www.instagram.com/_lorenzomenghi/
 [jlsmap]: https://www.google.com/maps/d/viewer?mid=1yQDW56n3qqUG7OT3BdBVzTzLt_XSEsQ&femb=1&ll=35.67485764151779%2C139.7108005&z=18
