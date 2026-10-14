@@ -3,6 +3,7 @@ title: Jinny Street Gallery Website
 date: 2026-10-05
 description: "A website to wander through: a 3D neighborhood map, an exhibition archive, and interactive tools for Jinny Street Gallery's artists."
 content_css: jinny-website
+featured: true
 lightbox: true
 project:
   year: 2026

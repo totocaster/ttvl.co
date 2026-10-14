@@ -6,7 +6,6 @@ url: /project-humane/plaintext-commons/
 aliases:
   - /plaintext-commons/
 description: "Manifesto for keeping long-form knowledge in durable, human- and agent-friendly files."
-featured: true
 project:
   year: 2025
   category: /project-humane
