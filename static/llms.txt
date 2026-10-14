@@ -2,19 +2,19 @@
 
 > Toto Tvalavadze's public notebook and project archive about analog photography, bookbinding, notebook systems, humane interfaces, Obsidian tools, writing, and walking.
 
-ttvl.co is a Hugo-generated digital garden. Most standard pages provide keyboard-accessible search with the `?` key, and the site publishes a combined RSS feed at `/index.xml`.
+ttvl.co is a Hugo-generated digital garden. Its main sections follow the masthead: Projects, Notes, Research, Log, Newsletter, Traces, and About. Most pages offer keyboard-accessible search, opened with the `?` key or the magnifying-glass button in the masthead, and the site publishes a combined RSS feed at `/index.xml`.
 
-This curated guide was last reviewed on 2026-08-01. The linked human-facing pages are canonical; use `/sitemap.xml` for exhaustive URL discovery.
+This curated guide was last reviewed on 2026-10-14. The linked human-facing pages are canonical; use `/sitemap.xml` for exhaustive URL discovery.
 
 ## Start Here
 
-- [Projects](/projects/): Chronological archive of ongoing and completed work.
+- [Projects](/projects/): Archive of ongoing and completed work, grouped by year and filterable by hub (Obsidian, Project Humane, Darkroom, Bookbinding).
 - [Notes](/notes/): Essays, collected matter, and shorter thinking notes.
-- [Research](/research/): Working journal of short, dated entries in two streams, Ambient Computing and Tools for Thought, with its own feed at `/research/index.xml`.
+- [Research](/research/): Working journal of short, dated entries in two streams, with its own feed at `/research/index.xml`.
 - [Log](/log/): Public monthly summaries beginning in January 2019.
-- [The Flâneur](/newsletter/): Newsletter signup and dispatch archive.
+- [The Flâneur](/newsletter/): Newsletter signup, a contact sheet of dispatch photographs, and the dispatch archive.
 - [Traces](/traces/): Scans, photographs, documents, and spatial records.
-- [A-Z Index](/a-z/): Site hubs, alphabetical page index, and log archive.
+- [Index](/a-z/): Start Here hubs, an alphabetical index of pages, and the log archive.
 
 ## Photography, Darkroom, and Bookbinding
 
@@ -23,6 +23,12 @@ This curated guide was last reviewed on 2026-08-01. The linked human-facing page
   - [Rapid Travel Film Development Kit](/darkroom/travel-dev-kit/): Portable film-development workflow.
   - [VNS Film-Scanning Adapter](/darkroom/valoi-easy120-with-negative-supply-99cri-light/): Adapter joining a Valoi Easy120 carrier to a Negative Supply light source.
   - [Bulk Film Canister Stickers](/darkroom/canister-stickers/): Printable labeling system for bulk-loaded film.
+  - [Foldable Film Reminders](/darkroom/foldable-film-reminder/): Printable reminders of which film is loaded in each camera.
+  - [Rugged 40-Roll Film Storage](/darkroom/rugged-40-roll-film-storage/): 3D-printable film holders for any roll film format.
+  - [Horseman 80 mm² Lensboards](/darkroom/horseman-lensboards/): 3D-printable lensboards for any lens.
+  - [Mamiya RZ67 PRO II Fine Focus Gear](/darkroom/rz67-focus-gear-stl/): 3D-printable replacement gear for fine focus.
+  - [Thermometer Panel for Jobo Systems](/darkroom/thermometer-panel-for-jobo-systems/): 3D-printable panel for precise temperature monitoring and control.
+  - [Zone Placement Sticker for Pentax Digital Spotmeter](/darkroom/pentax-digital-spotmeter-sticker/): DIY replica of Ansel Adams' zone scale.
   - [Lucky CP32 Manual](/darkroom/lucky-cp32-manual/): Original Japanese manual and an English translation.
 - [Bookbinding](/bookbinding/): Bindery fixtures, experiments, and practice notes.
   - [Corner Cutting Jig](/bookbinding/corner-cutting-jig/): Six printable jigs for cutting book-board corners.
@@ -32,11 +38,14 @@ This curated guide was last reviewed on 2026-08-01. The linked human-facing page
 - [Project Humane](/project-humane/): Tools for thought and interfaces made for human bodies and durable files.
   - [Plaintext Commons](/project-humane/plaintext-commons/): Manifesto for human- and agent-friendly plain-text knowledge.
   - [Unbound Notebook System](/project-humane/notebook-system/): Loose-leaf framework for combining analog thinking with digital retrieval.
+  - [Copy Editor](/project-humane/copy-editor/): Local AI writing tool that suggests edits beside a draft and leaves every change to the writer.
   - [Patchcord](/project-humane/patchcord/): Agent-friendly development, deployment, and debugging workflow for CircuitPython projects.
+  - [Refmode CLI](/project-humane/refmode/): macOS command-line tool for switching Apple display reference modes.
   - [Things CLI](/project-humane/things-cli/): macOS command-line access to Things 3.
   - [TP-7 CLI](/project-humane/tp7/): File management for Teenage Engineering TP-7 recorders.
   - [Whoopy CLI](/project-humane/whoopy/): Unofficial WHOOP data CLI for people, automation, dashboards, and agents.
   - [Withingy CLI](/project-humane/withingy/): Withings activity, sleep, and workout data from the terminal.
+  - [EDC Modular Keychain](/project-humane/edc-keychain/): Lightweight, modular everyday-carry system.
 - [Loose Leaves](/leaves/): Reverse-chronological scans from the Unbound Notebook System.
 
 ## Obsidian and Plain-Text Workflows
@@ -49,34 +58,46 @@ This curated guide was last reviewed on 2026-08-01. The linked human-facing page
   - [Triage](/obsidian/triage/): Anki-style queue for resurfacing unprocessed notes.
   - [Vault Tasks](/obsidian/vault-tasks/): Organized vault-wide Markdown task view.
 
+## Research
+
+- [Research](/research/): A working journal of what was tried, found, or asked; arguments and opinions belong in Notes. Entries are numbered within their stream and marked as a finding, progress, a question, or reading. Each stream page shows its entries in full, newest first, with the questions still open, and has its own feed at `/research/<stream>/index.xml`.
+  - [Ambient Computing](/research/ambient-computing/): Dynamicland-style computing in the studio, with the room as the interface: screens, keys, voice, paper, and hands.
+  - [Tools for Thought](/research/tools-for-thought/): Plain-text systems, notebooks, and software that helps people think with files they own.
+
 ## Writing and Publishing
 
-- [Notes](/notes/) supports three reading filters: Collected Matter, Thinking Notes, and Longform.
+- [Notes](/notes/) can be filtered three ways: Collected, Thinking, and Longform.
   - [Where I Stand on AI—For Now](/notes/where-i-stand-on-ai/): Personal perspective on using artificial intelligence.
   - [The Human Border](/notes/the-human-border/): A line between assistance and authorship.
+  - [Ship the tool, not the agent](/notes/ship-the-tool-not-the-agent/): Build the capability as a clear tool that people and agents can both drive, rather than wrapping it in a single-purpose agent.
+  - [Software gets malleable when describing it is enough](/notes/software-gets-malleable/): How describing behavior to a model makes small, specific software worth building.
   - [Hands Are Not Cursors](/notes/hands-are-not-cursors/): Notes on embodied interaction.
+  - [Square sensors make sense for online video](/notes/square-sensors/): Square video that carries suggested crops or points of interest according to the author's intent.
   - [Stop Saying Russian When You Mean Soviet](/notes/soviet-not-russia/): Cultural and historical observations from a Georgian perspective.
   - [The Silo Problem in Photography](/notes/non-photographers-need-not-apply/): Why photography books and platforms struggle to reach beyond photographers.
   - [Universal Content Bundle](/notes/universal-content-bundle/): Self-describing bundle format for content readable by humans, software, and agents.
-- [The Flâneur](/newsletter/): Periodic dispatches about work, photography, books, making, and walking. Individual issues use `/flaneur/NNN/`; email renderings use `/flaneur/NNN/email.html`.
+- [The Flâneur](/newsletter/): Periodic dispatches about work, photography, books, making, and walking. Individual issues use `/flaneur/NNN/`; email renderings use `/flaneur/NNN/email.html`; `/flaneur/` redirects to the archive.
 - [Log](/log/): Monthly project and activity summaries, with archive URLs in `/log/YYYY/MM/` form.
 
 ## Places and Records
 
 - [Jinny Street Gallery](/jinny/): Outdoor contemporary art space made from streetlamp display cases in Jingumae, Tokyo.
+  - [Jinny Street Gallery Website](/jinny-website/): The gallery's website, with a 3D neighborhood map, an exhibition archive, and interactive tools for its artists.
 - [Traces](/traces/): Material and spatial records.
   - [A Spatial Long Exposure](/traces/spatial-long-exposure/): Interactive map of accumulated location history and geotagged photographs, published without individual dates.
   - [Kyojima Studio, 2024–2026](/traces/kyojima-studio/): Interactive 3D scan and photographic record of the studio.
+  - [Wirescapes at Mutant Radio](/traces/wirescapes-mutant-radio/): Interactive Gaussian-splat scan and photographs of the Wirescapes reprise in Tbilisi.
 
 ## About the Site
 
-- [About](/about/): Toto's background, philosophy, press, and appearances.
-- [Colophon](/colophon/): Design, implementation, publishing, and privacy notes.
+- [About](/about/): Toto's background, philosophy, record, press, and appearances.
+- [Colophon](/colophon/): Design, type, implementation, publishing, and privacy notes.
 - [AI on ttvl.co](/ai/): How AI is used privately while maintaining the site, within the Human Border principle.
 
 ## Machine-Readable Endpoints
 
 - [RSS feed](/index.xml): Full-content feed combining Log, Darkroom, Bookbinding, Notes, Flâneur, Project Humane, and Obsidian entries.
+- [Research feed](/research/index.xml): Entries from every research stream.
 - [Search index](/index.json): JSON consumed by the search overlay; it covers published section content but excludes standalone root pages such as About and Colophon.
 - [Sitemap](/sitemap.xml): Hugo-generated XML index of published canonical routes.
 - [Robots directives](/robots.txt): Hugo-generated crawler directives.
