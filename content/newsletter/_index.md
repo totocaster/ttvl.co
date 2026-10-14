@@ -1,5 +1,7 @@
 ---
 title: 'The Flâneur'
+aliases:
+  - /flaneur/
 description: "Experimental newsletter on my projects, photography, and walking."
 project:
   year: ongoing
