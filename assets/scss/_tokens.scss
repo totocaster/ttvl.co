@@ -15,6 +15,8 @@
 //   --surface        raised panels: sheets, hover tints, the selected search row
 //   --surface-input  form fields
 //   --highlight      text fragments and selection
+//   --film           the Contact Sheet's strip of film, a grey keyed to the
+//                    theme; its edge print is --ink-faint (4:1 light, 4.6:1 dark)
 //   --signal         what is live: the current month, the pulse, the focus ring;
 //                    never under text
 //   --term*          the terminal block, dark in both themes
@@ -33,6 +35,7 @@
   --edge: #d9d9d9;
   --surface: #f7f7f7;
   --surface-input: #fff;
+  --film: #e6e6e6;
   --highlight: rgba(255, 235, 59, 0.8);
   --signal: #ff4f00;
   --term: #161616;
@@ -51,6 +54,7 @@
     --edge: rgba(255, 255, 255, 0.2);
     --surface: rgba(255, 255, 255, 0.05);
     --surface-input: #1e1e1e;
+    --film: #262626;
     --highlight: rgba(255, 213, 79, 0.3);
     --term: #0a0a0a;
   }

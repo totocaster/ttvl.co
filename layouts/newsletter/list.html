@@ -1,7 +1,8 @@
 {{- /* /newsletter/: the archive of The Flâneur. The head carries the intro
      as its dek and the form with its legend in the column; then Start Here
      (front matter start_here, when show_start_here), the Contact Sheet
-     (one frame per dispatch with a cover, when show_contact_sheet), and one
+     (a strip of 35mm film, one frame per dispatch with a cover, when
+     show_contact_sheet; assets/js/film-strip.js fades its scrolling edges), and one
      tight block per year (deks when show_deks; a year_qualifiers entry in
      front matter puts a note under the year). docs/styleguide.md, Page by Page
      (Newsletter). */ -}}
@@ -55,18 +56,24 @@
   <section class="block">
     <div class="rail"><h2>Contact Sheet</h2></div>
     <div class="main">
-      <ul class="sheet-strip">
-        {{- range $frames }}
-        {{- $p := .page }}
-        {{- $thumb := .img.Fill "300x220 center q80" }}
-        <li>
-          <a href="{{ $p.RelPermalink }}">
-            <img src="{{ $thumb.RelPermalink }}" width="150" height="110" alt="From {{ $p.Title }}" loading="lazy" />
-            <span class="sheet-cap">{{ printf $no $p.File.BaseFileName ($p.Date.Format "2006-01-02") ($p.Date.Format "2006-01") | safeHTML }}</span>
-          </a>
-        </li>
-        {{- end }}
-      </ul>
+      <div class="film" data-film>
+        <ul class="film-strip">
+          {{- range $frames }}
+          {{- $p := .page }}
+          {{- $n := int (strings.TrimLeft "0" $p.File.BaseFileName) }}
+          {{- $date := $p.Date.Format "2006-01-02" }}
+          {{- $thumb := .img.Fill "384x256 center q80" }}
+          <li class="film-frame">
+            <a href="{{ $p.RelPermalink }}"><img src="{{ $thumb.RelPermalink }}" width="192" height="128" alt="From {{ $p.Title }}, number {{ $n }}, {{ $date }}" loading="lazy" /></a>
+            <span class="film-print film-print--title" aria-hidden="true">{{ $p.Title }}</span>
+            <span class="film-print film-print--mark" aria-hidden="true">{{ $n }}A</span>
+            <span class="film-print film-print--number" aria-hidden="true">▸{{ $n }}</span>
+            <span class="film-print film-print--date" aria-hidden="true">{{ $date }}</span>
+          </li>
+          {{- end }}
+          <li class="film-leader" aria-hidden="true"></li>
+        </ul>
+      </div>
       <p class="legend">One frame from each dispatch that carried photographs. Each opens the letter it came from.</p>
     </div>
   </section>
@@ -91,4 +98,8 @@
   {{- end }}
 </article>
 {{ partial "campaign-monitor-script.html" . }}
+{{- if .Params.show_contact_sheet }}
+{{- $film := resources.Get "js/film-strip.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $film.RelPermalink }}" integrity="{{ $film.Data.Integrity }}" defer></script>
+{{- end }}
 {{ end }}

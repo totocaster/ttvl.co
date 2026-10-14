@@ -8,79 +8,169 @@
   margin-top: $space-5;
 }
 
-// The Contact Sheet: one 150 × 110 frame per dispatch with a cover, the
-// number and month under each. Scrolls sideways without a scrollbar; the
-// clipped frame at the edge is the affordance.
-.sheet-strip {
-  display: flex;
-  gap: $space-3;
-  list-style: none;
-  margin: 0;
-  padding: 0 0 $space-1;
+// The Contact Sheet: a strip of 35mm film, one frame per dispatch with a
+// cover, newest first, ending in a cut leader. True proportions at 5.33 px
+// to the millimetre: 36 × 24 mm frames 2 mm apart, a 35 mm film with
+// 1.98 × 2.8 mm perforations on a 4.75 mm pitch, 2 mm in from each edge.
+// The rebate carries the edge print, all of it in one faint ink: the
+// dispatch's title where a stock name would run and its A mark above, the
+// issue as the frame number (▸16) and the publication date below. The
+// print is decorative (aria-hidden; each image's alt says the same) and is
+// the one place type drops under 14 px, in Plex Sans Condensed as film
+// edges are. The strip scrolls sideways without a scrollbar; an edge with
+// more frames beyond it fades (data-more, set by assets/js/film-strip.js).
+$film-frame-w: 192px; // 36 mm
+$film-frame-h: 128px; // 24 mm
+$film-gap: 11px; // 2 mm between frames
+$film-rebate: 30px; // 5.5 mm above and below the frame
+$film-h: $film-frame-h + 2 * $film-rebate; // 35 mm
+$film-pitch: ($film-frame-w + $film-gap) / 8; // eight perforations a frame
+$film-fade: 72px;
+$film-hole: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='25.375' height='10.5'%3E%3Crect x='5.2' width='15' height='10.5' rx='2'/%3E%3C/svg%3E");
+
+.film {
+  --fade-start: 0px;
+  --fade-end: #{$film-fade};
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade-start), #000 calc(100% - var(--fade-end)), transparent);
+  mask-image: linear-gradient(to right, transparent, #000 var(--fade-start), #000 calc(100% - var(--fade-end)), transparent);
 
   &::-webkit-scrollbar {
     display: none;
   }
 
-  li {
-    flex: 0 0 150px;
+  &[data-more="start"] {
+    --fade-start: #{$film-fade};
+    --fade-end: 0px;
   }
+
+  &[data-more="both"] {
+    --fade-start: #{$film-fade};
+  }
+
+  &[data-more=""] {
+    --fade-end: 0px;
+  }
+}
+
+.film-strip {
+  display: flex;
+  width: max-content;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+// Each frame carries its own stretch of film and perforations, so the
+// strip ends wherever the frames do.
+.film-frame,
+.film-leader {
+  position: relative;
+  height: $film-h;
+  background: var(--film);
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 10.5px;
+    background: var(--ground); // punched through to the page
+    -webkit-mask: $film-hole repeat-x 0 0 / #{$film-pitch} 10.5px;
+    mask: $film-hole repeat-x 0 0 / #{$film-pitch} 10.5px;
+  }
+
+  &::before {
+    top: 5px;
+  }
+
+  &::after {
+    bottom: 5px;
+  }
+}
+
+.film-frame {
+  flex: 0 0 auto;
+  padding: $film-rebate 0 0 $film-gap;
 
   a {
     display: block;
-    text-decoration: none;
-  }
-
-  // Under the hand a frame becomes a key, as a project card's tile does:
-  // the frame turns ink, the shadow appears, pressing drops it.
-  img {
-    margin: 0 $shadow-quiet $shadow-quiet 0; // room for the shadow
-    transition:
-      border-color $t-fast,
-      box-shadow $t-press,
-      transform $t-press;
-  }
-
-  a:hover img,
-  a:focus-visible img {
-    border-color: var(--ink);
-    box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
-  }
-
-  a:active img {
-    transform: translate($shadow-quiet, $shadow-quiet);
-    box-shadow: none;
+    width: $film-frame-w;
+    height: $film-frame-h;
   }
 
   img {
     display: block;
-    width: 150px;
-    height: 110px;
-    object-fit: cover;
-    border: 1px solid var(--edge);
+    width: 100%;
+    height: 100%;
+    object-fit: cover; // 3:2, like the negative
     border-radius: $radius;
-    background: var(--surface);
+    outline: 1.5px solid transparent;
+    outline-offset: 1px;
+    transition: outline-color $t-fast;
   }
 
-  .sheet-cap {
-    display: block;
-    @include type-meta;
-    color: var(--ink-faint);
-    margin-top: $space-1;
-    white-space: nowrap;
-    transition: color $t-fast;
+  a:hover img {
+    outline-color: var(--ink);
   }
+}
 
-  a:hover .sheet-cap {
+.film-print {
+  position: absolute;
+  font-family: "IBM Plex Sans Condensed", $font-family-sans;
+  font-size: 12px;
+  line-height: 12px;
+  font-weight: 700;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+  transition: color $t-fast;
+
+  .film-frame:is(:hover, :focus-within) & {
     color: var(--ink);
   }
+}
 
-  & + .legend {
-    margin-top: $space-3;
-  }
+.film-print--title,
+.film-print--mark {
+  top: 16px;
+}
+
+.film-print--number,
+.film-print--date {
+  bottom: 16px;
+}
+
+.film-print--title {
+  left: $film-gap + 2px;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 500;
+}
+
+.film-print--mark,
+.film-print--date {
+  right: 2px;
+}
+
+.film-print--number {
+  left: $film-gap + 2px;
+}
+
+// The cut end of the roll after the oldest frame: the top half trimmed
+// away in a curve, leaving the rounded tongue a film leader has.
+.film-leader {
+  flex: 0 0 166px;
+  clip-path: path("M0 0 L30 0 C68 0 64 86 104 86 L150 86 Q166 86 166 102 L166 172 Q166 188 150 188 L0 188 Z");
+}
+
+.film + .legend {
+  margin-top: $space-3;
 }
 
 // Dispatch pages: the engraving in place of the masthead, centered and
