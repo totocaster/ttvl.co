@@ -139,6 +139,34 @@ $viewer-inset: $space-3; // badges and keys sit 12 px in from the frame
   }
 }
 
+// The splat viewer's drag hint: model-viewer's own hand, centred over the
+// scan, faded in after three idle seconds and moved by
+// assets/js/gaussian-splat-viewer.js in step with the camera.
+.viewer-prompt {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2; // over the canvas (1), under the badges (3)
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity $t-slow;
+
+  &.is-visible {
+    opacity: 1;
+  }
+
+  &[hidden] {
+    display: none;
+  }
+
+  svg {
+    display: block;
+    width: 25px;
+    height: 36px;
+  }
+}
+
 // Fullscreen uses the compact control size, enlarged for touch.
 .viewer-fs {
   position: absolute;

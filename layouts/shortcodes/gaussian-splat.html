@@ -6,7 +6,8 @@
      "size" (used when the file is not under static/; otherwise read from
      the file), "camera-position" and "camera-target". The page must set
      gaussian_splat: true. assets/js/gaussian-splat-viewer.js reads the
-     data-splat-* hooks. */ -}}
+     data-splat-* hooks; [data-splat-prompt] is the drag hint, the same hand
+     model-viewer shows, swaying with the camera until the first touch. */ -}}
 {{- $src := .Get "src" -}}
 {{- $poster := .Get "poster" -}}
 {{- $alt := .Get "alt" -}}
@@ -54,6 +55,7 @@
       aria-label="{{ $alt }}"
       aria-describedby="{{ $captionID }}"
     ></canvas>
+    <span class="viewer-prompt" data-splat-prompt aria-hidden="true" hidden>{{ partial "icons/drag-hand.svg" . }}</span>
     <span class="viewer-status" data-splat-status role="status">Loading scan…</span>
     <button
       class="viewer-fs"

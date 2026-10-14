@@ -16,6 +16,7 @@ const gaussianSplatViewer = {
     const status = root.querySelector("[data-splat-status]");
     const resetButton = root.querySelector("[data-splat-reset]");
     const fullscreenButton = root.querySelector("[data-splat-fullscreen]");
+    const prompt = root.querySelector("[data-splat-prompt]");
     const src = root.dataset.splatSrc;
 
     if (!frame || !canvas || !status || !resetButton || !fullscreenButton || !src) {
@@ -138,9 +139,97 @@ const gaussianSplatViewer = {
           root.classList.add("is-loaded");
           status.hidden = true;
           resetButton.disabled = false;
+          armPrompt();
         },
       });
       scene.add(splat);
+
+      // The drag hint, as model-viewer's interaction prompt: once the scan
+      // has been on screen for three seconds untouched, a hand sways left and
+      // right and the camera swings with it around the target. The first
+      // drag, wheel, or key ends it for good. Readers who prefer reduced
+      // motion get the hand standing still and no camera movement.
+      const PROMPT_DELAY = 3000;
+      const PROMPT_PERIOD = 5000;
+      const PROMPT_SWING = 0.18; // radians each way
+      const PROMPT_TRAVEL = 40; // px each way
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)",
+      ).matches;
+      let promptState = "idle"; // idle → waiting → running → done
+      let promptTimer = 0;
+      let promptStart = 0;
+      let promptBase = null;
+      let promptVisible = false;
+
+      // One cycle, after model-viewer's wiggle: out left, across to the
+      // right, back to centre, then a rest. Eased between keyframes.
+      const promptKeys = [
+        [0, 0], [5, -1], [6, -1], [14, 1], [15, 1], [20, 0], [38, 0],
+      ];
+      const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2);
+      const promptOffset = (elapsed) => {
+        const frame = ((elapsed % PROMPT_PERIOD) / PROMPT_PERIOD) * 38;
+        for (let i = 1; i < promptKeys.length; i += 1) {
+          const [f1, v1] = promptKeys[i];
+          const [f0, v0] = promptKeys[i - 1];
+          if (frame <= f1) return v0 + (v1 - v0) * ease((frame - f0) / (f1 - f0));
+        }
+        return 0;
+      };
+
+      const endPrompt = () => {
+        if (promptState === "done") return;
+        promptState = "done";
+        clearTimeout(promptTimer);
+        if (prompt) prompt.classList.remove("is-visible");
+      };
+
+      const startPrompt = () => {
+        if (promptState !== "waiting" || !prompt) return;
+        promptState = "running";
+        promptStart = performance.now();
+        promptBase = camera.position.clone().sub(controls.target);
+        prompt.hidden = false;
+        requestAnimationFrame(() => prompt.classList.add("is-visible"));
+      };
+
+      const schedulePrompt = () => {
+        clearTimeout(promptTimer);
+        if (promptState === "waiting" && promptVisible) {
+          promptTimer = setTimeout(startPrompt, PROMPT_DELAY);
+        }
+      };
+
+      const armPrompt = () => {
+        if (!prompt || promptState !== "idle") return;
+        promptState = "waiting";
+        schedulePrompt();
+      };
+
+      const stepPrompt = (now) => {
+        if (promptState !== "running" || reducedMotion) return;
+        const offset = promptOffset(now - promptStart);
+        prompt.style.transform = `translate(-50%, -50%) translateX(${offset * PROMPT_TRAVEL}px)`;
+        camera.position
+          .copy(promptBase)
+          .applyAxisAngle(camera.up, -offset * PROMPT_SWING)
+          .add(controls.target);
+      };
+
+      controls.addEventListener("start", endPrompt);
+      canvas.addEventListener("keydown", endPrompt);
+      canvas.addEventListener("pointerdown", endPrompt);
+
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver((entries) => {
+          promptVisible = entries.some((entry) => entry.isIntersecting);
+          if (promptVisible) schedulePrompt();
+          else clearTimeout(promptTimer);
+        }, { threshold: 0.5 }).observe(frame);
+      } else {
+        promptVisible = true;
+      }
 
       const resetView = () => {
         if (!defaultPosition || !defaultTarget) return;
@@ -201,7 +290,10 @@ const gaussianSplatViewer = {
         requestAnimationFrame(resize);
       };
 
-      resetButton.addEventListener("click", resetView);
+      resetButton.addEventListener("click", () => {
+        endPrompt();
+        resetView();
+      });
       fullscreenButton.hidden = false;
       fullscreenButton.addEventListener("click", toggleFullscreen);
 
@@ -226,7 +318,8 @@ const gaussianSplatViewer = {
       }
       resize();
 
-      renderer.setAnimationLoop(() => {
+      renderer.setAnimationLoop((now) => {
+        stepPrompt(now);
         controls.update();
         renderer.render(scene, camera);
       });
