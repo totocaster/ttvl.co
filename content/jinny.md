@@ -53,7 +53,7 @@ In 2026, I designed and built a new website for the gallery, with a 3D neighborh
 
 ## Jinny Lemon Sour
 
-Jinny Lemon Sour is no longer made. We stopped producing it in January 2027.
+Jinny Lemon Sour is no longer made. We stopped producing it in January 2026.
 
 - Website: [jinnystreetgallery.com/lemon-sour](https://www.jinnystreetgallery.com/lemon-sour)
 - Instagram: [@jinny.sour](https://www.instagram.com/jinny.sour)
