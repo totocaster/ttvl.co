@@ -17,9 +17,10 @@ This three-dimensional scan preserves the studio as a spatial record of the plac
 
 {{< model-viewer
   src="/traces/kyojima-studio/kyojima-studio-2024-2026.glb"
-  poster="/visuals/trace-thumbs/trace_kyojima.png"
+  poster="/visuals/traces/kyojima-studio/poster.jpg"
   alt="A three-dimensional scan of the interior of Kyojima Studio"
-  camera-orbit="auto auto 70%"
+  camera-orbit="-68deg 55deg 75%"
+  camera-target="auto -1m auto"
   min-camera-orbit="auto auto 45%"
   size="8.3 MB"
 >}}

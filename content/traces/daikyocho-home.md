@@ -19,7 +19,7 @@ trace:
 These two three-dimensional scans preserve my home in Daikyocho, Shinjuku, at two moments in its life: first as a place where living and work overlapped, then solely as a living space after the studio and darkroom moved to [Kyojima](/traces/kyojima-studio/).
 
 {{< model-viewer-comparison
-  poster="/visuals/trace-thumbs/trace_daikyocho.png"
+  poster="/visuals/traces/daikyocho-home/poster.jpg"
   before-src="/traces/daikyocho-home/daikyocho-2023-02-28.glb"
   before-label="Before Kyojima"
   before-date="February 28, 2023"
@@ -30,7 +30,8 @@ These two three-dimensional scans preserve my home in Daikyocho, Shinjuku, at tw
   after-date="August 3, 2026"
   after-alt="A three-dimensional scan of the Daikyocho apartment as a living space in August 2026"
   after-size="11.1 MB"
-  camera-orbit="auto auto 70%"
+  camera-orbit="62deg 50deg 85%"
+  camera-target="auto -1.6m auto"
   min-camera-orbit="auto auto 45%"
 >}}
 

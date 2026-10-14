@@ -4,7 +4,9 @@
             camera-orbit="auto auto 70%" min-camera-orbit="auto auto 45%" >}}
      Optional: "title" (the bar's label; defaults to the page's trace kind),
      "size" (used when the file is not under static/; otherwise the size is
-     read from the file, as the head strip does). The page must set
+     read from the file, as the head strip does), "camera-target". The poster
+     should be the viewer's own render at its starting camera, 1600 × 1000,
+     so loading and loaded look the same. The page must set
      model_viewer: true. assets/js/model-viewer-fullscreen.js reads
      [data-model-viewer-viewport] and [data-model-viewer-fullscreen]. */ -}}
 {{- $src := .Get "src" -}}
@@ -12,6 +14,7 @@
 {{- $alt := .Get "alt" -}}
 {{- $cameraOrbit := .Get "camera-orbit" -}}
 {{- $minCameraOrbit := .Get "min-camera-orbit" -}}
+{{- $cameraTarget := .Get "camera-target" -}}
 {{- if not $src }}{{ errorf "model-viewer shortcode requires a src: %s" .Position }}{{ end -}}
 {{- if not $poster }}{{ errorf "model-viewer shortcode requires a poster: %s" .Position }}{{ end -}}
 {{- if not $alt }}{{ errorf "model-viewer shortcode requires accessible alt text: %s" .Position }}{{ end -}}
@@ -45,6 +48,7 @@
       shadow-intensity="0.5"
       {{ with $cameraOrbit }}camera-orbit="{{ . }}"{{ end }}
       {{ with $minCameraOrbit }}min-camera-orbit="{{ . }}"{{ end }}
+      {{ with $cameraTarget }}camera-target="{{ . }}"{{ end }}
     ></model-viewer>
     <noscript><img class="viewer-poster" src="{{ $poster }}" alt="{{ $alt }}" width="1600" height="1000" /></noscript>
     <button

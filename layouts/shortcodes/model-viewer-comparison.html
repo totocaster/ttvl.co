@@ -6,13 +6,16 @@
      Dates may be written as "February 28, 2023" or 2023-02-28; the keys and
      the badge show them as ISO dates. Optional: "title" (the bar's label;
      defaults to the page's trace kind), "before-size" and "after-size" (used
-     when a file is not under static/), "camera-orbit", "min-camera-orbit".
+     when a file is not under static/), "camera-orbit", "min-camera-orbit",
+     "camera-target". The poster should be the viewer's own render at that
+     camera, 1600 × 1000, so loading and loaded look the same.
      assets/js/model-viewer-comparison.js reads [data-model-variant] and its
      data-model-* attributes, [data-model-comparison-status],
      [data-model-comparison-download], and [data-model-comparison-size]. */ -}}
 {{- $poster := .Get "poster" -}}
 {{- $cameraOrbit := .Get "camera-orbit" -}}
 {{- $minCameraOrbit := .Get "min-camera-orbit" -}}
+{{- $cameraTarget := .Get "camera-target" -}}
 {{- if not $poster }}{{ errorf "model-viewer-comparison shortcode requires a poster: %s" .Position }}{{ end -}}
 {{- $months := dict "January" 1 "February" 2 "March" 3 "April" 4 "May" 5 "June" 6 "July" 7 "August" 8 "September" 9 "October" 10 "November" 11 "December" 12 -}}
 {{- $variants := slice -}}
@@ -83,6 +86,7 @@
       shadow-intensity="0.5"
       {{ with $cameraOrbit }}camera-orbit="{{ . }}"{{ end }}
       {{ with $minCameraOrbit }}min-camera-orbit="{{ . }}"{{ end }}
+      {{ with $cameraTarget }}camera-target="{{ . }}"{{ end }}
     ></model-viewer>
     <noscript><img class="viewer-poster" src="{{ $poster }}" alt="{{ $after.alt }}" width="1600" height="1000" /></noscript>
     <span class="viewer-status" data-model-comparison-status aria-live="polite">Showing {{ $after.inline }} · <time datetime="{{ $after.date }}">{{ $after.date }}</time></span>
