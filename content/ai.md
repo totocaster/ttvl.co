@@ -7,7 +7,7 @@ This page explains how I use AI while maintaining this website. My guiding princ
 
 When I use AI, I generally choose whichever frontier model I consider best suited to the task, with high reasoning effort. The exact model changes over time.
 
-Proofreading is done using [Grammarly](https://grammarly.com).
+Proofreading is done with AI, using whichever model I am working with at the time, through [Copy Editor](/project-humane/copy-editor/), a writing tool I made. It points out mistakes and questions; I decide which changes to make.
 
 ## Log
 
