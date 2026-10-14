@@ -1,6 +1,12 @@
 // The Gaussian splat viewer. The bar, frame, badge, fullscreen key, and
 // legend are the shared media chrome in _model-viewer.scss; this file holds
 // only the poster that stands in until the scan has loaded.
+//
+// The canvas paints the dark well from its first frame, so it stays
+// transparent until the scan is in (.is-loaded, set by
+// assets/js/gaussian-splat-viewer.js); until then the poster, rendered from
+// the viewer's own starting camera, shows through and the swap is seamless.
+// If the viewer fails, the poster stays.
 
 .gaussian-splat__poster {
   position: absolute;
@@ -13,7 +19,18 @@
   transition: opacity $t-slow;
 }
 
-.gaussian-splat.is-loaded .gaussian-splat__poster {
+.gaussian-splat [data-splat-canvas] {
   opacity: 0;
-  pointer-events: none;
+  transition: opacity $t-slow;
+}
+
+.gaussian-splat.is-loaded {
+  [data-splat-canvas] {
+    opacity: 1;
+  }
+
+  .gaussian-splat__poster {
+    opacity: 0;
+    pointer-events: none;
+  }
 }

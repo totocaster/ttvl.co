@@ -4,7 +4,10 @@
             camera-position="x y z" camera-target="x y z" >}}
      Optional: "title" (the bar's label; defaults to the page's trace kind),
      "size" (used when the file is not under static/; otherwise read from
-     the file), "camera-position" and "camera-target". The page must set
+     the file), "camera-position" and "camera-target". The poster should be
+     the viewer's own render at that camera, 1600 × 1000, so loading and
+     loaded look the same; the canvas stays hidden until the scan is in
+     (components/_gaussian-splat.scss). The page must set
      gaussian_splat: true. assets/js/gaussian-splat-viewer.js reads the
      data-splat-* hooks; [data-splat-prompt] is the drag hint, the same hand
      model-viewer shows, swaying with the camera until the first touch. */ -}}

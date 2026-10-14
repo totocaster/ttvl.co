@@ -20,7 +20,7 @@ On September 19, 2026, Ludo and I celebrated our wedding with a private party at
 {{< gaussian-splat
   title="Wirescapes × Mutant Radio"
   src="/traces/wirescapes-mutant-radio/wirescapes-mutant-radio.spz"
-  poster="/visuals/trace-thumbs/trace_wirescapes_mutant_radio.jpg"
+  poster="/visuals/traces/wirescapes-mutant-radio/poster.jpg"
   alt="A three-dimensional scan of the Wirescapes installation at Mutant Radio in Tbilisi"
   size="17.5 MB"
   camera-position="2.22 1.53 3.82"
