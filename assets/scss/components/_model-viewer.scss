@@ -1,6 +1,6 @@
 // Media chrome: the one geometry every viewer shares (model-viewer,
 // model-viewer-comparison, gaussian-splat, spatial-long-exposure), plus the
-// clip badge and the pronunciation control. docs/styleguide.md, Media
+// clip frame and the pronunciation control. docs/styleguide.md, Media
 // Chrome and Figures.
 //
 //   figure.viewer
@@ -26,8 +26,7 @@ $viewer-key-edge: rgba(255, 255, 255, 0.6); // deliberate exception
 $viewer-key-size: $control-height-quiet;
 $viewer-inset: $space-3; // badges and keys sit 12 px in from the frame
 
-// A badge over media: 14 px white on black. Shared by the viewers' status
-// and the clip's "Clip · loops muted".
+// A badge over media: 14 px white on black, used by the viewers' status.
 %media-badge {
   position: absolute;
   z-index: 3;
@@ -301,9 +300,8 @@ html.spatial-long-exposure-fullscreen-active {
   --poster-color: #{$viewer-well};
 }
 
-// The clip: a short silent loop in the figure frame, the badge at the
-// bottom left. Readers who prefer reduced motion get the poster and the
-// browser's controls, so the badge moves to the top to clear them.
+// The clip: a short silent loop in a plain figure frame. Readers who
+// prefer reduced motion get the poster and the browser's controls.
 .clip-frame {
   position: relative;
 
@@ -314,18 +312,6 @@ html.spatial-long-exposure-fullscreen-active {
     background: var(--surface);
     border: 1px solid var(--edge);
     border-radius: $radius;
-  }
-
-  &::after {
-    content: attr(data-badge);
-    @extend %media-badge;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    &::after {
-      top: $viewer-inset;
-      bottom: auto;
-    }
   }
 }
 
