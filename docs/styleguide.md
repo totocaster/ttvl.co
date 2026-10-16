@@ -224,7 +224,7 @@ The article body is one block with an empty rail. Prose holds the measure.
 - Bleed width (760 px), block image, 32 px above, 48 px below. Screenshots and renders carry a 1 px `--edge` frame with radius 2; photographs in letters (`class="plain"`) are unframed.
 - Captions: label voice, muted, 8 px under, held to the measure. No numbering.
 - `class="portrait"` holds tall captures to 360 px.
-- The `clip` shortcode: the same frame, a `Clip · loops muted` badge at the bottom left in 14 px white on 55% black, the caption below. Readers who prefer reduced motion get the poster and controls.
+- The `clip` shortcode: the same frame with nothing over the picture, the caption below. Readers who prefer reduced motion get the poster and controls. A dispatch's email shows the GIF beside the clip's MP4 instead (`tools/clip-gif.py`), or the linked poster.
 
 ### Rows
 

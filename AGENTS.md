@@ -114,7 +114,8 @@ The A–Z index ignores the initial English articles `A`, `An`, and `The` when s
 2. Set `title`, `description`, `date`, and `outputs: ["HTML", "email"]`.
 3. Store dispatch images under `static/flaneur/`.
 4. Use `flaneur-gallery` for responsive image groups.
-5. Verify both `/flaneur/015/` and `/flaneur/015/email.html`, including absolute image resolution and Campaign Monitor compatibility.
+5. Email clients don't play video, so for each `clip` run `uv run tools/clip-gif.py <clip>.mp4` to write a lower-fidelity GIF beside it. The email output shows that GIF in place of the clip, or the linked poster frame when there is none; the web page keeps the MP4. Keep each GIF to a few megabytes with `--fps`, `--colors`, `--width`, or `--speed`.
+6. Verify both `/flaneur/015/` and `/flaneur/015/email.html`, including absolute image resolution and Campaign Monitor compatibility.
 
 The archive itself is `/newsletter/`; do not treat `/flaneur/` as the canonical archive URL.
 

@@ -65,6 +65,23 @@
         margin: 0;
         line-height: 21px;
       }
+      figure {
+        margin: 20px 0;
+      }
+      figure img {
+        display: block;
+        width: 100%;
+        margin: 0;
+      }
+      figcaption {
+        margin-top: 8px;
+        font-size: 14px;
+        line-height: 21px;
+        color: #666;
+      }
+      figcaption a {
+        color: inherit;
+      }
       .flaneur-gallery {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -97,7 +114,31 @@
     <h1 class="title">{{ .Title }}</h1>
     {{ with .Params.description }}
     <p class="subtitle">{{ . }}</p>
-    {{ end }} {{ .Content }}
+    {{ end }}
+    {{- /* Email clients don't play video. A clip becomes the GIF that sits
+         beside its MP4 under the same name (tools/clip-gif.py makes one),
+         linked to the web page; without a GIF, its linked poster frame and a
+         link to watch it there. The feed renderer also removes the clips'
+         browser-only scripts. */ -}}
+    {{- $content := string (partial "rss-content.html" .) -}}
+    {{- $content = replaceRE `(<img[^>]* src=")/` (printf `${1}%s` ("/" | absURL)) $content -}}
+    {{- $webURL := (.OutputFormats.Get "HTML").Permalink -}}
+    {{- range findRE `<video\s[^>]*></video>` $content -}}
+      {{- $alt := "Studio visualization" -}}
+      {{- if in . ` aria-label="` -}}
+        {{- $alt = replaceRE `.*\saria-label="([^"]*)".*` "$1" . -}}
+      {{- end -}}
+      {{- $gif := replaceRE `.*\ssrc="(?:https://ttvl\.co)?/([^"]*)\.mp4".*` "$1.gif" . -}}
+      {{- $replacement := printf `<p><a href="%s">Watch the clip on the website →</a></p>` $webURL -}}
+      {{- if and (strings.HasSuffix $gif ".gif") (fileExists (path.Join "static" $gif)) -}}
+        {{- $replacement = printf `<a href="%s"><img src="%s" alt="%s" /></a>` $webURL ($gif | absURL) $alt -}}
+      {{- else if in . ` poster="` -}}
+        {{- $poster := replaceRE `.*\sposter="([^"]*)".*` "$1" . -}}
+        {{- $replacement = printf `<a href="%s"><img src="%s" alt="%s" /></a>%s` $webURL ($poster | absURL) $alt $replacement -}}
+      {{- end -}}
+      {{- $content = replace $content . $replacement -}}
+    {{- end -}}
+    {{ $content | safeHTML }}
 
     <div class="footer">
       <p>You're getting this email because you signed up for <a href="https://ttvl.co/newsletter/">The Flâneur</a> by <a href="https://ttvl.co/">Toto Tvalavadze</a>.</p>
