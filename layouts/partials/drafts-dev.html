@@ -1,0 +1,30 @@
+{{- /* Dev only: marks drafts under `hugo server -D` so they can't be
+     mistaken for published pages; assets/scss/drafts.scss draws the marks.
+     head.html calls this only when hugo.IsServer, so none of it reaches a
+     production build (which skips drafts anyway).
+     - <html data-draft> on a draft page, set before the first paint.
+     - data-draft on every link to a draft, wherever it appears: rows,
+       cards, Mentioned In, prose. The search index leaves drafts out. */ -}}
+{{- $drafts := slice -}}
+{{- range where site.Pages "Draft" true }}{{ $drafts = $drafts | append .RelPermalink }}{{ end -}}
+{{- $css := resources.Get "scss/drafts.scss" | toCSS }}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" />
+<script>
+  (() => {
+    {{- if .Draft }}
+    document.documentElement.dataset.draft = "";
+    {{- end }}
+    const drafts = new Set({{ $drafts | jsonify | safeJS }});
+    const isDraft = (a) => {
+      const url = new URL(a.href, location.href);
+      if (url.host !== location.host && !url.hostname.endsWith("ttvl.co")) return false;
+      const path = url.pathname.endsWith("/") ? url.pathname : url.pathname + "/";
+      return drafts.has(path);
+    };
+    document.addEventListener("DOMContentLoaded", () => {
+      for (const a of document.querySelectorAll("a[href]")) {
+        if (isDraft(a)) a.dataset.draft = "";
+      }
+    });
+  })();
+</script>

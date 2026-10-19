@@ -1,0 +1,63 @@
+// Dev only: drafts under `hugo server -D` look like construction tape, so
+// they can't be mistaken for published pages. Loaded by
+// partials/drafts-dev.html, never in production. html[data-draft] marks a
+// draft page and a[data-draft] every link to one.
+//
+// - A draft page: a hatched band down the left edge of the viewport, which
+//   stays in view while scrolling, and "Draft" atop the head's rail.
+// - Rows and cards that lead to a draft: a hatched swatch and "Draft" after
+//   the title, set like the tail; a card's tile gets a hatched top edge.
+// - Links to drafts in prose: a dashed signal underline.
+//
+// A hatched underline on titles was tried and read as a spelling squiggle.
+
+@import "variables";
+
+$hatch: repeating-linear-gradient(-45deg, var(--signal) 0 2px, transparent 2px 6px);
+
+html[data-draft] body::before {
+  content: "";
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: $space-2;
+  background: $hatch;
+  z-index: $z-overlay - 1;
+  pointer-events: none;
+}
+
+html[data-draft] .page-head > .rail::before {
+  content: "Draft";
+  display: inline-block;
+  padding-left: $space-5;
+  background: $hatch 0 50% / 16px 8px no-repeat;
+  color: var(--ink);
+}
+
+.row-title[data-draft]::after,
+.card-title[data-draft]::after {
+  content: "Draft";
+  display: inline-block; // keeps the title's underline off it
+  margin-left: $space-2;
+  padding-left: $space-5;
+  background: $hatch 0 50% / 16px 8px no-repeat;
+  @include type-meta;
+  font-weight: 400;
+  color: var(--ink-faint);
+}
+
+.card:has(.card-title[data-draft]) .tile {
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: $space-2;
+    background: $hatch;
+  }
+}
+
+a[data-draft]:not(.row-title):not(.card-title):not(.tile) {
+  text-decoration-style: dashed;
+  text-decoration-color: var(--signal);
+}
