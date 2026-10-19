@@ -6,7 +6,7 @@ weight: 1
 outputs: ["HTML", "RSS"]
 # The rig as it stands, one [label, text] pair per row. Rewrite it when it changes.
 bench:
-  - [Model, "_Studio Humane_ twin: a Blender model, a GLB, and a browser viewer with 73 addressed places"]
+  - [Model, "_Studio Humane_ twin: a Blender model, a GLB, and a browser viewer with 81 addressed places"]
   - [Lights, "Hue Bridge Pro with 16 lamps and 2 controls"]
   - [Sensors, "Aqara Hub M200 with contact sensors on both doors and the WC window, and a temperature and humidity sensor in the Lab"]
   - [Planned, "Home Assistant Green, a Broadlink RM4 mini for each air conditioner, a wall screen, a Stream Deck + XL"]
