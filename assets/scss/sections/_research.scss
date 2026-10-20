@@ -1,24 +1,47 @@
 // Research journal: what the shared grammar doesn't already draw. The
-// hub's stream switches carry the activity pulse across their faces;
-// entries in full sit in .block.entry (components/_block.scss). Heads,
-// blocks, switches, rows, legends, and the In This Stream end block are
-// shared components. docs/styleguide.md, Page by Page.
+// hub's stream doors carry the activity pulse across their tiles, and its
+// Latest cards hold each entry's figure on a plate; entries in full sit in
+// .block.entry (components/_block.scss). Heads, blocks, switches, cards,
+// rows, legends, and the In This Stream end block are shared components.
+// docs/styleguide.md, Page by Page.
 
-// The hub's stream switches: wide enough for the pulse to read day by
-// day, so two or three across and one on phones instead of the Projects
-// hubs' 136 px tiles. The pulse spans the face; the words keep their width.
+// The hub's stream doors: wide enough for the pulse to read day by day,
+// so two or three across and one on phones instead of the Index's three.
 .switches.streams {
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); // stream switch geometry
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); // stream door geometry
+}
 
-  .switch-key {
-    align-items: stretch;
-  }
+// Latest: an entry's figure is mostly a diagram drawn on white, so the
+// tile is a white plate in both themes and the figure sits whole inside
+// it, never cropped. An entry without a figure shows its number and kind.
+.research-card .tile {
+  background: #fff; // the figures' own paper, in both themes
 
-  .switch-name,
-  .switch-count,
-  .switch-dek {
-    align-self: flex-start;
+  img {
+    box-sizing: border-box;
+    padding: $space-3;
+    object-fit: contain;
   }
+}
+
+.research-card .tile.research-card__type {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: $space-3 14px; // switch geometry
+  background: var(--surface);
+  color: var(--ink-faint);
+  text-decoration: none;
+}
+
+.research-card__number {
+  font-size: 40px; // a numeral as the tile's picture
+  line-height: 44px;
+  color: var(--ink-quiet);
+}
+
+.research-card__kind {
+  @include type-meta;
 }
 
 // The activity pulse: one mark per day for 13 weeks, bottom-aligned, the

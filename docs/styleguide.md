@@ -174,7 +174,7 @@ The rail holds at most two lines; the column holds the title, the dek where the 
 | Dispatch | `2026-09-02 · 016` | `The Flâneur · Dispatch` |
 | Log month | `Month 93` | `Log` |
 | Hub (Notes, Projects, Traces, Leaves, Darkroom, …) | `16 notes · updated 2026-10-06` | |
-| Research hub | `28 entries · updated 2026-10-19` (follows the stream switches) | `RSS` (every stream) |
+| Research hub | `28 entries · updated 2026-10-19` | `RSS` (every stream) |
 | Research stream | `24 entries · updated 2026-10-06` | `Research · Active` |
 | Newsletter | `16 dispatches · updated 2026-09-02` | |
 | Home | `Public notebook · since 2008` | |
@@ -257,7 +257,7 @@ A block whose column starts with a list is a ledger: on wide screens its rail he
 </div>
 ```
 
-A 16:9 tile on a 1 px `--edge` frame with radius 2 over `--surface`, grayscale at rest; one label line (`date · hub` for projects, `date · kind` for traces, `Since 2023 · Gallery` for ongoing work); the title at 500; the dek. Nothing changes at rest. Under the hand, anywhere on the card, the tile alone becomes a key: the frame turns ink, the 2 px ink shadow appears, the poster colors, the title underlines; pressing drops the tile into its shadow, like every other key. The tile keeps a 2 px margin at right and below for the shadow. Up to three columns in the 880 px column, each at least 240 px wide; two at intermediate widths and one on small phones. Gaps are 32 × 24 px, or 24 × 12 px on phones. Rendered by `partials/card.html`.
+A 16:9 tile on a 1 px `--edge` frame with radius 2 over `--surface`, grayscale at rest; one label line (`date · hub` for projects, `date · kind` for traces, `Since 2023 · Gallery` for ongoing work, `date · stream` for research entries); the title at 500; the dek. Nothing changes at rest. Under the hand, anywhere on the card, the tile alone becomes a key: the frame turns ink, the 2 px ink shadow appears, the poster colors, the title underlines; pressing drops the tile into its shadow, like every other key. The tile keeps a 2 px margin at right and below for the shadow. Up to three columns in the 880 px column, each at least 240 px wide; two at intermediate widths and one on small phones. Gaps are 32 × 24 px, or 24 × 12 px on phones. A research entry's card (`variant: research`, `.research-card`) has no dek; its tile is a white plate in both themes, the colors the entries' diagrams are drawn in, with the entry's `image` or first figure or clip poster contained whole inside it, 12 px clear of the frame; an entry with no picture shows its number in Mono 40 and its kind on `--surface` instead. Rendered by `partials/card.html`.
 
 ### Doors, Chips, and the Strip
 
@@ -284,7 +284,7 @@ The subscribe form: a 40 px input, 44 px for touch (1 px ink frame, `--surface-i
 
 ### Legends
 
-A `p.legend` in the label voice explains the thing directly above it, in the column, never in the rail: under the subscribe form, under the switches (what pressing does and, on Research, what the pulse marks mean), under the contact sheet, under a viewer (how to orbit, the download), under the index's letters (what the mail icon means), under the pager (which keys move).
+A `p.legend` in the label voice explains the thing directly above it, in the column, never in the rail: under the subscribe form, under the switches (what pressing does), under the stream doors (what the pulse marks mean), under the contact sheet, under a viewer (how to orbit, the download), under the index's letters (what the mail icon means), under the pager (which keys move).
 
 ### End Matter
 
@@ -298,11 +298,11 @@ Notes: `nav.category-filter` under the hub's dek, chips in the control voice, fa
 
 Projects: one switch per hub under the dek (`.switches`, `components/_switch.scss`), a tile on `--surface` with a 1 px `--edge` frame and radius 2, at least 136 px wide, as many across as fit (two on phones). Its face is a button in the control voice: the hub's name, its count in the label voice, its `filter_dek` muted; under the face, `Open the hub →` in the label voice is the door. Pressing a face filters the cards and presses the switch: it stands on `--ground` with an ink frame, a 2 px ink shadow, and the lamp (a 6 px `--signal` dot) after its name, so the name never moves. Pressing it again releases the filter; there is no All switch. A legend under the switches says so. New hubs join by having projects and a `filter_dek`.
 
-Research: the same switches, one per stream, at least 280 px wide so the pulse reads day by day (two or three across, one on phones). The face holds the stream's name, `27 entries · Active` in the label voice, the pulse across its full width, and the stream's description muted; the door is `Open the stream →`. Pressing a face hides the other streams' blocks. The pulse is 91 marks, one per day for 13 weeks, oldest at left, 1 px apart and bottom-aligned in an 18 px strip: an empty day is a 2 px `--edge` stub, a day with entries an ink mark from 6 px (one entry) to 18 px (six or more), and the newest mark takes `--signal` while it is less than a week old. The legend names the span. Rendered by `partials/research-pulse.html`, styled by `sections/_research.scss`.
+Research: door switches like the Index's, one per stream, at least 280 px wide so the pulse reads day by day (two or three across, one on phones). The tile holds the stream's name, `27 entries · Active` in the label voice, the pulse across its full width, and the stream's description muted; the whole tile opens the stream, and nothing filters. The pulse is 91 marks, one per day for 13 weeks, oldest at left, 1 px apart and bottom-aligned in an 18 px strip: an empty day is a 2 px `--edge` stub, a day with entries an ink mark from 6 px (one entry) to 18 px (six or more), and the newest mark takes `--signal` while it is less than a week old. The legend names the span. Rendered by `partials/research-pulse.html`, styled by `sections/_research.scss`.
 
 Index: the same tiles as doors (`.switches.doors`, `a.switch.door`), three across (two on phones), one per hub with its title and `filter_dek`, the whole tile a link. Under the hand it stands up like a pressed switch (ink frame, shadow, ground) and pressing drops it; no lamp, no count, no door line, since the tile is the door.
 
-Every filtered hub: while a category is chosen, the qualifier that would only repeat it steps aside (a note's category tail, the hub in a card's label, both marked `.filter-key`). The head rail's count follows the filter (`12 projects`): `count.html` with `live` wraps it as `.count[data-singular][data-plural]`, and `category-filter.js` reads every `[data-filter-control]` button and `.category-filter` chip, shows and hides the `[data-category]` items of every `[data-filter-group]`, and keeps the state in `?category=`. Groups carry no count of their own.
+Both hubs: while a category is chosen, the qualifier that would only repeat it steps aside (a note's category tail, the hub in a card's label, both marked `.filter-key`). The head rail's count follows the filter (`12 projects`): `count.html` with `live` wraps it as `.count[data-singular][data-plural]`, and `category-filter.js` reads every `[data-filter-control]` button and `.category-filter` chip, shows and hides the `[data-category]` items of every `[data-filter-group]`, and keeps the state in `?category=`. Groups carry no count of their own.
 
 ### Search Overlay
 
@@ -317,7 +317,7 @@ Full ground. Centered, 96 px down: a “Search site” label and a Close button,
 - **Long articles** (the notebook system and its guides, Walking) call the `toc` shortcode and get the table of contents in the body block's rail.
 - **Project page.** Head with the strip. The body block. Mentioned In. The `resources` manifest, where a page writes one, stays in the body and renders as plates (`.files`, three across, two on phones): the switch tile with the type at the top (a format such as `PDF` or `STL` in Mono, a destination such as `Printables` in Sans), the title at 500, a muted note, and `68 KB · Download ↓` or `printables.com ↗` under it; the whole plate is a door that stands up under the hand. A file link inside a paragraph is a small inline key on a 1 px shadow with `PDF ↓` after the words.
 - **Section hubs (Darkroom, Bookbinding, Project Humane, Obsidian, the notebook system).** Head with the intro as the dek. One block per `page-list` or `project-grid`, titled from the shortcode, with the lead (where one is written) in its rail.
-- **Research hub.** Head with the intro as the dek and the all-streams `RSS` as the rail's second line; under the dek one switch per stream with its pulse, and the legend (Filter Rail and Switches). Then one block per stream, its name linked in the rail with the stream's own `RSS` under it, rows `date | title | 024 · Question`. Pressing a switch hides the other streams' blocks, and the head's count follows.
+- **Research hub.** Head with the intro as the dek and the all-streams `RSS` as the rail's second line; under the dek one door per stream with its pulse, and the legend (Filter Rail and Switches). Then Latest: the six newest entries from every stream as cards (Cards). The stream pages list every entry; the hub does not.
 - **Research stream.** Head with the brief as the body block. Bench: rows `Model | text`. Open Questions: rows `date | title | 024`; a closed question is struck through in the meta column. Then an `Entries` block whose column is empty, followed by one `.block.entry` per entry, newest first: rail `date · number` then the kind, column the title at 22/30 and the entry in full. Entries sit 56 px apart; the first sits 16 px under the Entries heading.
 - **Research entry.** Head (`date · number` / `Stream · Kind`). Body. Mentioned In. In This Stream, with the legend. The arrow keys keep working.
 - **Log hub.** Head. One block per month, newest first: the month as the rail heading (linked), its content in the column. Then the Archive block with the year-by-month grid: Mono 14, 64 px year column, twelve cells, hairlines between years, voids as `··`, the current month in 500 with a 2 px `--signal` underline.
@@ -387,7 +387,7 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 ## Changelog
 
-- **2026-10-20, v8.0, stream switches.** The Research hub's streams are switches like the Projects hubs: the face filters the stream blocks, the door opens the stream, and the pulse runs across the face, one mark per day for 13 weeks. The Streams ledger is gone; the all-streams feed moves to the head rail.
+- **2026-10-20, v8.0, stream doors.** The Research hub's streams are door tiles like the Index's, each with its count, status, description, and a pulse of one mark per day for 13 weeks. Under them, Latest shows the six newest entries as cards, each figure contained on a white plate. The Streams ledger and the per-stream lists are gone; the all-streams feed moves to the head rail.
 - **2026-10-14, v8.0, the contact sheet as film.** The Flâneur's Contact Sheet is a strip of 35mm film: true proportions, a grey keyed to the theme, real edge data (title, frame number, date) in one faint condensed print, faded edges while it scrolls, and a cut leader after the oldest frame.
 - **2026-10-14, v8.0, quiet headings.** Every heading below the title is body size: sections in SemiBold with their numeral in the rail, now counted from 02 since the opening is 01; subheadings in italic. The title drops to 28/36 Regular. The space above headings scales down with them (40 and 24).
 - **2026-10-14, v8.0, doors hang their arrows.** A rail's `All notes →` keeps its words flush with the heading and hangs the arrow in the gap; the arrow lights in the signal color under the hand.

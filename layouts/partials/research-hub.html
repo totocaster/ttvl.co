@@ -1,12 +1,9 @@
-{{- /* The journal hub: the head with the intro as its dek and one switch
-     per stream under it (the face filters the stream blocks, the door opens
-     the stream), the all-streams feed as the head rail's second line, then
-     one block per stream, its name linked in the rail with the stream's own
-     feed, its entries as rows. The filter is assets/js/category-filter.js:
-     each stream block is a [data-filter-group], every row carries the
-     stream's data-category, each switch face is a [data-filter-control]
-     button, and the head rail's count follows the filter.
-     docs/styleguide.md, Page by Page (Research hub). */ -}}
+{{- /* The journal hub: the head with the intro as its dek, the all-streams
+     feed as the rail's second line, and one door per stream under the dek
+     (the whole tile opens the stream: its count, status, pulse, and
+     description), then Latest: the newest entries from every stream as
+     cards, each with its first figure. The streams' own pages list their
+     entries. docs/styleguide.md, Page by Page (Research hub). */ -}}
 {{- $streams := .Sections.ByWeight -}}
 
 {{- /* The intro is one paragraph; it stands as the head's dek. A longer
@@ -16,53 +13,34 @@
 {{- $dek := .Params.description -}}
 {{- if $single }}{{ $dek = strings.TrimSuffix "</p>" (strings.TrimPrefix "<p>" $intro) | safeHTML }}{{ end -}}
 
-{{- /* The head rail: the live count and the newest entry, then the feed
-     that follows every stream. */ -}}
-{{- $entries := .RegularPagesRecursive.ByDate.Reverse -}}
-{{- $one := slice (partial "count.html" (dict "n" (len $entries) "one" "entry" "many" "entries" "live" true)) -}}
-{{- with $entries }}{{ $d := (index . 0).Date.Format "2006-01-02" }}{{ $one = $one | append (printf `updated <time datetime="%s">%s</time>` $d $d) }}{{ end -}}
-{{- $rail := slice (delimit $one " · ") -}}
+{{- $rail := partial "page-meta.html" . -}}
 {{- with .OutputFormats.Get "rss" }}{{ $rail = $rail | append (printf `<a href="%s">RSS</a>` .RelPermalink) }}{{ end -}}
 
-{{- /* One switch per stream: the face (a button) filters, the door opens
-     the stream. The face carries the count, the status, the pulse, and
-     the description. */ -}}
-{{- $switches := "" -}}
+{{- $doors := "" -}}
 {{- with $streams -}}
-  {{- $switches = `<div class="switches streams" role="group" aria-label="Streams">` -}}
+  {{- $doors = `<div class="switches streams">` -}}
   {{- range . -}}
     {{- $count := partial "count.html" (dict "n" (len .RegularPages) "one" "entry" "many" "entries") -}}
     {{- $status := title (.Params.status | default "active") -}}
-    {{- $switches = printf `%s<div class="switch"><button type="button" class="switch-key" data-filter-control data-category="%s" aria-pressed="false"><span class="switch-name">%s</span><span class="switch-count">%s · %s</span>%s%s</button><a class="switch-door" href="%s">Open the stream →</a></div>` $switches (path.Base .Path) (htmlEscape .Title) $count $status (partial "research-pulse.html" .) (cond (ne .Description "") (printf `<span class="switch-dek">%s</span>` (htmlEscape .Description)) "") .RelPermalink -}}
+    {{- $doors = printf `%s<a class="switch door" href="%s"><span class="switch-name">%s</span><span class="switch-count">%s · %s</span>%s%s</a>` $doors .RelPermalink (htmlEscape .Title) $count $status (partial "research-pulse.html" .) (cond (ne .Description "") (printf `<span class="switch-dek">%s</span>` (htmlEscape .Description)) "") -}}
   {{- end -}}
-  {{- $switches = printf `%s</div><p class="legend">Press a stream to show only its entries, again for everything · each mark is a day of the last <span class="n">13</span> weeks, taller for more entries.</p>` $switches -}}
+  {{- $doors = printf `%s</div><p class="legend">Each mark is a day of the last <span class="n">13</span> weeks, taller for more entries.</p>` $doors -}}
 {{- end -}}
 
-{{ partial "page-head.html" (dict "page" . "dek" $dek "rail" $rail "extra" ($switches | safeHTML)) }}
+{{ partial "page-head.html" (dict "page" . "dek" $dek "rail" $rail "extra" ($doors | safeHTML)) }}
 {{- if not $single }}
 {{ partial "block-body.html" .Content }}
 {{- end }}
 
-{{- range $streams }}
-{{- $stream := . }}
-{{- with .RegularPages.ByDate.Reverse }}
-<section class="block" data-filter-group>
-  <div class="rail">
-    <h2><a href="{{ $stream.RelPermalink }}">{{ $stream.Title }}</a></h2>
-    {{- with $stream.OutputFormats.Get "rss" }}<p class="meta"><a href="{{ .RelPermalink }}">RSS</a></p>{{ end }}
-  </div>
+{{- with first 6 .RegularPagesRecursive.ByDate.Reverse }}
+<section class="block">
+  <div class="rail"><h2>Latest</h2></div>
   <div class="main">
-    <ul class="rows">
+    <div class="cards">
       {{- range . }}
-      {{ partial "research-row.html" (dict "page" . "number" true "category" true "filter" (path.Base $stream.Path)) }}
+      {{ partial "card.html" (dict "page" . "variant" "research") }}
       {{- end }}
-    </ul>
+    </div>
   </div>
 </section>
-{{- end }}
-{{- end }}
-
-{{- with $streams }}
-{{ $categoryFilter := resources.Get "js/category-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}
-<script src="{{ $categoryFilter.RelPermalink }}" defer></script>
 {{- end }}

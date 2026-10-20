@@ -1,6 +1,9 @@
 {{- /* A card: a 16:9 tile, one label line, the title, the dek. Pass "page";
      pass "variant" "trace" for trace pages, whose description, image, and
-     kind live outside project front matter.
+     kind live outside project front matter, or "research" for a research
+     entry: its `image`, else the first figure or clip poster in its text,
+     contained on a white plate; an entry without one shows its number and
+     kind on the tile. Research cards read "date · stream" and carry no dek.
      The label line: projects read "date · hub" (the hub is the title, or
      filter_label, of the page named by project.category); ongoing work
      reads "Since YYYY · hub"; traces
@@ -15,7 +18,16 @@
 {{- $desc := "" -}}
 {{- $category := "" -}}
 {{- $label := slice -}}
-{{- if eq $variant "trace" -}}
+{{- $number := "" -}}
+{{- if eq $variant "research" -}}
+  {{- $img = $page.Params.image -}}
+  {{- if not $img -}}
+    {{- with findRESubmatch `(?:(?:src|poster)="|\]\()(/visuals/[^")\s]+\.(?:png|jpe?g|webp|gif))` $page.RawContent 1 }}{{ $img = index (index . 0) 1 }}{{ end -}}
+  {{- end -}}
+  {{- $number = partialCached "research-number.html" $page $page.Path -}}
+  {{- $d := $page.Date.Format "2006-01-02" -}}
+  {{- $label = slice (printf `<time datetime="%s">%s</time>` $d $d) (htmlEscape $page.CurrentSection.Title) -}}
+{{- else if eq $variant "trace" -}}
   {{- $img = $page.Params.image -}}
   {{- $desc = $page.Params.description -}}
   {{- $category = $page.Params.trace.kind -}}
@@ -41,9 +53,9 @@
     {{- with $proj.category }}{{ with site.GetPage . }}{{ $label = $label | append (printf `<span class="filter-key">%s</span>` (htmlEscape (.Params.filter_label | default .Title))) }}{{ end }}{{ end -}}
   {{- end -}}
 {{- end }}
-<div class="card"{{ if eq $variant "trace" }}{{ with $category }} data-category="{{ . }}"{{ end }}{{ else }} data-category="{{ $category }}"{{ end }}>
-  <a class="tile" href="{{ $page.RelPermalink }}" tabindex="-1" aria-hidden="true">
-    {{- with $img }}<img src="{{ . }}" alt="" loading="lazy" />{{ end -}}
+<div class="card{{ if eq $variant "research" }} research-card{{ end }}"{{ if eq $variant "trace" }}{{ with $category }} data-category="{{ . }}"{{ end }}{{ else if eq $variant "project" }} data-category="{{ $category }}"{{ end }}>
+  <a class="tile{{ if and $number (not $img) }} research-card__type{{ end }}" href="{{ $page.RelPermalink }}" tabindex="-1" aria-hidden="true">
+    {{- with $img }}<img src="{{ . }}" alt="" loading="lazy" />{{ else }}{{ with $number }}<span class="n research-card__number">{{ . }}</span>{{ with partial "research-category.html" $page }}<span class="research-card__kind">{{ . }}</span>{{ end }}{{ end }}{{ end -}}
   </a>
   {{- with $label }}
   <p class="card-label"><span>{{ delimit . " · " | replaceRE ` · (<span class="filter-key">)` "<span class=\"filter-key\"> · " | replaceRE `(<span class="filter-key"> · )<span class="filter-key">` "$1" | safeHTML }}</span></p>
