@@ -2,6 +2,8 @@
      tail naming the entry's number and kind ("024 · Question"). Takes dict
      "page" plus booleans "stream", "number", "category" choosing what the
      tail names; with none of them the row has no tail (home lists).
+     "filter" optionally sets the row's data-category for the hub's
+     stream switches.
      docs/styleguide.md, Rows. */ -}}
 {{- $p := .page -}}
 {{- $parts := slice -}}
@@ -14,4 +16,5 @@
   "url" $p.RelPermalink
   "title" $p.Title
   "tail" (delimit $parts " · " | safeHTML)
+  "category" .filter
 ) }}

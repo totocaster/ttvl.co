@@ -1,48 +1,51 @@
 // Research journal: what the shared grammar doesn't already draw. The
-// hub's Streams rows carry the activity pulse inline after the name;
+// hub's stream switches carry the activity pulse across their faces;
 // entries in full sit in .block.entry (components/_block.scss). Heads,
-// blocks, rows, legends, and the In This Stream end block are
+// blocks, switches, rows, legends, and the In This Stream end block are
 // shared components. docs/styleguide.md, Page by Page.
 
-// The activity pulse: one mark per week, height and tier by entry count.
-// Empty weeks keep a low edge-colored stub so the strip reads as a
-// timeline; the current week, when it holds an entry, is the signal.
-// Data display geometry, not rhythm.
-.research-pulse {
-  display: inline-flex;
-  align-items: flex-end;
-  gap: 2px;
-  height: 14px;
-  margin-left: $space-3;
-  vertical-align: -1px;
+// The hub's stream switches: wide enough for the pulse to read day by
+// day, so two or three across and one on phones instead of the Projects
+// hubs' 136 px tiles. The pulse spans the face; the words keep their width.
+.switches.streams {
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); // stream switch geometry
 
-  // Phones: the title wraps, so the pulse takes its own line under it.
-  @include narrow {
-    display: flex;
-    margin: $space-2 0 0;
+  .switch-key {
+    align-items: stretch;
+  }
+
+  .switch-name,
+  .switch-count,
+  .switch-dek {
+    align-self: flex-start;
   }
 }
 
-.research-pulse__cell {
+// The activity pulse: one mark per day for 13 weeks, bottom-aligned, the
+// marks dividing the face's width between them. Height by entry count;
+// an empty day keeps a low edge-colored stub so the strip reads as a
+// timeline; the newest mark, while under a week old, is the signal.
+// Data display geometry, not rhythm.
+.research-pulse {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  column-gap: 1px;
+  align-items: end;
+  height: 18px;
+  margin: $space-3 0 2px;
+}
+
+.research-pulse__day {
   display: block;
-  width: 4px;
-  height: 3px;
-  border-radius: 1px;
+  height: 2px;
   background: var(--edge);
 
-  &--1 {
-    height: 6px;
-    background: var(--ink-faint);
-  }
-
-  &--2 {
-    height: 10px;
-    background: var(--ink-muted);
-  }
-
-  &--3 {
-    height: 14px;
-    background: var(--ink);
+  @each $level, $height in (1: 6px, 2: 9px, 3: 12px, 4: 14px, 5: 16px, 6: 18px) {
+    &--#{$level} {
+      height: $height;
+      background: var(--ink);
+    }
   }
 
   &--now {
@@ -68,10 +71,4 @@
   &:last-child {
     margin-bottom: 0;
   }
-}
-
-// The hub's Streams list: each stream's name a step bolder than an entry
-// title, so the streams read as the hub's sections.
-.rows.streams .row-title {
-  font-weight: $font-weight-medium;
 }

@@ -1,22 +1,28 @@
-{{- /* A stream's activity over the last 26 weeks, oldest at left: one mark
-     per seven days counted back from the build, taller for more entries
-     (capped at three). The current week's mark takes the signal color
-     when it holds an entry. Sits inline after the stream's name in the
-     hub's Streams rows; the legend under the rows explains it. */ -}}
-{{- $now := now.Unix -}}
-{{- $entries := .RegularPages -}}
+{{- /* A stream's activity over the last 13 weeks, one mark per day, oldest
+     at left, counted back from the build. A day with entries stands taller
+     the more it holds (capped at six); an empty day is a low edge-colored
+     stub, so the strip reads as a timeline. The newest marked day takes
+     the signal while it is less than a week old. Sits on the stream's
+     switch on the hub, between its count and its dek; the legend under
+     the switches explains it. */ -}}
+{{- $days := 91 -}}
+{{- $counts := dict -}}
+{{- range .RegularPages -}}
+  {{- $d := .Date.Format "2006-01-02" -}}
+  {{- $counts = merge $counts (dict $d (add (index $counts $d | default 0) 1)) -}}
+{{- end -}}
 {{- $levels := slice -}}
 {{- $total := 0 -}}
-{{- range $w := seq 0 25 -}}
-  {{- $ago := sub 25 $w -}}
-  {{- $count := 0 -}}
-  {{- range $entries -}}
-    {{- $age := sub $now .Date.Unix -}}
-    {{- if and (ge $age 0) (eq (div $age 604800) $ago) -}}{{- $count = add $count 1 -}}{{- end -}}
-  {{- end -}}
-  {{- $total = add $total $count -}}
-  {{- $levels = $levels | append (cond (gt $count 3) 3 $count) -}}
+{{- $newest := -1 -}}
+{{- range $i := seq 0 (sub $days 1) -}}
+  {{- $d := (now.AddDate 0 0 (sub $i (sub $days 1))).Format "2006-01-02" -}}
+  {{- $n := index $counts $d | default 0 -}}
+  {{- $total = add $total $n -}}
+  {{- if gt $n 0 }}{{ $newest = $i }}{{ end -}}
+  {{- $levels = $levels | append (cond (gt $n 6) 6 $n) -}}
 {{- end -}}
-<span class="research-pulse" role="img" aria-label="{{ $total }} {{ cond (eq $total 1) "entry" "entries" }} in the last 26 weeks">
-  {{- range $i, $l := $levels }}<span class="research-pulse__cell research-pulse__cell--{{ $l }}{{ if and (eq $i 25) (gt $l 0) }} research-pulse__cell--now{{ end }}"></span>{{ end -}}
+{{- $label := printf "%d %s in the last %d weeks" $total (cond (eq $total 1) "entry" "entries") (div $days 7) -}}
+{{- with .RegularPages.ByDate.Reverse }}{{ $label = printf "%s, the latest on %s" $label ((index . 0).Date.Format "2006-01-02") }}{{ end -}}
+<span class="research-pulse" role="img" aria-label="{{ $label }}">
+  {{- range $i, $l := $levels }}<span class="research-pulse__day{{ if $l }} research-pulse__day--{{ $l }}{{ end }}{{ if and (eq $i $newest) (ge $i (sub $days 7)) }} research-pulse__day--now{{ end }}"></span>{{ end -}}
 </span>

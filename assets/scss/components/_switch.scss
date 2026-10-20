@@ -3,8 +3,10 @@
 // switch's face (a button) carries the hub's name, count, and dek and
 // filters the cards below, with the door under the face; the pressed one
 // stands on the ground with an ink frame, a 2 px shadow, and the lamp
-// after its name. On the Index each switch is a door (a link): the hub's
-// name and dek, and the whole tile presses like a key under the hand.
+// after its name. The Research hub's streams are the same switches, wider,
+// with the activity pulse across the face (sections/_research.scss). On
+// the Index each switch is a door (a link): the hub's name and dek, and
+// the whole tile presses like a key under the hand.
 // docs/styleguide.md, Filter Rail and Switches.
 
 .switches {

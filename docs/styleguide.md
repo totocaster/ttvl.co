@@ -72,7 +72,7 @@ Themed colors come only from the custom properties in `assets/scss/_tokens.scss`
 | `--surface` | Raised panels: sheets, hover tints, the selected search row | `#f7f7f7` | `rgba(255,255,255,.05)` | |
 | `--surface-input` | Form fields | `#fff` | `#1e1e1e` | |
 | `--highlight` | Text fragments and selection | yellow, 80% | amber, 30% | |
-| `--signal` | What is live: the current month, this week's pulse, the focus ring | `#ff4f00` | same | never under text |
+| `--signal` | What is live: the current month, a pulse's newest mark in its first week, the focus ring | `#ff4f00` | same | never under text |
 | `--term`, `--term-ink`, `--term-faint` | The terminal block, dark in both themes | `#161616`, `#e6e6e6`, `#8f8f8f` | `#0a0a0a`, same, same | |
 
 High contrast (`prefers-contrast: more`) folds faint into muted, turns edges and rules to ink, and flattens surfaces.
@@ -174,7 +174,7 @@ The rail holds at most two lines; the column holds the title, the dek where the 
 | Dispatch | `2026-09-02 · 016` | `The Flâneur · Dispatch` |
 | Log month | `Month 93` | `Log` |
 | Hub (Notes, Projects, Traces, Leaves, Darkroom, …) | `16 notes · updated 2026-10-06` | |
-| Research hub | `25 entries · updated 2026-10-06` | |
+| Research hub | `28 entries · updated 2026-10-19` (follows the stream switches) | `RSS` (every stream) |
 | Research stream | `24 entries · updated 2026-10-06` | `Research · Active` |
 | Newsletter | `16 dispatches · updated 2026-09-02` | |
 | Home | `Public notebook · since 2008` | |
@@ -234,10 +234,9 @@ The article body is one block with an empty rail. Prose holds the measure.
 
 The one grammar for anything listed, light and dense as it was in Air. Two columns: the meta column and the title, with the tail inline after the title in the label voice and an optional dek under it. No hairlines: rows sit 4 px apart, 16 px apart with deks; titles at 16/24, deks at 16/23 muted. On wide screens a list inside a block reaches left across the gap so its meta column is the rail itself (192 px, then the 48 px gap), and the key sits flush right against the gap, next to its title; on phones it is left-aligned. Lists inside a body whose rail holds the table of contents and inside a stream entry keep a 128 px column. The search overlay draws its own rows (section, title and excerpt, the date at the right).
 
-- The meta column holds the ordering key or the kind: a date, `#016 · 2026-09` for dispatches, `Hub` / `Note` / `Project` / `Log` / `Research` / `Dispatch` / `About` in end matter, `Active` in the stream ledger, `The essay` on the newsletter's doors, `Model` / `Lights` on the bench, `← 018` / `020 →` in the pager. A list with nothing to order by (the Index's Start Here) leaves the column empty on wide screens, where it is the rail, and drops it when the rail stacks.
-- The tail holds one qualifier, the same kind in every row of a list: the category on Notes (`Thinking`), `024 · Question` on research lists, the venue on About's record, the date in end matter, `#008 · 2024-01` on the newsletter's doors. Home lists and the stream ledger carry none; a count never rides in a tail.
+- The meta column holds the ordering key or the kind: a date, `#016 · 2026-09` for dispatches, `Hub` / `Note` / `Project` / `Log` / `Research` / `Dispatch` / `About` in end matter, `The essay` on the newsletter's doors, `Model` / `Lights` on the bench, `← 018` / `020 →` in the pager. A list with nothing to order by (the Index's Start Here) leaves the column empty on wide screens, where it is the rail, and drops it when the rail stacks.
+- The tail holds one qualifier, the same kind in every row of a list: the category on Notes (`Thinking`), `024 · Question` on research lists, the venue on About's record, the date in end matter, `#008 · 2024-01` on the newsletter's doors. Home lists carry none; a count never rides in a tail.
 - Numbers in either column are wrapped: `<time>` for dates, `<span class="n">` for everything else.
-- The stream ledger's rows carry the activity pulse inline after the name, then the dek.
 - The search overlay's rows are the same markup; the selected row takes a `--surface` wash 12 px wider than itself.
 - On phones the tail drops under the title and the meta column fits its content, 96 to 136 px, with a 16 px gap before the title, so `#016 · 2026-09` never crowds the words.
 
@@ -285,7 +284,7 @@ The subscribe form: a 40 px input, 44 px for touch (1 px ink frame, `--surface-i
 
 ### Legends
 
-A `p.legend` in the label voice explains the thing directly above it, in the column, never in the rail: under the subscribe form, under the stream ledger (what the pulse marks mean), under the contact sheet, under a viewer (how to orbit, the download), under the index's letters (what the mail icon means), under the pager (which keys move).
+A `p.legend` in the label voice explains the thing directly above it, in the column, never in the rail: under the subscribe form, under the switches (what pressing does and, on Research, what the pulse marks mean), under the contact sheet, under a viewer (how to orbit, the download), under the index's letters (what the mail icon means), under the pager (which keys move).
 
 ### End Matter
 
@@ -299,9 +298,11 @@ Notes: `nav.category-filter` under the hub's dek, chips in the control voice, fa
 
 Projects: one switch per hub under the dek (`.switches`, `components/_switch.scss`), a tile on `--surface` with a 1 px `--edge` frame and radius 2, at least 136 px wide, as many across as fit (two on phones). Its face is a button in the control voice: the hub's name, its count in the label voice, its `filter_dek` muted; under the face, `Open the hub →` in the label voice is the door. Pressing a face filters the cards and presses the switch: it stands on `--ground` with an ink frame, a 2 px ink shadow, and the lamp (a 6 px `--signal` dot) after its name, so the name never moves. Pressing it again releases the filter; there is no All switch. A legend under the switches says so. New hubs join by having projects and a `filter_dek`.
 
+Research: the same switches, one per stream, at least 280 px wide so the pulse reads day by day (two or three across, one on phones). The face holds the stream's name, `27 entries · Active` in the label voice, the pulse across its full width, and the stream's description muted; the door is `Open the stream →`. Pressing a face hides the other streams' blocks. The pulse is 91 marks, one per day for 13 weeks, oldest at left, 1 px apart and bottom-aligned in an 18 px strip: an empty day is a 2 px `--edge` stub, a day with entries an ink mark from 6 px (one entry) to 18 px (six or more), and the newest mark takes `--signal` while it is less than a week old. The legend names the span. Rendered by `partials/research-pulse.html`, styled by `sections/_research.scss`.
+
 Index: the same tiles as doors (`.switches.doors`, `a.switch.door`), three across (two on phones), one per hub with its title and `filter_dek`, the whole tile a link. Under the hand it stands up like a pressed switch (ink frame, shadow, ground) and pressing drops it; no lamp, no count, no door line, since the tile is the door.
 
-Both hubs: while a category is chosen, the qualifier that would only repeat it steps aside (a note's category tail, the hub in a card's label, both marked `.filter-key`). The head rail's count follows the filter (`12 projects`): `count.html` with `live` wraps it as `.count[data-singular][data-plural]`, and `category-filter.js` reads every `[data-filter-control]` button and `.category-filter` chip, shows and hides the `[data-category]` items of every `[data-filter-group]`, and keeps the state in `?category=`. Groups carry no count of their own.
+Every filtered hub: while a category is chosen, the qualifier that would only repeat it steps aside (a note's category tail, the hub in a card's label, both marked `.filter-key`). The head rail's count follows the filter (`12 projects`): `count.html` with `live` wraps it as `.count[data-singular][data-plural]`, and `category-filter.js` reads every `[data-filter-control]` button and `.category-filter` chip, shows and hides the `[data-category]` items of every `[data-filter-group]`, and keeps the state in `?category=`. Groups carry no count of their own.
 
 ### Search Overlay
 
@@ -316,7 +317,7 @@ Full ground. Centered, 96 px down: a “Search site” label and a Close button,
 - **Long articles** (the notebook system and its guides, Walking) call the `toc` shortcode and get the table of contents in the body block's rail.
 - **Project page.** Head with the strip. The body block. Mentioned In. The `resources` manifest, where a page writes one, stays in the body and renders as plates (`.files`, three across, two on phones): the switch tile with the type at the top (a format such as `PDF` or `STL` in Mono, a destination such as `Printables` in Sans), the title at 500, a muted note, and `68 KB · Download ↓` or `printables.com ↗` under it; the whole plate is a door that stands up under the hand. A file link inside a paragraph is a small inline key on a 1 px shadow with `PDF ↓` after the words.
 - **Section hubs (Darkroom, Bookbinding, Project Humane, Obsidian, the notebook system).** Head with the intro as the dek. One block per `page-list` or `project-grid`, titled from the shortcode, with the lead (where one is written) in its rail.
-- **Research hub.** Head. Streams: rows with `Active` as the meta, the name, the pulse, and the dek; the pulse legend under them. The all-streams `RSS` sits in the Streams rail. On phones the pulse takes its own line under the stream's name. Then one block per stream, its name linked in the rail with the stream's own `RSS` under it, rows `date | title | 024 · Question`. No filter.
+- **Research hub.** Head with the intro as the dek and the all-streams `RSS` as the rail's second line; under the dek one switch per stream with its pulse, and the legend (Filter Rail and Switches). Then one block per stream, its name linked in the rail with the stream's own `RSS` under it, rows `date | title | 024 · Question`. Pressing a switch hides the other streams' blocks, and the head's count follows.
 - **Research stream.** Head with the brief as the body block. Bench: rows `Model | text`. Open Questions: rows `date | title | 024`; a closed question is struck through in the meta column. Then an `Entries` block whose column is empty, followed by one `.block.entry` per entry, newest first: rail `date · number` then the kind, column the title at 22/30 and the entry in full. Entries sit 56 px apart; the first sits 16 px under the Entries heading.
 - **Research entry.** Head (`date · number` / `Stream · Kind`). Body. Mentioned In. In This Stream, with the legend. The arrow keys keep working.
 - **Log hub.** Head. One block per month, newest first: the month as the rail heading (linked), its content in the column. Then the Archive block with the year-by-month grid: Mono 14, 64 px year column, twelve cells, hairlines between years, voids as `··`, the current month in 500 with a 2 px `--signal` underline.
@@ -386,6 +387,7 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 ## Changelog
 
+- **2026-10-20, v8.0, stream switches.** The Research hub's streams are switches like the Projects hubs: the face filters the stream blocks, the door opens the stream, and the pulse runs across the face, one mark per day for 13 weeks. The Streams ledger is gone; the all-streams feed moves to the head rail.
 - **2026-10-14, v8.0, the contact sheet as film.** The Flâneur's Contact Sheet is a strip of 35mm film: true proportions, a grey keyed to the theme, real edge data (title, frame number, date) in one faint condensed print, faded edges while it scrolls, and a cut leader after the oldest frame.
 - **2026-10-14, v8.0, quiet headings.** Every heading below the title is body size: sections in SemiBold with their numeral in the rail, now counted from 02 since the opening is 01; subheadings in italic. The title drops to 28/36 Regular. The space above headings scales down with them (40 and 24).
 - **2026-10-14, v8.0, doors hang their arrows.** A rail's `All notes →` keeps its words flush with the heading and hangs the arrow in the gap; the arrow lights in the signal color under the hand.

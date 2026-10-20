@@ -1,5 +1,5 @@
-// Category filtering for the Notes hub (chips) and the Projects hub
-// (switches). A control is any [data-filter-control] or chip in
+// Category filtering for the Notes hub (chips), the Projects hub (switches),
+// and the Research hub (one switch per stream). A control is any [data-filter-control] or chip in
 // .category-filter with a data-category; items with data-category inside
 // [data-filter-group] blocks are shown or hidden, an emptied block is hidden,
 // and the head rail's live count follows. Pressing a pressed switch releases
