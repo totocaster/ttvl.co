@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="100" viewBox="0 0 760 100" fill="none">
+<rect x="0.5" y="0.5" width="71" height="47" fill="#000"/>
+<text x="0" y="72" font-family="IBM Plex Sans" font-size="14" fill="#000">Ink</text>
+<text x="0" y="92" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">#000000</text>
+<rect x="84.5" y="0.5" width="71" height="47" fill="#4F4F4F"/>
+<text x="84" y="72" font-family="IBM Plex Sans" font-size="14" fill="#000">Tone 2</text>
+<text x="84" y="92" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">#4F4F4F</text>
+<rect x="169.5" y="0.5" width="71" height="47" fill="#7A7A7A"/>
+<text x="169" y="72" font-family="IBM Plex Sans" font-size="14" fill="#000">Tone 3</text>
+<text x="169" y="92" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">#7A7A7A</text>
+<rect x="253.5" y="0.5" width="71" height="47" fill="#A3A3A3"/>
+<text x="253" y="72" font-family="IBM Plex Sans" font-size="14" fill="#000">Tone 4</text>
+<text x="253" y="92" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">#A3A3A3</text>
+<rect x="338.5" y="0.5" width="71" height="47" fill="#D9D9D9"/>
+<text x="338" y="72" font-family="IBM Plex Sans" font-size="14" fill="#000">Edge</text>
+<text x="338" y="92" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">#D9D9D9</text>
+<rect x="422.5" y="0.5" width="71" height="47" fill="#F7F7F7" stroke="#D9D9D9"/>
+<text x="422" y="72" font-family="IBM Plex Sans" font-size="14" fill="#000">Surface</text>
+<text x="422" y="92" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">#F7F7F7</text>
+<rect x="507.5" y="0.5" width="71" height="47" fill="#FFFFFF" stroke="#D9D9D9"/>
+<text x="507" y="72" font-family="IBM Plex Sans" font-size="14" fill="#000">Ground</text>
+<text x="507" y="92" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">#FFFFFF</text>
+<rect x="591.5" y="0.5" width="71" height="47" fill="#FFEB3B"/>
+<text x="591" y="72" font-family="IBM Plex Sans" font-size="14" fill="#000">Highlight</text>
+<text x="591" y="92" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">#FFEB3B</text>
+<rect x="676.5" y="0.5" width="71" height="47" stroke="#D9D9D9" fill="#FFFFFF"/>
+<circle cx="712" cy="24" r="3" fill="#FF4F00"/>
+<text x="676" y="72" font-family="IBM Plex Sans" font-size="14" fill="#000">Signal</text>
+<text x="676" y="92" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">#FF4F00</text>
+</svg>

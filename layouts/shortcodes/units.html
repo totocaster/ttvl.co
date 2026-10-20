@@ -1,0 +1,37 @@
+{{- /* A unit chart: one square per counted thing, filled by category in
+     the order written, with the key under it.
+     {{< units caption="Optional, Markdown allowed" >}}
+     Measured | 2 | ink
+     Confirmed | 34 | tone-2
+     Estimated | 113 | open
+     {{< /units >}}
+     One line per category: name | count | mark, where the mark is ink,
+     tone-2, tone-3, tone-4, open (not yet known), or dashed (derived).
+     per-row sets the squares in a row (25; 20 on phones through
+     per-row-narrow). Order categories from most to least certain, or
+     largest to smallest, so the fills read as one sequence.
+     docs/figures.md, Charts; components/_drawing.scss. */ -}}
+{{- $groups := slice -}}
+{{- range split (trim .Inner "\n") "\n" -}}
+  {{- $line := trim . " \t\r" -}}
+  {{- if $line -}}
+    {{- $cells := slice -}}
+    {{- range split $line "|" }}{{ $cells = $cells | append (trim . " \t") }}{{ end -}}
+    {{- $mark := cond (ge (len $cells) 3) (index $cells 2) "ink" -}}
+    {{- $groups = $groups | append (dict "name" (index $cells 0) "count" (int (index $cells 1)) "mark" (cond (eq $mark "ink") "" $mark)) -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $groups }}{{ errorf "units: no categories in %s" .Position }}{{ end -}}
+<figure class="chart {{ .Get "width" | default "measure" }}">
+  <div class="units" aria-hidden="true" style="--per-row: {{ .Get "per-row" | default 25 }}; --per-row-narrow: {{ .Get "per-row-narrow" | default 20 }}">
+    {{- range $groups }}{{ $mark := .mark }}{{ range seq .count }}<span class="units__unit{{ with $mark }} {{ . }}{{ end }}"></span>{{ end }}{{ end -}}
+  </div>
+  <ul class="chart-key">
+    {{- range $groups }}
+    <li><span class="swatch{{ with .mark }} {{ . }}{{ end }}" aria-hidden="true"></span>{{ .name }} <span class="n">{{ .count }}</span></li>
+    {{- end }}
+  </ul>
+  {{- with .Get "caption" }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>

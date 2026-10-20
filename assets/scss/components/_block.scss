@@ -132,8 +132,8 @@
   }
 
   // Media that needs width spans the page when the rail beside the body
-  // is empty: the viewers, galleries, and wide tables.
-  .block.body:not(.has-toc) > .main :is(.viewer, .table-wrap.wide) {
+  // is empty: the viewers, galleries, wide tables, and wide drawings.
+  .block.body:not(.has-toc) > .main :is(.viewer, .table-wrap.wide, .drawing.wide, .instrument.wide) {
     margin-left: -($rail-width + $rail-gap);
     width: calc(100% + #{$rail-width + $rail-gap});
     max-width: none;

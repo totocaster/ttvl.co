@@ -1,0 +1,96 @@
+{{- /* A drawing: an SVG file under static/ inlined into the page, so its
+     drawing-palette colors follow the theme (components/_drawing.scss).
+     {{< drawing src="/visuals/research/stream/plan.svg" alt="What it shows" caption="Optional, Markdown allowed" >}}
+
+     width   "measure" (640 px) or "wide" (the column; the page beside an
+             empty rail); the default is the 760 px bleed.
+     min     the width in px below which the drawing scrolls sideways instead
+             of shrinking; defaults to three quarters of the viewBox width,
+             so 14 px type never renders under 10.5 px. "0" lets it shrink.
+     narrow  a second SVG drawn for phones (335 px wide), shown at 768 px
+             and below in place of the first.
+     scrub   makes an instrument: a scrubber named by this value moves
+             through the file's [data-mark] elements, and the readout under
+             the well shows each mark's data-readout (assets/js/scrub.js).
+     toggle  makes an instrument: a toggle named by this value shows the
+             file's [data-optional] layer; "toggle-on" starts it on.
+     states  makes an instrument: a segmented control of up to five
+             comma-separated states; the file's [data-state="1"] to "5"
+             layers show one at a time, by CSS alone. "states-label" names
+             the control (default "Show").
+
+     The file's <style>, <title>, comments, and prolog are dropped; its ids
+     are prefixed per figure so two drawings on one page never collide.
+     Feeds get the PNG beside the SVG when one exists, else the SVG itself
+     (layouts/partials/rss-content.html). docs/figures.md. */ -}}
+{{- $src := .Get "src" -}}
+{{- if not $src }}{{ errorf "drawing: missing src in %s" .Position }}{{ end -}}
+{{- $alt := .Get "alt" -}}
+{{- if not $alt }}{{ errorf "drawing: missing alt in %s" .Position }}{{ end -}}
+{{- $scrub := .Get "scrub" -}}
+{{- $toggle := .Get "toggle" -}}
+{{- $states := slice -}}
+{{- with .Get "states" }}{{ range split . "," }}{{ $states = $states | append (trim . " ") }}{{ end }}{{ end -}}
+{{- if gt (len $states) 5 }}{{ errorf "drawing: at most five states in %s" .Position }}{{ end -}}
+{{- $instrument := or $scrub $toggle $states -}}
+{{- $id := printf "drawing-%s-%d" (substr (md5 .Page.RelPermalink) 0 6) .Ordinal -}}
+
+{{- $frames := slice (dict "src" $src "variant" "") -}}
+{{- with .Get "narrow" }}{{ $frames = $frames | append (dict "src" . "variant" "narrow") }}{{ end -}}
+
+{{- $png := replaceRE `\.svg$` ".png" $src -}}
+{{- $fallback := cond (fileExists (printf "static%s" $png)) $png $src | absURL -}}
+
+{{- $readouts := slice -}}
+<figure class="drawing{{ with .Get "width" }} {{ . }}{{ end }}{{ if $instrument }} instrument{{ end }}{{ if gt (len $frames) 1 }} has-narrow{{ end }}"{{ if $scrub }} data-scrub{{ end }}>
+  {{- if $instrument }}
+  <div class="instrument__controls">
+    {{- with $scrub }}
+    <label class="scrubber" hidden><span>{{ . }}</span><input type="range" min="0" step="1"></label>
+    {{- end }}
+    {{- with $states }}
+    <span class="states" role="radiogroup" aria-labelledby="{{ $id }}-states"><span id="{{ $id }}-states">{{ $.Get "states-label" | default "Show" }}</span><span class="segmented">
+      {{- range $i, $state := . }}<label><input type="radio" name="{{ $id }}-state" value="{{ add $i 1 }}"{{ if eq $i 0 }} checked{{ end }}><span>{{ $state }}</span></label>{{ end -}}
+    </span></span>
+    {{- end }}
+    {{- with $toggle }}
+    <label class="toggle"><input type="checkbox"{{ if $.Get "toggle-on" }} checked{{ end }}><span>{{ . }}</span></label>
+    {{- end }}
+  </div>
+  {{- end }}
+  {{- range $frames }}
+  {{- $path := printf "static%s" .src -}}
+  {{- if not (fileExists $path) }}{{ errorf "drawing: %s not found in %s" $path $.Position }}{{ end -}}
+  {{- $fid := cond (eq .variant "") $id (printf "%s-%s" $id .variant) -}}
+  {{- $svg := readFile $path -}}
+  {{- $svg = replaceRE `(?s)<\?xml.*?\?>|<!DOCTYPE[^>]*>|<!--.*?-->|<style\b.*?</style>|<title\b.*?</title>|<desc\b.*?</desc>` "" $svg -}}
+  {{- $svg = replaceRE `\bid="([^"]+)"` (printf `id="%s-$1"` $fid) $svg -}}
+  {{- $svg = replaceRE `url\(#([^)]+)\)` (printf `url(#%s-$1)` $fid) $svg -}}
+  {{- $svg = replaceRE `href="#([^"]+)"` (printf `href="#%s-$1"` $fid) $svg -}}
+  {{- $title := printf `<title id="%s-title">%s</title>` $fid (htmlEscape $alt) -}}
+  {{- $svg = replaceRE `^\s*(<svg\b[^>]*)>` (printf `$1 role="img" aria-labelledby="%s-title" focusable="false">%s` $fid (replace $title "$" "$$")) $svg 1 -}}
+  {{- $min := $.Get "min" -}}
+  {{- if not $min -}}
+    {{- with findRESubmatch `viewBox="[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)` $svg 1 -}}
+      {{- $min = math.Round (mul (float (index (index . 0) 1)) 0.75) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if eq .variant "" }}{{ $readouts = findRE `data-readout="[^"]*"` $svg }}{{ end }}
+  <div class="drawing__frame{{ with .variant }} drawing__frame--{{ . }}{{ end }}{{ if $instrument }} well{{ end }}"{{ if and $min (ne (string $min) "0") (eq .variant "") }} style="--drawing-min: {{ $min }}px"{{ end }} data-fallback="{{ $fallback }}" data-alt="{{ $alt }}">
+    {{ $svg | safeHTML }}
+  </div>
+  {{- end }}
+  {{- if $scrub }}
+  {{- $last := "" -}}
+  {{- with $readouts }}{{ $last = replaceRE `^data-readout="|"$` "" (index . (sub (len .) 1)) | htmlUnescape }}{{ end }}
+  <p class="readout">{{ $last }}</p>
+  {{- end }}
+  {{- with .Get "caption" }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>
+{{- if and $scrub (not (.Page.Store.Get "scrubJS")) }}
+{{- .Page.Store.Set "scrubJS" true }}
+{{- $js := resources.Get "js/scrub.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end }}

@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="300" viewBox="0 0 760 300" fill="none">
+<path d="M44 16.5H760" stroke="#D9D9D9"/>
+<text x="36" y="21.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">+400</text>
+<path d="M44 63.5H760" stroke="#D9D9D9"/>
+<text x="36" y="68.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">+300</text>
+<path d="M44 110.5H760" stroke="#D9D9D9"/>
+<text x="36" y="115.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">+200</text>
+<path d="M44 158.5H760" stroke="#D9D9D9"/>
+<text x="36" y="163.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">+100</text>
+<path d="M44 252.5H760" stroke="#D9D9D9"/>
+<text x="36" y="257.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">−100</text>
+<rect x="45.0" y="195.4" width="5.5" height="9.4" fill="#000"/>
+<rect x="52.5" y="198.7" width="5.5" height="6.1" fill="#000"/>
+<rect x="59.9" y="191.1" width="5.5" height="13.7" fill="#000"/>
+<rect x="67.4" y="201.5" width="5.5" height="3.3" fill="#000"/>
+<rect x="74.8" y="204.8" width="5.5" height="1.4" fill="#7A7A7A"/>
+<rect x="82.3" y="199.1" width="5.5" height="5.7" fill="#000"/>
+<rect x="89.8" y="204.8" width="5.5" height="6.1" fill="#7A7A7A"/>
+<rect x="97.2" y="204.8" width="5.5" height="2.4" fill="#7A7A7A"/>
+<rect x="104.7" y="203.9" width="5.5" height="1.0" fill="#000"/>
+<rect x="112.1" y="204.8" width="5.5" height="1.0" fill="#7A7A7A"/>
+<rect x="119.6" y="200.1" width="5.5" height="4.7" fill="#000"/>
+<rect x="127.0" y="195.8" width="5.5" height="9.0" fill="#000"/>
+<rect x="134.5" y="184.5" width="5.5" height="20.3" fill="#000"/>
+<rect x="142.0" y="204.8" width="5.5" height="1.0" fill="#7A7A7A"/>
+<rect x="149.4" y="203.4" width="5.5" height="1.4" fill="#000"/>
+<rect x="156.9" y="202.4" width="5.5" height="2.4" fill="#000"/>
+<rect x="164.3" y="202.0" width="5.5" height="2.8" fill="#000"/>
+<rect x="171.8" y="204.8" width="5.5" height="7.6" fill="#7A7A7A"/>
+<rect x="179.2" y="204.8" width="5.5" height="1.9" fill="#7A7A7A"/>
+<rect x="186.7" y="203.9" width="5.5" height="1.0" fill="#000"/>
+<rect x="194.2" y="204.8" width="5.5" height="3.3" fill="#7A7A7A"/>
+<rect x="201.6" y="204.8" width="5.5" height="1.4" fill="#7A7A7A"/>
+<rect x="209.1" y="198.7" width="5.5" height="6.1" fill="#000"/>
+<rect x="216.5" y="199.6" width="5.5" height="5.2" fill="#000"/>
+<rect x="224.0" y="204.8" width="5.5" height="2.8" fill="#7A7A7A"/>
+<rect x="231.5" y="202.0" width="5.5" height="2.8" fill="#000"/>
+<rect x="238.9" y="201.5" width="5.5" height="3.3" fill="#000"/>
+<rect x="246.4" y="204.8" width="5.5" height="1.0" fill="#7A7A7A"/>
+<rect x="253.8" y="204.8" width="5.5" height="5.7" fill="#7A7A7A"/>
+<rect x="261.3" y="204.8" width="5.5" height="1.4" fill="#7A7A7A"/>
+<rect x="268.8" y="204.8" width="5.5" height="2.8" fill="#7A7A7A"/>
+<rect x="276.2" y="204.8" width="5.5" height="17.0" fill="#7A7A7A"/>
+<rect x="283.7" y="204.8" width="5.5" height="14.6" fill="#7A7A7A"/>
+<rect x="291.1" y="204.8" width="5.5" height="3.8" fill="#7A7A7A"/>
+<rect x="298.6" y="204.8" width="5.5" height="20.3" fill="#7A7A7A"/>
+<rect x="306.0" y="204.8" width="5.5" height="21.7" fill="#7A7A7A"/>
+<rect x="313.5" y="204.8" width="5.5" height="16.0" fill="#7A7A7A"/>
+<rect x="321.0" y="204.8" width="5.5" height="13.7" fill="#7A7A7A"/>
+<rect x="328.4" y="204.8" width="5.5" height="21.7" fill="#7A7A7A"/>
+<rect x="335.9" y="204.8" width="5.5" height="22.7" fill="#7A7A7A"/>
+<rect x="343.3" y="204.8" width="5.5" height="10.9" fill="#7A7A7A"/>
+<rect x="350.8" y="204.8" width="5.5" height="2.8" fill="#7A7A7A"/>
+<rect x="358.2" y="204.3" width="5.5" height="1.0" fill="#000"/>
+<rect x="365.7" y="204.8" width="5.5" height="6.6" fill="#7A7A7A"/>
+<rect x="373.2" y="201.5" width="5.5" height="3.3" fill="#000"/>
+<rect x="380.6" y="204.8" width="5.5" height="4.7" fill="#7A7A7A"/>
+<rect x="388.1" y="202.4" width="5.5" height="2.4" fill="#000"/>
+<rect x="395.5" y="204.8" width="5.5" height="9.4" fill="#7A7A7A"/>
+<rect x="403.0" y="204.8" width="5.5" height="7.6" fill="#7A7A7A"/>
+<rect x="410.5" y="200.1" width="5.5" height="4.7" fill="#000"/>
+<rect x="417.9" y="200.6" width="5.5" height="4.2" fill="#000"/>
+<rect x="425.4" y="204.8" width="5.5" height="26.0" fill="#7A7A7A"/>
+<rect x="432.8" y="204.8" width="5.5" height="7.6" fill="#7A7A7A"/>
+<rect x="440.3" y="202.4" width="5.5" height="2.4" fill="#000"/>
+<rect x="447.8" y="195.8" width="5.5" height="9.0" fill="#000"/>
+<rect x="455.2" y="204.8" width="5.5" height="23.1" fill="#7A7A7A"/>
+<rect x="462.7" y="204.8" width="5.5" height="26.0" fill="#7A7A7A"/>
+<rect x="470.1" y="202.4" width="5.5" height="2.4" fill="#000"/>
+<rect x="477.6" y="180.7" width="5.5" height="24.1" fill="#000"/>
+<rect x="485.0" y="184.0" width="5.5" height="20.8" fill="#000"/>
+<rect x="492.5" y="197.7" width="5.5" height="7.1" fill="#000"/>
+<rect x="500.0" y="204.8" width="5.5" height="7.1" fill="#7A7A7A"/>
+<rect x="507.4" y="202.0" width="5.5" height="2.8" fill="#000"/>
+<rect x="514.9" y="184.5" width="5.5" height="20.3" fill="#000"/>
+<rect x="522.3" y="189.7" width="5.5" height="15.1" fill="#000"/>
+<rect x="529.8" y="170.8" width="5.5" height="34.0" fill="#000"/>
+<rect x="537.2" y="204.8" width="5.5" height="26.0" fill="#7A7A7A"/>
+<rect x="544.7" y="204.8" width="5.5" height="37.3" fill="#7A7A7A"/>
+<rect x="552.2" y="204.8" width="5.5" height="14.6" fill="#7A7A7A"/>
+<rect x="559.6" y="204.8" width="5.5" height="3.8" fill="#7A7A7A"/>
+<rect x="567.1" y="164.2" width="5.5" height="40.6" fill="#000"/>
+<rect x="574.5" y="140.1" width="5.5" height="64.7" fill="#000"/>
+<rect x="582.0" y="124.6" width="5.5" height="80.2" fill="#000"/>
+<rect x="589.5" y="127.9" width="5.5" height="76.9" fill="#000"/>
+<rect x="596.9" y="30.2" width="5.5" height="174.6" fill="#000"/>
+<rect x="604.4" y="63.2" width="5.5" height="141.6" fill="#000"/>
+<rect x="611.8" y="44.8" width="5.5" height="160.0" fill="#000"/>
+<rect x="619.3" y="59.0" width="5.5" height="145.8" fill="#000"/>
+<rect x="626.8" y="104.7" width="5.5" height="100.1" fill="#000"/>
+<rect x="634.2" y="124.1" width="5.5" height="80.7" fill="#000"/>
+<rect x="641.7" y="96.7" width="5.5" height="108.1" fill="#000"/>
+<rect x="649.1" y="67.9" width="5.5" height="136.9" fill="#000"/>
+<rect x="656.6" y="138.2" width="5.5" height="66.6" fill="#000"/>
+<rect x="664.0" y="127.4" width="5.5" height="77.4" fill="#000"/>
+<rect x="671.5" y="109.9" width="5.5" height="94.9" fill="#000"/>
+<rect x="679.0" y="22.6" width="5.5" height="182.2" fill="#000"/>
+<rect x="686.4" y="17.9" width="5.5" height="186.9" fill="#000"/>
+<rect x="693.9" y="120.8" width="5.5" height="84.0" fill="#000"/>
+<rect x="701.3" y="101.4" width="5.5" height="103.4" fill="#000"/>
+<rect x="708.8" y="69.8" width="5.5" height="135.0" fill="#000"/>
+<rect x="716.2" y="99.5" width="5.5" height="105.3" fill="#000"/>
+<rect x="723.7" y="84.9" width="5.5" height="119.9" fill="#000"/>
+<rect x="731.2" y="73.6" width="5.5" height="131.2" fill="#000"/>
+<path d="M44 205.5H760" stroke="#000"/>
+<text x="36" y="210.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">0</text>
+<path d="M44.5 252V258" stroke="#000"/>
+<text x="44" y="276" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2019</text>
+<path d="M134.5 252V258" stroke="#000"/>
+<text x="134" y="276" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2020</text>
+<path d="M223.5 252V258" stroke="#000"/>
+<text x="223" y="276" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2021</text>
+<path d="M312.5 252V258" stroke="#000"/>
+<text x="312" y="276" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2022</text>
+<path d="M402.5 252V258" stroke="#000"/>
+<text x="402" y="276" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2023</text>
+<path d="M492.5 252V258" stroke="#000"/>
+<text x="492" y="276" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2024</text>
+<path d="M581.5 252V258" stroke="#000"/>
+<text x="581" y="276" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2025</text>
+<path d="M670.5 252V258" stroke="#000"/>
+<text x="670" y="276" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2026</text>
+<path d="M44 252.5H760" stroke="#D9D9D9"/>
+</svg>

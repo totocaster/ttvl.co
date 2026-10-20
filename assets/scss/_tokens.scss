@@ -19,6 +19,11 @@
 //                    theme; its edge print is --ink-faint (4:1 light, 4.6:1 dark)
 //   --signal         what is live: the current month, the pulse, the focus ring;
 //                    never under text
+//   --tone-2..4      the steps of a drawing or chart after --ink (tone 1),
+//                    for ordered categories and context marks; never text.
+//                    Each step moves toward the ground, so dark mode flips the
+//                    ramp. Tone 4 sits below 3:1 by design (2.5:1 light,
+//                    2.8:1 dark) and always carries a label. docs/figures.md
 //   --term*          the terminal block, dark in both themes
 //
 // Muted and faint are solid values, not alpha, so each keeps its contrast
@@ -38,6 +43,9 @@
   --film: #e6e6e6;
   --highlight: rgba(255, 235, 59, 0.8);
   --signal: #ff4f00;
+  --tone-2: #4f4f4f;
+  --tone-3: #7a7a7a;
+  --tone-4: #a3a3a3;
   --term: #161616;
   --term-ink: #e6e6e6;
   --term-faint: #8f8f8f;
@@ -56,6 +64,9 @@
     --surface-input: #1e1e1e;
     --film: #262626;
     --highlight: rgba(255, 213, 79, 0.3);
+    --tone-2: #b0b0b0;
+    --tone-3: #7f7f7f;
+    --tone-4: #5c5c5c;
     --term: #0a0a0a;
   }
 }

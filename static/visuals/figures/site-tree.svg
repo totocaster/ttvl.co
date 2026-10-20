@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="336" viewBox="0 0 640 336" fill="none">
+<text x="0" y="174" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">ttvl.co</text>
+<path d="M59.0 168.5H128.5" stroke="#000"/>
+<path d="M128.5 70.5V322.5" stroke="#000"/>
+<path d="M128.5 70.5H144" stroke="#000"/>
+<text x="152" y="76" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Projects</text>
+<path d="M224.0 70.5H336.5" stroke="#000"/>
+<path d="M336.5 14.5V126.5" stroke="#000"/>
+<path d="M336.5 14.5H352" stroke="#000"/>
+<text x="360" y="19" font-family="IBM Plex Sans" font-size="14" fill="#555555">Darkroom</text>
+<text x="429" y="19" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">12</text>
+<path d="M336.5 42.5H352" stroke="#000"/>
+<text x="360" y="47" font-family="IBM Plex Sans" font-size="14" fill="#555555">Project Humane</text>
+<text x="469" y="47" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">8</text>
+<path d="M336.5 70.5H352" stroke="#000"/>
+<text x="360" y="75" font-family="IBM Plex Sans" font-size="14" fill="#555555">Obsidian</text>
+<text x="424" y="75" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">6</text>
+<path d="M336.5 98.5H352" stroke="#000"/>
+<text x="360" y="103" font-family="IBM Plex Sans" font-size="14" fill="#555555">Notebook system</text>
+<text x="479" y="103" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">3</text>
+<path d="M336.5 126.5H352" stroke="#000"/>
+<text x="360" y="131" font-family="IBM Plex Sans" font-size="14" fill="#555555">Bookbinding</text>
+<text x="447" y="131" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">1</text>
+<path d="M128.5 154.5H144" stroke="#000"/>
+<text x="152" y="160" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Notes</text>
+<text x="203" y="160" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">17</text>
+<path d="M128.5 196.5H144" stroke="#000"/>
+<text x="152" y="202" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Research</text>
+<text x="228" y="202" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">28</text>
+<path d="M256.0 196.5H336.5" stroke="#000"/>
+<path d="M336.5 182.5V210.5" stroke="#000"/>
+<path d="M336.5 182.5H352" stroke="#000"/>
+<text x="360" y="187" font-family="IBM Plex Sans" font-size="14" fill="#555555">Ambient Computing</text>
+<text x="494" y="187" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">27</text>
+<path d="M336.5 210.5H352" stroke="#000"/>
+<text x="360" y="215" font-family="IBM Plex Sans" font-size="14" fill="#555555">Tools for Thought</text>
+<text x="479" y="215" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">1</text>
+<path d="M128.5 238.5H144" stroke="#000"/>
+<text x="152" y="244" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Log</text>
+<text x="186" y="244" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">93</text>
+<path d="M128.5 266.5H144" stroke="#000"/>
+<text x="152" y="272" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Newsletter</text>
+<text x="242" y="272" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">17</text>
+<path d="M128.5 294.5H144" stroke="#000"/>
+<text x="152" y="300" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Traces</text>
+<text x="209" y="300" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">3</text>
+<path d="M128.5 322.5H144" stroke="#000"/>
+<text x="152" y="328" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">About</text>
+</svg>

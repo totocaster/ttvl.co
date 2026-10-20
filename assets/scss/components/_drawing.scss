@@ -1,0 +1,370 @@
+// Drawings, charts, and instruments: the figures the site draws itself.
+// docs/figures.md is the standard; this file is its stylesheet.
+//
+// A drawing is an SVG file under static/visuals/, inlined by the drawing
+// shortcode so it follows the theme. It is drawn in eleven literal colors
+// (the drawing palette below), which keep the file correct on its own in
+// light mode; here each literal maps to its token by attribute selector,
+// so exported and hand-written SVG alike turn dark with the page. CSS beats
+// presentation attributes, so nothing in the file needs rewriting.
+//
+// Bar lists and unit charts are HTML (the bars and units shortcodes), so
+// their words stay real type at real size on every screen.
+
+// The drawing palette: literal value → token. Both letter cases, since
+// Figma writes uppercase hex and hand-written files usually lowercase.
+$drawing-palette: (
+  "#000": ink,
+  "#000000": ink,
+  "black": ink,
+  "#555": ink-muted,
+  "#555555": ink-muted,
+  "#6E6E6E": ink-faint,
+  "#6e6e6e": ink-faint,
+  "#4F4F4F": tone-2,
+  "#4f4f4f": tone-2,
+  "#7A7A7A": tone-3,
+  "#7a7a7a": tone-3,
+  "#A3A3A3": tone-4,
+  "#a3a3a3": tone-4,
+  "#D9D9D9": edge,
+  "#d9d9d9": edge,
+  "#F7F7F7": surface,
+  "#f7f7f7": surface,
+  "#FFF": ground,
+  "#fff": ground,
+  "#FFFFFF": ground,
+  "#ffffff": ground,
+  "white": ground,
+  "#FFEB3B": highlight,
+  "#ffeb3b": highlight,
+  "#FF4F00": signal,
+  "#ff4f00": signal,
+);
+
+:is(.drawing, .instrument) svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+
+  // Strokes keep their drawn width at any scale: a 1 px line stays a
+  // hairline on a phone and on a wide screen alike.
+  * {
+    vector-effect: non-scaling-stroke;
+  }
+
+  // Words in Sans, numbers in Mono, whatever the file names.
+  text {
+    font-family: $font-family-sans;
+  }
+
+  text[font-family*="Mono"],
+  tspan[font-family*="Mono"] {
+    font-family: $font-family-mono;
+    @include tabular-numbers;
+  }
+
+  @each $literal, $token in $drawing-palette {
+    [fill="#{$literal}"] {
+      fill: var(--#{$token});
+    }
+
+    [stroke="#{$literal}"] {
+      stroke: var(--#{$token});
+    }
+  }
+}
+
+// The figure: the site's figure rule gives the margins and the bleed;
+// .measure holds a small drawing or chart to the text, .wide fills the
+// column and spans the page beside an empty rail (components/_block.scss).
+.drawing,
+.instrument,
+.chart {
+  &.measure {
+    max-width: $max-width-measure;
+  }
+
+  &.wide {
+    max-width: none;
+  }
+}
+
+// An instrument's well adds its padding and frame around the drawing, so
+// the figure grows by them and the drawing keeps its designed width.
+.instrument {
+  max-width: $max-width-bleed + 2 * ($space-4 + 1px);
+
+  &.measure {
+    max-width: $max-width-measure + 2 * ($space-4 + 1px);
+  }
+}
+
+// A drawing too dense to shrink keeps a minimum width (the shortcode's
+// min, set as --drawing-min) and scrolls sideways inside its frame with
+// the code sheet's right-edge fade (components/_sheet.scss).
+.drawing__frame {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  mask-image: linear-gradient(to right, #000 calc(100% - 56px), transparent);
+  mask-size: calc(100% + 56px) 100%;
+  mask-repeat: no-repeat;
+  mask-position: 0 0;
+  animation: sheet-fade linear both;
+  animation-timeline: scroll(self x);
+
+  svg {
+    min-width: var(--drawing-min, 0);
+  }
+}
+
+// A drawing with a phone version shows one or the other.
+.drawing__frame--narrow {
+  display: none;
+}
+
+@include narrow {
+  .has-narrow > .drawing__frame:not(.drawing__frame--narrow) {
+    display: none;
+  }
+
+  .has-narrow > .drawing__frame--narrow {
+    display: block;
+  }
+}
+
+// The scrubber waits for its script (assets/js/scrub.js).
+.scrubber[hidden] {
+  display: none;
+}
+
+// An instrument: a drawing the reader operates. Controls above, the well,
+// the readout under it, then the caption. The well is a display window:
+// ground, an edge frame, radius 2, so the drawing's white knockouts stay
+// invisible inside it.
+.instrument__controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-3 $space-5;
+  margin-bottom: $space-3;
+}
+
+.well {
+  padding: $space-4;
+  border: 1px solid var(--edge);
+  border-radius: $radius;
+  background: var(--ground);
+  touch-action: pan-y; // a sideways drag scrubs instead of scrolling
+
+  @include narrow {
+    padding: $space-3;
+  }
+}
+
+// The readout: the selected value, a line in the label voice under the
+// well. It shows the latest mark until the reader picks another.
+.readout {
+  min-height: $line-height-small;
+  margin: $space-2 0 0;
+  @include type-meta;
+  color: var(--ink-muted);
+}
+
+// A scrubbed mark: its band takes the highlight, like selected text.
+.instrument [data-on] [data-band] {
+  fill: var(--highlight);
+}
+
+// One toggle per instrument shows or hides its optional layer.
+.instrument:has(.toggle input:not(:checked)) [data-optional] {
+  display: none;
+}
+
+// States: the segmented control shows one of up to five layers, the first
+// by default (and in browsers without :has()).
+.states {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-3;
+  @include type-meta;
+  color: var(--ink-faint);
+}
+
+.instrument [data-state]:not([data-state="1"]) {
+  display: none;
+}
+
+@for $i from 2 through 5 {
+  .instrument:has(.states input[value="#{$i}"]:checked) {
+    [data-state="1"] {
+      display: none;
+    }
+
+    [data-state="#{$i}"] {
+      display: inline;
+    }
+  }
+}
+
+// The chart key sits under the marks it explains, like every legend:
+// swatches shaped like the marks (squares for fills, a short line for
+// lines), each with its name and number in the label voice.
+.chart .chart-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-1 $space-4;
+  margin: $space-3 0 0;
+  padding: 0;
+  list-style: none;
+  @include type-meta;
+  color: var(--ink-muted);
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: $space-2;
+    margin: 0;
+  }
+
+  .n {
+    color: var(--ink-faint);
+  }
+}
+
+.swatch {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  background: var(--ink);
+
+  &.line {
+    height: 2px;
+    width: 16px;
+  }
+}
+
+// Tones as fills on HTML marks, shared by swatches, bars, and units.
+@each $tone in tone-2, tone-3, tone-4 {
+  .#{$tone} {
+    --mark: var(--#{$tone});
+  }
+}
+
+.swatch,
+.bars__bar,
+.units__unit {
+  background: var(--mark, var(--ink));
+}
+
+// Not yet known: an open mark on an edge frame; derived: a dashed one.
+.swatch.open,
+.units__unit.open {
+  background: none;
+  box-shadow: inset 0 0 0 1px var(--tone-4);
+}
+
+.swatch.dashed,
+.units__unit.dashed {
+  background: none;
+  box-shadow: none;
+  outline: 1px dashed var(--ink-faint);
+  outline-offset: -1px;
+}
+
+// A bar list (the bars shortcode): one row per category, the name in the
+// rail of the figure, the bars from a single baseline, each value after
+// its bar. Square ends, 12 px thick, rows 8 px apart. Paired lists hold two
+// 8 px bars per row, 2 px apart, rows 12 px apart.
+.chart .bars {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: $space-4;
+  row-gap: $space-2;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  @include type-meta;
+
+  &.paired {
+    row-gap: $space-3;
+  }
+
+  li {
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: subgrid;
+    align-items: center;
+    margin: 0;
+  }
+
+  &__name {
+    color: var(--ink-muted);
+    text-align: right;
+  }
+
+  &__marks {
+    display: flex;
+    flex-direction: column;
+    gap: 2px; // the ground gap between a pair
+    min-width: 0;
+    border-left: 1px solid var(--ink); // the baseline
+  }
+
+  &__track {
+    display: flex;
+    align-items: center;
+    gap: $space-2;
+    min-width: 0;
+  }
+
+  &.paired .bars__track {
+    line-height: 16px; // the pair's geometry: two 8 px bars on 16 px lines
+  }
+
+  &__bar {
+    flex: none;
+    width: calc(var(--share) * (100% - 5ch));
+    height: 12px;
+  }
+
+  &.paired .bars__bar {
+    height: 8px;
+  }
+
+  &__value {
+    flex: none;
+    color: var(--ink-faint);
+  }
+}
+
+// A unit chart (the units shortcode): one square per counted thing, in
+// rows of a fixed count, filled by category in order.
+.units {
+  display: grid;
+  grid-template-columns: repeat(var(--per-row, 25), 12px);
+  gap: 3px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  @include narrow {
+    grid-template-columns: repeat(var(--per-row-narrow, 20), 12px);
+  }
+
+  &__unit {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+// High contrast: tones keep their steps (they carry the data); the open
+// and dashed marks take ink so they read as marks.
+@include high-contrast {
+  .swatch.open,
+  .units__unit.open {
+    box-shadow: inset 0 0 0 1px var(--ink);
+  }
+}

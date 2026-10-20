@@ -140,6 +140,143 @@
   }
 }
 
+// A toggle: a quiet key with a lamp after its label. On, the lamp lights
+// in the signal, since an optional layer that is showing is live; the face
+// never inverts, so a toggle never reads as a selected segment. A checkbox
+// inside a label, like the segmented control's radios.
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  min-height: $control-height-quiet;
+  padding: 3px $space-3;
+  border: 1px solid var(--ink);
+  border-radius: $radius;
+  background: var(--ground);
+  color: var(--ink);
+  @include type-control;
+  cursor: pointer;
+  user-select: none;
+  @include key($shadow-quiet);
+
+  input {
+    @include visually-hidden;
+    margin: 0;
+    padding: 0;
+  }
+
+  // The lamp: an edge-colored socket when off.
+  &::after {
+    content: "";
+    flex: none;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--edge);
+  }
+
+  &:has(input:checked)::after {
+    background: var(--signal);
+  }
+
+  &:hover {
+    background: var(--surface);
+  }
+
+  &:has(input:focus-visible) {
+    outline: 2px solid var(--signal);
+    outline-offset: 2px;
+  }
+
+  @include touch-controls {
+    min-height: $control-height-touch;
+  }
+}
+
+// A scrubber: a range input that moves through the marks of a chart. Its
+// name in the label voice, a 2 px edge track (a position, not an amount,
+// so nothing fills), the thumb a key. The value it picks reads in the
+// instrument's readout, under the well.
+.scrubber {
+  display: flex;
+  flex: 1 1 280px;
+  align-items: center;
+  gap: $space-3;
+  max-width: $max-width-measure;
+  @include type-meta;
+  color: var(--ink-faint);
+
+  input[type="range"] {
+    flex: 1 1 auto;
+    min-width: 120px;
+    height: $control-height-quiet;
+    margin: 0;
+    background: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+
+    @include touch-controls {
+      height: $control-height-touch;
+    }
+
+    &::-webkit-slider-runnable-track {
+      height: 2px;
+      background: var(--edge);
+    }
+
+    &::-moz-range-track {
+      height: 2px;
+      background: var(--edge);
+    }
+
+    // The thumb: a 12 × 24 key on a 2 px ink shadow; held, its face goes
+    // ink, like a pressed segment.
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 12px;
+      height: 24px;
+      margin-top: -11px; // centers the thumb on the 2 px track
+      border: 1px solid var(--ink);
+      border-radius: $radius;
+      background: var(--ground);
+      box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+    }
+
+    &::-moz-range-thumb {
+      width: 12px;
+      height: 24px;
+      box-sizing: border-box;
+      border: 1px solid var(--ink);
+      border-radius: $radius;
+      background: var(--ground);
+      box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+    }
+
+    &:active::-webkit-slider-thumb {
+      background: var(--ink);
+    }
+
+    &:active::-moz-range-thumb {
+      background: var(--ink);
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &:focus-visible::-webkit-slider-thumb {
+      outline: 2px solid var(--signal);
+      outline-offset: 2px;
+    }
+
+    &:focus-visible::-moz-range-thumb {
+      outline: 2px solid var(--signal);
+      outline-offset: 2px;
+    }
+  }
+}
+
 // The subscribe form: a 40 px input, a 12 px gap, the key. No box around
 // it; the legend sits 12 px under it.
 .subscribe {

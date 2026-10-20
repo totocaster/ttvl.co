@@ -4,6 +4,12 @@ known site markup, preserving ordinary content and image fallbacks. */ -}}
 {{- /* The square-crops shortcode supplies a sibling PNG figure with an
 absolute URL, alt text, and caption. Remove the interactive figure entirely. */ -}}
 {{- $content = replaceRE `(?s)<figure class="square-crops"[^>]*>.*?</figure>` "" $content -}}
+{{- /* Drawings: each inline SVG becomes an image of its file (the PNG beside
+it when there is one, docs/figures.md). A phone version, an instrument's
+controls, and its readout have nothing to do in a feed. */ -}}
+{{- $content = replaceRE `(?s)<div class="drawing__frame drawing__frame--narrow[^"]*"[^>]*>.*?</svg>\s*</div>` "" $content -}}
+{{- $content = replaceRE `(?s)<div class="drawing__frame[^"]*"[^>]*data-fallback="([^"]+)" data-alt="([^"]*)">.*?</svg>\s*</div>` `<img src="$1" alt="$2" style="max-width: 100%; height: auto;">` $content -}}
+{{- $content = replaceRE `(?s)<div class="instrument__controls">.*?</div>|<p class="readout">.*?</p>` "" $content -}}
 {{- /* Preserve escaped shell text and line breaks without copy controls. */ -}}
 {{- range findRE `(?s)<div class="shell-block">.*?</div>` $content -}}
   {{- $block := replaceRE `^<div class="shell-block">\s*|</div>$` "" . -}}
@@ -12,5 +18,5 @@ absolute URL, alt text, and caption. Remove the interactive figure entirely. */ 
   {{- $block = replaceRE `<span class="shell-line[^"]*">` "" $block -}}
   {{- $content = replace $content . (printf "<pre><code>%s</code></pre>" $block) -}}
 {{- end -}}
-{{- $content = replaceRE `<script\s[^>]*src="[^"]*/js/(shell-copy|clip)\.[^"]+\.js"[^>]*></script>` "" $content -}}
+{{- $content = replaceRE `<script\s[^>]*src="[^"]*/js/(shell-copy|clip|scrub)\.[^"]+\.js"[^>]*></script>` "" $content -}}
 {{- return $content -}}

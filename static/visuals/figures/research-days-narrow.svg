@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="335" height="176" viewBox="0 0 335 176" fill="none">
+<rect x="0" y="153" width="10" height="10" fill="#000"/>
+<text x="16" y="162" font-family="IBM Plex Sans" font-size="14" fill="#555555">Ambient Computing</text>
+<rect x="162.0" y="153" width="10" height="10" fill="#7A7A7A"/>
+<text x="178" y="162" font-family="IBM Plex Sans" font-size="14" fill="#555555">Tools for Thought</text>
+<g data-mark="" data-readout="2026-10-01 · 3 entries in Ambient Computing"><rect data-band="" x="-1.0" y="16" width="19.6" height="96" fill="none"/><rect x="3.0" y="74.3" width="11.6" height="37.7" fill="#000"/></g>
+<g data-mark="" data-readout="2026-10-02 · 5 entries: 4 in Ambient Computing, 1 in Tools for Thought"><rect data-band="" x="16.6" y="16" width="19.6" height="96" fill="none"/><rect x="20.6" y="61.7" width="11.6" height="50.3" fill="#000"/><rect x="20.6" y="47.1" width="11.6" height="12.6" fill="#7A7A7A"/></g>
+<g data-mark="" data-readout="2026-10-03 · 3 entries in Ambient Computing"><rect data-band="" x="34.3" y="16" width="19.6" height="96" fill="none"/><rect x="38.3" y="74.3" width="11.6" height="37.7" fill="#000"/></g>
+<g data-mark="" data-readout="2026-10-04 · 3 entries in Ambient Computing"><rect data-band="" x="51.9" y="16" width="19.6" height="96" fill="none"/><rect x="55.9" y="74.3" width="11.6" height="37.7" fill="#000"/></g>
+<g data-mark="" data-readout="2026-10-05 · 4 entries in Ambient Computing"><rect data-band="" x="69.5" y="16" width="19.6" height="96" fill="none"/><rect x="73.5" y="61.7" width="11.6" height="50.3" fill="#000"/></g>
+<g data-mark="" data-readout="2026-10-06 · 7 entries in Ambient Computing"><rect data-band="" x="87.2" y="16" width="19.6" height="96" fill="none"/><rect x="91.2" y="24.0" width="11.6" height="88.0" fill="#000"/></g>
+<g data-mark="" data-readout="2026-10-07 · No entries"><rect data-band="" x="104.8" y="16" width="19.6" height="96" fill="none"/><rect x="108.8" y="110" width="11.6" height="2" fill="#D9D9D9"/></g>
+<g data-mark="" data-readout="2026-10-08 · No entries"><rect data-band="" x="122.4" y="16" width="19.6" height="96" fill="none"/><rect x="126.4" y="110" width="11.6" height="2" fill="#D9D9D9"/></g>
+<g data-mark="" data-readout="2026-10-09 · No entries"><rect data-band="" x="140.1" y="16" width="19.6" height="96" fill="none"/><rect x="144.1" y="110" width="11.6" height="2" fill="#D9D9D9"/></g>
+<g data-mark="" data-readout="2026-10-10 · No entries"><rect data-band="" x="157.7" y="16" width="19.6" height="96" fill="none"/><rect x="161.7" y="110" width="11.6" height="2" fill="#D9D9D9"/></g>
+<g data-mark="" data-readout="2026-10-11 · No entries"><rect data-band="" x="175.3" y="16" width="19.6" height="96" fill="none"/><rect x="179.3" y="110" width="11.6" height="2" fill="#D9D9D9"/></g>
+<g data-mark="" data-readout="2026-10-12 · No entries"><rect data-band="" x="192.9" y="16" width="19.6" height="96" fill="none"/><rect x="196.9" y="110" width="11.6" height="2" fill="#D9D9D9"/></g>
+<g data-mark="" data-readout="2026-10-13 · No entries"><rect data-band="" x="210.6" y="16" width="19.6" height="96" fill="none"/><rect x="214.6" y="110" width="11.6" height="2" fill="#D9D9D9"/></g>
+<g data-mark="" data-readout="2026-10-14 · No entries"><rect data-band="" x="228.2" y="16" width="19.6" height="96" fill="none"/><rect x="232.2" y="110" width="11.6" height="2" fill="#D9D9D9"/></g>
+<g data-mark="" data-readout="2026-10-15 · No entries"><rect data-band="" x="245.8" y="16" width="19.6" height="96" fill="none"/><rect x="249.8" y="110" width="11.6" height="2" fill="#D9D9D9"/></g>
+<g data-mark="" data-readout="2026-10-16 · No entries"><rect data-band="" x="263.5" y="16" width="19.6" height="96" fill="none"/><rect x="267.5" y="110" width="11.6" height="2" fill="#D9D9D9"/></g>
+<g data-mark="" data-readout="2026-10-17 · No entries"><rect data-band="" x="281.1" y="16" width="19.6" height="96" fill="none"/><rect x="285.1" y="110" width="11.6" height="2" fill="#D9D9D9"/></g>
+<g data-mark="" data-readout="2026-10-18 · No entries"><rect data-band="" x="298.7" y="16" width="19.6" height="96" fill="none"/><rect x="302.7" y="110" width="11.6" height="2" fill="#D9D9D9"/></g>
+<g data-mark="" data-readout="2026-10-19 · 3 entries in Ambient Computing"><rect data-band="" x="316.4" y="16" width="19.6" height="96" fill="none"/><rect x="320.4" y="74.3" width="11.6" height="37.7" fill="#000"/></g>
+<text x="96.9737" y="16" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">7</text>
+<path d="M0 112.5H335" stroke="#000"/>
+<text x="0" y="134" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2026-10-01</text>
+<text x="167.5" y="134" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#6E6E6E">10</text>
+<text x="335" y="134" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">19</text>
+</svg>

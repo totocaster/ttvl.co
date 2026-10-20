@@ -1,0 +1,63 @@
+{{- /* A bar list: one row per category, compared from a single baseline.
+     {{< bars caption="Optional, Markdown allowed" >}}
+     Log | 93
+     Research | 28
+     {{< /bars >}}
+     One line per bar: name | value, optionally | tone-2, tone-3, or tone-4
+     to step a bar back. emphasis="Research" draws that bar in ink and steps
+     every other back to tone 3.
+
+     Two series: series="2025, 2026" and two values per line
+     (Notes | 5 | 10) pair the bars in each row, the first series in tone 3
+     and the second in ink, with a key under the list. Put the comparison
+     first and the subject (usually the newer) second.
+
+     width="bleed" or "wide" frees the figure from the 640 px measure.
+     Values print as written; the bars scale to the largest. HTML, so the
+     words stay real type on every screen.
+     docs/figures.md, Charts; components/_drawing.scss. */ -}}
+{{- $emphasis := .Get "emphasis" -}}
+{{- $series := slice -}}
+{{- with .Get "series" }}{{ range split . "," }}{{ $series = $series | append (trim . " ") }}{{ end }}{{ end -}}
+{{- if and $series (ne (len $series) 2) }}{{ errorf "bars: series takes exactly two names in %s" .Position }}{{ end -}}
+{{- $rows := slice -}}
+{{- $max := 0.0 -}}
+{{- range split (trim .Inner "\n") "\n" -}}
+  {{- $line := trim . " \t\r" -}}
+  {{- if $line -}}
+    {{- $cells := slice -}}
+    {{- range split $line "|" }}{{ $cells = $cells | append (trim . " \t") }}{{ end -}}
+    {{- $marks := slice -}}
+    {{- if $series -}}
+      {{- range $i, $tone := slice "tone-3" "" -}}
+        {{- $label := index $cells (add $i 1) -}}
+        {{- $marks = $marks | append (dict "label" $label "value" (float $label) "tone" $tone "series" (index $series $i)) -}}
+      {{- end -}}
+    {{- else -}}
+      {{- $tone := cond (ge (len $cells) 3) (index $cells 2) "" -}}
+      {{- if $emphasis }}{{ $tone = cond (eq (index $cells 0) $emphasis) "" "tone-3" }}{{ end -}}
+      {{- $marks = slice (dict "label" (index $cells 1) "value" (float (index $cells 1)) "tone" $tone) -}}
+    {{- end -}}
+    {{- range $marks }}{{ if gt .value $max }}{{ $max = .value }}{{ end }}{{ end -}}
+    {{- $rows = $rows | append (dict "name" (index $cells 0) "marks" $marks) -}}
+  {{- end -}}
+{{- end -}}
+{{- if not $rows }}{{ errorf "bars: no rows in %s" .Position }}{{ end -}}
+<figure class="chart {{ .Get "width" | default "measure" }}">
+  <ol class="bars{{ if $series }} paired{{ end }}">
+    {{- range $rows }}
+    <li><span class="bars__name">{{ .name }}</span><span class="bars__marks">
+      {{- range .marks }}<span class="bars__track{{ with .tone }} {{ . }}{{ end }}"><span class="bars__bar" style="--share: {{ if gt $max 0.0 }}{{ div .value $max }}{{ else }}0{{ end }}"></span><span class="bars__value">{{ with .series }}<span class="visually-hidden">{{ . }}: </span>{{ end }}<span class="n">{{ .label }}</span></span></span>{{ end -}}
+    </span></li>
+    {{- end }}
+  </ol>
+  {{- with $series }}
+  <ul class="chart-key">
+    <li><span class="swatch tone-3" aria-hidden="true"></span>{{ index . 0 }}</li>
+    <li><span class="swatch" aria-hidden="true"></span>{{ index . 1 }}</li>
+  </ul>
+  {{- end }}
+  {{- with .Get "caption" }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>

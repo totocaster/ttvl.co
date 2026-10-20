@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="312" viewBox="0 0 760 312" fill="none">
+<path d="M738.5 20V272" stroke="#6E6E6E" stroke-dasharray="4 4"/>
+<text x="738.5" y="14" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">2026-10-20</text>
+<text x="120" y="37" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#555555">Notes</text>
+<rect x="197.7" y="28" width="538.8" height="8" fill="#000"/>
+<text x="120" y="61" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#555555">Log</text>
+<rect x="210.0" y="52" width="524.5" height="8" fill="#000"/>
+<text x="120" y="85" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#555555">Flâneur</text>
+<rect x="348.5" y="76" width="389.1" height="8" fill="#000"/>
+<text x="120" y="109" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#555555">Darkroom</text>
+<rect x="609.6" y="100" width="45.4" height="8" fill="#000"/>
+<text x="120" y="133" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#555555">Project Humane</text>
+<rect x="612.9" y="124" width="120.7" height="8" fill="#000"/>
+<text x="120" y="157" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#555555">Notebook system</text>
+<rect x="616.5" y="148" width="8.0" height="8" fill="#000"/>
+<text x="120" y="181" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#555555">Obsidian</text>
+<rect x="663.9" y="172" width="50.0" height="8" fill="#000"/>
+<text x="120" y="205" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#555555">Bookbinding</text>
+<rect x="694.3" y="196" width="8.0" height="8" fill="#000"/>
+<text x="120" y="229" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#555555">Traces</text>
+<rect x="719.8" y="220" width="12.7" height="8" fill="#000"/>
+<text x="120" y="253" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#555555">Research</text>
+<rect x="734.8" y="244" width="8.0" height="8" fill="#000"/>
+<path d="M136.0 280.5H752" stroke="#000"/>
+<path d="M136.5 280V286" stroke="#000"/>
+<text x="136" y="304" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2018</text>
+<path d="M204.5 280V286" stroke="#000"/>
+<text x="204" y="304" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2019</text>
+<path d="M273.5 280V286" stroke="#000"/>
+<text x="273" y="304" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2020</text>
+<path d="M341.5 280V286" stroke="#000"/>
+<text x="341" y="304" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2021</text>
+<path d="M410.5 280V286" stroke="#000"/>
+<text x="410" y="304" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2022</text>
+<path d="M478.5 280V286" stroke="#000"/>
+<text x="478" y="304" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2023</text>
+<path d="M547.5 280V286" stroke="#000"/>
+<text x="547" y="304" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2024</text>
+<path d="M615.5 280V286" stroke="#000"/>
+<text x="615" y="304" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2025</text>
+<path d="M684.5 280V286" stroke="#000"/>
+<text x="684" y="304" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2026</text>
+</svg>

@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="252" viewBox="0 0 760 252" fill="none">
+<text x="40" y="15" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">2019</text>
+<rect x="56.0" y="0" width="408.7" height="20" fill="#4F4F4F"/>
+<text x="64" y="15" font-family="IBM Plex Mono" font-size="14" fill="#FFFFFF">7</text>
+<rect x="466.7" y="0" width="291.3" height="20" fill="#A3A3A3"/>
+<text x="474.667" y="15" font-family="IBM Plex Mono" font-size="14" fill="#000">5</text>
+<text x="40" y="43" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">2020</text>
+<rect x="56.0" y="28" width="232.7" height="20" fill="#4F4F4F"/>
+<text x="64" y="43" font-family="IBM Plex Mono" font-size="14" fill="#FFFFFF">4</text>
+<rect x="290.7" y="28" width="467.3" height="20" fill="#A3A3A3"/>
+<text x="298.667" y="43" font-family="IBM Plex Mono" font-size="14" fill="#000">8</text>
+<text x="40" y="71" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">2021</text>
+<rect x="56.0" y="56" width="115.3" height="20" fill="#4F4F4F"/>
+<text x="64" y="71" font-family="IBM Plex Mono" font-size="14" fill="#FFFFFF">2</text>
+<rect x="173.3" y="56" width="584.7" height="20" fill="#A3A3A3"/>
+<text x="181.333" y="71" font-family="IBM Plex Mono" font-size="14" fill="#000">10</text>
+<text x="40" y="99" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">2022</text>
+<rect x="56.0" y="84" width="56.7" height="20" fill="#4F4F4F"/>
+<text x="64" y="99" font-family="IBM Plex Mono" font-size="14" fill="#FFFFFF">1</text>
+<rect x="114.7" y="84" width="643.3" height="20" fill="#A3A3A3"/>
+<text x="122.667" y="99" font-family="IBM Plex Mono" font-size="14" fill="#000">11</text>
+<text x="40" y="127" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">2023</text>
+<rect x="56.0" y="112" width="291.3" height="20" fill="#4F4F4F"/>
+<text x="64" y="127" font-family="IBM Plex Mono" font-size="14" fill="#FFFFFF">5</text>
+<rect x="349.3" y="112" width="408.7" height="20" fill="#A3A3A3"/>
+<text x="357.333" y="127" font-family="IBM Plex Mono" font-size="14" fill="#000">7</text>
+<text x="40" y="155" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">2024</text>
+<rect x="56.0" y="140" width="408.7" height="20" fill="#4F4F4F"/>
+<text x="64" y="155" font-family="IBM Plex Mono" font-size="14" fill="#FFFFFF">7</text>
+<rect x="466.7" y="140" width="291.3" height="20" fill="#A3A3A3"/>
+<text x="474.667" y="155" font-family="IBM Plex Mono" font-size="14" fill="#000">5</text>
+<text x="40" y="183" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">2025</text>
+<rect x="56.0" y="168" width="643.3" height="20" fill="#000"/>
+<text x="64" y="183" font-family="IBM Plex Mono" font-size="14" fill="#FFFFFF">11</text>
+<rect x="701.3" y="168" width="56.7" height="20" fill="#4F4F4F"/>
+<text x="709.333" y="183" font-family="IBM Plex Mono" font-size="14" fill="#FFFFFF">1</text>
+<text x="40" y="211" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">2026</text>
+<rect x="56.0" y="196" width="526.0" height="20" fill="#000"/>
+<text x="64" y="211" font-family="IBM Plex Mono" font-size="14" fill="#FFFFFF">9</text>
+<rect x="56" y="234" width="10" height="10" fill="#000"/>
+<text x="72" y="244" font-family="IBM Plex Sans" font-size="14" fill="#555555">Long, <tspan font-family="IBM Plex Mono">250</tspan> words or more</text>
+<rect x="247.0" y="234" width="10" height="10" fill="#4F4F4F"/>
+<text x="263" y="244" font-family="IBM Plex Sans" font-size="14" fill="#555555">Medium, <tspan font-family="IBM Plex Mono">100–249</tspan></text>
+<rect x="397.0" y="234" width="10" height="10" fill="#A3A3A3"/>
+<text x="413" y="244" font-family="IBM Plex Sans" font-size="14" fill="#555555">Short, under <tspan font-family="IBM Plex Mono">100</tspan></text>
+</svg>

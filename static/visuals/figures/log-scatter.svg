@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="356" viewBox="0 0 760 356" fill="none">
+<text x="0" y="14" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">Words in the month</text>
+<path d="M44 244.5H752" stroke="#D9D9D9"/>
+<text x="36" y="249.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">100</text>
+<path d="M44 192.5H752" stroke="#D9D9D9"/>
+<text x="36" y="197.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">200</text>
+<path d="M44 140.5H752" stroke="#D9D9D9"/>
+<text x="36" y="145.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">300</text>
+<path d="M44 88.5H752" stroke="#D9D9D9"/>
+<text x="36" y="93.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">400</text>
+<path d="M44 36.5H752" stroke="#D9D9D9"/>
+<text x="36" y="41.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">500</text>
+<path d="M44.5 296V302" stroke="#000"/>
+<text x="44.5" y="320" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#6E6E6E">0</text>
+<path d="M241.5 296V302" stroke="#000"/>
+<text x="241.5" y="320" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#6E6E6E">5</text>
+<path d="M437.5 296V302" stroke="#000"/>
+<text x="437.5" y="320" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#6E6E6E">10</text>
+<path d="M634.5 296V302" stroke="#000"/>
+<text x="634.5" y="320" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#6E6E6E">15</text>
+<path d="M44 296.5H752" stroke="#000"/>
+<text x="752" y="344" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E">Bullets in the month</text>
+<path d="M44.0 296.0L752.0 202.4" stroke="#D9D9D9"/>
+<text x="752" y="224.4" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E">10 words a bullet</text>
+<path d="M44.0 296.0L699.6 36.0" stroke="#D9D9D9"/>
+<text x="693.556" y="28" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E">30 words a bullet</text>
+<circle cx="358.7" cy="236.7" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="358.7" cy="240.4" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="437.3" cy="232.0" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="243.5" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="358.7" cy="248.7" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="240.9" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="358.7" cy="253.9" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="249.7" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="437.3" cy="246.1" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="247.1" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="516.0" cy="241.9" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="437.3" cy="237.2" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="516.0" cy="224.8" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="247.1" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="245.6" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="244.5" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="437.3" cy="244.0" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="255.4" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="358.7" cy="249.2" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="437.3" cy="246.1" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="250.8" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="476.7" cy="248.7" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="240.4" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="319.3" cy="241.4" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="358.7" cy="250.2" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="319.3" cy="244.0" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="358.7" cy="243.5" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="358.7" cy="247.1" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="240.7" cy="253.4" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="280.0" cy="248.7" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="280.0" cy="250.2" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="240.7" cy="265.8" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="240.7" cy="263.2" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="251.3" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="240.7" cy="269.5" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="201.3" cy="271.0" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="280.0" cy="264.8" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="280.0" cy="262.2" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="201.3" cy="271.0" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="162.0" cy="272.1" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="280.0" cy="259.1" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="250.2" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="319.3" cy="246.6" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="319.3" cy="254.4" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="319.3" cy="243.5" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="358.7" cy="252.3" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="240.7" cy="244.5" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="240.7" cy="257.5" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="319.3" cy="255.4" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="241.9" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="242.4" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="201.3" cy="275.7" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="358.7" cy="255.4" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="319.3" cy="244.5" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="237.2" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="162.0" cy="272.6" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="201.3" cy="275.7" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="240.7" cy="244.5" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="319.3" cy="220.6" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="319.3" cy="224.2" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="319.3" cy="239.3" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="319.3" cy="254.9" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="319.3" cy="244.0" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="280.0" cy="224.8" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="280.0" cy="230.5" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="358.7" cy="209.7" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="201.3" cy="275.7" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="122.7" cy="288.2" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="280.0" cy="263.2" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="358.7" cy="251.3" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="319.3" cy="202.4" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="175.9" r="4" fill="#A3A3A3" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="158.7" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="516.0" cy="162.4" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="634.0" cy="54.7" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="516.0" cy="91.1" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="673.3" cy="70.8" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="86.4" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="712.7" cy="136.9" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="437.3" cy="158.2" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="128.0" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="555.3" cy="96.3" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="476.7" cy="173.8" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="161.8" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="437.3" cy="142.6" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="594.7" cy="46.4" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="712.7" cy="41.2" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="437.3" cy="154.6" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="398.0" cy="133.2" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="437.3" cy="98.4" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="516.0" cy="131.2" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="437.3" cy="115.0" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<circle cx="516.0" cy="102.6" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<text x="374.4" y="130.64" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#000">2025–2026</text>
+<text x="539.6" y="241.4" font-family="IBM Plex Sans" font-size="14" fill="#555555">2019–2024</text>
+</svg>

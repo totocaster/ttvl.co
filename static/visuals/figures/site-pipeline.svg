@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="212" viewBox="0 0 760 212" fill="none">
+<text x="0" y="14" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">01</text>
+<rect x="0.5" y="24.5" width="135" height="83" fill="#FFFFFF" stroke="#000"/>
+<text x="12" y="50" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Write</text>
+<text x="12" y="72" font-family="IBM Plex Sans" font-size="14" fill="#555555">Markdown, SCSS,</text>
+<text x="12" y="92" font-family="IBM Plex Sans" font-size="14" fill="#555555">JavaScript</text>
+<path d="M136 66.5H149" stroke="#000"/>
+<path d="M155 66.5l-6 -3.0v6z" fill="#000"/>
+<text x="156" y="14" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">02</text>
+<rect x="156.5" y="24.5" width="135" height="83" fill="#FFFFFF" stroke="#000"/>
+<text x="168" y="50" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Build</text>
+<text x="168" y="72" font-family="IBM Plex Sans" font-size="14" fill="#555555">Hugo Extended</text>
+<text x="168" y="92" font-family="IBM Plex Sans" font-size="14" fill="#555555"><tspan font-family="IBM Plex Mono">0.164.0</tspan></text>
+<path d="M292 66.5H305" stroke="#000"/>
+<path d="M311 66.5l-6 -3.0v6z" fill="#000"/>
+<text x="312" y="14" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">03</text>
+<rect x="312.5" y="24.5" width="135" height="83" fill="#FFFFFF" stroke="#000"/>
+<text x="324" y="50" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Output</text>
+<text x="324" y="72" font-family="IBM Plex Sans" font-size="14" fill="#555555">Pages, feeds,</text>
+<text x="324" y="92" font-family="IBM Plex Sans" font-size="14" fill="#555555">sitemap</text>
+<path d="M448 66.5H461" stroke="#000"/>
+<path d="M467 66.5l-6 -3.0v6z" fill="#000"/>
+<text x="468" y="14" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">04</text>
+<rect x="468.5" y="24.5" width="135" height="83" fill="#FFFFFF" stroke="#000"/>
+<text x="480" y="50" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Deploy</text>
+<text x="480" y="72" font-family="IBM Plex Sans" font-size="14" fill="#555555">DigitalOcean,</text>
+<text x="480" y="92" font-family="IBM Plex Sans" font-size="14" fill="#555555">from main</text>
+<path d="M604 66.5H617" stroke="#000"/>
+<path d="M623 66.5l-6 -3.0v6z" fill="#000"/>
+<text x="624" y="14" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">05</text>
+<rect x="624.5" y="24.5" width="135" height="83" fill="#FFFFFF" stroke="#000"/>
+<text x="636" y="50" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Read</text>
+<text x="636" y="72" font-family="IBM Plex Sans" font-size="14" fill="#555555">ttvl.co</text>
+<rect x="312.5" y="148.5" width="135" height="63" fill="#FFFFFF" stroke="#000"/>
+<text x="324" y="174" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Email</text>
+<text x="324" y="196" font-family="IBM Plex Mono" font-size="14" fill="#555555">email.html</text>
+<path d="M380.5 108V141" stroke="#000"/>
+<path d="M380.5 147l-3.0 -6h6z" fill="#000"/>
+<text x="390.5" y="133" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">Each dispatch</text>
+<rect x="468.5" y="148.5" width="291" height="63" stroke="#6E6E6E" stroke-dasharray="4 4"/>
+<text x="480" y="174" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Campaign Monitor</text>
+<text x="480" y="196" font-family="IBM Plex Sans" font-size="14" fill="#555555">Sends it to subscribers</text>
+<path d="M448 180.5H461" stroke="#000"/>
+<path d="M467 180.5l-6 -3.0v6z" fill="#000"/>
+</svg>

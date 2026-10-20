@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="335" height="416" viewBox="0 0 335 416" fill="none">
+<text x="32" y="14" font-family="IBM Plex Mono" font-size="14" fill="#000">2019</text>
+<text x="175.5" y="14" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">1,219</tspan> words</text>
+<path d="M32.0 56.5H175.5" stroke="#D9D9D9"/>
+<text x="24" y="61.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">250</text>
+<polyline points="32.0,73.4 45.0,74.3 58.1,72.3 71.1,75.1 84.2,76.4 97.2,74.4 110.3,77.6 123.3,76.6 136.4,75.7 149.4,76.0 162.5,74.7 175.5,73.5" stroke="#000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M32.0 88.5H175.5" stroke="#000"/>
+<text x="191.5" y="14" font-family="IBM Plex Mono" font-size="14" fill="#000">2020</text>
+<text x="335" y="14" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">1,181</tspan> words</text>
+<path d="M191.5 56.5H335.0" stroke="#D9D9D9"/>
+<polyline points="191.5,70.5 204.5,76.0 217.6,75.6 230.6,75.3 243.7,75.2 256.7,78.0 269.8,76.5 282.8,75.7 295.9,76.9 308.9,76.4 322.0,74.3 335.0,74.6" stroke="#000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M191.5 88.5H335.0" stroke="#000"/>
+<text x="32" y="122" font-family="IBM Plex Mono" font-size="14" fill="#000">2021</text>
+<text x="175.5" y="122" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">950</tspan> words</text>
+<path d="M32.0 164.5H175.5" stroke="#D9D9D9"/>
+<text x="24" y="169.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">250</text>
+<polyline points="32.0,184.7 45.0,183.2 58.1,183.1 71.1,184.0 84.2,185.5 97.2,184.4 110.3,184.7 123.3,188.6 136.4,187.9 149.4,185.0 162.5,189.5 175.5,189.9" stroke="#000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M32.0 196.5H175.5" stroke="#000"/>
+<text x="191.5" y="122" font-family="IBM Plex Mono" font-size="14" fill="#000">2022</text>
+<text x="335" y="122" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">911</tspan> words</text>
+<path d="M191.5 164.5H335.0" stroke="#D9D9D9"/>
+<polyline points="191.5,188.3 204.5,187.7 217.6,189.9 230.6,190.1 243.7,186.9 256.7,184.7 269.8,183.8 282.8,185.8 295.9,183.1 308.9,185.2 322.0,183.3 335.0,186.5" stroke="#000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M191.5 196.5H335.0" stroke="#000"/>
+<text x="32" y="230" font-family="IBM Plex Mono" font-size="14" fill="#000">2023</text>
+<text x="175.5" y="230" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">1,080</tspan> words</text>
+<path d="M32.0 272.5H175.5" stroke="#D9D9D9"/>
+<text x="24" y="277.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">250</text>
+<polyline points="32.0,294.0 45.0,290.7 58.1,290.8 71.1,299.0 84.2,294.0 97.2,291.3 110.3,289.5 123.3,298.2 136.4,299.0 149.4,291.3 162.5,285.4 175.5,286.3" stroke="#000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M32.0 304.5H175.5" stroke="#000"/>
+<text x="191.5" y="230" font-family="IBM Plex Mono" font-size="14" fill="#000">2024</text>
+<text x="335" y="230" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">1,331</tspan> words</text>
+<path d="M191.5 272.5H335.0" stroke="#D9D9D9"/>
+<polyline points="191.5,290.0 204.5,293.9 217.6,291.2 230.6,286.5 243.7,287.9 256.7,282.8 269.8,299.0 282.8,302.1 295.9,295.9 308.9,293.0 322.0,281.0 335.0,274.4" stroke="#000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M191.5 304.5H335.0" stroke="#000"/>
+<text x="32" y="338" font-family="IBM Plex Mono" font-size="14" fill="#000">2025</text>
+<text x="175.5" y="338" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">3,986</tspan> words</text>
+<path d="M32.0 380.5H175.5" stroke="#D9D9D9"/>
+<text x="24" y="385.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">250</text>
+<polyline points="32.0,378.2 45.0,379.1 58.1,352.6 71.1,361.6 84.2,356.6 97.2,360.4 110.3,372.8 123.3,378.1 136.4,370.7 149.4,362.8 162.5,381.9 175.5,379.0" stroke="#000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M32.0 412.5H175.5" stroke="#000"/>
+<text x="191.5" y="338" font-family="IBM Plex Mono" font-size="14" fill="#000">2026</text>
+<text x="335" y="338" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">3,267</tspan> words</text>
+<path d="M191.5 380.5H335.0" stroke="#D9D9D9"/>
+<polyline points="191.5,374.2 204.5,350.6 217.6,349.3 230.6,377.2 243.7,371.9 256.7,363.4 269.8,371.4 282.8,367.5 295.9,364.4" stroke="#000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M191.5 412.5H335.0" stroke="#000"/>
+</svg>

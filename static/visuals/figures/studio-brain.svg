@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="657" viewBox="0 0 1120 657" fill="none">
+<text x="0" y="14" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">In the studio</text>
+<text x="294" y="14" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">Device layer</text>
+<text x="592" y="14" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">Studio brain</text>
+<text x="900" y="14" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">Surfaces</text>
+<rect x="0.5" y="32.5" width="209.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="12" y="58" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Hue Bridge Pro</text>
+<text x="12" y="80" font-family="IBM Plex Sans" font-size="14" fill="#555555">16 lamps, 2 controls</text>
+<path d="M210 64.5H293" stroke="#000"/>
+<path d="M294 64.5l-6 -3.0v6z" fill="#000"/>
+<text x="252" y="57.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E">Local API</text>
+<rect x="0.5" y="112.5" width="209.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="12" y="138" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Aqara Hub M200</text>
+<text x="12" y="160" font-family="IBM Plex Sans" font-size="14" fill="#555555">3 contacts, climate sensor</text>
+<path d="M210 144.5H293" stroke="#000"/>
+<path d="M294 144.5l-6 -3.0v6z" fill="#000"/>
+<text x="252" y="137.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E">Matter</text>
+<rect x="0.5" y="192.5" width="209.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="12" y="218" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Broadlink RM4 ×2</text>
+<text x="12" y="240" font-family="IBM Plex Sans" font-size="14" fill="#555555">2 ACs, planned</text>
+<path d="M210 224.5H293" stroke="#000"/>
+<path d="M294 224.5l-6 -3.0v6z" fill="#000"/>
+<text x="252" y="217.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E">IR, local</text>
+<rect x="0.5" y="272.5" width="209.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="12" y="298" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Printers</text>
+<text x="12" y="320" font-family="IBM Plex Sans" font-size="14" fill="#555555">Saturn now, Bambu later</text>
+<path d="M210 304.5H293" stroke="#000"/>
+<path d="M294 304.5l-6 -3.0v6z" fill="#000"/>
+<text x="252" y="297.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E">Integration</text>
+<rect x="294.5" y="32.5" width="209.0" height="303.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="306" y="58" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Home Assistant Green</text>
+<text x="306" y="80" font-family="IBM Plex Sans" font-size="14" fill="#555555">Entities and history</text>
+<text x="306" y="100" font-family="IBM Plex Sans" font-size="14" fill="#555555">Automations that work</text>
+<text x="306" y="120" font-family="IBM Plex Sans" font-size="14" fill="#555555">without the brain</text>
+<text x="306" y="140" font-family="IBM Plex Sans" font-size="14" fill="#555555">Tag scans from labels</text>
+<rect x="593" y="33" width="228" height="382" fill="#F7F7F7" stroke="#000" stroke-width="2"/>
+<text x="604" y="58" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Studio brain</text>
+<text x="604" y="80" font-family="IBM Plex Sans" font-size="14" fill="#555555">Mac mini now, NAS later</text>
+<text x="604" y="120" font-family="IBM Plex Sans" font-size="14" fill="#555555">Model and its 73 places</text>
+<text x="604" y="140" font-family="IBM Plex Sans" font-size="14" fill="#555555">Catalog and photos</text>
+<text x="604" y="160" font-family="IBM Plex Sans" font-size="14" fill="#555555">Scenes and checks</text>
+<text x="604" y="180" font-family="IBM Plex Sans" font-size="14" fill="#555555">State mirror, event log</text>
+<text x="604" y="200" font-family="IBM Plex Sans" font-size="14" fill="#555555">Serves every screen</text>
+<path d="M504 120.5H590" stroke="#000"/>
+<path d="M591 120.5l-6 -3.0v6z" fill="#000"/>
+<text x="548" y="113.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E">States</text>
+<path d="M511 200.5H592" stroke="#000"/>
+<path d="M504 200.5l6 -3.0v6z" fill="#000"/>
+<text x="548" y="193.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E">Calls</text>
+<rect x="900.5" y="32.5" width="219.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="912" y="58" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Wall screen</text>
+<text x="912" y="80" font-family="IBM Plex Sans" font-size="14" fill="#555555">Always on, read-only</text>
+<path d="M830 64.5H893" stroke="#000"/>
+<path d="M824 64.5l6 -3.0v6z" fill="#000"/>
+<path d="M899 64.5l-6 -3.0v6z" fill="#000"/>
+<text x="861" y="57.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E">Live</text>
+<rect x="900.5" y="112.5" width="219.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="912" y="138" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Phones</text>
+<text x="912" y="160" font-family="IBM Plex Sans" font-size="14" fill="#555555">Web app: find, capture</text>
+<path d="M830 144.5H893" stroke="#000"/>
+<path d="M824 144.5l6 -3.0v6z" fill="#000"/>
+<path d="M899 144.5l-6 -3.0v6z" fill="#000"/>
+<rect x="900.5" y="192.5" width="219.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="912" y="218" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Manage</text>
+<text x="912" y="240" font-family="IBM Plex Sans" font-size="14" fill="#555555">Catalog, entity map</text>
+<path d="M830 224.5H893" stroke="#000"/>
+<path d="M824 224.5l6 -3.0v6z" fill="#000"/>
+<path d="M899 224.5l-6 -3.0v6z" fill="#000"/>
+<rect x="900.5" y="272.5" width="219.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="912" y="298" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Stream Deck + XL</text>
+<text x="912" y="320" font-family="IBM Plex Sans" font-size="14" fill="#555555">Keys and dials at the desk</text>
+<path d="M830 304.5H893" stroke="#000"/>
+<path d="M824 304.5l6 -3.0v6z" fill="#000"/>
+<path d="M899 304.5l-6 -3.0v6z" fill="#000"/>
+<rect x="900.5" y="352.5" width="219.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="912" y="378" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Lab and Study iPads</text>
+<text x="912" y="400" font-family="IBM Plex Sans" font-size="14" fill="#555555">Control panels</text>
+<path d="M830 384.5H893" stroke="#000"/>
+<path d="M824 384.5l6 -3.0v6z" fill="#000"/>
+<path d="M899 384.5l-6 -3.0v6z" fill="#000"/>
+<rect x="592.5" y="464.5" width="229.0" height="87.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="604" y="490" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Claude</text>
+<text x="604" y="512" font-family="IBM Plex Sans" font-size="14" fill="#555555">Reads drawer photos</text>
+<text x="604" y="532" font-family="IBM Plex Sans" font-size="14" fill="#555555">Answers where-is questions</text>
+<path d="M632.5 424V456" stroke="#000"/>
+<path d="M632.5 418l-3.0 6h6z" fill="#000"/>
+<path d="M632.5 463l-3.0 -6h6z" fill="#000"/>
+<text x="642.5" y="445" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">Photos down, changes up</text>
+<rect x="0.5" y="592.5" width="209.0" height="63.0" fill="#FFFFFF" stroke="#6E6E6E" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="12" y="618" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Cameras, doorbell</text>
+<text x="12" y="640" font-family="IBM Plex Sans" font-size="14" fill="#555555">Camera E1 ×2, G4</text>
+<rect x="900.5" y="592.5" width="219.0" height="63.0" fill="#FFFFFF" stroke="#6E6E6E" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="912" y="618" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Apple Home</text>
+<text x="912" y="640" font-family="IBM Plex Sans" font-size="14" fill="#555555">HomePod hub, iPad views</text>
+<path d="M210 624.5H893" stroke="#6E6E6E" stroke-dasharray="4 4"/>
+<path d="M899 624.5l-6 -3.0v6z" fill="#000"/>
+<text x="441" y="617.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E">HomeKit, outside the brain</text>
+<path d="M1010.5 591V424" stroke="#6E6E6E" stroke-dasharray="4 4"/>
+<path d="M1010.5 417l-3.0 6h6z" fill="#000"/>
+<text x="1020.5" y="509" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">Camera views</text>
+</svg>

@@ -7,6 +7,8 @@ The first version of this website owed its design and structure to [100r.co](htt
 
 The type is [IBM Plex](https://www.ibm.com/plex/), served from this site as subset files: Plex Sans for words and Plex Mono for numbers and code.
 
+Diagrams and charts are drawn in the same type and in a few grays of the same ink, so they follow the system's dark mode like the text around them. [Figures](/figures/) shows every kind, from a bar list to a calendar.
+
 This website is generated using [Hugo](https://gohugo.io/). The content is managed in a private Git repository. DigitalOcean App Platform builds and publishes the site whenever the main branch changes.
 
 The generated website is hosted on DigitalOcean App Platform. If you sign up with DigitalOcean through [this link][doref], we'll both receive generous credits.

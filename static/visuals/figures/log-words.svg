@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="300" viewBox="0 0 760 300" fill="none">
+<path d="M44 212.5H720" stroke="#D9D9D9"/>
+<text x="36" y="217.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">100</text>
+<path d="M44 164.5H720" stroke="#D9D9D9"/>
+<text x="36" y="169.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">200</text>
+<path d="M44 116.5H720" stroke="#D9D9D9"/>
+<text x="36" y="121.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">300</text>
+<path d="M44 68.5H720" stroke="#D9D9D9"/>
+<text x="36" y="73.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">400</text>
+<path d="M44 20.5H720" stroke="#D9D9D9"/>
+<text x="36" y="25.5" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">500</text>
+<text x="36" y="265" font-family="IBM Plex Mono" font-size="14" text-anchor="end" fill="#6E6E6E">0</text>
+<path d="M44.5 260V266" stroke="#000"/>
+<text x="44" y="284" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2019</text>
+<path d="M129.5 260V266" stroke="#000"/>
+<text x="129" y="284" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2020</text>
+<path d="M215.5 260V266" stroke="#000"/>
+<text x="215" y="284" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2021</text>
+<path d="M300.5 260V266" stroke="#000"/>
+<text x="300" y="284" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2022</text>
+<path d="M386.5 260V266" stroke="#000"/>
+<text x="386" y="284" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2023</text>
+<path d="M471.5 260V266" stroke="#000"/>
+<text x="471" y="284" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2024</text>
+<path d="M556.5 260V266" stroke="#000"/>
+<text x="556" y="284" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2025</text>
+<path d="M642.5 260V266" stroke="#000"/>
+<text x="642" y="284" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">2026</text>
+<polyline points="44.0,205.3 51.1,208.6 58.2,201.0 65.3,211.5 72.5,216.3 79.6,209.1 86.7,221.1 93.8,217.3 100.9,213.9 108.0,214.9 115.2,210.1 122.3,205.8 129.4,194.2 136.5,214.9 143.6,213.4 150.7,212.5 157.9,212.0 165.0,222.6 172.1,216.8 179.2,213.9 186.3,218.2 193.4,216.3 200.5,208.6 207.7,209.6 214.8,217.8 221.9,212.0 229.0,211.5 236.1,214.9 243.2,220.6 250.4,216.3 257.5,217.8 264.6,232.2 271.7,229.8 278.8,218.7 285.9,235.5 293.1,237.0 300.2,231.2 307.3,228.8 314.4,237.0 321.5,237.9 328.6,225.9 335.7,217.8 342.9,214.4 350.0,221.6 357.1,211.5 364.2,219.7 371.3,212.5 378.4,224.5 385.6,222.6 392.7,210.1 399.8,210.6 406.9,241.3 414.0,222.6 421.1,212.5 428.3,205.8 435.4,238.4 442.5,241.3 449.6,212.5 456.7,190.4 463.8,193.8 470.9,207.7 478.1,222.1 485.2,212.0 492.3,194.2 499.4,199.5 506.5,180.3 513.6,241.3 520.8,252.8 527.9,229.8 535.0,218.7 542.1,173.6 549.2,149.1 556.3,133.3 563.5,136.6 570.6,37.3 577.7,70.9 584.8,52.2 591.9,66.6 599.0,113.1 606.1,132.8 613.3,105.0 620.4,75.7 627.5,147.2 634.6,136.2 641.7,118.4 648.8,29.6 656.0,24.8 663.1,129.4 670.2,109.8 677.3,77.6 684.4,107.8 691.5,93.0 698.7,81.4" stroke="#000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M44 260.5H720" stroke="#000"/>
+<path d="M542.1 163.6V63.0H532.1" stroke="#6E6E6E"/>
+<text x="526.105" y="68" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#555555">Longer months from <tspan font-family="IBM Plex Mono">2024-11</tspan></text>
+<circle cx="698.7" cy="81.4" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<text x="708.653" y="86.44" font-family="IBM Plex Mono" font-size="14" fill="#000">372</text>
+</svg>

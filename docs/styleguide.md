@@ -1,6 +1,6 @@
 # ttvl.co Style Guide
 
-This guide is the visual standard for ttvl.co. It records what a page looks like, why, and where each rule lives in the code, so new pages and components land in the same system instead of inventing their own. Editorial rules (spelling, capitalization, measurements) live in `AGENTS.md` under Editorial style; this guide covers everything a reader sees.
+This guide is the visual standard for ttvl.co. It records what a page looks like, why, and where each rule lives in the code, so new pages and components land in the same system instead of inventing their own. Editorial rules (spelling, capitalization, measurements) live in `AGENTS.md` under Editorial style; this guide covers everything a reader sees. Figures the site draws itself (diagrams, charts, timelines, and the interactive figures called instruments) have their own standard in `docs/figures.md`, which extends this one.
 
 The standard is called **Panel**. It replaced Air on 2026-10-07 and ships as site version v8.0. The design canvas with the study, the menu and button variants, and every page mocked up is at <https://claude.ai/artifact/CYz5wjj2V8LQ1Y4uzVkeAk>. The voice is a technical instrument panel: the content sits alone in a column, and everything that describes it (dates, counts, sections, kinds) stands in a rail to its left, small and faint. Words in the chrome are set in IBM Plex Sans; numbers are set in IBM Plex Mono.
 
@@ -73,6 +73,8 @@ Themed colors come only from the custom properties in `assets/scss/_tokens.scss`
 | `--surface-input` | Form fields | `#fff` | `#1e1e1e` | |
 | `--highlight` | Text fragments and selection | yellow, 80% | amber, 30% | |
 | `--signal` | What is live: the current month, a pulse's newest mark in its first week, the focus ring | `#ff4f00` | same | never under text |
+| `--film` | The Contact Sheet's strip of film | `#e6e6e6` | `#262626` | its edge print is faint: 4:1 / 4.6:1 |
+| `--tone-2`, `--tone-3`, `--tone-4` | The steps after ink in a drawing or chart, for ordered categories and context marks; never text (`docs/figures.md`) | `#4f4f4f`, `#7a7a7a`, `#a3a3a3` | `#b0b0b0`, `#7f7f7f`, `#5c5c5c` | 8.2 / 4.3 / 2.5:1 light, 8.5 / 4.6 / 2.8:1 dark |
 | `--term`, `--term-ink`, `--term-faint` | The terminal block, dark in both themes | `#161616`, `#e6e6e6`, `#8f8f8f` | `#0a0a0a`, same, same | |
 
 High contrast (`prefers-contrast: more`) folds faint into muted, turns edges and rules to ink, and flattens surfaces.
@@ -106,7 +108,7 @@ Every margin, padding, and gap uses a step. Spacing never uses rem or em.
 | Paragraphs, lists, quotations | 18 |
 | Prose `h2`: above / below | 40 / 8 |
 | Prose `h3`: above / below | 24 / 8 |
-| Rows | 10 px padding each side of the hairline; 12 with deks |
+| Rows | 4 apart; 16 with deks |
 | Figure: above / below / caption | 32 / 48 / 8 |
 | A form and its legend | 12 |
 | Last block and the footer | 96 |
@@ -135,7 +137,7 @@ Each pattern below is one partial or shortcode and one stylesheet. Use them; don
 ```html
 <header class="site wrap">
   <a class="logo" href="/"><img src="/ui/ttvl_logo.png" srcset="…" alt="Toto Tvalavadze"></a>
-  <a class="search-key" href="#search">Search <kbd>?</kbd></a>
+  <button type="button" class="search-key" aria-haspopup="dialog" aria-keyshortcuts="?" aria-label="Search" title="Search (?)"><svg class="icon icon-search">…</svg></button>
   <nav class="nav" aria-label="Primary"><a href="/projects/">Projects</a> … <a href="/about/">About</a></nav>
 </header>
 ```
@@ -208,7 +210,7 @@ The unit of every page below the head. The rail holds a heading and, where there
 The article body is one block with an empty rail. Prose holds the measure.
 
 - Paragraphs 18 px apart. Lists indent 24 px, markers faint.
-- `h2` carries a Mono numeral (`01`, `02`) in the rail, from a CSS counter; `h3` carries none. On phones the numeral sits inline before the heading.
+- `h2` carries a Mono numeral in the rail from a CSS counter, starting at `02` since the opening under the title is `01`; `h3` carries none. On phones the numeral sits inline before the heading.
 - Prose links are 500 and underlined.
 - Lists in prose: on wide screens the text stands on the paragraph's edge and the bullets and numbers hang outside it, in the gap; when the rail stacks they indent 24 px as usual.
 - Quotations: a 2 px `--edge` rule at left, 20 px padding, full ink; `.quote-attribution` in the label voice under it.
@@ -225,6 +227,7 @@ The article body is one block with an empty rail. Prose holds the measure.
 - Captions: label voice, muted, 8 px under, held to the measure. No numbering.
 - `class="portrait"` holds tall captures to 360 px.
 - The `clip` shortcode: the same frame with nothing over the picture, the caption below. Readers who prefer reduced motion get the poster and controls. A dispatch's email shows the GIF beside the clip's MP4 instead (`tools/clip-gif.py`), or the linked poster.
+- Drawings, charts, and instruments follow `docs/figures.md`: SVG in an eleven-value drawing palette that the stylesheet maps to the tokens, inlined by the `drawing` shortcode so it follows the theme, and unframed like a table; bar lists and unit charts in HTML (`bars`, `units`); instruments in a well with their controls above and a readout under it.
 
 ### Rows
 
@@ -329,6 +332,7 @@ Full ground. Centered, 96 px down: a “Search site” label and a Close button,
 - **Loose Leaves.** Head. One year block per year, the year alone in its rail; a six-column grid of tiles at the notebook's page proportion (Bible size, 95 × 171 mm, which the scans share) on `--edge` frames with the 2 px ink shadow of every key, the date in Mono under each (leaves that share a day are tagged `2024-12-17/1`, `/2`, … in the order shown); three columns on phones. Under the hand the frame turns ink; pressing drops the leaf into its shadow. The lightbox shows the whole leaf, contained.
 - **About.** Head (`Updated 2026-09-16`) over the opening sentence as the title; the contents in the body block's rail under `On this page`, the introduction itself as the first entry (`About`) and then one per section, like any long article. The portrait stands beside the introduction at the right of the column, 216 px wide past the measure; when the rail stacks it floats right and the text wraps around it. Then one block per section through the `section` shortcode: Newsletter (`All dispatches →`), Books (`Not awards. Things that exist.`), Exhibitions, Curation, Programs and training, Speaking, Video, Print, and Tools I made, each a block of its own with the venue as each record row's tail, then Philosophy, Extended About, Tools I use (`Updated 2026-09 · Nothing here is sponsored`), How I use AI, Get in Touch. The principles are `h3.principle` with Mono numerals in the rail.
 - **Colophon.** Head (`v8.0.351`). Body.
+- **Figures.** Head. The body block, one section per job (diagrams, one series, two series, part to whole, difference, relationship, calendar, small multiples, instruments, pictures), every figure drawn with the shared parts of `docs/figures.md`. Linked from the Colophon.
 - **Index.** Head (`78 entries`). Start Here: a grid of door switches, three across, one per page named in the Index's `hub_sections` front matter (hubs the masthead does not reach, and the Ambient Computing stream), with its title and `filter_dek` or description. A–Z: letter groups in three columns (one on phones), each an `h3` without a count; a 14 px mail icon (a stroke icon, since Plex has no envelope) after a title that also went out as a dispatch, and the legend under the letters. Log: the archive grid.
 - **Search.** The overlay above.
 - **404.** `layouts/404.html`: head (`404 · Not found` / the path), one sentence pointing to search, the index, and home.
@@ -371,6 +375,7 @@ Dark follows `prefers-color-scheme`; there is no toggle. The signature logo inve
 | End matter | `partials/mentioned-in.html`, `research/single.html` |
 | Search | `assets/js/search.js`, `components/_search.scss` |
 | Viewers, galleries, lightbox, clip | the shortcodes and `components/_model-viewer.scss`, `_gaussian-splat.scss`, `_spatial-long-exposure.scss`, `_photo-gallery.scss`, `_lightbox.scss` |
+| Drawings, charts, instruments | `docs/figures.md`; the `drawing`, `bars`, and `units` shortcodes, `components/_drawing.scss`, the toggle and scrubber in `components/_control.scss`, `assets/js/scrub.js`, `tools/drawing-png.py`, `tools/figure-specimens.py` |
 | Social cards | `tools/social-cards.py` (Plex from the system font files) |
 
 Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `type-small`, `type-meta` (small plus tabular Mono numbers are opted in per element through `time` and `.n`, not the mixin). Placement rule: a style used by two or more sections goes in `components/`, by one in `sections/`.
@@ -385,8 +390,11 @@ Mixins: `type-title`, `type-body`, `type-heading`, `type-dek`, `type-control`, `
 
 **A new hub.** Title, one rail line with the count, the intro as the dek, then blocks from `page-list` or `project-grid`. Give it a `filter_dek` if it joins the Projects rail, and run `make cards`.
 
+**A new figure.** Follow `docs/figures.md`: pick the kind from its table, draw in the palette, place it with `drawing`, `bars`, or `units`, and check it against its checklist and the Figures page (`/figures/`).
+
 ## Changelog
 
+- **2026-10-20, v8.0, figures.** Drawings, charts, and instruments get their own standard, `docs/figures.md`: a drawing palette of eleven literal values mapped to the tokens (three new tones of ink among them), so an SVG follows the theme when the `drawing` shortcode inlines it; two weights of line; the chrome's type at a 14 px floor; bar lists (single or paired) and unit charts in HTML; specs for every chart form by its job (two series, before and after, stacked, diverging, scatter, calendar, small multiples) and for system, pipeline, tree, and span diagrams; instruments with a segmented control, a toggle with a lamp, or a scrubber above a well and a readout under it. Illustrations made for one page stay images. The Figures page, linked from the Colophon, shows each.
 - **2026-10-20, v8.0, stream doors.** The Research hub's streams are door tiles like the Index's, each with its count, status, description, and a pulse of one mark per day for 13 weeks. Under them, Latest shows the six newest entries as cards, each figure contained on a white plate. The Streams ledger and the per-stream lists are gone; the all-streams feed moves to the head rail.
 - **2026-10-14, v8.0, the contact sheet as film.** The Flâneur's Contact Sheet is a strip of 35mm film: true proportions, a grey keyed to the theme, real edge data (title, frame number, date) in one faint condensed print, faded edges while it scrolls, and a cut leader after the oldest frame.
 - **2026-10-14, v8.0, quiet headings.** Every heading below the title is body size: sections in SemiBold with their numeral in the rail, now counted from 02 since the opening is 01; subheadings in italic. The title drops to 28/36 Regular. The space above headings scales down with them (40 and 24).
