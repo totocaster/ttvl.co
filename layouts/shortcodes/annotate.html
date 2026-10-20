@@ -1,0 +1,36 @@
+{{- /* An annotated picture: numbered ink markers over a raster image,
+     placed in percent, with the key under it. docs/figures.md, Pictures.
+     {{< annotate src="/visuals/…/shot.jpg" alt="…" caption="…" >}}
+     12 | 44 | What marker 1 points at
+     {{< /annotate >}}
+     One line per marker: x percent | y percent | its words. Put a marker
+     beside its part, never on it. Feeds keep the picture and the numbered
+     key, without the markers. components/_pictures.scss. */ -}}
+{{- $src := .Get "src" -}}
+{{- if not $src }}{{ errorf "annotate: missing src in %s" .Position }}{{ end -}}
+{{- $marks := slice -}}
+{{- range split (trim .Inner "\n") "\n" -}}
+  {{- $line := trim . " \t\r" -}}
+  {{- if $line -}}
+    {{- $cells := slice -}}
+    {{- range split $line "|" }}{{ $cells = $cells | append (trim . " \t") }}{{ end -}}
+    {{- $marks = $marks | append (dict "x" (index $cells 0) "y" (index $cells 1) "label" (index $cells 2)) -}}
+  {{- end -}}
+{{- end -}}
+<figure class="annotated">
+  <div class="annotated__frame">
+    {{- $size := images.Config (printf "static%s" $src) }}
+    <img src="{{ $src }}" alt="{{ .Get "alt" }}" width="{{ $size.Width }}" height="{{ $size.Height }}" loading="lazy">
+    {{- range $i, $m := $marks }}
+    <span class="annotated__marker" style="--x: {{ $m.x }}%; --y: {{ $m.y }}%" aria-hidden="true">{{ add $i 1 }}</span>
+    {{- end }}
+  </div>
+  <ol class="annotated__key">
+    {{- range $marks }}
+    <li>{{ .label | markdownify }}</li>
+    {{- end }}
+  </ol>
+  {{- with .Get "caption" }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>

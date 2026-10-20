@@ -1,0 +1,40 @@
+# The Solaris highway sequence, for content/darkroom/solaris-highway.md.
+# uv run tools/map.py static/visuals/solaris-highways/map.toml
+# Places from the article's own map links, in the order the film runs.
+south = 35.654
+west = 139.716
+north = 35.686
+east = 139.752
+width = 760
+narrow = 335
+stations = ["Yotsuya", "Nagatacho", "Akasaka-mitsuke", "Akasaka", "Roppongi", "Azabu-juban"]
+
+[[places]]
+lat = 35.6807191
+lon = 139.7263565
+name = "The view from Minami-motomachi Park"
+
+[[places]]
+lat = 35.6807288
+lon = 139.7306413
+name = "The exit on the other side of the tunnel"
+
+[[places]]
+lat = 35.679032
+lon = 139.735966
+name = "Approaching the Benkei Fishing Club"
+
+[[places]]
+lat = 35.678621
+lon = 139.736285
+name = "The slope above Akasaka-mitsuke, exit D"
+
+[[places]]
+lat = 35.6588197
+lon = 139.7365409
+name = "The off-ramp into the tunnel at Azabu-juban"
+
+[[places]]
+lat = 35.658152
+lon = 139.736395
+name = "The Iikura exit ramp"

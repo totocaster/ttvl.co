@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="358.5" viewBox="0 0 760 358.5" fill="none">
+<rect x="0.5" y="216.5" width="71" height="47" fill="#F7F7F7" stroke="#000"/>
+<path d="M0.5 199.5H71.5M0.5 194.5V204.5M71.5 194.5V204.5" stroke="#6E6E6E"/>
+<text x="36" y="191.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">36</tspan> mm</text>
+<path d="M88.5 216.5V263.5M83.5 216.5H93.5M83.5 263.5H93.5" stroke="#6E6E6E"/>
+<text x="98.5" y="245" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">24</tspan> mm</text>
+<text x="0" y="292" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">35mm</text>
+<rect x="160.5" y="152.5" width="139" height="111" fill="#F7F7F7" stroke="#000"/>
+<path d="M160.5 135.5H299.5M160.5 130.5V140.5M299.5 130.5V140.5" stroke="#6E6E6E"/>
+<text x="230" y="127.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">70</tspan> mm</text>
+<path d="M316.5 152.5V263.5M311.5 152.5H321.5M311.5 263.5H321.5" stroke="#6E6E6E"/>
+<text x="326.5" y="213" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">56</tspan> mm</text>
+<text x="160" y="292" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">6×7</text>
+<rect x="388.5" y="60.5" width="253" height="203" fill="#F7F7F7" stroke="#000"/>
+<path d="M388.5 43.5H641.5M388.5 38.5V48.5M641.5 38.5V48.5" stroke="#6E6E6E"/>
+<text x="515" y="35.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">127</tspan> mm</text>
+<path d="M658.5 60.5V263.5M653.5 60.5H663.5M653.5 263.5H663.5" stroke="#6E6E6E"/>
+<text x="668.5" y="167" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">102</tspan> mm</text>
+<text x="388" y="292" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">4×5</text>
+<path d="M0.5 328.5H100.5" stroke="#000"/>
+<path d="M0.5 324.5V332.5" stroke="#000"/>
+<path d="M20.5 324.5V332.5" stroke="#000"/>
+<path d="M40.5 324.5V332.5" stroke="#000"/>
+<path d="M60.5 324.5V332.5" stroke="#000"/>
+<path d="M80.5 324.5V332.5" stroke="#000"/>
+<path d="M100.5 324.5V332.5" stroke="#000"/>
+<text x="0" y="352.5" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">0</text>
+<text x="100" y="352.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">50</tspan> mm</text>
+</svg>

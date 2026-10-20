@@ -2,6 +2,22 @@
 horizontal scroll on narrow screens. Add {.wide} after a table to let it
 span the full container width. Column alignment follows the Markdown
 delimiter row; right-aligned columns get tabular numerals. */ -}}
+{{- /* {.bars} after a table draws a bar in every right-aligned numeric
+column, scaled to the column's largest value (docs/figures.md, Charts;
+components/_table.scss). */ -}}
+{{- $bars := in (string (.Attributes.class | default "")) "bars" -}}
+{{- $max := dict -}}
+{{- if $bars -}}
+  {{- range .TBody -}}
+    {{- range $i, $c := . -}}
+      {{- $t := trim (plainify $c.Text) " " -}}
+      {{- if and (eq $c.Alignment "right") (findRE `^[0-9]+(\.[0-9]+)?$` $t) -}}
+        {{- $k := string $i -}}
+        {{- if gt (float $t) (float (index $max $k | default 0)) }}{{ $max = merge $max (dict $k (float $t)) }}{{ end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
 <div class="table-wrap{{ with .Attributes.class }} {{ . }}{{ end }}">
   <table>
     <thead>
@@ -16,8 +32,14 @@ delimiter row; right-aligned columns get tabular numerals. */ -}}
     <tbody>
       {{- range .TBody }}
       <tr>
-        {{- range . }}
-        <td{{ if ne .Alignment "" }} class="align-{{ .Alignment }}"{{ end }}>{{ .Text }}</td>
+        {{- range $i, $c := . }}
+        {{- $m := index $max (string $i) -}}
+        {{- $t := trim (plainify $c.Text) " " -}}
+        {{- if and $m (findRE `^[0-9]+(\.[0-9]+)?$` $t) }}
+        <td class="align-right has-bar"><span class="cell-bar" style="--share: {{ div (float $t) $m }}"><span></span><span>{{ $c.Text }}</span></span></td>
+        {{- else }}
+        <td{{ if ne $c.Alignment "" }} class="align-{{ $c.Alignment }}"{{ end }}>{{ $c.Text }}</td>
+        {{- end }}
         {{- end }}
       </tr>
       {{- end }}

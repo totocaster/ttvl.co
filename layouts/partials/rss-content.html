@@ -10,6 +10,16 @@ controls, and its readout have nothing to do in a feed. */ -}}
 {{- $content = replaceRE `(?s)<div class="drawing__frame drawing__frame--narrow[^"]*"[^>]*>.*?</svg>\s*</div>` "" $content -}}
 {{- $content = replaceRE `(?s)<div class="drawing__frame[^"]*"[^>]*data-fallback="([^"]+)" data-alt="([^"]*)">.*?</svg>\s*</div>` `<img src="$1" alt="$2" style="max-width: 100%; height: auto;">` $content -}}
 {{- $content = replaceRE `(?s)<div class="instrument__controls">.*?</div>|<p class="readout">.*?</p>` "" $content -}}
+{{- /* A live chart (site-chart) has no file: its summary stands in. */ -}}
+{{- $content = replaceRE `(?s)<div class="drawing__frame[^"]*"[^>]*data-live="([^"]*)">.*?</svg>\s*</div>` `<p>$1</p>` $content -}}
+{{- /* A comparison shows its two pictures one under the other, named; an
+annotated picture keeps its picture and numbered key, without markers; a
+sparkline drops out of its sentence. Pictures take absolute URLs here,
+since a feed or an email has no page to resolve them against. */ -}}
+{{- $site := strings.TrimSuffix "/" ("/" | absURL) -}}
+{{- $content = replaceRE `(?s)<div class="compare__frame"[^>]*>\s*<img class="compare__second" src="([^"]+)"[^>]*>\s*<img class="compare__first" src="([^"]+)"[^>]*>.*?compare__badge--first"[^>]*>([^<]*)</span>.*?compare__badge--second"[^>]*>([^<]*)</span>.*?</div>` (printf `<p>$3</p><img src="%s$2" alt="$3" style="max-width: 100%%; height: auto;"><p>$4</p><img src="%s$1" alt="$4" style="max-width: 100%%; height: auto;">` $site $site) $content -}}
+{{- $content = replaceRE `<span class="annotated__marker"[^>]*>\d+</span>` "" $content -}}
+{{- $content = replaceRE `(?s)\s?<span class="spark"[^>]*>.*?</svg></span>` "" $content -}}
 {{- /* Preserve escaped shell text and line breaks without copy controls. */ -}}
 {{- range findRE `(?s)<div class="shell-block">.*?</div>` $content -}}
   {{- $block := replaceRE `^<div class="shell-block">\s*|</div>$` "" . -}}
@@ -18,5 +28,5 @@ controls, and its readout have nothing to do in a feed. */ -}}
   {{- $block = replaceRE `<span class="shell-line[^"]*">` "" $block -}}
   {{- $content = replace $content . (printf "<pre><code>%s</code></pre>" $block) -}}
 {{- end -}}
-{{- $content = replaceRE `<script\s[^>]*src="[^"]*/js/(shell-copy|clip|scrub)\.[^"]+\.js"[^>]*></script>` "" $content -}}
+{{- $content = replaceRE `<script\s[^>]*src="[^"]*/js/(shell-copy|clip|scrub|compare)\.[^"]+\.js"[^>]*></script>` "" $content -}}
 {{- return $content -}}

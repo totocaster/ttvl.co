@@ -7,87 +7,32 @@
 
     uv run tools/figure-specimens.py
 
-Writes SVG files to static/visuals/figures/, shown on the draft page
-content/figures.md. Every figure is drawn in the drawing palette with the
-guide's lines and type, and every label is measured with the IBM Plex font
-files so no word outgrows its box; a warning names any that would. The
-fonts come from ~/Library/Fonts (override the folder with
-FIGURES_FONT_DIR), like tools/social-cards.py.
+Writes SVG files to static/visuals/figures/, shown on the Figures page
+(content/figures.md). Every figure is drawn in the drawing palette with
+the guide's lines and type through tools/figurelib.py, which measures
+each label with the IBM Plex font files so no word outgrows its box.
 
 This is also the worked example for a script-drawn figure: copy a
 function, change the data, keep the helpers. The data below is a snapshot
-from 2026-10-20.
+from 2026-10-20. For a chart from a CSV, use tools/chart.py; for a map,
+tools/map.py.
 """
 import datetime as dt
+import math
 import statistics
 import os
 import sys
-from xml.sax.saxutils import escape
 
-from PIL import ImageFont
+from figurelib import *  # the palette, the type, and the drawing helpers
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 OUT = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "static", "visuals", "figures")
-FONTS = os.environ.get("FIGURES_FONT_DIR", os.path.expanduser("~/Library/Fonts"))
-
-INK, MUTED, FAINT = "#000", "#555555", "#6E6E6E"
-TONE2, TONE3, TONE4 = "#4F4F4F", "#7A7A7A", "#A3A3A3"
-EDGE, SURFACE, GROUND = "#D9D9D9", "#F7F7F7", "#FFFFFF"
-HIGHLIGHT, SIGNAL = "#FFEB3B", "#FF4F00"
-
-_fonts = {}
-
-
-def font(mono=False, weight=400, size=14):
-    name = ("IBMPlexMono" if mono else "IBMPlexSans") + "-" + {400: "Regular", 500: "Medium", 600: "SemiBold"}[weight] + ".otf"
-    key = (name, size)
-    if key not in _fonts:
-        _fonts[key] = ImageFont.truetype(os.path.join(FONTS, name), size)
-    return _fonts[key]
-
-
-def width(s, mono=False, weight=400, size=14):
-    return font(mono, weight, size).getlength(s)
-
-
-def text(x, y, s, size=14, fill=FAINT, anchor="start", mono=False, weight=400, extra=""):
-    fam = "IBM Plex Mono" if mono else "IBM Plex Sans"
-    w = f' font-weight="{weight}"' if weight != 400 else ""
-    a = f' text-anchor="{anchor}"' if anchor != "start" else ""
-    return f'<text x="{x:g}" y="{y:g}" font-family="{fam}" font-size="{size}"{w}{a} fill="{fill}"{extra}>{escape(s)}</text>'
-
-
-def mixed(x, y, parts, size=14, fill=FAINT, anchor="start"):
-    """parts: list of (string, mono) — words in Sans, numbers in Mono."""
-    a = f' text-anchor="{anchor}"' if anchor != "start" else ""
-    spans = "".join(
-        f'<tspan font-family="IBM Plex Mono">{escape(s)}</tspan>' if m else escape(s) for s, m in parts
-    )
-    return f'<text x="{x:g}" y="{y:g}" font-family="IBM Plex Sans" font-size="{size}"{a} fill="{fill}">{spans}</text>'
-
-
-def mixed_width(parts, size=14):
-    return sum(width(s, m, 400, size) for s, m in parts)
-
-
-def svg(w, h, body):
-    return (
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" viewBox="0 0 {w} {h}" fill="none">\n'
-        + "\n".join(body)
-        + "\n</svg>\n"
-    )
 
 
 def write(name, content):
     with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
         f.write(content)
     print("wrote", name)
-
-
-def check(label, s, room, **kw):
-    w = width(s, **kw)
-    if w > room:
-        print(f"  ! {label}: '{s}' is {w:.0f} px in {room:.0f}")
 
 
 # 1. The palette ------------------------------------------------------------
@@ -297,29 +242,6 @@ def dispatches():
 
 
 # 7. One brain, five surfaces: a wide flow diagram ----------------------------
-def arrow_head(x, y, direction):
-    s = 6
-    if direction == "right":
-        return f'<path d="M{x} {y}l-{s} -{s / 2}v{s}z" fill="{INK}"/>'
-    if direction == "left":
-        return f'<path d="M{x} {y}l{s} -{s / 2}v{s}z" fill="{INK}"/>'
-    if direction == "up":
-        return f'<path d="M{x} {y}l-{s / 2} {s}h{s}z" fill="{INK}"/>'
-    return f'<path d="M{x} {y}l-{s / 2} -{s}h{s}z" fill="{INK}"/>'
-
-
-def box(x, y, w, h, name, lines, stroke=INK, sw=1, fill=GROUND, dashed=False):
-    off = 0.5 if sw == 1 else 1
-    dash = ' stroke-dasharray="4 4"' if dashed else ""
-    out = [f'<rect x="{x + off}" y="{y + off}" width="{w - 2 * off}" height="{h - 2 * off}" fill="{fill}" stroke="{stroke}" stroke-width="{sw}"{dash}/>']
-    out.append(text(x + 12, y + 26, name, size=16, weight=500, fill=INK))
-    check("box name", name, w - 24, size=16, weight=500)
-    for k, line in enumerate(lines):
-        if not line:
-            continue
-        out.append(text(x + 12, y + 48 + 20 * k, line, fill=MUTED))
-        check("box line", line, w - 24)
-    return out
 
 
 def studio_brain():
@@ -394,42 +316,9 @@ def studio_brain():
     write("studio-brain.svg", svg(1120, oy + bh + 1, body))
 
 
-
-
 # Shared pieces for the charts below ----------------------------------------
 BULLETS = [8, 8, 10, 9, 8, 9, 8, 9, 10, 9, 12, 10, 12, 9, 9, 9, 10, 9, 8, 10, 9, 11, 9, 7, 8, 7, 8, 8, 5, 6, 6, 5, 5, 9, 5, 4, 6, 6, 4, 3, 6, 9, 7, 7, 7, 8, 5, 5, 7, 9, 9, 4, 8, 7, 9, 3, 4, 5, 7, 7, 7, 7, 7, 6, 6, 8, 4, 2, 6, 8, 7, 9, 9, 12, 15, 12, 16, 9, 17, 10, 9, 13, 11, 9, 10, 14, 17, 10, 9, 10, 12, 10, 12]
 NOTE_DATES = ["2018-11-26", "2024-01-10", "2025-01-07", "2025-01-13", "2025-06-06", "2025-12-05", "2025-12-05", "2026-02-21", "2026-02-28", "2026-05-07", "2026-05-26", "2026-06-28", "2026-06-28", "2026-06-28", "2026-08-29", "2026-10-06", "2026-10-10"]
-
-
-def dot(x, y, fill=INK, r=4):
-    """A data point: an 8 px dot on a 2 px ground ring."""
-    return f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r}" fill="{fill}" stroke="{GROUND}" stroke-width="2"/>'
-
-
-def swatch_key(x, y, items):
-    """A key line: square swatches (or open ones) with their words."""
-    out = []
-    for label, fill in items:
-        if fill == "open":
-            out.append(f'<rect x="{x + 0.5}" y="{y - 9.5}" width="9" height="9" stroke="{TONE4}"/>')
-        elif fill == "dot":
-            out.append(f'<circle cx="{x + 5}" cy="{y - 5}" r="4" fill="{TONE3}"/>')
-        else:
-            out.append(f'<rect x="{x}" y="{y - 10}" width="10" height="10" fill="{fill}"/>')
-        parts = label if isinstance(label, list) else [(label, False)]
-        out.append(mixed(x + 16, y, parts, fill=MUTED))
-        x += 16 + mixed_width(parts) + 20
-    return out
-
-
-def year_axis(X, base, years, w, labeled=None):
-    out = [f'<path d="M{X(dt.date(years[0], 1, 1)):.1f} {base + 0.5}H{w}" stroke="{INK}"/>']
-    for year in years:
-        x = round(X(dt.date(year, 1, 1))) + 0.5
-        out.append(f'<path d="M{x} {base}V{base + 6}" stroke="{INK}"/>')
-        if labeled is None or year in labeled:
-            out.append(text(x - 0.5, base + 24, str(year), mono=True))
-    return out
 
 
 # 8. Two series side by side: grouped columns ---------------------------------
@@ -871,6 +760,366 @@ def spans():
     write("section-spans.svg", svg(w, base + 40, body))
 
 
+# More forms: argument shapes, states, sequences, scale, keys, eras, a
+# distribution, the darkroom's zones and curve, steps ----------------------
+
+
+def shapes():
+    w = 760
+    body = []
+    # A spectrum: three sections between a record and an argument.
+    body.append(text(0, 14, "A spectrum"))
+    y = 84.5
+    body.append(f'<path d="M0 {y}H{w}" stroke="{INK}"/>')
+    body.append(text(0, y + 28, "A record"))
+    body.append(text(w, y + 28, "An argument", anchor="end"))
+    for f, name, desc in ((0.2, "Log", "What I made"), (0.5, "Research", "What I tried and found"), (0.8, "Notes", "What I think")):
+        x = f * w
+        body.append(dot(x, y))
+        body.append(text(x, y - 36, name, size=16, weight=500, fill=INK, anchor="middle"))
+        body.append(text(x, y - 16, desc, fill=MUTED, anchor="middle"))
+    # Three panels: a matrix, a cycle, containment.
+    y0 = 160
+    for x, name in ((0, "A matrix"), (260, "A cycle"), (520, "Containment")):
+        body.append(text(x, y0 + 14, name))
+    # A matrix: how long the pages are against how often they come.
+    mx, my, ms = 56, y0 + 36, 176
+    body.append(f'<rect x="{mx + 0.5}" y="{my + 0.5}" width="{ms - 1}" height="{ms - 1}" stroke="{EDGE}"/>')
+    body.append(f'<path d="M{mx + ms / 2 + 0.5} {my}V{my + ms}M{mx} {my + ms / 2 + 0.5}H{mx + ms}" stroke="{INK}"/>')
+    body.append(text(mx - 8, my + 14, "Often", anchor="end"))
+    body.append(text(mx - 8, my + ms, "Seldom", anchor="end"))
+    body.append(text(mx, my + ms + 22, "Short"))
+    body.append(text(mx + ms, my + ms + 22, "Long", anchor="end"))
+    for fx, fy, name in ((0.06, 0.14, "Research"), (0.18, 0.38, "Log"), (0.6, 0.6, "Notes"), (0.62, 0.84, "Flâneur")):
+        px, py = mx + fx * ms, my + fy * ms
+        body.append(dot(px, py))
+        body.append(text(px + 10, py + 5, name, fill=INK))
+    # A cycle: a question, the work on it, what it finds, the next question.
+    cx, cy, r = 260 + 120, y0 + 36 + 88, 64
+    nodes = ((-90, "Question", "middle", 0, -14), (30, "Progress", "start", 12, 18), (150, "Finding", "end", -12, 18))
+    for k, (a, name, anchor, ox, oy) in enumerate(nodes):
+        t = math.radians(a)
+        nx, ny = cx + r * math.cos(t), cy + r * math.sin(t)
+        body.append(dot(nx, ny))
+        body.append(text(nx + ox, ny + oy, name, fill=INK, anchor=anchor))
+        a2 = nodes[(k + 1) % 3][0] + (360 if k == 2 else 0)
+        s0, s1 = math.radians(a + 14), math.radians(a2 - 14)
+        x1, y1 = cx + r * math.cos(s0), cy + r * math.sin(s0)
+        x2, y2 = cx + r * math.cos(s1), cy + r * math.sin(s1)
+        body.append(f'<path d="M{x1:.1f} {y1:.1f}A{r} {r} 0 0 1 {x2:.1f} {y2:.1f}" stroke="{INK}"/>')
+        body.append(arrow_dir(x2, y2, -math.sin(s1), math.cos(s1)))
+    # Containment: the site holds the section, the stream, the entry.
+    nx0, ny0 = 520, y0 + 36
+    levels = ("ttvl.co", "Research", "Ambient Computing", "Entry 019")
+    for i, name in enumerate(levels):
+        rx, ry = nx0 + 14 * i, ny0 + 28 * i
+        rw, rh = 240 - 28 * i, 196 - 38 * i
+        last = i == len(levels) - 1
+        if last:
+            body.append(f'<rect x="{rx + 1}" y="{ry + 1}" width="{rw - 2}" height="{rh - 2}" fill="{SURFACE}" stroke="{INK}" stroke-width="2"/>')
+            body.append(text(rx + 10, ry + 22, name, size=16, weight=500, fill=INK))
+        else:
+            body.append(f'<rect x="{rx + 0.5}" y="{ry + 0.5}" width="{rw - 1}" height="{rh - 1}" fill="{GROUND}" stroke="{INK}"/>')
+            body.append(text(rx + 10, ry + 19, name, fill=INK if i else MUTED))
+    # A stack: the studio system's layers, the brain as the subject.
+    y1 = y0 + 36 + 196 + 48
+    body.append(text(0, y1 + 14, "A stack"))
+    layers = (("Surfaces", "Wall screen, touch panels, phones, Stream Deck"),
+              ("Studio brain", "Model, catalog, and events; serves every screen"),
+              ("Home Assistant", "Devices and the automations that must always work"),
+              ("Devices", "Lamps, sensors, IR blasters, printers"))
+    ly = y1 + 26
+    for i, (name, desc) in enumerate(layers):
+        sub = i == 1
+        sw, off = (2, 1) if sub else (1, 0.5)
+        body.append(f'<rect x="{off}" y="{ly + off}" width="{w - 2 * off}" height="{44 - 2 * off}" fill="{SURFACE if sub else GROUND}" stroke="{INK}" stroke-width="{sw}"/>')
+        body.append(text(12, ly + 27, name, size=16, weight=500, fill=INK))
+        body.append(text(176, ly + 27, desc, fill=MUTED))
+        ly += 44 + 8
+    write("argument-shapes.svg", svg(w, ly - 8, body))
+
+
+def states():
+    w = 760
+    by, bh = 72, 84
+    boxes = ((36, 150, "Draft", ["Seen only on the", "dev server"], True),
+             (290, 180, "Open", ["Listed under", "Open Questions"], False),
+             (610, 150, "Answered", ["Struck through,", "answers inline"], False))
+    body = []
+    body.append(f'<circle cx="8" cy="{by + bh / 2}" r="6" fill="{INK}"/>')
+    body.append(f'<path d="M14 {by + bh / 2 + 0.5}H{36 - 7}" stroke="{INK}"/>')
+    body.append(arrow_head(35, by + bh / 2 + 0.5, "right"))
+    for x, bw, name, sub, dashed in boxes:
+        body += box(x, by, bw, bh, name, sub, stroke=FAINT if dashed else INK, dashed=dashed)
+    for (x1, w1, *_), (x2, *_), label in ((boxes[0], boxes[1], "Published"), (boxes[1], boxes[2], "An entry answers it")):
+        my = by + bh / 2 + 0.5
+        body.append(f'<path d="M{x1 + w1} {my}H{x2 - 7}" stroke="{INK}"/>')
+        body.append(arrow_head(x2 - 1, my, "right"))
+        body.append(text((x1 + w1 + x2) / 2, my - 8, label, anchor="middle"))
+        check("state label", label, x2 - x1 - w1 - 8)
+    # Loops over a state: what can happen to it without leaving it.
+    for (x, bw, *_), label in ((boxes[1], "Other entries refer to it"), (boxes[2], "Another answer")):
+        a, b = x + 40.5, x + bw - 40.5
+        body.append(f'<path d="M{a} {by}V{by - 24.5}H{b}V{by - 7}" stroke="{INK}"/>')
+        body.append(arrow_head(b, by - 1, "down"))
+        body.append(text((a + b) / 2, by - 32, label, anchor="middle"))
+    write("question-states.svg", svg(w, by + bh + 1, body))
+
+
+def sequence():
+    w = 760
+    lanes = ((120, "Phone"), (380, "Studio brain"), (640, "Wall screen"))
+    top, step = 40, 52
+    msgs = ((0, 1, "Find “solder”"), (1, 0, "Three matches, in drawer C2·3"), (0, 1, "Show on the wall screen"), (1, 2, "Fly to C2·3"))
+    bottom = top + step * (len(msgs) + 1) - 16
+    body = []
+    for x, name in lanes:
+        body.append(f'<rect x="{x - 80 + 0.5}" y="0.5" width="159" height="{top - 1}" fill="{GROUND}" stroke="{INK}"/>')
+        body.append(text(x, 26, name, size=16, weight=500, fill=INK, anchor="middle"))
+        body.append(f'<path d="M{x + 0.5} {top}V{bottom}" stroke="{EDGE}"/>')
+    for k, (a, b, label) in enumerate(msgs):
+        y = top + step * (k + 1) + 0.5
+        xa, xb = lanes[a][0] + 0.5, lanes[b][0] + 0.5
+        d = 1 if xb > xa else -1
+        body.append(f'<path d="M{xa} {y}H{xb - 7 * d}" stroke="{INK}"/>')
+        body.append(arrow_head(xb - d, y, "right" if d > 0 else "left"))
+        body.append(text((xa + xb) / 2, y - 8, label, fill=MUTED, anchor="middle"))
+        body.append(text(0, y + 5, f"{k + 1:02d}", mono=True))
+    write("find-sequence.svg", svg(w, bottom, body))
+
+
+def film_formats():
+    mm = 2  # px per millimetre
+    formats = (("35mm", 36, 24), ("6×7", 70, 56), ("4×5", 127, 102))
+    base, gap = 264, 88
+    body = []
+    x = 0
+    for name, fw, fh in formats:
+        pw, ph = fw * mm, fh * mm
+        top = base - ph
+        body.append(f'<rect x="{x + 0.5}" y="{top + 0.5}" width="{pw - 1}" height="{ph - 1}" fill="{SURFACE}" stroke="{INK}"/>')
+        # Width: a dimension line above with end ticks, the measure over it.
+        dy = top - 16.5
+        body.append(f'<path d="M{x + 0.5} {dy}H{x + pw - 0.5}M{x + 0.5} {dy - 5}V{dy + 5}M{x + pw - 0.5} {dy - 5}V{dy + 5}" stroke="{FAINT}"/>')
+        body.append(mixed(x + pw / 2, dy - 8, [(str(fw), True), (" mm", False)], anchor="middle"))
+        # Height: the same at the right, the measure beside it.
+        dx = x + pw + 16.5
+        body.append(f'<path d="M{dx} {top + 0.5}V{base - 0.5}M{dx - 5} {top + 0.5}H{dx + 5}M{dx - 5} {base - 0.5}H{dx + 5}" stroke="{FAINT}"/>')
+        body.append(mixed(dx + 10, top + ph / 2 + 5, [(str(fh), True), (" mm", False)]))
+        body.append(text(x, base + 28, name, size=16, weight=500, fill=INK))
+        x += pw + gap
+    # A scale bar: 50 mm in steps of 10.
+    sy = base + 64.5
+    body.append(f'<path d="M0.5 {sy}H{50 * mm + 0.5}" stroke="{INK}"/>')
+    for k in range(6):
+        tx = k * 10 * mm + 0.5
+        body.append(f'<path d="M{tx} {sy - 4}V{sy + 4}" stroke="{INK}"/>')
+    body.append(text(0, sy + 24, "0", mono=True))
+    body.append(mixed(50 * mm, sy + 24, [("50", True), (" mm", False)], anchor="middle"))
+    write("film-formats.svg", svg(760, sy + 30, body))
+
+
+def site_keys():
+    u, gap, kh = 50, 4, 46
+    rows = (
+        [("esc", 1, True)] + [(c, 1, False) for c in "1234567890-="] + [("delete", 2, False)],
+        [("tab", 1.5, False)] + [(c, 1, False) for c in "QWERTYUIOP[]"] + [("\\", 1.5, False)],
+        [("caps", 1.75, False)] + [(c, 1, c == "L") for c in "ASDFGHJKL;'"] + [("return", 2.25, True)],
+        [("shift", 2.25, True)] + [(c, 1, c == "/") for c in "ZXCVBNM,./"] + [("shift", 1.75, False), ("↑", 1, True)],
+        [("control", 1.25, False), ("option", 1.25, False), ("cmd", 1.25, True), ("", 6, False), ("cmd", 1.25, False), ("option", 1, False), ("←", 1, True), ("↓", 1, True), ("→", 1, True)],
+    )
+    body = []
+    for r, row in enumerate(rows):
+        x = 5.0
+        y = r * u
+        assert abs(sum(k[1] for k in row) - 15) < 0.01, r
+        for label, size, lit in row:
+            kw = size * u - gap
+            if lit:
+                body.append(f'<rect x="{x + 0.5:.1f}" y="{y + 0.5}" width="{kw - 1:.1f}" height="{kh - 1}" rx="2" fill="{GROUND}" stroke="{INK}"/>')
+                body.append(f'<path d="M{x + 2:.1f} {y + kh - 0.5}H{x + kw - 2:.1f}" stroke="{INK}" stroke-width="2"/>')
+                shown = "?" if label == "/" else label
+                body.append(text(x + kw / 2, y + 28, shown, mono=True, fill=INK, anchor="middle"))
+            else:
+                body.append(f'<rect x="{x + 0.5:.1f}" y="{y + 0.5}" width="{kw - 1:.1f}" height="{kh - 1}" rx="2" stroke="{EDGE}"/>')
+            x += size * u
+    write("site-keys.svg", svg(760, 5 * u - gap + 1, body))
+
+
+def eras():
+    w = 760
+    start, end = dt.date(2021, 1, 1), dt.date(2027, 1, 1)
+
+    def X(d):
+        return w * (d - start).days / (end - start).days
+
+    body = []
+    eras = (("Dreaming with One Eye Open", dt.date(2021, 1, 1), dt.date(2022, 1, 1), "start"),
+            ("The Flâneur", dt.date(2022, 1, 1), end, "end"))
+    for name, a, b, anchor in eras:
+        x0, x1 = X(a), X(b)
+        body.append(f'<rect x="{x0 + 0.5:.1f}" y="24.5" width="{x1 - x0 - 3:.1f}" height="15" fill="{SURFACE}" stroke="{EDGE}"/>')
+        body.append(text(x0 if anchor == "start" else x1 - 2, 14, name, fill=MUTED, anchor=anchor))
+    base = 96
+    body.append(f'<path d="M0 {base + 0.5}H{w}" stroke="{INK}"/>')
+    for year in range(2021, 2028):
+        x = min(round(X(dt.date(year, 1, 1))) + 0.5, w - 0.5)
+        body.append(f'<path d="M{x} {base}V{base + 6}" stroke="{INK}"/>')
+        if year < 2027:
+            body.append(text(x - 0.5, base + 24, str(year), mono=True))
+    placed = []
+    for i, s in enumerate(DISPATCHES):
+        x = X(dt.date.fromisoformat(s))
+        level = 0
+        while any(abs(px - x) < 11 and pl == level for px, pl in placed):
+            level += 1
+        placed.append((x, level))
+        body.append(dot(x, base - 8 - level * 12))
+    write("newsletter-eras.svg", svg(w, base + 30, body))
+
+
+def distribution():
+    w, h = 760, 300
+    gutter, px0, px1 = 28, 36, w
+    top, base = 36, 236
+    bins = 20
+    width_bin = 25
+    old = [0] * bins
+    new = [0] * bins
+    for i, v in enumerate(LOG):
+        b = min(v // width_bin, bins - 1)
+        (old if i < 72 else new)[b] += 1
+    vmax = math.ceil(max(o + n for o, n in zip(old, new)) / 10) * 10
+    slot = (px1 - px0) / bins
+
+    def Y(v):
+        return base - (base - top) * v / vmax
+
+    body = []
+    for v in range(10, vmax + 1, 10):
+        y = round(Y(v)) + 0.5
+        body.append(f'<path d="M{px0} {y}H{px1}" stroke="{EDGE}"/>')
+        body.append(text(gutter, y + 5, str(v), mono=True, anchor="end"))
+    for b in range(bins):
+        x = px0 + b * slot + 1
+        y = base
+        for n, fill in ((old[b], TONE3), (new[b], INK)):
+            if n:
+                hgt = (base - Y(n))
+                body.append(f'<rect x="{x:.1f}" y="{y - hgt:.1f}" width="{slot - 2:.1f}" height="{hgt:.1f}" fill="{fill}"/>')
+                y -= hgt + 2
+    body.append(f'<path d="M{px0} {base + 0.5}H{px1}" stroke="{INK}"/>')
+    for v in range(0, 501, 100):
+        x = round(px0 + v / width_bin * slot) + 0.5
+        x = min(x, px1 - 0.5)
+        body.append(f'<path d="M{x} {base}V{base + 6}" stroke="{INK}"/>')
+        body.append(text(x, base + 24, str(v), mono=True, anchor="middle" if v < 500 else "end"))
+    body.append(text(px0 + 5 * slot + 8, Y(12), "2019–2024", fill=MUTED))
+    body.append(text(px0 + 12 * slot + slot / 2, Y(5) - 8, "2025–2026", fill=INK, anchor="middle"))
+    body.append(text(0, 14, "Months"))
+    body.append(text(px1, base + 48, "Words in the month", anchor="end"))
+    write("log-distribution.svg", svg(w, h, body))
+
+
+def zones():
+    w = 760
+    n = 11
+    pw = (w - 1) / n
+    names = ("0", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X")
+    notes = {0: "Black", 3: "Dark detail", 5: "Middle gray", 7: "Light detail", 10: "Paper white"}
+
+    def gray(L):
+        Y = ((L + 16) / 116) ** 3 if L > 8 else L / 903.3
+        c = 12.92 * Y if Y <= 0.0031308 else 1.055 * Y ** (1 / 2.4) - 0.055
+        return round(max(0, min(1, c)) * 255)
+
+    body = []
+    for k in range(n):
+        v = gray(k * 10)
+        # The zones are tones of a print, not of the page: they stay put in
+        # dark mode, so 0 and X avoid the palette's own black and white.
+        v = min(max(v, 1), 254)
+        x = 0.5 + k * pw
+        body.append(f'<rect x="{x:.1f}" y="0.5" width="{pw:.1f}" height="64" fill="#{v:02X}{v:02X}{v:02X}"/>')
+        body.append(text(x + pw / 2, 90, names[k], fill=INK, anchor="middle"))
+        if k in notes:
+            anchor = "start" if k == 0 else ("end" if k == n - 1 else "middle")
+            tx = x if k == 0 else (x + pw if k == n - 1 else x + pw / 2)
+            body.append(text(tx, 112, notes[k], fill=MUTED, anchor=anchor))
+    body.append(f'<rect x="0.5" y="0.5" width="{w - 1}" height="64" stroke="{EDGE}"/>')
+    write("zones.svg", svg(w, 120, body))
+
+
+def curve():
+    w, h = 760, 300
+    px0, px1, top, base = 24, 720, 28, 256
+
+    def D(x):
+        return 0.12 + 2.1 / (1 + math.exp(-1.15 * (x - 5)))
+
+    def X(x):
+        return px0 + (px1 - px0) * x / 10
+
+    def Y(d):
+        return base - (base - top) * d / 2.4
+
+    body = [text(0, 14, "Density")]
+    fy = round(Y(0.12)) + 0.5
+    body.append(f'<path d="M{px0} {fy}H{px1}" stroke="{EDGE}"/>')
+    body.append(text(px1, fy - 8, "Base plus fog", anchor="end"))
+    pts = " ".join(f"{X(i / 10):.1f},{Y(D(i / 10)):.1f}" for i in range(0, 101))
+    body.append(f'<polyline points="{pts}" stroke="{INK}" stroke-width="2" stroke-linejoin="round" stroke-linecap="round"/>')
+    body.append(f'<path d="M{px0 + 0.5} {top}V{base}H{px1}" stroke="{INK}"/>')
+    for k in range(1, 11):
+        x = round(X(k)) + 0.5
+        body.append(f'<path d="M{x} {base}V{base + 6}" stroke="{INK}"/>')
+    body.append(text(px1, base + 28, "Exposure, one stop a tick", anchor="end"))
+    # Toe: up from the line; straight line: out to the right, under the
+    # rising curve; shoulder: down from the flat top.
+    x, y = X(2.4), Y(D(2.4))
+    body.append(f'<path d="M{x:.1f} {y - 8:.1f}V{y - 40:.1f}" stroke="{FAINT}"/>')
+    body.append(text(x, y - 48, "Toe", anchor="middle"))
+    x, y = X(5.0), Y(D(5.0))
+    body.append(f'<path d="M{x + 8:.1f} {y:.1f}H{x + 64:.1f}" stroke="{FAINT}"/>')
+    body.append(text(x + 72, y + 5, "Straight line"))
+    x, y = X(8.4), Y(D(8.4))
+    body.append(f'<path d="M{x:.1f} {y + 8:.1f}V{y + 36:.1f}" stroke="{FAINT}"/>')
+    body.append(text(x, y + 54, "Shoulder", anchor="middle"))
+    write("characteristic-curve.svg", svg(w, h, body))
+
+
+def steps():
+    pw, gap = 175, 20
+    top, area = 24, 130
+    captions = (["A printed sheet, its", "folds still dashed"], ["Fold it in half across", "the long side"],
+                ["Fold again at right", "angles"], ["One signature: four", "leaves, eight pages"])
+    body = []
+    for k in range(4):
+        x0 = k * (pw + gap)
+        cx, cy = x0 + pw / 2, top + area / 2
+        body.append(text(x0, 14, f"{k + 1:02d}", mono=True))
+        if k == 0:
+            body.append(f'<rect x="{cx - 70 + 0.5}" y="{cy - 50 + 0.5}" width="139" height="99" fill="{GROUND}" stroke="{INK}"/>')
+            body.append(f'<path d="M{cx + 0.5} {cy - 50}V{cy + 50}M{cx - 70} {cy + 0.5}H{cx + 70}" stroke="{FAINT}" stroke-dasharray="4 4"/>')
+        elif k == 1:
+            body.append(f'<rect x="{cx - 35 + 0.5}" y="{cy - 50 + 0.5}" width="69" height="99" fill="{GROUND}" stroke="{INK}"/>')
+            body.append(f'<path d="M{cx - 35} {cy + 0.5}H{cx + 35}" stroke="{FAINT}" stroke-dasharray="4 4"/>')
+            body.append(f'<path d="M{cx + 62} {cy - 22}Q{cx + 40} {cy - 62} {cx + 8} {cy - 46}" stroke="{INK}"/>')
+            body.append(arrow_dir(cx + 6, cy - 45, -1, 0.45))
+        elif k == 2:
+            body.append(f'<rect x="{cx - 35 + 0.5}" y="{cy - 25 + 0.5}" width="69" height="49" fill="{GROUND}" stroke="{INK}"/>')
+            body.append(f'<path d="M{cx + 50} {cy + 46}Q{cx + 62} {cy + 18} {cx + 40} {cy + 12}" stroke="{INK}"/>')
+            body.append(arrow_dir(cx + 38, cy + 12, -1, -0.25))
+        else:
+            body.append(f'<rect x="{cx - 35 + 0.5}" y="{cy - 25 + 0.5}" width="69" height="49" fill="{SURFACE}" stroke="{INK}"/>')
+            body.append(f'<path d="M{cx - 34} {cy - 25}V{cy + 25}" stroke="{INK}" stroke-width="2"/>')
+            body.append(text(cx - 42, cy + 5, "Spine", anchor="end"))
+        for j, line in enumerate(captions[k]):
+            body.append(text(x0, top + area + 22 + 20 * j, line, fill=MUTED))
+            check("step caption", line, pw)
+    write("folding-steps.svg", svg(760, top + area + 46, body))
+
+
 palette()
 lines()
 log_words(760, 300, set(range(2019, 2027)), [("Longer months from ", False), ("2024-11", True)], "log-words.svg")
@@ -891,3 +1140,13 @@ small_multiples(335, 2, "log-years-narrow.svg")
 pipeline()
 tree()
 spans()
+shapes()
+states()
+sequence()
+film_formats()
+site_keys()
+eras()
+distribution()
+zones()
+curve()
+steps()

@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="666" viewBox="0 0 760 666" fill="none">
+<text x="0" y="14" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">A spectrum</text>
+<path d="M0 84.5H760" stroke="#000"/>
+<text x="0" y="112.5" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">A record</text>
+<text x="760" y="112.5" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E">An argument</text>
+<circle cx="152.0" cy="84.5" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<text x="152" y="48.5" font-family="IBM Plex Sans" font-size="16" font-weight="500" text-anchor="middle" fill="#000">Log</text>
+<text x="152" y="68.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">What I made</text>
+<circle cx="380.0" cy="84.5" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<text x="380" y="48.5" font-family="IBM Plex Sans" font-size="16" font-weight="500" text-anchor="middle" fill="#000">Research</text>
+<text x="380" y="68.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">What I tried and found</text>
+<circle cx="608.0" cy="84.5" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<text x="608" y="48.5" font-family="IBM Plex Sans" font-size="16" font-weight="500" text-anchor="middle" fill="#000">Notes</text>
+<text x="608" y="68.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">What I think</text>
+<text x="0" y="174" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">A matrix</text>
+<text x="260" y="174" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">A cycle</text>
+<text x="520" y="174" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">Containment</text>
+<rect x="56.5" y="196.5" width="175" height="175" stroke="#D9D9D9"/>
+<path d="M144.5 196V372M56 284.5H232" stroke="#000"/>
+<text x="48" y="210" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E">Often</text>
+<text x="48" y="372" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E">Seldom</text>
+<text x="56" y="394" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">Short</text>
+<text x="232" y="394" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E">Long</text>
+<circle cx="66.6" cy="220.6" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<text x="76.56" y="225.64" font-family="IBM Plex Sans" font-size="14" fill="#000">Research</text>
+<circle cx="87.7" cy="262.9" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<text x="97.68" y="267.88" font-family="IBM Plex Sans" font-size="14" fill="#000">Log</text>
+<circle cx="161.6" cy="301.6" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<text x="171.6" y="306.6" font-family="IBM Plex Sans" font-size="14" fill="#000">Notes</text>
+<circle cx="165.1" cy="343.8" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<text x="175.12" y="348.84" font-family="IBM Plex Sans" font-size="14" fill="#000">Flâneur</text>
+<circle cx="380.0" cy="220.0" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<text x="380" y="206" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000">Question</text>
+<path d="M395.5 221.9A64 64 0 0 1 441.5 301.6" stroke="#000"/>
+<path d="M441.5 301.6L440.3 295.0L446.1 296.7z" fill="#000"/>
+<circle cx="435.4" cy="316.0" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<text x="447.426" y="334" font-family="IBM Plex Sans" font-size="14" fill="#000">Progress</text>
+<path d="M426.0 328.5A64 64 0 0 1 334.0 328.5" stroke="#000"/>
+<path d="M334.0 328.5L340.3 330.7L336.0 334.9z" fill="#000"/>
+<circle cx="324.6" cy="316.0" r="4" fill="#000" stroke="#FFFFFF" stroke-width="2"/>
+<text x="312.574" y="334" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#000">Finding</text>
+<path d="M318.5 301.6A64 64 0 0 1 364.5 221.9" stroke="#000"/>
+<path d="M364.5 221.9L359.4 226.3L358.0 220.4z" fill="#000"/>
+<rect x="520.5" y="196.5" width="239" height="195" fill="#FFFFFF" stroke="#000"/>
+<text x="530" y="215" font-family="IBM Plex Sans" font-size="14" fill="#555555">ttvl.co</text>
+<rect x="534.5" y="224.5" width="211" height="157" fill="#FFFFFF" stroke="#000"/>
+<text x="544" y="243" font-family="IBM Plex Sans" font-size="14" fill="#000">Research</text>
+<rect x="548.5" y="252.5" width="183" height="119" fill="#FFFFFF" stroke="#000"/>
+<text x="558" y="271" font-family="IBM Plex Sans" font-size="14" fill="#000">Ambient Computing</text>
+<rect x="563" y="281" width="154" height="80" fill="#F7F7F7" stroke="#000" stroke-width="2"/>
+<text x="572" y="302" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Entry 019</text>
+<text x="0" y="454" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">A stack</text>
+<rect x="0.5" y="466.5" width="759.0" height="43.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="12" y="493" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Surfaces</text>
+<text x="176" y="493" font-family="IBM Plex Sans" font-size="14" fill="#555555">Wall screen, touch panels, phones, Stream Deck</text>
+<rect x="1" y="519" width="758" height="42" fill="#F7F7F7" stroke="#000" stroke-width="2"/>
+<text x="12" y="545" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Studio brain</text>
+<text x="176" y="545" font-family="IBM Plex Sans" font-size="14" fill="#555555">Model, catalog, and events; serves every screen</text>
+<rect x="0.5" y="570.5" width="759.0" height="43.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="12" y="597" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Home Assistant</text>
+<text x="176" y="597" font-family="IBM Plex Sans" font-size="14" fill="#555555">Devices and the automations that must always work</text>
+<rect x="0.5" y="622.5" width="759.0" height="43.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="12" y="649" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Devices</text>
+<text x="176" y="649" font-family="IBM Plex Sans" font-size="14" fill="#555555">Lamps, sensors, IR blasters, printers</text>
+</svg>

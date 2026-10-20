@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="284" viewBox="0 0 760 284" fill="none">
+<rect x="40.5" y="0.5" width="159" height="39" fill="#FFFFFF" stroke="#000"/>
+<text x="120" y="26" font-family="IBM Plex Sans" font-size="16" font-weight="500" text-anchor="middle" fill="#000">Phone</text>
+<path d="M120.5 40V284" stroke="#D9D9D9"/>
+<rect x="300.5" y="0.5" width="159" height="39" fill="#FFFFFF" stroke="#000"/>
+<text x="380" y="26" font-family="IBM Plex Sans" font-size="16" font-weight="500" text-anchor="middle" fill="#000">Studio brain</text>
+<path d="M380.5 40V284" stroke="#D9D9D9"/>
+<rect x="560.5" y="0.5" width="159" height="39" fill="#FFFFFF" stroke="#000"/>
+<text x="640" y="26" font-family="IBM Plex Sans" font-size="16" font-weight="500" text-anchor="middle" fill="#000">Wall screen</text>
+<path d="M640.5 40V284" stroke="#D9D9D9"/>
+<path d="M120.5 92.5H373.5" stroke="#000"/>
+<path d="M379.5 92.5l-6 -3.0v6z" fill="#000"/>
+<text x="250.5" y="84.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">Find “solder”</text>
+<text x="0" y="97.5" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">01</text>
+<path d="M380.5 144.5H127.5" stroke="#000"/>
+<path d="M121.5 144.5l6 -3.0v6z" fill="#000"/>
+<text x="250.5" y="136.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">Three matches, in drawer C2·3</text>
+<text x="0" y="149.5" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">02</text>
+<path d="M120.5 196.5H373.5" stroke="#000"/>
+<path d="M379.5 196.5l-6 -3.0v6z" fill="#000"/>
+<text x="250.5" y="188.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">Show on the wall screen</text>
+<text x="0" y="201.5" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">03</text>
+<path d="M380.5 248.5H633.5" stroke="#000"/>
+<path d="M639.5 248.5l-6 -3.0v6z" fill="#000"/>
+<text x="510.5" y="240.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">Fly to C2·3</text>
+<text x="0" y="253.5" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">04</text>
+</svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="240" viewBox="0 0 360 240" fill="none">
+<rect x="48.0" y="56.2" width="24.0" height="147.8" fill="#000"/>
+<text x="60" y="48.16" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">21</text>
+<text x="60" y="228" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">Progress</text>
+<rect x="168.0" y="168.8" width="24.0" height="35.2" fill="#000"/>
+<text x="180" y="160.8" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">5</text>
+<text x="180" y="228" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">Question</text>
+<rect x="288.0" y="189.9" width="24.0" height="14.1" fill="#000"/>
+<text x="300" y="181.92" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">2</text>
+<text x="300" y="228" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">Finding</text>
+<path d="M0 204.5H360" stroke="#000"/>
+</svg>

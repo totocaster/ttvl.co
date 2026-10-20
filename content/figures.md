@@ -36,6 +36,34 @@ Each figure here is built from the same parts a note or a research entry uses, d
 
 {{< drawing src="/visuals/figures/dispatches.svg" alt="Timeline from 2021 to 2026 with a dot for each of the 17 Flâneur dispatches, from 001 in 2021-02 to 017 in 2026-10; dispatches close in time stack" caption="Every Flâneur dispatch. Dispatches that went out within days of each other stack." >}}
 
+### Eras on a timeline
+
+{{< drawing src="/visuals/figures/newsletter-eras.svg" alt="Timeline from 2021 to 2026 with two bands above it, Dreaming with One Eye Open for 2021 and The Flâneur from 2022, and a dot for each of the 17 dispatches under them" caption="The newsletter's dispatches under its two names, the names by year as the newsletter page gives them. Eras are bands above the axis, named at their edges; events stay dots." >}}
+
+### Shapes for an argument
+
+{{< drawing src="/visuals/figures/argument-shapes.svg" alt="Five diagrams. A spectrum from a record to an argument with the Log, Research, and Notes along it. A matrix of short to long against often to seldom placing Research, the Log, Notes, and the Flâneur. A cycle from question to progress to finding. Containment: ttvl.co holds Research, which holds Ambient Computing, which holds entry 019. A stack of the studio system's layers: surfaces, the studio brain, Home Assistant, and devices" caption="Five shapes a note's argument can take, filled with the site's own parts: its sections between a record and an argument, how long and how often they come, the research loop, what holds an entry, and the studio's layers." >}}
+
+### States and transitions
+
+{{< drawing src="/visuals/figures/question-states.svg" alt="State diagram of a research question: a draft, seen only on the dev server, becomes open when published and listed under Open Questions, then answered when an entry answers it, struck through with its answers inline. While open, other entries can refer to it; once answered, it can take another answer" caption="A research question's life. A state that isn't real yet is dashed; a loop is something that can happen without changing the state." >}}
+
+### A sequence of messages
+
+{{< drawing src="/visuals/figures/find-sequence.svg" alt="Sequence diagram with three lanes, the phone, the studio brain, and the wall screen. The phone asks the brain to find solder; the brain answers with three matches in drawer C2·3; the phone asks to show it on the wall screen; the brain tells the wall screen to fly to C2·3" caption="Finding a drawer from the phone, from the Ambient Computing stream: each message a line from one part to another, in order down the page." >}}
+
+### Sizes to scale
+
+{{< drawing src="/visuals/figures/film-formats.svg" alt="Three film frames drawn at the same scale with their measures: 35mm at 36 by 24 mm, 6×7 at 70 by 56 mm, and 4×5 at 127 by 102 mm, with a 50 mm scale bar" caption="Three film formats at one scale, 2 px to the millimetre, each with its dimension lines; 6×7 at its nominal size. The same drawing would compare paper sizes or the notebook's 95 × 171 mm page." >}}
+
+### A keyboard
+
+{{< drawing src="/visuals/figures/site-keys.svg" alt="A compact keyboard with the keys this site answers to drawn in ink and the rest in outline: esc, the question mark, return, shift, L, cmd, and the four arrows" caption="The keys this site answers to: ? opens search, the arrows select results and move between entries and months, return opens, esc closes, and cmd shift L links to a selection (control on other systems)." >}}
+
+### A map
+
+{{< drawing src="/visuals/solaris-highways/map.svg" narrow="/visuals/solaris-highways/map-narrow.svg" alt="Map of central Tokyo from Yotsuya to Azabu-juban with the expressways in gray, the moats and parks, and six numbered places from the Solaris highway sequence: four around Akasaka-mitsuke and two at Azabu-juban" caption="The six places of the highway sequence in [Solaris](/darkroom/solaris-highway/), north up, from the map on that article: drawn by `tools/map.py` from a short list of places and OpenStreetMap data. Expressways in gray; the numbered places in ink. Map data © [OpenStreetMap](https://www.openstreetmap.org/copyright) contributors." >}}
+
 ## One Series
 
 ### A bar list
@@ -116,6 +144,12 @@ Estimated | 113 | open
 
 {{< drawing src="/visuals/figures/log-difference.svg" alt="Columns for each Log month from 2019 to 2026, measured from the 2019–2024 median of 94 words: small rises and falls until 2024, then from 2024-11 every month above, by 140 to nearly 400 words" caption="Each Log month against the 2019–2024 median of 94 words: above it in ink, below it in tone 3." >}}
 
+## Distribution
+
+### How one measure spreads
+
+{{< drawing src="/visuals/figures/log-distribution.svg" alt="Histogram of the words in each Log month in steps of 25: the 2019–2024 months pile up between 50 and 150 words, the 2025–2026 months spread between 225 and 500" caption="Words in each Log month, counted in steps of 25: two humps, one for each way of writing the Log." >}}
+
 ## Relationship
 
 ### Two measures of the same thing
@@ -134,6 +168,35 @@ Estimated | 113 | open
 
 {{< drawing src="/visuals/figures/log-years.svg" narrow="/visuals/figures/log-years-narrow.svg" alt="Eight small line charts, one per year from 2019 to 2026, each showing that year's words per Log month on the same scale: flat near 100 through 2024, then near 300 to 490 in 2025 and 2026. Totals run from 911 words in 2022 to 3,986 in 2025" caption="Words in each Log month, one panel per year, every panel on the same 0–500 scale so their heights compare. Four across, two on a phone." >}}
 
+## In Tables and Text
+
+### Bars in a table
+
+Pages in each section, the right-aligned column drawing its own bars:
+
+| Section | Since | Pages |
+|---|---|--:|
+| Log | 2019 | 93 |
+| Research | 2026 | 28 |
+| Notes | 2018 | 17 |
+| Flâneur | 2021 | 17 |
+| Darkroom | 2024 | 12 |
+{.bars}
+
+### A sparkline in a sentence
+
+The Log has run for 93 months, and its months have grown {{< spark label="Words in each Log month from 2019-01 to 2026-09, flat near 100 until 2024, then between 230 and 490" values="114 107 123 101 91 106 81 89 96 94 104 113 137 94 97 99 100 78 90 96 87 91 107 105 88 100 101 94 82 91 88 58 63 86 51 48 60 65 48 46 71 88 95 80 101 84 99 74 78 104 103 39 78 99 113 45 39 99 145 138 109 79 100 137 126 166 39 15 63 86 180 231 264 257 464 394 433 403 306 265 323 384 235 258 295 480 490 272 313 380 317 348 372" >}} from about 100 words to more than 300.
+
+## Darkroom
+
+### The zones
+
+{{< drawing src="/visuals/figures/zones.svg" alt="Eleven gray patches from black to white, zones 0 to X, with black, dark detail, middle gray, light detail, and paper white named under zones 0, III, V, VII, and X" caption="The Zone System's eleven zones as tones of a print. They're the paper's tones, not the page's, so they stay put in dark mode." >}}
+
+### A characteristic curve
+
+{{< drawing src="/visuals/figures/characteristic-curve.svg" alt="A schematic characteristic curve: density rises from base plus fog through the toe, along the straight line, and flattens at the shoulder as exposure grows a stop at a time" caption="A film's characteristic curve in outline, density against exposure. Schematic: no film was measured for it." >}}
+
 ## Instruments
 
 The two series over time above carry a toggle and the calendar a segmented control; both work by CSS alone. A scrubber moves through marks:
@@ -145,3 +208,48 @@ The two series over time above carry a toggle and the calendar a segmented contr
 An illustration made for one page, a shelf in elevation or a drawer from above, stays an image. Drawn on white in the palette and in Plex, it stands on a white plate in both themes, framed like any picture.
 
 {{< figure src="/visuals/research/ambient-computing/2026-10-19-place-names.png" alt="Elevation drawing of the Bookshelf, a tall IVAR on the Lab's left wall, as a grid of columns a to e and rows 1 to 5 with every cell named; c3 is filled in black, a2 and e2 each hold a drawer above an open shelf, and the Alex carts park in b1 and c1" caption="The Bookshelf from the Ambient Computing stream, a PNG drawn on white." >}}
+
+### Annotated
+
+{{< annotate src="/visuals/research/ambient-computing/2026-10-02-place-card.jpg" alt="The studio model with shelf LA·c3 highlighted on the Lab IVAR wall, beside a card showing the address and a diagram of the unit" caption="A place card from the studio viewer, from the Ambient Computing stream, its parts numbered beside them rather than on them." >}}
+10.3 | 44.8 | The place, highlighted in the model
+82.5 | 13.6 | Its address
+94.4 | 39 | The unit drawn, the place filled
+25 | 61.8 | The room's letter
+83.1 | 86.8 | Devices nearby and their states
+{{< /annotate >}}
+
+### Compared
+
+{{< compare first="/visuals/solaris-highways/minamimotomachi-still.jpg" second="/visuals/solaris-highways/minamimotomachi-gm.jpg" first-label="Solaris, 1972" second-label="Street View" ratio="2" alt="The view from Minami-motomachi Park in Solaris and on Street View" caption="Drag across the frame, or use the arrow keys: the view from Minami-motomachi Park in Tarkovsky's film and today. The [Solaris highway](/darkroom/solaris-highway/) article compares each of its eight places this way." >}}
+
+### Step by step
+
+{{< drawing src="/visuals/figures/folding-steps.svg" alt="Four numbered panels: a printed sheet with dashed fold lines, the sheet folded in half, folded again at right angles, and the folded signature with its spine marked" caption="Folding a sheet into a signature. Photographs of a process would take the same strip." >}}
+
+## Making Figures
+
+### Drawn by the build
+
+{{< site-chart caption="Pages published each year, the Log's months apart, drawn by Hugo from the site's own pages whenever it builds: it changes when the next page goes out." >}}
+
+### From a spreadsheet
+
+`tools/chart.py` turns a CSV like this into a chart in the palette, written beside it for the drawing shortcode:
+
+```sh
+uv run tools/chart.py columns static/visuals/figures/research-kinds.csv --width 360
+```
+
+```csv {title="research-kinds.csv"}
+kind,entries
+Progress,21
+Question,5
+Finding,2
+```
+
+{{< drawing src="/visuals/figures/research-kinds.svg" width="measure" min="0" alt="Columns for the research journal's entries by kind: progress 21, question 5, finding 2" caption="What it draws: the research journal's entries by kind. A line over dates is `chart.py line`." >}}
+
+### In the email
+
+{{< figure src="/visuals/figures/log-words.png" class="email" alt="The line chart of words in each Log month, rendered as a light PNG" caption="The line chart as a Flâneur email would carry it: a PNG 600 px wide, light in every mail client, from `tools/drawing-png.py --width 600`. Its words shrink with it, so a chart meant for a dispatch would be drawn at 600 px." >}}

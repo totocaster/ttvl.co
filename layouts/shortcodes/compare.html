@@ -1,0 +1,33 @@
+{{- /* A comparison: two pictures of the same view in one frame with a
+     divider the reader drags or moves with the arrow keys. docs/figures.md,
+     Pictures.
+     {{< compare first="/visuals/…/still.jpg" second="/visuals/…/today.jpg"
+          first-label="Film still" second-label="Street View"
+          alt="…" ratio="2" caption="…" >}}
+     The pictures fill a frame of the given ratio (width over height) and
+     are cropped to it; give it the first picture's own ratio. Feeds and
+     email show the two pictures one under the other, named.
+     components/_pictures.scss, assets/js/compare.js. */ -}}
+{{- $first := .Get "first" -}}
+{{- $second := .Get "second" -}}
+{{- if not (and $first $second) }}{{ errorf "compare: needs first and second in %s" .Position }}{{ end -}}
+{{- $a := .Get "first-label" | default "Before" -}}
+{{- $b := .Get "second-label" | default "After" -}}
+<figure class="compare">
+  <div class="compare__frame" style="--ratio: {{ .Get "ratio" | default 2 }}">
+    <img class="compare__second" src="{{ $second }}" alt="" loading="lazy">
+    <img class="compare__first" src="{{ $first }}" alt="" loading="lazy">
+    <span class="compare__divider" aria-hidden="true"></span>
+    <span class="compare__badge compare__badge--first" aria-hidden="true">{{ $a }}</span>
+    <span class="compare__badge compare__badge--second" aria-hidden="true">{{ $b }}</span>
+    <input type="range" min="0" max="100" value="50" step="1" aria-label="{{ .Get "alt" }}. Divider between {{ $a }} and {{ $b }}" aria-valuetext="50% {{ $a }}">
+  </div>
+  {{- with .Get "caption" }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>
+{{- if not (.Page.Store.Get "compareJS") }}
+{{- .Page.Store.Set "compareJS" true }}
+{{- $js := resources.Get "js/compare.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end }}

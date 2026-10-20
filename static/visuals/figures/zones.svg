@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="120" viewBox="0 0 760 120" fill="none">
+<rect x="0.5" y="0.5" width="69.0" height="64" fill="#010101"/>
+<text x="35" y="90" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000">0</text>
+<text x="0.5" y="112" font-family="IBM Plex Sans" font-size="14" fill="#555555">Black</text>
+<rect x="69.5" y="0.5" width="69.0" height="64" fill="#1B1B1B"/>
+<text x="104" y="90" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000">I</text>
+<rect x="138.5" y="0.5" width="69.0" height="64" fill="#303030"/>
+<text x="173" y="90" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000">II</text>
+<rect x="207.5" y="0.5" width="69.0" height="64" fill="#474747"/>
+<text x="242" y="90" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000">III</text>
+<text x="242" y="112" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">Dark detail</text>
+<rect x="276.5" y="0.5" width="69.0" height="64" fill="#5E5E5E"/>
+<text x="311" y="90" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000">IV</text>
+<rect x="345.5" y="0.5" width="69.0" height="64" fill="#777777"/>
+<text x="380" y="90" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000">V</text>
+<text x="380" y="112" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">Middle gray</text>
+<rect x="414.5" y="0.5" width="69.0" height="64" fill="#919191"/>
+<text x="449" y="90" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000">VI</text>
+<rect x="483.5" y="0.5" width="69.0" height="64" fill="#ABABAB"/>
+<text x="518" y="90" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000">VII</text>
+<text x="518" y="112" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">Light detail</text>
+<rect x="552.5" y="0.5" width="69.0" height="64" fill="#C6C6C6"/>
+<text x="587" y="90" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000">VIII</text>
+<rect x="621.5" y="0.5" width="69.0" height="64" fill="#E2E2E2"/>
+<text x="656" y="90" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000">IX</text>
+<rect x="690.5" y="0.5" width="69.0" height="64" fill="#FEFEFE"/>
+<text x="725" y="90" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000">X</text>
+<text x="759.5" y="112" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#555555">Paper white</text>
+<rect x="0.5" y="0.5" width="759" height="64" stroke="#D9D9D9"/>
+</svg>

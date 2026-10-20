@@ -1,0 +1,26 @@
+// The Figures page (content/figures.md), the specimen for docs/figures.md.
+// Its figures use the shared components; only the Idea tag for forms
+// still being sketched and the email-width figure live here.
+
+// The Idea tag after a heading ({.idea}): a dashed frame, the guide's
+// mark for what is not yet real, around one word in the label voice. For
+// forms sketched on the page before they join the standard.
+.prose :is(h2, h3).idea::after {
+  content: "Idea";
+  display: inline-block;
+  margin-left: $space-2;
+  padding: 0 6px; // tag geometry
+  border: 1px dashed var(--ink-faint);
+  border-radius: $radius;
+  @include type-meta;
+  font-style: normal;
+  font-weight: $font-weight-regular;
+  color: var(--ink-faint);
+  vertical-align: 2px; // sits on the heading's baseline
+}
+
+// A figure at the width the Flâneur email gives it (600 px and the PNG's
+// 24 px of white each side), to show how a drawing arrives in a dispatch.
+:where(main) figure.email {
+  max-width: 648px;
+}

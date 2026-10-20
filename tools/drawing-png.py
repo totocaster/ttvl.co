@@ -13,9 +13,12 @@ from there.
 
     uv run tools/drawing-png.py static/visuals/research/ambient-computing/2026-10-19-place-names.svg
     uv run tools/drawing-png.py --scale 1 --pad 24 static/visuals/figures/*.svg
+    uv run tools/drawing-png.py --width 600 static/visuals/notes/2026-11-02-chart.svg
 
 The PNG is the light drawing on white, set in the site's own Plex subsets,
 at twice the drawing's size by default, with 32 px of white around it.
+--width sets the size the drawing is shown at instead, such as 600 for
+the Flâneur email's column; the PNG is then that wide at the scale.
 Rendering uses a Chromium-family headless browser: Playwright's cached
 headless shell, Google Chrome, or the path in CHROME.
 """
@@ -70,10 +73,12 @@ def size(svg):
     sys.exit("The SVG needs a viewBox or a width and height.")
 
 
-def render(path, chrome, scale, pad):
+def render(path, chrome, scale, pad, shown=None):
     source = Path(path)
     svg = source.read_text(encoding="utf-8")
     w, h = size(svg)
+    if shown:
+        w, h = shown, h * shown / w
     faces = "\n".join(
         f'@font-face {{ font-family: "{family}"; font-weight: {weight}; font-style: {style}; '
         f'src: url("{(FONTS / (name + ".woff2")).as_uri()}") format("woff2"); }}'
@@ -119,10 +124,11 @@ def main():
     parser.add_argument("svg", nargs="+", help="SVG drawings to render")
     parser.add_argument("--scale", type=int, default=2, help="device scale (default 2)")
     parser.add_argument("--pad", type=int, default=32, help="white margin in px (default 32)")
+    parser.add_argument("--width", type=int, help="show the drawing this many px wide (default: its own width)")
     args = parser.parse_args()
     chrome = browser()
     for path in args.svg:
-        render(path, chrome, args.scale, args.pad)
+        render(path, chrome, args.scale, args.pad, args.width)
 
 
 if __name__ == "__main__":

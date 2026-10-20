@@ -1,0 +1,14 @@
+{{- /* A sparkline inside a sentence. docs/figures.md, Charts.
+     {{< spark values="114 107 123 …" label="Words in each Log month, 2019 to 2026" >}}
+     64 × 16 on the x-height, the line in ink, the last point a dot; the
+     label is what a screen reader hears. Feeds and email drop it; the
+     sentence must read without it. components/_drawing.scss. */ -}}
+{{- $values := slice -}}
+{{- range split (.Get "values") " " }}{{ with trim . " " }}{{ $values = $values | append (float .) }}{{ end }}{{ end -}}
+{{- $max := 0.0 }}{{ range $values }}{{ if gt . $max }}{{ $max = . }}{{ end }}{{ end -}}
+{{- $n := sub (len $values) 1 -}}
+{{- $points := slice -}}
+{{- range $i, $v := $values }}{{ $points = $points | append (printf "%.1f,%.1f" (mul 64.0 (div (float $i) (float $n))) (sub 15.0 (mul 14.0 (div $v $max)))) }}{{ end -}}
+{{- $last := index $values $n -}}
+<span class="spark" role="img" aria-label="{{ .Get "label" }}"><svg viewBox="0 0 64 16" preserveAspectRatio="none" focusable="false" aria-hidden="true"><polyline points="{{ delimit $points " " }}" vector-effect="non-scaling-stroke"/><circle cx="64" cy="{{ printf "%.1f" (sub 15.0 (mul 14.0 (div $last $max))) }}" r="2"/></svg></span>
+{{- /* trailing whitespace trimmed so the sparkline sits against its words */ -}}

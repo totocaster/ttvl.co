@@ -12,7 +12,7 @@ The working specimen is the Figures page, `content/figures.md`, published at `/f
 4. **Label the thing itself.** Names sit on or beside what they name. A key appears only when labels cannot, and like every legend it sits under what it explains.
 5. **Every number is also text.** The caption, the key, the readout, or a table carries the values; nothing is reachable only by hovering.
 6. **Figures follow the theme.** A drawing is an SVG in the drawing palette, inlined into the page, so it turns dark with everything else. A raster image on a white plate is the exception, kept for pictures and for illustrations made for a single page.
-7. **One way to do each thing.** Three shortcodes draw everything: `drawing` for SVG, `bars` and `units` for the two charts that are better as HTML.
+7. **One way to do each thing.** Each form has one tool: `drawing` for anything drawn in SVG; `bars`, `units`, `{.bars}` tables, and `spark` for the charts better made of HTML; `annotate` and `compare` for pictures; `site-chart` for a figure the build draws; and three scripts to draw the files (Making Figures).
 
 ## Which Figure
 
@@ -23,11 +23,21 @@ The working specimen is the Figures page, `content/figures.md`, published at `/f
 | Something that moves | Clip | `clip` |
 | A 3D scan | Viewer | `model-viewer`, `gaussian-splat` |
 | An illustration for one page: a plan, an elevation, an object | Picture drawn on white | `figure` (Pictures) |
+| The parts of a picture named | Annotated picture | `annotate` |
+| The same view at two times, or two takes of it | Comparison | `compare` |
+| A how-to in a few moves | Steps | `drawing` |
 | Parts and how they connect | System diagram | `drawing` |
 | Steps in order | Pipeline | `drawing` |
 | What holds what | Tree | `drawing` |
 | How long things ran | Spans | `drawing` |
 | When things happened | Events on a timeline | `drawing` |
+| Periods with events inside them | Eras on a timeline | `drawing` |
+| The shape of an argument: poles, quadrants, a loop, what holds what, layers | Spectrum, matrix, cycle, containment, stack | `drawing` |
+| What a thing can be and what moves it on | States | `drawing` |
+| Who says what to whom, in order | Sequence | `drawing` |
+| Real sizes side by side | Sizes to scale | `drawing` |
+| Keys to press | Keyboard | `drawing` |
+| Where things are | Map | `drawing` from `tools/map.py` |
 | Amounts compared across categories | Bar list | `bars` |
 | One category is the point | Bar list with emphasis | `bars emphasis="…"` |
 | Change over time | Line (many points) or columns (a few days or months) | `drawing` |
@@ -41,6 +51,12 @@ The working specimen is the Figures page, `content/figures.md`, published at `/f
 | Two measures of the same items | Scatter | `drawing` |
 | A value for every month (or day) across years | Calendar | `drawing` |
 | One series split by period, or more than three series | Small multiples | `drawing` |
+| How one measure spreads | Distribution | `drawing` |
+| A column of numbers that should compare at a glance | Bars in a table | Markdown table `{.bars}` |
+| A number's history inside a sentence | Sparkline | `spark` |
+| Tones of a print; a film's response | Zone scale, characteristic curve | `drawing` |
+| Anything the site can count about itself | Live figure | `site-chart`, or a partial like it |
+| A spreadsheet's numbers | Columns or a line | `drawing` from `tools/chart.py` |
 | A figure worth exploring | Instrument | `drawing` with `states`, `toggle`, or `scrub` |
 | Exact values, or more than about seven categories | Table | Markdown table |
 | One number | The number in the sentence | prose |
@@ -126,7 +142,7 @@ Draw at one user unit per pixel at the design width, aligned to the 4 px grid, w
 
 A drawing stands on the ground with no frame, like a table. Pictures keep the edge frame; instruments sit in a well.
 
-On narrower screens a drawing shrinks to three quarters of its design width at most, so 14 px words never fall under 10.5 px; below that its frame scrolls sideways with the code sheet's right-edge fade. The shortcode reads the floor from the viewBox; `min="0"` lets a drawing without small words shrink freely. A drawing that matters on a phone gets a second file drawn at 335 px wide, passed as `narrow`, shown at 768 px and below. Wide drawings belong on pages without a contents rail, where they can reach their full width.
+A drawing never grows past its design width, so a narrow one keeps its 14 px words in a wide column. On narrower screens it shrinks to three quarters of that width at most, so 14 px words never fall under 10.5 px; below that its frame scrolls sideways with the code sheet's right-edge fade. The shortcode reads the floor from the viewBox; `min="0"` lets a drawing without small words shrink freely. A drawing that matters on a phone gets a second file drawn at 335 px wide, passed as `narrow`, shown at 768 px and below. Wide drawings belong on pages without a contents rail, where they can reach their full width.
 
 ## Charts
 
@@ -158,6 +174,11 @@ Each form below is drawn on the specimen page from the site's own data, and each
 - **Scatter.** 8 px dots on ground rings; the context group in tone 4 drawn first, the subject group in ink on top, each named once beside its cloud. Guides (a ratio, a trend) are 1 px edge lines named at their far end, clear of the gridlines. Each axis is titled once in the note voice: the y title above its numbers, the x title under its ticks at the right.
 - **Calendar.** Years down, months across (or weeks and days), cells on 4 px ground gaps. Four sequential steps from tone 4 to ink, more is darker in light and lighter in dark; months still to come are open. The key under the grid gives each step's range. A second measure is a second state, not a second calendar.
 - **Small multiples.** One panel per period or series, all on one scale, said once in the caption. Each panel is named in Mono ink at its top left with its total at its top right; one midline gridline, labeled in the first column only. Four across at 760 px; two on a phone through a `narrow` drawing.
+- **Distribution.** A histogram of even bins, columns 2 px apart, groups stacked in tone 3 and ink and named beside their humps; the scale rounds up to the tallest bin. Both axes titled once.
+- **Bars in a table.** A Markdown table with `{.bars}` after it: every right-aligned numeric column draws an 8 px ink bar from the cell's left edge, scaled to the column, the value at its right. Left-aligned numbers, such as years, stay plain.
+- **Sparkline.** `{{</* spark values="…" label="…" */>}}` inside a sentence: 64 × 16 on the x-height, a 1.5 px ink line, the last point a dot. The label is what a screen reader hears; feeds and email drop the line, so the sentence must say the number itself.
+- **Zone scale.** Eleven abutting patches for zones 0 to X, Roman numerals under them, the named zones described. The tones are the print's, so they are literal grays outside the palette and stay put in dark mode; 0 and X avoid the palette's own `#000000` and `#FFFFFF`.
+- **Characteristic curve.** Density against exposure, a tick a stop, base plus fog as an edge line, toe, straight line, and shoulder named on faint elbows. A curve without measured data says "schematic" in its caption.
 
 ### `bars`
 
@@ -195,6 +216,14 @@ Diagrams are drawn for the site when they explain how something works and can be
 - **A tree.** Left to right, without boxes: the root in the name voice, its children in a column joined by a 1 px ink bracket, their children in the label voice one column further; a count in Mono faint after a name.
 - **Spans.** One row per item, the names right-aligned in a gutter, an 8 px ink bar from start to end (a single day is an 8 px square), a dashed faint line for today with its date in Mono over it, year ticks under the rows.
 - **Events.** 8 px dots on a 1 px ink axis, stacked upward 12 px apart where they meet; the first and last numbered in Mono.
+- **Eras.** Bands above the events' axis, 15 px tall on surface with an edge frame, 3 px apart, each named at its outer edge in the label voice; the events keep their dots under them.
+- **Shapes for an argument.** A spectrum is a 1 px ink line between two poles named under its ends, the things on it as dots with a name and a muted line above. A matrix is a square with an edge frame and an ink cross, its axes named at their ends, things as dots named to the right. A cycle is three or four dots on a circle joined by arcs with heads. Containment is boxes inset 14 px, the innermost the subject. A stack is full-width bands 44 px tall, 8 apart, name and description in each, the subject at 2 px on surface.
+- **States.** Boxes for states, a 12 px ink dot for the start, connectors with their trigger above; a state not yet real is dashed, and a loop above a box is what can happen without changing it.
+- **Sequence.** One lane per party, a box with its name over an edge lifeline; each message a connector from lane to lane in order down the page, its words above it and its number in Mono at the left.
+- **Sizes to scale.** Real objects at one stated scale (2 px to the millimetre for film and paper), on surface faces, bottom-aligned, each with faint dimension lines and end ticks, the measure in Mono with its unit spaced (`36 mm`), a scale bar under them.
+- **Keyboard.** Keycaps 46 px on a 50 px pitch, radius 2. Keys that matter in ink with a 2 px bottom edge and their legend in Mono; the rest an edge outline without legends.
+- **Map.** North up. Land is the ground, parks surface, water edge, streets edge and tone 4, expressways 2 px tone 3, a route 2 px ink; stations a 6 px square with the name on a ground knockout; places numbered 24 px ink markers on ground rings, stepping aside on a leader where they meet; a scale bar at the bottom left; an edge frame. The caption lists the places and credits OpenStreetMap. Drawn by `tools/map.py` (Making Figures), with a phone version from the same file, since a map is read on a phone.
+- **Steps.** Numbered panels across the width, `01` in Mono faint above each, the drawing in the panel, two muted lines under it; a fold or cut still to come dashed, a movement a curved connector. A process in photographs would take the same panels; that form waits for a page that needs it.
 
 ## Drawings
 
@@ -278,8 +307,42 @@ The band, the mark's width plus 8 and the plot's height, takes the highlight whe
 Photographs, screenshots, renders, and clips follow the styleguide's Figures and Media Chrome. For figures specifically:
 
 - **Screenshots** of software, including the studio's own apps, are pictures: their colors and uppercase labels belong to the program they show. Capture at 2× in light mode unless the program is dark, crop to the content without browser or desktop chrome, keep them under 2000 px wide, PNG for interfaces and JPEG for 3D and photographs. The method is in the headless capture notes (Playwright's headless shell over the DevTools protocol).
+- **Annotated pictures** (`annotate`). Numbered 24 px ink markers on 2 px ground rings over a screenshot or photograph, each beside its part, never on it, placed in percent so the picture can be any size; the key under the picture as numbered lines in the label voice. Feeds keep the picture and the numbered key without the markers.
+
+  ```markdown
+  {{</* annotate src="/visuals/…/shot.jpg" alt="…" caption="…" */>}}
+  82.5 | 13.6 | Its address
+  {{</* /annotate */>}}
+  ```
+
+- **Comparisons** (`compare`). Two pictures of one view in one frame at the first picture's ratio, the first clipped at a divider the reader drags or moves with the arrow keys; a white 2 px divider and a handle, and a badge naming each picture in its top corner, in the media chrome's literal colors over photographs. Feeds and email show the two pictures one under the other, each named. The Solaris highway article compares its eight places this way.
+
+  ```markdown
+  {{</* compare first="/visuals/…/still.jpg" second="/visuals/…/today.jpg"
+       first-label="Solaris, 1972" second-label="Street View" ratio="1.97" alt="…" */>}}
+  ```
+
 - **Illustrations for one page** (a plan, an elevation, a label sheet, a drawer from above) stay images, drawn wherever they are easiest to draw. To sit beside the drawn figures: the palette's values on white; Plex for every word, sentence case, never uppercase or tracked; everything at twice its display size (1520 px wide for the bleed), so 28 px words land at 14 and 2 and 4 px lines at 1 and 2; no title or paragraph inside, since the caption holds them; PNG, never JPEG. They stand on a white plate in both themes, the default figure frame, and their words shrink with them on a phone, so keep them sparse.
 - **Alt text** says what the figure shows and what it is for, not "a diagram of". **Captions** sit in the label voice, held to the measure, with no "Figure 1".
+
+## Making Figures
+
+| Tool | Makes |
+|---|---|
+| `tools/figure-specimens.py` | Every drawing on the Figures page; the worked example for a figure drawn by script |
+| `tools/figurelib.py` | The palette, the type, and the helpers the scripts share, with each label measured in Plex |
+| `tools/chart.py` | Columns or a line from a CSV, written beside it: `uv run tools/chart.py columns data.csv` |
+| `tools/map.py` | A map from a TOML file of places, stations, and routes, with OpenStreetMap data: `uv run tools/map.py map.toml` |
+| `tools/drawing-png.py` | The PNG beside a drawing, for feeds, email, and social cards; `--width 600` for a dispatch |
+| `site-chart` | A figure Hugo draws from the site's own pages at every build |
+
+**Drawn by the build.** A figure about the site itself (how much was published, when, where) is drawn by a template from `site.RegularPages`, like the research pulse and `site-chart`, so it can't go stale. The template writes the drawing palette's literals into an inline SVG inside a `.drawing__frame`, so it themes like any drawing, and puts its summary in `data-live` for feeds. Drafts count only on the dev server.
+
+**From a spreadsheet.** `chart.py` takes the x in the first column and one or two series after it. A dozen columns or fewer carry their values on their caps; more get gridlines. ISO dates make a time axis. The result is an ordinary drawing: place it with `drawing`, render its PNG if the page goes out by feed or email.
+
+**A map.** Write the area, the places in the order the text meets them, and the stations to name into a TOML file beside the drawing (`narrow = 335` adds the phone version); `map.py` fetches the streets once and caches them. The numbered list it prints is the caption's.
+
+**In the email.** A Flâneur dispatch carries a drawing as its PNG, 600 px wide and light in every mail client: render it with `tools/drawing-png.py --width 600`. A drawing for a dispatch is drawn at 600 px, so its words land at 14. The email template warns at build time when a drawing has no PNG. Comparisons arrive as their two pictures, annotated pictures without their markers, sparklines not at all.
 
 ## Icons
 
@@ -311,6 +374,7 @@ What the site already draws, measured against this guide.
 | Icons | `partials/icons/` | Stroke icons | Conform; the drag hand is the exception |
 | What to measure, 2026-10-19 (`facts.png`) | Ambient Computing | Raster unit chart | Close: Plex, grays, open and dashed marks. The headline number is inside the image, and the lightest gray falls under 2:1. The specimen page redraws it with `units` |
 | Places get names, 2026-10-19 (`place-names.png`) | Ambient Computing | Illustration for one page | Stays an image, and stands as the example under Pictures on the specimen page. Close to the Pictures rules; `BOOKSHELF c3` and the spaced `A L E X 1` are uppercase and tracked |
+| Tracking Highway Sequence from Solaris | Darkroom | Map and comparisons | Conforms since 2026-10-20: a map of the six places from `tools/map.py`, and each film still and Street View view as a comparison |
 | Drawer labels, 2026-10-19 (`drawer-labels.png`) | Ambient Computing | Illustration for one page | Stays an image; its two headings (`Closed`, `Open, from above`) are titles inside it that the next one would leave to the caption |
 | One brain, five surfaces, 2026-10-06 (`studio-brain.jpg`) | Ambient Computing | Raster diagram, JPEG | Furthest off: a title and a paragraph inside the image, uppercase tracked column heads, descriptions in Mono, words near 9 px on the page, so the caption asks readers to open it full size. Redrawn on the specimen page at 1120 px as `studio-brain.svg` |
 | Studio plan, place card, wall screen, find a place, touch panel, Stream Deck, phone | Ambient Computing | Screenshots of the studio's apps | Fine as pictures; their room colors and uppercase are the apps' own |

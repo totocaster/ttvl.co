@@ -114,8 +114,11 @@ $drawing-palette: (
   animation: sheet-fade linear both;
   animation-timeline: scroll(self x);
 
+  // Never wider than drawn, so 14 px words never grow; never narrower
+  // than the floor, below which the frame scrolls.
   svg {
     min-width: var(--drawing-min, 0);
+    max-width: var(--drawing-max, none);
   }
 }
 
@@ -366,5 +369,34 @@ $drawing-palette: (
   .swatch.open,
   .units__unit.open {
     box-shadow: inset 0 0 0 1px var(--ink);
+  }
+}
+
+// A sparkline in a sentence (the spark shortcode): 64 × 16 on the
+// x-height, the line in ink, the last point a dot.
+.spark {
+  display: inline-block;
+  width: 64px;
+  height: 16px;
+  margin: 0 2px;
+  vertical-align: -2px;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+  }
+
+  polyline {
+    fill: none;
+    stroke: var(--ink);
+    stroke-width: 1.5px;
+    stroke-linejoin: round;
+    stroke-linecap: round;
+  }
+
+  circle {
+    fill: var(--ink);
   }
 }

@@ -1,0 +1,149 @@
+// Pictures the reader works with: annotated pictures and comparisons.
+// docs/figures.md, Pictures. Shortcodes annotate and compare; the
+// comparison's divider follows assets/js/compare.js.
+
+// An annotated picture (the annotate shortcode): numbered ink markers
+// over a raster image, placed in percent beside the parts they name, and
+// the key under it as numbered lines.
+.annotated__frame {
+  position: relative;
+
+  > img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 1px solid var(--edge);
+    border-radius: $radius;
+    background: var(--surface);
+  }
+}
+
+.annotated__marker {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  margin: -12px 0 0 -12px;
+  border-radius: 50%;
+  // Over a picture: ink on a ground ring, so it reads on light and dark
+  // pictures alike.
+  background: var(--ink);
+  box-shadow: 0 0 0 2px var(--ground);
+  color: var(--ground);
+  font-family: $font-family-mono;
+  font-size: $font-size-small;
+  line-height: 1;
+}
+
+.annotated .annotated__key {
+  margin: $space-3 0 0;
+  padding: 0;
+  list-style: none;
+  @include type-meta;
+  color: var(--ink-muted);
+  counter-reset: annotated;
+
+  li {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+    gap: $space-2;
+    margin: 0 0 $space-1;
+    counter-increment: annotated;
+
+    &::before {
+      content: counter(annotated);
+      font-family: $font-family-mono;
+      color: var(--ink);
+      text-align: right;
+    }
+  }
+}
+
+// A comparison (the compare shortcode): two pictures of one view in one
+// frame, the first clipped at the divider. A range input covers the frame,
+// so dragging anywhere or pressing the arrow keys moves the divider. Over
+// photographs the divider and the badges use the media chrome's literal
+// colors, a deliberate exception.
+.compare__frame {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: var(--ratio, 2);
+  border: 1px solid var(--edge);
+  border-radius: $radius;
+  background: var(--surface);
+  --pos: 50%;
+
+  img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .compare__first {
+    clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+  }
+
+  input {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: ew-resize;
+  }
+}
+
+.compare__divider {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: var(--pos);
+  width: 2px;
+  margin-left: -1px;
+  background: #fff; // over a photograph
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.3);
+  pointer-events: none;
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 32px;
+    margin: -16px 0 0 -6px;
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: $radius;
+    background: rgba(0, 0, 0, 0.5);
+  }
+}
+
+.compare__frame:has(input:focus-visible) .compare__divider::after {
+  outline: 2px solid var(--signal);
+  outline-offset: 2px;
+}
+
+.compare__badge {
+  position: absolute;
+  top: $space-3;
+  padding: 2px $space-2;
+  border-radius: $radius;
+  background: rgba(0, 0, 0, 0.55); // the viewers' status badge
+  color: #fff;
+  @include type-meta;
+  pointer-events: none;
+
+  &--first {
+    left: $space-3;
+  }
+
+  &--second {
+    right: $space-3;
+  }
+}

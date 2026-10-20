@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="157" viewBox="0 0 760 157" fill="none">
+<circle cx="8" cy="114.0" r="6" fill="#000"/>
+<path d="M14 114.5H29" stroke="#000"/>
+<path d="M35 114.5l-6 -3.0v6z" fill="#000"/>
+<rect x="36.5" y="72.5" width="149.0" height="83.0" fill="#FFFFFF" stroke="#6E6E6E" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="48" y="98" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Draft</text>
+<text x="48" y="120" font-family="IBM Plex Sans" font-size="14" fill="#555555">Seen only on the</text>
+<text x="48" y="140" font-family="IBM Plex Sans" font-size="14" fill="#555555">dev server</text>
+<rect x="290.5" y="72.5" width="179.0" height="83.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="302" y="98" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Open</text>
+<text x="302" y="120" font-family="IBM Plex Sans" font-size="14" fill="#555555">Listed under</text>
+<text x="302" y="140" font-family="IBM Plex Sans" font-size="14" fill="#555555">Open Questions</text>
+<rect x="610.5" y="72.5" width="149.0" height="83.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="622" y="98" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Answered</text>
+<text x="622" y="120" font-family="IBM Plex Sans" font-size="14" fill="#555555">Struck through,</text>
+<text x="622" y="140" font-family="IBM Plex Sans" font-size="14" fill="#555555">answers inline</text>
+<path d="M186 114.5H283" stroke="#000"/>
+<path d="M289 114.5l-6 -3.0v6z" fill="#000"/>
+<text x="238" y="106.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E">Published</text>
+<path d="M470 114.5H603" stroke="#000"/>
+<path d="M609 114.5l-6 -3.0v6z" fill="#000"/>
+<text x="540" y="106.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E">An entry answers it</text>
+<path d="M330.5 72V47.5H429.5V65" stroke="#000"/>
+<path d="M429.5 71l-3.0 -6h6z" fill="#000"/>
+<text x="380" y="40" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E">Other entries refer to it</text>
+<path d="M650.5 72V47.5H719.5V65" stroke="#000"/>
+<path d="M719.5 71l-3.0 -6h6z" fill="#000"/>
+<text x="685" y="40" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E">Another answer</text>
+</svg>

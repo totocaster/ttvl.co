@@ -69,14 +69,12 @@
   {{- $svg = replaceRE `href="#([^"]+)"` (printf `href="#%s-$1"` $fid) $svg -}}
   {{- $title := printf `<title id="%s-title">%s</title>` $fid (htmlEscape $alt) -}}
   {{- $svg = replaceRE `^\s*(<svg\b[^>]*)>` (printf `$1 role="img" aria-labelledby="%s-title" focusable="false">%s` $fid (replace $title "$" "$$")) $svg 1 -}}
+  {{- $designed := 0.0 -}}
+  {{- with findRESubmatch `viewBox="[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)` $svg 1 }}{{ $designed = float (index (index . 0) 1) }}{{ end -}}
   {{- $min := $.Get "min" -}}
-  {{- if not $min -}}
-    {{- with findRESubmatch `viewBox="[-\d.]+[\s,]+[-\d.]+[\s,]+([\d.]+)` $svg 1 -}}
-      {{- $min = math.Round (mul (float (index (index . 0) 1)) 0.75) -}}
-    {{- end -}}
-  {{- end -}}
+  {{- if and (not $min) $designed }}{{ $min = math.Round (mul $designed 0.75) }}{{ end -}}
   {{- if eq .variant "" }}{{ $readouts = findRE `data-readout="[^"]*"` $svg }}{{ end }}
-  <div class="drawing__frame{{ with .variant }} drawing__frame--{{ . }}{{ end }}{{ if $instrument }} well{{ end }}"{{ if and $min (ne (string $min) "0") (eq .variant "") }} style="--drawing-min: {{ $min }}px"{{ end }} data-fallback="{{ $fallback }}" data-alt="{{ $alt }}">
+  <div class="drawing__frame{{ with .variant }} drawing__frame--{{ . }}{{ end }}{{ if $instrument }} well{{ end }}" style="{{ with $designed }}--drawing-max: {{ . }}px;{{ end }}{{ if and $min (ne (string $min) "0") (eq .variant "") }} --drawing-min: {{ $min }}px{{ end }}" data-fallback="{{ $fallback }}" data-alt="{{ $alt }}">
     {{ $svg | safeHTML }}
   </div>
   {{- end }}

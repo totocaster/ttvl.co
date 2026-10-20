@@ -1,0 +1,65 @@
+{{- /* A figure Hugo draws from the site's own pages at every build, so it
+     never goes stale, like the research pulse. docs/figures.md, Making
+     Figures. This one counts the pages published each year, the Log's months
+     apart from everything else.
+     {{< site-chart caption="…" >}}
+     Drawn in the drawing palette and wrapped like a drawing, so it follows
+     the theme (components/_drawing.scss); feeds get its summary as a line
+     of text (data-live). */ -}}
+{{- $pages := where site.RegularPages "Type" "ne" "page" -}}
+{{- $first := 2018 -}}
+{{- $last := now.Year -}}
+{{- $years := seq $first $last -}}
+{{- $rows := slice -}}
+{{- $max := 1 -}}
+{{- range $years -}}
+  {{- $y := . -}}
+  {{- $log := 0 }}{{ $other := 0 -}}
+  {{- range $pages -}}
+    {{- if eq .Date.Year $y -}}
+      {{- if eq .Section "log" }}{{ $log = add $log 1 }}{{ else }}{{ $other = add $other 1 }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- if gt (add $log $other) $max }}{{ $max = add $log $other }}{{ end -}}
+  {{- $rows = $rows | append (dict "year" $y "log" $log "other" $other) -}}
+{{- end -}}
+{{- $w := 760.0 }}{{ $top := 28.0 }}{{ $base := 176.0 -}}
+{{- $unit := div (sub $base $top) (float $max) -}}
+{{- $slot := div $w (float (len $rows)) -}}
+{{- $col := 24.0 -}}
+{{- $label := slice -}}
+{{- range $rows }}{{ $label = $label | append (printf "%d: %d" .year (add .log .other)) }}{{ end -}}
+<figure class="drawing">
+  <div class="drawing__frame" style="--drawing-max: 760px; --drawing-min: 570px" data-live="Pages published each year, {{ delimit $label ", " }}.">
+    <svg xmlns="http://www.w3.org/2000/svg" width="760" height="240" viewBox="0 0 760 240" fill="none" role="img" aria-label="Pages published each year, {{ delimit $label ", " }}" focusable="false">
+      {{- range $i, $r := $rows }}
+      {{- $cx := add (mul $slot (float $i)) (div $slot 2.0) -}}
+      {{- $x := sub $cx (div $col 2.0) -}}
+      {{- $hl := mul (float $r.log) $unit -}}
+      {{- $ho := mul (float $r.other) $unit -}}
+      {{- $gap := cond (and (gt $r.log 0) (gt $r.other 0)) 2.0 0.0 -}}
+      {{- if gt $r.log 0 }}
+      <rect x="{{ printf "%.1f" $x }}" y="{{ printf "%.1f" (sub $base $hl) }}" width="{{ $col }}" height="{{ printf "%.1f" $hl }}" fill="#7A7A7A"/>
+      {{- end }}
+      {{- if gt $r.other 0 }}
+      <rect x="{{ printf "%.1f" $x }}" y="{{ printf "%.1f" (sub (sub $base $hl) (add $ho $gap)) }}" width="{{ $col }}" height="{{ printf "%.1f" $ho }}" fill="#000"/>
+      {{- end }}
+      {{- $total := add $r.log $r.other -}}
+      {{- if gt $total 0 }}
+      <text x="{{ printf "%.1f" $cx }}" y="{{ printf "%.1f" (sub (sub (sub $base $hl) (add $ho $gap)) 8.0) }}" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">{{ $total }}</text>
+      {{- else }}
+      <rect x="{{ printf "%.1f" $x }}" y="{{ sub $base 2.0 }}" width="{{ $col }}" height="2" fill="#D9D9D9"/>
+      {{- end }}
+      <text x="{{ printf "%.1f" $cx }}" y="{{ add $base 24.0 }}" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#6E6E6E">{{ $r.year }}</text>
+      {{- end }}
+      <path d="M0 {{ add $base 0.5 }}H760" stroke="#000"/>
+      <rect x="0" y="{{ add $base 46.0 }}" width="10" height="10" fill="#7A7A7A"/>
+      <text x="16" y="{{ add $base 56.0 }}" font-family="IBM Plex Sans" font-size="14" fill="#555555">Log months</text>
+      <rect x="112" y="{{ add $base 46.0 }}" width="10" height="10" fill="#000"/>
+      <text x="128" y="{{ add $base 56.0 }}" font-family="IBM Plex Sans" font-size="14" fill="#555555">Everything else</text>
+    </svg>
+  </div>
+  {{- with .Get "caption" }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+</figure>

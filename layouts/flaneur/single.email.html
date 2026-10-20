@@ -122,6 +122,9 @@
          browser-only scripts. */ -}}
     {{- $content := string (partial "rss-content.html" .) -}}
     {{- $content = replaceRE `(<img[^>]* src=")/` (printf `${1}%s` ("/" | absURL)) $content -}}
+    {{- /* Mail clients don't show SVG: a drawing in a dispatch needs the PNG
+         beside it (tools/drawing-png.py --width 600; docs/figures.md). */ -}}
+    {{- range findRE `<img src="[^"]+\.svg"` $content }}{{ warnf "%s: a drawing has no PNG for the email (%s); run tools/drawing-png.py --width 600" $.File.Path . }}{{ end -}}
     {{- $webURL := (.OutputFormats.Get "HTML").Permalink -}}
     {{- range findRE `<video\s[^>]*></video>` $content -}}
       {{- $alt := "Studio visualization" -}}

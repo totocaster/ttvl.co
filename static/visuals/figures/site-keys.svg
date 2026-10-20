@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="247" viewBox="0 0 760 247" fill="none">
+<rect x="5.5" y="0.5" width="45.0" height="45" rx="2" fill="#FFFFFF" stroke="#000"/>
+<path d="M7.0 45.5H49.0" stroke="#000" stroke-width="2"/>
+<text x="28" y="28" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">esc</text>
+<rect x="55.5" y="0.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="105.5" y="0.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="155.5" y="0.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="205.5" y="0.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="255.5" y="0.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="305.5" y="0.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="355.5" y="0.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="405.5" y="0.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="455.5" y="0.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="505.5" y="0.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="555.5" y="0.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="605.5" y="0.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="655.5" y="0.5" width="95.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="5.5" y="50.5" width="70.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="80.5" y="50.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="130.5" y="50.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="180.5" y="50.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="230.5" y="50.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="280.5" y="50.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="330.5" y="50.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="380.5" y="50.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="430.5" y="50.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="480.5" y="50.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="530.5" y="50.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="580.5" y="50.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="630.5" y="50.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="680.5" y="50.5" width="70.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="5.5" y="100.5" width="82.5" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="93.0" y="100.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="143.0" y="100.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="193.0" y="100.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="243.0" y="100.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="293.0" y="100.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="343.0" y="100.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="393.0" y="100.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="443.0" y="100.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="493.0" y="100.5" width="45.0" height="45" rx="2" fill="#FFFFFF" stroke="#000"/>
+<path d="M494.5 145.5H536.5" stroke="#000" stroke-width="2"/>
+<text x="515.5" y="128" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">L</text>
+<rect x="543.0" y="100.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="593.0" y="100.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="643.0" y="100.5" width="107.5" height="45" rx="2" fill="#FFFFFF" stroke="#000"/>
+<path d="M644.5 145.5H749.0" stroke="#000" stroke-width="2"/>
+<text x="696.75" y="128" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">return</text>
+<rect x="5.5" y="150.5" width="107.5" height="45" rx="2" fill="#FFFFFF" stroke="#000"/>
+<path d="M7.0 195.5H111.5" stroke="#000" stroke-width="2"/>
+<text x="59.25" y="178" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">shift</text>
+<rect x="118.0" y="150.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="168.0" y="150.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="218.0" y="150.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="268.0" y="150.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="318.0" y="150.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="368.0" y="150.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="418.0" y="150.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="468.0" y="150.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="518.0" y="150.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="568.0" y="150.5" width="45.0" height="45" rx="2" fill="#FFFFFF" stroke="#000"/>
+<path d="M569.5 195.5H611.5" stroke="#000" stroke-width="2"/>
+<text x="590.5" y="178" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">?</text>
+<rect x="618.0" y="150.5" width="82.5" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="705.5" y="150.5" width="45.0" height="45" rx="2" fill="#FFFFFF" stroke="#000"/>
+<path d="M707.0 195.5H749.0" stroke="#000" stroke-width="2"/>
+<text x="728" y="178" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">↑</text>
+<rect x="5.5" y="200.5" width="57.5" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="68.0" y="200.5" width="57.5" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="130.5" y="200.5" width="57.5" height="45" rx="2" fill="#FFFFFF" stroke="#000"/>
+<path d="M132.0 245.5H186.5" stroke="#000" stroke-width="2"/>
+<text x="159.25" y="228" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">cmd</text>
+<rect x="193.0" y="200.5" width="295.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="493.0" y="200.5" width="57.5" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="555.5" y="200.5" width="45.0" height="45" rx="2" stroke="#D9D9D9"/>
+<rect x="605.5" y="200.5" width="45.0" height="45" rx="2" fill="#FFFFFF" stroke="#000"/>
+<path d="M607.0 245.5H649.0" stroke="#000" stroke-width="2"/>
+<text x="628" y="228" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">←</text>
+<rect x="655.5" y="200.5" width="45.0" height="45" rx="2" fill="#FFFFFF" stroke="#000"/>
+<path d="M657.0 245.5H699.0" stroke="#000" stroke-width="2"/>
+<text x="678" y="228" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">↓</text>
+<rect x="705.5" y="200.5" width="45.0" height="45" rx="2" fill="#FFFFFF" stroke="#000"/>
+<path d="M707.0 245.5H749.0" stroke="#000" stroke-width="2"/>
+<text x="728" y="228" font-family="IBM Plex Mono" font-size="14" text-anchor="middle" fill="#000">→</text>
+</svg>

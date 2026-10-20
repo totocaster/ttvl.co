@@ -390,6 +390,11 @@ kbd {
   p {
     margin: 0;
   }
+
+  // Code in a caption keeps the caption's size, not the prose's 16 px.
+  code {
+    font-size: $font-size-small;
+  }
 }
 
 // Media directly under a heading takes the heading's 8 px instead of its

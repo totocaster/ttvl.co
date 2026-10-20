@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="200" viewBox="0 0 760 200" fill="none">
+<text x="0" y="14" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">01</text>
+<rect x="18.0" y="39.5" width="139" height="99" fill="#FFFFFF" stroke="#000"/>
+<path d="M88.0 39.0V139.0M17.5 89.5H157.5" stroke="#6E6E6E" stroke-dasharray="4 4"/>
+<text x="0" y="176" font-family="IBM Plex Sans" font-size="14" fill="#555555">A printed sheet, its</text>
+<text x="0" y="196" font-family="IBM Plex Sans" font-size="14" fill="#555555">folds still dashed</text>
+<text x="195" y="14" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">02</text>
+<rect x="248.0" y="39.5" width="69" height="99" fill="#FFFFFF" stroke="#000"/>
+<path d="M247.5 89.5H317.5" stroke="#6E6E6E" stroke-dasharray="4 4"/>
+<path d="M344.5 67.0Q322.5 27.0 290.5 43.0" stroke="#000"/>
+<path d="M288.5 44.0L292.7 38.8L295.2 44.3z" fill="#000"/>
+<text x="195" y="176" font-family="IBM Plex Sans" font-size="14" fill="#555555">Fold it in half across</text>
+<text x="195" y="196" font-family="IBM Plex Sans" font-size="14" fill="#555555">the long side</text>
+<text x="390" y="14" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">03</text>
+<rect x="443.0" y="64.5" width="69" height="49" fill="#FFFFFF" stroke="#000"/>
+<path d="M527.5 135.0Q539.5 107.0 517.5 101.0" stroke="#000"/>
+<path d="M515.5 101.0L522.0 99.5L520.6 105.4z" fill="#000"/>
+<text x="390" y="176" font-family="IBM Plex Sans" font-size="14" fill="#555555">Fold again at right</text>
+<text x="390" y="196" font-family="IBM Plex Sans" font-size="14" fill="#555555">angles</text>
+<text x="585" y="14" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">04</text>
+<rect x="638.0" y="64.5" width="69" height="49" fill="#F7F7F7" stroke="#000"/>
+<path d="M638.5 64.0V114.0" stroke="#000" stroke-width="2"/>
+<text x="630.5" y="94" font-family="IBM Plex Sans" font-size="14" text-anchor="end" fill="#6E6E6E">Spine</text>
+<text x="585" y="176" font-family="IBM Plex Sans" font-size="14" fill="#555555">One signature: four</text>
+<text x="585" y="196" font-family="IBM Plex Sans" font-size="14" fill="#555555">leaves, eight pages</text>
+</svg>

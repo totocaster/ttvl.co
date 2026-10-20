@@ -55,3 +55,28 @@
     text-align: center;
   }
 }
+
+// Bars inside a table ({.bars} after a Markdown table,
+// _markup/render-table.html): every right-aligned numeric column draws a
+// bar from the cell's left edge, scaled to the column, the value at its
+// right.
+.table-wrap.bars td.has-bar {
+  min-width: 160px;
+}
+
+.cell-bar {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+
+  > span:first-child {
+    flex: none;
+    width: calc(var(--share) * (100% - 5ch));
+    height: 8px;
+    background: var(--ink);
+  }
+
+  > span:last-child {
+    margin-left: auto;
+  }
+}
