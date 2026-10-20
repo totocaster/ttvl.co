@@ -352,7 +352,7 @@ kbd {
     border-radius: $radius;
   }
 
-  // Photographs in letters go unframed.
+  // Photographs in letters and transparent renders go unframed.
   &.plain > img,
   &.plain > video,
   &.plain > a > img {

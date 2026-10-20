@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tools for Thought has moved · Toto Tvalavadze</title>
+    <link>https://ttvl.co/research/ambient-computing/</link>
+    <description>The studio catalog entry has moved into Ambient Computing. Please subscribe to its feed to keep following the work.</description>
+    <atom:link href="https://ttvl.co/research/tools-for-thought/index.xml" rel="self" type="application/rss+xml"/>
+    <item>
+      <title>Follow the studio research in Ambient Computing</title>
+      <link>https://ttvl.co/research/ambient-computing/</link>
+      <guid isPermaLink="false">ttvl.co:tools-for-thought:moved:2026-10-20</guid>
+      <pubDate>Tue, 20 Oct 2026 19:10:00 +0900</pubDate>
+      <description><![CDATA[<p>The studio catalog entry from Tools for Thought has moved into <a href="https://ttvl.co/research/ambient-computing/">Ambient Computing</a>. Please subscribe to the <a href="https://ttvl.co/research/ambient-computing/index.xml">Ambient Computing feed</a> to keep following the work.</p><p>The entry is now at <a href="https://ttvl.co/research/ambient-computing/catalog-as-files/">The studio catalog starts as plain files</a>.</p>]]></description>
+    </item>
+  </channel>
+</rss>

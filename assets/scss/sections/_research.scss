@@ -34,6 +34,15 @@
   text-decoration: none;
 }
 
+// Transparent renders sit on the page ground and retain their own color.
+.research-card .tile.research-card__cutout {
+  background: var(--ground);
+
+  img {
+    filter: none;
+  }
+}
+
 .research-card__number {
   font-size: 40px; // a numeral as the tile's picture
   line-height: 44px;

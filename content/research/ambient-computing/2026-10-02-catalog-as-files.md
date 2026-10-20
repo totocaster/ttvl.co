@@ -3,6 +3,8 @@ title: "The studio catalog starts as plain files"
 date: 2026-10-02T22:40:00+04:00
 slug: catalog-as-files
 category: progress
+aliases:
+  - /research/tools-for-thought/catalog-as-files/
 ---
 
 The catalog behind the studio twin, the one I'll fill by [photographing drawers](/research/ambient-computing/catalog-by-photo/), starts as a folder of plain files rather than a database:

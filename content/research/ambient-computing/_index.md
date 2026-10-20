@@ -4,6 +4,8 @@ description: "Dynamicland-style computing in the studio: the room as the interfa
 status: active # active · paused · concluded
 weight: 1
 outputs: ["HTML", "RSS"]
+aliases:
+  - /research/tools-for-thought/
 # The rig as it stands, one [label, text] pair per row. Rewrite it when it changes.
 bench:
   - [Model, "_Studio Humane_ twin: a Blender model, a GLB, and a browser viewer with 81 addressed places"]

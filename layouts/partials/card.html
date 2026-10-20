@@ -2,7 +2,8 @@
      pass "variant" "trace" for trace pages, whose description, image, and
      kind live outside project front matter, or "research" for a research
      entry: its `image`, else the first figure or clip poster in its text,
-     contained on a white plate; an entry without one shows its number and
+     contained on a white plate (or the page ground for image_presentation:
+     cutout); an entry without one shows its number and
      kind on the tile. Research cards read "date · stream" and carry no dek.
      The label line: projects read "date · hub" (the hub is the title, or
      filter_label, of the page named by project.category); ongoing work
@@ -54,7 +55,7 @@
   {{- end -}}
 {{- end }}
 <div class="card{{ if eq $variant "research" }} research-card{{ end }}"{{ if eq $variant "trace" }}{{ with $category }} data-category="{{ . }}"{{ end }}{{ else if eq $variant "project" }} data-category="{{ $category }}"{{ end }}>
-  <a class="tile{{ if and $number (not $img) }} research-card__type{{ end }}" href="{{ $page.RelPermalink }}" tabindex="-1" aria-hidden="true">
+  <a class="tile{{ if and $number (not $img) }} research-card__type{{ end }}{{ if and (eq $variant "research") (eq $page.Params.image_presentation "cutout") }} research-card__cutout{{ end }}" href="{{ $page.RelPermalink }}" tabindex="-1" aria-hidden="true">
     {{- with $img }}<img src="{{ . }}" alt="" loading="lazy" />{{ else }}{{ with $number }}<span class="n research-card__number">{{ . }}</span>{{ with partial "research-category.html" $page }}<span class="research-card__kind">{{ . }}</span>{{ end }}{{ end }}{{ end -}}
   </a>
   {{- with $label }}

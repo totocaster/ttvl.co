@@ -226,6 +226,7 @@ The article body is one block with an empty rail. Prose holds the measure.
 - Bleed width (760 px), block image, 32 px above, 48 px below. Screenshots and renders carry a 1 px `--edge` frame with radius 2; photographs in letters (`class="plain"`) are unframed.
 - Captions: label voice, muted, 8 px under, held to the measure. No numbering.
 - `class="portrait"` holds tall captures to 360 px.
+- Transparent character renders use `class="plain"` to sit directly on the page ground. Preserve the original render's color, texture, and lighting; set any labels in the page's Plex captions.
 - The `clip` shortcode: the same frame with nothing over the picture, the caption below. Readers who prefer reduced motion get the poster and controls. A dispatch's email shows the GIF beside the clip's MP4 instead (`tools/clip-gif.py`), or the linked poster.
 - Drawings, charts, and instruments follow `docs/figures.md`: SVG in an eleven-value drawing palette that the stylesheet maps to the tokens, inlined by the `drawing` shortcode so it follows the theme, and unframed like a table; bar lists and unit charts in HTML (`bars`, `units`); instruments in a well with their controls above and a readout under it.
 
@@ -261,6 +262,8 @@ A block whose column starts with a list is a ledger: on wide screens its rail he
 ```
 
 A 16:9 tile on a 1 px `--edge` frame with radius 2 over `--surface`, grayscale at rest; one label line (`date · hub` for projects, `date · kind` for traces, `Since 2023 · Gallery` for ongoing work, `date · stream` for research entries); the title at 500; the dek. Nothing changes at rest. Under the hand, anywhere on the card, the tile alone becomes a key: the frame turns ink, the 2 px ink shadow appears, the poster colors, the title underlines; pressing drops the tile into its shadow, like every other key. The tile keeps a 2 px margin at right and below for the shadow. Up to three columns in the 880 px column, each at least 240 px wide; two at intermediate widths and one on small phones. Gaps are 32 × 24 px, or 24 × 12 px on phones. A research entry's card (`variant: research`, `.research-card`) has no dek; its tile is a white plate in both themes, the colors the entries' diagrams are drawn in, with the entry's `image` or first figure or clip poster contained whole inside it, 12 px clear of the frame; an entry with no picture shows its number in Mono 40 and its kind on `--surface` instead. Rendered by `partials/card.html`.
+
+Research entries can set `image_presentation: cutout` for a transparent render: its card uses `--ground` and retains the image's original color at rest.
 
 ### Doors, Chips, and the Strip
 
