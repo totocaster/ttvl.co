@@ -1,5 +1,6 @@
 {{- /* A research entry: the head (date · number / Stream · Kind, with
-     "answers 003" when it closes a question), the body, Mentioned In, and
+     "answers 003" when it closes a question), the body, inline answers
+     for a question, Mentioned In, and
      In This Stream with the neighbouring entries by date. The Left and
      Right arrow keys follow those rows (assets/js/pager.js).
      docs/styleguide.md, End Matter. */ -}}
@@ -22,6 +23,11 @@
   {{ partial "page-head.html" . }}
   {{ partial "block-body.html" .Content }}
 </article>
+{{- if eq (lower (.Params.category | default "")) "question" -}}
+  {{- range partial "research-answered-by.html" . }}
+    {{ partial "research-answer.html" . }}
+  {{- end -}}
+{{- end }}
 {{ partialCached "mentioned-in.html" . .Path }}
 {{- if or $prev $next }}
 <nav class="block end pager" aria-labelledby="research-pager-title">

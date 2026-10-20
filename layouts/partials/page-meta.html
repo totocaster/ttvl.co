@@ -42,9 +42,14 @@
     {{- range partial "research-answers.html" $p -}}
       {{- $two = $two | append (printf `answers <a href="%s"><span class="n">%s</span></a>` .RelPermalink (partialCached "research-number.html" . .Path)) -}}
     {{- end -}}
-    {{- /* A question that an entry has answered says where. */ -}}
+    {{- /* On a question, jump to the answer embedded below its body. */ -}}
     {{- range partial "research-answered-by.html" $p -}}
-      {{- $two = $two | append (printf `answered in <a href="%s"><span class="n">%s</span></a>` .RelPermalink (partialCached "research-number.html" . .Path)) -}}
+      {{- $no := partialCached "research-number.html" . .Path -}}
+      {{- $url := .RelPermalink -}}
+      {{- if eq (lower ($p.Params.category | default "")) "question" -}}
+        {{- $url = printf "%s#answer-%s" $p.RelPermalink $no -}}
+      {{- end -}}
+      {{- $two = $two | append (printf `answered in <a href="%s"><span class="n">%s</span></a>` $url $no) -}}
     {{- end -}}
   {{- else if ne $p.Path $hub.Path -}}
     {{- /* Stream: count · updated / Research · Status */ -}}

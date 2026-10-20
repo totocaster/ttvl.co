@@ -1,0 +1,14 @@
+{{- /* An answer beneath the original question, rendered from the answering
+     entry so its text and media stay in sync with the standalone page. */ -}}
+{{- $no := partialCached "research-number.html" . .Path -}}
+{{- $d := .Date.Format "2006-01-02" -}}
+<section class="block entry research-answer" id="answer-{{ $no }}" aria-labelledby="answer-{{ $no }}-title">
+  <div class="rail">
+    <h2>Answer</h2>
+    <p class="meta"><time datetime="{{ $d }}">{{ $d }}</time> · <span class="n">{{ $no }}</span></p>
+  </div>
+  <div class="main prose">
+    <h3 class="entry-title" id="answer-{{ $no }}-title"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+    {{ .Content }}
+  </div>
+</section>

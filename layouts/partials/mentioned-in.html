@@ -17,8 +17,15 @@ partialCached keyed on .Path. docs/styleguide.md, End Matter. */ -}}
 {{- if ne $logical $path }}{{ $needles = $needles | append (printf "%s," $logical) (printf "%s\"" $logical) }}{{ end -}}
 {{- $hubs := slice -}}
 {{- $pages := slice -}}
+{{- /* A research question already shows its answering entries in full. */ -}}
+{{- $embedded := slice -}}
+{{- if and (eq .Section "research") .IsPage (eq (lower (.Params.category | default "")) "question") -}}
+  {{- range partial "research-answered-by.html" . -}}
+    {{- $embedded = $embedded | append .Path -}}
+  {{- end -}}
+{{- end -}}
 {{- range site.Pages -}}
-  {{- if and (in (slice "page" "section") .Kind) (ne .Path $self.Path) (ne .Type "redirect") -}}
+  {{- if and (in (slice "page" "section") .Kind) (ne .Path $self.Path) (ne .Type "redirect") (not (in $embedded .Path)) -}}
     {{- $raw := .RawContent -}}
     {{- $hit := false -}}
     {{- range $needles }}{{ if in $raw . }}{{ $hit = true }}{{ end }}{{ end -}}
