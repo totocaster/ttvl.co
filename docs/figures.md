@@ -366,6 +366,7 @@ What the site already draws, measured against this guide.
 | Figure | Where | Kind | Standing |
 |---|---|---|---|
 | Square crops | `/notes/square-sensors/` | Instrument, CSS only | The model for instruments: a segmented control, a figure tile, the grid in edge, the source dashed faint, the crop in the highlight under ink, the point in ink, the selection named under it, a PNG for feeds and print. Its tile is surface, the older well; leave it until the note changes |
+| Reply following, 2026-10-22 | Hank for OpenClaw | Instrument, bespoke | Play and a scrubber over four phones that play one reply; the phones are pictures of Hank's interface in its own colors, everything around them Panel; a PNG still from `tools/reply-following-image.py` for feeds and readers without the script |
 | Research pulse | Research hub | Chart in the chrome | Conforms: ink marks, edge stubs, the newest mark in the signal while it is live |
 | Log archive | Log, Index | Table as chart | Conforms |
 | Spatial long exposure | `/traces/spatial-long-exposure/` | Canvas | Conforms: reads its colors from tokens and redraws on a theme change |

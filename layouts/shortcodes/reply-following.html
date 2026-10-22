@@ -1,0 +1,83 @@
+{{- /* The reply-following instrument (the Hank stream's entry on streaming
+     replies): four phones play one simulated reply, each showing it and
+     following it by a different rule, under a Play key and a Time
+     scrubber, with the readout under the well. The conversation is
+     data/reply-following.json; assets/js/reply-following.js renders the
+     reply, simulates each rule with Hank's timing, and plays it back.
+
+     The phones are pictures of Hank's own interface, so they keep its
+     colors and the system font (assets/scss/sections/_reply-following.scss);
+     the names, notes, status lines, controls, readout, and caption are
+     Panel. docs/figures.md, Instruments and Pictures.
+
+     The interactive figure stays hidden until its script shows it; until
+     then, and in feeds, readers get the still beside it: the PNG from
+     tools/reply-following-image.py, the phones at the end of the reply.
+     {{< reply-following alt="What the still shows" caption="Markdown" >}} */ -}}
+{{- $d := index hugo.Data "reply-following" -}}
+{{- $alt := .Get "alt" -}}
+{{- if not $alt }}{{ errorf "reply-following: missing alt in %s" .Position }}{{ end -}}
+{{- $caption := .Get "caption" | default "" -}}
+{{- $mascot := $d.mascot -}}
+<figure class="instrument wide reply-following" hidden>
+  <div class="instrument__controls">
+    <button class="btn quiet" type="button" data-play>Play</button>
+    <label class="scrubber"><span>Time</span><input type="range" min="0" max="10" step="0.1" value="10"></label>
+  </div>
+  <div class="well">
+    <p class="reply-following__summary">{{ $alt }}</p>
+    <div class="reply-following__screens">
+      {{- range $d.columns }}
+      <div class="reply-following__column" data-mode="{{ .key }}">
+        <p class="reply-following__name">{{ .name }}</p>
+        <p class="reply-following__note">{{ .note }}</p>
+        <div class="hank-phone" aria-hidden="true">
+          <div class="hank-phone__track">
+            {{- range $d.history }}
+            {{- if eq (index . 0) "me" }}
+            <p class="hank-bubble">{{ index . 1 }}</p>
+            {{- else }}
+            <div class="hank-text"><p>{{ index . 1 }}</p></div>
+            {{- end }}
+            {{- end }}
+            <p class="hank-bubble" data-question>{{ $d.question }}</p>
+            <p class="hank-receipt" data-receipt>Completed</p>
+            <div class="hank-text" data-live></div>
+          </div>
+          <div class="hank-phone__header"><span class="hank-pill"><img src="{{ $mascot }}" alt="" width="56" height="56">Connected</span></div>
+          <span class="hank-phone__jump" data-jump hidden><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></svg></span>
+          <div class="hank-phone__composer">
+            <span class="hank-key"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
+            <span class="hank-field">Message</span>
+            <span class="hank-tool"><svg viewBox="0 0 24 24"><path d="M4 10v4M8 7v10M12 4v16M16 8v8M20 11v2"/></svg></span>
+            <span class="hank-send"><svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21"/></svg></span>
+          </div>
+        </div>
+        <p class="reply-following__status" data-status>Question in view</p>
+      </div>
+      {{- end }}
+    </div>
+  </div>
+  <p class="readout"></p>
+  {{- with $caption }}
+  <figcaption>{{ . | markdownify }}</figcaption>
+  {{- end }}
+  <script type="application/json" data-reply>{{ $d.reply | jsonify | safeJS }}</script>
+</figure>
+{{- with $d.still }}
+{{- $path := printf "static%s" . }}
+<figure class="reply-following-fallback">
+  {{- if fileExists $path }}
+  {{- $size := imageConfig $path }}
+  <img src="{{ . | absURL }}" width="{{ $size.Width }}" height="{{ $size.Height }}" alt="{{ $alt }}" style="max-width: 100%; height: auto;">
+  {{- end }}
+  {{- with $caption }}
+  <figcaption>{{ . | markdownify }} <a href="{{ $.Page.Permalink }}">Play it on the page.</a></figcaption>
+  {{- end }}
+</figure>
+{{- end }}
+{{- if not (.Page.Store.Get "replyFollowingJS") }}
+{{- .Page.Store.Set "replyFollowingJS" true }}
+{{- $js := resources.Get "js/reply-following.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end }}

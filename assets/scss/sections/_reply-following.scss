@@ -1,0 +1,372 @@
+// The reply-following instrument (the reply-following shortcode, used by
+// the Hank stream's entry on streaming replies): Play and the Time
+// scrubber above the well, four phones in it, the readout under it. The
+// figure spans the page beside an empty rail like any wide instrument
+// (components/_block.scss); each phone's name, note, and status line are
+// Panel annotations around it.
+//
+// Deliberate exception: the phones are pictures of Hank's own interface,
+// like a screenshot (docs/figures.md, Pictures), so they keep Hank's
+// colors, glass, and the system font rather than the site's tokens and
+// Plex. Their colors are custom properties on .hank-phone, light first,
+// then Hank's Dark Mode and Increase Contrast. Every size inside a phone
+// is in points of a 390-point iPhone screen (--pt), so the phone scales as
+// a whole with its column. assets/js/reply-following.js drives it.
+
+.reply-following[hidden],
+.reply-following-fallback[hidden] {
+  display: none;
+}
+
+.reply-following__summary {
+  @include visually-hidden;
+}
+
+// Four columns side by side; where they no longer fit, the row scrolls
+// sideways a phone at a time. Its own width comes from the column it's
+// in (inline-size containment), never from the phones.
+.reply-following__screens {
+  container-type: inline-size;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(180px, 1fr);
+  gap: $space-5;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+
+  @include narrow {
+    grid-auto-columns: 76%;
+    gap: $space-4;
+  }
+}
+
+.reply-following__column {
+  container-type: inline-size;
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+// The labels are Panel: the name in the control voice, the note and the
+// status line in the label voice. Nested so the prose's paragraph rule
+// doesn't space them.
+.reply-following {
+  .reply-following__name {
+    margin: 0;
+    @include type-control;
+    color: var(--ink);
+  }
+
+  .reply-following__note,
+  .reply-following__status {
+    margin: 0;
+    @include type-meta;
+    color: var(--ink-muted);
+  }
+
+  .reply-following__status {
+    margin-top: $space-3;
+  }
+}
+
+// One phone: Hank's transcript, its header pill, the composer, and the
+// jump button, at a 390 × 800-point screen.
+.hank-phone {
+  --pt: calc(100cqw / 390);
+  --hank-ground: #fff;
+  --hank-label: #000;
+  --hank-secondary: rgba(60, 60, 67, 0.6);
+  --hank-hairline: rgba(60, 60, 67, 0.29);
+  --hank-fill: rgba(120, 120, 128, 0.12);
+  --hank-ink: #fa785e; // the person's color, Coral
+  --hank-on-ink: #fff;
+  --hank-glass: rgba(246, 247, 249, 0.82);
+  --hank-glass-edge: rgba(22, 24, 27, 0.1);
+  --hank-glass-shadow: 0 1px 2px rgba(22, 24, 27, 0.06), 0 8px 24px rgba(22, 24, 27, 0.08);
+
+  position: relative;
+  aspect-ratio: 390 / 800;
+  margin-top: $space-3;
+  overflow: hidden;
+  border-radius: calc(44 * var(--pt));
+  background: var(--hank-ground);
+  box-shadow: 0 0 0 1px var(--edge);
+  color: var(--hank-label);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: calc(17 * var(--pt));
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  user-select: none;
+
+  svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+}
+
+@include dark {
+  .hank-phone {
+    --hank-ground: #000;
+    --hank-label: #fff;
+    --hank-secondary: rgba(235, 235, 245, 0.6);
+    --hank-hairline: rgba(84, 84, 88, 0.65);
+    --hank-fill: rgba(118, 118, 128, 0.24);
+    --hank-glass: rgba(30, 31, 34, 0.82);
+    --hank-glass-edge: rgba(255, 255, 255, 0.1);
+    --hank-glass-shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+@include high-contrast {
+  .hank-phone {
+    --hank-ink: #cc4d33; // Coral under Increase Contrast: white reads at 4.5:1
+  }
+}
+
+// Nothing of the prose's spacing reaches the phone; its own rules follow,
+// nested so they outrank the prose's.
+.hank-phone :is(p, ul, li, table) {
+  max-width: none;
+  margin: 0;
+}
+
+// The soft scroll edges iOS draws under bars: the transcript fades out
+// under the header and the composer.
+.hank-phone::before,
+.hank-phone::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hank-phone::before {
+  top: 0;
+  height: calc(84 * var(--pt));
+  background: linear-gradient(var(--hank-ground) 40%, transparent);
+}
+
+.hank-phone::after {
+  bottom: 0;
+  height: calc(110 * var(--pt));
+  background: linear-gradient(transparent, var(--hank-ground) 60%);
+}
+
+.hank-phone__header,
+.hank-phone__composer,
+.hank-phone__jump {
+  z-index: 2;
+}
+
+// The transcript, moved by its script; it starts under the header.
+.hank-phone__track {
+  position: absolute;
+  inset: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: calc(14 * var(--pt));
+  padding: calc(76 * var(--pt)) calc(16 * var(--pt)) 0;
+  will-change: transform;
+}
+
+// The transcript's rows, nested so they outrank the prose's.
+.hank-phone {
+  // The person's messages: Hank's ink with white text, on the trailing side.
+  .hank-bubble {
+    align-self: flex-end;
+    max-width: 78%;
+    margin: 0;
+    padding: calc(8 * var(--pt)) calc(14 * var(--pt));
+    border-radius: calc(20 * var(--pt));
+    background: var(--hank-ink);
+    color: var(--hank-on-ink);
+    line-height: 1.3;
+  }
+
+  // "Delivered", small and gray, just under the latest bubble.
+  .hank-receipt {
+    align-self: flex-end;
+    margin: calc(-12 * var(--pt)) calc(4 * var(--pt)) 0 0;
+    color: var(--hank-secondary);
+    font-size: calc(11 * var(--pt));
+    font-weight: 600;
+    line-height: 1.3;
+  }
+
+  // Hank's replies: plain text across the column, no bubble.
+  .hank-text {
+    p,
+    ul,
+    table {
+      margin: 0 0 0.85em;
+    }
+
+    > :last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      font-weight: 600;
+    }
+
+    ul {
+      padding-left: 1.3em;
+      list-style: none;
+    }
+
+    // The bullet waits for its item's first word (--m, set by the script).
+    li {
+      position: relative;
+      margin: 0 0 0.35em;
+
+      &::before {
+        content: "•";
+        position: absolute;
+        left: -0.9em;
+        opacity: var(--m, 1);
+      }
+    }
+
+    table {
+      border-collapse: collapse;
+      font-size: calc(15 * var(--pt));
+      font-variant-numeric: tabular-nums;
+      opacity: var(--m, 1);
+    }
+
+    th {
+      padding: 0 1em calc(4 * var(--pt)) 0;
+      border-bottom: 1px solid var(--hank-hairline);
+      font-weight: 600;
+      text-align: left;
+    }
+
+    td {
+      padding: calc(4 * var(--pt)) 1em 0 0;
+      vertical-align: top;
+    }
+  }
+}
+
+// Glass: the header pill, the composer, and the jump button float over
+// the transcript.
+.hank-pill,
+.hank-phone__composer,
+.hank-phone__jump {
+  border: 1px solid var(--hank-glass-edge);
+  background: var(--hank-glass);
+  box-shadow: var(--hank-glass-shadow);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+}
+
+.hank-phone__header {
+  position: absolute;
+  top: calc(14 * var(--pt));
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+}
+
+// Hank, then the connection.
+.hank-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: calc(6 * var(--pt));
+  padding: calc(4 * var(--pt)) calc(14 * var(--pt)) calc(4 * var(--pt)) calc(6 * var(--pt));
+  border-radius: 999px;
+  font-size: calc(15 * var(--pt));
+  font-weight: 600;
+  line-height: 1.2;
+
+  img {
+    display: block;
+    width: calc(30 * var(--pt));
+    height: calc(30 * var(--pt));
+  }
+}
+
+// One glass row: +, the field, Talk, and the ink button (the microphone
+// while the field is empty).
+.hank-phone__composer {
+  position: absolute;
+  left: calc(12 * var(--pt));
+  right: calc(12 * var(--pt));
+  bottom: calc(24 * var(--pt));
+  display: flex;
+  align-items: center;
+  gap: calc(8 * var(--pt));
+  height: calc(50 * var(--pt));
+  padding: 0 calc(6 * var(--pt));
+  border-radius: calc(25 * var(--pt));
+}
+
+.hank-key,
+.hank-send {
+  flex: none;
+  display: grid;
+  place-items: center;
+  width: calc(38 * var(--pt));
+  height: calc(38 * var(--pt));
+  border-radius: 50%;
+
+  svg {
+    width: 55%;
+    height: 55%;
+  }
+}
+
+.hank-key {
+  background: var(--hank-fill);
+  color: var(--hank-label);
+}
+
+.hank-send {
+  background: var(--hank-ink);
+  color: var(--hank-on-ink);
+}
+
+.hank-field {
+  flex: 1 1 auto;
+  min-width: 0;
+  color: var(--hank-secondary);
+}
+
+.hank-tool {
+  flex: none;
+  width: calc(22 * var(--pt));
+  height: calc(22 * var(--pt));
+  margin-right: calc(4 * var(--pt));
+  color: var(--hank-secondary);
+}
+
+// Jump to the latest: a round glass key over the composer's corner.
+.hank-phone__jump {
+  position: absolute;
+  right: calc(16 * var(--pt));
+  bottom: calc(86 * var(--pt));
+  display: grid;
+  place-items: center;
+  width: calc(40 * var(--pt));
+  height: calc(40 * var(--pt));
+  border-radius: 50%;
+  color: var(--hank-label);
+
+  &[hidden] {
+    display: none;
+  }
+
+  svg {
+    width: 45%;
+    height: 45%;
+  }
+}

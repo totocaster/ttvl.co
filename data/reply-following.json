@@ -1,0 +1,22 @@
+{
+  "history": [
+    ["me", "What's on my calendar tomorrow?"],
+    ["hank", "A design review at 10:00 and lunch at 13:00. The afternoon is free."],
+    ["me", "Move the review to 11:00."],
+    ["hank", "Done. Everyone accepted the new time."],
+    ["me", "Is the backup scheduled?"],
+    ["hank", "Yes. It runs every night at 02:00 and keeps 30 days of snapshots."],
+    ["me", "And the printer?"],
+    ["hank", "The office printer is back on the network. I sent a test page at 09:12 and it printed."]
+  ],
+  "question": "How did last night's backup go?",
+  "reply": "Last night's backup finished at **02:41** and everything checked out. Every folder was copied, the snapshot verified cleanly, and the offsite copy reached the second location at 03:05, about the same time as last week.\n\nTwo things need a look:\n\n- The Photos library grew by **18 GB** this week, so the run took 12 minutes longer than usual.\n- The external drive is **81% full**. At this rate it fills up in about five weeks.\n\n| Folder | Size | This week |\n|---|---|---|\n| Photos | 1.2 TB | +18 GB |\n| Documents | 96 GB | +2 GB |\n| Mail | 41 GB | +1 GB |\n\nIf you want, I can move snapshots older than 60 days to the archive bucket. That frees about 120 GB and keeps the nightly run under 45 minutes.\n\nI can also send you a short summary each morning instead of only when something fails: how long the run took, how much it copied, and how full the drive is.\n\nNothing else changed. Should I set up the archive move tonight?",
+  "columns": [
+    {"key": "raw", "name": "Raw chunks", "note": "Snaps to the end"},
+    {"key": "end", "name": "Follow the end", "note": "Glides to the end"},
+    {"key": "top", "name": "Question on top", "note": "Holds it at the top"},
+    {"key": "first", "name": "First paragraph", "note": "Follows, then stops"}
+  ],
+  "mascot": "/visuals/research/hank/2026-10-22-hank-idle.png",
+  "still": "/visuals/research/hank/2026-10-22-reply-following.png"
+}
