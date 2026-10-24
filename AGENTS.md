@@ -29,7 +29,7 @@ make cards-check                        # list missing and stale cards without r
 make entry STREAM=ambient-computing SLUG=four-corners
 ```
 
-`make` lists every target: `serve`, `serve-drafts`, `build`, `entry`, the `cards` family, and `hooks`, which installs a pre-commit hook that refuses commits with missing or stale cards. Python tools under `tools/` declare their dependencies inline and run through `uv run`; nothing is installed into the system Python.
+`make` lists every target: `serve`, `serve-drafts`, `build`, `entry`, `walk-photos` (the walks' photo picker, docs/walks.md), the `cards` family, and `hooks`, which installs a pre-commit hook that refuses commits with missing or stale cards. Python tools under `tools/` declare their dependencies inline and run through `uv run`; nothing is installed into the system Python.
 
 `tools/build-production.sh` is the deployment entry point. It unshallows Git when necessary, derives `HUGO_SITE_UPDATE` from the commit count, removes `public/`, and invokes Hugo. There are no custom archetypes, so `hugo new` only supplies Hugo's generic frontmatter; copy a nearby content file when its schema matters.
 

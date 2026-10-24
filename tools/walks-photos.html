@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Walk photographs</title>
+<!-- The page tools/walks-photos.py serves: pick each walk's photographs.
+     Panel's tokens and voices, set by hand: this page is not part of the site. -->
+<style>
+  @font-face { font-family: "IBM Plex Sans"; src: url(/fonts/IBMPlexSans-Regular.woff2) format("woff2"); font-weight: 400; }
+  @font-face { font-family: "IBM Plex Sans"; src: url(/fonts/IBMPlexSans-Medium.woff2) format("woff2"); font-weight: 500; }
+  @font-face { font-family: "IBM Plex Sans"; src: url(/fonts/IBMPlexSans-SemiBold.woff2) format("woff2"); font-weight: 600; }
+  @font-face { font-family: "IBM Plex Mono"; src: url(/fonts/IBMPlexMono-Regular.woff2) format("woff2"); font-weight: 400; }
+
+  :root {
+    --ground: #fff; --ink: #000; --ink-muted: #555; --ink-faint: #6e6e6e;
+    --edge: #d9d9d9; --surface: #f7f7f7; --signal: #ff4f00; --term: #161616; --term-ink: #e6e6e6;
+    color-scheme: light dark;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --ground: #141414; --ink: #ededed; --ink-muted: #b5b5b5; --ink-faint: #929292;
+            --edge: rgba(255,255,255,.2); --surface: rgba(255,255,255,.05); --term: #0a0a0a; }
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--ground); color: var(--ink); font: 16px/24px "IBM Plex Sans", system-ui, sans-serif; display: grid; grid-template-rows: auto 1fr; }
+  .n, time { font-family: "IBM Plex Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+  button { font: inherit; color: inherit; }
+  :focus-visible { outline: 2px solid var(--signal); outline-offset: 2px; }
+  .label { font-size: 14px; line-height: 20px; color: var(--ink-faint); }
+
+  /* The bar: the tool's name, the state, and Apply. */
+  .bar { display: flex; align-items: center; gap: 24px; padding: 16px 40px; border-bottom: 1px solid var(--edge); }
+  .bar h1 { margin: 0; font-size: 18px; line-height: 28px; font-weight: 600; }
+  .bar .label { flex: 1; }
+  .key { min-height: 32px; padding: 3px 12px; border: 1px solid var(--ink); border-radius: 2px; background: var(--ground); font-weight: 500; cursor: pointer;
+         box-shadow: 2px 2px 0 var(--ink); margin: 0 2px 2px 0; transition: transform 80ms, box-shadow 80ms; }
+  .key:hover:not(:disabled) { background: var(--surface); }
+  .key:active:not(:disabled) { transform: translate(2px, 2px); box-shadow: none; }
+  .key:disabled { opacity: .45; cursor: default; }
+  .key.primary { background: var(--ink); color: var(--ground); box-shadow: 3px 3px 0 var(--ink-faint); min-height: 40px; padding: 7px 16px; }
+  .key.primary:hover:not(:disabled) { background: var(--ink-muted); }
+  .key.small { min-height: 28px; padding: 1px 8px; font-size: 14px; line-height: 20px; }
+
+  .shell { display: grid; grid-template-columns: 340px minmax(0, 1fr); min-height: 0; }
+
+  /* Walks: rows, the open one in ink with the lamp; a changed one says so. */
+  .walks { overflow-y: auto; padding: 24px 16px 48px 40px; border-right: 1px solid var(--edge); }
+  .walks ol { list-style: none; margin: 0; padding: 0; }
+  .walks a { display: grid; grid-template-columns: 92px minmax(0, 1fr); gap: 12px; padding: 4px 8px; margin: 0 -8px 2px; border-radius: 2px; color: inherit; text-decoration: none; }
+  .walks a:hover { background: var(--surface); }
+  .walks time { font-size: 14px; line-height: 24px; color: var(--ink-faint); }
+  .walks .tail { font-size: 14px; color: var(--ink-faint); margin-left: 6px; white-space: nowrap; }
+  .walks a[aria-current] { font-weight: 500; }
+  .walks a[aria-current] time::before { content: ""; display: inline-block; width: 6px; height: 6px; margin: 0 6px 0 -12px; border-radius: 50%; background: var(--signal); vertical-align: middle; }
+  .walks .changed { color: var(--signal); }
+
+  main { overflow-y: auto; padding: 24px 40px 96px; }
+  .head h2 { margin: 4px 0 0; font-size: 28px; line-height: 36px; font-weight: 400; }
+  .head p { margin: 0; }
+  section { margin-top: 40px; }
+  section > header { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; }
+  section h3 { margin: 0; font-size: 18px; line-height: 28px; font-weight: 600; }
+  section > header .label { flex: 1; }
+  .switch { display: inline-flex; gap: 8px; align-items: center; font-size: 14px; color: var(--ink-muted); cursor: pointer; }
+
+  /* Picks: in order, each with its number, time, keys, and alt text. */
+  /* One row at a fixed height that scrolls sideways, so picking or dropping
+     never moves the frames below. */
+  .strip { height: 296px; overflow-x: auto; overflow-y: hidden; overscroll-behavior-x: contain; scrollbar-width: thin;
+           margin: 0 -40px; padding: 0 40px 12px; scroll-padding-inline: 40px; }
+  .picks { list-style: none; margin: 0; padding: 0; display: flex; gap: 16px; width: max-content; }
+  .picks li { flex: 0 0 220px; min-width: 0; }
+  .strip .empty { margin: 0; padding-top: 72px; }
+  .picks li.dragging { opacity: .4; }
+  .picks li.over .tile { outline: 2px solid var(--signal); outline-offset: 2px; }
+  .tile { position: relative; display: block; width: 100%; aspect-ratio: 4 / 3; padding: 0; border: 1px solid var(--edge); border-radius: 2px; background: var(--surface); overflow: hidden; cursor: grab; }
+  .tile img { display: block; width: 100%; height: 100%; object-fit: contain; }
+  .badge { position: absolute; left: 8px; top: 8px; min-width: 28px; height: 28px; padding: 0 6px; border-radius: 14px; background: var(--ink); color: var(--ground);
+           box-shadow: 0 0 0 2px var(--ground); font: 14px/28px "IBM Plex Mono", monospace; text-align: center; }
+  .pick-meta { display: flex; align-items: center; gap: 6px; margin-top: 8px; }
+  .pick-meta .label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .picks textarea { display: block; width: 100%; margin-top: 8px; padding: 6px 8px; border: 1px solid var(--edge); border-radius: 2px; background: var(--ground); color: var(--ink);
+                    font: 14px/20px "IBM Plex Sans", sans-serif; resize: vertical; min-height: 48px; }
+  .picks textarea.generic { border-color: var(--ink-faint); border-style: dashed; }
+  .empty { color: var(--ink-faint); font-size: 14px; }
+
+  /* The session: every frame; a picked one is a key (ink frame, shadow) with its number. */
+  .frames { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 16px 12px; }
+  .frames li { min-width: 0; position: relative; }
+  .frame { display: block; width: 100%; padding: 0; border: 0; background: none; text-align: left; cursor: pointer; }
+  .frame .tile { cursor: pointer; margin: 0 2px 2px 0; transition: border-color 150ms, box-shadow 80ms; }
+  .frame:hover .tile { border-color: var(--ink-faint); }
+  .frame[aria-pressed="true"] .tile { border-color: var(--ink); box-shadow: 2px 2px 0 var(--ink); }
+  .frame .label { display: block; margin-top: 6px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .frame .raw { color: var(--ink-muted); }
+  .look { position: absolute; right: 8px; top: 8px; width: 28px; height: 28px; padding: 0; border: 1px solid var(--ink); border-radius: 2px; background: var(--ground);
+          font-size: 14px; line-height: 26px; cursor: zoom-in; opacity: 0; transition: opacity 150ms; }
+  .frames li:hover .look, .look:focus-visible { opacity: 1; }
+
+  /* The preview: the frame large, its number keys, and how to move. */
+  dialog { border: 0; padding: 0; background: transparent; max-width: none; max-height: none; width: 100vw; height: 100vh; }
+  dialog::backdrop { background: rgba(0, 0, 0, .94); }
+  .preview { display: grid; grid-template-rows: minmax(0, 1fr) auto; height: 100%; padding: 24px; gap: 12px; color: #fff; }
+  .preview img { width: 100%; height: 100%; object-fit: contain; min-height: 0; }
+  .preview p { margin: 0; font-size: 14px; line-height: 20px; color: rgba(255, 255, 255, .72); text-align: center; }
+  .preview kbd { display: inline-block; min-width: 22px; padding: 0 4px; border: 1px solid rgba(255,255,255,.5); border-radius: 2px; font: 13px/18px "IBM Plex Mono", monospace; }
+  .log { width: min(880px, calc(100vw - 48px)); height: auto; max-height: calc(100vh - 96px); margin: auto; }
+  .log::backdrop { background: rgba(0, 0, 0, .5); }
+  .log pre { margin: 0; padding: 16px 20px; background: var(--term); color: var(--term-ink); border-radius: 2px; font: 14px/22px "IBM Plex Mono", monospace; white-space: pre-wrap; max-height: calc(100vh - 180px); overflow: auto; }
+  .log footer { display: flex; justify-content: flex-end; padding-top: 12px; }
+</style>
+</head>
+<body>
+<header class="bar">
+  <h1>Walk photographs</h1>
+  <p class="label" id="status" role="status">Loading the walks…</p>
+  <button class="key primary" id="apply" type="button" disabled>Apply</button>
+</header>
+<div class="shell">
+  <nav class="walks" aria-label="Walks"><ol id="walks"></ol></nav>
+  <main id="walk" tabindex="-1"></main>
+</div>
+<dialog id="preview" aria-label="Preview">
+  <div class="preview">
+    <img id="preview-img" alt="">
+    <p id="preview-caption"></p>
+  </div>
+</dialog>
+<dialog id="log" class="log" aria-label="Apply">
+  <pre id="log-text"></pre>
+  <footer><button class="key" type="button" id="log-close">Close</button></footer>
+</dialog>
+<script>
+const $ = (s) => document.querySelector(s);
+const el = (tag, props = {}, ...kids) => {
+  const node = document.createElement(tag);
+  for (const [k, v] of Object.entries(props)) {
+    if (v === null || v === undefined || v === false) continue;
+    if (k === "class") node.className = v;
+    else if (k === "text") node.textContent = v;
+    else if (k.startsWith("on")) node.addEventListener(k.slice(2), v);
+    else node.setAttribute(k, v === true ? "" : v);
+  }
+  node.append(...kids.flat().filter((k) => k !== null && k !== undefined && k !== false));
+  return node;
+};
+const pad = (n) => String(n).padStart(2, "0");
+const clock = (iso) => (iso ? iso.slice(11, 16) : "");
+const generic = (walk) => `Photograph from ${walk.title}`;
+
+let walks = [];
+let walk = null;      // the open walk, as the server describes it
+let picks = [];       // [{id, alt}] in order
+let byId = new Map(); // frame id -> frame
+let raw = false;      // show frames that were never exported
+let saving = null;
+let pending = null;   // the walk and picks waiting to be saved
+let previewIndex = -1;
+
+async function api(path, body) {
+  const response = await fetch(path, body ? {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(body)} : {});
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || response.statusText);
+  return data;
+}
+
+function status(text) { $("#status").textContent = text; }
+
+async function loadWalks() {
+  walks = await api("/api/walks");
+  renderWalks();
+  const changed = walks.filter((w) => w.changed).length;
+  $("#apply").disabled = !changed;
+  $("#apply").textContent = changed ? `Apply ${changed} ${changed === 1 ? "walk" : "walks"}` : "Apply";
+}
+
+function renderWalks() {
+  $("#walks").replaceChildren(...walks.map((w) => el("li", {},
+    el("a", {href: `#${w.id}`, "aria-current": walk?.id === w.id ? "true" : null},
+      el("time", {datetime: w.date, text: w.date}),
+      el("span", {}, w.title, el("span", {class: `tail${w.changed ? " changed" : ""}`}, el("span", {class: "n", text: String(w.picked)}), w.changed ? " · changed" : (w.film ? " · film" : "")))))));
+}
+
+async function openWalk(id) {
+  await flush();
+  status("Reading the session…");
+  walk = await api(`/api/walk/${id}`);
+  picks = walk.picks.map((p) => ({...p}));
+  byId = new Map(walk.frames.map((f) => [f.id, f]));
+  renderWalks();
+  renderWalk();
+  status(`${walk.frames.length} frames in ${walk.folders.join(", ") || "the session"}`);
+}
+
+function renderWalk() {
+  const shown = walk.frames.filter((f) => raw || f.edited || picks.some((p) => p.id === f.id));
+  const unedited = walk.frames.filter((f) => !f.edited).length;
+  $("#walk").replaceChildren(
+    el("header", {class: "head"},
+      el("p", {class: "label"}, el("time", {text: walk.date}), walk.distance_km !== null ? ` · ${walk.distance_km} km` : "", walk.film ? " · film" : ""),
+      el("h2", {text: walk.title})),
+    el("section", {},
+      el("header", {}, el("h3", {text: "Picked"}),
+        el("p", {class: "label", text: "In the order the walk shows them. Drag a picture, or use the arrows, to move it. Alt text describes the picture for readers who cannot see it."}),
+        el("button", {class: "key small", type: "button", id: "undo", text: "Undo changes", onclick: reset})),
+      el("div", {class: "strip", id: "strip"})),
+    el("section", {},
+      el("header", {}, el("h3", {text: walk.film ? "The rolls" : "The session"}),
+        el("p", {class: "label", text: walk.film ? "Every scan on the walk's rolls; the rolls also hold other days." : "Every frame you edited and exported. Press one to pick it, press again to drop it; ⤢ or Shift-press looks closer."}),
+        unedited ? el("label", {class: "switch"}, el("input", {type: "checkbox", checked: raw, onchange: (e) => { raw = e.target.checked; renderWalk(); }}), `Unedited frames (${unedited})`) : null),
+      el("ul", {class: "frames", id: "frames"}, shown.map(renderFrame))));
+  refreshPicks();
+}
+
+// Picking redraws only the strip and the frames' marks, never the page, so
+// the grid stays where it is.
+function refreshPicks() {
+  const strip = $("#strip");
+  const left = strip.scrollLeft;
+  strip.replaceChildren(picks.length ? el("ol", {class: "picks"}, picks.map(renderPick)) : el("p", {class: "empty", text: "Nothing picked yet. Press a frame below."}));
+  strip.scrollLeft = left;
+  refreshUndo();
+}
+
+function refreshUndo() {
+  $("#undo").style.visibility = walk.changed || JSON.stringify(picks) !== JSON.stringify(walk.applied) ? "visible" : "hidden";
+}
+
+function refreshFrames() {
+  for (const button of document.querySelectorAll("#frames .frame")) {
+    const at = picks.findIndex((p) => p.id === button.dataset.id);
+    button.setAttribute("aria-pressed", String(at >= 0));
+    const tile = button.querySelector(".tile");
+    tile.querySelector(".badge")?.remove();
+    if (at >= 0) tile.append(el("span", {class: "badge", text: pad(at + 1)}));
+  }
+}
+
+function renderPick(pick, index) {
+  const frame = byId.get(pick.id) || {name: pick.id};
+  const alt = el("textarea", {rows: "2", "aria-label": `Alt text for photograph ${index + 1}`, class: pick.alt === generic(walk) ? "generic" : null});
+  alt.value = pick.alt;
+  alt.addEventListener("input", () => { pick.alt = alt.value; alt.classList.toggle("generic", pick.alt === generic(walk)); queueSave(); });
+  const li = el("li", {draggable: "true"},
+    el("button", {class: "tile", type: "button", "aria-label": `Look at photograph ${index + 1}`, onclick: () => preview(frame.id)},
+      el("img", {src: `/thumb/${frame.id}`, alt: "", loading: "lazy"}), el("span", {class: "badge", text: pad(index + 1)})),
+    el("div", {class: "pick-meta"},
+      el("span", {class: "label"}, frame.time ? el("time", {text: clock(frame.time)}) : null, frame.time ? " · " : "", frame.name),
+      el("button", {class: "key small", type: "button", "aria-label": "Move earlier", disabled: index === 0, text: "←", onclick: () => move(index, index - 1)}),
+      el("button", {class: "key small", type: "button", "aria-label": "Move later", disabled: index === picks.length - 1, text: "→", onclick: () => move(index, index + 1)}),
+      el("button", {class: "key small", type: "button", "aria-label": "Drop this photograph", text: "×", onclick: () => toggle(frame.id)})),
+    alt);
+  li.addEventListener("dragstart", (e) => { e.dataTransfer.setData("text/plain", String(index)); li.classList.add("dragging"); });
+  li.addEventListener("dragend", () => li.classList.remove("dragging"));
+  li.addEventListener("dragover", (e) => { e.preventDefault(); li.classList.add("over"); });
+  li.addEventListener("dragleave", () => li.classList.remove("over"));
+  li.addEventListener("drop", (e) => { e.preventDefault(); move(Number(e.dataTransfer.getData("text/plain")), index); });
+  return li;
+}
+
+function renderFrame(frame) {
+  const at = picks.findIndex((p) => p.id === frame.id);
+  return el("li", {},
+    el("button", {class: "frame", type: "button", "data-id": frame.id, "aria-pressed": String(at >= 0), onclick: (e) => (e.shiftKey ? preview(frame.id) : toggle(frame.id))},
+      el("span", {class: "tile"}, el("img", {src: `/thumb/${frame.id}`, alt: "", loading: "lazy"}), at >= 0 ? el("span", {class: "badge", text: pad(at + 1)}) : null),
+      el("span", {class: "label"}, frame.time ? el("time", {text: clock(frame.time)}) : null, frame.time ? " · " : "", frame.name, frame.edited ? "" : el("span", {class: "raw", text: " · unedited"}))),
+    el("button", {class: "look", type: "button", "aria-label": `Look at ${frame.name}`, text: "⤢", onclick: () => preview(frame.id)}));
+}
+
+function toggle(id) {
+  const at = picks.findIndex((p) => p.id === id);
+  if (at >= 0) picks.splice(at, 1);
+  else picks.push({id, alt: (walk.applied.find((p) => p.id === id) || {}).alt || generic(walk)});
+  refreshPicks();
+  refreshFrames();
+  // A new pick joins the end of the strip: bring it into view there.
+  if (at < 0) $("#strip").scrollTo({left: $("#strip").scrollWidth, behavior: "smooth"});
+  queueSave();
+}
+
+function move(from, to) {
+  if (to < 0 || to >= picks.length || from === to) return;
+  const [pick] = picks.splice(from, 1);
+  picks.splice(to, 0, pick);
+  refreshPicks();
+  refreshFrames();
+  queueSave();
+}
+
+// A change is saved 0.4 s after the last one, for the walk it was made on;
+// opening another walk, applying, or leaving the page saves it at once.
+function queueSave() {
+  pending = {id: walk.id, picks: picks.map((p) => ({...p}))};
+  status("Saving the draft…");
+  clearTimeout(saving);
+  saving = setTimeout(flush, 400);
+}
+
+async function flush() {
+  clearTimeout(saving);
+  if (!pending) return;
+  const {id, picks: body} = pending;
+  pending = null;
+  try {
+    const fresh = await api(`/api/walk/${id}/picks`, {picks: body});
+    if (walk?.id === id) { walk.changed = fresh.changed; refreshUndo(); }
+    await loadWalks();
+    status(fresh.changed ? "Draft saved. Apply renders it onto the site." : "Matches the site.");
+  } catch (error) { status(`Could not save: ${error.message}`); }
+}
+
+addEventListener("pagehide", () => {
+  if (pending) navigator.sendBeacon(`/api/walk/${pending.id}/picks`, new Blob([JSON.stringify({picks: pending.picks})], {type: "application/json"}));
+});
+
+async function reset() {
+  await api(`/api/walk/${walk.id}/reset`, {});
+  await openWalk(walk.id);
+  await loadWalks();
+}
+
+// The preview: the frames as shown, ← → to move, P or Space to pick, Escape to close.
+function visibleFrames() { return walk.frames.filter((f) => raw || f.edited || picks.some((p) => p.id === f.id)); }
+function preview(id) {
+  previewIndex = visibleFrames().findIndex((f) => f.id === id);
+  showPreview();
+  if (!$("#preview").open) $("#preview").showModal();
+}
+function showPreview() {
+  const frame = visibleFrames()[previewIndex];
+  if (!frame) return;
+  const at = picks.findIndex((p) => p.id === frame.id);
+  $("#preview-img").src = `/preview/${frame.id}`;
+  $("#preview-caption").replaceChildren(
+    `${previewIndex + 1} / ${visibleFrames().length} · ${frame.time ? clock(frame.time) + " · " : ""}${frame.name}${at >= 0 ? ` · picked ${pad(at + 1)}` : ""}   `,
+    el("kbd", {text: "←"}), " ", el("kbd", {text: "→"}), " move  ", el("kbd", {text: "P"}), " pick or drop  ", el("kbd", {text: "Esc"}), " close");
+}
+$("#preview").addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+    e.preventDefault();
+    previewIndex = Math.max(0, Math.min(visibleFrames().length - 1, previewIndex + (e.key === "ArrowRight" ? 1 : -1)));
+    showPreview();
+  } else if (e.key === "p" || e.key === "P" || e.key === " ") {
+    e.preventDefault();
+    toggle(visibleFrames()[previewIndex].id);
+    showPreview();
+  }
+});
+$("#preview").addEventListener("click", () => $("#preview").close());
+
+$("#apply").addEventListener("click", async () => {
+  const button = $("#apply");
+  button.disabled = true;
+  await flush();
+  status("Rendering the picks and rebuilding the walks…");
+  try {
+    const result = await api("/api/apply", {});
+    $("#log-text").textContent = result.log;
+    status(result.ok ? "Applied. Reload the walks page to see them." : "Applied with errors: read the log.");
+  } catch (error) {
+    $("#log-text").textContent = error.message;
+    status("Nothing applied.");
+  }
+  $("#log").showModal();
+  await loadWalks();
+  if (walk) await openWalk(walk.id);
+});
+$("#log-close").addEventListener("click", () => $("#log").close());
+
+addEventListener("hashchange", () => openWalk(location.hash.slice(1)));
+loadWalks().then(() => openWalk(location.hash.slice(1) || walks[0].id)).catch((error) => status(error.message));
+</script>
+</body>
+</html>
