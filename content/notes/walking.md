@@ -26,7 +26,7 @@ I suggest you read [116th dispatch][wos] of his _Ridgeline_ newsletter.
 
 ## "Street Photography"
 
-From a young age, I casually took photos, yet I never linked it to walking, despite how obvious it seems now. In 2017, I made the choice to bring a camera on every outing and began documenting my walks.
+From a young age, I casually took photos, yet I never linked it to walking, despite how obvious it seems now. In 2017, I made the choice to bring a camera on every outing and [began documenting my walks](/traces/walks/).
 
 In some odd way, this has become a documentation of the state of my mind rather than the streets. I took photos of everything my brain would fixate on. My hands obediently followed the stream of thoughts in my head. I pushed the shutter release without any prejudice or analysis.
 

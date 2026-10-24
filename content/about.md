@@ -24,7 +24,7 @@ I'm {{< pronunciation-name "Toto" >}}, a photographer, bookbinder, walker, human
 
 I like making things. I enjoy writing software and working with paper, photographs, and things that need to be cut, glued, or held together. Making books gives me reasons to learn bookbinding. Working in the darkroom gives me ideas for tools. One thing usually leads to another.
 
-Walking is where a lot of this begins. I do much of my thinking on long walks, usually with a camera in hand.
+Walking is where a lot of this begins. I do much of my thinking on [long walks](/traces/walks/), usually with a camera in hand.
 
 This site is my public notebook. I write about what I'm making and share things I find useful or interesting along the way. If something here starts a conversation or gives you an idea for something of your own, I'd be happy about that.
 

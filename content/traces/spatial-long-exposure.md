@@ -18,6 +18,8 @@ Source coverage: December 22, 2008–July 28, 2026. This range applies to the co
 
 Each point comes from a recorded visit or a geotagged photograph. Lines connect consecutive stops in the location history, but they are not literal travelled routes. Without beginnings, endings, or a timeline, the map is less an itinerary than an accumulation of presence.
 
+See [Walks](/traces/walks/) for individual routes, photographs, and journal excerpts.
+
 ## Data log
 
 - 2026-07-28 — Initial population: added 38,403 points.
