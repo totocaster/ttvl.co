@@ -21,6 +21,7 @@ The key is a Spaces key scoped to ttvl-websites, read from the macOS Keychain
 docs/walks.md.
 """
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import importlib.util
 import json
@@ -70,16 +71,21 @@ def publish(paths, check=False, log=print):
     for page in space.get_paginator("list_objects_v2").paginate(Bucket=BUCKET, Prefix=PREFIX):
         have.update(item["Key"] for item in page.get("Contents", []))
     todo = [p for p in paths if PREFIX + walks.media_name(p) not in have]
-    for n, path in enumerate(todo, 1):
-        name = walks.media_name(path)
-        if check:
-            log(f"would upload {name}")
-            continue
+
+    def put(path):
         body = path.read_bytes()
-        space.put_object(Bucket=BUCKET, Key=PREFIX + name, Body=body, ACL="public-read", ContentType="image/jpeg",
+        space.put_object(Bucket=BUCKET, Key=PREFIX + walks.media_name(path), Body=body, ACL="public-read", ContentType="image/jpeg",
                          CacheControl="public, max-age=31536000, immutable", Metadata={"sha256": hashlib.sha256(body).hexdigest()})
-        if n % 50 == 0 or n == len(todo):
-            log(f"uploaded {n} of {len(todo)}")
+
+    if check:
+        for path in todo:
+            log(f"would upload {walks.media_name(path)}")
+    else:
+        # Each request waits on the Space more than on the wire: eight at a time.
+        with ThreadPoolExecutor(8) as pool:
+            for n, _ in enumerate(pool.map(put, todo), 1):
+                if n % 50 == 0 or n == len(todo):
+                    log(f"uploaded {n} of {len(todo)}")
     log(f"{len(paths) - len(todo)} already in the Space, {len(todo)} {'to upload' if check else 'uploaded'}")
     return len(todo)
 
