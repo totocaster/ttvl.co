@@ -4,49 +4,57 @@
       "summary": null,
       "journal": null,
       "places": [],
-      "links": []
+      "links": [],
+      "title": "Around Hamarikyu Gardens"
     },
     "2018-10-08": {
-      "summary": null,
+      "summary": "An evening in Shibuya.",
       "journal": null,
       "places": [],
-      "links": []
+      "links": [],
+      "title": "Around Shibuya"
     },
     "2018-10-12": {
       "summary": null,
       "journal": null,
       "places": [],
-      "links": []
+      "links": [],
+      "title": "Ochanomizu to Iidabashi"
     },
     "2018-10-20": {
       "summary": null,
       "journal": null,
       "places": [],
-      "links": []
+      "links": [],
+      "title": "Ochanomizu to Akihabara"
     },
     "2018-10-25": {
-      "summary": null,
+      "summary": "From Gotoku-ji to the Tokyo Ramen Show at Komazawa Olympic Park.",
       "journal": null,
       "places": [],
-      "links": []
+      "links": [],
+      "title": "Gotoku-ji to Komazawa"
     },
     "2018-12-01": {
       "summary": null,
       "journal": null,
       "places": [],
-      "links": []
+      "links": [],
+      "title": "Roppongi to Shibuya"
     },
     "2018-12-08": {
       "summary": null,
       "journal": null,
       "places": [],
-      "links": []
+      "links": [],
+      "title": "Aoyama to Ebisu via Daikanyama"
     },
     "2018-12-09": {
       "summary": null,
       "journal": null,
       "places": [],
-      "links": []
+      "links": [],
+      "title": "Around Shimokitazawa"
     },
     "2019-02-07": {
       "summary": "A relaxed day spent walking with a camera.",
@@ -58,7 +66,8 @@
         "weather": "17 °C Mostly Sunny"
       },
       "places": [],
-      "links": []
+      "links": [],
+      "title": "Around Ueno Park"
     },
     "2019-02-12": {
       "summary": "Four hours through Yanaka and Ueno to Akihabara, enjoying the quiet streets despite doubts about the photographs.",
@@ -74,7 +83,8 @@
         "Ueno",
         "Akihabara"
       ],
-      "links": []
+      "links": [],
+      "title": "Nishi-Nippori to Akihabara via Yanaka"
     },
     "2019-02-18": {
       "summary": "A half-day of experimenting with harsh light and contrast.",
@@ -88,7 +98,8 @@
       "places": [
         "Shinjuku"
       ],
-      "links": []
+      "links": [],
+      "title": "Ueno to Shinjuku via Takadanobaba"
     },
     "2019-02-22": {
       "summary": "Photographing Friday-night streets around Kita-Senju station on digital.",
@@ -101,7 +112,8 @@
       "places": [
         "Kita-Senju station"
       ],
-      "links": []
+      "links": [],
+      "title": "Around Kita-Senju"
     },
     "2019-03-08": {
       "summary": "A day among Nikko’s temples, parks and the Imperial Villa, ending in a coffee shop.",
@@ -122,7 +134,8 @@
           "url": "/log/2019/03/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Around Nikko"
     },
     "2019-03-18": {
       "summary": "A photo walk from Harajuku to Ginza with art galleries along the way.",
@@ -144,7 +157,8 @@
           "url": "/log/2019/03/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Harajuku to Ginza"
     },
     "2019-03-24": {
       "summary": "Walking Shinjuku with a camera and GoPro, learning by making more pictures.",
@@ -167,7 +181,8 @@
       "video": {
         "youtube": "EYYrF8w9AbU",
         "title": "Let's Shoot 1: TOKYO's Red Light District and Golden Gai the DAYLIGHT"
-      }
+      },
+      "title": "Around Shinjuku"
     },
     "2019-04-11": {
       "summary": "A spring walk along the river from Iidabashi to Shinjuku, with an accidental discovery of Totem Pole Gallery.",
@@ -189,7 +204,8 @@
           "url": "/log/2019/04/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Iidabashi to Shinjuku"
     },
     "2019-06-05": {
       "summary": "A walk that left sore legs and a happy photographer’s heart.",
@@ -200,7 +216,8 @@
         "weather": "24 °C Mostly Sunny"
       },
       "places": [],
-      "links": []
+      "links": [],
+      "title": "Akebonobashi to Zoshigaya"
     },
     "2019-07-21": {
       "summary": "A short walk from Shimokitazawa to Yoyogi-Uehara.",
@@ -214,7 +231,8 @@
         "Shimokitazawa",
         "Yoyogi-Uehara"
       ],
-      "links": []
+      "links": [],
+      "title": "Shimokitazawa to Yoyogi-Uehara"
     },
     "2019-08-13": {
       "summary": "Searching Shibuya’s streets for works in Daido Moriyama’s outdoor exhibition.",
@@ -233,7 +251,8 @@
           "url": "/log/2019/08/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Shibuya to Omotesando"
     },
     "2019-11-01": {
       "summary": "A walk to Nippori through Bunkyo, hoping the photographs matched the enjoyment of the day.",
@@ -253,7 +272,8 @@
           "url": "/log/2019/11/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Akebonobashi to Nippori"
     },
     "2019-12-14": {
       "summary": "Discovering Guitar Street and its pedals and guitars.",
@@ -272,7 +292,8 @@
           "url": "/log/2019/12/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Ichigaya to Ochanomizu"
     },
     "2020-01-10": {
       "summary": "A little over two hours to Nakano station, imagining longer walks beyond it.",
@@ -292,7 +313,8 @@
           "url": "/log/2020/01/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Akebonobashi to Nakano"
     },
     "2020-05-02": {
       "summary": "A Golden Week day trip to Kawagoe, alone, past the Toki no Kane bell tower and carp streamers strung over quiet streets.",
@@ -311,7 +333,8 @@
           "url": "/log/2020/05/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Around Kawagoe"
     },
     "2020-08-15": {
       "summary": "A hot summer walk around Tsukishima, followed by a café stop.",
@@ -331,7 +354,8 @@
           "url": "/log/2020/08/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Around Tsukishima"
     },
     "2020-09-13": {
       "summary": "From Sunamachi Ginza to the Arakawa, making river pictures and scouting a return with a large-format camera.",
@@ -353,10 +377,11 @@
           "url": "/log/2020/09/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Sunamachi Ginza to the Arakawa"
     },
     "2020-09-19": {
-      "summary": null,
+      "summary": "A September afternoon above Nikko, from Lake Chuzenji down to Ryuzu Falls.",
       "journal": null,
       "places": [],
       "links": [
@@ -366,7 +391,8 @@
           "relationship": "The walk appears in this monthly log."
         }
       ],
-      "weather": "21 °C Mostly Cloudy"
+      "weather": "21 °C Mostly Cloudy",
+      "title": "Lake Chuzenji to Ryuzu Falls"
     },
     "2020-10-11": {
       "summary": "A tiring but pleasant photo walk.",
@@ -383,17 +409,19 @@
           "url": "/log/2020/10/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Kita-Ayase to Kita-Senju"
     },
     "2020-11-21": {
       "summary": null,
       "journal": null,
       "places": [],
       "links": [],
-      "weather": "18 °C Mostly Sunny"
+      "weather": "18 °C Mostly Sunny",
+      "title": "Akebonobashi to Tokyo Tower via Harajuku"
     },
     "2020-11-22": {
-      "summary": "Slow walking, time to think, and photographs made with a Leica Q2.",
+      "summary": "A slow approach to Mount Mitake, with time to think and photographs made with a Leica Q2.",
       "journal": {
         "paragraphs": [
           "I had slow but very long walks. Under 10 clicks in about five hours. Which is 2kph or so. Slow, but pleasant. Time to think, clean mind, and take pictures.",
@@ -408,7 +436,8 @@
           "url": "/log/2020/11/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Ikusabata to Takimoto"
     },
     "2020-12-28": {
       "summary": "An unplanned stop at UNPLAN Kagurazaka, then Rec Coffee and the bridges around Suidobashi.",
@@ -431,7 +460,8 @@
           "url": "/log/2020/12/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Akebonobashi to Akihabara via Kagurazaka"
     },
     "2021-02-23": {
       "summary": "An eighteen-kilometer day with almost six hours of walking and more than two hundred photographs.",
@@ -448,7 +478,8 @@
           "url": "/log/2021/02/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Omiya to Toda Bridge"
     },
     "2022-08-27": {
       "summary": "Nine kilometers from Oji to Yasukuni Shrine on a humid morning, the first of three long Tokyo walks in 2022.",
@@ -465,7 +496,8 @@
           "url": "/log/2022/10/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Oji to Yasukuni Shrine"
     },
     "2022-09-03": {
       "summary": "Reflecting on the images produced by a regular Saturday-morning walking practice.",
@@ -489,7 +521,8 @@
           "url": "/log/2022/09/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Yotsuya-sanchome to Oimachi"
     },
     "2022-10-01": {
       "summary": "The third scheduled Osanpo heads toward Mizumoto Park, exploring unfamiliar parts of Katsushika.",
@@ -515,7 +548,8 @@
           "url": "/log/2022/10/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Ochanomizu to Mizumoto Park"
     },
     "2022-10-22": {
       "summary": "From Tokyo station toward Disneyland via Sunamachi Ginza, reflecting on the direction of long-walk photography.",
@@ -531,7 +565,8 @@
         "Disneyland",
         "Sunamachi Ginza"
       ],
-      "links": []
+      "links": [],
+      "title": "Tokyo Station to Tokyo Disneyland"
     },
     "2023-10-22": {
       "summary": "Returning to a long walk and finding it liberating and meditative.",
@@ -548,7 +583,8 @@
           "url": "/leaves/2023-10-23-shibamata-park-walk.jpeg",
           "relationship": "Planned and actual routes, with handwritten notes from 22 October 2023."
         }
-      ]
+      ],
+      "title": "Akihabara to Shibamata"
     },
     "2024-04-14": {
       "summary": "Thirteen and a half kilometers with an RZ67 over the shoulder and doubts about a few exposures.",
@@ -566,7 +602,8 @@
           "url": "/log/2024/04/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Kasai Rinkai Park to Tokyo Skytree"
     },
     "2024-07-18": {
       "summary": "Following Rome’s Aurelian Walls without a map and photographing what stands in front of them.",
@@ -590,7 +627,8 @@
           "url": "/log/2024/07/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Along the Aurelian Walls"
     },
     "2024-07-23": {
       "summary": "A west-wall walk after discovering how little of the northern wall remains, finishing near Ponte Sisto.",
@@ -616,7 +654,8 @@
           "url": "/log/2024/07/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Gianicolo to Ponte Sisto"
     },
     "2025-12-13": {
       "summary": "A walk toward Ikebukuro, discovering new streets, small neighborhoods and a possibly abandoned Rolls-Royce.",
@@ -631,10 +670,11 @@
       "places": [
         "Ikebukuro"
       ],
-      "links": []
+      "links": [],
+      "title": "Yotsuya-sanchome to Ikebukuro"
     },
     "2026-02-23": {
-      "summary": "An Emperor’s Birthday hike in Chichibu.",
+      "summary": "An Emperor’s Birthday hike in the hills around Hanno.",
       "journal": {
         "paragraphs": [
           "- Distance: 7.82 km\n- Duration: 4h 09m (12:50–16:59)\n- Elevation: 105m → 259m peak\n- Total climb: +403m / -389m",
@@ -651,7 +691,8 @@
           "url": "/log/2026/02/",
           "relationship": "The walk appears in this monthly log."
         }
-      ]
+      ],
+      "title": "Around Hanno"
     }
   }
 }

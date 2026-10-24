@@ -1,6 +1,6 @@
 # Walks
 
-The draft at `/traces/walks/` is a separate Traces project. The map is the
+`/traces/walks/` is a separate Traces project. The map is the
 page: every walk is drawn on one full-window map, and a panel floating at the
 container's left edge holds the index (the head, place switches, every walk as
 a row) or, once a walk is chosen from a row or a route, that walk's sheet: its
@@ -9,7 +9,7 @@ walks and photographs have hash links, for example
 `/traces/walks/#walk-s0399/photo-2`.
 
 The layout is `layouts/traces/walks.html`, the script `assets/js/walks.js` with
-the map in `assets/js/walks-map.js` (bundled by `js.Build`), and the styles
+the map in `assets/js/walks-map.js` on the site's map in `assets/js/panel-map.js` (bundled by `js.Build`), and the styles
 `assets/scss/sections/_walks.scss`. The design was chosen from five versions on
 2026-10-23 (Atlas, Ledger, Places, Sequence, Field); this is Field.
 
@@ -17,11 +17,24 @@ the map in `assets/js/walks-map.js` (bundled by `js.Build`), and the styles
 
 The one filter is place. The layout assigns each walk a place from the middle
 of its bounds: Tokyo within 18 km of Tokyo Station, Around Tokyo beyond that
-(the day trips to Nikko, Mitake, Chichibu, Kawagoe, and Omiya), and Rome. A
+(the day trips to Nikko, Mitake, Hanno, Kawagoe, and Omiya), and Rome. A
 place's switch narrows the rows and the map together; pressing it again shows
 every walk. Zoomed out past the cities, each place is a key on the map that
 zooms to it. Walk numbers (`001`, `002`, …) run upward by date, like research
 entries; never write them.
+
+## Titles
+
+A walk's title is its route, written from the track rather than the journal,
+in Title Case: `Start to End` (Ochanomizu to Mizumoto Park), with `via X` for
+the one stop that shapes the route, if any (Ueno to Shinjuku via Takadanobaba);
+`Around X` for a loop or a wander that ends where it began (Around Kawagoe);
+and `Along X` for a feature followed (Along the Aurelian Walls). Name stations,
+parks, temples, and neighborhoods as the map does, in Hepburn without macrons
+and with official hyphens (Yotsuya-sanchome, Kita-Senju). No "Walk", no city
+(the place switch says it), and no mood: that belongs in the summary. The
+title lives in `data/walks-editorial.json` and wins over the one the builder
+derives; revise it there when a track is cut or extended.
 
 ## Reading Copy
 
@@ -127,7 +140,7 @@ backup goes to `.local/walks/backups/` first), uploads them to the Space,
 rebuilds `data/walks.json`, and runs the tests; commit the data and push to
 publish.
 Capture times come from the original through `sips`, GPS through Spotlight's
-`mdls`; a new pick's alt text starts as "Photograph from" and the walk's title,
+`mdls`; a new pick's alt text starts as "Photograph from the walk" and its title,
 which is worth replacing. Apply applies every walk with a draft, so finish or
 undo the others first. macOS only; the originals' drive must be mounted, and a
 sleeping external drive can take a minute to answer.
@@ -135,11 +148,13 @@ sleeping external drive can take a minute to answer.
 ## Map and Fallback
 
 MapLibre GL JS 6.15.0 is vendored under `static/vendor/maplibre/6.15.0/`, with its
-license. OpenFreeMap supplies the vector tiles; the style is built in
-`walks-map.js` from the site's tokens after the figures guide's map: north up,
+license. OpenFreeMap supplies the vector tiles; the base style is built in
+`panel-map.js` from the site's tokens after the figures guide's map: north up,
 no tilt or rotation, land on the ground, parks on the surface, water in the
-edge grey, and streets, rail, and expressways stepped halfway from the edge
-toward the ground, so the walks are the darkest lines on it. Every walk is drawn
+edge grey, and streets, rail, expressways, and borders stepped halfway from the
+edge toward the ground, so the walks are the darkest lines on it. The spatial
+long exposure draws on the same map, its places in the signal orange and its
+connections in tone 3, so the two read as one. Every walk is drawn
 in tone 3; the chosen one is ink on a ground casing with a start ring and an
 end dot; the one under the hand, on the map or in the rows, is drawn in the
 signal orange on a ground casing, above everything else. Its
@@ -175,5 +190,5 @@ keys after a change, since the shared viewer resolves dynamic galleries at
 click time.
 
 The next editorial pass can write alt text for the photographs (most still read
-"Photograph from" and the walk's title), add verified place labels, and add
+"Photograph from the walk" and its title), add verified place labels, and add
 missing outings without needing a new page structure.

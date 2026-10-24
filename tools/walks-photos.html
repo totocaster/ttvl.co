@@ -147,7 +147,7 @@ const el = (tag, props = {}, ...kids) => {
 };
 const pad = (n) => String(n).padStart(2, "0");
 const clock = (iso) => (iso ? iso.slice(11, 16) : "");
-const generic = (walk) => `Photograph from ${walk.title}`;
+const generic = (walk) => `Photograph from the walk ${walk.title}`;
 
 let walks = [];
 let walk = null;      // the open walk, as the server describes it

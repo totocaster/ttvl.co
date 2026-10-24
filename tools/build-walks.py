@@ -221,6 +221,8 @@ def build(args):
         title = re.sub(r'\s+\([^)]*\)$', '', title).replace('Disnayland','Disneyland').replace('Shimo-kitasaza','Shimokitazawa')
         title = title.replace('Hanno Hike / GPX titled Chichibu','Chichibu / Hanno Hike').replace('Kawagoe / Kanagoe in Pandemic','Kawagoe in the Pandemic')
         item = editorial.get(day,{})
+        # The editorial title wins: each is the route, Start to End (docs/walks.md, Titles).
+        title = item.get('title') or title
         selection = photos.get(record['sha256'],{})
         if selection.get('is_film') and any('other scenes' in warning.lower() for warning in selection.get('warnings',[])):
             notes.append('The film rolls also contain other scenes; this selection keeps the walk photographs.')
