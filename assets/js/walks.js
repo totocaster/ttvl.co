@@ -185,8 +185,9 @@ function openPhoto(photoId) {
   if (link) document.dispatchEvent(new CustomEvent("lightbox:open", {detail: {link, trigger: link}}));
 }
 
-// The day at a glance: when (from the recording), how far, the weather (from
-// the journal), and the camera (from the photographs).
+// On the day, under the photographs and the journal: when (from the
+// recording), how far, the weather (from the journal), and the camera (from
+// the photographs).
 const weekday = (iso) => new Date(`${iso}T12:00:00`).toLocaleDateString("en-GB", {weekday: "long"});
 function duration(minutes) {
   const frag = document.createDocumentFragment();
@@ -232,12 +233,12 @@ function renderSheet(walk) {
     el("div", {class: "walks-rail"}, el("p", {}, joined(n(pad(walk.number)), placeName(walk.place)))),
     el("h2", {class: "walks-title", tabindex: "-1", text: walk.title}),
     walk.summary ? el("p", {class: "walks-summary", text: walk.summary}) : null,
-    facts(walk),
     walk.video ? section("On Video", video(walk.video)) : null,
     section("Along the Way", gallery(walk)),
     paragraphs.length ? section("From the Journal",
       el("blockquote", {class: "walks-journal"}, paragraphs.map((text) => el("p", {text}))),
       walk.places.length ? el("p", {class: "legend", text: `Places in the entry: ${walk.places.join(" · ")}`}) : null) : null,
+    section("On the Day", facts(walk)),
     links.length ? section("Elsewhere", el("ul", {class: "rows walks-links"}, links)) : null,
   ].filter(Boolean));
 }

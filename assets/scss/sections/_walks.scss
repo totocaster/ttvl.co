@@ -462,7 +462,7 @@ $walks-masthead: var(--walks-masthead, 162px); // measured by walks.js
   display: grid;
   grid-template-columns: 72px minmax(0, 1fr);
   gap: $space-1 $space-4;
-  margin: $space-5 0 0;
+  margin: 0;
   @include type-meta;
 
   dt {
@@ -554,11 +554,10 @@ $walks-masthead: var(--walks-masthead, 162px); // measured by walks.js
   }
 }
 
-// The journal: the prose quotation, a 2 px edge rule, full ink.
+// The journal: every passage is quoted, so it reads as plain text in full
+// ink, without the quotation's rule.
 .walks-journal {
   margin: 0 0 $space-3;
-  padding-left: $space-4;
-  border-left: 2px solid var(--edge);
   font-size: $font-size-dek;
   line-height: $line-height-dek;
 

@@ -41,8 +41,10 @@ DigitalOcean Space `ttvl-websites` (fra1), the one toto.photo uses, under
 and every file is cached for a year as immutable; the builder writes the same
 addresses into `data/walks.json`, and fails when a rendered file is missing.
 The upload key is a Spaces key scoped to that bucket (`ttvl-websites-walks`),
-kept in the macOS Keychain as `ttvl-websites-spaces`. Only the page's social
-card, `static/visuals/traces/walks/card.jpg`, stays in `static/`.
+kept in the macOS Keychain as `ttvl-websites-spaces`. Only the page's card,
+`static/visuals/traces/walks/map.jpg` (the Traces hub tile and the social
+image: the map with every Tokyo walk and Ochanomizu to Mizumoto Park in the
+signal orange, captured from the page itself), stays in `static/`.
 
 `data/walks-editorial.json` contains the reviewed walk passages, descriptions,
 place mentions, and published links. Quotes retain the journal's wording;
@@ -97,13 +99,16 @@ capture times. Unlocated photographs stay in sequence without map markers.
 ## The Sheet
 
 A chosen walk's sheet opens with its number and place, the title, and the
-summary, then the day at a glance: the weekday and date; the time, from the
-first to the last retained point of the recording, with its duration (left out
-for sparse recordings); the distance; the weather from the journal's
-frontmatter (`weather` in the editorial file, or the passage's); and the
-camera, from the photographs, or Film. The journal's `location` stays out: it
-is where the entry was written, often at home. The builder writes `started`,
-`ended`, `minutes`, `weather`, and `film` for each walk.
+summary; then its video, where it has one (On Video); its photographs (Along
+the Way); the journal passage (From the Journal), set as plain text in full
+ink, since every passage is quoted; and then the day itself (On the Day): the
+weekday and date; the time, from the first to the last retained point of the
+recording, with its duration (left out for sparse recordings); the distance;
+the weather from the journal's frontmatter (`weather` in the editorial file,
+or the passage's); and the camera, from the photographs, or Film. Elsewhere
+closes it. The journal's `location` stays out: it is where the entry was
+written, often at home. The builder writes `started`, `ended`, `minutes`,
+`weather`, `film`, and `video` for each walk.
 
 ## Picking Photographs
 
