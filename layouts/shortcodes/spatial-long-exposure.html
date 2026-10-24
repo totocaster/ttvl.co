@@ -4,7 +4,8 @@
      bar. Optional "title" (the bar's label; defaults to the page's trace
      kind). The page must set spatial_long_exposure: true.
      assets/js/spatial-long-exposure.js reads the data-map-* hooks and
-     .spatial-long-exposure__frame. */ -}}
+     .spatial-long-exposure__frame, and draws the site's map (panel-map.js)
+     into [data-map]. */ -}}
 {{- $mapID := printf "spatial-long-exposure-map-%d" .Ordinal -}}
 {{- $dataRevision := .Page.Params.trace_data_revision | default "1" -}}
 {{- $kind := "Map" }}{{ with .Page.Params.trace }}{{ with .kind }}{{ $kind = . }}{{ end }}{{ end -}}
@@ -13,7 +14,6 @@
   class="viewer spatial-long-exposure"
   data-spatial-long-exposure
   data-trace-url="/traces/spatial-long-exposure.json?v={{ $dataRevision }}"
-  data-tile-template="https://tile.openstreetmap.org/{z}/{x}/{y}.png"
 >
   <div class="viewer-bar">
     <span class="viewer-title">{{ $title }}</span>
@@ -27,15 +27,8 @@
     </div>
   </div>
   <div class="viewer-frame spatial-long-exposure__frame">
-    <div class="spatial-long-exposure__tiles" data-map-tiles aria-hidden="true"></div>
-    <canvas
-      id="{{ $mapID }}"
-      data-map-canvas
-      tabindex="0"
-      role="img"
-      aria-label="An interactive, undated map of location history, geotagged photographs, and the connections between recorded visits"
-    ></canvas>
-    <a class="spatial-long-exposure__attribution" href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors</a>
+    <div class="spatial-long-exposure__map" id="{{ $mapID }}" data-map></div>
+    <p class="spatial-long-exposure__attribution"><a href="https://openfreemap.org/">OpenFreeMap</a> · <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap</a></p>
     <span class="viewer-status" data-map-loading role="status">Developing map…</span>
     <button
       class="viewer-fs"

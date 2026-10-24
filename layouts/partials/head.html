@@ -206,8 +206,9 @@
 {{ end }}
 
 {{ if .Params.spatial_long_exposure }}
-{{ $spatialLongExposureJS := resources.Get "js/spatial-long-exposure.js" | resources.Minify | resources.Fingerprint }}
-<script src="{{ $spatialLongExposureJS.RelPermalink }}" integrity="{{ $spatialLongExposureJS.Data.Integrity }}" defer></script>
+<link rel="stylesheet" href="/vendor/maplibre/6.15.0/maplibre-gl.css" />
+{{ $spatialLongExposureJS := resources.Get "js/spatial-long-exposure.js" | js.Build (dict "format" "esm" "minify" true) | resources.Fingerprint }}
+<script type="module" src="{{ $spatialLongExposureJS.RelPermalink }}" integrity="{{ $spatialLongExposureJS.Data.Integrity }}"></script>
 {{ end }}
 
 {{ if .Params.walks }}

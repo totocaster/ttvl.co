@@ -1,77 +1,37 @@
 // The spatial long exposure map. The bar, frame, badge, fullscreen key, and
 // legend are the shared media chrome in _model-viewer.scss; this file holds
-// the trace colors the script reads, the tiles, and the map attribution.
+// the map's place in the frame and its attribution. The map itself is drawn
+// in the tokens by assets/js/panel-map.js, as on Walks.
 
-.spatial-long-exposure {
-  // Read by assets/js/spatial-long-exposure.js as r, g, b triples.
-  --spatial-map-connection: 0, 0, 0;
-  --spatial-map-place: 224, 55, 38;
-
-  @include dark {
-    --spatial-map-connection: 227, 227, 227;
-    --spatial-map-place: 255, 105, 78;
-  }
-}
-
-// The map sits on a pale ground, not the viewers' dark well, as it did
-// before Panel (deliberate exception: a map's own paper).
+// The map sits on the ground, not the viewers' dark well: a map's own paper.
 .spatial-long-exposure .viewer-frame {
-  background: #fafafa;
+  background: var(--ground);
 
-  @include dark {
-    background: #1c1c1c;
+  // Over MapLibre's own position: relative.
+  > .spatial-long-exposure__map {
+    position: absolute;
+    z-index: 1;
+    inset: 0;
+  }
+
+  .maplibregl-canvas:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: -2px;
   }
 }
 
-// The tiles are faded as one layer: per-tile opacity doubled up where
-// neighbors overlap by half a pixel and drew seams, and one filter on the
-// layer is far cheaper to composite while panning than one per tile.
-.spatial-long-exposure__tiles {
-  position: absolute;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  filter: grayscale(1) contrast(0.72) brightness(1.08);
-  opacity: 0.72;
-
-  @include dark {
-    filter: grayscale(1) invert(0.88) contrast(0.72) brightness(0.58);
-    opacity: 0.7;
-  }
-
-  @include high-contrast {
-    filter: grayscale(1);
-    opacity: 1;
-  }
-}
-
-.spatial-long-exposure__tile {
-  position: absolute;
-  display: block;
-  max-width: none;
-  user-select: none;
-}
-
-// OpenStreetMap's attribution stays on the map, at the top right, as a
-// badge over media like the status at the bottom left. Scoped to the frame
-// so the prose link weight doesn't reach it.
+// The credit stays on the map at the top right, faint on a ground wash, as
+// on Walks.
 .viewer-frame .spatial-long-exposure__attribution {
   position: absolute;
   z-index: 3;
   top: $space-3;
   right: $space-3;
-  padding: 2px $space-2; // badge geometry
+  margin: 0;
+  padding: 0 $space-1;
+  background: color-mix(in srgb, var(--ground) 85%, transparent);
   border-radius: $radius;
-  background: rgba(0, 0, 0, 0.55); // deliberate exception: a badge over media
-  color: #fff; // deliberate exception: text over media
-  font-family: $font-family-sans;
-  @include type-small;
-  font-weight: $link-weight-quiet;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-
-  @include focus-ring;
+  @include type-meta;
+  color: var(--ink-faint);
+  @include meta-links;
 }

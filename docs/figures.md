@@ -300,7 +300,7 @@ The band, the mark's width plus 8 and the plot's height, takes the highlight whe
 
 **Rules.** One instrument answers one question, with at most two controls, named in the order the reader uses them. Marks never move or resize under the hand; only the band lights. Nothing plays by itself, and anything that animates is a clip. Without the script the scrubber stays hidden and the readout shows the latest mark; without `:has()` the first state and the optional layer show, and the controls do nothing. In feeds the controls and readout drop out and the drawing becomes its image. A new behavior is a small script loaded the same way, never a charting library: the site has no npm build, and D3 or a chart kit would bring its own look.
 
-**Canvas and WebGL.** Read colors from custom properties with `getComputedStyle` and redraw when `prefers-color-scheme` changes, as the spatial long exposure map does with `--spatial-map-place` and `--spatial-map-connection`. Media wells for photographs and scans stay dark, per Media Chrome.
+**Canvas and WebGL.** Read colors from custom properties with `getComputedStyle` and redraw when `prefers-color-scheme` changes, as the live maps do. Walks and the spatial long exposure share one map, `assets/js/panel-map.js`: OpenFreeMap's vector tiles drawn after the Map pattern above (borders and streets stepped back toward the ground), with a page's own lines in tone 3 and its lit thing in the signal color. Media wells for photographs and scans stay dark, per Media Chrome.
 
 ## Pictures
 
@@ -369,7 +369,7 @@ What the site already draws, measured against this guide.
 | Reply following, 2026-10-22 | Hank for OpenClaw | Instrument, bespoke | Play and a scrubber over four phones that play one reply; the phones are pictures of Hank's interface in its own colors, everything around them Panel; a PNG still from `tools/reply-following-image.py` for feeds and readers without the script |
 | Research pulse | Research hub | Chart in the chrome | Conforms: ink marks, edge stubs, the newest mark in the signal while it is live |
 | Log archive | Log, Index | Table as chart | Conforms |
-| Spatial long exposure | `/traces/spatial-long-exposure/` | Canvas | Conforms: reads its colors from tokens and redraws on a theme change |
+| Spatial long exposure | `/traces/spatial-long-exposure/` | WebGL map | Conforms since 2026-10-24: the Walks map (`panel-map.js`), places in the signal color and connections in tone 3, redrawn on a theme change |
 | Contact sheet | `/newsletter/` | Drawing in the chrome | Conforms, with its own `--film` token |
 | Social cards | `static/social/` | Generated ledger | Conforms |
 | Icons | `partials/icons/` | Stroke icons | Conform; the drag hand is the exception |

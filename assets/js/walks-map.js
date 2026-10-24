@@ -1,19 +1,11 @@
-// The Walks map: OpenFreeMap's vector tiles drawn in the site's tokens after
-// the figures guide's map (north up, land ground, parks surface, water
-// edge), with streets, rail, and expressways stepped back toward the
-// ground, and every walk on it as a line. Colors are read from the custom
-// properties and redrawn when the scheme changes. docs/figures.md, Map;
-// docs/walks.md.
+// The Walks map: the site's map (panel-map.js) with every walk on it as a
+// line. Colors are read from the custom properties and redrawn when the
+// scheme changes. docs/figures.md, Map; docs/walks.md.
 
-const LIB = "/vendor/maplibre/6.15.0/maplibre-gl.mjs";
-const WORKER = "/vendor/maplibre/6.15.0/maplibre-gl-worker.mjs";
-const NAME = ["coalesce", ["get", "name:en"], ["get", "name_en"], ["get", "name:latin"], ["get", "name"]];
-const LINES = ["match", ["geometry-type"], ["LineString", "MultiLineString"], true, false];
-const DOTS = ["match", ["geometry-type"], ["Point", "MultiPoint"], true, false];
+import {DOTS, LINES, ROUND as round, base, createMap, followScheme, maplibre, reducedMotion, tokens, zoomWidth} from "./panel-map.js";
+
 const PHOTO_ZOOM = 11.5;
 const PLACE_ZOOM = 6;
-
-const reducedMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export function pointsOf(feature) {
   const g = feature?.geometry;
@@ -22,43 +14,6 @@ export function pointsOf(feature) {
   if (g.type === "LineString" || g.type === "MultiPoint") return g.coordinates;
   return [];
 }
-
-let library;
-async function maplibre() {
-  if (!library) {
-    // A variable keeps the bundler from resolving the vendored module.
-    const url = LIB;
-    library = await import(url);
-    library.setWorkerUrl(WORKER);
-  }
-  return library;
-}
-
-// A token as a solid color over the ground, so translucent dark-mode tokens
-// can be blended: one pixel on a canvas does the compositing.
-const probe = document.createElement("canvas").getContext("2d", {willReadFrequently: true});
-function solid(color, ground) {
-  probe.clearRect(0, 0, 1, 1);
-  probe.fillStyle = ground;
-  probe.fillRect(0, 0, 1, 1);
-  probe.fillStyle = color;
-  probe.fillRect(0, 0, 1, 1);
-  return [...probe.getImageData(0, 0, 1, 1).data.slice(0, 3)];
-}
-const mix = (a, b, t) => `rgb(${a.map((v, i) => Math.round(v * t + b[i] * (1 - t))).join(", ")})`;
-
-function tokens() {
-  const css = getComputedStyle(document.documentElement);
-  const t = Object.fromEntries(["ground", "ink", "ink-muted", "ink-faint", "edge", "rule", "surface", "tone-3", "signal"].map((name) => [name, css.getPropertyValue(`--${name}`).trim()]));
-  // Streets step back from the edge toward the ground, so forty routes in
-  // tone 3 stay the darkest lines on the map in both themes.
-  const ground = solid(t.ground, t.ground), edge = solid(t.edge, t.ground);
-  t.street = mix(edge, ground, 0.5);
-  t.way = mix(edge, ground, 0.75);
-  return t;
-}
-
-const zoomWidth = (...stops) => ["interpolate", ["exponential", 1.5], ["zoom"], ...stops];
 
 export class WalkMap {
   // walks: [{id, place, photos, feature}], routes: a FeatureCollection,
@@ -85,26 +40,16 @@ export class WalkMap {
     const lib = await maplibre();
     this.lib = lib;
     this.container.dataset.mapState = "loading";
-    this.map = new lib.Map({
-      container: this.container,
-      style: this.style(tokens()),
+    this.map = createMap(lib, this.container, this.style(tokens()), {
       center: [139.76, 35.69],
       zoom: 10.5,
-      attributionControl: false,
-      dragRotate: false,
-      pitchWithRotate: false,
-      touchPitch: false,
-      maxPitch: 0,
       cooperativeGestures: this.options.cooperative,
       locale: {
         "CooperativeGesturesHandler.WindowsHelpText": "Ctrl + scroll zooms the map",
         "CooperativeGesturesHandler.MacHelpText": "⌘ + scroll zooms the map",
         "CooperativeGesturesHandler.MobileHelpText": "Two fingers move the map",
       },
-      canvasContextAttributes: {antialias: true},
     });
-    this.map.touchZoomRotate.disableRotation();
-    this.map.keyboard.disableRotation?.();
     this.map.addControl(new lib.NavigationControl({showCompass: false}), "top-right");
     this.map.addControl(new lib.ScaleControl({maxWidth: 96, unit: "metric"}), "bottom-left");
     // If the tiles never arrive, the page says so; the panel works without
@@ -126,7 +71,7 @@ export class WalkMap {
     this.setVisible(this.visible);
     this.setPhotos(this.chosen ? this.byId.get(this.chosen) : null);
     this.zoomed();
-    matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => this.map.setStyle(this.style(tokens()), {diff: true}));
+    followScheme(this.map, (t) => this.style(t));
     return this;
   }
 
@@ -142,32 +87,17 @@ export class WalkMap {
 
   style(t) {
     const f = this.filters();
-    const label = {"text-field": NAME, "text-font": ["Noto Sans Regular"], "text-size": 14, "text-max-width": 8, "text-padding": 6};
-    const labelPaint = {"text-color": t["ink-faint"], "text-halo-color": t.ground, "text-halo-width": 2};
-    const round = {"line-cap": "round", "line-join": "round"};
+    const map = base(t);
     return {
       version: 8,
-      glyphs: "https://tiles.openfreemap.org/fonts/{fontstack}/{range}.pbf",
+      glyphs: map.glyphs,
       sources: {
-        omt: {type: "vector", url: "https://tiles.openfreemap.org/planet"},
+        ...map.sources,
         walks: {type: "geojson", data: this.routes},
         ends: {type: "geojson", data: this.endsData()},
       },
       layers: [
-        {id: "b-ground", type: "background", paint: {"background-color": t.ground}},
-        {id: "b-park", type: "fill", source: "omt", "source-layer": "park", paint: {"fill-color": t.surface}},
-        {id: "b-wood", type: "fill", source: "omt", "source-layer": "landcover", filter: ["match", ["get", "class"], ["wood", "grass"], true, false], paint: {"fill-color": t.surface}},
-        {id: "b-water", type: "fill", source: "omt", "source-layer": "water", filter: ["!=", ["get", "brunnel"], "tunnel"], paint: {"fill-color": t.edge}},
-        {id: "b-waterway", type: "line", source: "omt", "source-layer": "waterway", minzoom: 9, paint: {"line-color": t.edge, "line-width": zoomWidth(10, 0.5, 16, 2)}},
-        {id: "b-building", type: "fill", source: "omt", "source-layer": "building", minzoom: 14, paint: {"fill-color": t.rule}},
-        {id: "b-road-minor", type: "line", source: "omt", "source-layer": "transportation", minzoom: 13, filter: ["all", LINES, ["match", ["get", "class"], ["minor", "service", "track"], true, false]], layout: round, paint: {"line-color": t.street, "line-width": zoomWidth(13, 0.5, 16, 2, 18, 7)}},
-        {id: "b-road-major", type: "line", source: "omt", "source-layer": "transportation", minzoom: 8, filter: ["all", LINES, ["match", ["get", "class"], ["primary", "secondary", "tertiary", "trunk"], true, false]], layout: round, paint: {"line-color": t.street, "line-width": zoomWidth(9, 0.5, 12, 1, 16, 4, 18, 12)}},
-        {id: "b-rail", type: "line", source: "omt", "source-layer": "transportation", minzoom: 9, filter: ["all", LINES, ["match", ["get", "class"], ["rail", "transit"], true, false], ["!", ["has", "service"]], ["!=", ["get", "brunnel"], "tunnel"]], paint: {"line-color": t.way, "line-width": zoomWidth(10, 0.75, 16, 1.5), "line-dasharray": [3, 2]}},
-        {id: "b-motorway", type: "line", source: "omt", "source-layer": "transportation", minzoom: 6, filter: ["all", LINES, ["==", ["get", "class"], "motorway"], ["!=", ["get", "brunnel"], "tunnel"]], layout: round, paint: {"line-color": t.way, "line-width": zoomWidth(6, 0.75, 11, 1.5, 16, 4, 18, 10)}},
-        {id: "b-label-water", type: "symbol", source: "omt", "source-layer": "water_name", minzoom: 10, layout: {...label, "text-font": ["Noto Sans Italic"]}, paint: labelPaint},
-        {id: "b-label-quarter", type: "symbol", source: "omt", "source-layer": "place", minzoom: 13.5, filter: ["match", ["get", "class"], ["quarter", "neighbourhood"], true, false], layout: label, paint: labelPaint},
-        {id: "b-label-suburb", type: "symbol", source: "omt", "source-layer": "place", minzoom: 10.5, maxzoom: 15, filter: ["match", ["get", "class"], ["suburb", "village"], true, false], layout: label, paint: labelPaint},
-        {id: "b-label-city", type: "symbol", source: "omt", "source-layer": "place", maxzoom: 13, filter: ["match", ["get", "class"], ["city", "town"], true, false], layout: label, paint: {...labelPaint, "text-color": t["ink-muted"]}},
+        ...map.layers,
         // Walks: every visible one in tone 3, the chosen one in ink on a
         // ground casing with its ends, and the one under the hand (on the map
         // or in the rows) in the signal color on top of everything.

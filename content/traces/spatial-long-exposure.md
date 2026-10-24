@@ -2,8 +2,8 @@
 title: "A Spatial Long Exposure"
 date: 2026-07-28
 description: "Location history and geotagged photographs collapsed into a single undated map."
-image: /visuals/trace-thumbs/trace_spatial_long_exposure.png
-image_alt: "A pale map of Europe and Asia marked with vermilion places and fine connections"
+image: /visuals/trace-thumbs/trace_spatial_long_exposure.jpg
+image_alt: "A map of Europe and Asia with every recorded place in orange, from the Canary Islands to Japan, joined by fine grey connections."
 spatial_long_exposure: true
 trace_data_revision: "2026-07-28-38403"
 trace:
