@@ -6,25 +6,33 @@ const lightbox = {
   previousBodyOverflow: "",
 
   init() {
-    document
-      .querySelectorAll("[data-lightbox-gallery], .leaves-grid")
-      .forEach((gallery) => {
-        const items = Array.from(gallery.querySelectorAll("a > img"))
-          .filter((image) => image.parentElement.href === image.src)
-          .map((image) => ({
-            alt: image.alt,
-            date: this.dateOf(image.parentElement),
-            link: image.parentElement,
-            src: image.parentElement.href,
-          }));
+    // Resolve the gallery when opened so filtering or changing a walk can
+    // replace its photographs without stale listeners or a second viewer.
+    document.addEventListener("click", (event) => {
+      const link = event.target.closest("a");
+      if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      if (this.openLink(link, link)) event.preventDefault();
+    });
+    document.addEventListener("lightbox:open", (event) => {
+      this.openLink(event.detail.link, event.detail.trigger);
+    });
+  },
 
-        items.forEach((item, index) => {
-          item.link.addEventListener("click", (event) => {
-            event.preventDefault();
-            this.open(items, index, item.link);
-          });
-        });
-      });
+  openLink(link, trigger) {
+    const gallery = link?.closest("[data-lightbox-gallery], .leaves-grid");
+    if (!gallery) return false;
+    const items = Array.from(gallery.querySelectorAll("a > img"))
+      .filter((image) => image.parentElement.href === image.src)
+      .map((image) => ({
+        alt: image.alt,
+        date: this.dateOf(image.parentElement),
+        link: image.parentElement,
+        src: image.parentElement.href,
+      }));
+    const index = items.findIndex((item) => item.link === link);
+    if (index < 0) return false;
+    this.open(items, index, trigger || link);
+    return true;
   },
 
   // The date an item carries, for the counter: a data-date on the link,

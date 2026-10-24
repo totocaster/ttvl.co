@@ -18,6 +18,8 @@
     const isDraft = (a) => {
       const url = new URL(a.href, location.href);
       if (url.host !== location.host && !url.hostname.endsWith("ttvl.co")) return false;
+      // An anchor on the page itself leads nowhere new.
+      if (url.host === location.host && url.pathname === location.pathname && url.hash) return false;
       const path = url.pathname.endsWith("/") ? url.pathname : url.pathname + "/";
       return drafts.has(path);
     };

@@ -1,0 +1,657 @@
+{
+  "walks": {
+    "2018-10-02": {
+      "summary": null,
+      "journal": null,
+      "places": [],
+      "links": []
+    },
+    "2018-10-08": {
+      "summary": null,
+      "journal": null,
+      "places": [],
+      "links": []
+    },
+    "2018-10-12": {
+      "summary": null,
+      "journal": null,
+      "places": [],
+      "links": []
+    },
+    "2018-10-20": {
+      "summary": null,
+      "journal": null,
+      "places": [],
+      "links": []
+    },
+    "2018-10-25": {
+      "summary": null,
+      "journal": null,
+      "places": [],
+      "links": []
+    },
+    "2018-12-01": {
+      "summary": null,
+      "journal": null,
+      "places": [],
+      "links": []
+    },
+    "2018-12-08": {
+      "summary": null,
+      "journal": null,
+      "places": [],
+      "links": []
+    },
+    "2018-12-09": {
+      "summary": null,
+      "journal": null,
+      "places": [],
+      "links": []
+    },
+    "2019-02-07": {
+      "summary": "A relaxed day spent walking with a camera.",
+      "journal": {
+        "paragraphs": [
+          "What a nice day of walking and doing nothing.",
+          "Photo walks also felt nice, and I hope photos are good. I have not checked them yet."
+        ],
+        "weather": "17 °C Mostly Sunny"
+      },
+      "places": [],
+      "links": []
+    },
+    "2019-02-12": {
+      "summary": "Four hours through Yanaka and Ueno to Akihabara, enjoying the quiet streets despite doubts about the photographs.",
+      "journal": {
+        "paragraphs": [
+          "I walked for at least four hours from Nishi-Niporri all the way to Akihabara, going through Yanaka and Ueno. I have not seen photos yet, but I do not have high hopes. Very few people were roaming those streets to take photos of. Yet, I enjoyed walks a lot; It was calm and relaxing."
+        ],
+        "weather": ""
+      },
+      "places": [
+        "Nishi-Niporri",
+        "Yanaka",
+        "Ueno",
+        "Akihabara"
+      ],
+      "links": []
+    },
+    "2019-02-18": {
+      "summary": "A half-day of experimenting with harsh light and contrast.",
+      "journal": {
+        "paragraphs": [
+          "Spent half a day walking with a camera. Not sure if I got any good pictures, but I did experiment with harsh light and contrast. Curious to see if it worked or not.",
+          "Night photography will not happen today, 4 hours or walk is a bit too much. I might return to Shinjuku in day or two to try night photography."
+        ],
+        "weather": "12 °C Mostly Sunny"
+      },
+      "places": [
+        "Shinjuku"
+      ],
+      "links": []
+    },
+    "2019-02-22": {
+      "summary": "Photographing Friday-night streets around Kita-Senju station on digital.",
+      "journal": {
+        "paragraphs": [
+          "Now I’m walking nearby Kita-Senju station taking photos of people enjoying Friday night. In back of my mind I know that I take pictures of things and streets, no people—I do not have enough confidence yet. I’m shooting digital today. I do not have high speed film for night streets."
+        ],
+        "weather": "12 °C Partly Cloudy"
+      },
+      "places": [
+        "Kita-Senju station"
+      ],
+      "links": []
+    },
+    "2019-03-08": {
+      "summary": "A day among Nikko’s temples, parks and the Imperial Villa, ending in a coffee shop.",
+      "journal": {
+        "paragraphs": [
+          "Sweet, sweet day walking around Nikko. Temples, parks, hikes and very cool Imperial Villa. Now sitting in a very cite coffee shop about to leave to Tokyo.",
+          "10/10 day."
+        ],
+        "weather": "3 °C Mostly Sunny"
+      },
+      "places": [
+        "Nikko",
+        "Imperial Villa"
+      ],
+      "links": [
+        {
+          "title": "Log · 2019-03",
+          "url": "/log/2019/03/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2019-03-18": {
+      "summary": "A photo walk from Harajuku to Ginza with art galleries along the way.",
+      "journal": {
+        "paragraphs": [
+          "I somehow managed to walk from Harajuku to Ginza by feet. Tokyo suddenly seems tad smaller. All fo this was part of the photowalk with couple of art galleries in between. Overall, good day.",
+          "I have problem with my photos though. I don’t like anything I shoot. It’s not like I’m bored with photography. Quite the opposite, I’m itching to go out and shoot, but I’m bored with a type of photos I make. Something has to click, and I’m looking for it."
+        ],
+        "weather": "13 °C Mostly Sunny"
+      },
+      "places": [
+        "Harajuku",
+        "Ginza",
+        "Tokyo"
+      ],
+      "links": [
+        {
+          "title": "Log · 2019-03",
+          "url": "/log/2019/03/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2019-03-24": {
+      "summary": "Walking Shinjuku with a camera and GoPro, learning by making more pictures.",
+      "journal": {
+        "paragraphs": [
+          "Pretty nice day walking with a camera and GoPro in Shinjuku. I bet sone sort of nice video will be the result—not as positive about the photos though. It feels a bit negative not to have the shot on a card, but oh well... only way to learn to do this well is to do it more and more."
+        ],
+        "weather": "12 °C Partly Cloudy"
+      },
+      "places": [
+        "Shinjuku"
+      ],
+      "links": [
+        {
+          "title": "Log · 2019-03",
+          "url": "/log/2019/03/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ],
+      "video": {
+        "youtube": "EYYrF8w9AbU",
+        "title": "Let's Shoot 1: TOKYO's Red Light District and Golden Gai the DAYLIGHT"
+      }
+    },
+    "2019-04-11": {
+      "summary": "A spring walk along the river from Iidabashi to Shinjuku, with an accidental discovery of Totem Pole Gallery.",
+      "journal": {
+        "paragraphs": [
+          "By total chance, I found place where Totem Pole Gallery is.",
+          "Right after noon I decided to have a walk with a camera from Iidabashi to Shinjuku. Walking on the river bank full of sakura tries was quite nice—much needed relaxing walk. Overall I’m quite happy with today."
+        ],
+        "weather": "15 °C Partly Cloudy"
+      },
+      "places": [
+        "Totem Pole Gallery",
+        "Iidabashi",
+        "Shinjuku"
+      ],
+      "links": [
+        {
+          "title": "Log · 2019-04",
+          "url": "/log/2019/04/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2019-06-05": {
+      "summary": "A walk that left sore legs and a happy photographer’s heart.",
+      "journal": {
+        "paragraphs": [
+          "Not sure it if worked, but I’m definitely feel sore legs and happy photographer‘s heart."
+        ],
+        "weather": "24 °C Mostly Sunny"
+      },
+      "places": [],
+      "links": []
+    },
+    "2019-07-21": {
+      "summary": "A short walk from Shimokitazawa to Yoyogi-Uehara.",
+      "journal": {
+        "paragraphs": [
+          "I did a short walk from Shimokitazawa to Yoyogi-Uehara."
+        ],
+        "weather": "27 °C Partly Cloudy"
+      },
+      "places": [
+        "Shimokitazawa",
+        "Yoyogi-Uehara"
+      ],
+      "links": []
+    },
+    "2019-08-13": {
+      "summary": "Searching Shibuya’s streets for works in Daido Moriyama’s outdoor exhibition.",
+      "journal": {
+        "paragraphs": [
+          "Daido-Shibuya street exhibition is very cool. I wish more works were presented like this. Walking in the city, while searching for exhibits is fun."
+        ],
+        "weather": "28 °C Showers"
+      },
+      "places": [
+        "Daido-Shibuya street exhibition"
+      ],
+      "links": [
+        {
+          "title": "Log · 2019-08",
+          "url": "/log/2019/08/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2019-11-01": {
+      "summary": "A walk to Nippori through Bunkyo, hoping the photographs matched the enjoyment of the day.",
+      "journal": {
+        "paragraphs": [
+          "Walked from home to Nippori. Bunkyo parts were meh, but everything else was glorious. Supper happy with a walk, hopefully photos are ok too."
+        ],
+        "weather": "15 °C Mostly Sunny"
+      },
+      "places": [
+        "Nippori",
+        "Bunkyo"
+      ],
+      "links": [
+        {
+          "title": "Log · 2019-11",
+          "url": "/log/2019/11/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2019-12-14": {
+      "summary": "Discovering Guitar Street and its pedals and guitars.",
+      "journal": {
+        "paragraphs": [
+          "“Guitar Street” is kinda awesome, can’t believe I didn’t knew about it before. Looked at cool pedals and guitars."
+        ],
+        "weather": "17 °C Mostly Sunny"
+      },
+      "places": [
+        "Guitar Street"
+      ],
+      "links": [
+        {
+          "title": "Log · 2019-12",
+          "url": "/log/2019/12/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2020-01-10": {
+      "summary": "A little over two hours to Nakano station, imagining longer walks beyond it.",
+      "journal": {
+        "paragraphs": [
+          "Had a pleasant walk from home to Nakano station. I did cover the ground surprisingly fast—a little bit in over two hours. I bet if I embark on a really long walks I can go till Ogikubo or even beyond."
+        ],
+        "weather": "11 °C Mostly Sunny"
+      },
+      "places": [
+        "Nakano station",
+        "Ogikubo"
+      ],
+      "links": [
+        {
+          "title": "Log · 2020-01",
+          "url": "/log/2020/01/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2020-05-02": {
+      "summary": "A Golden Week day trip to Kawagoe, alone, past the Toki no Kane bell tower and carp streamers strung over quiet streets.",
+      "journal": {
+        "paragraphs": [
+          "On my way to Kawagoe."
+        ],
+        "weather": "22 °C Mostly Sunny"
+      },
+      "places": [
+        "Kawagoe"
+      ],
+      "links": [
+        {
+          "title": "Log · 2020-05",
+          "url": "/log/2020/05/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2020-08-15": {
+      "summary": "A hot summer walk around Tsukishima, followed by a café stop.",
+      "journal": {
+        "paragraphs": [
+          "Pleasant day walking in not-so-pleasant weather. It was very hot. When I got to Starbucks after roaming neibourhoods of Tsukishima, I was completely soaked with my sweat. Gross."
+        ],
+        "weather": "34 °C Mostly Sunny"
+      },
+      "places": [
+        "Tsukishima",
+        "Starbucks"
+      ],
+      "links": [
+        {
+          "title": "Log · 2020-08",
+          "url": "/log/2020/08/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2020-09-13": {
+      "summary": "From Sunamachi Ginza to the Arakawa, making river pictures and scouting a return with a large-format camera.",
+      "journal": {
+        "paragraphs": [
+          "Went to Sunamachi Ginza to shoot some pictures. It was fun, but I think I took better photos when I reached Arakawa river on the west banking. I snapped some Gurski-eqsue river pictures and scouting previews.",
+          "Curious to take my large format camera there. Approach should be easy too as Shinjuku line goes almost directly to that place."
+        ],
+        "weather": "26 °C Mostly Cloudy"
+      },
+      "places": [
+        "Sunamachi Ginza",
+        "Arakawa river",
+        "Shinjuku line"
+      ],
+      "links": [
+        {
+          "title": "Log · 2020-09",
+          "url": "/log/2020/09/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2020-09-19": {
+      "summary": null,
+      "journal": null,
+      "places": [],
+      "links": [
+        {
+          "title": "Log · 2020-09",
+          "url": "/log/2020/09/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ],
+      "weather": "21 °C Mostly Cloudy"
+    },
+    "2020-10-11": {
+      "summary": "A tiring but pleasant photo walk.",
+      "journal": {
+        "paragraphs": [
+          "That was tiring. But a nice walk though. Not sure about the photos, but walk was super pleasant."
+        ],
+        "weather": "21 °C Light Rain"
+      },
+      "places": [],
+      "links": [
+        {
+          "title": "Log · 2020-10",
+          "url": "/log/2020/10/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2020-11-21": {
+      "summary": null,
+      "journal": null,
+      "places": [],
+      "links": [],
+      "weather": "18 °C Mostly Sunny"
+    },
+    "2020-11-22": {
+      "summary": "Slow walking, time to think, and photographs made with a Leica Q2.",
+      "journal": {
+        "paragraphs": [
+          "I had slow but very long walks. Under 10 clicks in about five hours. Which is 2kph or so. Slow, but pleasant. Time to think, clean mind, and take pictures.",
+          "Every time I take my Leica Q2, I’m doubting myself whether I should’ve got one in the first place. Shooting experience is similar to modern digital camera, which I don’t really enjoy that much. Although, when I review files—I like most of them."
+        ],
+        "weather": "19 °C Mostly Sunny"
+      },
+      "places": [],
+      "links": [
+        {
+          "title": "Log · 2020-11",
+          "url": "/log/2020/11/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2020-12-28": {
+      "summary": "An unplanned stop at UNPLAN Kagurazaka, then Rec Coffee and the bridges around Suidobashi.",
+      "journal": {
+        "paragraphs": [
+          "Totally by accident walks near UNPLAN Kagurazaka Caffe (from my Cafés in Tokyo list). One could say it was an unplanned stop, heh. They ave some amazing coffee and very generous lunch menu portions. Definitely will be coming here for work in future. Good find. Ok, time to move forwards.",
+          "Arrived at Rec Coffee near industrial and quite interesting complex of bridges and infrastructure in Suidobashi (of of those bridges is Suidobashi, I think).",
+          "They sell a lot of coffee blends. Kissa blend cough my eye—I might even get one. It's marked as extremely bitter. Curious what kind of fire it'll become in AeroPress."
+        ],
+        "weather": "10 °C Mostly Sunny"
+      },
+      "places": [
+        "UNPLAN Kagurazaka",
+        "Rec Coffee",
+        "Suidobashi"
+      ],
+      "links": [
+        {
+          "title": "Log · 2020-12",
+          "url": "/log/2020/12/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2021-02-23": {
+      "summary": "An eighteen-kilometer day with almost six hours of walking and more than two hundred photographs.",
+      "journal": {
+        "paragraphs": [
+          "18 kilometers, 30’000 steps, almost 6 hours of walking, 200+ photos."
+        ],
+        "weather": "11 °C Mostly Sunny"
+      },
+      "places": [],
+      "links": [
+        {
+          "title": "Log · 2021-02",
+          "url": "/log/2021/02/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2022-08-27": {
+      "summary": "Nine kilometers from Oji to Yasukuni Shrine on a humid morning, the first of three long Tokyo walks in 2022.",
+      "journal": {
+        "paragraphs": [
+          "I did a walk!"
+        ],
+        "weather": "27 °C Humid and Overcast"
+      },
+      "places": [],
+      "links": [
+        {
+          "title": "Log · 2022-10",
+          "url": "/log/2022/10/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2022-09-03": {
+      "summary": "Reflecting on the images produced by a regular Saturday-morning walking practice.",
+      "journal": {
+        "paragraphs": [
+          "I’m quite happy how my Saturday morning walks around Tokyo are producing images. Rigor is a key. Showing up and doing some work always pays off."
+        ],
+        "weather": "23 °C Overcast"
+      },
+      "places": [
+        "Tokyo"
+      ],
+      "links": [
+        {
+          "title": "Log · 2022-10",
+          "url": "/log/2022/10/",
+          "relationship": "The walk appears in this monthly log."
+        },
+        {
+          "title": "Log · 2022-09",
+          "url": "/log/2022/09/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2022-10-01": {
+      "summary": "The third scheduled Osanpo heads toward Mizumoto Park, exploring unfamiliar parts of Katsushika.",
+      "journal": {
+        "paragraphs": [
+          "Today was third Osanpo (お散歩) since I started to schedule those a month or so ago. I took train to Ochanomizu and headed to Mizumoto Park. It is not a momiji season yet, but I was curious to see the park and akso it was in a direction I never walked.",
+          "That part of Tokyo is quite interesting. Main streets have very near-looking corners and cozy aura around them. Residential areas are also extremely warm and scenic (but not in an European way). There are bits of the city, specially further north—that looks completly like suburbs: very wide streets, big houses, quite low density of everything.",
+          "Katsushika is one of those wards I have never visited before. It looks like Adachi, but not a Kita-Senju."
+        ],
+        "weather": "22 °C Clear"
+      },
+      "places": [
+        "Ochanomizu",
+        "Mizumoto Park",
+        "Tokyo",
+        "Katsushika",
+        "Adachi",
+        "Kita-Senju"
+      ],
+      "links": [
+        {
+          "title": "Log · 2022-10",
+          "url": "/log/2022/10/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2022-10-22": {
+      "summary": "From Tokyo station toward Disneyland via Sunamachi Ginza, reflecting on the direction of long-walk photography.",
+      "journal": {
+        "paragraphs": [
+          "Another long walk (Osanpo, お散歩) in the books! I started at Tokyo station and went all the way to the edge of the city to the Disneyland.",
+          "Along the way I managed to see Sunamachi Ginza once again. It was a nice 16km walk, but my photography was not the sharpest. I feel like I’m slowly getting over of long-walk photography and have to pivot in a different direction, I just do not know where."
+        ],
+        "weather": "14 °C Overcast"
+      },
+      "places": [
+        "Tokyo station",
+        "Disneyland",
+        "Sunamachi Ginza"
+      ],
+      "links": []
+    },
+    "2023-10-22": {
+      "summary": "Returning to a long walk and finding it liberating and meditative.",
+      "journal": {
+        "paragraphs": [
+          "I did a long walk again. It felt amazing. Liberating. Meditative. Walking is healing."
+        ],
+        "weather": "18 °C Mostly Clear"
+      },
+      "places": [],
+      "links": [
+        {
+          "title": "Notebook Map · Akihabara to Shibamata",
+          "url": "/leaves/2023-10-23-shibamata-park-walk.jpeg",
+          "relationship": "Planned and actual routes, with handwritten notes from 22 October 2023."
+        }
+      ]
+    },
+    "2024-04-14": {
+      "summary": "Thirteen and a half kilometers with an RZ67 over the shoulder and doubts about a few exposures.",
+      "journal": {
+        "paragraphs": [
+          "Long walk today! Finally! 13 1/2 km in five hours and 17 minutes. I also carried my RZ67 on my shoulder all the time.",
+          "Quite happy with a walk I hope didn’t fuck up the metering on all of the shots. I know at least three frames are bad."
+        ],
+        "weather": "17 °C Clear"
+      },
+      "places": [],
+      "links": [
+        {
+          "title": "Log · 2024-04",
+          "url": "/log/2024/04/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2024-07-18": {
+      "summary": "Following Rome’s Aurelian Walls without a map and photographing what stands in front of them.",
+      "journal": {
+        "paragraphs": [
+          "I had fairly short, but very hot, walk around Aurelian Walls around Rome.",
+          "Somehow I ended up at Colosseum after walking up the street next to east gate — Porta Metronia. I didn’t use maps for walking as I was following the wall.",
+          "Somewhere I in first roll of this three-roll walk I started to shoot things in front of the Aurelian Walls — some shots don’t have wall at all. Although there was a bit of where what was in front of the wall — were other walls — mostly of expensive villas or private land. Some wall with torn cloth (?) were a funny contrast to the actual AWs."
+        ],
+        "weather": "37 °C Clear"
+      },
+      "places": [
+        "Aurelian Walls",
+        "Rome",
+        "Colosseum",
+        "Porta Metronia"
+      ],
+      "links": [
+        {
+          "title": "Log · 2024-07",
+          "url": "/log/2024/07/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2024-07-23": {
+      "summary": "A west-wall walk after discovering how little of the northern wall remains, finishing near Ponte Sisto.",
+      "journal": {
+        "paragraphs": [
+          "I was supposed to take a long walk around the northern part of the Aurelian Walls, but surprise, surprise, only 200-400 meters of it remain near Roma Termini.",
+          "I walked the whole part from Alsmots St. Peter (from Gianicolo Museum) to the Tiber and then some more along the shore.",
+          "Two and a half rolls later, I ended up at Ponte Sisto."
+        ],
+        "weather": "30 °C Clear"
+      },
+      "places": [
+        "Aurelian Walls",
+        "Roma Termini",
+        "St. Peter",
+        "Gianicolo Museum",
+        "Tiber",
+        "Ponte Sisto"
+      ],
+      "links": [
+        {
+          "title": "Log · 2024-07",
+          "url": "/log/2024/07/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    },
+    "2025-12-13": {
+      "summary": "A walk toward Ikebukuro, discovering new streets, small neighborhoods and a possibly abandoned Rolls-Royce.",
+      "journal": {
+        "paragraphs": [
+          "Leica cameras have this magic that pulls you in. I love it. I went for a medium-distance walk from my home to Ikebukuro, which felt like about three to three and a half hours.",
+          "That was quite good. Somehow, I ended up on some streets I had already been to, but most of them were new. I found a few cute places, perhaps found an old abandoned Rolls-Royce somewhere in the northern part, and also a few cute neighborhoods.",
+          "It was a good reminder of how nice walking is and how pleasant it usually is."
+        ],
+        "weather": "9 °C Mostly Clear"
+      },
+      "places": [
+        "Ikebukuro"
+      ],
+      "links": []
+    },
+    "2026-02-23": {
+      "summary": "An Emperor’s Birthday hike in Chichibu.",
+      "journal": {
+        "paragraphs": [
+          "- Distance: 7.82 km\n- Duration: 4h 09m (12:50–16:59)\n- Elevation: 105m → 259m peak\n- Total climb: +403m / -389m",
+          "Good day out. Molto stanco."
+        ],
+        "weather": ""
+      },
+      "places": [
+        "Chichibu"
+      ],
+      "links": [
+        {
+          "title": "Log · 2026-02",
+          "url": "/log/2026/02/",
+          "relationship": "The walk appears in this monthly log."
+        }
+      ]
+    }
+  }
+}

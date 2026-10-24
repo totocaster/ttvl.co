@@ -1,0 +1,96 @@
+{{ define "main" }}
+{{- /* Walks: the map is the page. A full-bleed map runs under the masthead
+     and fades into the ground there; a panel floats at the container's
+     left edge with the index (the head, place switches, every walk as a
+     row) or, once a walk is chosen, that walk's sheet. Without JavaScript
+     the index and a record of every walk are the page. docs/walks.md. */ -}}
+{{- $archive := hugo.Data.walks -}}
+{{- $places := slice
+  (dict "key" "tokyo" "name" "Tokyo" "dek" "Inside the 23 wards.")
+  (dict "key" "around" "name" "Around Tokyo" "dek" "Day trips to Nikko, Mitake, Chichibu, Kawagoe, and Omiya.")
+  (dict "key" "rome" "name" "Rome" "dek" "Along the Aurelian Walls.")
+-}}
+{{- /* Each walk's place comes from the middle of its bounds: Tokyo within
+     18 km of Tokyo Station (90.42 km per degree of longitude there),
+     Around Tokyo beyond that, Rome by longitude. Numbers run 001 upward by
+     date; the archive is newest first. */ -}}
+{{- $walks := slice -}}
+{{- $total := len $archive.walks -}}
+{{- range $i, $walk := $archive.walks -}}
+  {{- $lon := div (add (index .bounds 0 0) (index .bounds 1 0)) 2.0 -}}
+  {{- $lat := div (add (index .bounds 0 1) (index .bounds 1 1)) 2.0 -}}
+  {{- $dx := mul (sub $lon 139.7671) 90.42 -}}
+  {{- $dy := mul (sub $lat 35.6812) 110.57 -}}
+  {{- $place := cond (lt (add (mul $dx $dx) (mul $dy $dy)) 324.0) "tokyo" "around" -}}
+  {{- if lt $lon 30.0 }}{{ $place = "rome" }}{{ end -}}
+  {{- $walks = $walks | append (merge $walk (dict "place" $place "number" (sub $total $i) "center" (slice $lon $lat))) -}}
+{{- end -}}
+{{- $years := sort (uniq (apply $archive.walks "index" "." "year")) -}}
+{{- /* The routes carry a hash of their contents, so a rebuilt file is never
+     read from a browser's cache. */ -}}
+{{- $routes := printf "/traces/walks/routes.json?v=%s" (substr (md5 (resources.Get "static/traces/walks/routes.json").Content) 0 10) -}}
+<article class="walks" data-walks>
+  <div class="walks-map" data-map role="region" aria-label="Every walk on the map"></div>
+  <div class="walks-fade" aria-hidden="true"></div>
+
+  <div class="walks-corner">
+    <p class="walks-readout" data-readout aria-live="polite" hidden></p>
+    <p class="walks-credit"><a href="https://openfreemap.org/">OpenFreeMap</a> · <a href="https://www.openstreetmap.org/copyright">© OpenStreetMap</a></p>
+  </div>
+
+  <aside class="walks-panel" data-panel aria-label="Walks">
+    <div class="walks-index" data-index>
+      <header class="walks-head">
+        <div class="walks-rail">
+          <p><span class="n">{{ $total }}</span> walks · <span class="n">{{ index $years 0 }}–{{ index $years (sub (len $years) 1) }}</span></p>
+          <p><a href="/traces/">Traces</a> · {{ .Params.trace.kind }}</p>
+        </div>
+        <h1>{{ .Title }}</h1>
+        <p class="walks-dek">{{ .Description }}</p>
+      </header>
+
+      <div class="switches walks-places" data-places>
+        {{- range $places }}
+        {{- $own := where $walks "place" .key }}
+        <div class="switch"><button type="button" class="switch-key" aria-pressed="false" data-place="{{ .key }}"><span class="switch-name">{{ .name }}</span><span class="switch-count"><span class="n">{{ len $own }}</span> {{ cond (eq (len $own) 1) "walk" "walks" }}</span></button></div>
+        {{- end }}
+      </div>
+      <p class="legend walks-places-legend">Press a place to show only its walks, again for every walk.</p>
+
+      <h2 class="walks-heading" data-list-label>Every walk, newest first</h2>
+      <ul class="rows walks-list" data-list>
+        {{- range $walks }}
+        <li class="row" data-walk="{{ .id }}" data-place="{{ .place }}"><span class="row-meta"><time datetime="{{ .date }}">{{ .date }}</time></span><span class="row-main"><a class="row-title" href="#walk-{{ .id }}">{{ .title }}</a>{{ with .distance_km }} <span class="row-tail"><span class="n">{{ . }}</span> km</span>{{ end }}</span></li>
+        {{- end }}
+      </ul>
+      <p class="legend walks-list-legend">Point at a row or a route to name it; press either to open the walk. Scroll or pinch to zoom.</p>
+
+      <section class="walks-about">
+        <h2 class="walks-heading">About These Walks</h2>
+        <p>Some days left a route, photographs, and a few words. Others left only fragments. Gaps in a recording stay visible; a photograph without a reliable position stays in the sequence.</p>
+        <p>Digital photographs are placed using their geotags or, where possible, their capture time. Film photographs follow the roll sequence; their scan dates are not treated as the moment they were taken.</p>
+        <p>The habit behind these days appears in <a href="/flaneur/005/">the 2022 retrospective</a>: long walks, café breaks, and time to think.</p>
+      </section>
+    </div>
+
+    <div class="walks-sheet" data-sheet hidden></div>
+  </aside>
+
+  <noscript>
+    <section class="walks-static" aria-label="Every walk">
+      {{- range $walks }}
+      <details id="walk-{{ .id }}">
+        <summary><time datetime="{{ .date }}">{{ .date }}</time> · {{ .title }}</summary>
+        <img src="{{ .route_preview }}" alt="Route outline for {{ .title }}" width="800" height="440" loading="lazy" />
+        {{ with .summary }}<p>{{ . }}</p>{{ end }}
+        {{ with .journal }}<blockquote>{{ range .paragraphs }}<p>{{ . }}</p>{{ end }}</blockquote>{{ end }}
+        {{ range .photos }}<a href="{{ .src }}"><img src="{{ .thumb }}" alt="{{ .alt }}" width="180" loading="lazy" /></a>{{ end }}
+        {{ with .video }}<p><a href="https://www.youtube.com/watch?v={{ .youtube }}">{{ .title }} (YouTube)</a></p>{{ end }}
+        {{ range .links }}<p><a href="{{ .url }}">{{ .title }}</a></p>{{ end }}
+      </details>
+      {{- end }}
+    </section>
+  </noscript>
+  <script id="walks-data" type="application/json">{{ dict "default_walk" $archive.default_walk "routes" $routes "places" $places "walks" $walks | jsonify | safeJS }}</script>
+</article>
+{{ end }}

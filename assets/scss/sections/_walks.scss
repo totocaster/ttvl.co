@@ -1,0 +1,650 @@
+// Walks: the map is the page. On wide screens the page stops scrolling: the
+// map fills the window, runs up under the masthead and fades into the
+// ground there, and the panel floats at the container's left edge with the
+// index or a walk's sheet. On phones the map sits on top, under the
+// masthead the same way, and the panel is the page below it. Everything
+// that needs the script waits for [data-ready]; without it the index and
+// the records are an ordinary page. docs/walks.md.
+
+// The container's content edge, so floating things line up with the
+// masthead: 40 px from the viewport, or the 1200 px page's padding.
+$walks-edge: unquote("max(#{$page-padding}, calc((100vw - #{$max-width-page}) / 2 + #{$page-padding}))");
+$walks-panel: 384px;
+$walks-inset: $space-5;
+$walks-masthead: var(--walks-masthead, 162px); // measured by walks.js
+
+// The fade: solid ground behind the signature, then slowly clear across
+// the nav and past the masthead's foot. Eased stops keep it from banding.
+@mixin walks-fade {
+  background: linear-gradient(
+    to bottom,
+    var(--ground) 0%,
+    var(--ground) 32%,
+    color-mix(in srgb, var(--ground) 90%, transparent) 44%,
+    color-mix(in srgb, var(--ground) 72%, transparent) 56%,
+    color-mix(in srgb, var(--ground) 48%, transparent) 68%,
+    color-mix(in srgb, var(--ground) 24%, transparent) 80%,
+    color-mix(in srgb, var(--ground) 8%, transparent) 91%,
+    transparent 100%
+  );
+}
+
+.walks-map,
+.walks-fade,
+.walks-corner,
+.walks-places,
+.walks-places-legend,
+.walks-list-legend {
+  display: none;
+}
+
+.walks[data-ready] {
+  .walks-map,
+  .walks-fade {
+    display: block;
+  }
+
+  .walks-corner {
+    display: flex;
+  }
+
+  .walks-places,
+  .walks-places-legend,
+  .walks-list-legend {
+    display: revert;
+  }
+
+  .walks-places {
+    display: grid;
+  }
+}
+
+// Wide screens: one window, no page scroll.
+@media screen and (min-width: $breakpoint-narrow + 1px) {
+  body:has(.walks[data-ready]) {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+
+    // The masthead stands on the map. Its rule gives way to the fade, which
+    // marks the same edge without a line across the map.
+    > header.site {
+      position: relative;
+      z-index: 3;
+      flex: none;
+      width: 100%;
+      border-bottom-color: transparent;
+    }
+
+    > .layout {
+      flex: 1;
+      min-height: 0;
+      width: 100%;
+      max-width: none;
+      padding: 0;
+
+      > main {
+        height: 100%;
+        padding-top: 0;
+      }
+    }
+
+    // About These Walks and the map's credit live in the panel and corner.
+    > .foot {
+      display: none;
+    }
+  }
+
+  .walks[data-ready] {
+    position: relative;
+    height: 100%;
+
+    .walks-map {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+    }
+
+    .walks-fade {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      height: calc(#{$walks-masthead} + 120px);
+      pointer-events: none;
+      @include walks-fade;
+    }
+
+    .walks-panel {
+      position: absolute;
+      z-index: 2;
+      top: $walks-inset;
+      left: $walks-edge;
+      width: $walks-panel;
+      max-height: calc(100% - #{2 * $walks-inset});
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      padding: $space-5;
+      background: var(--ground);
+      border: 1px solid var(--edge);
+      border-radius: $radius;
+    }
+
+    .walks-corner {
+      position: absolute;
+      z-index: 2;
+      right: $walks-edge;
+      bottom: $walks-inset;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: $space-2;
+      max-width: calc(100vw - #{$walks-panel} - 2 * #{$page-padding} - #{$space-7});
+      pointer-events: none;
+
+      a {
+        pointer-events: auto;
+      }
+    }
+
+    // The zoom keys below the masthead at the container's right edge; the
+    // scale bar just right of the panel.
+    .maplibregl-ctrl-top-right {
+      top: calc(#{$walks-masthead} + #{$walks-inset});
+      right: $walks-edge;
+    }
+
+    .maplibregl-ctrl-bottom-left {
+      left: calc(#{$walks-edge} + #{$walks-panel} + #{$space-4});
+      bottom: $walks-inset;
+    }
+  }
+}
+
+// The map: MapLibre's chrome in the site's voice.
+.walks-map {
+  background: var(--ground);
+
+  .maplibregl-canvas:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: -2px;
+  }
+
+  .maplibregl-ctrl-top-right .maplibregl-ctrl,
+  .maplibregl-ctrl-bottom-left .maplibregl-ctrl {
+    margin: 0;
+  }
+
+  // The zoom keys: one joined quiet key.
+  .maplibregl-ctrl-group {
+    background: var(--ground);
+    border: 1px solid var(--ink);
+    border-radius: $radius;
+    box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+
+    button {
+      width: 32px;
+      height: 32px;
+      background-color: var(--ground);
+
+      &:hover {
+        background-color: var(--surface);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--signal);
+        outline-offset: 2px;
+      }
+
+      @include touch-controls {
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    button + button {
+      border-top: 1px solid var(--ink);
+    }
+  }
+
+  @include dark {
+    .maplibregl-ctrl-icon {
+      filter: invert(1);
+    }
+  }
+
+  // The scale bar: a faint rule with its length in Mono.
+  .maplibregl-ctrl-scale {
+    padding: 0 $space-1;
+    background: color-mix(in srgb, var(--ground) 85%, transparent);
+    border: 1px solid var(--ink-faint);
+    border-top: 0;
+    color: var(--ink-faint);
+    font: #{$font-size-small}/#{$line-height-small} $font-family-mono;
+  }
+
+  // Phones: two fingers move the map; the hint on a ground wash.
+  .maplibregl-cooperative-gesture-screen {
+    padding: $space-4;
+    background: color-mix(in srgb, var(--ground) 80%, transparent);
+    color: var(--ink);
+    @include type-control;
+  }
+}
+
+// Photographs on the map: numbered 24 px ink markers on ground rings (the
+// figures guide's places), shown from z11.5; the one under the hand, or
+// whose tile is, takes a signal ring.
+.walks-marker {
+  display: block;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: var(--ink);
+  color: var(--ground);
+  box-shadow: 0 0 0 2px var(--ground);
+  font: #{$font-size-small}/24px $font-family-mono;
+  letter-spacing: -0.5px; // two digits inside the ring
+  text-align: center;
+  cursor: pointer;
+  transition: box-shadow $t-fast;
+
+  &:hover,
+  &:focus-visible,
+  &.is-lit {
+    outline: 0;
+    box-shadow: 0 0 0 2px var(--ground), 0 0 0 4px var(--signal);
+  }
+}
+
+.walks-photos-off .walks-marker {
+  display: none;
+}
+
+// Zoomed out past the cities, each place is a quiet key that zooms to it.
+.walks-place-key {
+  display: none;
+  align-items: baseline;
+  gap: $space-2;
+  min-height: $control-height-quiet;
+  padding: 3px $space-3;
+  border: 1px solid var(--ink);
+  border-radius: $radius;
+  background: var(--ground);
+  color: var(--ink);
+  @include type-control;
+  cursor: pointer;
+  @include key;
+  @include focus-ring;
+
+  .n {
+    @include type-small;
+    color: var(--ink-faint);
+  }
+
+  &:hover {
+    background: var(--surface);
+  }
+}
+
+.walks-places-on .walks-place-key:not([hidden]) {
+  display: inline-flex;
+}
+
+// The badge naming the walk under the hand, and the map's credit.
+.walks-readout {
+  max-width: 100%;
+  margin: 0;
+  padding: $space-1 $space-3;
+  background: var(--ground);
+  border: 1px solid var(--edge);
+  border-radius: $radius;
+  @include type-meta;
+  color: var(--ink-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.walks-credit {
+  margin: 0;
+  padding: 0 $space-1;
+  background: color-mix(in srgb, var(--ground) 85%, transparent);
+  border-radius: $radius;
+  @include type-meta;
+  color: var(--ink-faint);
+  @include meta-links;
+}
+
+// The panel's head: the page head's rail lines, title, and dek, in one
+// column.
+.walks-rail {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: $space-3;
+  @include type-meta;
+  color: var(--ink-faint);
+  @include meta-links;
+
+  p {
+    margin: 0;
+  }
+}
+
+.walks-head h1 {
+  margin: $space-2 0 0;
+  @include type-title;
+}
+
+.walks-dek {
+  max-width: $max-width-measure;
+  margin: $space-2 0 0;
+  font-size: $font-size-dek;
+  line-height: $line-height-dek;
+  color: var(--ink-muted);
+}
+
+// Place switches, two across: the Projects switch without its dek, so the
+// rows start above the fold.
+.walks-places {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: $space-5;
+}
+
+.walks-places-legend {
+  margin-top: $space-3;
+}
+
+// Headings in the panel: the rail heading's voice.
+.walks-heading {
+  @include type-heading;
+  margin: $space-6 0 $space-3;
+}
+
+// Rows: the walk under the hand (in the list or on the map) takes a surface
+// wash 12 px wider than the row; the open one is ink, with the lamp before
+// its date.
+.walks-list > li,
+.walks-links > li {
+  grid-template-columns: 96px minmax(0, 1fr);
+  column-gap: $space-4;
+
+  @include narrow {
+    grid-template-columns: max-content minmax(0, 1fr);
+  }
+}
+
+.walks-list > li {
+  position: relative;
+  isolation: isolate;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: -2px (-$space-3);
+    z-index: -1;
+    border-radius: $radius;
+    transition: background-color $t-fast;
+  }
+
+  &.is-lit::before {
+    background: var(--surface);
+  }
+
+  .row-title {
+    color: var(--ink);
+  }
+
+  &[aria-current] {
+    .row-title {
+      font-weight: $font-weight-medium;
+    }
+
+    .row-meta::before {
+      content: "";
+      display: inline-block;
+      width: 6px; // lamp geometry
+      height: 6px;
+      margin-right: $space-2;
+      border-radius: 50%;
+      background: var(--signal);
+      vertical-align: middle;
+    }
+  }
+}
+
+.walks-list-legend {
+  margin-top: $space-3;
+}
+
+.walks-about p {
+  max-width: $max-width-measure;
+  margin: 0 0 $space-3;
+  font-size: $font-size-dek;
+  line-height: $line-height-dek;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// The sheet: the chosen walk, set for the panel.
+.walks-back {
+  margin-bottom: $space-5;
+}
+
+.walks-title {
+  margin: $space-2 0 0;
+  font-size: $font-size-entry;
+  line-height: $line-height-entry;
+  font-weight: $font-weight-regular;
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+.walks-summary {
+  margin: $space-2 0 0;
+  font-size: $font-size-dek;
+  line-height: $line-height-dek;
+  color: var(--ink-muted);
+}
+
+// The day at a glance: labels in the faint label voice, values muted, the
+// numbers in Mono.
+.walks-facts {
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr);
+  gap: $space-1 $space-4;
+  margin: $space-5 0 0;
+  @include type-meta;
+
+  dt {
+    color: var(--ink-faint);
+  }
+
+  dd {
+    margin: 0;
+    color: var(--ink-muted);
+  }
+}
+
+.walks-section > .walks-heading {
+  margin-top: $space-6;
+}
+
+// Photographs: 4:3 tiles on edge frames, two across. Under the hand (or
+// when its marker is) a tile is a key: ink frame, 2 px ink shadow.
+.walks-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $space-4 $space-3;
+
+  figure {
+    margin: 0;
+    min-width: 0;
+  }
+
+  a {
+    display: block;
+    margin: 0 $shadow-quiet $shadow-quiet 0;
+    border: 1px solid var(--edge);
+    border-radius: $radius;
+    background: var(--surface);
+    line-height: 0;
+    overflow: hidden;
+    transition: border-color $t-fast, box-shadow $t-press, transform $t-press;
+    @include focus-ring;
+
+    &:active {
+      transform: translate($shadow-quiet, $shadow-quiet);
+      box-shadow: none;
+    }
+  }
+
+  figure:hover a,
+  figure.is-lit a,
+  a:focus-visible {
+    border-color: var(--ink);
+    box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+  }
+
+  figcaption {
+    margin-top: $space-2;
+    @include type-meta;
+    color: var(--ink-faint);
+  }
+}
+
+// A walk's video: the figure frame of the site's YouTube embed, at the
+// panel's width.
+.walks-video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--edge);
+  border-radius: $radius;
+  background: var(--surface);
+
+  iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  + .legend {
+    margin-top: $space-2;
+    @include meta-links;
+  }
+}
+
+// The journal: the prose quotation, a 2 px edge rule, full ink.
+.walks-journal {
+  margin: 0 0 $space-3;
+  padding-left: $space-4;
+  border-left: 2px solid var(--edge);
+  font-size: $font-size-dek;
+  line-height: $line-height-dek;
+
+  p {
+    margin: 0 0 $space-3;
+    white-space: pre-line;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Phones: the map on top, running up under the masthead, and the panel is
+// the page below it.
+@include narrow {
+  .walks[data-ready] {
+    position: relative;
+    display: flow-root; // the map's negative margin must not collapse through
+
+    .walks-map {
+      position: relative;
+      z-index: 0;
+      height: calc(var(--walks-top, 182px) + 56svh);
+      margin: calc(-1 * var(--walks-top, 182px)) (-$page-padding-narrow) 0;
+      border-bottom: 1px solid var(--edge);
+    }
+
+    .walks-fade {
+      position: absolute;
+      z-index: 1;
+      top: calc(-1 * var(--walks-top, 182px));
+      left: -$page-padding-narrow;
+      right: -$page-padding-narrow;
+      height: calc(#{$walks-masthead} + 72px);
+      pointer-events: none;
+      @include walks-fade;
+    }
+
+    .maplibregl-ctrl-top-right {
+      top: calc(#{$walks-masthead} + #{$space-3});
+      right: $space-3;
+    }
+
+    .maplibregl-ctrl-bottom-left {
+      left: $space-3;
+      bottom: $space-3;
+    }
+
+    .walks-corner {
+      flex-direction: column;
+      gap: $space-2;
+      margin-top: $space-2;
+    }
+
+    .walks-readout {
+      align-self: flex-start;
+    }
+
+    .walks-credit {
+      padding: 0;
+      background: none;
+    }
+
+    .walks-panel {
+      padding-top: $space-6;
+    }
+  }
+
+  body:has(.walks[data-ready]) > header.site {
+    position: relative;
+    z-index: 3;
+    border-bottom-color: transparent;
+  }
+}
+
+// Without the script: every walk's record, expandable.
+.walks-static {
+  margin-top: $space-7;
+
+  details {
+    padding: $space-4 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

@@ -210,6 +210,13 @@
 <script src="{{ $spatialLongExposureJS.RelPermalink }}" integrity="{{ $spatialLongExposureJS.Data.Integrity }}" defer></script>
 {{ end }}
 
+{{ if .Params.walks }}
+<link rel="preconnect" href="https://ttvl-websites.fra1.cdn.digitaloceanspaces.com" />
+<link rel="stylesheet" href="/vendor/maplibre/6.15.0/maplibre-gl.css" />
+{{ $walksJS := resources.Get "js/walks.js" | js.Build (dict "format" "esm" "minify" true) | resources.Fingerprint }}
+<script type="module" src="{{ $walksJS.RelPermalink }}" integrity="{{ $walksJS.Data.Integrity }}"></script>
+{{ end }}
+
 {{ if .Params.gaussian_splat }}
 <script type="importmap">
 {
