@@ -130,10 +130,11 @@ foot, walking and standing, with the stops of four minutes or more; the
 ground, the climb and the range of heights from the survey model, with the
 distance below sea level where there is one; the weather from the journal's
 frontmatter (`weather` in the editorial file, or the passage's); the camera,
-from the photographs, or Film; and the frames, the session's count beside the
+from the photographs, or for a film walk the editorial file's `camera` (the
+Hasselblad 203FE in Rome) followed by "film", or Film alone; and the frames, the session's count beside the
 published ones. Elsewhere closes it. The journal's `location` stays out: it
 is where the entry was written, often at home. The builder writes `started`,
-`ended`, `minutes`, `weather`, `film`, and `video` for each walk.
+`ended`, `minutes`, `weather`, `film`, `camera`, and `video` for each walk.
 
 ## The Day
 

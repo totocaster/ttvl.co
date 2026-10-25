@@ -239,6 +239,8 @@ def build(args):
                 'minutes':round((ended-started).total_seconds()/60) if started else None,
                 'weather':item.get('weather') or (item.get('journal') or {}).get('weather') or None,
                 'film':bool(selection.get('is_film')),
+                # A film walk's camera, which its scans cannot carry (editorial `camera`).
+                'camera':item.get('camera'),
                 'video':item.get('video'),
                 'photos':images,'journal':item.get('journal'), 'summary':item.get('summary',''),
                 'places':item.get('places',[]),'links':item.get('links',[]),

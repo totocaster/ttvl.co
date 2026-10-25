@@ -27,6 +27,7 @@
       "minutes": 249,
       "weather": null,
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -176,6 +177,7 @@
       "minutes": 155,
       "weather": "9 °C Mostly Clear",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -387,6 +389,7 @@
       "minutes": 100,
       "weather": "30 °C Clear",
       "film": true,
+      "camera": "Hasselblad 203FE",
       "video": null,
       "photos": [
         {
@@ -512,6 +515,7 @@
       "minutes": 109,
       "weather": "37 °C Clear",
       "film": true,
+      "camera": "Hasselblad 203FE",
       "video": null,
       "photos": [
         {
@@ -649,6 +653,7 @@
       "minutes": 317,
       "weather": "17 °C Clear",
       "film": true,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -778,6 +783,7 @@
       "minutes": 297,
       "weather": "18 °C Mostly Clear",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -1130,6 +1136,7 @@
       "minutes": 321,
       "weather": "14 °C Overcast",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -1462,6 +1469,7 @@
       "minutes": 400,
       "weather": "22 °C Clear",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -1806,6 +1814,7 @@
       "minutes": 335,
       "weather": "23 °C Overcast",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -2163,6 +2172,7 @@
       "minutes": 236,
       "weather": "27 °C Humid and Overcast",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -2394,6 +2404,7 @@
       "minutes": 317,
       "weather": "11 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -2642,6 +2653,7 @@
       "minutes": 415,
       "weather": "10 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -2845,6 +2857,7 @@
       "minutes": 260,
       "weather": "19 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -3096,6 +3109,7 @@
       "minutes": 60,
       "weather": "18 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -3228,6 +3242,7 @@
       "minutes": 190,
       "weather": "21 °C Light Rain",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -3476,6 +3491,7 @@
       "minutes": 181,
       "weather": "21 °C Mostly Cloudy",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -3655,6 +3671,7 @@
       "minutes": 128,
       "weather": "26 °C Mostly Cloudy",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -3891,6 +3908,7 @@
       "minutes": 124,
       "weather": "34 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -4110,6 +4128,7 @@
       "minutes": 0,
       "weather": "22 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -4296,6 +4315,7 @@
       "minutes": 163,
       "weather": "11 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -4496,6 +4516,7 @@
       "minutes": 80,
       "weather": "17 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -4598,6 +4619,7 @@
       "minutes": 446,
       "weather": "15 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -4747,6 +4769,7 @@
       "minutes": 79,
       "weather": "28 °C Showers",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -4914,6 +4937,7 @@
       "minutes": 65,
       "weather": "27 °C Partly Cloudy",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -5108,6 +5132,7 @@
       "minutes": 139,
       "weather": "24 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -5299,6 +5324,7 @@
       "minutes": 128,
       "weather": "15 °C Partly Cloudy",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -5447,6 +5473,7 @@
       "minutes": 214,
       "weather": "12 °C Partly Cloudy",
       "film": false,
+      "camera": null,
       "video": {
         "youtube": "EYYrF8w9AbU",
         "title": "Let's Shoot 1: TOKYO's Red Light District and Golden Gai the DAYLIGHT"
@@ -5683,6 +5710,7 @@
       "minutes": 139,
       "weather": "13 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -5819,6 +5847,7 @@
       "minutes": 442,
       "weather": "3 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -6105,6 +6134,7 @@
       "minutes": 64,
       "weather": "12 °C Partly Cloudy",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -6300,6 +6330,7 @@
       "minutes": 370,
       "weather": "12 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -6409,6 +6440,7 @@
       "minutes": 209,
       "weather": null,
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -6571,6 +6603,7 @@
       "minutes": 28,
       "weather": "17 °C Mostly Sunny",
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -6683,6 +6716,7 @@
       "minutes": 88,
       "weather": null,
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -6784,6 +6818,7 @@
       "minutes": 250,
       "weather": null,
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -6950,6 +6985,7 @@
       "minutes": 98,
       "weather": null,
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -7085,6 +7121,7 @@
       "minutes": 227,
       "weather": null,
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -7222,6 +7259,7 @@
       "minutes": 63,
       "weather": null,
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -7325,6 +7363,7 @@
       "minutes": 80,
       "weather": null,
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -7443,6 +7482,7 @@
       "minutes": 83,
       "weather": null,
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {
@@ -7578,6 +7618,7 @@
       "minutes": 79,
       "weather": null,
       "film": false,
+      "camera": null,
       "video": null,
       "photos": [
         {

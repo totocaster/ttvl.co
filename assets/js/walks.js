@@ -239,7 +239,9 @@ function facts(walk, today) {
   const weather = walk.weather?.match(/^(-?\d+) °C\s*(.*)$/);
   if (weather) add("Weather", counted(weather[1], "°C"), weather[2] ? `, ${weather[2].toLowerCase()}` : "");
   const cameras = [...new Set(walk.photos.map((photo) => photo.camera).filter(Boolean).map(cameraName))];
-  if (cameras.length || walk.film) add(cameras.length > 1 ? "Cameras" : "Camera", cameras.join(", ") || "Film");
+  // A film walk names its camera from the editorial file, the scans carry none.
+  if (!cameras.length && walk.camera) cameras.push(walk.camera);
+  if (cameras.length || walk.film) add(cameras.length > 1 ? "Cameras" : "Camera", cameras.join(", ") || "Film", cameras.length && walk.film ? ", film" : "");
   if (today?.frames_total) add("Frames", counted(today.frames_total, "in the session"), ", ", counted(walk.photos.length, "here"));
   return el("dl", {class: "walks-facts"}, rows);
 }
