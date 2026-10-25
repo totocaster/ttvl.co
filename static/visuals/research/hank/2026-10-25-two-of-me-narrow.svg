@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="335" height="588" viewBox="0 0 335 588" fill="none">
+<text x="0" y="14" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">Through Tailscale Serve</text>
+<rect x="0.5" y="28.5" width="286.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="12" y="54" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Hank on the iPhone</text>
+<text x="12" y="76" font-family="IBM Plex Sans" font-size="14" fill="#555555">Anywhere, over Tailscale</text>
+<rect x="0.5" y="108.5" width="286.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="12" y="134" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Hank on the Mac</text>
+<text x="12" y="156" font-family="IBM Plex Sans" font-size="14" fill="#555555">Over Tailscale</text>
+<rect x="0.5" y="188.5" width="286.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="12" y="214" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">The dashboard</text>
+<text x="12" y="236" font-family="IBM Plex Sans" font-size="14" fill="#555555">In a browser</text>
+<path d="M287 60.5H311.5" stroke="#000"/>
+<path d="M287 140.5H311.5" stroke="#000"/>
+<path d="M287 220.5H311.5" stroke="#000"/>
+<path d="M311.5 60.5V286" stroke="#000"/>
+<path d="M311.5 292l-3.0 -6h6z" fill="#000"/>
+<rect x="1" y="293" width="333" height="86" fill="#F7F7F7" stroke="#000" stroke-width="2"/>
+<text x="12" y="318" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">totocaster</text>
+<text x="12" y="340" font-family="IBM Plex Sans" font-size="14" fill="#555555">My own profile, known from</text>
+<text x="12" y="360" font-family="IBM Plex Sans" font-size="14" fill="#555555">my Tailscale login</text>
+<text x="0" y="408" font-family="IBM Plex Sans" font-size="14" fill="#6E6E6E">Loopback, with the token</text>
+<rect x="0.5" y="420.5" width="334.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1"/>
+<text x="12" y="446" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">The OpenClaw app</text>
+<text x="12" y="468" font-family="IBM Plex Sans" font-size="14" fill="#555555">On nemo itself</text>
+<path d="M40.5 484V518" stroke="#000"/>
+<path d="M40.5 524l-3.0 -6h6z" fill="#000"/>
+<rect x="0.5" y="524.5" width="334.0" height="63.0" fill="#FFFFFF" stroke="#000" stroke-width="1" stroke-dasharray="4 4"/>
+<text x="12" y="550" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Toto Tvalavadze</text>
+<text x="12" y="572" font-family="IBM Plex Sans" font-size="14" fill="#555555">The shared owner, not a person</text>
+</svg>
