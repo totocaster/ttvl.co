@@ -134,13 +134,15 @@ $walks-masthead: var(--walks-masthead, 162px); // measured by walks.js
       border-radius: $radius;
     }
 
+    // The corner's message when the map fails sits at the top, just right
+    // of the panel; the credit is small in the window's corner.
     .walks-corner {
       position: absolute;
       z-index: 2;
-      right: $walks-edge;
-      bottom: $walks-inset;
+      top: $walks-inset;
+      left: calc(#{$walks-edge} + #{$walks-panel} + #{$space-5});
       flex-direction: column;
-      align-items: flex-end;
+      align-items: flex-start;
       gap: $space-2;
       max-width: calc(100vw - #{$walks-panel} - 2 * #{$page-padding} - #{$space-7});
       pointer-events: none;
@@ -150,16 +152,23 @@ $walks-masthead: var(--walks-masthead, 162px); // measured by walks.js
       }
     }
 
-    // The zoom keys below the masthead at the container's right edge; the
-    // scale bar just right of the panel.
+    .walks-credit {
+      position: fixed;
+      right: $space-1;
+      bottom: 3px;
+    }
+
+    // The zoom keys below the masthead at the container's right edge, the
+    // scale bar at the foot of that edge.
     .maplibregl-ctrl-top-right {
       top: calc(#{$walks-masthead} + #{$walks-inset});
       right: $walks-edge;
     }
 
     .maplibregl-ctrl-bottom-left {
-      left: calc(#{$walks-edge} + #{$walks-panel} + #{$space-4});
+      right: $walks-edge;
       bottom: $walks-inset;
+      left: auto;
     }
   }
 }
@@ -296,7 +305,7 @@ $walks-masthead: var(--walks-masthead, 162px); // measured by walks.js
   display: inline-flex;
 }
 
-// The badge naming the walk under the hand, and the map's credit.
+// The corner's message when the map fails, and the map's credit.
 .walks-readout {
   max-width: 100%;
   margin: 0;
@@ -311,12 +320,16 @@ $walks-masthead: var(--walks-masthead, 162px); // measured by walks.js
   text-overflow: ellipsis;
 }
 
+// The credit is the one thing below the site's 14 px floor: it is owed,
+// not read, and the map's foot stays clear for it.
 .walks-credit {
   margin: 0;
   padding: 0 $space-1;
   background: color-mix(in srgb, var(--ground) 85%, transparent);
   border-radius: $radius;
-  @include type-meta;
+  font-family: $font-family-sans;
+  font-size: 11px;
+  line-height: 15px;
   color: var(--ink-faint);
   @include meta-links;
 }
@@ -456,8 +469,8 @@ $walks-masthead: var(--walks-masthead, 162px); // measured by walks.js
   color: var(--ink-muted);
 }
 
-// The day at a glance: labels in the faint label voice, values muted, the
-// numbers in Mono.
+// Details: labels in the faint label voice, values muted, the numbers in
+// Mono, a note under a value faint.
 .walks-facts {
   display: grid;
   grid-template-columns: 72px minmax(0, 1fr);
@@ -471,63 +484,286 @@ $walks-masthead: var(--walks-masthead, 162px); // measured by walks.js
 
   dd {
     margin: 0;
+    min-width: 0;
     color: var(--ink-muted);
   }
+}
+
+.walks-facts-note {
+  display: block;
+  color: var(--ink-faint);
 }
 
 .walks-section > .walks-heading {
   margin-top: $space-6;
 }
 
-// Photographs: 4:3 tiles on edge frames, two across. Under the hand (or
-// when its marker is) a tile is a key: ink frame, 2 px ink shadow.
+// Photographs the day cannot hold: small thumbs in their own shape, 52 px
+// tall, numbered under. Under the hand (or when its marker is) a thumb
+// takes an ink ring; the lightbox shows them whole.
 .walks-gallery {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: $space-4 $space-3;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: $space-3 $space-2;
 
   figure {
     margin: 0;
-    min-width: 0;
   }
 
   a {
     display: block;
-    margin: 0 $shadow-quiet $shadow-quiet 0;
-    border: 1px solid var(--edge);
     border-radius: $radius;
-    background: var(--surface);
     line-height: 0;
-    overflow: hidden;
-    transition: border-color $t-fast, box-shadow $t-press, transform $t-press;
     @include focus-ring;
-
-    &:active {
-      transform: translate($shadow-quiet, $shadow-quiet);
-      box-shadow: none;
-    }
-  }
-
-  figure:hover a,
-  figure.is-lit a,
-  a:focus-visible {
-    border-color: var(--ink);
-    box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
   }
 
   img {
     display: block;
-    width: 100%;
-    height: auto;
-    aspect-ratio: 4 / 3;
-    object-fit: cover;
+    width: auto;
+    height: 52px;
+    border-radius: $radius;
+    background: var(--surface);
+    box-shadow: 0 0 0 1px var(--edge);
+    transition: box-shadow $t-fast;
+  }
+
+  figure:hover img,
+  figure.is-lit img {
+    box-shadow: 0 0 0 1px var(--ground), 0 0 0 2px var(--ink);
   }
 
   figcaption {
-    margin-top: $space-2;
+    margin-top: $space-1;
     @include type-meta;
     color: var(--ink-faint);
   }
+}
+
+// ---------- Hour by Hour: the day down the sheet (walks-day.js) ----------
+// The heading, the readout, and the key stay at the top of the sheet while
+// the day scrolls under them.
+.walks-day-head {
+  position: sticky;
+  top: -$space-5; // the panel's padding
+  z-index: 2;
+  margin: 0 (-$space-5);
+  padding: $space-5 $space-5 $space-3;
+  background: var(--ground);
+  border-bottom: 1px solid var(--rule);
+
+  .walks-heading {
+    margin: 0;
+  }
+}
+
+.walks-section > .walks-day-head {
+  margin-top: $space-3;
+}
+
+.walks-day-readout {
+  min-height: 40px;
+  margin: $space-2 0 0;
+  @include type-meta;
+  color: var(--ink-muted);
+
+  b {
+    font-weight: $font-weight-regular;
+    color: var(--ink);
+  }
+}
+
+// The key: swatches shaped like the marks, on one line in small type (12 px,
+// under the site's 14 px floor by Toto's choice: a key, not reading).
+.walks-day-key {
+  display: flex;
+  gap: $space-3;
+  margin: $space-2 0 0;
+  padding: 0;
+  list-style: none;
+  font-family: $font-family-sans;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+
+  li {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  i {
+    flex: none;
+    display: block;
+  }
+}
+
+.walks-key-walking,
+.walks-key-standing {
+  width: 3px;
+  height: 10px;
+  background: var(--ink);
+}
+
+.walks-key-standing {
+  background: var(--tone-4);
+}
+
+.walks-key-shutter {
+  width: 9px;
+  height: 9px;
+  background: repeating-linear-gradient(to bottom, var(--tone-3) 0 1px, transparent 1px 4px);
+}
+
+.walks-key-ground {
+  width: 10px;
+  height: 10px;
+  background: var(--surface);
+  border-right: 1.5px solid var(--ink);
+}
+
+.walks-timeline {
+  position: relative;
+  margin-top: $space-4;
+  touch-action: pan-y;
+}
+
+// The chart: the clock, on foot, the shutter, and the ground.
+.walks-chart {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: visible;
+  cursor: ns-resize;
+
+  text {
+    font: #{$font-size-small} $font-family-mono;
+    fill: var(--ink-faint);
+  }
+
+  .is-half {
+    fill: var(--ink-quiet);
+  }
+}
+
+.walks-chart-tick { stroke: var(--tone-4); }
+.walks-chart-walking { fill: var(--ink); }
+.walks-chart-standing { fill: var(--tone-4); }
+.walks-chart-gap { stroke: var(--edge); stroke-dasharray: 3 3; }
+.walks-chart-frame { stroke: var(--tone-3); }
+.walks-chart-published { stroke: var(--ink); stroke-width: 1.5; }
+.walks-chart-area { fill: var(--surface); }
+.walks-chart-ground { fill: none; stroke: var(--ink); stroke-width: 1.5; stroke-linejoin: round; }
+.walks-chart-sea { stroke: var(--tone-3); stroke-dasharray: 3 3; }
+.walks-chart-dot { fill: var(--ink); stroke: var(--ground); stroke-width: 1.5; }
+.walks-chart-cursor { stroke: var(--ink); }
+.walks-chart-lamp { fill: var(--signal); stroke: var(--ground); stroke-width: 2; }
+
+.walks-chart-leader {
+  fill: none;
+  stroke: var(--edge);
+
+  &.is-lit {
+    stroke: var(--ink);
+  }
+}
+
+.walks-chart .walks-chart-tag {
+  fill: var(--ink);
+  paint-order: stroke;
+  stroke: var(--ground);
+  stroke-width: 5px;
+  stroke-linejoin: round;
+}
+
+// The ground's height under the cursor, tiny, beside the lamp.
+.walks-chart .walks-chart-height {
+  font-size: 11px;
+  fill: var(--ink-muted);
+  paint-order: stroke;
+  stroke: var(--ground);
+  stroke-width: 4px;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+// The moments: photographs, neighborhoods, and rivers, in the column at
+// right (184 px in, as COL.items in walks-day.js).
+.walks-moment {
+  position: absolute;
+  left: 184px;
+  right: 0;
+  margin: 0;
+}
+
+// A photograph: a small thumb in its own shape, its number beside it; the
+// live one (last passed, or under the hand) takes an ink ring.
+.walks-moment--photo {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center;
+  column-gap: $space-3;
+
+  a {
+    display: block;
+    justify-self: start;
+    border-radius: $radius;
+    line-height: 0;
+    @include focus-ring;
+  }
+
+  img {
+    display: block;
+    border-radius: $radius;
+    background: var(--surface);
+    box-shadow: 0 0 0 1px var(--edge);
+    transition: box-shadow $t-fast;
+  }
+
+  figcaption {
+    min-width: 0;
+    @include type-meta;
+    color: var(--ink-faint);
+  }
+
+  a:hover img,
+  &.is-lit img {
+    box-shadow: 0 0 0 1px var(--ground), 0 0 0 2px var(--ink);
+  }
+
+  &.is-lit figcaption {
+    color: var(--ink);
+  }
+}
+
+.walks-moment-approx {
+  color: var(--ink-faint);
+}
+
+.walks-moment--hood,
+.walks-moment--river {
+  height: 22px;
+  @include type-meta;
+  line-height: 22px;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &.is-lit {
+    color: var(--ink);
+  }
+}
+
+.walks-moment--river::before {
+  content: "";
+  display: inline-block;
+  width: 12px;
+  height: 2px;
+  margin-right: $space-2;
+  vertical-align: middle;
+  background: var(--edge);
 }
 
 // A walk's video: the figure frame of the site's YouTube embed, at the
@@ -631,6 +867,13 @@ $walks-masthead: var(--walks-masthead, 162px); // measured by walks.js
     position: relative;
     z-index: 3;
     border-bottom-color: transparent;
+  }
+
+  // The page scrolls, not the panel: the day's head sticks to the window.
+  .walks-day-head {
+    top: 0;
+    margin: 0;
+    padding: $space-3 0;
   }
 }
 

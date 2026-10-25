@@ -4,14 +4,18 @@
 page: every walk is drawn on one full-window map, and a panel floating at the
 container's left edge holds the index (the head, place switches, every walk as
 a row) or, once a walk is chosen from a row or a route, that walk's sheet: its
-photographs, a journal excerpt, and links to published writing. Individual
-walks and photographs have hash links, for example
-`/traces/walks/#walk-s0399/photo-2`.
+day hour by hour with the photographs on it, a journal excerpt, its details,
+and links to published writing. Individual walks and photographs have hash
+links, for example `/traces/walks/#walk-s0399/photo-2`.
 
 The layout is `layouts/traces/walks.html`, the script `assets/js/walks.js` with
-the map in `assets/js/walks-map.js` on the site's map in `assets/js/panel-map.js` (bundled by `js.Build`), and the styles
+the map in `assets/js/walks-map.js` on the site's map in `assets/js/panel-map.js`
+and the day in `assets/js/walks-day.js` (bundled by `js.Build`), and the styles
 `assets/scss/sections/_walks.scss`. The design was chosen from five versions on
-2026-10-23 (Atlas, Ledger, Places, Sequence, Field); this is Field.
+2026-10-23 (Atlas, Ledger, Places, Sequence, Field); this is Field. The day in
+the sheet was chosen on 2026-10-25 from studies of a scrubber along the map's
+foot, 3D views, and route shapes in the list; it keeps everything in the panel
+and the map's foot clear.
 
 ## Places
 
@@ -87,6 +91,7 @@ python3 tools/build-walks.py \
   --photos /path/to/reviewed-photo-manifest.json \
   --editorial data/walks-editorial.json
 uv run tools/walks-media.py   # photographs the Space lacks; --check lists them
+uv run tools/walks-day.py     # each walk's day for the sheet (The Day)
 PYTHONDONTWRITEBYTECODE=1 python3 tools/test-walks.py
 hugo server -D --port 1328 --destination /tmp/toto-walks-preview
 ```
@@ -112,16 +117,67 @@ capture times. Unlocated photographs stay in sequence without map markers.
 ## The Sheet
 
 A chosen walk's sheet opens with its number and place, the title, and the
-summary; then its video, where it has one (On Video); its photographs (Along
-the Way); the journal passage (From the Journal), set as plain text in full
-ink, since every passage is quoted; and then the day itself (On the Day): the
-weekday and date; the time, from the first to the last retained point of the
-recording, with its duration (left out for sparse recordings); the distance;
-the weather from the journal's frontmatter (`weather` in the editorial file,
-or the passage's); and the camera, from the photographs, or Film. Elsewhere
-closes it. The journal's `location` stays out: it is where the entry was
-written, often at home. The builder writes `started`, `ended`, `minutes`,
-`weather`, `film`, and `video` for each walk.
+summary; then its video, where it has one (On Video); the day hour by hour
+(Hour by Hour, below); the photographs the day cannot hold, as small thumbs
+(Without a Time or Place, or Along the Way when none has either, as on the
+film walks and the sparse Kawagoe recording); the journal passage (From the
+Journal), set as plain text in full ink, since every passage is quoted; and
+then Details: the weekday and date; the time, from the first to the last
+retained point of the recording, with its duration (left out for sparse
+recordings); the distance; the steps (≈, the distance over a 0.75 m stride,
+for a walker of 170 cm, since nothing on the walks counted them); the time on
+foot, walking and standing, with the stops of four minutes or more; the
+ground, the climb and the range of heights from the survey model, with the
+distance below sea level where there is one; the weather from the journal's
+frontmatter (`weather` in the editorial file, or the passage's); the camera,
+from the photographs, or Film; and the frames, the session's count beside the
+published ones. Elsewhere closes it. The journal's `location` stays out: it
+is where the entry was written, often at home. The builder writes `started`,
+`ended`, `minutes`, `weather`, `film`, and `video` for each walk.
+
+## The Day
+
+Hour by Hour draws the walk down the sheet (`assets/js/walks-day.js`): the
+clock runs down the left, half hours where there is room; beside it the time
+on foot (walking in ink, standing in tone 4, unrecorded gaps dashed); the
+shutter (every frame of the session a hairline, the published ones in ink);
+and the ground, wider where it is higher, stretched across the middle 90% of
+the walk's own heights so a city walk's few meters read as clearly as a
+mountain's hundreds (the rare heights beyond rest at the column's edges; the
+height under the cursor follows it in 11 px type beside the lamp). In the
+column at right, the photographs (small thumbs in their own shape with their
+number; ≈ marks one placed on the route by its time, and says so under the
+hand), the neighborhoods, and the rivers crossed, each where it happened in
+time and joined to its moment by a hairline. The heading, a readout (the
+time, distance, steps, ground, and what the walk was doing where), and
+the key (Walking, Standing, Shutter, Ground: one line in 12 px type) stay at
+the top of the sheet while the day scrolls under them.
+
+Moving through the day walks a signal lamp along the route on the map: by
+hand over the clock and the ground, or by scrolling (with the hand off the
+clock, the cursor sits two fifths of the way down the panel).
+The photograph last passed, or the one under the hand, takes an ink ring;
+under the hand, in the sheet or on the map, its spot on the map takes a signal
+ring. The lightbox opens any thumb and steps through the day's photographs.
+A photograph sits on the clock by its capture time, or, without one, by the
+time the recording passed its place.
+
+The day's data is `static/traces/walks/days.json`, written by
+`make walk-day` (`tools/walks-day.py`) from the vault manifest and the private
+photo manifest: for each walk a sample every 20 m (position, distance, seconds
+from the start, the ground's height, the recording segment), the
+neighborhoods held for 200 m or more, the rivers crossed, the runs of walking
+and standing, the shutter, and the totals. Heights come from GSI's 10 m model
+in Japan and Terrarium in Rome, never the GPS, which puts Ochanomizu to
+Mizumoto Park at 845 m of climbing where the ground climbs 13. Neighborhoods
+and rivers come from OpenFreeMap's tiles; names the tiles carry only in
+Japanese are romanized in the script. A river counts as crossed only where the
+route 100 m either side lies on opposite banks, so a walk along a bank is not
+a crossing. Under 0.4 m/s is standing, and a stand under 90 s counts as
+walking. The shutter is read from each session's raw files with `sips`; a
+session whose drive is offline keeps the frames from the last run. Tiles are
+cached in `.local/walks/tiles`. Rerun it when a recording changes; picking
+photographs does not need it, since the page sets them on the clock itself.
 
 ## Picking Photographs
 
@@ -161,8 +217,11 @@ signal orange on a ground casing, above everything else. Its
 photographs are the guide's numbered 24 px markers from z11.5, and the one under
 the hand, or whose tile is, takes a signal ring. Colors are read from the
 custom properties and redrawn when the scheme changes. The site sends no
-photographs or journals to the tile service; the credit sits at the map's
-corner.
+photographs or journals to the tile service. The walk under the hand is
+named by its row, so the map carries no badge; its corner speaks only when the
+map fails. The scale bar sits at the foot of the container's right edge, under
+the zoom keys' column, and the credit is small (11 px, under the site's 14 px
+floor) in the window's corner.
 
 On wide screens the page does not scroll: the map fills the window and runs up
 under the masthead, where a fade to the ground replaces the masthead's rule;

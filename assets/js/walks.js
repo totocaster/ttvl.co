@@ -1,10 +1,13 @@
 // Walks: the map is the page. The panel holds the index (rendered by the
 // layout: the head, place switches, every walk as a row) or the chosen
 // walk's sheet; a walk is picked from a row or a route, a place switch
-// narrows both, and #walk-s0399 or #walk-s0399/photo-3 opens one.
+// narrows both, and #walk-s0399 or #walk-s0399/photo-3 opens one. The sheet
+// draws the walk's day hour by hour (walks-day.js); moving through it, by
+// hand or by scrolling, walks a lamp along the route.
 // docs/walks.md.
 
 import {WalkMap} from "./walks-map.js";
+import {Day, clock} from "./walks-day.js";
 
 const root = document.querySelector("[data-walks]");
 const $ = (selector) => root.querySelector(selector);
@@ -16,6 +19,7 @@ const sheet = $("[data-sheet]");
 const list = $("[data-list]");
 const narrow = matchMedia("(max-width: 768px)");
 const reducedMotion = () => matchMedia("(prefers-reduced-motion: reduce)").matches;
+const STRIDE = 0.75; // metres a step, for the walker's 170 cm
 let place = null;
 let chosen = null;
 let indexScroll = 0;
@@ -70,13 +74,15 @@ function counted(value, unit) {
 }
 
 const km = (walk) => (walk.distance_km === null ? null : counted(walk.distance_km, "km"));
-const photoCount = (walk) => (walk.photos.length ? counted(walk.photos.length, walk.photos.length === 1 ? "photograph" : "photographs") : null);
 
 // The archive: the layout's walks, each with its place, number, and middle,
 // joined to its route.
 const routes = await (await fetch(data.routes)).json();
 const features = new Map(routes.features.map((feature) => [feature.properties.walk, feature]));
 const walks = data.walks.map((walk) => ({...walk, feature: features.get(walk.id)}));
+// Each walk's day (tools/walks-day.py) arrives after the page answers; a
+// sheet opened before it does is drawn again when it lands.
+const days = fetch(data.days).then((response) => response.json()).then((file) => file.walks).catch(() => ({}));
 const byId = new Map(walks.map((walk) => [walk.id, walk]));
 const places = data.places.map((p) => ({...p, walks: walks.filter((walk) => walk.place === p.key)}));
 const placeName = (key) => places.find((p) => p.key === key)?.name || "";
@@ -88,7 +94,7 @@ function clearance() {
   if (narrow.matches) return {top: top + 32, right: 64, bottom: 32, left: 32};
   // The panel stands at the container's edge; the zoom keys mirror it at right.
   const box = panel.getBoundingClientRect();
-  return {top: top + 48, right: Math.round(box.left + 80), bottom: 72, left: Math.round(box.right + 48)};
+  return {top: top + 48, right: Math.round(box.left + 80), bottom: 48, left: Math.round(box.right + 48)};
 }
 
 const map = new WalkMap($("[data-map]"), {walks, routes, places}, {
@@ -96,7 +102,10 @@ const map = new WalkMap($("[data-map]"), {walks, routes, places}, {
   onHover: (id) => light(id, "map"),
   onSelect: (id) => open(id),
   onPhoto: (walkId, photoId) => openPhoto(photoId),
-  onPhotoHover: (photoId) => $$(".walks-gallery figure").forEach((figure) => figure.classList.toggle("is-lit", figure.dataset.photoId === photoId)),
+  onPhotoHover: (photoId) => {
+    $$(".walks-gallery figure").forEach((figure) => figure.classList.toggle("is-lit", figure.dataset.photoId === photoId));
+    hoverPhoto(day.placed?.find((p) => p.photo.id === photoId) || null, {move: false});
+  },
   onPlace: (key) => { if (chosen) close({fit: false}); setPlace(key); },
   onFail: () => {
     const badge = $("[data-readout]");
@@ -106,16 +115,12 @@ const map = new WalkMap($("[data-map]"), {walks, routes, places}, {
   padding: clearance,
 });
 
-// The badge at the map's corner names the walk under the hand; the open
-// one is named by its sheet, so with nothing under the hand it is hidden.
+// The walk under the hand lights its row and its route; its row names it,
+// so the map carries no badge of its own (the corner speaks only when the
+// map fails).
 function light(id, from) {
   for (const li of list.children) li.classList.toggle("is-lit", li.dataset.walk === id);
   if (from === "list") map.setHover(id);
-  const walk = byId.get(id);
-  const badge = $("[data-readout]");
-  if ($("[data-map]").dataset.mapState === "failed") return;
-  badge.replaceChildren(walk ? joined(n(pad(walk.number)), time(walk.date), walk.title, km(walk), photoCount(walk)) : "");
-  badge.hidden = !walk;
   if (from === "map" && id && !chosen) scrollRow(list.querySelector(`[data-walk="${id}"]`));
 }
 
@@ -153,15 +158,16 @@ function setPlace(key, {fit = true} = {}) {
   if (fit) map.fitIds(ids);
 }
 
-// Photographs: 4:3 tiles the shared lightbox opens; each carries its id,
-// so a marker and a tile can find each other.
-function gallery(walk) {
-  if (!walk.photos.length) return el("p", {class: "legend", text: "Photographs from this walk have not been matched yet."});
-  const grid = el("div", {class: "walks-gallery", "data-lightbox-gallery": true}, walk.photos.map((photo) => {
+// Photographs the day cannot hold (no time, no place): small thumbs in
+// their own shape that the shared lightbox opens. The lightbox reads the
+// full picture from src; the browser fetches the thumb. Each carries its id,
+// so a marker and a thumb can find each other.
+function gallery(walk, photos) {
+  const grid = el("div", {class: "walks-gallery", "data-lightbox-gallery": true}, photos.map((photo) => {
     const figure = el("figure", {dataset: {photoId: photo.id}},
       el("a", {href: photo.src, "data-date": walk.date, "aria-label": `Photograph ${photo.sequence}, enlarge`},
-        el("img", {src: photo.src, alt: photo.alt, loading: "lazy", width: photo.width, height: photo.height})),
-      el("figcaption", {}, joined(n(pad(photo.sequence, 2)), photo.time ? time(photo.captured, photo.time) : null, photo.coordinates ? null : "Not placed")));
+        el("img", {src: photo.src, srcset: `${photo.thumb} 360w, ${photo.src} 1600w`, sizes: "96px", alt: photo.alt, loading: "lazy", width: photo.width, height: photo.height})),
+      el("figcaption", {}, n(pad(photo.sequence, 2))));
     figure.addEventListener("mouseenter", () => map.lightPhoto(photo.id));
     figure.addEventListener("mouseleave", () => map.lightPhoto(null));
     return figure;
@@ -185,12 +191,17 @@ function openPhoto(photoId) {
   if (link) document.dispatchEvent(new CustomEvent("lightbox:open", {detail: {link, trigger: link}}));
 }
 
-// On the day, under the photographs and the journal: when (from the
-// recording), how far, the weather (from the journal), and the camera (from
-// the photographs).
+// Details, under the day and the journal: when (from the recording), how
+// far and how many steps, the time on foot and the ground (from the day),
+// the weather (from the journal), and the camera and frames (from the
+// photographs and their session).
 const weekday = (iso) => new Date(`${iso}T12:00:00`).toLocaleDateString("en-GB", {weekday: "long"});
+const fmt = new Intl.NumberFormat("en-US");
+const signed = (value) => `${value < 0 ? "−" : ""}${fmt.format(Math.abs(value))}`;
+const N = (value) => `<span class="n">${value}</span>`;
 function duration(minutes) {
   const frag = document.createDocumentFragment();
+  minutes = Math.round(minutes);
   const hours = Math.floor(minutes / 60), rest = minutes % 60;
   if (hours) frag.append(counted(hours, "h"));
   if (hours && rest) frag.append(" ");
@@ -199,7 +210,9 @@ function duration(minutes) {
 }
 const cameraName = (name) => name.trim().replace(/^LEICA\b/, "Leica").replace(/^RICOH\b/, "Ricoh");
 
-function facts(walk) {
+const note = (...parts) => el("span", {class: "walks-facts-note"}, ...parts);
+
+function facts(walk, today) {
   const rows = [];
   const add = (label, ...value) => rows.push(el("dt", {text: label}), el("dd", {}, ...value));
   add("Date", `${weekday(walk.date)} `, time(walk.date));
@@ -209,15 +222,61 @@ function facts(walk) {
     add("Time", joined(span, duration(walk.minutes)));
   }
   add("Distance", km(walk) || "Not measured");
+  // Steps are distance over a stride; nothing on the walks counted them.
+  if (walk.distance_km) add("Steps", "≈ ", n(fmt.format(Math.round(walk.distance_km * 1000 / STRIDE / 100) * 100)));
+  if (today) {
+    const stops = today.runs.filter(([a, b, state]) => state === "s" && b - a >= 4).length;
+    add("On foot", "Walking ", duration(today.walking), ", standing ", duration(today.standing),
+      note(stops ? joined(counted(stops, stops === 1 ? "stop" : "stops"), "four minutes or longer") : "No stop of four minutes or longer"));
+    // The ground from the survey model, never the GPS.
+    let below = 0;
+    const S = today.samples;
+    for (let i = 1; i < S.length; i++) if (S[i][4] !== null && S[i][4] < 0 && S[i][5] === S[i - 1][5]) below += S[i][2] - S[i - 1][2];
+    const range = document.createDocumentFragment();
+    range.append(n(signed(today.low)), "–", n(signed(today.high)), " m");
+    add("Ground", "Climbed ", counted(fmt.format(today.climb), "m"), " · ", range, below > 300 ? note(n((below / 1000).toFixed(1)), " km below sea level") : null);
+  }
   const weather = walk.weather?.match(/^(-?\d+) °C\s*(.*)$/);
   if (weather) add("Weather", counted(weather[1], "°C"), weather[2] ? `, ${weather[2].toLowerCase()}` : "");
   const cameras = [...new Set(walk.photos.map((photo) => photo.camera).filter(Boolean).map(cameraName))];
   if (cameras.length || walk.film) add(cameras.length > 1 ? "Cameras" : "Camera", cameras.join(", ") || "Film");
+  if (today?.frames_total) add("Frames", counted(today.frames_total, "in the session"), ", ", counted(walk.photos.length, "here"));
   return el("dl", {class: "walks-facts"}, rows);
 }
 
-// The sheet: the chosen walk's record, set for the panel.
-function renderSheet(walk) {
+// The photographs the day can hold: those with a time, or a place on the
+// route (their time then comes from the recording). A photograph with a
+// time but no place is set on the route by its time, approximately.
+function placedPhotos(walk, today) {
+  const S = today.samples;
+  const nearest = ([lon, lat]) => {
+    const k = Math.cos(lat * Math.PI / 180);
+    let best = null, bd = Infinity;
+    for (const s of S) {
+      if (s[3] === null) continue;
+      const d = ((s[0] - lon) * k) ** 2 + (s[1] - lat) ** 2;
+      if (d < bd) { bd = d; best = s; }
+    }
+    return Math.sqrt(bd) * 111320 < 400 ? best : null;
+  };
+  const placed = [];
+  for (const photo of walk.photos) {
+    let t = null;
+    if (photo.time) {
+      const [h, m] = photo.time.split(":").map(Number);
+      t = ((h * 60 + m) - today.t0) * 60;
+    } else if (photo.coordinates) t = nearest(photo.coordinates)?.[3] ?? null;
+    if (t === null || t < -900 || t > today.T + 900) continue;
+    t = Math.max(0, Math.min(today.T, t));
+    placed.push({photo, t, lonlat: photo.coordinates || stateAt(today, t).lonlat, approx: !photo.coordinates});
+  }
+  return placed.sort((a, b) => a.t - b.t);
+}
+
+// The sheet: the chosen walk's record, set for the panel. The day needs its
+// data; without it (a sparse recording, or while it loads) the photographs
+// are a gallery.
+function renderSheet(walk, today = null) {
   const back = el("button", {type: "button", class: "btn btn--quiet walks-back", text: "← All walks"});
   back.addEventListener("click", () => close());
   const section = (title, ...body) => el("section", {class: "walks-section"}, el("h3", {class: "walks-heading", text: title}), ...body);
@@ -228,39 +287,147 @@ function renderSheet(walk) {
       el("span", {class: "row-meta", text: rest.length ? kind : "Page"}),
       el("span", {class: "row-main"}, el("a", {class: "row-title", href: link.url, text: rest.join(" · ") || kind})));
   });
+  const placed = today ? placedPhotos(walk, today) : [];
+  const loose = walk.photos.filter((photo) => !placed.some((p) => p.photo === photo));
+  sheet.hidden = false;
+  const hours = today ? day.render(walk, today, placed, sheet.clientWidth || 336) : null;
+  if (!hours) day.clear();
+  const looseNote = !walk.photos.length ? "Photographs from this walk have not been matched yet."
+    : placed.length ? "No time or place was recorded for these photographs."
+    : walk.film ? "Film photographs, in the order of the roll; the scans carry no time or place." : null;
   sheet.replaceChildren(...[
     back,
     el("div", {class: "walks-rail"}, el("p", {}, joined(n(pad(walk.number)), placeName(walk.place)))),
     el("h2", {class: "walks-title", tabindex: "-1", text: walk.title}),
     walk.summary ? el("p", {class: "walks-summary", text: walk.summary}) : null,
     walk.video ? section("On Video", video(walk.video)) : null,
-    section("Along the Way", gallery(walk)),
+    hours,
+    loose.length || !walk.photos.length ? section(placed.length ? "Without a Time or Place" : "Along the Way",
+      loose.length ? gallery(walk, loose) : null, looseNote ? el("p", {class: "legend", text: looseNote}) : null) : null,
     paragraphs.length ? section("From the Journal",
       el("blockquote", {class: "walks-journal"}, paragraphs.map((text) => el("p", {text}))),
       walk.places.length ? el("p", {class: "legend", text: `Places in the entry: ${walk.places.join(" · ")}`}) : null) : null,
-    section("On the Day", facts(walk)),
+    section("Details", facts(walk, today)),
     links.length ? section("Elsewhere", el("ul", {class: "rows walks-links"}, links)) : null,
   ].filter(Boolean));
 }
+
+// ---------- the day: time, the lamp, the photographs ----------
+// cur: seconds since the walk's first recorded point.
+let cur = 0, hovered = null;
+
+// Where the walk was at t: position, distance, ground, what it was doing,
+// the neighborhood, and a river under foot.
+function stateAt(today, t) {
+  const S = today.samples;
+  let a = 0, b = S.length - 1;
+  if (t <= (S[0][3] ?? 0)) b = 0;
+  else if (t >= (S[b][3] ?? 0)) a = b;
+  else while (b - a > 1) { const m = (a + b) >> 1; if ((S[m][3] ?? 0) <= t) a = m; else b = m; }
+  const p = S[a], q = S[b];
+  let lon = p[0], lat = p[1], cum = p[2], ele = p[4], gap = false;
+  if (a !== b && p[5] === q[5] && q[3] > p[3]) {
+    const f = (t - p[3]) / (q[3] - p[3]);
+    lon += f * (q[0] - p[0]); lat += f * (q[1] - p[1]); cum += f * (q[2] - p[2]);
+    if (p[4] !== null && q[4] !== null) ele += f * (q[4] - p[4]);
+  } else if (a !== b) gap = true;
+  const local = today.t0 + t / 60;
+  const run = today.runs.find(([from, to]) => local >= from && local <= to);
+  const hood = today.hoods.find(([from, to]) => cum >= from - 100 && cum <= to + 100) || null;
+  const river = today.rivers.find(([at]) => Math.abs(at - cum) < 80);
+  return {lonlat: [lon, lat], cum, ele, gap, run, hood, river: river?.[1], clock: clock(local)};
+}
+
+function describe(today, t) {
+  const st = stateAt(today, t);
+  const standing = st.run?.[2] === "s" && st.run[1] - st.run[0] >= 2 ? ` ${N(Math.round(st.run[1] - st.run[0]))} min` : "";
+  const doing = st.gap ? "not recorded" : st.run?.[2] === "s" ? `standing${standing}` : st.river ? `crossing the ${st.river.replace(/ River$/, "")}` : "walking";
+  return `<b>${N(st.clock)}</b> · ${N((st.cum / 1000).toFixed(1))} km · ≈ ${N(fmt.format(Math.round(st.cum / STRIDE / 50) * 50))} steps<br>${N(st.ele !== null ? signed(Math.round(st.ele)) : "–")} m · ${doing}${st.hood ? ` in ${st.hood[2]}` : ""}`;
+}
+
+const day = new Day({
+  onScrub: (t) => setTime(t),
+  onPhoto: (placed) => hoverPhoto(placed, {move: true}),
+  describe: (t) => (chosen && byId.get(chosen).day ? describe(byId.get(chosen).day, t) : ""),
+});
+
+// The photograph under the hand, or else the one last passed, is the live one.
+function activePhoto() {
+  if (hovered) return hovered;
+  const passed = (day.placed || []).filter((p) => p.t <= cur + 20);
+  return passed.at(-1) || null;
+}
+
+function setTime(t) {
+  const walk = chosen && byId.get(chosen);
+  if (!walk?.day || !day.chart) return;
+  cur = Math.max(0, Math.min(walk.day.T, t));
+  const st = stateAt(walk.day, cur);
+  map.setLamp(st.lonlat);
+  const active = activePhoto();
+  map.lightPhoto(active?.photo.id || null);
+  day.setTime(cur, st, active);
+}
+
+// A photograph under the hand, in the sheet or on the map, rings its spot;
+// from the sheet it also moves the day to its moment.
+function hoverPhoto(placed, {move}) {
+  hovered = placed;
+  map.setSpot(placed ? placed.lonlat : null);
+  if (placed && move) setTime(placed.t);
+  else setTime(cur);
+}
+
+// Reading down the day walks the route: with the hand off the clock, the
+// cursor sits where the reading line crosses the day, two fifths of the way
+// down what scrolls (the panel on wide screens, the page on phones).
+function readingLine() {
+  if (narrow.matches) return innerHeight * 0.42;
+  const box = panel.getBoundingClientRect();
+  return box.top + box.height * 0.42;
+}
+function followReading() {
+  if (!chosen || day.inChart || !day.chart) return;
+  const line = readingLine(), box = day.box.getBoundingClientRect();
+  if (line < box.top || line > box.bottom) return;
+  setTime(day.tOf(line - box.top));
+}
+panel.addEventListener("scroll", followReading, {passive: true});
+addEventListener("scroll", () => { if (narrow.matches) followReading(); }, {passive: true});
 
 function writeHash(hash) {
   if (location.hash !== hash) history.pushState(null, "", hash || location.pathname + location.search);
 }
 
-function open(id, {fit = true, hash = true, animate = true} = {}) {
+// The day starts at the walk's first point, or at a linked photograph's moment.
+function startDay(walk, photoId = null) {
+  const linked = photoId && day.placed?.find((p) => p.photo.id === photoId);
+  setTime(linked ? linked.t : 0);
+  if (!walk.day) map.setLamp(null);
+}
+
+function open(id, {fit = true, hash = true, animate = true, photo = null} = {}) {
   const walk = byId.get(id);
   if (!walk) return;
   if (!chosen) indexScroll = panel.scrollTop;
   chosen = id;
+  hovered = null;
+  map.setSpot(null);
   for (const li of list.children) li.toggleAttribute("aria-current", li.dataset.walk === id);
-  renderSheet(walk);
   index.hidden = true;
-  sheet.hidden = false;
+  renderSheet(walk, walk.day);
   panel.scrollTop = 0;
   // On phones the sheet follows the map down the page: bring the map back
   // into view so the walk is seen before it is read.
   if (narrow.matches && animate) $("[data-map]").scrollIntoView({block: "start", behavior: reducedMotion() ? "instant" : "smooth"});
   map.setChosen(id);
+  startDay(walk, photo);
+  // Opened before the days arrived: draw the sheet again once they have.
+  if (walk.day === undefined) days.then(() => {
+    if (chosen !== id) return;
+    renderSheet(walk, walk.day);
+    startDay(walk, photo);
+  });
   if (fit) map.fitIds([id], {animate});
   light(null);
   sheet.querySelector(".walks-title").focus({preventScroll: true});
@@ -270,6 +437,10 @@ function open(id, {fit = true, hash = true, animate = true} = {}) {
 function close({fit = true, hash = true} = {}) {
   const was = chosen;
   chosen = null;
+  hovered = null;
+  day.clear();
+  map.setLamp(null);
+  map.setSpot(null);
   for (const li of list.children) li.removeAttribute("aria-current");
   sheet.hidden = true;
   sheet.replaceChildren();
@@ -295,9 +466,10 @@ function readHash() {
 }
 
 // The panel answers at once; the map frames the walk or Tokyo once it loads.
+days.then((all) => { for (const walk of walks) walk.day = all[walk.id] || null; });
 setPlace(null, {fit: false});
 const first = readHash();
-if (first) open(first.walk, {hash: false, animate: false, fit: false});
+if (first) open(first.walk, {hash: false, animate: false, fit: false, photo: first.photo});
 map.ready.then(() => {
   if (!first) return map.fitPlace("tokyo", {animate: false});
   if (chosen !== first.walk) return;

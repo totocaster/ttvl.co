@@ -85,6 +85,27 @@ class RouteBoundaries(unittest.TestCase):
         for private in ('/Users/', '/Volumes/', 'source_sha256', 'source_note'):
             self.assertNotIn(private, serialized)
 
+    def test_every_recorded_walk_has_its_day(self):
+        root = Path(__file__).resolve().parents[1]
+        data = json.loads((root/'data/walks.json').read_text())
+        days = json.loads((root/'static/traces/walks/days.json').read_text())['walks']
+        recorded = {w['id'] for w in data['walks'] if w['recording'] != 'Sparse recording'}
+        self.assertEqual(set(days), recorded)
+        for walk_id, day in days.items():
+            samples = day['samples']
+            self.assertGreater(len(samples), 2, walk_id)
+            self.assertEqual([s[2] for s in samples], sorted(s[2] for s in samples), walk_id)
+            times = [s[3] for s in samples if s[3] is not None]
+            self.assertEqual(times[0], 0, walk_id)
+            self.assertEqual(max(times), day['T'], walk_id)
+            self.assertLessEqual(day['low'], day['high'], walk_id)
+            for a, b, state in day['runs']:
+                self.assertLessEqual(a, b, walk_id)
+                self.assertIn(state, 'wsg')
+        serialized = json.dumps(days)
+        for private in ('/Users/', '/Volumes/', '.DNG', 'sha256'):
+            self.assertNotIn(private, serialized)
+
 
 if __name__ == '__main__':
     unittest.main()

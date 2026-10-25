@@ -2,7 +2,7 @@
 # Run `make` for the list.
 
 .DEFAULT_GOAL := help
-.PHONY: help serve serve-drafts build entry walk-photos cards cards-check cards-stale cards-all hooks
+.PHONY: help serve serve-drafts build entry walk-photos walk-day cards cards-check cards-stale cards-all hooks
 
 help: ## Show this list
 	@grep -E '^[a-z-]+:.*## ' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*## "}; {printf "  %-14s %s\n", $$1, $$2}'
@@ -21,6 +21,9 @@ entry: ## Start a research entry: make entry STREAM=ambient-computing SLUG=four-
 
 walk-photos: ## Pick each walk's photographs in the browser (localhost:8790)
 	uv run tools/walks-photos.py
+
+walk-day: ## Rebuild each walk's day for its sheet (static/traces/walks/days.json)
+	uv run tools/walks-day.py
 
 # Social cards live in static/social/ and are committed. Render them locally
 # after adding or retitling a note, project page, or hub; the build server

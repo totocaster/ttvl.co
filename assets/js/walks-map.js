@@ -7,6 +7,8 @@ import {DOTS, LINES, ROUND as round, base, createMap, followScheme, maplibre, re
 const PHOTO_ZOOM = 11.5;
 const PLACE_ZOOM = 6;
 
+const pointData = (at) => ({type: "FeatureCollection", features: at ? [{type: "Feature", properties: {}, geometry: {type: "Point", coordinates: at}}] : []});
+
 export function pointsOf(feature) {
   const g = feature?.geometry;
   if (!g) return [];
@@ -31,6 +33,8 @@ export class WalkMap {
     this.visible = null;
     this.hovered = null;
     this.chosen = null;
+    this.lampAt = null; // where the sheet's day is, [lon, lat]
+    this.spotAt = null; // where the photograph under the hand was made
     this.photoMarkers = [];
     this.placeMarkers = [];
     this.ready = this.init();
@@ -95,6 +99,8 @@ export class WalkMap {
         ...map.sources,
         walks: {type: "geojson", data: this.routes},
         ends: {type: "geojson", data: this.endsData()},
+        spot: {type: "geojson", data: pointData(this.spotAt)},
+        lamp: {type: "geojson", data: pointData(this.lampAt)},
       },
       layers: [
         ...map.layers,
@@ -112,6 +118,12 @@ export class WalkMap {
         {id: "w-hover", type: "line", source: "walks", filter: ["all", LINES, f.hover], layout: round, paint: {"line-color": t.signal, "line-width": zoomWidth(8, 2.5, 12, 3, 16, 4)}},
         {id: "w-hit", type: "line", source: "walks", filter: ["all", LINES, f.context], paint: {"line-color": t.ink, "line-width": 14, "line-opacity": 0}},
         {id: "w-hit-dots", type: "circle", source: "walks", filter: ["all", DOTS, f.context], paint: {"circle-color": t.ink, "circle-radius": 10, "circle-opacity": 0}},
+        // The photograph under the hand: a signal ring around its marker, or
+        // around an ink dot where the markers are off or it has none.
+        {id: "w-spot-dot", type: "circle", source: "spot", paint: {"circle-color": t.ink, "circle-radius": 4.5, "circle-stroke-color": t.ground, "circle-stroke-width": 2}},
+        {id: "w-spot", type: "circle", source: "spot", paint: {"circle-color": t.ground, "circle-opacity": 0, "circle-radius": 16, "circle-stroke-color": t.signal, "circle-stroke-width": 2.5}},
+        // The lamp: where the sheet's day is, in the signal on a ground ring.
+        {id: "w-lamp", type: "circle", source: "lamp", paint: {"circle-color": t.signal, "circle-radius": 6, "circle-stroke-color": t.ground, "circle-stroke-width": 2.5}},
       ],
     };
   }
@@ -227,6 +239,18 @@ export class WalkMap {
       }
       this.photoMarkers.push(new this.lib.Marker({element: button, anchor: "center"}).setLngLat(photo.coordinates).addTo(this.map));
     }
+  }
+
+  // The lamp follows the sheet's day; null puts it out.
+  setLamp(lonlat) {
+    this.lampAt = lonlat;
+    this.map?.getSource("lamp")?.setData(pointData(lonlat));
+  }
+
+  // Ring where a photograph was made while it is under the hand; null clears it.
+  setSpot(lonlat) {
+    this.spotAt = lonlat;
+    this.map?.getSource("spot")?.setData(pointData(lonlat));
   }
 
   // Light one photograph's marker (from a tile under the hand), or none.

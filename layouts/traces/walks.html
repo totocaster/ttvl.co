@@ -29,6 +29,8 @@
 {{- /* The routes carry a hash of their contents, so a rebuilt file is never
      read from a browser's cache. */ -}}
 {{- $routes := printf "/traces/walks/routes.json?v=%s" (substr (md5 (resources.Get "static/traces/walks/routes.json").Content) 0 10) -}}
+{{- /* Each walk's day for the sheet (tools/walks-day.py), loaded after the page. */ -}}
+{{- $days := printf "/traces/walks/days.json?v=%s" (substr (md5 (resources.Get "static/traces/walks/days.json").Content) 0 10) -}}
 <article class="walks" data-walks>
   <div class="walks-map" data-map role="region" aria-label="Every walk on the map"></div>
   <div class="walks-fade" aria-hidden="true"></div>
@@ -92,6 +94,6 @@
       {{- end }}
     </section>
   </noscript>
-  <script id="walks-data" type="application/json">{{ dict "default_walk" $archive.default_walk "routes" $routes "places" $places "walks" $walks | jsonify | safeJS }}</script>
+  <script id="walks-data" type="application/json">{{ dict "default_walk" $archive.default_walk "routes" $routes "days" $days "places" $places "walks" $walks | jsonify | safeJS }}</script>
 </article>
 {{ end }}
