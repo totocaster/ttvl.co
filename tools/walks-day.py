@@ -295,10 +295,7 @@ def build(args):
             continue
         rome = walk["region"] == "Rome"
         zone = ZoneInfo("Europe/Rome" if rome else "Asia/Tokyo")
-        segments, _, _ = walks.route_points(vault / record["vault_file"], record["date"], zone)
-        window = walks.WALK_WINDOWS.get(record["date"])
-        if window:
-            segments = walks.keep_window(segments, zone, *window[:2])
+        segments, _, _ = walks.reading_route(vault / record["vault_file"], record["date"], zone)
         samples = resample(segments)
         timed = [s for s in samples if s[3]]
         if not timed:

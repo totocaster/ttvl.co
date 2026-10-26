@@ -27,11 +27,21 @@ EXCLUDED = {'waypoints-only', 'partial-export', 'alternative-export', 'combined-
 # Outings left out by choice, by date: Kuala Lumpur kept eleven points and no
 # photographs (removed 2026-10-24).
 LEFT_OUT = {'2017-03-25'}
-# Recordings that ran on into train rides: only this window of local time is
-# the walk, cut at the stations. Keyed by date: (from, to, the walk's note).
+# Reviewed walking windows in local time, excluding transport and trailing
+# stops. Keyed by date: (from, to, the walk's note). Originals stay untouched.
 WALK_WINDOWS = {
     '2019-03-08': ('11:17:24', '18:39:38', 'The train rides between Kita-Senju and Nikko are cut from the recording.'),
+    '2019-11-01': ('00:00:00', '13:49:50', 'The later stop elsewhere is cut; the walk ends near Nippori at 13:49:50.'),
     '2020-10-11': ('00:00:00', '15:21:56', 'The train ride from Kita-Senju around the Yamanote line is cut from the recording.'),
+    '2020-11-21': ('00:00:00', '11:31:31', 'The train ride from Sendagaya toward Harajuku is cut; the retained walk ends at Sendagaya.'),
+    '2022-09-03': ('00:00:00', '11:34:10', 'The standing time after arrival at Oimachi is cut at 11:34:10.'),
+}
+# Exact recorded anchor times around individually reviewed GPS errors. Only
+# positions between them are interpolated; the clock and segment gaps survive.
+GPS_REPAIRS = {
+    '2023-10-22': [('11:51:18', '11:52:19', 'The GPS spike around 11:52 is interpolated between the neighboring recorded positions.')],
+    '2024-07-23': [('10:59:04', '11:03:19', 'The GPS backtrack just after 10:58 is interpolated between the neighboring recorded positions.')],
+    '2026-02-23': [('13:16:43', '13:38:01', 'GPS drift during the stop around 13:17–13:39 is replaced by an approximate line between the surrounding recorded positions.')],
 }
 
 
@@ -92,6 +102,37 @@ def keep_window(segments, zone, start, end):
         if current:
             kept.append(current)
     return kept
+
+
+def reading_route(path, day, zone):
+    """One reviewed route for the map, details, photographs, and day builder.
+
+    Repairs use two actual fixes within one continuous segment. Fail if an
+    anchor changes or a gap separates them, rather than joining unknown paths.
+    """
+    segments, omitted, gaps = route_points(path, day, zone)
+    window = WALK_WINDOWS.get(day)
+    if window:
+        segments = keep_window(segments, zone, *window[:2])
+        gaps = sum(1 for a, b in zip(segments, segments[1:])
+                   if (a[-1]['time'] and b[0]['time'] and (b[0]['time']-a[-1]['time']).total_seconds() > 1800)
+                   or distance(a[-1]['coord'], b[0]['coord']) > 2000)
+    for start, end, _ in GPS_REPAIRS.get(day, []):
+        anchors = [parse_time(f'{day}T{clock}').replace(tzinfo=zone) for clock in (start, end)]
+        matches = [(s, i, j) for s in segments
+                   for i, a in enumerate(s) if a['time'] == anchors[0]
+                   for j, b in enumerate(s) if b['time'] == anchors[1] and j > i]
+        if len(matches) != 1:
+            raise ValueError(f'{day}: GPS repair {start}–{end} needs two unique anchors in one segment')
+        segment, i, j = matches[0]
+        a, b = segment[i], segment[j]
+        elapsed = (b['time'] - a['time']).total_seconds()
+        for point in segment[i+1:j]:
+            if not point['time'] or not a['time'] <= point['time'] <= b['time']:
+                raise ValueError(f'{day}: GPS repair needs ordered timestamps')
+            fraction = (point['time'] - a['time']).total_seconds() / elapsed
+            point['coord'] = [round(a['coord'][k] + fraction * (b['coord'][k] - a['coord'][k]), 6) for k in (0, 1)]
+    return segments, omitted, gaps
 
 
 def media_name(path):
@@ -184,14 +225,8 @@ def build(args):
         zone = ZoneInfo({'Rome':'Europe/Rome','Tokyo & Kanto':'Asia/Tokyo'}[region])
         source = vault / record['vault_file']
         assert hashlib.sha256(source.read_bytes()).hexdigest() == record['sha256'], source
-        segments, omitted, gaps = route_points(source,day,zone)
+        segments, omitted, gaps = reading_route(source,day,zone)
         window = WALK_WINDOWS.get(day)
-        if window:
-            segments = keep_window(segments, zone, window[0], window[1])
-            # Breaks inside the walk, by route_points' rule; segment seams are not breaks.
-            gaps = sum(1 for a, b in zip(segments, segments[1:])
-                       if (a[-1]['time'] and b[0]['time'] and (b[0]['time']-a[-1]['time']).total_seconds() > 1800)
-                       or distance(a[-1]['coord'], b[0]['coord']) > 2000)
         coords = [[p['coord'] for p in s] for s in segments]
         flat = [p for s in segments for p in s]
         length = sum(distance(a['coord'],b['coord']) for s in segments for a,b in zip(s,s[1:])) / 1000
@@ -209,6 +244,7 @@ def build(args):
             notes.append('The recording includes transport as well as walking; no walking distance is inferred.')
         if window:
             notes.append(window[2])
+        notes.extend(repair[2] for repair in GPS_REPAIRS.get(day, []))
         if 'incomplete-recording' in flags:
             notes.append('The recording ends before the photographic outing does.')
         if 'photo-date-conflict' in flags:

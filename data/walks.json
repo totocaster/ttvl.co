@@ -7,9 +7,10 @@
       "date": "2026-02-23",
       "year": "2026",
       "region": "Tokyo & Kanto",
-      "distance_km": 7.8,
+      "distance_km": 6.4,
       "recording": "Recorded route",
       "recording_notes": [
+        "GPS drift during the stop around 13:17–13:39 is replaced by an approximate line between the surrounding recorded positions.",
         "The photo session is labeled Hanno; the journal and track use Chichibu."
       ],
       "bounds": [
@@ -369,9 +370,10 @@
       "date": "2024-07-23",
       "year": "2024",
       "region": "Rome",
-      "distance_km": 3.9,
+      "distance_km": 3.7,
       "recording": "Recorded route",
       "recording_notes": [
+        "The GPS backtrack just after 10:58 is interpolated between the neighboring recorded positions.",
         "The film rolls also contain other scenes; this selection keeps the walk photographs."
       ],
       "bounds": [
@@ -765,9 +767,11 @@
       "date": "2023-10-22",
       "year": "2023",
       "region": "Tokyo & Kanto",
-      "distance_km": 16.5,
+      "distance_km": 15.7,
       "recording": "Recorded route",
-      "recording_notes": [],
+      "recording_notes": [
+        "The GPS spike around 11:52 is interpolated between the neighboring recorded positions."
+      ],
       "bounds": [
         [
           139.774902,
@@ -1794,24 +1798,25 @@
       "date": "2022-09-03",
       "year": "2022",
       "region": "Tokyo & Kanto",
-      "distance_km": 12.6,
+      "distance_km": 12.5,
       "recording": "Recorded route",
       "recording_notes": [
-        "This view isolates the walk date from a file containing other days."
+        "This view isolates the walk date from a file containing other days.",
+        "The standing time after arrival at Oimachi is cut at 11:34:10."
       ],
       "bounds": [
         [
           139.715844,
-          35.606994
+          35.60715
         ],
         [
-          139.733052,
+          139.733009,
           35.686625
         ]
       ],
       "started": "07:04",
-      "ended": "12:39",
-      "minutes": 335,
+      "ended": "11:34",
+      "minutes": 270,
       "weather": "23 °C Overcast",
       "film": false,
       "camera": null,
@@ -3085,19 +3090,20 @@
     },
     {
       "id": "s0313",
-      "title": "Akebonobashi to Tokyo Tower via Harajuku",
+      "title": "Akebonobashi to Sendagaya",
       "date": "2020-11-21",
       "year": "2020",
       "region": "Tokyo & Kanto",
-      "distance_km": 6.4,
+      "distance_km": 2.3,
       "recording": "Partial recording",
       "recording_notes": [
+        "The train ride from Sendagaya toward Harajuku is cut; the retained walk ends at Sendagaya.",
         "The recording ends before the photographic outing does."
       ],
       "bounds": [
         [
-          139.699966,
-          35.670105
+          139.711868,
+          35.680996
         ],
         [
           139.72023,
@@ -3105,8 +3111,8 @@
         ]
       ],
       "started": "10:43",
-      "ended": "11:43",
-      "minutes": 60,
+      "ended": "11:31",
+      "minutes": 48,
       "weather": "18 °C Mostly Sunny",
       "film": false,
       "camera": null,
@@ -4603,11 +4609,13 @@
       "region": "Tokyo & Kanto",
       "distance_km": 9.8,
       "recording": "Recorded route",
-      "recording_notes": [],
+      "recording_notes": [
+        "The later stop elsewhere is cut; the walk ends near Nippori at 13:49:50."
+      ],
       "bounds": [
         [
           139.720485,
-          35.669233
+          35.693118
         ],
         [
           139.7711,
@@ -4615,8 +4623,8 @@
         ]
       ],
       "started": "10:11",
-      "ended": "17:36",
-      "minutes": 446,
+      "ended": "13:49",
+      "minutes": 219,
       "weather": "15 °C Mostly Sunny",
       "film": false,
       "camera": null,
