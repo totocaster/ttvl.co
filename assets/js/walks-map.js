@@ -73,7 +73,7 @@ export class WalkMap {
     this.addPlaceKeys();
     // Catch up with whatever the page chose while the map was loading.
     this.setVisible(this.visible);
-    this.setPhotos(this.chosen ? this.byId.get(this.chosen) : null);
+    this.setChosen(this.chosen);
     this.zoomed();
     followScheme(this.map, (t) => this.style(t));
     return this;
@@ -89,9 +89,20 @@ export class WalkMap {
     };
   }
 
+  routePaint(t) {
+    // The index shows slightly heavier graphite routes, with the row or
+    // route under the hand in ink. An open walk keeps its original styling.
+    return {
+      context: this.chosen ? t["tone-3"] : t["tone-2"],
+      hover: this.chosen ? t.signal : t.ink,
+      width: this.chosen ? zoomWidth(8, 1, 12, 1.5, 16, 2.25) : zoomWidth(8, 1.5, 12, 2, 16, 2.75),
+    };
+  }
+
   style(t) {
     const f = this.filters();
     const map = base(t);
+    const routes = this.routePaint(t);
     return {
       version: 8,
       glyphs: map.glyphs,
@@ -104,18 +115,17 @@ export class WalkMap {
       },
       layers: [
         ...map.layers,
-        // Walks: every visible one in tone 3, the chosen one in ink on a
-        // ground casing with its ends, and the one under the hand (on the map
-        // or in the rows) in the signal color on top of everything.
-        {id: "w-context", type: "line", source: "walks", filter: ["all", LINES, f.context], layout: round, paint: {"line-color": t["tone-3"], "line-width": zoomWidth(8, 1, 12, 1.5, 16, 2.25)}},
-        {id: "w-context-dots", type: "circle", source: "walks", filter: ["all", DOTS, f.context], paint: {"circle-color": t["tone-3"], "circle-radius": 3}},
+        // The chosen walk stays in ink on a ground casing with its ends;
+        // the index and sheet use their own context and hover colors.
+        {id: "w-context", type: "line", source: "walks", filter: ["all", LINES, f.context], layout: round, paint: {"line-color": routes.context, "line-width": routes.width}},
+        {id: "w-context-dots", type: "circle", source: "walks", filter: ["all", DOTS, f.context], paint: {"circle-color": routes.context, "circle-radius": 3}},
         {id: "w-chosen-casing", type: "line", source: "walks", filter: ["all", LINES, f.chosen], layout: round, paint: {"line-color": t.ground, "line-width": zoomWidth(8, 6, 12, 7, 16, 9)}},
         {id: "w-chosen", type: "line", source: "walks", filter: ["all", LINES, f.chosen], layout: round, paint: {"line-color": t.ink, "line-width": zoomWidth(8, 2.5, 12, 3, 16, 4)}},
         {id: "w-chosen-dots", type: "circle", source: "walks", filter: ["all", DOTS, ["any", f.chosen, f.hover]], paint: {"circle-color": t.ink, "circle-radius": 4.5, "circle-stroke-color": t.ground, "circle-stroke-width": 2}},
         {id: "w-start", type: "circle", source: "ends", filter: ["==", ["get", "end"], "start"], paint: {"circle-color": t.ground, "circle-radius": 5, "circle-stroke-color": t.ink, "circle-stroke-width": 2}},
         {id: "w-end", type: "circle", source: "ends", filter: ["==", ["get", "end"], "end"], paint: {"circle-color": t.ink, "circle-radius": 5, "circle-stroke-color": t.ground, "circle-stroke-width": 2}},
         {id: "w-hover-casing", type: "line", source: "walks", filter: ["all", LINES, f.hover], layout: round, paint: {"line-color": t.ground, "line-width": zoomWidth(8, 5, 12, 6, 16, 8)}},
-        {id: "w-hover", type: "line", source: "walks", filter: ["all", LINES, f.hover], layout: round, paint: {"line-color": t.signal, "line-width": zoomWidth(8, 2.5, 12, 3, 16, 4)}},
+        {id: "w-hover", type: "line", source: "walks", filter: ["all", LINES, f.hover], layout: round, paint: {"line-color": routes.hover, "line-width": zoomWidth(8, 2.5, 12, 3, 16, 4)}},
         {id: "w-hit", type: "line", source: "walks", filter: ["all", LINES, f.context], paint: {"line-color": t.ink, "line-width": 14, "line-opacity": 0}},
         {id: "w-hit-dots", type: "circle", source: "walks", filter: ["all", DOTS, f.context], paint: {"circle-color": t.ink, "circle-radius": 10, "circle-opacity": 0}},
         // The photograph under the hand: a signal ring around its marker, or
@@ -219,6 +229,13 @@ export class WalkMap {
   setChosen(id) {
     this.chosen = id;
     this.applyFilters();
+    if (this.loaded) {
+      const routes = this.routePaint(tokens());
+      this.map.setPaintProperty("w-context", "line-color", routes.context);
+      this.map.setPaintProperty("w-context", "line-width", routes.width);
+      this.map.setPaintProperty("w-context-dots", "circle-color", routes.context);
+      this.map.setPaintProperty("w-hover", "line-color", routes.hover);
+    }
     this.setPhotos(id ? this.byId.get(id) : null);
   }
 

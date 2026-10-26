@@ -40,7 +40,7 @@ const mix = (a, b, t) => `rgb(${a.map((v, i) => Math.round(v * t + b[i] * (1 - t
 
 export function tokens() {
   const css = getComputedStyle(document.documentElement);
-  const t = Object.fromEntries(["ground", "ink", "ink-muted", "ink-faint", "edge", "rule", "surface", "tone-3", "signal"].map((name) => [name, css.getPropertyValue(`--${name}`).trim()]));
+  const t = Object.fromEntries(["ground", "ink", "ink-muted", "ink-faint", "edge", "rule", "surface", "tone-2", "tone-3", "signal"].map((name) => [name, css.getPropertyValue(`--${name}`).trim()]));
   // Streets step back from the edge toward the ground, so lines in tone 3
   // stay the darkest on the map in both themes.
   const ground = solid(t.ground, t.ground), edge = solid(t.edge, t.ground);
