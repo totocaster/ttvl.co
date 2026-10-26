@@ -97,15 +97,31 @@ hugo server -D --port 1328 --destination /tmp/toto-walks-preview
 ```
 
 The builder verifies archived GPX checksums, isolates the outing's local date,
-and preserves gaps of over 30 minutes or 2 km. It retains the recorded shape;
-it does not snap the track to roads or invent missing paths. Sparse recordings
+and preserves gaps of over 30 minutes or 2 km. Outside the reviewed corrections
+below, it retains the recorded shape; it does not snap the track to roads or
+invent missing paths. Sparse recordings
 are points. Transport-inclusive recordings do not imply a walking distance.
-Two recordings ran on into train rides, and `WALK_WINDOWS` in the builder keeps
-only the walk, cut at the stations by local time: Nikko (2019-03-08) from
-arriving at JR Nikko to leaving it, and Kita-Ayase to Kita-Senju (2020-10-11) up
-to Kita-Senju station, before the Yamanote loop. Each says so in its notes, and
-with the rides gone both are measured as walks. Displayed distances are lengths
-of retained recorded segments, not corrected activity totals.
+`reading_route` in the builder supplies the same reviewed points to the map,
+photo placement, details, and day builder. `WALK_WINDOWS` keeps only the walk,
+cut by local time: Nikko (2019-03-08) from arriving at JR Nikko to leaving it;
+Kita-Ayase to Kita-Senju (2020-10-11) up to Kita-Senju station, before the
+Yamanote loop; Akebonobashi to Nippori (2019-11-01) through 13:49:50, before a
+later stop elsewhere; Akebonobashi to Sendagaya (2020-11-21) through 11:31:31,
+before the train toward Harajuku; and Yotsuya-sanchome to Oimachi (2022-09-03)
+through 11:34:10, before the trailing standing time.
+
+`GPS_REPAIRS` records three reviewed corrections: the 11:52 spike on
+Akihabara to Shibamata (2023-10-22); the backtrack just after 10:58 on Gianicolo
+to Ponte Sisto (2024-07-23); and drift during the stop around 13:17–13:39 on
+Around Hanno (2026-02-23). Each uses an approximate straight line between two
+recorded anchor positions, preserving timestamps and never crossing a segment
+gap. Each trim or correction is described in the recording notes. Displayed
+distances are lengths of the retained, corrected segments, not activity totals
+from the recording application. The original GPX files remain unchanged.
+
+All route times, including the website's timeline and Details, use the walk's
+local timezone (`Asia/Tokyo` or `Europe/Rome`, including daylight saving on the
+walk date). The browser does not convert them to the viewer's timezone.
 
 Photo geotags are accepted only within 1 km of the retained route. Otherwise a
 digital camera's capture time can be matched within a continuous track segment

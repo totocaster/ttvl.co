@@ -19,7 +19,9 @@ function text(parent, x, y, value, attrs = {}) {
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 const pad = (v, w = 2) => String(v).padStart(w, "0");
 const minus = (v) => `${v < 0 ? "−" : ""}${Math.abs(v)}`;
-export const clock = (m) => { m = ((Math.round(m) % 1440) + 1440) % 1440; return `${pad(Math.floor(m / 60))}:${pad(m % 60)}`; };
+// Local minutes already include the walk's timezone. Keep the current minute,
+// like Details' HH:MM, rather than rounding 09:54:31 forward to 09:55.
+export const clock = (m) => { m = ((Math.floor(m + 1e-7) % 1440) + 1440) % 1440; return `${pad(Math.floor(m / 60))}:${pad(m % 60)}`; };
 
 // Columns, in px from the timeline's left edge; the items' column is set in
 // _walks.scss to match.

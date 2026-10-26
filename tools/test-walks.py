@@ -47,6 +47,34 @@ class RouteBoundaries(unittest.TestCase):
         self.assertEqual(photo['coordinates'], [139.0005, 35.0])
         self.assertTrue(photo['position_note'].startswith('Approximate'))
 
+    def test_gps_repair_keeps_time_and_requires_continuous_anchors(self):
+        # The spike is within the parser's 2 km gap limit. These UTC times
+        # bracket the reviewed 11:52 local spike, with a real gap afterwards.
+        points = [
+            (139.799, '02:50:00'), (139.8, '02:51:18'),
+            (139.79, '02:51:48'), (139.80061, '02:52:19'),
+            (139.801, '02:53:00'), (139.802, '03:54:00'),
+        ]
+        xml = '<gpx><trk><trkseg>' + ''.join(
+            f'<trkpt lon="{lon}" lat="35.7"><time>2023-10-22T{t}Z</time></trkpt>'
+            for lon, t in points) + '</trkseg></trk></gpx>'
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder)/'spike.gpx'
+            path.write_text(xml)
+            segments, omitted, gaps = walks.reading_route(path, '2023-10-22', self.zone)
+            self.assertEqual(path.read_text(), xml)
+            self.assertEqual((omitted, gaps), (0, 1))
+            self.assertEqual([len(s) for s in segments], [5, 1])
+            self.assertEqual(segments[0][2]['coord'], [139.8003, 35.7])
+            self.assertEqual([p['time'].strftime('%H:%M:%S') for s in segments for p in s], [t for _, t in points])
+            self.assertEqual(segments[0][0]['coord'], [139.799, 35.7])
+            self.assertEqual(segments[0][-1]['coord'], [139.801, 35.7])
+            # An export seam inside the repair must stay a gap, not become
+            # a fabricated connecting path.
+            path.write_text(xml.replace('<trkpt lon="139.80061"', '</trkseg><trkseg><trkpt lon="139.80061"'))
+            with self.assertRaisesRegex(ValueError, 'anchors in one segment'):
+                walks.reading_route(path, '2023-10-22', self.zone)
+
     def test_no_position_across_gap_or_outside_recording(self):
         separated = [[self.points[0][0]], [self.points[0][1]]]
         photo = {'capture_time_local': '2022-10-01T09:02:00', 'gps': [12.5, 41.9]}
@@ -92,6 +120,15 @@ class RouteBoundaries(unittest.TestCase):
         recorded = {w['id'] for w in data['walks'] if w['recording'] != 'Sparse recording'}
         self.assertEqual(set(days), recorded)
         for walk_id, day in days.items():
+            walk = next(w for w in data['walks'] if w['id'] == walk_id)
+            # The map's metadata and independently built timeline must use
+            # the same local window and corrected distance after a rebuild.
+            clock = lambda m: f'{int(m) // 60:02d}:{int(m) % 60:02d}'
+            self.assertEqual(clock(day['t0']), walk['started'], walk_id)
+            self.assertEqual(clock(day['t0'] + day['T'] / 60), walk['ended'], walk_id)
+            self.assertEqual(round(day['T'] / 60), walk['minutes'], walk_id)
+            if walk['distance_km'] is not None:
+                self.assertAlmostEqual(day['samples'][-1][2] / 1000, walk['distance_km'], delta=0.051, msg=walk_id)
             samples = day['samples']
             self.assertGreater(len(samples), 2, walk_id)
             self.assertEqual([s[2] for s in samples], sorted(s[2] for s in samples), walk_id)
@@ -105,6 +142,19 @@ class RouteBoundaries(unittest.TestCase):
         serialized = json.dumps(days)
         for private in ('/Users/', '/Volumes/', '.DNG', 'sha256'):
             self.assertNotIn(private, serialized)
+
+    def test_reviewed_cleanup_is_in_the_reading_copy(self):
+        root = Path(__file__).resolve().parents[1]
+        data = {w['id']: w for w in json.loads((root/'data/walks.json').read_text())['walks']}
+        # Reviewed outcomes: three true endings and three GPS detours removed.
+        for walk_id, ended, km in [
+            ('s0273', '13:49', 9.8), ('s0313', '11:31', 2.3),
+            ('s0395', '11:34', 12.5), ('s0438', '13:20', 15.7),
+            ('west-aurelian-walls', '11:34', 3.7), ('s0498', '16:59', 6.4),
+        ]:
+            with self.subTest(walk=walk_id):
+                self.assertEqual(data[walk_id]['ended'], ended)
+                self.assertEqual(data[walk_id]['distance_km'], km)
 
 
 if __name__ == '__main__':
