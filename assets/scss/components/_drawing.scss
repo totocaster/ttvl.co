@@ -128,11 +128,11 @@ $drawing-palette: (
 }
 
 @include narrow {
-  .has-narrow > .drawing__frame:not(.drawing__frame--narrow) {
+  .has-narrow > .figure-interactive > .drawing__frame:not(.drawing__frame--narrow) {
     display: none;
   }
 
-  .has-narrow > .drawing__frame--narrow {
+  .has-narrow > .figure-interactive > .drawing__frame--narrow {
     display: block;
   }
 }

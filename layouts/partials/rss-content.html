@@ -1,19 +1,10 @@
 {{- /* RSS readers do not load the site's CSS or JavaScript. Convert only
 known site markup, preserving ordinary content and image fallbacks. */ -}}
 {{- $content := .Content -}}
-{{- /* The square-crops shortcode supplies a sibling PNG figure with an
-absolute URL, alt text, and caption. Remove the interactive figure entirely. */ -}}
-{{- $content = replaceRE `(?s)<figure class="square-crops"[^>]*>.*?</figure>` "" $content -}}
-{{- /* The reply-following instrument has its still beside it in the same way. */ -}}
-{{- $content = replaceRE `(?s)<figure class="instrument wide reply-following"[^>]*>.*?</figure>` "" $content -}}
-{{- /* The day wall supplies a plain agenda for the proposed day. */ -}}
-{{- $content = replaceRE `(?s)<figure class="instrument day-wall"[^>]*>.*?</figure>` "" $content -}}
-{{- /* Drawings: each inline SVG becomes an image of its file (the PNG beside
-it when there is one, docs/figures.md). A phone version, an instrument's
-controls, and its readout have nothing to do in a feed. */ -}}
-{{- $content = replaceRE `(?s)<div class="drawing__frame drawing__frame--narrow[^"]*"[^>]*>.*?</svg>\s*</div>` "" $content -}}
-{{- $content = replaceRE `(?s)<div class="drawing__frame[^"]*"[^>]*data-fallback="([^"]+)" data-alt="([^"]*)">.*?</svg>\s*</div>` `<img src="$1" alt="$2" style="max-width: 100%; height: auto;">` $content -}}
-{{- $content = replaceRE `(?s)<div class="instrument__controls">.*?</div>|<p class="readout">.*?</p>` "" $content -}}
+{{- /* Portable figures keep their static image/table and caption beside an
+aside containing the browser rendering. Remove that supplemental version
+for feeds and email, including its controls, SVG variants and demo text. */ -}}
+{{- $content = replaceRE `(?s)<aside class="figure-interactive"[^>]*>.*?</aside>` "" $content -}}
 {{- /* A live chart (site-chart) has no file: its summary stands in. */ -}}
 {{- $content = replaceRE `(?s)<div class="drawing__frame[^"]*"[^>]*data-live="([^"]*)">.*?</svg>\s*</div>` `<p>$1</p>` $content -}}
 {{- /* A comparison shows its two pictures one under the other, named; an
@@ -21,7 +12,7 @@ annotated picture keeps its picture and numbered key, without markers; a
 sparkline drops out of its sentence. Pictures take absolute URLs here,
 since a feed or an email has no page to resolve them against. */ -}}
 {{- $site := strings.TrimSuffix "/" ("/" | absURL) -}}
-{{- $content = replaceRE `(?s)<div class="compare__frame"[^>]*>\s*<img class="compare__second" src="([^"]+)"[^>]*>\s*<img class="compare__first" src="([^"]+)"[^>]*>.*?compare__badge--first"[^>]*>([^<]*)</span>.*?compare__badge--second"[^>]*>([^<]*)</span>.*?</div>` (printf `<p>$3</p><img src="%s$2" alt="$3" style="max-width: 100%%; height: auto;"><p>$4</p><img src="%s$1" alt="$4" style="max-width: 100%%; height: auto;">` $site $site) $content -}}
+{{- $content = replaceRE `(?s)<div class="compare__frame"[^>]*>\s*<img class="compare__second" src="([^"]+)" alt="([^"]*)"[^>]*>\s*<img class="compare__first" src="([^"]+)" alt="([^"]*)"[^>]*>.*?compare__badge--first"[^>]*>([^<]*)</span>.*?compare__badge--second"[^>]*>([^<]*)</span>.*?</div>` (printf `<p>$5</p><img src="%s$3" alt="$4" style="max-width: 100%%; height: auto;"><p>$6</p><img src="%s$1" alt="$2" style="max-width: 100%%; height: auto;">` $site $site) $content -}}
 {{- $content = replaceRE `<span class="annotated__marker"[^>]*>\d+</span>` "" $content -}}
 {{- $content = replaceRE `(?s)\s?<span class="spark"[^>]*>.*?</svg></span>` "" $content -}}
 {{- /* Preserve escaped shell text and line breaks without copy controls. */ -}}

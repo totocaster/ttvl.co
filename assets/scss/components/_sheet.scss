@@ -16,7 +16,7 @@
   line-height: $line-height-code;
 
   // The base pre rules make a scroller of every pre; here the scroller is
-  // .sheet__scroll, so the pre is a plain box.
+  // .sheet__body, so the pre is a plain box.
   pre {
     max-width: none;
     margin: 0;
@@ -54,7 +54,7 @@
 
 // The scroller spans the frame's inner width, so long lines slide under
 // the padding instead of stopping at it.
-.sheet__scroll {
+.sheet__body {
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   margin: 0 (-$space-4);

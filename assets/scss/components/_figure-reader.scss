@@ -1,0 +1,30 @@
+// A figure keeps one static representation and caption in the document.
+// Its supplemental browser version is an aside, so readers can omit the
+// controls and demonstration text. Only CSS hides the static version:
+// never set hidden or aria-hidden on the content a reader should retain.
+.figure-interactive {
+  display: contents;
+}
+
+.figure-interactive[hidden] {
+  display: none;
+}
+
+.figure-interactive[data-ready] ~ .figure-static,
+.figure-interactive[data-ready] ~ figcaption .figure-static {
+  display: none;
+}
+
+@media print {
+  .figure-interactive {
+    display: none !important;
+  }
+
+  figure > .figure-static {
+    display: block !important;
+  }
+
+  figcaption .figure-static {
+    display: inline !important;
+  }
+}

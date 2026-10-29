@@ -21,8 +21,9 @@
 
      The file's <style>, <title>, comments, and prolog are dropped; its ids
      are prefixed per figure so two drawings on one page never collide.
-     Feeds get the PNG beside the SVG when one exists, else the SVG itself
-     (layouts/partials/rss-content.html). docs/figures.md. */ -}}
+     Readers and feeds get one image: the PNG beside the SVG when one
+     exists, else the SVG itself. The inline versions live in a supplemental
+     aside that feeds remove (layouts/partials/rss-content.html). docs/figures.md. */ -}}
 {{- $src := .Get "src" -}}
 {{- if not $src }}{{ errorf "drawing: missing src in %s" .Position }}{{ end -}}
 {{- $alt := .Get "alt" -}}
@@ -43,6 +44,7 @@
 
 {{- $readouts := slice -}}
 <figure class="drawing{{ with .Get "width" }} {{ . }}{{ end }}{{ if $instrument }} instrument{{ end }}{{ if gt (len $frames) 1 }} has-narrow{{ end }}"{{ if $scrub }} data-scrub{{ end }}>
+  <aside class="figure-interactive" aria-label="{{ if $instrument }}Interactive{{ else }}Responsive{{ end }} illustration" data-ready>
   {{- if $instrument }}
   <div class="instrument__controls">
     {{- with $scrub }}
@@ -83,12 +85,15 @@
   {{- with $readouts }}{{ $last = replaceRE `^data-readout="|"$` "" (index . (sub (len .) 1)) | htmlUnescape }}{{ end }}
   <p class="readout">{{ $last }}</p>
   {{- end }}
-  {{- with .Get "caption" }}
-  <figcaption>{{ . | markdownify }}</figcaption>
+  </aside>
+  <img class="figure-static" src="{{ $fallback }}" alt="{{ $alt }}" loading="lazy" style="max-width: 100%; height: auto;">
+  {{- if or (.Get "caption") $instrument }}
+  <figcaption{{ if not (.Get "caption") }} class="figure-static"{{ end }}>{{ with .Get "caption" }}{{ . | markdownify }}{{ end }}{{ if $instrument }}<span class="figure-static"> <a href="{{ .Page.Permalink }}">Explore the interactive diagram.</a></span>{{ end }}</figcaption>
   {{- end }}
 </figure>
-{{- if and $scrub (not (.Page.Store.Get "scrubJS")) }}
-{{- .Page.Store.Set "scrubJS" true }}
+{{- /* Modules execute once per URL. A Page.Store flag can survive a
+     server rebuild and omit the script from the next render. */}}
+{{- if $scrub }}
 {{- $js := resources.Get "js/scrub.js" | resources.Minify | resources.Fingerprint }}
-<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+<script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>
 {{- end }}

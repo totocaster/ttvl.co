@@ -1,9 +1,10 @@
 {{- /* A day to rearrange. The bounded model is in data/day-wall.json;
-     proposed is the independently authored default agenda for feeds,
-     print, and readers without JavaScript. Keep it in step with the model. */ -}}
+     proposed is the independently authored static agenda for readers,
+     feeds, print, and browsers without JavaScript. Keep it in step with the model. */ -}}
 {{- $d := index hugo.Data "day-wall" -}}
 {{- $caption := .Get "caption" | default "" -}}
-<figure class="instrument day-wall" hidden>
+<figure class="instrument day-wall">
+  <aside class="figure-interactive" aria-label="Interactive day planner" hidden>
   <div class="instrument__controls">
     <label class="scrubber">
       <span>Writing time <span class="n" data-writing-value>{{ $d.writing.default }}</span> min</span>
@@ -34,10 +35,9 @@
     </div>
     <p class="day-wall__rule">Work fills the first gap it fits, without splitting tasks. The call, lunch, and travel stay reserved. The day ends at <span class="n">18:00</span>.</p>
   </div>
-  {{ with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
   <script type="application/json" data-day-wall>{{ $d | jsonify | safeJS }}</script>
-</figure>
-<figure class="day-wall-fallback">
+  </aside>
+  <div class="figure-static">
   <table>
     <caption>The proposed day: <span class="n">60</span> minutes of writing, print pickup at <span class="n">14:30</span>.</caption>
     <thead><tr><th scope="col">Time</th><th scope="col">Plan</th></tr></thead>
@@ -48,7 +48,9 @@
     </tbody>
   </table>
   <p>All five work tasks fit, with <span class="n">75</span> minutes free. Giving the writing <span class="n">90</span> minutes leaves no uninterrupted slot for binding the maquette. Moving the pickup to <span class="n">13:45</span> makes everything fit again.</p>
-  <figcaption>{{ $caption | markdownify }} <a href="{{ .Page.Permalink }}">Rearrange the day on the page.</a></figcaption>
+  </div>
+  {{- /* No empty caption on the interactive page when none was authored. */}}
+  <figcaption{{ if not $caption }} class="figure-static"{{ end }}>{{ $caption | markdownify }}<span class="figure-static"> <a href="{{ .Page.Permalink }}">Rearrange the day on the page.</a></span></figcaption>
 </figure>
 {{- /* Module scripts execute once per URL, including when a page contains
      several figures. Page.Store flags can survive server rebuilds and

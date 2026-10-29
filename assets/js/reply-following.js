@@ -525,9 +525,9 @@
     motion.addEventListener?.("change", layout);
 
     // Show the figure, put the still away, and open on the end of the reply.
-    figure.hidden = false;
-    const still = figure.nextElementSibling;
-    if (still?.classList.contains("reply-following-fallback")) still.hidden = true;
+    const interactive = figure.querySelector(".figure-interactive");
+    interactive.hidden = false;
+    interactive.dataset.ready = "";
     range.max = String(duration);
     range.value = String(duration);
     layout();

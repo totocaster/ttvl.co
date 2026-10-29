@@ -7,6 +7,7 @@
 // docs/styleguide.md, Page by Page: About.
 
 main article.about {
+  $portrait-width: 216px;
   counter-reset: principle;
 
   // The portrait stands beside the introduction, at the right of the
@@ -14,6 +15,14 @@ main article.about {
   // the rail stacks it floats right and the text wraps around it.
   .block.body > .main {
     position: relative;
+
+    @include rail-wide {
+      // Reserve the portrait and its gutter even when the column is
+      // narrower than 880 px, before the rail stacks at 1024 px.
+      &:has(> .portrait) {
+        padding-right: $portrait-width + $space-5;
+      }
+    }
   }
 
   .block.body .portrait {
@@ -23,13 +32,13 @@ main article.about {
       position: absolute;
       top: 0;
       right: 0;
-      width: 216px; // the column past the measure, less a 24 px gap
+      width: $portrait-width;
     }
 
     @include rail-stacked {
       float: right;
       width: 40%;
-      max-width: 216px;
+      max-width: $portrait-width;
       margin: 0 0 $space-3 $space-4;
     }
   }

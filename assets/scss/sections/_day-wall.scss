@@ -1,10 +1,5 @@
 // A full day on one time scale. The two lanes merge into one on phones;
 // reservations and whole work tasks never overlap, so the agenda stays true.
-.day-wall[hidden],
-.day-wall-fallback[hidden] {
-  display: none;
-}
-
 .day-wall {
   .instrument__controls {
     display: grid;
@@ -148,15 +143,5 @@
 
   .day-wall__event {
     grid-column: 1;
-  }
-}
-
-@media print {
-  .day-wall {
-    display: none !important;
-  }
-
-  .day-wall-fallback[hidden] {
-    display: block !important;
   }
 }

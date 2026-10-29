@@ -13,11 +13,6 @@
 // is in points of a 390-point iPhone screen (--pt), so the phone scales as
 // a whole with its column. assets/js/reply-following.js drives it.
 
-.reply-following[hidden],
-.reply-following-fallback[hidden] {
-  display: none;
-}
-
 .reply-following__summary {
   @include visually-hidden;
 }

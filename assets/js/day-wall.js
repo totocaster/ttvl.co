@@ -90,8 +90,8 @@
 
     figure.addEventListener("input", update);
     update();
-    figure.hidden = false;
-    const fallback = figure.nextElementSibling;
-    if (fallback?.classList.contains("day-wall-fallback")) fallback.hidden = true;
+    const interactive = figure.querySelector(".figure-interactive");
+    interactive.hidden = false;
+    interactive.dataset.ready = "";
   }
 })();

@@ -6,12 +6,17 @@
 // voice. Native radios switch the crop without JavaScript. Without CSS or
 // :has support (and in feeds and print), readers get the plain image.
 // Interpolation keeps Hugo's LibSass from parsing the selector() syntax.
+.square-crops > .figure-interactive {
+  display: none;
+}
+
 @supports #{"selector(:has(input:checked))"} {
-  .square-crops[hidden] {
-    display: block;
+  .square-crops > .figure-interactive {
+    display: contents;
   }
 
-  .square-crops-fallback {
+  .square-crops > .figure-static,
+  .square-crops > figcaption .figure-static {
     display: none;
   }
 }
@@ -96,15 +101,5 @@
     &:has(input[value="#{$crop}"]:checked) [data-crop="#{$crop}"] {
       display: block;
     }
-  }
-}
-
-@media print {
-  .square-crops[hidden] {
-    display: none;
-  }
-
-  .square-crops-fallback {
-    display: block;
   }
 }

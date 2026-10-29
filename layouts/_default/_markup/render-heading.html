@@ -1,0 +1,7 @@
+{{- /* Mark prose headings as article content without changing their anchors.
+     Reader heuristics can otherwise mistake words such as "metadata" in an
+     authored heading's ID for interface chrome. Preserve Markdown attributes. */ -}}
+<h{{ .Level }} id="{{ .Anchor }}" class="article-heading{{ with .Attributes.class }} {{ . }}{{ end }}"
+  {{- range $name, $value := .Attributes }}
+    {{- if not (in (slice "id" "class") $name) }} {{ $name | safeHTMLAttr }}="{{ $value }}"{{ end }}
+  {{- end }}>{{ .Text | safeHTML }}</h{{ .Level }}>

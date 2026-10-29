@@ -5,7 +5,9 @@
           first-label="Film still" second-label="Street View"
           alt="…" ratio="2" caption="…" >}}
      The pictures fill a frame of the given ratio (width over height) and
-     are cropped to it; give it the first picture's own ratio. Feeds and
+     are cropped to it; give it the first picture's own ratio. Each image
+     gets the comparison alt prefixed by its label; first-alt and second-alt
+     can supply more specific descriptions. Feeds and
      email show the two pictures one under the other, named.
      components/_pictures.scss, assets/js/compare.js. */ -}}
 {{- $first := .Get "first" -}}
@@ -13,10 +15,13 @@
 {{- if not (and $first $second) }}{{ errorf "compare: needs first and second in %s" .Position }}{{ end -}}
 {{- $a := .Get "first-label" | default "Before" -}}
 {{- $b := .Get "second-label" | default "After" -}}
+{{- $alt := .Get "alt" | default "" -}}
+{{- $firstAlt := .Get "first-alt" | default (printf "%s: %s" $a $alt) -}}
+{{- $secondAlt := .Get "second-alt" | default (printf "%s: %s" $b $alt) -}}
 <figure class="compare">
   <div class="compare__frame" style="--ratio: {{ .Get "ratio" | default 2 }}">
-    <img class="compare__second" src="{{ $second }}" alt="" loading="lazy">
-    <img class="compare__first" src="{{ $first }}" alt="" loading="lazy">
+    <img class="compare__second" src="{{ $second }}" alt="{{ $secondAlt }}" loading="lazy">
+    <img class="compare__first" src="{{ $first }}" alt="{{ $firstAlt }}" loading="lazy">
     <span class="compare__divider" aria-hidden="true"></span>
     <span class="compare__badge compare__badge--first" aria-hidden="true">{{ $a }}</span>
     <span class="compare__badge compare__badge--second" aria-hidden="true">{{ $b }}</span>
@@ -26,8 +31,7 @@
   <figcaption>{{ . | markdownify }}</figcaption>
   {{- end }}
 </figure>
-{{- if not (.Page.Store.Get "compareJS") }}
-{{- .Page.Store.Set "compareJS" true }}
+{{- /* Let the browser execute the module once, including on pages with
+     several comparisons. Page.Store flags can outlive a server rebuild. */}}
 {{- $js := resources.Get "js/compare.js" | resources.Minify | resources.Fingerprint }}
-<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
-{{- end }}
+<script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>

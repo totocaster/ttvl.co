@@ -2,27 +2,25 @@
 {{ $description = $description | plainify | htmlUnescape | strings.TrimSpace }}
 {{ $description = replaceRE `\s+` " " $description }}
 {{ with $description }}{{ $description = . | truncate 200 }}{{ end }}
-{{ $ogTitle := printf "%s | %s" .Title .Site.Title }}
+{{ $ogTitle := .Title | default .Site.Title }}
 
 <!-- Title tags -->
-<title itemprop="name">{{ if and .Draft hugo.IsServer }}Draft · {{ end }}{{ with .Title }}{{ . }} · {{ end }}{{ .Site.Title }}</title>
+<title>{{ if and .Draft hugo.IsServer }}Draft · {{ end }}{{ with .Title }}{{ . }} · {{ end }}{{ .Site.Title }}</title>
 <meta property="og:title" content="{{ $ogTitle }}" />
 <meta name="twitter:title" content="{{ $ogTitle }}" />
-<meta itemprop="name" content="{{ $ogTitle }}" />
 <meta name="application-name" content="{{ $ogTitle }}" />
 <meta property="og:site_name" content="{{ .Site.Params.sitename }}" />
 
 <!-- Description tags -->
 {{ with $description }}
 <meta name="description" content="{{ . }}" />
-<meta itemprop="description" content="{{ . }}" />
 <meta property="og:description" content="{{ . }}" />
 <meta name="twitter:description" content="{{ . }}" />
 {{ end }}
 
 <!-- Link tags -->
 <base href="{{ .Permalink }}" />
-<link rel="canonical" href="{{ .Permalink }}" itemprop="url" />
+<link rel="canonical" href="{{ .Permalink }}" />
 <meta name="url" content="{{ .Permalink }}" />
 <meta name="twitter:url" content="{{ .Permalink }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
@@ -85,7 +83,6 @@
 {{ $alt := site.Title }}
 {{ if not .IsHome }}{{ $alt = printf "%s · %s" .Title site.Title }}{{ end }}
 {{ with $img }}
-<meta itemprop="image" content="{{ . }}" />
 <meta property="og:image" content="{{ . }}" />
 {{ with $res }}
 <meta property="og:image:width" content="{{ .Width }}" />
@@ -112,31 +109,40 @@
 {{ end }}
 
 <!-- Website page tags -->
-<meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}" />
+{{ $isArticle := and .IsPage .Section (ne .Section "traces") }}
+<meta property="og:type" content="{{ if $isArticle }}article{{ else }}website{{ end }}" />
 <meta name="author" content="{{ .Site.Params.author }}" />
-{{ $logo := "/ui/ttvl_logo.png" | absURL }}
 {{ $sameAs := slice }}
 {{ with .Site.Params.facebook }}{{ if hasPrefix . "http" }}{{ $sameAs = $sameAs | append . }}{{ end }}{{ end }}
 {{ with .Site.Params.github }}{{ if hasPrefix . "http" }}{{ $sameAs = $sameAs | append . }}{{ end }}{{ end }}
 {{ with .Site.Params.instagram }}{{ if hasPrefix . "http" }}{{ $sameAs = $sameAs | append . }}{{ end }}{{ end }}
-{{ with .Site.Params.membershipURL }}{{ if hasPrefix . "http" }}{{ $sameAs = $sameAs | append . }}{{ end }}{{ end }}
+{{ $author := dict "@type" "Person" "@id" ("/#author" | absURL) "name" .Site.Params.author "url" ("/about/" | absURL) "sameAs" $sameAs }}
+{{ $type := "WebPage" }}
+{{ if .IsHome }}
+  {{ $type = "WebSite" }}
+{{ else if or .IsSection (eq .Layout "a-z") }}
+  {{ $type = "CollectionPage" }}
+{{ else if eq .RelPermalink "/about/" }}
+  {{ $type = "AboutPage" }}
+{{ else if $isArticle }}
+  {{ $type = "Article" }}
+{{ end }}
 {{ $schema := dict
   "@context" "https://schema.org"
-  "@type" (cond .IsPage "Article" "WebSite")
+  "@type" $type
   "url" .Permalink
-  "name" .Title
-  "publisher" (dict
-    "@type" "Person"
-    "name" .Site.Params.author
-    "logo" (dict
-      "@type" "ImageObject"
-      "url" $logo
-    )
-  )
-  "sameAs" $sameAs
+  "name" $ogTitle
+  "author" $author
+  "publisher" $author
+  "inLanguage" .Language.Lang
 }}
-{{ if .IsPage }}
+{{ with $description }}{{ $schema = merge $schema (dict "description" .) }}{{ end }}
+{{ with $img }}{{ $schema = merge $schema (dict "image" .) }}{{ end }}
+{{ if eq $type "AboutPage" }}{{ $schema = merge $schema (dict "about" $author) }}{{ end }}
+{{ if $isArticle }}
   {{ $schema = merge $schema (dict "headline" .Title) }}
+{{ end }}
+{{ if .IsPage }}
   {{ $published := .PublishDate | default .Date }}
   {{ if not $published.IsZero }}
     {{ $schema = merge $schema (dict "datePublished" ($published.Format "2006-01-02T15:04:05Z07:00")) }}

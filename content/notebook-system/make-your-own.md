@@ -6,7 +6,7 @@ description: "A guide to making the canonical Unbound notebook, with tools, mate
 
 This is a guide to making the canonical (version I use) [Unbound][uns] notebook. The entire system is designed to be loose and flexible, tailored to fit only me. I encourage you to use the following information as inspiration and modify the steps to make a notebook that matches _you_.
 
-![](/visuals/uns/2025.05_UNS_02.jpg)
+![Two Unbound notebooks with exposed binder rings: a Freitag tarpaulin cover over a tan leather cover.](/visuals/uns/2025.05_UNS_02.jpg)
 
 {{< toc >}}
 
@@ -26,7 +26,7 @@ This base notebook is fully functional and supports everything described in the 
 
 ## Toto's Unbound Notebook
 
-![](/visuals/uns/2025.05_UNS_14.jpg)
+![Bound notebooks beside two Unbound ring notebooks, with Freitag tarpaulin and tan leather covers and loose punched pages.](/visuals/uns/2025.05_UNS_14.jpg)
 
 Below are the materials and brands _I_ use for my Unbound notebooks:
 

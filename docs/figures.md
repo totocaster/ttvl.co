@@ -246,7 +246,9 @@ Diagrams are drawn for the site when they explain how something works and can be
 | `toggle` | Makes an instrument with a toggle of this name; `toggle-on="true"` starts it on |
 | `scrub` | Makes an instrument with a scrubber of this name |
 
-The shortcode drops the file's `<style>`, `<title>`, `<desc>`, comments, and prolog, so nothing in a file can restyle the page; prefixes its ids per figure, so two drawings on one page never share a clip path; and marks the SVG `role="img"` with the alt as its title. In the RSS feed (`partials/rss-content.html`) the drawing becomes an image of its file, or of the PNG beside it when there is one.
+The shortcode drops the file's `<style>`, `<title>`, `<desc>`, comments, and prolog, so nothing in a file can restyle the page; prefixes its ids per figure, so two drawings on one page never share a clip path; and marks the SVG `role="img"` with the alt as its title.
+
+The figure also carries one static image of the file, or the PNG beside it when there is one. The responsive inline SVGs and controls live in a labeled `aside.figure-interactive`; the image and caption remain outside it. On the website, `components/_figure-reader.scss` hides that static representation with CSS when the browser version is ready. It must not receive `hidden` or `aria-hidden`: readers processing either the source or the initialized document need to be able to keep it. RSS and email (`partials/rss-content.html`) remove the supplemental aside and use the same static representation. Print uses it too.
 
 A minimal drawing, by hand or by script:
 
@@ -303,7 +305,7 @@ The band, the mark's width plus 8 and the plot's height, takes the highlight whe
 
 **Canvas and WebGL.** Read colors from custom properties with `getComputedStyle` and redraw when `prefers-color-scheme` changes, as the live maps do. Walks and the spatial long exposure share one map, `assets/js/panel-map.js`: OpenFreeMap's vector tiles drawn after the Map pattern above (borders and streets stepped back toward the ground), with a page's own lines in tone 3 and its lit thing in the signal color. Media wells for photographs and scans stay dark, per Media Chrome.
 
-**A model to try.** The `day-wall` instrument has two controls: writing duration and a print-pickup time. Reservations and work occupy two HTML calendar lanes, merging into one on phones. Changing a control recomputes the plan immediately: whole tasks fill the first gap they fit, and unplaced work stays visible above the calendar. Here the blocks move and resize as the model's output; the controls stay put. Free intervals stay in the calendar, with accessible names for gaps too short to label visibly. `assets/js/day-wall.js` loads only where used; without it, and in print and feeds, a sibling table gives the proposed agenda. This is an illustrative day, defined in `data/day-wall.json`.
+**A model to try.** The `day-wall` instrument has two controls: writing duration and a print-pickup time. Reservations and work occupy two HTML calendar lanes, merging into one on phones. Changing a control recomputes the plan immediately: whole tasks fill the first gap they fit, and unplaced work stays visible above the calendar. Here the blocks move and resize as the model's output; the controls stay put. Free intervals stay in the calendar, with accessible names for gaps too short to label visibly. `assets/js/day-wall.js` loads only where used; without it, and in print and feeds, the figure’s static table gives the proposed agenda. The reply-following demonstration follows the same structure with its PNG still. Scripts reveal the supplemental aside and set `data-ready` on it only when initialized; they never hide or remove the static content from the document. This is an illustrative day, defined in `data/day-wall.json`.
 
 ## Pictures
 

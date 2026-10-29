@@ -83,7 +83,7 @@
     </div>
   </section>
   {{- else }}
-  <section class="block body"><div class="rail"></div><div class="main prose"><p>No projects yet.</p></div></section>
+  <div class="block body"><div class="rail"></div><div class="main prose"><p>No projects yet.</p></div></div>
   {{- end }}
 </article>
 {{ $categoryFilter := resources.Get "js/category-filter.js" | js.Build (dict "minify" true) | resources.Fingerprint }}

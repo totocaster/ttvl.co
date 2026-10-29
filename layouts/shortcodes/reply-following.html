@@ -10,8 +10,8 @@
      the names, notes, status lines, controls, readout, and caption are
      Panel. docs/figures.md, Instruments and Pictures.
 
-     The interactive figure stays hidden until its script shows it; until
-     then, and in feeds, readers get the still beside it: the PNG from
+     The supplemental interactive version stays hidden until its script
+     shows it. The figure keeps a static image for readers and feeds: the PNG from
      tools/reply-following-image.py, the phones at the end of the reply.
      {{< reply-following alt="What the still shows" caption="Markdown" >}} */ -}}
 {{- $d := index hugo.Data "reply-following" -}}
@@ -19,7 +19,8 @@
 {{- if not $alt }}{{ errorf "reply-following: missing alt in %s" .Position }}{{ end -}}
 {{- $caption := .Get "caption" | default "" -}}
 {{- $mascot := $d.mascot -}}
-<figure class="instrument wide reply-following" hidden>
+<figure class="instrument wide reply-following">
+  <aside class="figure-interactive" aria-label="Reply-following demonstration" hidden>
   <div class="instrument__controls">
     <button class="btn quiet" type="button" data-play>Play</button>
     <label class="scrubber"><span>Time</span><input type="range" min="0" max="10" step="0.1" value="10"></label>
@@ -59,23 +60,17 @@
     </div>
   </div>
   <p class="readout"></p>
-  {{- with $caption }}
-  <figcaption>{{ . | markdownify }}</figcaption>
-  {{- end }}
   <script type="application/json" data-reply>{{ $d.reply | jsonify | safeJS }}</script>
-</figure>
+  </aside>
 {{- with $d.still }}
 {{- $path := printf "static%s" . }}
-<figure class="reply-following-fallback">
   {{- if fileExists $path }}
   {{- $size := imageConfig $path }}
-  <img src="{{ . | absURL }}" width="{{ $size.Width }}" height="{{ $size.Height }}" alt="{{ $alt }}" style="max-width: 100%; height: auto;">
+  <img class="figure-static" src="{{ . | absURL }}" width="{{ $size.Width }}" height="{{ $size.Height }}" alt="{{ $alt }}" style="max-width: 100%; height: auto;" loading="lazy">
   {{- end }}
-  {{- with $caption }}
-  <figcaption>{{ . | markdownify }} <a href="{{ $.Page.Permalink }}">Play it on the page.</a></figcaption>
-  {{- end }}
-</figure>
 {{- end }}
+  <figcaption{{ if not $caption }} class="figure-static"{{ end }}>{{ $caption | markdownify }}<span class="figure-static"> <a href="{{ .Page.Permalink }}">Play it on the page.</a></span></figcaption>
+</figure>
 {{- /* Modules execute once per URL. Do not use Page.Store to suppress this
      tag: its flag may survive an incremental server rebuild. */ -}}
 {{- $js := resources.Get "js/reply-following.js" | resources.Minify | resources.Fingerprint }}
