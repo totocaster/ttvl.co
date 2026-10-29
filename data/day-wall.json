@@ -1,0 +1,31 @@
+{
+  "start": 540,
+  "end": 1080,
+  "writing": { "default": 60, "min": 30, "max": 180, "step": 15 },
+  "pickup": { "default": 870, "min": 825, "max": 960, "step": 15, "duration": 30, "travel": 30 },
+  "fixed": [
+    { "name": "Team call", "start": 630, "end": 660 },
+    { "name": "Lunch", "start": 750, "end": 795 }
+  ],
+  "tasks": [
+    { "id": "inbox", "name": "Inbox", "duration": 30 },
+    { "id": "writing", "name": "Write note", "duration": 60 },
+    { "id": "photos", "name": "Edit photos", "duration": 90 },
+    { "id": "binding", "name": "Bind maquette", "duration": 90 },
+    { "id": "admin", "name": "Admin", "duration": 30 }
+  ],
+  "proposed": [
+    { "time": "09:00–09:30", "name": "Inbox" },
+    { "time": "09:30–10:30", "name": "Write note" },
+    { "time": "10:30–11:00", "name": "Team call" },
+    { "time": "11:00–12:30", "name": "Edit photos" },
+    { "time": "12:30–13:15", "name": "Lunch" },
+    { "time": "13:15–13:45", "name": "Admin" },
+    { "time": "13:45–14:00", "name": "Free" },
+    { "time": "14:00–14:30", "name": "Travel out" },
+    { "time": "14:30–15:00", "name": "Print pickup" },
+    { "time": "15:00–15:30", "name": "Travel back" },
+    { "time": "15:30–17:00", "name": "Bind maquette" },
+    { "time": "17:00–18:00", "name": "Free" }
+  ]
+}

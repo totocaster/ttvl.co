@@ -45,6 +45,7 @@ The working specimen is the Figures page, `content/figures.md`, published at `/f
 | Two series across a few periods | Grouped columns | `drawing` |
 | Two series of the same unit over many dates | Two lines on one scale | `drawing` |
 | The same items at two times | Before and after | `drawing` |
+| A day's work around fixed commitments | Instrument | `day-wall` |
 | Things counted one by one; a share of a small total | Unit chart | `units` |
 | How a whole splits, period by period | Stacked bars | `drawing` |
 | Above or below a baseline | Diverging columns | `drawing` |
@@ -301,6 +302,8 @@ The band, the mark's width plus 8 and the plot's height, takes the highlight whe
 **Rules.** One instrument answers one question, with at most two controls, named in the order the reader uses them. Marks never move or resize under the hand; only the band lights. Nothing plays by itself, and anything that animates is a clip. Without the script the scrubber stays hidden and the readout shows the latest mark; without `:has()` the first state and the optional layer show, and the controls do nothing. In feeds the controls and readout drop out and the drawing becomes its image. A new behavior is a small script loaded the same way, never a charting library: the site has no npm build, and D3 or a chart kit would bring its own look.
 
 **Canvas and WebGL.** Read colors from custom properties with `getComputedStyle` and redraw when `prefers-color-scheme` changes, as the live maps do. Walks and the spatial long exposure share one map, `assets/js/panel-map.js`: OpenFreeMap's vector tiles drawn after the Map pattern above (borders and streets stepped back toward the ground), with a page's own lines in tone 3 and its lit thing in the signal color. Media wells for photographs and scans stay dark, per Media Chrome.
+
+**A model to try.** The `day-wall` instrument has two controls: writing duration and a print-pickup time. Reservations and work occupy two HTML calendar lanes, merging into one on phones. Changing a control recomputes the plan immediately: whole tasks fill the first gap they fit, and unplaced work stays visible above the calendar. Here the blocks move and resize as the model's output; the controls stay put. Free intervals stay in the calendar, with accessible names for gaps too short to label visibly. `assets/js/day-wall.js` loads only where used; without it, and in print and feeds, a sibling table gives the proposed agenda. This is an illustrative day, defined in `data/day-wall.json`.
 
 ## Pictures
 

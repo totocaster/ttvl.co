@@ -76,8 +76,7 @@
   {{- end }}
 </figure>
 {{- end }}
-{{- if not (.Page.Store.Get "replyFollowingJS") }}
-{{- .Page.Store.Set "replyFollowingJS" true }}
+{{- /* Modules execute once per URL. Do not use Page.Store to suppress this
+     tag: its flag may survive an incremental server rebuild. */ -}}
 {{- $js := resources.Get "js/reply-following.js" | resources.Minify | resources.Fingerprint }}
-<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
-{{- end }}
+<script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>

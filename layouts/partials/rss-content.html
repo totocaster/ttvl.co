@@ -6,6 +6,8 @@ absolute URL, alt text, and caption. Remove the interactive figure entirely. */ 
 {{- $content = replaceRE `(?s)<figure class="square-crops"[^>]*>.*?</figure>` "" $content -}}
 {{- /* The reply-following instrument has its still beside it in the same way. */ -}}
 {{- $content = replaceRE `(?s)<figure class="instrument wide reply-following"[^>]*>.*?</figure>` "" $content -}}
+{{- /* The day wall supplies a plain agenda for the proposed day. */ -}}
+{{- $content = replaceRE `(?s)<figure class="instrument day-wall"[^>]*>.*?</figure>` "" $content -}}
 {{- /* Drawings: each inline SVG becomes an image of its file (the PNG beside
 it when there is one, docs/figures.md). A phone version, an instrument's
 controls, and its readout have nothing to do in a feed. */ -}}
@@ -30,5 +32,5 @@ since a feed or an email has no page to resolve them against. */ -}}
   {{- $block = replaceRE `<span class="shell-line[^"]*">` "" $block -}}
   {{- $content = replace $content . (printf "<pre><code>%s</code></pre>" $block) -}}
 {{- end -}}
-{{- $content = replaceRE `<script\s[^>]*src="[^"]*/js/(shell-copy|clip|scrub|compare|reply-following)\.[^"]+\.js"[^>]*></script>` "" $content -}}
+{{- $content = replaceRE `<script\s[^>]*src="[^"]*/js/(shell-copy|clip|scrub|compare|reply-following|day-wall)\.[^"]+\.js"[^>]*></script>` "" $content -}}
 {{- return $content -}}
