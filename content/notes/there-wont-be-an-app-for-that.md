@@ -1,17 +1,14 @@
 ---
 title: "There won’t be an app for that"
-date: 2026-10-19T00:00:00+09:00
+date: 2026-10-29T00:00:00+09:00
 category: thinking
-draft: true
-description: "LLMs can build the software I need on the spot, so Apple should stop selling apps and start selling capabilities any agent can use."
+description: "I’d like my computer to let me shape my own tools and agents from capabilities developers provide."
 ---
 
-Apple’s platforms are built on the app model: there’s an app for that, as [the old iPhone ads](https://www.youtube.com/watch?v=szrsfeyLzyg) put it. When I have a problem, I find an app that solves it, download it, and learn to work the way it wants me to. I can change what I put into it, but what it does remains its author’s decision.
+Apple’s platforms are built on [“there’s an app for that”](https://www.youtube.com/watch?v=szrsfeyLzyg). When I have a problem, I find an app, download it, and learn to work the way it wants me to. I can change what I put into it. What it does is mostly someone else’s decision.
 
-Instructing a computer used to mean programming it, so most of us used someone else’s instructions instead. That is what an app is.
+LLMs change that. I can [describe the behavior I need and build it](/notes/software-gets-malleable/). A small tool takes an afternoon. When models get fast and reliable enough, a request could produce its own interface on the spot, with controls I can use and change.
 
-LLMs change that. [Software gets malleable when describing it is enough](/notes/software-gets-malleable/): I describe the problem, and a model writes the software that solves it. Today a small tool takes an afternoon. If models become fast and reliable enough, a request could produce its own interface on the spot: not just the information, but the controls for exploring it or acting on it. Both the content and the medium become changeable.
+Apple should take its OSes in this direction. A malleable operating system, where I can adjust how _tools_ and _agents_ work or make a utility for a need that is mine alone. Something I can do as part of using the computer.
 
-Small utilities won’t survive as products. Why find an app that almost fits when I can describe the behavior I need? The result might not be an app at all. Just something available when I ask.
-
-Apple is already moving this way. At WWDC this year, Safari learned to [build an extension from a description](https://www.macrumors.com/2026/06/08/safari-tab-organization-and-ai-generated-extensions/), and Shortcuts to [build an automation from a sentence](https://techcrunch.com/2026/06/08/apple-will-let-you-build-workflows-using-ai-in-its-new-shortcuts-app). Siri acts through App Intents, where apps declare what they can do. But all of it runs through Apple Intelligence, and those capabilities still come wrapped in apps I have to find and install first. The next step is to let developers sell capabilities instead of apps, and let me choose the agent or model that uses them. Then there won’t be an app for that.
+Developers could provide [capabilities as tools](/notes/ship-the-tool-not-the-agent/), building blocks on top of the operating system. I could use them directly, and other tools and agents could use them too. As Alan Kay [put it at WWDC in 1990](https://tinlizzie.org/IA/index.php/A_concept_video_and_Alan_Kay_talk_at_WWDC_%2790_%28VPRI_358%29): “We manipulate tools, we manage agents.” An agent pursues my goal and uses tools on my behalf.
