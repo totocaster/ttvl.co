@@ -1,0 +1,57 @@
+{{- /* A day to rearrange. The bounded model is in data/day-wall.json;
+     proposed is the independently authored default agenda for feeds,
+     print, and readers without JavaScript. Keep it in step with the model. */ -}}
+{{- $d := index hugo.Data "day-wall" -}}
+{{- $caption := .Get "caption" | default "" -}}
+<figure class="instrument day-wall" hidden>
+  <div class="instrument__controls">
+    <label class="scrubber">
+      <span>Writing time <span class="n" data-writing-value>{{ $d.writing.default }}</span> min</span>
+      <input type="range" data-writing min="{{ $d.writing.min }}" max="{{ $d.writing.max }}" step="{{ $d.writing.step }}" value="{{ $d.writing.default }}" aria-label="Writing time in minutes">
+    </label>
+    <label class="scrubber">
+      <span>Print pickup <span class="n" data-pickup-value>14:30</span></span>
+      <input type="range" data-pickup min="{{ $d.pickup.min }}" max="{{ $d.pickup.max }}" step="{{ $d.pickup.step }}" value="{{ $d.pickup.default }}" aria-label="Print pickup time">
+    </label>
+  </div>
+  <div class="well">
+    <div class="day-wall__outcome" aria-live="polite" aria-atomic="true">
+      <p data-result></p>
+      <p data-unplanned></p>
+    </div>
+    <div class="day-wall__head" aria-hidden="true">
+      <span class="day-wall__desktop">Appointments &amp; travel</span>
+      <span class="day-wall__desktop">Work</span>
+      <span class="day-wall__mobile">The day</span>
+    </div>
+    <div class="day-wall__calendar" style="--minutes: {{ sub $d.end $d.start }}">
+      <div class="day-wall__axis" aria-hidden="true">
+        {{- range seq (int $d.start) 60 (int $d.end) }}
+        <span class="n" style="--at: {{ div (mul (sub . $d.start) 100.0) (sub $d.end $d.start) }}%">{{ printf "%02d:00" (int (div . 60)) }}</span>
+        {{- end }}
+      </div>
+      <div class="day-wall__board" data-board role="list" aria-label="Planned day"></div>
+    </div>
+    <p class="day-wall__rule">Work fills the first gap it fits, without splitting tasks. The call, lunch, and travel stay reserved. The day ends at <span class="n">18:00</span>.</p>
+  </div>
+  {{ with $caption }}<figcaption>{{ . | markdownify }}</figcaption>{{ end }}
+  <script type="application/json" data-day-wall>{{ $d | jsonify | safeJS }}</script>
+</figure>
+<figure class="day-wall-fallback">
+  <table>
+    <caption>The proposed day: <span class="n">60</span> minutes of writing, print pickup at <span class="n">14:30</span>.</caption>
+    <thead><tr><th scope="col">Time</th><th scope="col">Plan</th></tr></thead>
+    <tbody>
+      {{- range $d.proposed }}
+      <tr><td class="n">{{ .time }}</td><td>{{ .name }}</td></tr>
+      {{- end }}
+    </tbody>
+  </table>
+  <p>All five work tasks fit, with <span class="n">75</span> minutes free. Giving the writing <span class="n">90</span> minutes leaves no uninterrupted slot for binding the maquette. Moving the pickup to <span class="n">13:45</span> makes everything fit again.</p>
+  <figcaption>{{ $caption | markdownify }} <a href="{{ .Page.Permalink }}">Rearrange the day on the page.</a></figcaption>
+</figure>
+{{- /* Module scripts execute once per URL, including when a page contains
+     several figures. Page.Store flags can survive server rebuilds and
+     suppress the script tag on a newly rendered page. */ -}}
+{{- $js := resources.Get "js/day-wall.js" | resources.Minify | resources.Fingerprint }}
+<script type="module" src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}"></script>

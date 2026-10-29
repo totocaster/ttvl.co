@@ -1,0 +1,162 @@
+// A full day on one time scale. The two lanes merge into one on phones;
+// reservations and whole work tasks never overlap, so the agenda stays true.
+.day-wall[hidden],
+.day-wall-fallback[hidden] {
+  display: none;
+}
+
+.day-wall {
+  .instrument__controls {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .scrubber {
+    display: grid;
+    gap: $space-1;
+    min-width: 0;
+    width: 100%;
+
+    > span {
+      display: flex;
+      gap: $space-2;
+      align-items: baseline;
+    }
+
+    input {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+
+  .day-wall__outcome p {
+    margin: 0;
+    @include type-meta;
+  }
+
+  [data-result] {
+    font-weight: $font-weight-medium;
+  }
+
+  [data-unplanned] {
+    min-height: $line-height-small;
+    margin-top: $space-1;
+    color: var(--ink-muted);
+  }
+
+  .day-wall__rule {
+    margin: $space-5 0 0;
+    @include type-meta;
+    color: var(--ink-muted);
+  }
+}
+
+.day-wall__head {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: $space-3;
+  margin: $space-5 0 $space-3 ($space-7 + $space-3);
+  @include type-meta;
+  color: var(--ink-muted);
+}
+
+.day-wall__mobile {
+  display: none;
+}
+
+.day-wall__calendar {
+  display: grid;
+  grid-template-columns: $space-7 minmax(0, 1fr);
+  gap: $space-3;
+}
+
+.day-wall__axis {
+  position: relative;
+  @include type-meta;
+  color: var(--ink-faint);
+
+  > span {
+    position: absolute;
+    top: var(--at);
+    right: 0;
+    transform: translateY(-50%);
+  }
+}
+
+.day-wall__board {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: repeat(var(--minutes), 1px);
+  column-gap: $space-3;
+  border-top: 1px solid var(--edge);
+  border-bottom: 1px solid var(--edge);
+}
+
+.day-wall__event {
+  grid-column: 2;
+  min-width: 0;
+  display: flex;
+  align-items: baseline;
+  gap: $space-2;
+  padding: $space-1 $space-2;
+  border: 1px solid var(--ink);
+  background: var(--ground);
+  @include type-meta;
+
+  > .n {
+    flex: none;
+  }
+
+  &--fixed {
+    grid-column: 1;
+    background: var(--surface);
+    border-color: var(--edge);
+  }
+
+  &--free {
+    border: 1px dashed var(--edge);
+    color: var(--ink-faint);
+  }
+
+  &--short {
+    padding: 0;
+
+    > span {
+      @include visually-hidden;
+    }
+  }
+}
+
+@include narrow {
+  .day-wall .instrument__controls {
+    grid-template-columns: minmax(0, 1fr);
+    gap: $space-2;
+  }
+
+  .day-wall__head,
+  .day-wall__board {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .day-wall__desktop {
+    display: none;
+  }
+
+  .day-wall__mobile {
+    display: inline;
+  }
+
+  .day-wall__event {
+    grid-column: 1;
+  }
+}
+
+@media print {
+  .day-wall {
+    display: none !important;
+  }
+
+  .day-wall-fallback[hidden] {
+    display: block !important;
+  }
+}

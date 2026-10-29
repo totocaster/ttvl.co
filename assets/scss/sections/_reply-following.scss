@@ -31,6 +31,10 @@
   grid-auto-flow: column;
   grid-auto-columns: minmax(180px, 1fr);
   gap: $space-5;
+  // Leave room for the phones' outside 1 px outlines and fractional
+  // scroll rounding, including at the last snap on a narrow screen.
+  padding-inline: 2px;
+  scroll-padding-inline: 2px;
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x proximity;
