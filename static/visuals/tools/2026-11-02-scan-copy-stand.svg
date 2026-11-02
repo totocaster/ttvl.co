@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="500" viewBox="0 0 880 500" fill="none">
+<path d="M0 386.3H402" stroke="#D9D9D9"></path>
+<rect x="0" y="373.8" width="216" height="12" rx="1.2" fill="#FFFFFF"></rect>
+<rect x="0" y="373.8" width="216" height="12" rx="1.2" fill="#F7F7F7" stroke="#000"></rect>
+<rect x="13.2" y="43.8" width="16.8" height="330" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="10.2" y="42" width="22.8" height="4.2" rx="0.9" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="73.8" y="348.6" width="98.4" height="25.2" rx="1.8" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M83.4 370.2L83.4 365.4" stroke="#A3A3A3"></path>
+<path d="M91.8 370.2L91.8 365.4" stroke="#A3A3A3"></path>
+<path d="M100.2 370.2L100.2 365.4" stroke="#A3A3A3"></path>
+<path d="M108.6 370.2L108.6 365.4" stroke="#A3A3A3"></path>
+<path d="M117 370.2L117 365.4" stroke="#A3A3A3"></path>
+<path d="M125.4 370.2L125.4 365.4" stroke="#A3A3A3"></path>
+<path d="M133.8 370.2L133.8 365.4" stroke="#A3A3A3"></path>
+<path d="M142.2 370.2L142.2 365.4" stroke="#A3A3A3"></path>
+<path d="M150.6 370.2L150.6 365.4" stroke="#A3A3A3"></path>
+<path d="M159 370.2L159 365.4" stroke="#A3A3A3"></path>
+<rect x="84.6" y="340.8" width="76.8" height="7.8" rx="1.2" fill="#FFFFFF"></rect>
+<rect x="84.6" y="340.8" width="76.8" height="7.8" rx="1.2" fill="#F7F7F7" stroke="#000"></rect>
+<rect x="64.2" y="334.8" width="117.6" height="6" rx="1.2" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="51" y="336.9" width="144" height="1.8" fill="#000"></rect>
+<rect x="8.4" y="96.6" width="26.4" height="26.4" rx="1.2" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="1.2" y="105" width="7.2" height="9.6" rx="1.2" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="34.8" y="105" width="109.8" height="10.8" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="144.6" y="97.8" width="8.4" height="138" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="153" y="197.4" width="6" height="8.4" rx="1.2" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="112.8" y="227.4" width="20.4" height="21.6" rx="1.2" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M112.8 244.2L133.2 244.2" stroke="#000"></path>
+<rect x="99" y="220.2" width="48" height="7.2" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M144.6 220.2L141 216L144.6 211.8L141 207.6L144.6 203.4L141 199.2L144.6 195L141 190.8L144.6 186.6L141 182.4L144.6 178.2L101.4 178.2L105 182.4L101.4 186.6L105 190.8L101.4 195L105 199.2L101.4 203.4L105 207.6L101.4 211.8L105 216L101.4 220.2Z" fill="#FFFFFF" stroke="#000"></path>
+<path d="M101.4 220.2L144.6 220.2" stroke="#A3A3A3"></path>
+<path d="M105 216L141 216" stroke="#A3A3A3"></path>
+<path d="M101.4 211.8L144.6 211.8" stroke="#A3A3A3"></path>
+<path d="M105 207.6L141 207.6" stroke="#A3A3A3"></path>
+<path d="M101.4 203.4L144.6 203.4" stroke="#A3A3A3"></path>
+<path d="M105 199.2L141 199.2" stroke="#A3A3A3"></path>
+<path d="M101.4 195L144.6 195" stroke="#A3A3A3"></path>
+<path d="M105 190.8L141 190.8" stroke="#A3A3A3"></path>
+<path d="M101.4 186.6L144.6 186.6" stroke="#A3A3A3"></path>
+<path d="M105 182.4L141 182.4" stroke="#A3A3A3"></path>
+<path d="M101.4 178.2L144.6 178.2" stroke="#A3A3A3"></path>
+<rect x="99" y="171" width="48" height="7.2" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="93" y="126.6" width="58.8" height="44.4" rx="3" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="138.6" y="126.6" width="13.2" height="44.4" rx="2.4" fill="#FFFFFF"></rect>
+<rect x="138.6" y="126.6" width="13.2" height="44.4" rx="2.4" fill="#D9D9D9" stroke="#000"></rect>
+<rect x="96.6" y="123.6" width="38.4" height="3" rx="0.6" fill="#000" stroke="#000"></rect>
+<rect x="114.6" y="115.2" width="15.6" height="8.4" rx="1.8" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M172.2 362.3L202.8 362.3L202.8 344.3L207 344.3" stroke="#6E6E6E"></path>
+<text x="210" y="348.8" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Negative Supply light</text>
+<path d="M161.4 345.5L198 345.5L198 320.3L207 320.3" stroke="#6E6E6E"></path>
+<text x="210" y="324.8" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">VNS adapter</text>
+<path d="M168 335.3L168 296.3L207 296.3" stroke="#6E6E6E"></path>
+<text x="210" y="300.8" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Valoi easy120 carrier</text>
+<path d="M133.2 238.7L207 238.7" stroke="#6E6E6E"></path>
+<text x="210" y="243.2" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Apo-Rodagon</text>
+<path d="M153.6 199.7L207 199.7" stroke="#6E6E6E"></path>
+<text x="210" y="204.2" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Leica Bellows-R</text>
+<path d="M153.6 146.3L207 146.3" stroke="#6E6E6E"></path>
+<text x="210" y="150.8" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Panasonic Lumix S5</text>
+<path d="M0.5 27.5H215.5M0.5 23.5V31.5M215.5 23.5V31.5" stroke="#6E6E6E"></path>
+<text x="108" y="20.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">360</tspan> mm</text>
+<text x="0" y="413.8" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">LPL DS-4 copy stand</text>
+<text x="0" y="433.8" font-family="IBM Plex Sans" font-size="14" fill="#555555">Side view</text>
+<path d="M0.5 468.3H120.5" stroke="#000"></path>
+<path d="M0.5 464.3V472.3" stroke="#000"></path>
+<path d="M24.5 464.3V472.3" stroke="#000"></path>
+<path d="M48.5 464.3V472.3" stroke="#000"></path>
+<path d="M72.5 464.3V472.3" stroke="#000"></path>
+<path d="M96.5 464.3V472.3" stroke="#000"></path>
+<path d="M120.5 464.3V472.3" stroke="#000"></path>
+<text x="0" y="491.8" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">0</text>
+<text x="120" y="491.8" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">200</tspan> mm</text>
+</svg>

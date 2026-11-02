@@ -1,0 +1,286 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="332" viewBox="0 0 880 332" fill="none">
+<path d="M0 197.9H706.9" stroke="#D9D9D9"></path>
+<path d="M68.8 83.8L145.6 83.8L137.4 48.2Q136 42 129.6 42L84.8 42Q78.4 42 77 48.2Z" fill="#FFFFFF" stroke="#000"></path>
+<rect x="12.8" y="76.6" width="28.8" height="8.8" rx="1.6" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M15.7 82.8L15.7 77.5" stroke="#A3A3A3"></path>
+<path d="M18.6 82.8L18.6 77.5" stroke="#A3A3A3"></path>
+<path d="M21.4 82.8L21.4 77.5" stroke="#A3A3A3"></path>
+<path d="M24.3 82.8L24.3 77.5" stroke="#A3A3A3"></path>
+<path d="M27.2 82.8L27.2 77.5" stroke="#A3A3A3"></path>
+<path d="M30.1 82.8L30.1 77.5" stroke="#A3A3A3"></path>
+<path d="M33 82.8L33 77.5" stroke="#A3A3A3"></path>
+<path d="M35.8 82.8L35.8 77.5" stroke="#A3A3A3"></path>
+<path d="M38.7 82.8L38.7 77.5" stroke="#A3A3A3"></path>
+<rect x="161.6" y="72.6" width="36.8" height="12.8" rx="2.4" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M164.5 82.8L164.5 73.5" stroke="#A3A3A3"></path>
+<path d="M167.4 82.8L167.4 73.5" stroke="#A3A3A3"></path>
+<path d="M170.2 82.8L170.2 73.5" stroke="#A3A3A3"></path>
+<path d="M173.1 82.8L173.1 73.5" stroke="#A3A3A3"></path>
+<path d="M176 82.8L176 73.5" stroke="#A3A3A3"></path>
+<path d="M178.9 82.8L178.9 73.5" stroke="#A3A3A3"></path>
+<path d="M181.8 82.8L181.8 73.5" stroke="#A3A3A3"></path>
+<path d="M184.6 82.8L184.6 73.5" stroke="#A3A3A3"></path>
+<path d="M187.5 82.8L187.5 73.5" stroke="#A3A3A3"></path>
+<path d="M190.4 82.8L190.4 73.5" stroke="#A3A3A3"></path>
+<path d="M193.3 82.8L193.3 73.5" stroke="#A3A3A3"></path>
+<path d="M196.2 82.8L196.2 73.5" stroke="#A3A3A3"></path>
+<rect x="0" y="82.2" width="212.2" height="115.2" rx="9.6" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="0" y="85.4" width="49.6" height="108.8" rx="8" fill="#FFFFFF"></rect>
+<rect x="0" y="85.4" width="49.6" height="108.8" rx="8" fill="#D9D9D9" stroke="#000"></rect>
+<circle cx="56" cy="98.2" r="2.4" fill="#000" stroke="#000"></circle>
+<circle cx="171.2" cy="159" r="6.4" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="113.6" cy="134.2" r="61.9" fill="#FFFFFF" stroke="#000"></circle>
+<path d="M170.6 134.2L175.5 134.2" stroke="#A3A3A3"></path>
+<path d="M170.2 128.2L175.2 127.7" stroke="#A3A3A3"></path>
+<path d="M169.3 122.3L174.2 121.3" stroke="#A3A3A3"></path>
+<path d="M167.8 116.6L172.5 115" stroke="#A3A3A3"></path>
+<path d="M165.6 111L170.2 109" stroke="#A3A3A3"></path>
+<path d="M162.9 105.7L167.2 103.2" stroke="#A3A3A3"></path>
+<path d="M159.7 100.7L163.7 97.8" stroke="#A3A3A3"></path>
+<path d="M155.9 96L159.6 92.7" stroke="#A3A3A3"></path>
+<path d="M151.7 91.8L155 88.1" stroke="#A3A3A3"></path>
+<path d="M147.1 88.1L150 84.1" stroke="#A3A3A3"></path>
+<path d="M142.1 84.8L144.6 80.5" stroke="#A3A3A3"></path>
+<path d="M136.8 82.1L138.8 77.6" stroke="#A3A3A3"></path>
+<path d="M131.2 80L132.7 75.3" stroke="#A3A3A3"></path>
+<path d="M125.4 78.4L126.5 73.6" stroke="#A3A3A3"></path>
+<path d="M119.6 77.5L120.1 72.6" stroke="#A3A3A3"></path>
+<path d="M113.6 77.2L113.6 72.2" stroke="#A3A3A3"></path>
+<path d="M107.6 77.5L107.1 72.6" stroke="#A3A3A3"></path>
+<path d="M101.8 78.4L100.7 73.6" stroke="#A3A3A3"></path>
+<path d="M96 80L94.5 75.3" stroke="#A3A3A3"></path>
+<path d="M90.4 82.1L88.4 77.6" stroke="#A3A3A3"></path>
+<path d="M85.1 84.8L82.6 80.5" stroke="#A3A3A3"></path>
+<path d="M80.1 88.1L77.2 84.1" stroke="#A3A3A3"></path>
+<path d="M75.5 91.8L72.2 88.1" stroke="#A3A3A3"></path>
+<path d="M71.3 96L67.6 92.7" stroke="#A3A3A3"></path>
+<path d="M67.5 100.7L63.5 97.8" stroke="#A3A3A3"></path>
+<path d="M64.3 105.7L60 103.2" stroke="#A3A3A3"></path>
+<path d="M61.6 111L57 109" stroke="#A3A3A3"></path>
+<path d="M59.4 116.6L54.7 115" stroke="#A3A3A3"></path>
+<path d="M57.9 122.3L53 121.3" stroke="#A3A3A3"></path>
+<path d="M57 128.2L52 127.7" stroke="#A3A3A3"></path>
+<path d="M56.6 134.2L51.7 134.2" stroke="#A3A3A3"></path>
+<path d="M57 140.1L52 140.6" stroke="#A3A3A3"></path>
+<path d="M57.9 146L53 147" stroke="#A3A3A3"></path>
+<path d="M59.4 151.8L54.7 153.3" stroke="#A3A3A3"></path>
+<path d="M61.6 157.3L57 159.3" stroke="#A3A3A3"></path>
+<path d="M64.3 162.6L60 165.1" stroke="#A3A3A3"></path>
+<path d="M67.5 167.6L63.5 170.6" stroke="#A3A3A3"></path>
+<path d="M71.3 172.3L67.6 175.6" stroke="#A3A3A3"></path>
+<path d="M75.5 176.5L72.2 180.2" stroke="#A3A3A3"></path>
+<path d="M80.1 180.2L77.2 184.3" stroke="#A3A3A3"></path>
+<path d="M85.1 183.5L82.6 187.8" stroke="#A3A3A3"></path>
+<path d="M90.4 186.2L88.4 190.7" stroke="#A3A3A3"></path>
+<path d="M96 188.3L94.5 193" stroke="#A3A3A3"></path>
+<path d="M101.8 189.9L100.7 194.7" stroke="#A3A3A3"></path>
+<path d="M107.6 190.8L107.1 195.7" stroke="#A3A3A3"></path>
+<path d="M113.6 191.1L113.6 196.1" stroke="#A3A3A3"></path>
+<path d="M119.6 190.8L120.1 195.7" stroke="#A3A3A3"></path>
+<path d="M125.4 189.9L126.5 194.7" stroke="#A3A3A3"></path>
+<path d="M131.2 188.3L132.7 193" stroke="#A3A3A3"></path>
+<path d="M136.8 186.2L138.8 190.7" stroke="#A3A3A3"></path>
+<path d="M142.1 183.5L144.6 187.8" stroke="#A3A3A3"></path>
+<path d="M147.1 180.2L150 184.3" stroke="#A3A3A3"></path>
+<path d="M151.7 176.5L155 180.2" stroke="#A3A3A3"></path>
+<path d="M155.9 172.3L159.6 175.6" stroke="#A3A3A3"></path>
+<path d="M159.7 167.6L163.7 170.6" stroke="#A3A3A3"></path>
+<path d="M162.9 162.6L167.2 165.1" stroke="#A3A3A3"></path>
+<path d="M165.6 157.3L170.2 159.3" stroke="#A3A3A3"></path>
+<path d="M167.8 151.8L172.5 153.3" stroke="#A3A3A3"></path>
+<path d="M169.3 146L174.2 147" stroke="#A3A3A3"></path>
+<path d="M170.2 140.1L175.2 140.6" stroke="#A3A3A3"></path>
+<circle cx="113.6" cy="134.2" r="57" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="113.6" cy="134.2" r="48" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="113.6" cy="134.2" r="38.4" fill="#FFFFFF"></circle>
+<circle cx="113.6" cy="134.2" r="38.4" fill="#F7F7F7" stroke="#000"></circle>
+<circle cx="113.6" cy="134.2" r="24" fill="#000" stroke="#000"></circle>
+<circle cx="104.5" cy="125" r="3.8" fill="#FFFFFF"></circle>
+<path d="M0.5 27.5H211.7M0.5 23.5V31.5M211.7 23.5V31.5" stroke="#6E6E6E"></path>
+<text x="106.08" y="20.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">132.6</tspan> mm</text>
+<text x="0" y="225.36" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Lumix S5</text>
+<text x="0" y="245.36" font-family="IBM Plex Sans" font-size="14" fill="#555555">The original, the studio’s</text>
+<text x="0" y="265.36" font-family="IBM Plex Sans" font-size="14" fill="#555555">utility camera</text>
+<rect x="261.8" y="193.4" width="96.6" height="4" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="248.2" y="61" width="123.8" height="132.3" rx="2.4" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="254.6" y="57.8" width="111" height="3.2" rx="0.8" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="248.2" y="111" width="123.8" height="38.4" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M251.7 148.4L251.7 111.9" stroke="#A3A3A3"></path>
+<path d="M255.2 148.4L255.2 111.9" stroke="#A3A3A3"></path>
+<path d="M258.7 148.4L258.7 111.9" stroke="#A3A3A3"></path>
+<path d="M262.2 148.4L262.2 111.9" stroke="#A3A3A3"></path>
+<path d="M265.8 148.4L265.8 111.9" stroke="#A3A3A3"></path>
+<path d="M269.3 148.4L269.3 111.9" stroke="#A3A3A3"></path>
+<path d="M272.8 148.4L272.8 111.9" stroke="#A3A3A3"></path>
+<path d="M276.3 148.4L276.3 111.9" stroke="#A3A3A3"></path>
+<path d="M279.8 148.4L279.8 111.9" stroke="#A3A3A3"></path>
+<path d="M283.4 148.4L283.4 111.9" stroke="#A3A3A3"></path>
+<path d="M286.9 148.4L286.9 111.9" stroke="#A3A3A3"></path>
+<path d="M290.4 148.4L290.4 111.9" stroke="#A3A3A3"></path>
+<path d="M293.9 148.4L293.9 111.9" stroke="#A3A3A3"></path>
+<path d="M297.4 148.4L297.4 111.9" stroke="#A3A3A3"></path>
+<path d="M301 148.4L301 111.9" stroke="#A3A3A3"></path>
+<path d="M304.5 148.4L304.5 111.9" stroke="#A3A3A3"></path>
+<path d="M308 148.4L308 111.9" stroke="#A3A3A3"></path>
+<path d="M311.5 148.4L311.5 111.9" stroke="#A3A3A3"></path>
+<path d="M315 148.4L315 111.9" stroke="#A3A3A3"></path>
+<path d="M318.6 148.4L318.6 111.9" stroke="#A3A3A3"></path>
+<path d="M322.1 148.4L322.1 111.9" stroke="#A3A3A3"></path>
+<path d="M325.6 148.4L325.6 111.9" stroke="#A3A3A3"></path>
+<path d="M329.1 148.4L329.1 111.9" stroke="#A3A3A3"></path>
+<path d="M332.6 148.4L332.6 111.9" stroke="#A3A3A3"></path>
+<path d="M336.2 148.4L336.2 111.9" stroke="#A3A3A3"></path>
+<path d="M339.7 148.4L339.7 111.9" stroke="#A3A3A3"></path>
+<path d="M343.2 148.4L343.2 111.9" stroke="#A3A3A3"></path>
+<path d="M346.7 148.4L346.7 111.9" stroke="#A3A3A3"></path>
+<path d="M350.2 148.4L350.2 111.9" stroke="#A3A3A3"></path>
+<path d="M353.8 148.4L353.8 111.9" stroke="#A3A3A3"></path>
+<path d="M357.3 148.4L357.3 111.9" stroke="#A3A3A3"></path>
+<path d="M360.8 148.4L360.8 111.9" stroke="#A3A3A3"></path>
+<path d="M364.3 148.4L364.3 111.9" stroke="#A3A3A3"></path>
+<path d="M367.8 148.4L367.8 111.9" stroke="#A3A3A3"></path>
+<rect x="248.2" y="82.2" width="123.8" height="19.2" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M250.7 100.4L250.7 83.1" stroke="#A3A3A3"></path>
+<path d="M253.3 100.4L253.3 83.1" stroke="#A3A3A3"></path>
+<path d="M255.8 100.4L255.8 83.1" stroke="#A3A3A3"></path>
+<path d="M258.4 100.4L258.4 83.1" stroke="#A3A3A3"></path>
+<path d="M261 100.4L261 83.1" stroke="#A3A3A3"></path>
+<path d="M263.5 100.4L263.5 83.1" stroke="#A3A3A3"></path>
+<path d="M266.1 100.4L266.1 83.1" stroke="#A3A3A3"></path>
+<path d="M268.6 100.4L268.6 83.1" stroke="#A3A3A3"></path>
+<path d="M271.2 100.4L271.2 83.1" stroke="#A3A3A3"></path>
+<path d="M273.8 100.4L273.8 83.1" stroke="#A3A3A3"></path>
+<path d="M276.3 100.4L276.3 83.1" stroke="#A3A3A3"></path>
+<path d="M278.9 100.4L278.9 83.1" stroke="#A3A3A3"></path>
+<path d="M281.4 100.4L281.4 83.1" stroke="#A3A3A3"></path>
+<path d="M284 100.4L284 83.1" stroke="#A3A3A3"></path>
+<path d="M286.6 100.4L286.6 83.1" stroke="#A3A3A3"></path>
+<path d="M289.1 100.4L289.1 83.1" stroke="#A3A3A3"></path>
+<path d="M291.7 100.4L291.7 83.1" stroke="#A3A3A3"></path>
+<path d="M294.2 100.4L294.2 83.1" stroke="#A3A3A3"></path>
+<path d="M296.8 100.4L296.8 83.1" stroke="#A3A3A3"></path>
+<path d="M299.4 100.4L299.4 83.1" stroke="#A3A3A3"></path>
+<path d="M301.9 100.4L301.9 83.1" stroke="#A3A3A3"></path>
+<path d="M304.5 100.4L304.5 83.1" stroke="#A3A3A3"></path>
+<path d="M307 100.4L307 83.1" stroke="#A3A3A3"></path>
+<path d="M309.6 100.4L309.6 83.1" stroke="#A3A3A3"></path>
+<path d="M312.2 100.4L312.2 83.1" stroke="#A3A3A3"></path>
+<path d="M314.7 100.4L314.7 83.1" stroke="#A3A3A3"></path>
+<path d="M317.3 100.4L317.3 83.1" stroke="#A3A3A3"></path>
+<path d="M319.8 100.4L319.8 83.1" stroke="#A3A3A3"></path>
+<path d="M322.4 100.4L322.4 83.1" stroke="#A3A3A3"></path>
+<path d="M325 100.4L325 83.1" stroke="#A3A3A3"></path>
+<path d="M327.5 100.4L327.5 83.1" stroke="#A3A3A3"></path>
+<path d="M330.1 100.4L330.1 83.1" stroke="#A3A3A3"></path>
+<path d="M332.6 100.4L332.6 83.1" stroke="#A3A3A3"></path>
+<path d="M335.2 100.4L335.2 83.1" stroke="#A3A3A3"></path>
+<path d="M337.8 100.4L337.8 83.1" stroke="#A3A3A3"></path>
+<path d="M340.3 100.4L340.3 83.1" stroke="#A3A3A3"></path>
+<path d="M342.9 100.4L342.9 83.1" stroke="#A3A3A3"></path>
+<path d="M345.4 100.4L345.4 83.1" stroke="#A3A3A3"></path>
+<path d="M348 100.4L348 83.1" stroke="#A3A3A3"></path>
+<path d="M350.6 100.4L350.6 83.1" stroke="#A3A3A3"></path>
+<path d="M353.1 100.4L353.1 83.1" stroke="#A3A3A3"></path>
+<path d="M355.7 100.4L355.7 83.1" stroke="#A3A3A3"></path>
+<path d="M358.2 100.4L358.2 83.1" stroke="#A3A3A3"></path>
+<path d="M360.8 100.4L360.8 83.1" stroke="#A3A3A3"></path>
+<path d="M363.4 100.4L363.4 83.1" stroke="#A3A3A3"></path>
+<path d="M365.9 100.4L365.9 83.1" stroke="#A3A3A3"></path>
+<path d="M368.5 100.4L368.5 83.1" stroke="#A3A3A3"></path>
+<circle cx="310.1" cy="186.2" r="1.4" fill="#000"></circle>
+<path d="M248.7 43.3H371.5M248.7 39.3V47.3M371.5 39.3V47.3" stroke="#6E6E6E"></path>
+<text x="310.08" y="36.34" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">77.4</tspan> mm</text>
+<text x="248.16" y="225.36" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Lumix S 20–60mm</text>
+<text x="248.16" y="245.36" font-family="IBM Plex Sans" font-size="14" fill="#555555">f/<tspan font-family="IBM Plex Mono">3.5–5.6</tspan></text>
+<rect x="435.1" y="193.4" width="91.9" height="4" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="422.2" y="69.4" width="117.8" height="124" rx="2.4" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="428.6" y="66.2" width="105" height="3.2" rx="0.8" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="422.2" y="88.6" width="117.8" height="41.6" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M425.7 129.2L425.7 89.5" stroke="#A3A3A3"></path>
+<path d="M429.2 129.2L429.2 89.5" stroke="#A3A3A3"></path>
+<path d="M432.7 129.2L432.7 89.5" stroke="#A3A3A3"></path>
+<path d="M436.2 129.2L436.2 89.5" stroke="#A3A3A3"></path>
+<path d="M439.8 129.2L439.8 89.5" stroke="#A3A3A3"></path>
+<path d="M443.3 129.2L443.3 89.5" stroke="#A3A3A3"></path>
+<path d="M446.8 129.2L446.8 89.5" stroke="#A3A3A3"></path>
+<path d="M450.3 129.2L450.3 89.5" stroke="#A3A3A3"></path>
+<path d="M453.8 129.2L453.8 89.5" stroke="#A3A3A3"></path>
+<path d="M457.4 129.2L457.4 89.5" stroke="#A3A3A3"></path>
+<path d="M460.9 129.2L460.9 89.5" stroke="#A3A3A3"></path>
+<path d="M464.4 129.2L464.4 89.5" stroke="#A3A3A3"></path>
+<path d="M467.9 129.2L467.9 89.5" stroke="#A3A3A3"></path>
+<path d="M471.4 129.2L471.4 89.5" stroke="#A3A3A3"></path>
+<path d="M475 129.2L475 89.5" stroke="#A3A3A3"></path>
+<path d="M478.5 129.2L478.5 89.5" stroke="#A3A3A3"></path>
+<path d="M482 129.2L482 89.5" stroke="#A3A3A3"></path>
+<path d="M485.5 129.2L485.5 89.5" stroke="#A3A3A3"></path>
+<path d="M489 129.2L489 89.5" stroke="#A3A3A3"></path>
+<path d="M492.6 129.2L492.6 89.5" stroke="#A3A3A3"></path>
+<path d="M496.1 129.2L496.1 89.5" stroke="#A3A3A3"></path>
+<path d="M499.6 129.2L499.6 89.5" stroke="#A3A3A3"></path>
+<path d="M503.1 129.2L503.1 89.5" stroke="#A3A3A3"></path>
+<path d="M506.6 129.2L506.6 89.5" stroke="#A3A3A3"></path>
+<path d="M510.2 129.2L510.2 89.5" stroke="#A3A3A3"></path>
+<path d="M513.7 129.2L513.7 89.5" stroke="#A3A3A3"></path>
+<path d="M517.2 129.2L517.2 89.5" stroke="#A3A3A3"></path>
+<path d="M520.7 129.2L520.7 89.5" stroke="#A3A3A3"></path>
+<path d="M524.2 129.2L524.2 89.5" stroke="#A3A3A3"></path>
+<path d="M527.8 129.2L527.8 89.5" stroke="#A3A3A3"></path>
+<path d="M531.3 129.2L531.3 89.5" stroke="#A3A3A3"></path>
+<path d="M534.8 129.2L534.8 89.5" stroke="#A3A3A3"></path>
+<circle cx="481" cy="186.2" r="1.4" fill="#000"></circle>
+<path d="M422.7 51.7H539.4M422.7 47.7V55.7M539.4 47.7V55.7" stroke="#6E6E6E"></path>
+<text x="481.04" y="44.66" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">73.6</tspan> mm</text>
+<text x="422.16" y="225.36" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Lumix S 100mm</text>
+<text x="422.16" y="245.36" font-family="IBM Plex Sans" font-size="14" fill="#555555">f/<tspan font-family="IBM Plex Mono">2.8</tspan> Macro</text>
+<rect x="590.1" y="193.4" width="91.9" height="4" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="577.2" y="69.4" width="117.8" height="124" rx="2.4" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="583.6" y="66.2" width="105" height="3.2" rx="0.8" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="577.2" y="88.6" width="117.8" height="41.6" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M580.7 129.2L580.7 89.5" stroke="#A3A3A3"></path>
+<path d="M584.2 129.2L584.2 89.5" stroke="#A3A3A3"></path>
+<path d="M587.7 129.2L587.7 89.5" stroke="#A3A3A3"></path>
+<path d="M591.2 129.2L591.2 89.5" stroke="#A3A3A3"></path>
+<path d="M594.8 129.2L594.8 89.5" stroke="#A3A3A3"></path>
+<path d="M598.3 129.2L598.3 89.5" stroke="#A3A3A3"></path>
+<path d="M601.8 129.2L601.8 89.5" stroke="#A3A3A3"></path>
+<path d="M605.3 129.2L605.3 89.5" stroke="#A3A3A3"></path>
+<path d="M608.8 129.2L608.8 89.5" stroke="#A3A3A3"></path>
+<path d="M612.4 129.2L612.4 89.5" stroke="#A3A3A3"></path>
+<path d="M615.9 129.2L615.9 89.5" stroke="#A3A3A3"></path>
+<path d="M619.4 129.2L619.4 89.5" stroke="#A3A3A3"></path>
+<path d="M622.9 129.2L622.9 89.5" stroke="#A3A3A3"></path>
+<path d="M626.4 129.2L626.4 89.5" stroke="#A3A3A3"></path>
+<path d="M630 129.2L630 89.5" stroke="#A3A3A3"></path>
+<path d="M633.5 129.2L633.5 89.5" stroke="#A3A3A3"></path>
+<path d="M637 129.2L637 89.5" stroke="#A3A3A3"></path>
+<path d="M640.5 129.2L640.5 89.5" stroke="#A3A3A3"></path>
+<path d="M644 129.2L644 89.5" stroke="#A3A3A3"></path>
+<path d="M647.6 129.2L647.6 89.5" stroke="#A3A3A3"></path>
+<path d="M651.1 129.2L651.1 89.5" stroke="#A3A3A3"></path>
+<path d="M654.6 129.2L654.6 89.5" stroke="#A3A3A3"></path>
+<path d="M658.1 129.2L658.1 89.5" stroke="#A3A3A3"></path>
+<path d="M661.6 129.2L661.6 89.5" stroke="#A3A3A3"></path>
+<path d="M665.2 129.2L665.2 89.5" stroke="#A3A3A3"></path>
+<path d="M668.7 129.2L668.7 89.5" stroke="#A3A3A3"></path>
+<path d="M672.2 129.2L672.2 89.5" stroke="#A3A3A3"></path>
+<path d="M675.7 129.2L675.7 89.5" stroke="#A3A3A3"></path>
+<path d="M679.2 129.2L679.2 89.5" stroke="#A3A3A3"></path>
+<path d="M682.8 129.2L682.8 89.5" stroke="#A3A3A3"></path>
+<path d="M686.3 129.2L686.3 89.5" stroke="#A3A3A3"></path>
+<path d="M689.8 129.2L689.8 89.5" stroke="#A3A3A3"></path>
+<circle cx="636" cy="186.2" r="1.4" fill="#000"></circle>
+<path d="M577.7 51.7H694.4M577.7 47.7V55.7M694.4 47.7V55.7" stroke="#6E6E6E"></path>
+<text x="636.04" y="44.66" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">73.6</tspan> mm</text>
+<text x="577.16" y="225.36" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Lumix S 50mm</text>
+<text x="577.16" y="245.36" font-family="IBM Plex Sans" font-size="14" fill="#555555">f/<tspan font-family="IBM Plex Mono">1.8</tspan></text>
+<path d="M0.5 299.9H80.5" stroke="#000"></path>
+<path d="M0.5 295.9V303.9" stroke="#000"></path>
+<path d="M16.5 295.9V303.9" stroke="#000"></path>
+<path d="M32.5 295.9V303.9" stroke="#000"></path>
+<path d="M48.5 295.9V303.9" stroke="#000"></path>
+<path d="M64.5 295.9V303.9" stroke="#000"></path>
+<path d="M80.5 295.9V303.9" stroke="#000"></path>
+<text x="0" y="323.36" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">0</text>
+<text x="80" y="323.36" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">50</tspan> mm</text>
+</svg>

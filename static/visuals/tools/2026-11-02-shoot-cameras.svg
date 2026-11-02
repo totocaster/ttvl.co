@@ -1,0 +1,348 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="546" viewBox="0 0 880 546" fill="none">
+<path d="M0 179.5H771.4" stroke="#D9D9D9"></path>
+<circle cx="3.5" cy="100.1" r="3.5" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="230.4" cy="100.1" r="3.5" fill="#FFFFFF" stroke="#000"></circle>
+<rect x="29.8" y="42" width="27.2" height="10.1" rx="1.6" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M33.3 49.5L33.3 43" stroke="#A3A3A3"></path>
+<path d="M36.8 49.5L36.8 43" stroke="#A3A3A3"></path>
+<path d="M40.3 49.5L40.3 43" stroke="#A3A3A3"></path>
+<path d="M43.8 49.5L43.8 43" stroke="#A3A3A3"></path>
+<path d="M47.4 49.5L47.4 43" stroke="#A3A3A3"></path>
+<path d="M50.9 49.5L50.9 43" stroke="#A3A3A3"></path>
+<path d="M54.4 49.5L54.4 43" stroke="#A3A3A3"></path>
+<rect x="61.3" y="43.8" width="35.2" height="8.3" rx="1.6" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M64.8 49.5L64.8 44.7" stroke="#A3A3A3"></path>
+<path d="M68.3 49.5L68.3 44.7" stroke="#A3A3A3"></path>
+<path d="M71.8 49.5L71.8 44.7" stroke="#A3A3A3"></path>
+<path d="M75.4 49.5L75.4 44.7" stroke="#A3A3A3"></path>
+<path d="M78.9 49.5L78.9 44.7" stroke="#A3A3A3"></path>
+<path d="M82.4 49.5L82.4 44.7" stroke="#A3A3A3"></path>
+<path d="M85.9 49.5L85.9 44.7" stroke="#A3A3A3"></path>
+<path d="M89.4 49.5L89.4 44.7" stroke="#A3A3A3"></path>
+<path d="M93 49.5L93 44.7" stroke="#A3A3A3"></path>
+<rect x="5.8" y="50.5" width="222.4" height="128.5" rx="8" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="5.8" y="86.2" width="222.4" height="86.4" fill="#FFFFFF"></rect>
+<rect x="5.8" y="86.2" width="222.4" height="86.4" fill="#D9D9D9" stroke="#000"></rect>
+<rect x="69.9" y="65.8" width="17.1" height="11.4" rx="1.6" fill="#000" stroke="#000"></rect>
+<rect x="166.7" y="54.3" width="47.5" height="32.3" rx="2.4" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="169.6" y="57.2" width="41.8" height="26.6" rx="1.6" fill="#000" stroke="#000"></rect>
+<circle cx="103.2" cy="58" r="2.6" fill="#000" stroke="#000"></circle>
+<circle cx="131.4" cy="69.7" r="5.4" fill="#FFFFFF" stroke="#000"></circle>
+<path d="M128 73L134.7 66.3" stroke="#000"></path>
+<circle cx="80" cy="124.6" r="5.8" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="185" cy="124.6" r="4.8" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="132" cy="124.6" r="46.9" fill="#FFFFFF" stroke="#000"></circle>
+<path d="M175.8 124.6L178.9 124.6" stroke="#A3A3A3"></path>
+<path d="M175.5 118.8L178.5 118.4" stroke="#A3A3A3"></path>
+<path d="M174.3 113.2L177.3 112.4" stroke="#A3A3A3"></path>
+<path d="M172.5 107.8L175.3 106.6" stroke="#A3A3A3"></path>
+<path d="M170 102.6L172.6 101.1" stroke="#A3A3A3"></path>
+<path d="M166.8 97.9L169.2 96" stroke="#A3A3A3"></path>
+<path d="M163 93.6L165.1 91.4" stroke="#A3A3A3"></path>
+<path d="M158.7 89.8L160.5 87.4" stroke="#A3A3A3"></path>
+<path d="M153.9 86.6L155.4 84" stroke="#A3A3A3"></path>
+<path d="M148.8 84.1L149.9 81.2" stroke="#A3A3A3"></path>
+<path d="M143.3 82.2L144.1 79.3" stroke="#A3A3A3"></path>
+<path d="M137.7 81.1L138.1 78.1" stroke="#A3A3A3"></path>
+<path d="M132 80.7L132 77.7" stroke="#A3A3A3"></path>
+<path d="M126.3 81.1L125.9 78.1" stroke="#A3A3A3"></path>
+<path d="M120.7 82.2L119.9 79.3" stroke="#A3A3A3"></path>
+<path d="M115.2 84.1L114.1 81.2" stroke="#A3A3A3"></path>
+<path d="M110.1 86.6L108.6 84" stroke="#A3A3A3"></path>
+<path d="M105.3 89.8L103.5 87.4" stroke="#A3A3A3"></path>
+<path d="M101 93.6L98.9 91.4" stroke="#A3A3A3"></path>
+<path d="M97.2 97.9L94.8 96" stroke="#A3A3A3"></path>
+<path d="M94 102.6L91.4 101.1" stroke="#A3A3A3"></path>
+<path d="M91.5 107.8L88.7 106.6" stroke="#A3A3A3"></path>
+<path d="M89.7 113.2L86.7 112.4" stroke="#A3A3A3"></path>
+<path d="M88.5 118.8L85.5 118.4" stroke="#A3A3A3"></path>
+<path d="M88.2 124.6L85.1 124.6" stroke="#A3A3A3"></path>
+<path d="M88.5 130.3L85.5 130.7" stroke="#A3A3A3"></path>
+<path d="M89.7 135.9L86.7 136.7" stroke="#A3A3A3"></path>
+<path d="M91.5 141.3L88.7 142.5" stroke="#A3A3A3"></path>
+<path d="M94 146.5L91.4 148" stroke="#A3A3A3"></path>
+<path d="M97.2 151.2L94.8 153.1" stroke="#A3A3A3"></path>
+<path d="M101 155.6L98.9 157.7" stroke="#A3A3A3"></path>
+<path d="M105.3 159.3L103.5 161.8" stroke="#A3A3A3"></path>
+<path d="M110.1 162.5L108.6 165.2" stroke="#A3A3A3"></path>
+<path d="M115.2 165.1L114.1 167.9" stroke="#A3A3A3"></path>
+<path d="M120.7 166.9L119.9 169.8" stroke="#A3A3A3"></path>
+<path d="M126.3 168L125.9 171" stroke="#A3A3A3"></path>
+<path d="M132 168.4L132 171.4" stroke="#A3A3A3"></path>
+<path d="M137.7 168L138.1 171" stroke="#A3A3A3"></path>
+<path d="M143.3 166.9L144.1 169.8" stroke="#A3A3A3"></path>
+<path d="M148.8 165.1L149.9 167.9" stroke="#A3A3A3"></path>
+<path d="M153.9 162.5L155.4 165.2" stroke="#A3A3A3"></path>
+<path d="M158.7 159.3L160.5 161.8" stroke="#A3A3A3"></path>
+<path d="M163 155.6L165.1 157.7" stroke="#A3A3A3"></path>
+<path d="M166.8 151.2L169.2 153.1" stroke="#A3A3A3"></path>
+<path d="M170 146.5L172.6 148" stroke="#A3A3A3"></path>
+<path d="M172.5 141.3L175.3 142.5" stroke="#A3A3A3"></path>
+<path d="M174.3 135.9L177.3 136.7" stroke="#A3A3A3"></path>
+<path d="M175.5 130.3L178.5 130.7" stroke="#A3A3A3"></path>
+<circle cx="132" cy="124.6" r="43.8" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="132" cy="124.6" r="39.4" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="132" cy="124.6" r="33.9" fill="#FFFFFF"></circle>
+<circle cx="132" cy="124.6" r="33.9" fill="#F7F7F7" stroke="#000"></circle>
+<circle cx="132" cy="124.6" r="24.8" fill="#000" stroke="#000"></circle>
+<circle cx="122.6" cy="115.1" r="4" fill="#FFFFFF"></circle>
+<path d="M6.3 27.5H227.7M6.3 23.5V31.5M227.7 23.5V31.5" stroke="#6E6E6E"></path>
+<text x="116.96" y="20.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">139</tspan> mm</text>
+<text x="0" y="206.96" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Leica M11-P</text>
+<text x="0" y="226.96" font-family="IBM Plex Sans" font-size="14" fill="#555555">The primary body, with the</text>
+<text x="0" y="246.96" font-family="IBM Plex Sans" font-size="14" fill="#555555">Summilux-M <tspan font-family="IBM Plex Mono">50</tspan>mm f/<tspan font-family="IBM Plex Mono">1.4</tspan> ASPH</text>
+<circle cx="273.4" cy="75.6" r="3.5" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="485.9" cy="75.6" r="3.5" fill="#FFFFFF" stroke="#000"></circle>
+<rect x="301.1" y="48.9" width="25.9" height="10.7" rx="1.6" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M304.6 57L304.6 49.8" stroke="#A3A3A3"></path>
+<path d="M308.2 57L308.2 49.8" stroke="#A3A3A3"></path>
+<path d="M311.7 57L311.7 49.8" stroke="#A3A3A3"></path>
+<path d="M315.2 57L315.2 49.8" stroke="#A3A3A3"></path>
+<path d="M318.7 57L318.7 49.8" stroke="#A3A3A3"></path>
+<path d="M322.2 57L322.2 49.8" stroke="#A3A3A3"></path>
+<rect x="329.1" y="49.7" width="34.2" height="9.9" rx="1.6" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M332.6 57L332.6 50.6" stroke="#A3A3A3"></path>
+<path d="M336.2 57L336.2 50.6" stroke="#A3A3A3"></path>
+<path d="M339.7 57L339.7 50.6" stroke="#A3A3A3"></path>
+<path d="M343.2 57L343.2 50.6" stroke="#A3A3A3"></path>
+<path d="M346.7 57L346.7 50.6" stroke="#A3A3A3"></path>
+<path d="M350.2 57L350.2 50.6" stroke="#A3A3A3"></path>
+<path d="M353.8 57L353.8 50.6" stroke="#A3A3A3"></path>
+<path d="M357.3 57L357.3 50.6" stroke="#A3A3A3"></path>
+<path d="M360.8 57L360.8 50.6" stroke="#A3A3A3"></path>
+<path d="M275.7 172.6Q275.7 179 282.1 179L477.3 179Q483.7 179 483.7 172.6L483.7 56.9Q483.7 50.5 477.3 50.5L366.9 50.5Q364.5 50.5 364.5 52.9L364.5 56.4Q364.5 58 362.9 58L282.1 58Q275.7 58 275.7 64.4Z" fill="#FFFFFF" stroke="#000"></path>
+<rect x="275.7" y="67.1" width="208" height="106.4" fill="#FFFFFF"></rect>
+<rect x="275.7" y="67.1" width="208" height="106.4" fill="#D9D9D9" stroke="#000"></rect>
+<rect x="343.8" y="69.4" width="7.5" height="4.2" rx="1" fill="#000" stroke="#000"></rect>
+<circle cx="450.2" cy="67.1" r="7.5" fill="#000" stroke="#000"></circle>
+<circle cx="400.2" cy="120.7" r="56" fill="#FFFFFF" stroke="#000"></circle>
+<path d="M452.3 120.7L456.2 120.7" stroke="#A3A3A3"></path>
+<path d="M452 115.3L455.9 114.9" stroke="#A3A3A3"></path>
+<path d="M451.2 109.9L454.9 109.1" stroke="#A3A3A3"></path>
+<path d="M449.8 104.6L453.4 103.4" stroke="#A3A3A3"></path>
+<path d="M447.8 99.5L451.3 97.9" stroke="#A3A3A3"></path>
+<path d="M445.3 94.6L448.7 92.7" stroke="#A3A3A3"></path>
+<path d="M442.4 90.1L445.5 87.8" stroke="#A3A3A3"></path>
+<path d="M438.9 85.8L441.8 83.2" stroke="#A3A3A3"></path>
+<path d="M435.1 82L437.6 79.1" stroke="#A3A3A3"></path>
+<path d="M430.8 78.5L433.1 75.4" stroke="#A3A3A3"></path>
+<path d="M426.2 75.5L428.2 72.2" stroke="#A3A3A3"></path>
+<path d="M421.4 73.1L422.9 69.6" stroke="#A3A3A3"></path>
+<path d="M416.3 71.1L417.5 67.5" stroke="#A3A3A3"></path>
+<path d="M411 69.7L411.8 65.9" stroke="#A3A3A3"></path>
+<path d="M405.6 68.8L406 65" stroke="#A3A3A3"></path>
+<path d="M400.2 68.6L400.2 64.7" stroke="#A3A3A3"></path>
+<path d="M394.7 68.8L394.3 65" stroke="#A3A3A3"></path>
+<path d="M389.3 69.7L388.5 65.9" stroke="#A3A3A3"></path>
+<path d="M384 71.1L382.9 67.5" stroke="#A3A3A3"></path>
+<path d="M378.9 73.1L377.4 69.6" stroke="#A3A3A3"></path>
+<path d="M374.1 75.5L372.2 72.2" stroke="#A3A3A3"></path>
+<path d="M369.5 78.5L367.2 75.4" stroke="#A3A3A3"></path>
+<path d="M365.3 82L362.7 79.1" stroke="#A3A3A3"></path>
+<path d="M361.4 85.8L358.5 83.2" stroke="#A3A3A3"></path>
+<path d="M358 90.1L354.9 87.8" stroke="#A3A3A3"></path>
+<path d="M355 94.6L351.7 92.7" stroke="#A3A3A3"></path>
+<path d="M352.5 99.5L349 97.9" stroke="#A3A3A3"></path>
+<path d="M350.6 104.6L346.9 103.4" stroke="#A3A3A3"></path>
+<path d="M349.1 109.9L345.4 109.1" stroke="#A3A3A3"></path>
+<path d="M348.3 115.3L344.5 114.9" stroke="#A3A3A3"></path>
+<path d="M348 120.7L344.2 120.7" stroke="#A3A3A3"></path>
+<path d="M348.3 126.2L344.5 126.6" stroke="#A3A3A3"></path>
+<path d="M349.1 131.6L345.4 132.4" stroke="#A3A3A3"></path>
+<path d="M350.6 136.8L346.9 138" stroke="#A3A3A3"></path>
+<path d="M352.5 141.9L349 143.5" stroke="#A3A3A3"></path>
+<path d="M355 146.8L351.7 148.7" stroke="#A3A3A3"></path>
+<path d="M358 151.4L354.9 153.6" stroke="#A3A3A3"></path>
+<path d="M361.4 155.6L358.5 158.2" stroke="#A3A3A3"></path>
+<path d="M365.3 159.5L362.7 162.3" stroke="#A3A3A3"></path>
+<path d="M369.5 162.9L367.2 166" stroke="#A3A3A3"></path>
+<path d="M374.1 165.9L372.2 169.2" stroke="#A3A3A3"></path>
+<path d="M378.9 168.4L377.4 171.9" stroke="#A3A3A3"></path>
+<path d="M384 170.3L382.9 174" stroke="#A3A3A3"></path>
+<path d="M389.3 171.7L388.5 175.5" stroke="#A3A3A3"></path>
+<path d="M394.7 172.6L394.3 176.4" stroke="#A3A3A3"></path>
+<path d="M400.2 172.9L400.2 176.7" stroke="#A3A3A3"></path>
+<path d="M405.6 172.6L406 176.4" stroke="#A3A3A3"></path>
+<path d="M411 171.7L411.8 175.5" stroke="#A3A3A3"></path>
+<path d="M416.3 170.3L417.5 174" stroke="#A3A3A3"></path>
+<path d="M421.4 168.4L422.9 171.9" stroke="#A3A3A3"></path>
+<path d="M426.2 165.9L428.2 169.2" stroke="#A3A3A3"></path>
+<path d="M430.8 162.9L433.1 166" stroke="#A3A3A3"></path>
+<path d="M435.1 159.5L437.6 162.3" stroke="#A3A3A3"></path>
+<path d="M438.9 155.6L441.8 158.2" stroke="#A3A3A3"></path>
+<path d="M442.4 151.4L445.5 153.6" stroke="#A3A3A3"></path>
+<path d="M445.3 146.8L448.7 148.7" stroke="#A3A3A3"></path>
+<path d="M447.8 141.9L451.3 143.5" stroke="#A3A3A3"></path>
+<path d="M449.8 136.8L453.4 138" stroke="#A3A3A3"></path>
+<path d="M451.2 131.6L454.9 132.4" stroke="#A3A3A3"></path>
+<path d="M452 126.2L455.9 126.6" stroke="#A3A3A3"></path>
+<circle cx="400.2" cy="120.7" r="52.2" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="400.2" cy="120.7" r="47.4" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="400.2" cy="120.7" r="34.2" fill="#FFFFFF"></circle>
+<circle cx="400.2" cy="120.7" r="34.2" fill="#F7F7F7" stroke="#000"></circle>
+<circle cx="400.2" cy="120.7" r="25.9" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="400.2" cy="120.7" r="18.7" fill="#000" stroke="#000"></circle>
+<circle cx="393" cy="113.6" r="3" fill="#FFFFFF"></circle>
+<path d="M276.2 34.4H483.2M276.2 30.4V38.4M483.2 30.4V38.4" stroke="#6E6E6E"></path>
+<text x="379.68" y="27.38" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">130</tspan> mm</text>
+<text x="269.92" y="206.96" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Leica Q3 43</text>
+<text x="269.92" y="226.96" font-family="IBM Plex Sans" font-size="14" fill="#555555">The fixed-lens pairing</text>
+<circle cx="529" cy="73.4" r="3.5" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="755.8" cy="73.4" r="3.5" fill="#FFFFFF" stroke="#000"></circle>
+<rect x="547.2" y="45.2" width="24" height="7.4" rx="1.6" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M550.4 50L550.4 46.2" stroke="#A3A3A3"></path>
+<path d="M553.6 50L553.6 46.2" stroke="#A3A3A3"></path>
+<path d="M556.8 50L556.8 46.2" stroke="#A3A3A3"></path>
+<path d="M560 50L560 46.2" stroke="#A3A3A3"></path>
+<path d="M563.2 50L563.2 46.2" stroke="#A3A3A3"></path>
+<path d="M566.4 50L566.4 46.2" stroke="#A3A3A3"></path>
+<rect x="576" y="46.8" width="20.8" height="5.8" rx="1.6" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="531.2" y="51" width="222.4" height="128" rx="8" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="531.2" y="86.2" width="38.4" height="92.8" rx="6.4" fill="#FFFFFF"></rect>
+<rect x="531.2" y="86.2" width="38.4" height="92.8" rx="6.4" fill="#D9D9D9" stroke="#000"></rect>
+<path d="M569.6 86.2L753.6 86.2" stroke="#000"></path>
+<rect x="601.6" y="62.2" width="36.8" height="19.2" rx="2.4" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="604.8" y="65.4" width="14.4" height="12.8" rx="1.6" fill="#000" stroke="#000"></rect>
+<rect x="623.2" y="65.4" width="12" height="12.8" rx="1.6" fill="#000" stroke="#000"></rect>
+<rect x="665.6" y="62.2" width="48" height="19.2" rx="2.4" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="668.8" y="65.4" width="19.2" height="12.8" rx="1.6" fill="#000" stroke="#000"></rect>
+<rect x="691.2" y="65.4" width="19.2" height="12.8" rx="1.6" fill="#000" stroke="#000"></rect>
+<rect x="718.4" y="66.2" width="10.4" height="11.2" rx="1.6" fill="#000" stroke="#000"></rect>
+<circle cx="579.2" cy="100.6" r="7.2" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="579.2" cy="100.6" r="4.5" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="696" cy="129.4" r="4.8" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="625.6" cy="132.6" r="44.8" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="625.6" cy="132.6" r="40" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="625.6" cy="132.6" r="29.6" fill="#FFFFFF"></circle>
+<circle cx="625.6" cy="132.6" r="29.6" fill="#F7F7F7" stroke="#000"></circle>
+<circle cx="625.6" cy="132.6" r="20.8" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="625.6" cy="132.6" r="13.6" fill="#000" stroke="#000"></circle>
+<circle cx="620.4" cy="127.4" r="2.2" fill="#FFFFFF"></circle>
+<circle cx="625.6" cy="90.2" r="1.3" fill="#000" stroke="#000"></circle>
+<path d="M531.7 30.7H753.1M531.7 26.7V34.7M753.1 26.7V34.7" stroke="#6E6E6E"></path>
+<text x="642.4" y="23.7" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">139</tspan> mm</text>
+<text x="525.44" y="206.96" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Contax G2</text>
+<text x="525.44" y="226.96" font-family="IBM Plex Sans" font-size="14" fill="#555555">Mostly with the G <tspan font-family="IBM Plex Mono">28</tspan>mm</text>
+<text x="525.44" y="246.96" font-family="IBM Plex Sans" font-size="14" fill="#555555">or the G <tspan font-family="IBM Plex Mono">35</tspan>mm</text>
+<path d="M0 412.5H793.6" stroke="#D9D9D9"></path>
+<rect x="22.6" y="311.5" width="22.1" height="4.5" rx="1.6" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M25.1 313.3L25.1 312.5" stroke="#A3A3A3"></path>
+<path d="M27.7 313.3L27.7 312.5" stroke="#A3A3A3"></path>
+<path d="M30.2 313.3L30.2 312.5" stroke="#A3A3A3"></path>
+<path d="M32.8 313.3L32.8 312.5" stroke="#A3A3A3"></path>
+<path d="M35.4 313.3L35.4 312.5" stroke="#A3A3A3"></path>
+<path d="M37.9 313.3L37.9 312.5" stroke="#A3A3A3"></path>
+<path d="M40.5 313.3L40.5 312.5" stroke="#A3A3A3"></path>
+<path d="M43 313.3L43 312.5" stroke="#A3A3A3"></path>
+<rect x="0" y="314.2" width="175" height="97.8" rx="6.4" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="0" y="320.8" width="58.4" height="88" rx="4.8" fill="#FFFFFF"></rect>
+<rect x="0" y="320.8" width="58.4" height="88" rx="4.8" fill="#D9D9D9" stroke="#000"></rect>
+<circle cx="64" cy="329.1" r="2.4" fill="#000" stroke="#000"></circle>
+<circle cx="110.9" cy="364.8" r="42.4" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="110.9" cy="364.8" r="37.6" fill="#FFFFFF" stroke="#000"></circle>
+<rect x="95.7" y="349.6" width="30.4" height="30.4" rx="4.8" fill="#FFFFFF"></rect>
+<rect x="95.7" y="349.6" width="30.4" height="30.4" rx="4.8" fill="#F7F7F7" stroke="#000"></rect>
+<circle cx="110.9" cy="364.8" r="10.9" fill="#000" stroke="#000"></circle>
+<circle cx="106.7" cy="360.7" r="1.7" fill="#FFFFFF"></circle>
+<path d="M0.5 297H174.5M0.5 293V301M174.5 293V301" stroke="#6E6E6E"></path>
+<text x="87.52" y="290.02" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">109.4</tspan> mm</text>
+<text x="0" y="440" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Ricoh GR IV Monochrome</text>
+<text x="0" y="460" font-family="IBM Plex Sans" font-size="14" fill="#555555">My fourth GR</text>
+<rect x="254.3" y="309" width="17.1" height="3.8" rx="1.9" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="278.1" y="310.2" width="12.2" height="2.6" rx="1.3" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="221" y="311.2" width="184" height="100.8" rx="9.6" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M225.8 316.6L400.2 316.6" stroke="#000"></path>
+<rect x="283.1" y="323.2" width="77" height="20.5" rx="10.2" fill="#000" stroke="#000"></rect>
+<rect x="315.1" y="327.5" width="20.3" height="11.8" rx="1.6" fill="#FFFFFF"></rect>
+<rect x="315.1" y="327.5" width="20.3" height="11.8" rx="1.6" fill="#D9D9D9" stroke="#000"></rect>
+<rect x="365" y="322.4" width="33.1" height="16.2" rx="1.6" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M372.2 336.8L372.2 324" stroke="#A3A3A3"></path>
+<path d="M378.6 336.8L378.6 324" stroke="#A3A3A3"></path>
+<path d="M385 336.8L385 324" stroke="#A3A3A3"></path>
+<path d="M391.4 336.8L391.4 324" stroke="#A3A3A3"></path>
+<rect x="236.5" y="344.5" width="43" height="55" rx="6.4" fill="#FFFFFF"></rect>
+<rect x="236.5" y="344.5" width="43" height="55" rx="6.4" fill="#D9D9D9" stroke="#000"></rect>
+<circle cx="323.7" cy="370.9" r="29.1" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="323.7" cy="370.9" r="24.6" fill="#FFFFFF" stroke="#000"></circle>
+<circle cx="323.7" cy="370.9" r="19.2" fill="#FFFFFF"></circle>
+<circle cx="323.7" cy="370.9" r="19.2" fill="#F7F7F7" stroke="#000"></circle>
+<circle cx="323.7" cy="370.9" r="12.8" fill="#000" stroke="#000"></circle>
+<circle cx="318.9" cy="366" r="2" fill="#FFFFFF"></circle>
+<path d="M221.5 294.5H404.5M221.5 290.5V298.5M404.5 290.5V298.5" stroke="#6E6E6E"></path>
+<text x="313" y="287.46" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">115</tspan> mm</text>
+<text x="221" y="440" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Konica Big Mini F</text>
+<text x="221" y="460" font-family="IBM Plex Sans" font-size="14" fill="#555555">Two, for the family</text>
+<text x="221" y="480" font-family="IBM Plex Sans" font-size="14" fill="#555555">rolls, <tspan font-family="IBM Plex Mono">80–100</tspan> a year</text>
+<rect x="457" y="408.2" width="8" height="3.8" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="454.6" y="336.5" width="12.8" height="9" rx="1.3" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M457.8 339.7L464.2 339.7" stroke="#000"></path>
+<path d="M484.2 401.6L519.4 401.6L522.6 401.6Q525.8 401.6 525.8 398.4L525.8 383.2L525.8 380.8Q525.8 378.4 523.4 378.4L506.6 378.4L503.4 378Q500.2 377.6 499.5 374.5L498.6 370.4L498.6 352L484.2 352Z" fill="#FFFFFF" stroke="#000"></path>
+<rect x="487.4" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="495" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="502.6" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="510.2" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="517.8" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="487.4" y="353.8" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="494.6" y="353.8" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="478.6" y="350.4" width="6.4" height="52.8" rx="1.6" fill="#000" stroke="#000"></rect>
+<rect x="441" y="344.8" width="40" height="64" rx="2.4" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M441 403.7L481 403.7" stroke="#000"></path>
+<path d="M441 349.9L481 349.9" stroke="#000"></path>
+<rect x="441" y="364" width="40" height="25.6" fill="#FFFFFF"></rect>
+<rect x="441" y="364" width="40" height="25.6" fill="#F7F7F7" stroke="#000"></rect>
+<path d="M441.5 322H525.3M441.5 318V326M525.3 318V326" stroke="#6E6E6E"></path>
+<text x="483.4" y="314.98" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">25</tspan> mm</text>
+<text x="441" y="440" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">HP5 Plus</text>
+<text x="441" y="460" font-family="IBM Plex Sans" font-size="14" fill="#555555">Black and white</text>
+<rect x="592" y="408.2" width="8" height="3.8" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="589.6" y="336.5" width="12.8" height="9" rx="1.3" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M592.8 339.7L599.2 339.7" stroke="#000"></path>
+<path d="M619.2 401.6L654.4 401.6L657.6 401.6Q660.8 401.6 660.8 398.4L660.8 383.2L660.8 380.8Q660.8 378.4 658.4 378.4L641.6 378.4L638.4 378Q635.2 377.6 634.5 374.5L633.6 370.4L633.6 352L619.2 352Z" fill="#FFFFFF" stroke="#000"></path>
+<rect x="622.4" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="630" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="637.6" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="645.2" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="652.8" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="622.4" y="353.8" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="629.6" y="353.8" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="613.6" y="350.4" width="6.4" height="52.8" rx="1.6" fill="#000" stroke="#000"></rect>
+<rect x="576" y="344.8" width="40" height="64" rx="2.4" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M576 403.7L616 403.7" stroke="#000"></path>
+<path d="M576 349.9L616 349.9" stroke="#000"></path>
+<rect x="576" y="364" width="40" height="25.6" fill="#FFFFFF"></rect>
+<rect x="576" y="364" width="40" height="25.6" fill="#F7F7F7" stroke="#000"></rect>
+<path d="M576.5 322H660.3M576.5 318V326M660.3 318V326" stroke="#6E6E6E"></path>
+<text x="618.4" y="314.98" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">25</tspan> mm</text>
+<text x="576" y="440" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Portra</text>
+<text x="576" y="460" font-family="IBM Plex Sans" font-size="14" fill="#555555">Color</text>
+<rect x="712.8" y="408.2" width="8" height="3.8" fill="#FFFFFF" stroke="#000"></rect>
+<rect x="710.4" y="336.5" width="12.8" height="9" rx="1.3" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M713.6 339.7L720 339.7" stroke="#000"></path>
+<path d="M740 401.6L775.2 401.6L778.4 401.6Q781.6 401.6 781.6 398.4L781.6 383.2L781.6 380.8Q781.6 378.4 779.2 378.4L762.4 378.4L759.2 378Q756 377.6 755.3 374.5L754.4 370.4L754.4 352L740 352Z" fill="#FFFFFF" stroke="#000"></path>
+<rect x="743.2" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="750.8" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="758.4" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="766" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="773.6" y="397" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="743.2" y="353.8" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="750.4" y="353.8" width="3.2" height="2.2" fill="#000"></rect>
+<rect x="734.4" y="350.4" width="6.4" height="52.8" rx="1.6" fill="#000" stroke="#000"></rect>
+<rect x="696.8" y="344.8" width="40" height="64" rx="2.4" fill="#FFFFFF" stroke="#000"></rect>
+<path d="M696.8 403.7L736.8 403.7" stroke="#000"></path>
+<path d="M696.8 349.9L736.8 349.9" stroke="#000"></path>
+<rect x="696.8" y="364" width="40" height="25.6" fill="#FFFFFF"></rect>
+<rect x="696.8" y="364" width="40" height="25.6" fill="#F7F7F7" stroke="#000"></rect>
+<path d="M697.3 322H781.1M697.3 318V326M781.1 318V326" stroke="#6E6E6E"></path>
+<text x="739.2" y="314.98" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">25</tspan> mm</text>
+<text x="696.8" y="440" font-family="IBM Plex Sans" font-size="16" font-weight="500" fill="#000">Ultramax</text>
+<text x="696.8" y="460" font-family="IBM Plex Sans" font-size="14" fill="#555555">Color</text>
+<path d="M0.5 514.5H80.5" stroke="#000"></path>
+<path d="M0.5 510.5V518.5" stroke="#000"></path>
+<path d="M16.5 510.5V518.5" stroke="#000"></path>
+<path d="M32.5 510.5V518.5" stroke="#000"></path>
+<path d="M48.5 510.5V518.5" stroke="#000"></path>
+<path d="M64.5 510.5V518.5" stroke="#000"></path>
+<path d="M80.5 510.5V518.5" stroke="#000"></path>
+<text x="0" y="538" font-family="IBM Plex Mono" font-size="14" fill="#6E6E6E">0</text>
+<text x="80" y="538" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#6E6E6E"><tspan font-family="IBM Plex Mono">50</tspan> mm</text>
+</svg>
