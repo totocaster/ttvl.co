@@ -28,7 +28,7 @@ It’s a daylight reference, with a rough starting point for deep shade. The exp
 
 Print on removable matte sticker paper and cut along the border. The sticker sits between the locking key and tripod socket, about 5 mm from each, leaving **about 2 mm along the long edges** of the bottom plate.
 
-{{< drawing src="/visuals/darkroom/sunny-16/2023-06-29-placement.svg" narrow="/visuals/darkroom/sunny-16/2023-06-29-placement-narrow.svg" alt="Bottom view of a Leica M plate, lens side up. The 80 by 26.6 mm sticker sits between the tripod socket and the locking key, about 5 mm from each and 2 mm inside each long edge." caption="Drawn from Leica’s dimensions for the M6. Check the fit on your camera." >}}
+{{< drawing src="/visuals/darkroom/sunny-16/2023-06-29-placement.svg" narrow="/visuals/darkroom/sunny-16/2023-06-29-placement-narrow.svg" alt="Bottom view of a Leica M plate, lens side up. The 80 by 26.6 mm sticker sits between the tripod socket and the locking key, about 5 mm from each and 2 mm inside each long edge." >}}
 
 It fits every film Leica M except the M5, whose rewind crank folds into the bottom plate. Try it on plain paper first. The sheet’s second page has the plate at full size to hold against the camera, and a 50 mm line on the first checks the print scale.
 
