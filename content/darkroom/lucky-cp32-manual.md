@@ -13,6 +13,6 @@ I have a **Lucky CP32** color paper processor. The CP32—unlike its internation
 Below are the original and translated versions of the manual, which I created with the help of my small Japanese knowledge and few AI tools.
 
 {{< resources >}}
-- [Lucky CP32 English Manual](/downloads/lucky_cp32_manual_en_translated.pdf) - partially AI-translated
+- [Lucky CP32 English Manual](/downloads/lucky_cp32_manual_en_translated.pdf) - translated with some Japanese and a few AI tools, then checked page by page against the original; revised 2026-11-03.
 - [Lucky CP32 Original Japanese Manual](/downloads/lucky_cp32_manual_jp_original.pdf) - contains scanned pages, sourced from the web and compiled into a PDF.
 {{< /resources >}}
