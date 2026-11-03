@@ -8,7 +8,7 @@ Technical and process-oriented resources focused on photography, darkroom techni
 
 {{< page-list title="Process and Techniques" pages="darkroom/roll-id, darkroom/travel-dev-kit, notebook-system/analog-photography-templates" >}}
 
-{{< page-list title="DIY Projects" lead="For enhancing the shooting process and overall experience." pages="darkroom/valoi-easy120-with-negative-supply-99cri-light, darkroom/pentax-digital-spotmeter-sticker, darkroom/rugged-40-roll-film-storage, darkroom/canister-stickers, darkroom/foldable-film-reminder" >}}
+{{< page-list title="DIY Projects" lead="For enhancing the shooting process and overall experience." pages="darkroom/valoi-easy120-with-negative-supply-99cri-light, darkroom/pentax-digital-spotmeter-sticker, darkroom/sunny-16-sticker, darkroom/rugged-40-roll-film-storage, darkroom/canister-stickers, darkroom/foldable-film-reminder" >}}
 
 {{< page-list title="Camera Modifications" lead="Improve, fix, and modify camera equipment." pages="darkroom/rz67-focus-gear-stl, darkroom/horseman-lensboards" >}}
 

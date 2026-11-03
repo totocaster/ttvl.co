@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="80mm" height="26.5502mm" viewBox="0 0 760 252.227" fill="none">
+<title>Sunny 16 exposure sticker, ISO 1600</title>
+<rect x="1" y="1" width="758" height="250.227" fill="#FFFFFF" stroke="#000000" stroke-width="2"/>
+<text x="12" y="29" font-family="IBM Plex Mono" font-size="24" font-weight="500" text-anchor="start" fill="#000000">ISO 1600</text>
+<text x="264" y="29" font-family="IBM Plex Sans" font-size="18" text-anchor="end" fill="#000000">f/</text>
+<text x="296" y="29" font-family="IBM Plex Mono" font-size="28" font-weight="500" text-anchor="middle" fill="#000000">16</text>
+<text x="365" y="29" font-family="IBM Plex Mono" font-size="28" font-weight="500" text-anchor="middle" fill="#000000">11</text>
+<text x="434" y="29" font-family="IBM Plex Mono" font-size="28" font-weight="500" text-anchor="middle" fill="#000000">8</text>
+<text x="503" y="29" font-family="IBM Plex Mono" font-size="28" font-weight="500" text-anchor="middle" fill="#000000">5.6</text>
+<text x="572" y="29" font-family="IBM Plex Mono" font-size="28" font-weight="500" text-anchor="middle" fill="#000000">4</text>
+<text x="641" y="29" font-family="IBM Plex Mono" font-size="28" font-weight="500" text-anchor="middle" fill="#000000">2.8</text>
+<text x="710" y="29" font-family="IBM Plex Mono" font-size="28" font-weight="500" text-anchor="middle" fill="#000000">2</text>
+<path d="M12 39L748 39" stroke="#000000" stroke-width="1.5"/>
+<text x="12" y="65" font-family="IBM Plex Sans" font-size="18" text-anchor="start" fill="#000000">Sun on snow / sand</text>
+<text x="296" y="65" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND4</text>
+<text x="365" y="65" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND8</text>
+<text x="434" y="65" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND16</text>
+<text x="503" y="65" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND32</text>
+<text x="572" y="65" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND64</text>
+<text x="641" y="65" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND128</text>
+<text x="710" y="65" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND256</text>
+<path d="M12 73.5L748 73.5" stroke="#7A7A7A"/>
+<text x="12" y="99.5" font-family="IBM Plex Sans" font-size="18" text-anchor="start" fill="#000000">Sun · distinct shadows</text>
+<text x="296" y="99.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND2</text>
+<text x="365" y="99.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND4</text>
+<text x="434" y="99.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND8</text>
+<text x="503" y="99.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND16</text>
+<text x="572" y="99.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND32</text>
+<text x="641" y="99.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND64</text>
+<text x="710" y="99.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND128</text>
+<path d="M12 108L748 108" stroke="#7A7A7A"/>
+<text x="12" y="134" font-family="IBM Plex Sans" font-size="18" text-anchor="start" fill="#000000">Haze · soft shadows</text>
+<text x="296" y="134" font-family="IBM Plex Mono" font-size="25" font-weight="500" text-anchor="middle" fill="#000000">1000</text>
+<text x="365" y="134" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND2</text>
+<text x="434" y="134" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND4</text>
+<text x="503" y="134" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND8</text>
+<text x="572" y="134" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND16</text>
+<text x="641" y="134" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND32</text>
+<text x="710" y="134" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND64</text>
+<path d="M12 142.5L748 142.5" stroke="#7A7A7A"/>
+<text x="12" y="168.5" font-family="IBM Plex Sans" font-size="18" text-anchor="start" fill="#000000">Cloud · no shadows</text>
+<text x="296" y="168.5" font-family="IBM Plex Mono" font-size="25" font-weight="500" text-anchor="middle" fill="#000000">500</text>
+<text x="365" y="168.5" font-family="IBM Plex Mono" font-size="25" font-weight="500" text-anchor="middle" fill="#000000">1000</text>
+<text x="434" y="168.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND2</text>
+<text x="503" y="168.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND4</text>
+<text x="572" y="168.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND8</text>
+<text x="641" y="168.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND16</text>
+<text x="710" y="168.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND32</text>
+<path d="M12 177L748 177" stroke="#7A7A7A"/>
+<text x="12" y="203" font-family="IBM Plex Sans" font-size="18" text-anchor="start" fill="#000000">Overcast / open shade</text>
+<text x="296" y="203" font-family="IBM Plex Mono" font-size="25" font-weight="500" text-anchor="middle" fill="#000000">250</text>
+<text x="365" y="203" font-family="IBM Plex Mono" font-size="25" font-weight="500" text-anchor="middle" fill="#000000">500</text>
+<text x="434" y="203" font-family="IBM Plex Mono" font-size="25" font-weight="500" text-anchor="middle" fill="#000000">1000</text>
+<text x="503" y="203" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND2</text>
+<text x="572" y="203" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND4</text>
+<text x="641" y="203" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND8</text>
+<text x="710" y="203" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND16</text>
+<path d="M12 211.5L748 211.5" stroke="#7A7A7A"/>
+<text x="12" y="237.5" font-family="IBM Plex Sans" font-size="18" text-anchor="start" fill="#000000">Deep shade</text>
+<text x="296" y="237.5" font-family="IBM Plex Mono" font-size="25" font-weight="500" text-anchor="middle" fill="#000000">125</text>
+<text x="365" y="237.5" font-family="IBM Plex Mono" font-size="25" font-weight="500" text-anchor="middle" fill="#000000">250</text>
+<text x="434" y="237.5" font-family="IBM Plex Mono" font-size="25" font-weight="500" text-anchor="middle" fill="#000000">500</text>
+<text x="503" y="237.5" font-family="IBM Plex Mono" font-size="25" font-weight="500" text-anchor="middle" fill="#000000">1000</text>
+<text x="572" y="237.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND2</text>
+<text x="641" y="237.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND4</text>
+<text x="710" y="237.5" font-family="IBM Plex Mono" font-size="17" text-anchor="middle" fill="#000000">ND8</text>
+</svg>

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="289.5" viewBox="0 0 760 289.5" fill="none">
+<path d="M429.5 42L429.5 56" stroke="#6E6E6E"/>
+<text x="429.5" y="36" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000000">Lens</text>
+<rect x="33.5" y="56" width="693" height="161.5" rx="80.75" fill="#F7F7F7" stroke="#000000"/>
+<rect x="39" y="61.5" width="682" height="150.5" rx="75.25" stroke="#A3A3A3"/>
+<circle cx="109.5" cy="136.75" r="27.5" fill="#FFFFFF" stroke="#000000"/>
+<circle cx="109.5" cy="136.75" r="16" fill="none" stroke="#6E6E6E"/>
+<circle cx="646" cy="136.75" r="56.5" fill="#FFFFFF" stroke="#000000"/>
+<circle cx="646" cy="136.75" r="33.5" fill="#FFFFFF" stroke="#000000"/>
+<path d="M612.5 136.75L679.5 136.75" stroke="#000000"/>
+<rect x="164.25" y="71.37" width="398" height="130.75" fill="#FFEB3B" stroke="#000000" stroke-width="2"/>
+<text x="363.25" y="132.75" font-family="IBM Plex Sans" font-size="16" text-anchor="middle" fill="#000000">Sticker</text>
+<text x="363.25" y="156.75" font-family="IBM Plex Mono" font-size="16" text-anchor="middle" fill="#000000">80 × 26.6 mm</text>
+<path d="M109.5 164.25L109.5 229.5" stroke="#6E6E6E"/>
+<path d="M646 193.25L646 229.5" stroke="#6E6E6E"/>
+<text x="109.5" y="247.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000000">Tripod socket</text>
+<text x="646" y="247.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#000000">Locking key</text>
+<text x="380" y="275.5" font-family="IBM Plex Sans" font-size="14" text-anchor="middle" fill="#555555">About 5 mm to the socket and the key, 2 mm to each long edge</text>
+</svg>
