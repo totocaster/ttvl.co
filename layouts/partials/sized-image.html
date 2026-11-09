@@ -1,0 +1,47 @@
+{{- /* A picture at the size it is shown. Takes a site-relative path under
+     static/ ("src", such as /visuals/project-thumbs/x.png) and the width of
+     the box it fills ("width"; twice the shown width), plus that box's
+     height ("height", optional) for tiles that crop the picture to cover
+     them. Returns a dict: src, width, height (empty when unknown), and
+     resized (true when the file was processed).
+       {{ $i := partialCached "sized-image.html" (dict "src" $src "width" 640 "height" 360) $src 640 360 }}
+     The picture is saved as WebP at quality 80 (alpha kept), scaled so it
+     covers the box and never scaled up. SVG, GIF, external URLs, and
+     anything the pipeline cannot open come back as they are, with their
+     size when it can be read. Card tiles, gallery thumbnails, and Loose
+     Leaves use it; the links around them keep the originals for the
+     lightbox. static/ is mounted as assets/static in hugo.toml. */ -}}
+{{- $src := .src -}}
+{{- $w := int .width -}}
+{{- $h := int (.height | default 0) -}}
+{{- $out := dict "src" $src "width" "" "height" "" "resized" false -}}
+{{- if and $src (hasPrefix $src "/") (not (hasPrefix $src "//")) -}}
+  {{- $path := printf "static%s" (index (split $src "?") 0) -}}
+  {{- with try (resources.Get $path) -}}
+    {{- with .Value -}}
+      {{- $img := . -}}
+      {{- if eq $img.ResourceType "image" -}}
+        {{- $sub := $img.MediaType.SubType -}}
+        {{- if in (slice "jpeg" "png" "webp") $sub -}}
+          {{- /* The scale that covers the box, capped at 1. */ -}}
+          {{- $scale := div (float $w) $img.Width -}}
+          {{- if gt $h 0 }}{{ $scale = math.Max $scale (div (float $h) $img.Height) }}{{ end -}}
+          {{- $spec := "webp q80" -}}
+          {{- if lt $scale 1.0 -}}
+            {{- $spec = printf "resize %dx webp q80" (int (math.Ceil (mul $img.Width $scale))) -}}
+          {{- end -}}
+          {{- with try ($img.Process $spec) -}}
+            {{- with .Value -}}
+              {{- $out = dict "src" .RelPermalink "width" .Width "height" .Height "resized" true -}}
+            {{- else -}}
+              {{- $out = merge $out (dict "width" $img.Width "height" $img.Height) -}}
+            {{- end -}}
+          {{- end -}}
+        {{- else if ne $sub "svg" -}}
+          {{- with try $img.Width }}{{ with .Value }}{{ $out = merge $out (dict "width" . "height" $img.Height) }}{{ end }}{{ end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- return $out -}}

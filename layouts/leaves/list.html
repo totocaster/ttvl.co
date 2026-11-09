@@ -5,7 +5,9 @@
      are tagged /1, /2, … in the order shown. The leaves are the
      date-prefixed JPEG files in static/leaves/. All years sit in one
      .leaves-grid so the lightbox (assets/js/lightbox.js) pages through
-     every leaf. docs/styleguide.md, Page by Page: Loose Leaves. */ -}}
+     every leaf. The tiles are saved to cover 300 × 540, about twice their shown
+     width (partials/sized-image.html); the links keep the scans for the
+     lightbox. docs/styleguide.md, Page by Page: Loose Leaves. */ -}}
 {{- $content := string .Content -}}
 {{- $dek := .Params.description -}}
 {{- with findRESubmatch `^\s*<p>((?s:.*?))</p>` $content 1 -}}
@@ -47,7 +49,9 @@
             {{- $label = printf "%s/%d" $date $n }}
           {{- end }}
           <li class="leaf">
-            <a href="{{ $path }}{{ . }}"><img src="{{ $path }}{{ . }}" alt="Loose leaf, {{ $label }}" loading="lazy" /></a>
+            {{- $src := printf "%s%s" $path . }}
+            {{- $sized := partialCached "sized-image.html" (dict "src" $src "width" 300 "height" 540) $src 300 540 }}
+            <a href="{{ $src }}"><img src="{{ $sized.src }}"{{ with $sized.width }} width="{{ . }}" height="{{ $sized.height }}"{{ end }} alt="Loose leaf, {{ $label }}" loading="lazy" /></a>
             <time datetime="{{ $date }}">{{ $label }}</time>
           </li>
           {{- end }}

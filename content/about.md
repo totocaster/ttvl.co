@@ -142,7 +142,7 @@ Three principles I try to live by and build into everything I make.
 {.quote-attribution}
 
 <figure>
-  <img src="/visuals/2024.12_irrational_thoughts.png" alt="Desert landscape with scattered rocks and handwritten text reading IRRATIONAL THOUGHTS MUST BE FOLLOWED ABSOLUTELY AND LOGICALLY, quote by Sol LeWitt" loading="lazy" />
+  <img src="/visuals/2024.12_irrational_thoughts.jpg" width="1520" height="858" alt="Desert landscape with scattered rocks and handwritten text reading IRRATIONAL THOUGHTS MUST BE FOLLOWED ABSOLUTELY AND LOGICALLY, quote by Sol LeWitt" loading="lazy" />
   <figcaption>Sol LeWitt. Still from Tom Sachs’s <em>Paradox Bullets</em>.</figcaption>
 </figure>
 

@@ -21,8 +21,12 @@ const lightbox = {
   openLink(link, trigger) {
     const gallery = link?.closest("[data-lightbox-gallery], .leaves-grid");
     if (!gallery) return false;
+    // An item is a picture linked to a picture: the same file, or a
+    // thumbnail (partials/sized-image.html) linked to its original.
+    const picture = /\.(jpe?g|png|webp|gif|avif)$/i;
     const items = Array.from(gallery.querySelectorAll("a > img"))
-      .filter((image) => image.parentElement.href === image.src)
+      .filter((image) => image.parentElement.href === image.src
+        || picture.test(image.parentElement.pathname))
       .map((image) => ({
         alt: image.alt,
         date: this.dateOf(image.parentElement),

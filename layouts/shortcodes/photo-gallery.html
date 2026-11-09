@@ -6,10 +6,19 @@
      Three columns of 4:3 tiles, two on phones. A gallery of one image is a
      figure at bleed width in the image's own proportions. The page must set
      lightbox: true; assets/js/lightbox.js reads [data-lightbox-gallery] and
-     each `a > img`. */ -}}
+     each `a > img`. Thumbnails are saved to cover 600 × 450, twice a
+     tile's width (a single figure to 1520 px wide), through
+     partials/sized-image.html; each link keeps the original, which the
+     lightbox opens. */ -}}
 {{- $label := .Get "label" | default "Photo gallery" -}}
 {{- $content := .Inner | markdownify -}}
 {{- $count := len (findRE `<img ` $content) -}}
+{{- $box := cond (eq $count 1) (slice 1520 0) (slice 600 450) -}}
+{{- range findRESubmatch `<img src="([^"]+)"` $content -}}
+  {{- $src := index . 1 -}}
+  {{- $sized := partialCached "sized-image.html" (dict "src" $src "width" (index $box 0) "height" (index $box 1)) $src (index $box 0) (index $box 1) -}}
+  {{- $content = replace $content (index . 0) (printf `<img src="%s"%s` $sized.src (cond (ne (printf "%v" $sized.width) "") (printf ` width="%v" height="%v"` $sized.width $sized.height) "")) -}}
+{{- end -}}
 {{- $content = replace $content "<img " "<img loading=\"lazy\" decoding=\"async\" " }}
 <div class="photo-gallery{{ if eq $count 1 }} photo-gallery--single{{ end }}" data-lightbox-gallery role="group" aria-label="{{ $label }}">
   {{ $content | safeHTML }}
