@@ -1,6 +1,6 @@
 {{ define "main" }}
-{{- /* A Log month: the head (Month 93 / Log, the Log's own line as the
-     dek), the body block, then In the Log with the neighbouring months
+{{- /* A Log month: the head (Month 93 / Log, no dek unless the month
+     writes its own description), the body block, then In the Log with the neighbouring months
      (the Left and Right arrow keys follow those rows, assets/js/pager.js),
      then the Archive grid with this month marked.
      docs/styleguide.md, Page by Page: Log month. */ -}}
@@ -17,7 +17,7 @@
   {{- end -}}
 {{- end }}
 <article class="log-month{{ with .Params.content_css }} {{ . }}{{ end }}">
-  {{ partial "page-head.html" (dict "page" . "dek" (.Params.description | default (and $hub $hub.Params.filter_dek))) }}
+  {{ partial "page-head.html" . }}
   {{ partial "block-body.html" .Content }}
 </article>
 {{- if or $prev $next }}

@@ -2,7 +2,8 @@
      the first month, then one line per year, twelve
      cells, voids as ··. On a month page that month is aria-current and
      carries the signal underline. Pass a dict: "page" (required), "title"
-     (default "Archive"), "class" (extra block classes, e.g. "end").
+     (default "Archive"), "class" (extra block classes, e.g. "end"),
+     "legend" (a line under the grid, as on the hub).
      docs/styleguide.md, Page by Page: Log hub, Log month, Index. */ -}}
 {{- $logs := (where site.RegularPages "Section" "log").ByDate -}}
 {{- $current := .page.RelPermalink -}}
@@ -31,6 +32,9 @@
       </li>
       {{- end }}
     </ul>
+    {{- with $.legend }}
+    <p class="legend">{{ . }}</p>
+    {{- end }}
   </div>
 </section>
 {{- end }}

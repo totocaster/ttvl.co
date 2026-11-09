@@ -1,8 +1,9 @@
 {{ define "main" }}
-{{- /* Log hub: the head with the intro as its dek, then one block per
-     month, newest first (the month as the linked rail heading, its content
-     in the column), then the Archive grid.
-     docs/styleguide.md, Page by Page: Log hub. */ -}}
+{{- /* Log hub: the head with the intro as its dek, then the Archive grid
+     with a legend, then the six latest months in full, newest first (the
+     month as the linked rail heading, its content in the column). Every
+     other month opens from the grid. docs/styleguide.md, Page by Page:
+     Log hub. */ -}}
 {{- $content := string .Content -}}
 {{- $dek := .Params.description -}}
 {{- with findRESubmatch `^\s*<p>((?s:.*?))</p>` $content 1 -}}
@@ -12,7 +13,8 @@
 <article class="hub log-hub{{ with .Params.content_css }} {{ . }}{{ end }}">
   {{ partial "page-head.html" (dict "page" . "dek" $dek) }}
   {{- with trim $content " \n\t" }}{{ partial "block-body.html" . }}{{ end }}
-  {{- range .Pages.ByDate.Reverse }}
+  {{ partial "log-archive.html" (dict "page" . "legend" "The six latest months follow in full. Every month opens from the grid.") }}
+  {{- range first 6 .Pages.ByDate.Reverse }}
   <section class="block log-entry">
     <div class="rail">
       <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
@@ -22,6 +24,5 @@
     </div>
   </section>
   {{- end }}
-  {{ partial "log-archive.html" (dict "page" .) }}
 </article>
 {{ end }}

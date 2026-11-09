@@ -1,7 +1,9 @@
-// Log: month blocks on the hub, and the Archive as a compact year-by-month
-// grid: Mono 14, a 64 px year column, twelve cells, hairlines between
-// years, voids as ··, the current month in 500 on a 2 px signal underline.
-// The grid also closes the Index (layouts/_default/a-z.html).
+// Log: the Archive as a compact year-by-month grid (Mono 14, a 64 px year
+// column, twelve cells, hairlines between years, voids as ··, the current
+// month in 500 on a 2 px signal underline), and month blocks on the hub.
+// The grid opens the hub, closes each month and the Index
+// (layouts/_default/a-z.html). On phones and for coarse pointers each year
+// is a 44 px row and each month fills its cell, so every month is a target.
 // docs/styleguide.md, Page by Page: Log hub.
 
 // Month bullets breathe a little more than prose list items.
@@ -65,4 +67,36 @@
       column-gap: 2px;
     }
   }
+
+  @include touch-controls {
+    li {
+      align-items: stretch;
+      min-height: $control-height-touch;
+      padding: 0;
+    }
+
+    .log-year,
+    .log-void {
+      align-self: center;
+    }
+
+    a.log-month {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      justify-self: stretch;
+
+      // The cell is the target, so the mark sits under the numerals, not
+      // at the foot of the cell.
+      &[aria-current="page"] {
+        box-shadow: none;
+        text-decoration: underline 2px var(--signal);
+        text-underline-offset: 4px;
+      }
+    }
+  }
+}
+
+.log-grid + .legend {
+  margin-top: $rhythm-legend;
 }
