@@ -28,7 +28,7 @@
   }
 }
 
-// The rail's voices: a heading, one meta line, an optional lead.
+// The rail's voices: a heading and one meta line.
 .block > .rail {
   min-width: 0;
 
@@ -77,19 +77,45 @@
   .door:hover .door-arrow {
     color: var(--signal);
   }
+}
 
-  // A sentence that introduces the block's list, under the meta line.
-  .lead {
-    @include type-dek;
-    color: var(--ink-muted);
-    margin-top: $space-2;
+// The lead: a sentence that introduces the block's list, in the dek voice,
+// held to the measure. It stands between the rail and the column in the
+// markup (the page-list, project-grid, and section shortcodes). On wide
+// screens it takes the heading's line in the column, on the heading's
+// baseline, and the column follows on the next row; when the rail stacks
+// it follows the heading.
+.block > .lead {
+  @include type-dek;
+  @include readable-width;
+  color: var(--ink-muted);
+  margin: 0;
 
-    &:first-child {
-      margin-top: 0;
+  a {
+    font-weight: $link-weight-default;
+  }
+}
+
+@include rail-wide {
+  .block:has(> .lead) {
+    > .rail {
+      grid-row: 1;
+      grid-column: 1;
+      align-self: first baseline;
     }
 
-    a {
-      font-weight: $link-weight-default;
+    > .lead {
+      grid-row: 1;
+      grid-column: 2;
+      align-self: first baseline;
+    }
+
+    // A ledger's list spans both columns from here (below); anything else
+    // stays in the column under the lead.
+    > .main {
+      grid-row: 2;
+      grid-column: 2;
+      margin-top: $space-3;
     }
   }
 }
@@ -320,11 +346,15 @@
       .meta + .meta {
         margin-top: 0;
       }
+    }
 
-      .lead {
-        flex-basis: 100%;
-        margin-top: $space-1;
-      }
+    // The lead follows the heading, and the column follows the lead.
+    > .rail:has(+ .lead) {
+      margin-bottom: $space-1;
+    }
+
+    > .lead {
+      margin-bottom: $space-3;
     }
   }
 
@@ -336,7 +366,7 @@
 
 // Wide screens: everything in the first column sits flush right against
 // the gap, so every label points at what it describes: the page head's
-// rail lines, block headings and their meta lines and leads, the prose and
+// rail lines, block headings and their meta lines, the prose and
 // principle numerals, list keys (components/_row.scss), and the contents.
 // When the rail stacks, everything returns to the left edge.
 @include rail-wide {

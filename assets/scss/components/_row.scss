@@ -4,7 +4,8 @@
 // No hairlines: rows sit 4 px apart, 16 px with deks; titles at 16/24.
 // On wide screens a list inside a block reaches left across the gap so its
 // meta column IS the rail, and the key sits flush right against the gap,
-// next to its title; on phones it is left-aligned. The search overlay
+// next to its title; when the rail stacks it reads left, like the
+// headings above it. A dek holds the measure. The search overlay
 // draws its own rows (components/_search.scss).
 // Rendered by layouts/partials/row.html. docs/styleguide.md, Rows.
 
@@ -83,9 +84,11 @@
   @include meta-links;
 }
 
-// The dek: the page's description, muted, under the title.
+// The dek: the page's description, muted, under the title, held to the
+// measure like every other paragraph.
 .row-dek {
   display: block;
+  @include readable-width;
   font-size: $font-size-dek;
   line-height: $line-height-cell;
   color: var(--ink-muted);
@@ -116,9 +119,14 @@
   }
 }
 
-// When the rail stacks, a row with nothing in its meta column starts its
-// title at the edge instead of after an empty column.
+// When the rail stacks, keys read left like the stacked headings, and a
+// row with nothing in its meta column starts its title at the edge
+// instead of after an empty column.
 @include rail-stacked {
+  .row-meta {
+    text-align: left;
+  }
+
   .rows > li:has(> .row-meta:empty) {
     grid-template-columns: minmax(0, 1fr);
 
@@ -129,8 +137,7 @@
 }
 
 // Phones: the meta column grows to its content, 96 to 136 px, so a long
-// key ("#016 · 2026-09") keeps a 16 px gap before the title, and reads
-// left-aligned like the rest of the stacked page.
+// key ("#016 · 2026-09") keeps a 16 px gap before the title.
 @include narrow {
   .rows > li {
     grid-template-columns: max-content minmax(0, 1fr);
@@ -140,6 +147,5 @@
   .row-meta {
     min-width: $row-meta-width-narrow;
     max-width: $row-meta-width-narrow-max;
-    text-align: left;
   }
 }
