@@ -1,0 +1,107 @@
+// A YouTube video behind a key (layouts/shortcodes/youtube.html,
+// assets/js/video.js). docs/styleguide.md, Media Chrome.
+//
+//   figure.video       bleed width with the figure rhythm (_base.scss)
+//     .video-frame     16:9 on a 1 px edge frame, the media well dark
+//       .video-poster  the poster frame, saved with the site
+//       .video-play    the Play key in the centre, a link to the video
+//       .viewer-status the YouTube badge at the bottom left
+//       iframe         the player, put in place of the three on press
+//     figcaption.legend  the title linked to the video, the channel, and
+//                      where it loads from
+//
+// The well, the badge, and the key use the media chrome's literal colors
+// from _model-viewer.scss ($viewer-well, $viewer-key-ground,
+// $viewer-key-edge, %media-badge): deliberate exceptions, since they sit
+// over a picture and read the same in both themes.
+
+.video-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border: 1px solid var(--edge);
+  border-radius: $radius;
+  background: $viewer-well;
+
+  > .video-poster,
+  > iframe {
+    position: absolute;
+    inset: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  > .video-poster {
+    object-fit: cover;
+  }
+
+  > iframe:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: -2px;
+  }
+}
+
+// The Play key follows the controls over media: 1 px white at 60%, black
+// at 50% behind, a stroke icon, the control voice.
+.video-play {
+  position: relative;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: $space-2;
+  height: $control-height-touch;
+  padding: 0 18px 0 14px; // optical: the triangle leans right
+  border: 1px solid $viewer-key-edge;
+  border-radius: $radius;
+  background: $viewer-key-ground;
+  color: #fff; // deliberate exception: a key over media
+  @include type-control;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background-color $t-fast,
+    border-color $t-fast;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.75); // deliberate exception: hover over media
+    border-color: #fff; // deliberate exception
+    color: #fff; // deliberate exception
+    text-decoration: none;
+  }
+
+  @include focus-ring;
+
+  &:active {
+    background: #000; // deliberate exception: pressed key over media
+  }
+
+  svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linejoin: round;
+  }
+}
+
+.video > .legend {
+  margin: $rhythm-legend 0 0;
+
+  a {
+    color: var(--ink);
+    font-weight: $link-weight-quiet;
+    text-decoration: underline;
+  }
+}
+
+// Under a heading the video takes the heading's 8 px, like the media in
+// the list at the end of _base.scss.
+main :is(h2, h3, h4, h5) + .video {
+  margin-top: $rhythm-heading-below;
+}

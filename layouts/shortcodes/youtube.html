@@ -1,6 +1,78 @@
-{{- /* A YouTube video in the figure frame (16:9, the edge frame, bleed
-     width), lazy-loaded: {{< youtube "VIDEO_ID" >}}. Styled by
-     .video-container in _base.scss. docs/styleguide.md, Media Chrome. */ -}}
-<div class="video-container">
-  <iframe src="https://www.youtube.com/embed/{{ .Get 0 }}" title="YouTube video" allow="encrypted-media; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
-</div>
+{{- /* A YouTube video behind a key: {{< youtube "VIDEO_ID" >}}, or with
+     named parameters {{< youtube id="VIDEO_ID" title="…" caption="…" >}}.
+     A 16:9 frame at bleed width on the media well with the poster, a Play
+     key, and a YouTube badge; under it the legend: the title linked to the
+     video, the channel, and "loads from YouTube on Play". Nothing leaves
+     the site with the page: the poster (the largest still YouTube has,
+     cropped to 16:9) and the title and channel (oEmbed) are fetched at
+     build time and served from the site. `title` and `caption` replace the
+     fetched title and channel. A failed fetch never fails the build: the
+     well stands alone without a poster, and without words the legend reads
+     "Video on YouTube · loads on Play".
+     The key is a link to the video, so it works without JavaScript;
+     assets/js/video.js swaps the frame for the youtube-nocookie player on
+     press. Feeds get the poster linked to the video (rss-content.html).
+     Styled in components/_video.scss. docs/styleguide.md, Media Chrome. */ -}}
+{{- $id := "" -}}
+{{- $title := "" -}}
+{{- $channel := "" -}}
+{{- if .IsNamedParams -}}
+  {{- $id = .Get "id" -}}
+  {{- $title = .Get "title" -}}
+  {{- $channel = .Get "caption" -}}
+{{- else -}}
+  {{- $id = .Get 0 -}}
+{{- end -}}
+{{- if not $id }}{{ errorf "youtube: missing video id in %s" .Position }}{{ end -}}
+{{- $watch := printf "https://www.youtube.com/watch?v=%s" $id -}}
+
+{{- /* The words, from oEmbed, unless the page supplies them. */ -}}
+{{- if or (not $title) (not $channel) -}}
+  {{- with try (resources.GetRemote (printf "https://www.youtube.com/oembed?url=%s&format=json" (urlquery $watch))) -}}
+    {{- with .Value -}}
+      {{- with try (. | transform.Unmarshal) -}}
+        {{- with .Value -}}
+          {{- if not $title }}{{ $title = .title }}{{ end -}}
+          {{- if not $channel }}{{ $channel = .author_name }}{{ end -}}
+        {{- end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+
+{{- /* The poster, saved with the site at /visuals/youtube/<id>.webp.
+       maxresdefault is 1280 × 720 and missing for some videos;
+       sddefault (640 × 480) and hqdefault (480 × 360) letterbox the 16:9
+       picture, so they are cropped to it. */ -}}
+{{- $poster := "" -}}
+{{- range slice (slice "maxresdefault" "webp q80") (slice "sddefault" "crop 640x360 center webp q80") (slice "hqdefault" "crop 480x270 center webp q80") -}}
+  {{- if not $poster -}}
+    {{- $spec := index . 1 -}}
+    {{- with try (resources.GetRemote (printf "https://i.ytimg.com/vi/%s/%s.jpg" $id (index . 0))) -}}
+      {{- with .Value -}}
+        {{- with try (.Process $spec | resources.Copy (printf "visuals/youtube/%s.webp" $id)) }}{{ with .Value }}{{ $poster = . }}{{ end }}{{ end -}}
+      {{- end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end }}
+<figure class="video" data-video="{{ $id }}" data-title="{{ $title | default "Video on YouTube" }}" data-poster="{{ with $poster }}{{ .RelPermalink }}{{ end }}">
+  <div class="video-frame">
+    {{- with $poster }}
+    <img class="video-poster" src="{{ .RelPermalink }}" width="{{ .Width }}" height="{{ .Height }}" alt="" loading="lazy" decoding="async" />
+    {{- end }}
+    <a class="video-play" href="{{ $watch }}" data-video-play><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4.5 2.5v11l9-5.5z"></path></svg>Play{{ with $title }}<span class="visually-hidden">: {{ . }}</span>{{ end }}</a>
+    <span class="viewer-status">YouTube</span>
+  </div>
+  <figcaption class="legend">
+    {{- if $title -}}
+      <a href="{{ $watch }}">{{ $title }}</a>{{ with $channel }}, {{ . }}{{ end }} · loads from YouTube on Play
+    {{- else -}}
+      <a href="{{ $watch }}">Video on YouTube</a> · loads on Play
+    {{- end -}}
+  </figcaption>
+</figure>
+{{- if not (.Page.Store.Get "videoJS") }}
+{{- .Page.Store.Set "videoJS" true }}
+{{- $js := resources.Get "js/video.js" | resources.Minify | resources.Fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{- end }}

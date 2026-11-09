@@ -13,6 +13,10 @@ sparkline drops out of its sentence. Pictures take absolute URLs here,
 since a feed or an email has no page to resolve them against. */ -}}
 {{- $site := strings.TrimSuffix "/" ("/" | absURL) -}}
 {{- $content = replaceRE `(?s)<div class="compare__frame"[^>]*>\s*<img class="compare__second" src="([^"]+)" alt="([^"]*)"[^>]*>\s*<img class="compare__first" src="([^"]+)" alt="([^"]*)"[^>]*>.*?compare__badge--first"[^>]*>([^<]*)</span>.*?compare__badge--second"[^>]*>([^<]*)</span>.*?</div>` (printf `<p>$5</p><img src="%s$3" alt="$4" style="max-width: 100%%; height: auto;"><p>$6</p><img src="%s$1" alt="$2" style="max-width: 100%%; height: auto;">` $site $site) $content -}}
+{{- /* A video behind a key becomes its poster linked to the video, with
+the title as text under it: no key, no badge, no script. */ -}}
+{{- $content = replaceRE `(?s)<figure class="video" data-video="([^"]+)" data-title="([^"]*)" data-poster="(/[^"]+)">.*?</figure>` (printf `<p><a href="https://www.youtube.com/watch?v=$1"><img src="%s$3" alt="$2" style="max-width: 100%%; height: auto;"></a></p><p><a href="https://www.youtube.com/watch?v=$1">$2</a></p>` $site) $content -}}
+{{- $content = replaceRE `(?s)<figure class="video" data-video="([^"]+)" data-title="([^"]*)" data-poster="">.*?</figure>` `<p><a href="https://www.youtube.com/watch?v=$1">$2</a></p>` $content -}}
 {{- $content = replaceRE `<span class="annotated__marker"[^>]*>\d+</span>` "" $content -}}
 {{- $content = replaceRE `(?s)\s?<span class="spark"[^>]*>.*?</svg></span>` "" $content -}}
 {{- /* Preserve escaped shell text and line breaks without copy controls. */ -}}
@@ -23,5 +27,5 @@ since a feed or an email has no page to resolve them against. */ -}}
   {{- $block = replaceRE `<span class="shell-line[^"]*">` "" $block -}}
   {{- $content = replace $content . (printf "<pre><code>%s</code></pre>" $block) -}}
 {{- end -}}
-{{- $content = replaceRE `<script\s[^>]*src="[^"]*/js/(shell-copy|clip|scrub|compare|reply-following|day-wall)\.[^"]+\.js"[^>]*></script>` "" $content -}}
+{{- $content = replaceRE `<script\s[^>]*src="[^"]*/js/(shell-copy|clip|scrub|compare|reply-following|day-wall|video)\.[^"]+\.js"[^>]*></script>` "" $content -}}
 {{- return $content -}}
