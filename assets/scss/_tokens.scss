@@ -25,6 +25,11 @@
 //                    ramp. Tone 4 sits below 3:1 by design (2.5:1 light,
 //                    2.8:1 dark) and always carries a label. docs/figures.md
 //   --term*          the terminal block, dark in both themes
+//   --tile-dim       the brightness of a picture tile at rest: 1 in light;
+//                    .86 in dark, so a white poster, plate, or paper scan
+//                    rests just under the text's brightness instead of
+//                    being the brightest thing on the page; full under the
+//                    hand. High contrast keeps it at 1.
 //
 // Muted and faint are solid values, not alpha, so each keeps its contrast
 // on --surface panels too. Every text tier passes 4.5:1 in both themes:
@@ -49,6 +54,7 @@
   --term: #161616;
   --term-ink: #e6e6e6;
   --term-faint: #8f8f8f;
+  --tile-dim: 1;
 }
 
 @media screen and (prefers-color-scheme: dark) {
@@ -68,6 +74,7 @@
     --tone-3: #7f7f7f;
     --tone-4: #5c5c5c;
     --term: #0a0a0a;
+    --tile-dim: 0.86;
   }
 }
 
@@ -78,5 +85,6 @@
     --rule: var(--ink);
     --edge: var(--ink);
     --surface: var(--ground);
+    --tile-dim: 1;
   }
 }

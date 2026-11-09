@@ -13,9 +13,16 @@
 
 // Latest: an entry's figure is mostly a diagram drawn on white, so the
 // tile is a white plate in both themes and the figure sits whole inside
-// it, never cropped. An entry without a figure shows its number and kind.
+// it, never cropped. In dark mode plate and picture rest together at
+// --tile-dim, one surface, and light to full white under the hand. An
+// entry without a figure shows its number and kind.
 .research-card .tile {
-  background: #fff; // the figures' own paper, in both themes
+  background: unquote("hsl(0 0% calc(var(--tile-dim) * 100%))"); // the figures' own paper (white), in both themes
+  transition:
+    background-color $t-slow,
+    border-color $t-fast,
+    box-shadow $t-press,
+    transform $t-press;
 
   img {
     box-sizing: border-box;
@@ -32,6 +39,10 @@
   background: var(--surface);
   color: var(--ink-faint);
   text-decoration: none;
+}
+
+.research-card:is(:hover, :focus-within) .tile {
+  background: #fff; // the plate at full white under the hand
 }
 
 // Transparent renders sit on the page ground and retain their own color.

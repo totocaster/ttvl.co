@@ -2,7 +2,8 @@
 // proportion (Bible size, 95 × 171 mm) on edge frames with the 2 px ink
 // shadow of every key, six columns (three on phones), the date in Mono
 // under each. Under the hand the frame turns ink; pressing drops the leaf
-// into its shadow. The year blocks share one .leaves-grid wrapper, which
+// into its shadow. In dark mode the white paper rests at --tile-dim and
+// lights fully under the hand. The year blocks share one .leaves-grid wrapper, which
 // the lightbox reads as a single gallery.
 // docs/styleguide.md, Page by Page: Loose Leaves.
 
@@ -49,6 +50,10 @@
     &:hover,
     &:focus-visible {
       border-color: var(--ink);
+
+      img {
+        filter: none;
+      }
     }
 
     &:active {
@@ -64,6 +69,8 @@
     aspect-ratio: 95 / 171; // Bible-size pages; the scans sit within 2% of it
     object-fit: cover;
     border-radius: $radius;
+    filter: brightness(var(--tile-dim));
+    transition: filter $t-slow;
   }
 
   time {
