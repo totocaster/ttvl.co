@@ -135,7 +135,7 @@ $walks-masthead: var(--walks-masthead, 162px); // measured by walks.js
     }
 
     // The corner's message when the map fails sits at the top, just right
-    // of the panel; the credit is small in the window's corner.
+    // of the panel; the credit sits in the window's corner.
     .walks-corner {
       position: absolute;
       z-index: 2;
@@ -320,16 +320,14 @@ $walks-masthead: var(--walks-masthead, 162px); // measured by walks.js
   text-overflow: ellipsis;
 }
 
-// The credit is the one thing below the site's 14 px floor: it is owed,
-// not read, and the map's foot stays clear for it.
+// The credit: owed, in the label voice at the site's 14 px floor, on a
+// wash of the ground so it reads over the map.
 .walks-credit {
   margin: 0;
   padding: 0 $space-1;
   background: color-mix(in srgb, var(--ground) 85%, transparent);
   border-radius: $radius;
-  font-family: $font-family-sans;
-  font-size: 11px;
-  line-height: 15px;
+  @include type-meta;
   color: var(--ink-faint);
   @include meta-links;
 }

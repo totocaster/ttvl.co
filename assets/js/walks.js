@@ -175,8 +175,10 @@ function gallery(walk, photos) {
   return grid;
 }
 
-// A walk's video: the site's YouTube embed (layouts/shortcodes/youtube.html),
-// with a way out to YouTube under it.
+// A walk's video: a direct youtube.com embed in .video-container.walks-video
+// (styled by the .video-container rules in assets/scss/_base.scss, which now
+// serve only this panel), with a way out to YouTube under it. The youtube
+// shortcode is a different thing, styled in components/_video.scss.
 function video({youtube, title}) {
   const frag = document.createDocumentFragment();
   frag.append(
