@@ -32,7 +32,7 @@ I don't see or get any of your payment information. -->
 
 There is no dynamically or auto-generated AI content on this website. Everything you read is either written, edited, or authored by me. I do use AI tools when working on this website, and you can see my transparency report on the dedicated [AI page](/ai/).
 
-## E-Mails & Newsletter
+## Email and Newsletter
 
 The Flâneur and membership insider newsletters are distributed using [Campaign Monitor](https://www.campaignmonitor.com/). Campaign Monitor processes subscriber email addresses and campaign activity on my behalf to operate the newsletters. You can unsubscribe with a single click.
 

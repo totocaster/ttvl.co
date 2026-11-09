@@ -15,6 +15,8 @@ resources:
     url: 'https://github.com/totocaster/metrics-obsidian'
   - title: 'Obsidian Community'
     url: 'https://community.obsidian.md/plugins/metrics-lens'
+  - title: 'Metric File Format'
+    url: 'https://github.com/totocaster/metrics-obsidian#metric-files'
 ---
 
 [Metrics](https://github.com/totocaster/metrics-obsidian) is an [Obsidian](https://obsidian.md/) plugin for viewing and editing structured metric records stored as plain `*.metrics.ndjson` files. It is designed for measurements, scores, counts, durations, and other discrete data that do not fit naturally into notes.
@@ -60,9 +62,3 @@ That makes the files easy to version, grep, transform, and generate from other t
 Notes and documents already have a good home in Obsidian. Discrete data usually gets pushed into vendor dashboards, spreadsheets, or app-specific schemas. Metrics brings that kind of data into alignment with [Plaintext Commons](/project-humane/plaintext-commons/): inspectable, editable, durable, and still useful outside any single interface. If the UI disappeared tomorrow, the records would still be ordinary text files.
 
 It also gives me a clean destination for data gathered elsewhere, whether that means manual entry or exports from tools like [Whoopy CLI](/project-humane/whoopy/) and [Withingy CLI](/project-humane/withingy/). Other tools and agents can work with the same files directly; Metrics handles the human side inside Obsidian.
-
-## Links
-
-- Community plugin page: [Metrics](https://community.obsidian.md/plugins/metrics-lens)
-- Repository and install instructions: [totocaster/metrics-obsidian](https://github.com/totocaster/metrics-obsidian)
-- Metric file format and example records: [README: Metric files](https://github.com/totocaster/metrics-obsidian#metric-files)

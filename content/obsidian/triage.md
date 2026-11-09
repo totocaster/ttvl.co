@@ -39,8 +39,3 @@ Triage is for notes that are not quite tasks. A task manager is the wrong place 
 The plugin borrows some ergonomics from Anki: focused cards, numbered decisions, and intervals that feel quick enough to use. It is not a spaced-repetition tool, though. There is no memory model or ease factor. Snooze writes a plain due date to frontmatter, and the note returns when that date arrives.
 
 That keeps the system compatible with [Plaintext Commons](/project-humane/plaintext-commons/): the plugin adds a useful review surface, but the notes remain ordinary Markdown files with inspectable metadata.
-
-## Links
-
-- Community plugin page: [Triage](https://community.obsidian.md/plugins/triage)
-- Source, releases, and development notes: [totocaster/triage-obsidian](https://github.com/totocaster/triage-obsidian)
