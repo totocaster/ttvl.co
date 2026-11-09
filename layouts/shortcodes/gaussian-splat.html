@@ -4,7 +4,10 @@
             camera-position="x y z" camera-target="x y z" >}}
      Optional: "title" (the bar's label; defaults to the page's trace kind),
      "size" (used when the file is not under static/; otherwise read from
-     the file), "camera-position" and "camera-target". The poster should be
+     the file), "camera-position" and "camera-target". The bar holds the
+     Reset view key and names only the kind; the legend teaches the
+     gestures and names the download only when the page's head does not
+     already offer the same file (front matter `resources:`). The poster should be
      the viewer's own render at that camera, 1600 × 1000, so loading and
      loaded look the same; the canvas stays hidden until the scan is in
      (components/_gaussian-splat.scss). The page must set
@@ -25,6 +28,8 @@
 {{- end -}}
 {{- $kind := "3D scan" }}{{ with .Page.Params.trace }}{{ with .kind }}{{ $kind = . }}{{ end }}{{ end -}}
 {{- $title := .Get "title" | default $kind -}}
+{{- $offered := false -}}
+{{- range .Page.Params.resources }}{{ if eq .url $src }}{{ $offered = true }}{{ end }}{{ end -}}
 {{- $viewerID := printf "gaussian-splat-%d" .Ordinal -}}
 {{- $captionID := printf "%s-caption" $viewerID }}
 <figure
@@ -35,7 +40,7 @@
   {{ with .Get "camera-target" }}data-camera-target="{{ . }}"{{ end }}
 >
   <div class="viewer-bar">
-    <span class="viewer-title">{{ $title }} · SPZ{{ with $size }} · <span class="n">{{ . }}</span>{{ end }}</span>
+    <span class="viewer-title">{{ $title }}</span>
     <div class="viewer-controls">
       <button class="btn btn--quiet" type="button" data-splat-reset disabled>Reset view</button>
     </div>
@@ -75,9 +80,9 @@
       </svg>
     </button>
   </div>
-  <figcaption class="legend" id="{{ $captionID }}">Drag to orbit · right-drag or two fingers to pan · scroll or pinch to zoom · <a href="{{ $src }}" download>download the SPZ scan{{ with $size }} (<span class="n">{{ . }}</span>){{ end }} ↓</a></figcaption>
+  <figcaption class="legend" id="{{ $captionID }}">Drag to orbit · right-drag or two fingers to pan · scroll or pinch to zoom{{ if not $offered }} · <a href="{{ $src }}" download>download the SPZ scan{{ with $size }} (<span class="n">{{ . }}</span>){{ end }} ↓</a>{{ end }}</figcaption>
   <noscript>
     <style>#{{ $viewerID | safeCSS }} ~ .viewer-status { display: none; }</style>
-    <p class="legend">The interactive view needs JavaScript; the poster above shows the scan, and the download opens in any splat viewer.</p>
+    <p class="legend">The interactive view needs JavaScript; the poster above shows the scan, and the download {{ if $offered }}under the title {{ end }}opens in any splat viewer.</p>
   </noscript>
 </figure>

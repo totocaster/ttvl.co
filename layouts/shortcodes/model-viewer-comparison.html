@@ -8,10 +8,15 @@
      defaults to the page's trace kind), "before-size" and "after-size" (used
      when a file is not under static/), "camera-orbit", "min-camera-orbit",
      "camera-target". The poster should be the viewer's own render at that
-     camera, 1600 × 1000, so loading and loaded look the same.
+     camera, 1600 × 1000, so loading and loaded look the same. The bar
+     holds the segmented control and names only the kind. The legend
+     teaches the gestures and names the download of the scan in view
+     unless the page's head already offers both files (front matter
+     `resources:`).
      assets/js/model-viewer-comparison.js reads [data-model-variant] and its
      data-model-* attributes, [data-model-comparison-status],
-     [data-model-comparison-download], and [data-model-comparison-size]. */ -}}
+     and, where the legend has them, [data-model-comparison-download] and
+     [data-model-comparison-size]. */ -}}
 {{- $poster := .Get "poster" -}}
 {{- $cameraOrbit := .Get "camera-orbit" -}}
 {{- $minCameraOrbit := .Get "min-camera-orbit" -}}
@@ -46,11 +51,17 @@
 {{- $after := index $variants 1 -}}
 {{- $kind := "3D models" }}{{ with .Page.Params.trace }}{{ with .kind }}{{ $kind = . }}{{ end }}{{ end -}}
 {{- $title := .Get "title" | default $kind -}}
+{{- $inHead := 0 -}}
+{{- range $variants -}}
+  {{- $v := . -}}
+  {{- range $.Page.Params.resources }}{{ if eq .url $v.src }}{{ $inHead = add $inHead 1 }}{{ break }}{{ end }}{{ end -}}
+{{- end -}}
+{{- $offered := eq $inHead (len $variants) -}}
 {{- $viewerID := printf "model-viewer-comparison-%d" .Ordinal -}}
 {{- $captionID := printf "%s-caption" $viewerID }}
 <figure class="viewer model-viewer-frame model-viewer-comparison" data-model-viewer-comparison>
   <div class="viewer-bar">
-    <span class="viewer-title">{{ $title }} · GLB</span>
+    <span class="viewer-title">{{ $title }}</span>
     <div class="viewer-controls">
       <div class="segmented" role="group" aria-label="{{ $title }}">
         {{- range $variants }}
@@ -105,7 +116,7 @@
       </svg>
     </button>
   </div>
-  <figcaption class="legend" id="{{ $captionID }}">Drag to rotate · scroll or pinch to zoom · arrow keys when the model is focused · <a href="{{ $after.src }}" download data-model-comparison-download>download this scan<span data-model-comparison-size>{{ with $after.size }} (<span class="n">{{ . }}</span>){{ end }}</span> ↓</a></figcaption>
+  <figcaption class="legend" id="{{ $captionID }}">Drag to rotate · scroll or pinch to zoom · arrow keys when the model is focused{{ if not $offered }} · <a href="{{ $after.src }}" download data-model-comparison-download>download this scan<span data-model-comparison-size>{{ with $after.size }} (<span class="n">{{ . }}</span>){{ end }}</span> ↓</a>{{ end }}</figcaption>
   <noscript><p class="legend">The interactive comparison needs JavaScript. Download either scan:
     {{- range $i, $v := $variants }}{{ if $i }} ·{{ end }} <a href="{{ $v.src }}" download><time datetime="{{ $v.date }}">{{ $v.date }}</time>{{ with $v.size }} (<span class="n">{{ . }}</span>){{ end }} ↓</a>{{ end }}</p></noscript>
 </figure>

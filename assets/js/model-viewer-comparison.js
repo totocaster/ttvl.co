@@ -20,7 +20,9 @@ const modelViewerComparison = {
     );
     const size = comparison.querySelector("[data-model-comparison-size]");
 
-    if (!viewer || !buttons.length || !status || !download || !size) return;
+    // The download and its size are optional: the legend leaves them out
+    // when the page's head already offers both scans.
+    if (!viewer || !buttons.length || !status) return;
 
     // Dates and sizes are numbers: <time> and .n set them in Mono.
     const numeral = (tag, text) => {
@@ -50,10 +52,12 @@ const modelViewerComparison = {
           `Showing ${modelLabel} · `,
           numeral("time", modelDate),
         );
-        download.href = modelSrc;
-        size.replaceChildren(
-          ...(modelSize ? [" (", numeral("span", modelSize), ")"] : []),
-        );
+        if (download) download.href = modelSrc;
+        if (size) {
+          size.replaceChildren(
+            ...(modelSize ? [" (", numeral("span", modelSize), ")"] : []),
+          );
+        }
       });
     });
 

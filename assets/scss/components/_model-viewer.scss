@@ -4,15 +4,19 @@
 // Chrome and Figures.
 //
 //   figure.viewer
-//     .viewer-bar      the title at left in the label voice, the controls
-//                      at right as quiet blocks (.btn.btn--quiet) or one
-//                      .segmented control; 12 px to the frame
+//     .viewer-bar      only where the viewer has controls: the kind at
+//                      left in the label voice, the controls at right as
+//                      quiet blocks (.btn.btn--quiet) or one .segmented
+//                      control; 12 px to the frame
 //     .viewer-frame    16:10 at the column's width on a 1 px edge frame,
 //                      the media well dark; the fullscreen target
 //       .viewer-status the badge at the bottom left
 //       .viewer-fs     the fullscreen key at the bottom right
 //     figcaption.legend  how to move, then the download in Mono with ↓
-//                      (the download link stays on one line)
+//                      (the download link stays on one line) unless the
+//                      head's strip already offers the file; on a page
+//                      where the viewer spans the empty rail, it starts at
+//                      the column's edge with the rest of the text
 //
 // _gaussian-splat.scss and _spatial-long-exposure.scss hold only what
 // differs. Deliberate literal colors (docs/styleguide.md, Color): the
@@ -291,6 +295,15 @@ html.spatial-long-exposure-fullscreen-active {
   a::before,
   a::after {
     content: none;
+  }
+}
+
+// Where the viewer reaches back across the empty rail (components/_block.scss),
+// its legend starts at the column's edge, where the page's text starts.
+@include rail-wide {
+  .block.body:not(.has-toc) > .main .viewer > .legend,
+  .block.body:not(.has-toc) > .main .viewer > noscript > .legend {
+    margin-left: $rail-width + $rail-gap;
   }
 }
 
