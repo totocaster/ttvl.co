@@ -6,7 +6,7 @@
      head owns the h1. The loupe is a button that opens the overlay, like
      the ? shortcut. docs/styleguide.md, Masthead. */ -}}
 <header class="site wrap">
-  {{- $logo := printf `<a href="/"><img src="/ui/ttvl_logo.png" srcset="/ui/ttvl_logo@2x.png 2x, /ui/ttvl_logo@3x.png 3x" width="92" height="36" alt="%s" /></a>` (htmlEscape .Site.Title) | safeHTML }}
+  {{- $logo := printf `<a href="/"><img src="/ui/ttvl_signature.png" srcset="/ui/ttvl_signature@2x.png 2x, /ui/ttvl_signature@3x.png 3x" width="92" height="36" alt="%s" /></a>` (htmlEscape .Site.Title) | safeHTML }}
   <p class="logo">{{ $logo }}</p>
   <button type="button" class="search-key" aria-haspopup="dialog" aria-keyshortcuts="?" aria-label="Search" title="Search (?)">{{ partial "icons/search.svg" . }}</button>
   {{ partial "nav.html" . }}
