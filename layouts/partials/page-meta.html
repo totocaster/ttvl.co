@@ -4,6 +4,9 @@
      other numbers <span class="n">; parts join with a middle dot.
      Hubs count what they list; page-list and project-grid record their
      pages in .Store "hubPages", so render .Content before calling this.
+     A hub reads in two lines: the count (and whatever else the hub
+     carries: a stream's status, the journal's feed), then "Updated" and
+     the newest page's date.
      Every case is listed in docs/styleguide.md, Page Head. */ -}}
 {{- $p := . -}}
 {{- $one := slice -}}
@@ -23,6 +26,8 @@
   "research" (slice "entry" "entries")
 -}}
 {{- $listed := slice -}}
+{{- $also := slice -}}{{/* a hub's other parts, after its count */}}
+{{- $updated := "" -}}{{/* a hub's newest date, YYYY-MM-DD */}}
 
 {{- if $p.Params.hide_meta -}}
   {{- /* No lines. */ -}}
@@ -52,13 +57,14 @@
       {{- $two = $two | append (printf `answered in <a href="%s"><span class="n">%s</span></a>` $url $no) -}}
     {{- end -}}
   {{- else if ne $p.Path $hub.Path -}}
-    {{- /* Stream: count · updated / Research · Status */ -}}
-    {{- $entries := $p.RegularPages.ByDate.Reverse -}}
-    {{- $one = slice (partial "count.html" (dict "n" (len $entries) "one" "entry" "many" "entries")) -}}
-    {{- with $entries }}{{ $one = $one | append (printf `updated <time datetime="%s">%s</time>` ((index . 0).Date.Format "2006-01-02") ((index . 0).Date.Format "2006-01-02")) }}{{ end -}}
-    {{- $two = slice (printf $link $hub.RelPermalink (htmlEscape $hub.Title)) (title ($p.Params.status | default "active")) -}}
+    {{- /* Stream: count · Status / Updated date. The masthead already
+         marks Research as current, so the rail names no parent. */ -}}
+    {{- $listed = $p.RegularPages -}}
+    {{- $also = slice (title ($p.Params.status | default "active")) -}}
   {{- else -}}
+    {{- /* Hub: count · RSS (every stream) / Updated date */ -}}
     {{- $listed = $p.RegularPagesRecursive -}}
+    {{- with $p.OutputFormats.Get "rss" }}{{ $also = slice (printf `<a href="%s">RSS</a>` .RelPermalink) }}{{ end -}}
   {{- end -}}
 
 {{- else if eq $p.Section "notes" -}}
@@ -102,7 +108,7 @@
   {{- $files := slice -}}
   {{- range readDir "static/leaves" }}{{ if findRE `^\d{4}-\d{2}-\d{2}.*\.jpeg$` .Name }}{{ $files = $files | append .Name }}{{ end }}{{ end -}}
   {{- $one = slice (partial "count.html" (dict "n" (len $files) "one" "leaf" "many" "leaves")) -}}
-  {{- with last 1 (sort $files) }}{{ $d := substr (index . 0) 0 10 }}{{ $one = $one | append (printf `updated <time datetime="%s">%s</time>` $d $d) }}{{ end -}}
+  {{- with last 1 (sort $files) }}{{ $updated = substr (index . 0) 0 10 }}{{ end -}}
 
 {{- else if eq $p.Section "projects" -}}
   {{- $listed = where site.Pages "Params.project" "!=" nil -}}
@@ -146,18 +152,20 @@
   {{- if not $d.IsZero }}{{ $one = slice (printf `Updated <time datetime="%s">%s</time>` ($d.Format "2006-01-02") ($d.Format "2006-01-02")) }}{{ end -}}
 {{- end -}}
 
-{{- /* Hubs: how many pages they list, and when the newest was written.
-     This is the one count a page carries; on Notes and Projects it is live,
-     so the filter can rewrite it. */ -}}
+{{- /* Hubs: how many pages they list (with anything else the hub
+     carries), then when the newest was written. This is the one count a
+     page carries; on Notes and Projects it is live, so the filter can
+     rewrite it. */ -}}
 {{- with $listed -}}
   {{- $pages := uniq . -}}
   {{- $noun := index $nouns $p.Section | default (slice "page" "pages") -}}
-  {{- $one = slice (partial "count.html" (dict "n" (len $pages) "one" (index $noun 0) "many" (index $noun 1) "live" (in (slice "notes" "projects") $p.Section))) -}}
+  {{- $one = slice (partial "count.html" (dict "n" (len $pages) "one" (index $noun 0) "many" (index $noun 1) "live" (in (slice "notes" "projects") $p.Section))) | append $also -}}
   {{- with first 1 (sort $pages "Date" "desc") -}}
     {{- $newest := index . 0 -}}
-    {{- if not $newest.Date.IsZero }}{{ $one = $one | append (printf `updated <time datetime="%s">%s</time>` ($newest.Date.Format "2006-01-02") ($newest.Date.Format "2006-01-02")) }}{{ end -}}
+    {{- if not $newest.Date.IsZero }}{{ $updated = $newest.Date.Format "2006-01-02" }}{{ end -}}
   {{- end -}}
 {{- end -}}
+{{- with $updated }}{{ $two = slice (printf `Updated <time datetime="%s">%s</time>` . .) }}{{ end -}}
 
 {{- $lines := slice -}}
 {{- range slice $one $two -}}

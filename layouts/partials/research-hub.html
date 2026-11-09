@@ -1,5 +1,5 @@
 {{- /* The journal hub: the head with the intro as its dek, the all-streams
-     feed as the rail's second line, and one door per stream under the dek
+     feed after the count in the rail (page-meta.html), and one door per stream under the dek
      (the whole tile opens the stream: its count, status, pulse, and
      description), then Latest: the newest entries from every stream as
      cards, each with its first figure. The streams' own pages list their
@@ -13,8 +13,6 @@
 {{- $dek := .Params.description -}}
 {{- if $single }}{{ $dek = strings.TrimSuffix "</p>" (strings.TrimPrefix "<p>" $intro) | safeHTML }}{{ end -}}
 
-{{- $rail := partial "page-meta.html" . -}}
-{{- with .OutputFormats.Get "rss" }}{{ $rail = $rail | append (printf `<a href="%s">RSS</a>` .RelPermalink) }}{{ end -}}
 
 {{- $doors := "" -}}
 {{- with $streams -}}
@@ -27,7 +25,7 @@
   {{- $doors = printf `%s</div><p class="legend">Each mark is a day of the last <span class="n">13</span> weeks, taller for more entries.</p>` $doors -}}
 {{- end -}}
 
-{{ partial "page-head.html" (dict "page" . "dek" $dek "rail" $rail "extra" ($doors | safeHTML)) }}
+{{ partial "page-head.html" (dict "page" . "dek" $dek "extra" ($doors | safeHTML)) }}
 {{- if not $single }}
 {{ partial "block-body.html" .Content }}
 {{- end }}
