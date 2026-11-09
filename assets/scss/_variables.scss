@@ -84,8 +84,13 @@ $rail-gap: $space-7;
 $rail-offset: 7px; // a head's first rail line sits on the title's x-height
 $max-width-column: $max-width-page - 2 * $page-padding - $rail-width - $rail-gap; // 880 px
 $card-min-width: 240px;
+$card-tile-width-narrow: 128px; // phones: the tile of a card lying down
+$card-gap-narrow: 20px; // phones: between lying cards
 $max-width-measure: 640px; // running text, deks, forms, legends
 $max-width-bleed: 760px; // figures, sheets, terminals, tables
+// A figure's picture stands within the window: no taller than the bleed
+// width or 86% of the window's height, whichever is smaller.
+$figure-max-height: unquote("min(#{$max-width-bleed}, 86svh)");
 $row-meta-width: 128px;
 $row-meta-width-narrow: 96px; // phones: the meta column's floor
 $row-meta-width-narrow-max: 136px; // and its ceiling

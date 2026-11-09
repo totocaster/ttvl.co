@@ -283,11 +283,13 @@ kbd {
     border-top: 1px solid var(--edge);
   }
 
-  // Images written as Markdown paragraphs take the figure's place.
+  // Images written as Markdown paragraphs take the figure's place, and
+  // stand within the window as a figure's picture does.
   p > img:only-child {
     display: block;
     width: auto;
     max-width: unquote("min(#{$max-width-bleed}, 100%)");
+    max-height: $figure-max-height;
     height: auto;
     border: 1px solid var(--edge);
     border-radius: $radius;
@@ -304,7 +306,9 @@ kbd {
     -webkit-overflow-scrolling: touch;
   }
 
-  // YouTube embeds take the figure frame.
+  // The walks panel's video (assets/js/walks.js) takes the figure frame.
+  // These rules serve only that panel now; the youtube shortcode has its
+  // own styles in components/_video.scss.
   .video-container {
     position: relative;
     max-width: $max-width-bleed;
@@ -335,8 +339,11 @@ kbd {
 }
 
 // Figures: one rule for the whole site. Bleed width, block media on an
-// edge frame, the caption in the label voice, muted. Viewer figures carry
-// their own classes and override this; :where keeps the rule easy to beat.
+// edge frame, the caption in the label voice, muted. A picture stands
+// within the window: no taller than the bleed width or 86% of the window's
+// height, keeping its proportions, at the column's edge with the caption
+// under it. Viewer figures carry their own classes and override this;
+// :where keeps the rule easy to beat.
 :where(main) figure {
   margin: $rhythm-figure-above 0 $rhythm-figure-below;
   max-width: $max-width-bleed;
@@ -350,6 +357,16 @@ kbd {
     background: var(--surface);
     border: 1px solid var(--edge);
     border-radius: $radius;
+  }
+
+  // Pictures fill the bleed unless that would make them taller than the
+  // window allows; then they narrow. A pair's two pictures share the
+  // width and keep it.
+  &:not(.pair) > img,
+  &:not(.pair) > a > img {
+    width: auto;
+    max-width: 100%;
+    max-height: $figure-max-height;
   }
 
   // Photographs in letters and transparent renders go unframed.
