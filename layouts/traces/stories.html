@@ -1,0 +1,74 @@
+{{ define "main" }}
+{{- /* Instagram Stories: the sea is the page. Every day of stories is a small
+     tile flicking through that day's frames, newest at the top, edge to edge
+     and up under the masthead, which a partial veil keeps readable. Nothing
+     else is on the page. A lens follows the pointer and names the day under
+     it; a click opens the time key over the sea: the story large, the rest of
+     its day, and the way through time. Without the script the sea still
+     shows and flickers. Media live on the Space (tools/stories-media.py).
+     docs/stories.md. */ -}}
+{{- $s := hugo.Data.stories -}}
+{{- $css := "" -}}
+{{- range $k, $v := $s.day_sheets }}{{ $css = printf "%s.stories .d-%s{background-image:url(%s%s)}" $css $k $s.media $v }}{{ end -}}
+{{- range $k, $v := $s.month_sheets }}{{ $css = printf "%s.stories .m-%s{background-image:url(%s%s)}" $css $k $s.media (index $v 0) }}{{ end -}}
+<article class="stories" data-stories>
+  <style>{{ $css | safeCSS }}</style>
+  <h1 class="visually-hidden">{{ .Title }}</h1>
+  <p class="visually-hidden">{{ .Description }} {{ $s.count }} stories on {{ $s.days }} days, from {{ $s.first }} to {{ $s.last }}.</p>
+
+  <div class="stories-stage" data-stage>
+    <div class="stories-sea" data-sea tabindex="0" role="group" aria-label="Every day of stories, newest first" aria-describedby="stories-keys">
+      {{- range $i, $d := $s.day -}}
+      {{- $n := len (index $d 3) -}}{{- if gt $n 6 }}{{ $n = 6 }}{{ end -}}
+      <i class="t d-{{ index $d 1 }}{{ if gt $n 1 }} n{{ $n }}{{ end }}" style="background-position:0 -{{ mul (index $d 2) 59 }}px{{ if gt $n 1 }};animation-delay:-{{ div (mod (mul $i 53) 97) 10.0 }}s{{ end }}"></i>
+      {{- end -}}
+    </div>
+    <p class="visually-hidden" id="stories-keys">Arrow keys move through the days; Enter opens one.</p>
+    <div class="stories-veil" aria-hidden="true"></div>
+
+    <div class="stories-lens" data-lens aria-hidden="true" hidden>
+      <div class="stories-lens-glass" data-lens-glass><span class="stories-lens-cross"></span></div>
+      <p class="stories-lens-label" data-lens-label></p>
+    </div>
+    <span class="stories-lit" data-lit aria-hidden="true" hidden><span class="stories-frame" data-lit-frame></span></span>
+
+    <section class="stories-key" data-key aria-labelledby="stories-key-date" tabindex="-1" hidden>
+      <div class="stories-key-rail">
+        <p class="stories-key-dow" data-f="dow"></p>
+        <p class="stories-key-date" id="stories-key-date"><time data-f="date"></time></p>
+        <p class="stories-key-place" data-f="place"></p>
+        <p class="stories-key-facts"><span class="n" data-f="time"></span> · <span class="n" data-f="k"></span> of <span class="n" data-f="n"></span> that day<br><span class="n" data-f="dur"></span> s<span data-f="quiet"></span></p>
+      </div>
+      <div class="stories-key-main">
+        <div class="stories-key-controls">
+          <button type="button" class="btn quiet" data-play><svg class="stories-icon" viewBox="0 0 16 16" aria-hidden="true"><path data-play-icon d="M4.5 2.75v10.5l8.5-5.25z"></path></svg><span data-play-label>Play</span></button>
+          <label class="toggle"><input type="checkbox" data-sound checked>Sound</label>
+          <button type="button" class="btn quiet" data-day="1">← Day before</button>
+          <button type="button" class="btn quiet" data-day="-1">Day after →</button>
+        </div>
+        <button type="button" class="btn quiet stories-key-close" data-close>Close</button>
+        <label class="scrubber stories-key-time"><span>Time</span><input type="range" min="0" step="1" data-range></label>
+        <p class="stories-key-years" data-years aria-hidden="true"></p>
+        <div class="stories-key-body">
+          <div class="stories-well" data-well>
+            <span class="stories-frame" data-frame></span>
+            <video data-video playsinline preload="none"></video>
+            <span class="stories-segs" data-segs aria-hidden="true"></span>
+            <span class="stories-badge" aria-hidden="true"><span class="n" data-f="badge"></span></span>
+            <span class="stories-status" data-status role="status" hidden></span>
+            <button type="button" class="stories-tap prev" data-step="-1" aria-label="Previous story"></button>
+            <button type="button" class="stories-tap next" data-step="1" aria-label="Next story"></button>
+          </div>
+          <div>
+            <p class="stories-key-label">The day</p>
+            <div class="stories-thumbs" data-thumbs></div>
+          </div>
+        </div>
+        <p class="legend">The day playing is lit in the sea behind, and its year comes back in color. Drag Time, step a day, or click any tile to go there; <kbd>←</kbd> <kbd>→</kbd> step a story, <kbd>esc</kbd> closes.</p>
+      </div>
+    </section>
+  </div>
+  <noscript><p class="stories-noscript">Opening a day needs JavaScript.</p></noscript>
+  <script id="stories-data" type="application/json">{{ $s | jsonify | safeJS }}</script>
+</article>
+{{ end }}

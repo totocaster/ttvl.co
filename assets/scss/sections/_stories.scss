@@ -1,0 +1,643 @@
+// Instagram Stories: the sea is the page. The masthead stands on it under a
+// partial veil; the days fill the container and repeats fill the window
+// beyond it; below the last row the footer is black. The lens and the time
+// key float over the sea. Without the script the sea is a centered grid of
+// the days, still flickering. docs/stories.md.
+
+$stories-tile-w: 33px;
+$stories-tile-h: 59px;
+$stories-gap: 2px;
+$stories-lens: 300px;
+$stories-well: 288px;
+
+body:has(.stories) {
+  position: relative;
+
+  // The masthead stands on the sea; its rule gives way to the veil.
+  > header.site {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 4;
+    border-bottom-color: transparent;
+
+    .nav a,
+    .search-key {
+      color: var(--ink);
+    }
+  }
+
+  > .layout {
+    max-width: none;
+    padding: 0;
+
+    > main {
+      max-width: none;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  // When the stories run out the page goes black: a deliberate exception,
+  // like the media wells, spanning the window behind the footer's own width.
+  > .foot {
+    margin-top: 0;
+    padding-top: $space-5;
+    padding-bottom: $space-6;
+    border-top: 0;
+    color: rgba(255, 255, 255, 0.62);
+    background: #000;
+    box-shadow: 0 0 0 100vmax #000;
+    clip-path: inset(0 -100vmax);
+
+    a:hover {
+      color: #fff;
+    }
+  }
+}
+
+.stories-stage {
+  position: relative;
+  overflow: hidden;
+  background: var(--ground);
+}
+
+// Without the script: the days in a centered grid under the masthead.
+.stories-sea {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, $stories-tile-w);
+  justify-content: center;
+  gap: $stories-gap;
+  padding: 200px $page-padding $space-7;
+  outline: none;
+
+  .t {
+    display: block;
+    width: $stories-tile-w;
+    height: $stories-tile-h;
+    border-radius: 1px;
+    background-color: var(--film);
+    background-repeat: no-repeat;
+    background-size: 6 * $stories-tile-w auto;
+  }
+
+  // Each tile flicks through up to six of its day's frames.
+  @for $n from 2 through 6 {
+    .t.n#{$n} {
+      animation: stories-flick-#{$n} ($n * 1.8s) steps($n, jump-end) infinite;
+    }
+  }
+}
+
+@for $n from 2 through 6 {
+  @keyframes stories-flick-#{$n} {
+    to {
+      background-position-x: -$n * $stories-tile-w;
+    }
+  }
+}
+
+.stories[data-ready] .stories-sea {
+  position: absolute;
+  top: 0;
+  padding: 0;
+  justify-content: start;
+  cursor: zoom-in;
+}
+
+.stories-sea:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--signal);
+}
+
+// A chip at each year's newest day.
+.stories-year {
+  position: absolute;
+  z-index: 1;
+  padding: 0 $space-1;
+  border-radius: 1px;
+  background: var(--ground);
+  color: var(--ink);
+  font-size: $font-size-small;
+  line-height: $line-height-small;
+  pointer-events: none;
+}
+
+// The veil: the stories stay faintly behind the masthead.
+.stories-veil {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  height: 260px;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--ground) 90%, transparent) 0%,
+    color-mix(in srgb, var(--ground) 86%, transparent) 58%,
+    color-mix(in srgb, var(--ground) 60%, transparent) 74%,
+    color-mix(in srgb, var(--ground) 28%, transparent) 88%,
+    transparent 100%
+  );
+}
+
+// While the time key is open the sea goes gray, and the year playing comes
+// back in color.
+.stories-sea.is-dim {
+  cursor: pointer;
+
+  .t {
+    opacity: 0.16;
+    filter: grayscale(1);
+  }
+
+  @for $y from 2017 through 2030 {
+    &[data-year="#{$y}"] .t.y#{$y}:not(.dup) {
+      opacity: 0.62;
+      filter: none;
+    }
+  }
+}
+
+// A frame on a month sheet, placed by the script.
+.stories-frame {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+}
+
+// ------------------------------------------------------------ the lens
+
+.stories-lens {
+  position: absolute;
+  z-index: 5;
+  width: $stories-lens;
+  height: $stories-lens;
+  pointer-events: none;
+}
+
+.stories-lens-glass {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  background: var(--ground);
+  box-shadow: 0 0 0 1px var(--ink), 4px 4px 0 1px var(--ink);
+}
+
+// Under each sharp frame, the sea's own frame waits while it loads.
+.stories-lens-t {
+  position: absolute;
+  width: $stories-tile-w * 3;
+  height: $stories-tile-h * 3;
+  overflow: hidden;
+  border-radius: $radius;
+  background-color: #111; // the media well, a deliberate exception
+  background-repeat: no-repeat;
+  background-size: 18 * $stories-tile-w auto;
+}
+
+.stories-lens-cross {
+  position: absolute;
+  z-index: 1;
+  top: $stories-lens * 0.5 - 6px;
+  left: $stories-lens * 0.5 - 6px;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+  border: 2px solid var(--signal);
+  border-radius: 50%;
+}
+
+.stories-lens-label {
+  position: absolute;
+  top: $stories-lens + $space-3;
+  left: 50%;
+  width: max-content;
+  margin: 0;
+  padding: $space-1 $space-2;
+  transform: translateX(-50%);
+  border: 1px solid var(--edge);
+  border-radius: $radius;
+  background: var(--ground);
+  font-size: $font-size-small;
+  line-height: $line-height-small;
+
+  .muted {
+    color: var(--ink-faint);
+  }
+
+  &.is-left {
+    left: 0;
+    transform: none;
+  }
+
+  &.is-right {
+    left: auto;
+    right: 0;
+    transform: none;
+  }
+}
+
+// The day playing, lit in the sea.
+.stories-lit {
+  position: absolute;
+  z-index: 4;
+  width: $stories-tile-w;
+  height: $stories-tile-h;
+  overflow: hidden;
+  border-radius: 1px;
+  background: #111;
+  outline: 2px solid var(--signal);
+  outline-offset: 1px;
+  box-shadow: 0 0 0 4px var(--ground);
+  pointer-events: none;
+  transition: left $t-slow, top $t-slow;
+}
+
+// ------------------------------------------------------------ the time key
+
+.stories-key {
+  position: absolute;
+  z-index: 6;
+  left: unquote("max(#{$page-padding}, calc((100% - #{$max-width-page}) / 2 + #{$page-padding}))");
+  width: unquote("min(#{$max-width-page - 2 * $page-padding}, calc(100% - #{2 * $page-padding}))");
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: $rail-width minmax(0, 1fr);
+  column-gap: $rail-gap;
+  padding: 28px $space-6 $space-6 0;
+  border: 1px solid var(--edge);
+  border-radius: $radius;
+  background: var(--ground);
+  outline: none;
+  transition: top $t-slow;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.stories-key-rail {
+  padding-top: $space-1;
+  text-align: right;
+
+  p {
+    margin: 0;
+  }
+}
+
+.stories-key-dow {
+  font-size: $font-size-dek;
+  line-height: $line-height-dek;
+  color: var(--ink-muted);
+}
+
+.stories-key-date,
+.stories-key-date time {
+  font-size: $font-size-entry;
+  line-height: $line-height-entry;
+}
+
+.stories-key-rail .stories-key-place {
+  margin-top: $space-3;
+  font-size: $font-size-base;
+  line-height: $line-height-base;
+}
+
+.stories-key-rail .stories-key-facts {
+  margin-top: $space-3;
+  font-size: $font-size-small;
+  line-height: $line-height-small;
+  color: var(--ink-faint);
+}
+
+.stories-key-main {
+  position: relative;
+  min-width: 0;
+}
+
+.stories-key-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: $space-3;
+  padding-right: 96px;
+
+  .btn {
+    gap: $space-2;
+  }
+}
+
+.stories-icon {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.25;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.stories-key-close {
+  position: absolute;
+  top: -4px;
+  right: 0;
+}
+
+.stories-key-time {
+  max-width: none;
+  margin-top: $space-4;
+
+  > span {
+    flex: none;
+    width: 40px;
+  }
+}
+
+.stories-key-years {
+  position: relative;
+  height: $line-height-small;
+  margin: -8px 6px 0 58px;
+  font-size: $font-size-small;
+  line-height: $line-height-small;
+  color: var(--ink-faint);
+
+  span {
+    position: absolute;
+    top: 0;
+    padding-left: $space-1;
+    border-left: 1px solid var(--edge);
+  }
+}
+
+.stories-key-body {
+  display: grid;
+  grid-template-columns: $stories-well minmax(0, 1fr);
+  column-gap: $space-6;
+  margin-top: $space-5;
+}
+
+.stories-key-label {
+  margin: 0 0 $space-3;
+  font-size: $font-size-small;
+  line-height: $line-height-small;
+  color: var(--ink-faint);
+}
+
+.stories-key .legend {
+  margin-top: $space-5;
+}
+
+// The media well: the story's frame, then its video over it once it plays.
+.stories-well {
+  position: relative;
+  width: $stories-well;
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid var(--edge);
+  border-radius: $radius;
+  background: #111; // the media well, a deliberate exception
+
+  video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+  }
+
+  &.is-playing video {
+    opacity: 1;
+  }
+}
+
+.stories-segs {
+  position: absolute;
+  z-index: 1;
+  top: $space-2;
+  left: $space-2;
+  right: $space-2;
+  display: flex;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.stories-seg {
+  flex: 1 1 0;
+  height: 2px;
+  overflow: hidden;
+  border-radius: 1px;
+  background: rgba(255, 255, 255, 0.38);
+
+  i {
+    display: block;
+    width: 0;
+    height: 100%;
+    background: #fff;
+  }
+
+  &.is-done i {
+    width: 100%;
+  }
+}
+
+.stories-badge {
+  position: absolute;
+  z-index: 1;
+  left: $space-2;
+  bottom: $space-2;
+  padding: 2px $space-2;
+  border-radius: $radius;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: $font-size-small;
+  line-height: $line-height-small;
+}
+
+// What the video is doing when it is not playing: loading, or not there.
+.stories-status {
+  position: absolute;
+  z-index: 1;
+  right: $space-2;
+  bottom: $space-2;
+  margin: 0;
+  padding: 2px $space-2;
+  border-radius: $radius;
+  background: rgba(0, 0, 0, 0.55);
+  color: #fff;
+  font-size: $font-size-small;
+  line-height: $line-height-small;
+
+  &[hidden] {
+    display: none;
+  }
+}
+
+.stories-tap {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+
+  &.prev {
+    left: 0;
+    width: 35%;
+  }
+
+  &.next {
+    right: 0;
+    width: 65%;
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--signal);
+    outline-offset: -2px;
+  }
+}
+
+.stories-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $space-2;
+}
+
+.stories-thumb {
+  position: relative;
+  flex: none;
+  width: 54px;
+  height: 96px;
+  margin: 0 2px 2px 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: $radius;
+  background: #111;
+  outline: 1px solid var(--edge);
+  outline-offset: -1px;
+  cursor: pointer;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border: 1px solid transparent;
+    border-radius: $radius;
+  }
+
+  &:hover {
+    box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+
+    &::before {
+      border-color: var(--ink);
+    }
+  }
+
+  &.is-current {
+    box-shadow: $shadow-quiet $shadow-quiet 0 var(--ink);
+
+    &::before {
+      border: 2px solid var(--ink);
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      top: 5px;
+      right: 5px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--signal);
+    }
+  }
+
+  @include focus-ring;
+}
+
+.stories-noscript {
+  margin: 0;
+  padding: $space-4 $page-padding;
+  text-align: center;
+}
+
+// Below the rail breakpoint the rail joins the column.
+@media screen and (max-width: $breakpoint-rail) {
+  .stories-key {
+    grid-template-columns: minmax(0, 1fr);
+    padding-left: $space-6;
+  }
+
+  .stories-key-rail {
+    margin-bottom: $space-4;
+    text-align: left;
+  }
+}
+
+// Phones: the time key covers the window and scrolls.
+@include narrow {
+  .stories-key {
+    position: fixed;
+    inset: 0;
+    z-index: $z-overlay;
+    width: auto;
+    overflow-y: auto;
+    padding: $space-5 $page-padding-narrow $space-7;
+    border: 0;
+    border-radius: 0;
+  }
+
+  .stories-key-body {
+    grid-template-columns: minmax(0, 1fr);
+    row-gap: $space-5;
+  }
+
+  .stories-well {
+    width: 100%;
+    max-width: 360px;
+  }
+
+  // Close stands in the window's corner, beside the date, so the keys get the width.
+  .stories-key-main {
+    position: static;
+  }
+
+  .stories-key-close {
+    top: $space-5;
+    right: $page-padding-narrow;
+  }
+
+  .stories-key-controls {
+    padding-right: 0;
+  }
+
+  // Every other year, so the labels never touch.
+  .stories-key-years span:nth-child(even) {
+    color: transparent;
+  }
+
+  .stories-lit {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stories-sea .t {
+    animation: none !important;
+  }
+
+  .stories-lit,
+  .stories-key {
+    transition: none;
+  }
+}

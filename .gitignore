@@ -31,3 +31,6 @@ node_modules/
 
 # Private source manifests for the Walks reading copy
 /.local/walks/
+
+# Private sheets, frames, and upload manifest for the Instagram Stories trace
+/.local/stories/

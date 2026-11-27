@@ -29,7 +29,7 @@ make cards-check                        # list missing and stale cards without r
 make entry STREAM=ambient-computing SLUG=four-corners
 ```
 
-`make` lists every target: `serve`, `serve-drafts`, `build`, `entry`, `walk-photos` (the walks' photo picker, docs/walks.md), `walk-day` (each walk's day for its sheet: elevation, neighborhoods, shutter), the `cards` family, and `hooks`, which installs a pre-commit hook that refuses commits with missing or stale cards. Python tools under `tools/` declare their dependencies inline and run through `uv run`; nothing is installed into the system Python.
+`make` lists every target: `serve`, `serve-drafts`, `build`, `entry`, `walk-photos` (the walks' photo picker, docs/walks.md), `walk-day` (each walk's day for its sheet: elevation, neighborhoods, shutter), `stories` (the Instagram Stories trace's data, sheets, and uploads, docs/stories.md), the `cards` family, and `hooks`, which installs a pre-commit hook that refuses commits with missing or stale cards. Python tools under `tools/` declare their dependencies inline and run through `uv run`; nothing is installed into the system Python.
 
 `tools/build-production.sh` is the deployment entry point. It unshallows Git when necessary, derives `HUGO_SITE_UPDATE` from the commit count, removes `public/`, and invokes Hugo. There are no custom archetypes, so `hugo new` only supplies Hugo's generic frontmatter; copy a nearby content file when its schema matters.
 
@@ -48,7 +48,7 @@ make entry STREAM=ambient-computing SLUG=four-corners
 - Unbound Notebook System: the section index is canonical at `/project-humane/notebook-system/`; child guides currently remain under `/notebook-system/…/`.
 - Projects archive: `content/projects/_index.md` discovers pages and sections with `project` frontmatter.
 - Loose Leaves: `content/leaves/_index.md` renders date-prefixed JPEG files from `static/leaves/`; there are no per-leaf Markdown pages.
-- Traces: `content/traces/*.md` → `/traces/…/` for scans, photographs, documents, and spatial records.
+- Traces: `content/traces/*.md` → `/traces/…/` for scans, photographs, documents, and spatial records. Walks (`/traces/walks/`) and Instagram Stories (`/traces/stories/`) have their own layouts and docs (docs/walks.md, docs/stories.md).
 - Research journal: `content/research/_index.md` → `/research/`; each stream is a subsection, `content/research/<stream>/_index.md` → `/research/<stream>/`; entries are `content/research/<stream>/YYYY-MM-DD-slug.md` → `/research/<stream>/<slug>/` from their `slug` frontmatter.
 
 Prefer canonical internal paths with trailing slashes. Do not add aliases unless an intentional short URL or a real historical URL must remain valid. Preserve existing aliases when moving content.
@@ -216,6 +216,7 @@ Every note, project page, article, hub with a `filter_dek`, research stream, and
 - Loose Leaves images must use `YYYY-MM-DD-description.jpeg`; the list template extracts the date and sorts filenames newest first, and tags leaves that share a day `/1`, `/2`, … in the order shown.
 - A page using `photo-gallery` must also set `lightbox: true` until script loading is coupled directly to the shortcode.
 - A page using `model-viewer` must set `model_viewer: true` and supply shortcode `src`, `poster`, and accessible `alt` values.
+- The Instagram Stories trace (`content/traces/stories.md`, layout `stories`, `stories: true`) is built from the untouched export by `uv run tools/build-stories.py`, which writes `data/stories.json` with city-level places from the journal's `location` (never addresses), and its videos and picture sheets go to the Space with `uv run tools/stories-media.py`; docs/stories.md.
 
 ## Shortcodes
 
