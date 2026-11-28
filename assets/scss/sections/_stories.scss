@@ -123,7 +123,8 @@ body:has(.stories) {
   pointer-events: none;
 }
 
-// The veil: the stories stay faintly behind the masthead.
+// The veil: the repeats stay faintly behind the masthead, and it clears by
+// the newest row. The script sets its height and the masthead's.
 .stories-veil {
   position: absolute;
   top: 0;
@@ -134,10 +135,8 @@ body:has(.stories) {
   pointer-events: none;
   background: linear-gradient(
     to bottom,
-    color-mix(in srgb, var(--ground) 90%, transparent) 0%,
-    color-mix(in srgb, var(--ground) 86%, transparent) 58%,
-    color-mix(in srgb, var(--ground) 60%, transparent) 74%,
-    color-mix(in srgb, var(--ground) 28%, transparent) 88%,
+    color-mix(in srgb, var(--ground) 90%, transparent) 0,
+    color-mix(in srgb, var(--ground) 86%, transparent) var(--stories-masthead, 162px),
     transparent 100%
   );
 }

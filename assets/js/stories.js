@@ -33,6 +33,8 @@ function init(root) {
 
   const stage = root.querySelector('[data-stage]');
   const sea = root.querySelector('[data-sea]');
+  const veil = root.querySelector('.stories-veil');
+  const masthead = document.querySelector('body > header.site');
   const lens = root.querySelector('[data-lens]');
   const glass = root.querySelector('[data-lens-glass]');
   const label = root.querySelector('[data-lens-label]');
@@ -67,16 +69,20 @@ function init(root) {
     const x0 = (vw - page) / 2 + pad + (container - dataW) / 2; // the days' left edge
     const lc = Math.ceil(x0 / PX);
     const rc = Math.ceil((vw - x0 - dataW) / PX);
-    const sig = [dc, lc, rc].join(':');
+    // Behind the masthead the sea is repeats, like the edges; the newest day
+    // starts on the first row below it.
+    const mast = masthead ? masthead.offsetHeight : 0;
+    const top = Math.ceil(mast / PY);
+    const sig = [dc, lc, rc, top].join(':');
     if (G && G.sig === sig) return;
     const cols = lc + dc + rc;
-    const rows = Math.ceil(D.length / dc);
+    const rows = top + Math.ceil(D.length / dc);
     const cells = new Int32Array(cols * rows);
     const frag = document.createDocumentFragment();
     for (let r = 0; r < rows; r++) {
       for (let c = 0; c < cols; c++) {
-        const k = r * dc + (c - lc);
-        const real = c >= lc && c < lc + dc && k < D.length;
+        const k = (r - top) * dc + (c - lc);
+        const real = r >= top && c >= lc && c < lc + dc && k < D.length;
         const d = real ? D[k] : D[hash(r * 977 + c) % D.length];
         cells[r * cols + c] = real ? d.k : -1 - d.k;
         const t = document.createElement('i');
@@ -100,7 +106,7 @@ function init(root) {
       chip.className = 'stories-year n';
       chip.textContent = d.year;
       chip.style.left = ((d.k % dc) + lc) * PX + 2 + 'px';
-      chip.style.top = Math.floor(d.k / dc) * PY + 2 + 'px';
+      chip.style.top = (top + Math.floor(d.k / dc)) * PY + 2 + 'px';
       frag.append(chip);
     });
     sea.replaceChildren(frag);
@@ -108,12 +114,15 @@ function init(root) {
     sea.style.width = cols * PX - GAP + 'px';
     sea.style.gridTemplateColumns = `repeat(${cols}, ${TW}px)`;
     stage.style.height = rows * PY - GAP + 'px';
-    G = { sig, cols, rows, dc, lc, left: x0 - lc * PX, cells, h: rows * PY - GAP };
+    // The veil holds over the masthead and clears by the newest row.
+    veil.style.setProperty('--stories-masthead', mast + 'px');
+    veil.style.height = Math.max(top * PY, mast + 32) + 'px';
+    G = { sig, cols, rows, dc, lc, top, mast, left: x0 - lc * PX, cells, h: rows * PY - GAP };
     if (state.open) placeLit();
   }
 
   function cellXY(k) {
-    return { x: G.left + ((k % G.dc) + G.lc) * PX, y: Math.floor(k / G.dc) * PY };
+    return { x: G.left + ((k % G.dc) + G.lc) * PX, y: (G.top + Math.floor(k / G.dc)) * PY };
   }
 
   function cellAt(clientX, clientY) {
@@ -244,7 +253,7 @@ function init(root) {
     // A story opens playing: the click that opened it lets it play with sound.
     play();
     if (!narrow.matches) {
-      const top = Math.max(176, Math.min(G.h - key.offsetHeight - 16, Math.round(y - 180)));
+      const top = Math.max(G.mast + 16, Math.min(G.h - key.offsetHeight - 16, Math.round(y - 180)));
       key.style.top = Math.max(16, top) + 'px';
     }
     key.focus({ preventScroll: !narrow.matches });

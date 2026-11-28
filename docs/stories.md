@@ -24,8 +24,11 @@ styles `assets/scss/sections/_stories.scss`. The data is `data/stories.json`.
 
 The days fill the page's container, as many 33 × 59 tiles across as fit, and
 the window beyond it is filled with repeats of other days, full strength, so
-the sea runs to the window's edges at any width. The repeats are decoration:
-they do nothing under the pointer. A chip marks each year's newest day.
+the sea runs to the window's edges at any width. Repeats also fill the rows
+behind the masthead (as many as its measured height needs), so the newest day
+starts on the first row below it; the veil holds over those rows and clears by
+the newest one. The repeats are decoration: they do nothing under the pointer.
+A chip marks each year's newest day.
 
 Each tile flicks through up to six of its day's frames by CSS steps over its
 row of a day sheet, on its own timing, so the sea shimmers rather than blinks.
