@@ -317,7 +317,23 @@ function init(root) {
     status.hidden = true;
     video.src = s.video;
     video.muted = !sound.checked;
-    if (play) video.play().catch(() => pause());
+    if (play) start();
+  }
+  // Browsers may refuse to play with sound (Safari often does, and Chrome on a
+  // first visit): then the story plays muted and the Sound switch turns off,
+  // so one press brings the sound back. An interrupted play (a quick step to
+  // the next story) is not a refusal and leaves playback on.
+  function start() {
+    video.play().catch((e) => {
+      if (e.name === 'AbortError') return;
+      if (e.name === 'NotAllowedError' && !video.muted) {
+        video.muted = true;
+        sound.checked = false;
+        video.play().catch((again) => { if (again.name !== 'AbortError') pause(); });
+        return;
+      }
+      pause();
+    });
   }
   function unload() {
     well.classList.remove('is-playing');
@@ -328,13 +344,14 @@ function init(root) {
     state.playing = true;
     playBtn.querySelector('[data-play-icon]').setAttribute('d', PAUSE);
     playBtn.querySelector('[data-play-label]').textContent = 'Pause';
-    if (video.getAttribute('src') && video.paused && !video.ended) video.play().catch(() => pause());
+    if (video.getAttribute('src') && video.paused && !video.ended) start();
     else load(S[state.cur], true);
   }
   function pause() {
     state.playing = false;
     playBtn.querySelector('[data-play-icon]').setAttribute('d', PLAY);
     playBtn.querySelector('[data-play-label]').textContent = 'Play';
+    status.hidden = true;
     video.pause();
   }
   function step(dir) {
@@ -342,6 +359,11 @@ function init(root) {
     if (n >= 0 && n < S.length) show(order[n]);
   }
 
+  // A tab in the background may pause a silent video to save power; carry on
+  // when the page is seen again.
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && state.open && state.playing && video.paused && video.getAttribute('src')) start();
+  });
   video.addEventListener('playing', () => { well.classList.add('is-playing'); status.hidden = true; });
   video.addEventListener('waiting', () => { if (state.playing) { status.textContent = 'Loading…'; status.hidden = false; } });
   // A video that will not load leaves its frame and says so; Play tries again.
